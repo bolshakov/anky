@@ -38,9 +38,13 @@ struct SeverityTests {
     }
 
     @Test(arguments: ["-1", "11"])
-    func decodingOutsideZeroToTenThrows(json: String) {
-        #expect(throws: DecodingError.self) {
+    func decodingOutsideZeroToTenIsDataCorrupted(json: String) throws {
+        let error = try #require(throws: DecodingError.self) {
             try JSONDecoder().decode(Severity.self, from: Data(json.utf8))
+        }
+        guard case .dataCorrupted = error else {
+            Issue.record("Expected a dataCorrupted error")
+            return
         }
     }
 }
