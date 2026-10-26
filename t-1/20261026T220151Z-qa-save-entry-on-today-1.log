@@ -1,0 +1,14 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-save.M9YF light SaveEntryTests/testSaveEntryOnToday
+exit: 0
+commit: 3379e954c7d03f9a163cf4aa254be8db896af9da
+
+simulator D67FAD02-72CA-4528-A426-5733DC40344D
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.SaveEntryTests testSaveEntryOnToday]' passed (17.515 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-save.M9YF/shots/save-entry-on-today.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-save.M9YF/files/D908541D-975A-4971-B4C4-5183382C9DC9.json
+walk exit 0

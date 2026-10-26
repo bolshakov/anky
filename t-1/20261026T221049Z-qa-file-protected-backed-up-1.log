@@ -1,0 +1,62 @@
+$ swift test --scratch-path .build --filter FileEntryStoreTests
+exit: 0
+commit: 3379e954c7d03f9a163cf4aa254be8db896af9da
+
+Building for debugging...
+[0/7] Write sources
+[2/7] /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/checkout/.build/arm64-apple-macosx/debug/AnkyPackageTests.derived/runner.swift
+[3/7] Write sources
+[4/7] Write swift-version--58304C5D6DBC2206.txt
+[6/16] Compiling AnkyDomain Severity.swift
+[7/16] Compiling AnkyDomain TodayList.swift
+[8/16] Compiling AnkyDomain EntryStore.swift
+[9/16] Compiling AnkyDomain EntryLog.swift
+[10/16] Compiling AnkyDomain EntryKind.swift
+[11/16] Compiling AnkyDomain EntryDraft.swift
+[12/16] Emitting module AnkyDomain
+[13/16] Compiling AnkyDomain FileEntryStore.swift
+[14/16] Compiling AnkyDomain Entry.swift
+[15/25] Compiling AnkyDomainTests FakeEntryStore.swift
+[16/25] Compiling AnkyDomainTests TodayListTests.swift
+[17/25] Compiling AnkyDomainTests SeverityTests.swift
+[18/25] Compiling AnkyDomainTests EntryTests.swift
+[19/25] Compiling AnkyDomainTests EntryLogTests.swift
+[20/25] Compiling AnkyDomainTests EntryKindTests.swift
+[21/25] Compiling AnkyDomainTests EntryDraftTests.swift
+[22/25] Emitting module AnkyDomainTests
+[23/25] Compiling AnkyDomainTests FileEntryStoreTests.swift
+[24/27] Emitting module AnkyPackageTests
+[25/27] Compiling AnkyPackageTests runner.swift
+[25/27] Write Objects.LinkFileList
+[26/27] Linking AnkyPackageTests
+Build complete! (17.29s)
+Test Suite 'Selected tests' started at 2026-10-26 23:11:10.532.
+Test Suite 'AnkyPackageTests.xctest' started at 2026-10-26 23:11:10.543.
+Test Suite 'AnkyPackageTests.xctest' passed at 2026-10-26 23:11:10.543.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'Selected tests' passed at 2026-10-26 23:11:10.543.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.011) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite FileEntryStoreTests started.
+◇ Test savedFileStaysInBackup() started.
+◇ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() started.
+◇ Test errorTextNeverCarriesEntryContent() started.
+◇ Test loadThrowsUnreadableForBytesItCannotDecode() started.
+◇ Test missingFileReadsAsNoEntries() started.
+◇ Test newerVersionFileIsLeftAsItWas() started.
+◇ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() started.
+◇ Test failedSaveLeavesTheEarlierFileWhole() started.
+◇ Test unreadableFileIsKept() started.
+✔ Test newerVersionFileIsLeftAsItWas() passed after 0.011 seconds.
+✔ Test failedSaveLeavesTheEarlierFileWhole() passed after 0.012 seconds.
+✔ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() passed after 0.012 seconds.
+✔ Test unreadableFileIsKept() passed after 0.012 seconds.
+✔ Test missingFileReadsAsNoEntries() passed after 0.012 seconds.
+✔ Test loadThrowsUnreadableForBytesItCannotDecode() passed after 0.013 seconds.
+✔ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() passed after 0.016 seconds.
+✔ Test errorTextNeverCarriesEntryContent() passed after 0.027 seconds.
+✔ Test savedFileStaysInBackup() passed after 0.028 seconds.
+✔ Suite FileEntryStoreTests passed after 0.028 seconds.
+✔ Test run with 9 tests in 1 suite passed after 0.028 seconds.

@@ -1,0 +1,25 @@
+$ grep -n -A20 'func savedFileStaysInBackup' Tests/AnkyDomainTests/FileEntryStoreTests.swift
+exit: 0
+commit: 3379e954c7d03f9a163cf4aa254be8db896af9da
+
+103:    @Test func savedFileStaysInBackup() throws {
+104-        try withFolder { folder in
+105-            let fileURL = folder.appending(path: "entries.json")
+106-            let store = FileEntryStore(fileURL: fileURL, protection: .deviceDefault)
+107-            try store.save([entry(note: "Walk note")])
+108-
+109-            let excluded = try URL(filePath: fileURL.path).resourceValues(forKeys: [.isExcludedFromBackupKey])
+110-            #expect(excluded.isExcludedFromBackup == false)
+111-        }
+112-    }
+113-
+114-    @Test func errorTextNeverCarriesEntryContent() throws {
+115-        try withFolder { folder in
+116-            let fileURL = folder.appending(path: "entries.json")
+117-            let marker = "notakind-WalkNoteMarker"
+118-            let file = """
+119-            {"entries":[{"id":"\(UUID())","kind":"\(marker)","date":"2026-10-26T08:15:00Z","severity":4}],"version":1}
+120-            """
+121-            try Data(file.utf8).write(to: fileURL)
+122-            let store = FileEntryStore(fileURL: fileURL, protection: .deviceDefault)
+123-

@@ -1,0 +1,7 @@
+$ grep -rn -A2 'FileEntryStore(' App
+exit: 0
+commit: 3379e954c7d03f9a163cf4aa254be8db896af9da
+
+App/AnkyApp.swift:9:        let store = FileEntryStore(fileURL: EntriesLocation.fileURL(), protection: .complete)
+App/AnkyApp.swift-10-        _model = State(initialValue: EntryLogModel(log: EntryLog(store: store)))
+App/AnkyApp.swift-11-    }

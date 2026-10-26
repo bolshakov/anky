@@ -1,0 +1,14 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-relaunch.066i light SaveEntryTests/testEntrySurvivesRelaunch
+exit: 0
+commit: 3379e954c7d03f9a163cf4aa254be8db896af9da
+
+simulator 0D67EF4F-555B-4C99-B132-DA1DE2F9A1B2
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.SaveEntryTests testEntrySurvivesRelaunch]' passed (20.633 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-relaunch.066i/shots/entry-survives-relaunch.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-05-2/tmp/walk-relaunch.066i/files/C91C1838-BEC2-4EEC-A92A-2BFBA483CCF7.json
+walk exit 0
