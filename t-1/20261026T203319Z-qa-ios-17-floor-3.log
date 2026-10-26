@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-floor.eBak light
+exit: 0
+commit: dad3711a82ee3406a5abd22871fb23085159ceae
+
+simulator 596133AE-2338-4246-9884-8DD821B9F955
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' passed (11.833 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-floor.eBak/shots/new-entry.png
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-floor.eBak/shots/empty-state.png
+walk exit 0

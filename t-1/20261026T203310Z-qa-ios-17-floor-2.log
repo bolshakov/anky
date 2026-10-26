@@ -1,0 +1,35 @@
+$ swift test --scratch-path .build
+exit: 0
+commit: dad3711a82ee3406a5abd22871fb23085159ceae
+
+Building for debugging...
+[0/7] /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/checkout/.build/arm64-apple-macosx/debug/AnkyPackageTests.derived/runner.swift
+[1/7] Write sources
+[4/7] Write swift-version--58304C5D6DBC2206.txt
+[6/9] Compiling AnkyDomain PainScore.swift
+[7/9] Emitting module AnkyDomain
+[8/11] Emitting module AnkyDomainTests
+[9/11] Compiling AnkyDomainTests PainScoreTests.swift
+[10/13] Compiling AnkyPackageTests runner.swift
+[11/13] Emitting module AnkyPackageTests
+[11/13] Write Objects.LinkFileList
+[12/13] Linking AnkyPackageTests
+Build complete! (3.86s)
+Test Suite 'All tests' started at 2026-10-26 21:33:17.161.
+Test Suite 'All tests' passed at 2026-10-26 21:33:17.170.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.009) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite PainScoreTests started.
+◇ Test rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → -1 to rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 0 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 11 to rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 5 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 10 to acceptsScoresFromZeroToTen(value:) started.
+✔ Test rejectsScoresOutsideZeroToTen(value:) with 2 test cases passed after 0.001 seconds.
+✔ Test acceptsScoresFromZeroToTen(value:) with 3 test cases passed after 0.001 seconds.
+✔ Suite PainScoreTests passed after 0.001 seconds.
+✔ Test run with 2 tests in 1 suite passed after 0.001 seconds.

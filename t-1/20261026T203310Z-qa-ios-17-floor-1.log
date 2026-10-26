@@ -1,0 +1,8 @@
+$ grep -n iOS Package.swift project.yml
+exit: 0
+commit: dad3711a82ee3406a5abd22871fb23085159ceae
+
+Package.swift:6:    platforms: [.macOS(.v14), .iOS(.v17)],
+project.yml:5:    iOS: "17.0"
+project.yml:12:    platform: iOS
+project.yml:23:    platform: iOS

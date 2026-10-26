@@ -1,0 +1,5 @@
+$ /usr/libexec/PlistBuddy -c 'Print :MinimumOSVersion' /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-floor.eBak/derived/Build/Products/Debug-iphonesimulator/Anky.app/Info.plist
+exit: 0
+commit: dad3711a82ee3406a5abd22871fb23085159ceae
+
+17.0

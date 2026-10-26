@@ -1,0 +1,14 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-empty.E7m0 light EmptyStateTests/testFirstLaunchShowsEmptyState
+exit: 0
+commit: dad3711a82ee3406a5abd22871fb23085159ceae
+
+simulator 09EC40BB-010F-47B8-9FE1-971F37CAC708
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' passed (10.471 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-empty.E7m0/shots/new-entry.png
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-01-3/tmp/walk-empty.E7m0/shots/empty-state.png
+walk exit 0
