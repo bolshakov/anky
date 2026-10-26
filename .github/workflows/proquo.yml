@@ -1,0 +1,22 @@
+name: ProQuo
+on:
+  # pull_request makes the token read-only on fork PRs, so the comment and label steps would fail there.
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+concurrency:
+  group: proquo-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+jobs:
+  price:
+    name: Review Price Tag
+    runs-on: ubuntu-latest
+    steps:
+      # Leave ref unset: it checks out the base branch, so no fork code runs with the write token.
+      - uses: actions/checkout@v5
+      - uses: bolshakov/proquo@v2.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
