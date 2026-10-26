@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-07-1/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-07-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-07-1/tmp/walk-note.BexA light NoteTests/testSavesWithAndWithoutNote
+exit: 0
+commit: 51364b3fb76c16ed1f93bdb29509341a764d600f
+
+simulator 96FE75D4-48B1-4D2B-AAF4-177DA60C3701
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.NoteTests testSavesWithAndWithoutNote]' passed (24.572 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-07-1/tmp/walk-note.BexA/shots/note-optional.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-07-1/tmp/walk-note.BexA/files/9ACF5096-03BC-4BE0-A740-D6D7313C1F53.json
+walk exit 0
