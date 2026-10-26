@@ -6,7 +6,7 @@ struct PinnedButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.headline)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color("OnAccent"))
             .frame(maxWidth: .infinity, minHeight: 56)
             .background(Color("AccentColor"), in: Capsule())
             .scaleEffect(configuration.isPressed && !reduceMotion ? 0.97 : 1)
