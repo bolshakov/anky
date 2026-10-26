@@ -1,0 +1,8 @@
+Source: https://github.com/dadederk/iOS-Accessibility-Agent-Skill, folder ios-accessibility
+Commit: dcc3a36ce1d0099341d545c1af4eb5a8c989bf66
+License: MIT, see LICENSE
+Copied: SKILL.md and references/ only.
+Maturity: no releases, and the README calls it a work in progress.
+Edits, to re-apply on a bump:
+- Deleted references/voiceover-uikit.md and references/dynamic-type-uikit.md, since anky has no UIKit screens.
+- Removed the links to those two files from SKILL.md, references/voiceover.md and references/dynamic-type.md.
