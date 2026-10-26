@@ -7,6 +7,7 @@ exclude:
   - "**/*.xcscheme"
   - "**/*.xcstrings"
   - "**/*.xcworkspacedata"
+  - ".claude/skills/*/references/**"
 
 weights:
   - pattern: "**/Tests/**"
