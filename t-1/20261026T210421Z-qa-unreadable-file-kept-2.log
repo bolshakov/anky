@@ -1,0 +1,35 @@
+$ grep -n -A30 'func unreadableFileIsKept' Tests/AnkyDomainTests/FileEntryStoreTests.swift
+exit: 0
+commit: ea2feeb3f43ea4662e1a8dbd8d82c67a00eef95d
+
+53:    @Test func unreadableFileIsKept() throws {
+54-        try withFolder { folder in
+55-            let fileURL = folder.appending(path: "entries.json")
+56-            try Data("this is not an entries file".utf8).write(to: fileURL)
+57-            let store = FileEntryStore(fileURL: fileURL, protection: .deviceDefault)
+58-            let before = try Data(contentsOf: fileURL)
+59-
+60-            #expect(throws: EntryStoreError.unreadable) {
+61-                try store.save([entry(note: "Walk note")])
+62-            }
+63-
+64-            let after = try Data(contentsOf: fileURL)
+65-            #expect(after == before)
+66-        }
+67-    }
+68-
+69-    @Test func newerVersionFileIsLeftAsItWas() throws {
+70-        try withFolder { folder in
+71-            let fileURL = folder.appending(path: "entries.json")
+72-            let newer = Data(#"{"entries":[{"mood":"calm","id":"x"}],"version":2}"#.utf8)
+73-            try newer.write(to: fileURL)
+74-            let store = FileEntryStore(fileURL: fileURL, protection: .deviceDefault)
+75-
+76-            #expect(throws: EntryStoreError.newerVersion(2)) { try store.load() }
+77-            #expect(throws: EntryStoreError.newerVersion(2)) { try store.save([]) }
+78-
+79-            let after = try Data(contentsOf: fileURL)
+80-            #expect(after == newer)
+81-        }
+82-    }
+83-
