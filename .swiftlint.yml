@@ -1,0 +1,9 @@
+included: [Sources, App, Tests]
+cyclomatic_complexity:
+  warning: 10
+function_body_length:
+  warning: 40
+function_parameter_count:
+  warning: 4
+identifier_name:
+  min_length: 1
