@@ -12,6 +12,7 @@ public struct Entry: Identifiable, Equatable, Codable, Sendable {
         kind = draft.kind
         severity = draft.severity
         date = draft.date
-        note = draft.note.isEmpty ? nil : draft.note
+        let isBlank = draft.note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        note = isBlank ? nil : draft.note
     }
 }
