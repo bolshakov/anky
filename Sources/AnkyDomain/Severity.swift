@@ -1,4 +1,4 @@
-public struct PainScore: Equatable, Sendable {
+public struct Severity: Equatable, Sendable {
     public let value: Int
 
     public init?(_ value: Int) {
