@@ -36,9 +36,9 @@ final class SaveEntryTests: XCTestCase {
 
     /// The row's time can fall in the minute before or after the save, so both labels are returned.
     private func saveFourOfTen(in app: XCUIApplication) -> [String] {
+        let before = rowLabel(at: .now)
         openNewEntry(app)
         setSeverity(4, in: app)
-        let before = rowLabel(at: .now)
         saveEntry(app)
         let after = rowLabel(at: .now)
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
