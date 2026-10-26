@@ -1,7 +1,13 @@
+import AnkyDomain
 import SwiftUI
 
 struct TodayView: View {
+    let model: EntryLogModel
     @State private var isShowingNewEntry = false
+
+    private var todayEntries: [Entry] {
+        TodayList.entries(model.entries, on: .now, calendar: .current)
+    }
 
     var body: some View {
         NavigationStack {
@@ -12,9 +18,14 @@ struct TodayView: View {
                         .foregroundStyle(.secondary)
                         .accessibilityIdentifier("today-date")
 
-                    EmptyTodayView()
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 48)
+                    if todayEntries.isEmpty {
+                        EmptyTodayView()
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 48)
+                    } else {
+                        TodayEntryList(entries: todayEntries)
+                            .padding(.top, 16)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -28,7 +39,7 @@ struct TodayView: View {
                 .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {
-                NewEntryPlaceholder()
+                NewEntryView(model: model)
             }
         }
     }

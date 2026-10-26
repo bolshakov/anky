@@ -1,9 +1,10 @@
 import XCTest
 
 @MainActor
-func launchAnky(arguments: [String] = []) -> XCUIApplication {
+func launchAnky(folder: String = UUID().uuidString, arguments: [String] = []) -> XCUIApplication {
     let app = XCUIApplication()
     app.launchArguments = ["-AppleLocale", "en_GB"] + arguments
+    app.launchEnvironment["ANKY_ENTRIES_FOLDER"] = folder
     app.launch()
     XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
     return app
