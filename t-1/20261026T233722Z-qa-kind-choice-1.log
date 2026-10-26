@@ -1,0 +1,14 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/tmp/walk-kind.ShuW light KindChoiceTests/testStiffnessRowAndPainDefault
+exit: 0
+commit: 87918694db007aab0dc93a93e6aa7b1d19d8c4e7
+
+simulator 33C7FFA9-9564-4D4D-9BE0-A7A4A5890BB7
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.KindChoiceTests testStiffnessRowAndPainDefault]' passed (20.987 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/tmp/walk-kind.ShuW/shots/kind-choice-saved.png
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/tmp/walk-kind.ShuW/shots/kind-choice-default.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-06-1/tmp/walk-kind.ShuW/files/FFA8F71F-D6FF-433C-98EA-8A08CD4D0B1B.json
+walk exit 0
