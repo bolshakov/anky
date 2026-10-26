@@ -1,0 +1,11 @@
+Source: https://github.com/twostraws/SwiftUI-Agent-Skill, folder swiftui-pro
+Commit: f2920b63995263f57b3e198674e89a602efba6d2
+License: MIT, see LICENSE
+Copied: SKILL.md and references/ only.
+Edits, to re-apply on a bump:
+- SKILL.md: replaced the iOS 27, Xcode 27.1, iPhone Duo and Swift 6.4 lines with the project's toolchain (Xcode 26.6, Swift 6).
+- SKILL.md: third-party frameworks need a ticket, since a headless run has nobody to ask.
+- SKILL.md: dropped the iOS 27 toolbars mention and the resizability step.
+- references/resizability.md: deleted, it is all iPad and iPhone Duo window sizing.
+- references/api.md: deleted the Toolbars section, which needs iOS 27.
+- references/hygiene.md: comment rule is our own. Dropped the launch-screen and UIRequiresFullScreen bullets.
