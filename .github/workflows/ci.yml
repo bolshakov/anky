@@ -38,6 +38,12 @@ jobs:
       - name: layers
         run: scripts/ci/check-layers.sh
 
+      - name: privacy
+        run: scripts/ci/check-privacy.sh
+
+      - name: privacy check proves itself
+        run: scripts/ci/test-check-privacy.sh
+
   ios:
     needs: checks
     runs-on: macos-26
