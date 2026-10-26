@@ -2,7 +2,7 @@ name: Anky
 options:
   bundleIdPrefix: com.bolshakov
   deploymentTarget:
-    iOS: "18.0"
+    iOS: "17.0"
 packages:
   Anky:
     path: .
@@ -18,3 +18,19 @@ targets:
       GENERATE_INFOPLIST_FILE: YES
       SWIFT_VERSION: "6.0"
       INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  AnkyUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [Tests/AnkyUITests]
+    dependencies:
+      - target: Anky
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+      SWIFT_VERSION: "6.0"
+schemes:
+  Anky:
+    build:
+      targets:
+        Anky: all
+    test:
+      targets: [AnkyUITests]
