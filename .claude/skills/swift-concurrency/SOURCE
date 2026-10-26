@@ -1,0 +1,9 @@
+Source: https://github.com/AvdLee/Swift-Concurrency-Agent-Skill, folder skills/swift-concurrency
+Commit: d5770817d2622e1585b1f7eaebc791a9cb0959c8
+License: MIT, see LICENSE
+Copied: SKILL.md and references/ only.
+Edits, to re-apply on a bump:
+- SKILL.md: read unknown build settings from Package.swift and project.yml instead of asking the developer.
+- SKILL.md and references/linting.md: no SwiftLint suppression. Keep async and say why in the pull request.
+- references/linting.md: removed the SwiftLint suppression examples.
+- references/async-algorithms.md: package example uses exact: and says a new package needs a ticket.
