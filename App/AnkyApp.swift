@@ -5,6 +5,7 @@ struct AnkyApp: App {
     var body: some Scene {
         WindowGroup {
             TodayView()
+                .tint(Color("AccentColor"))
         }
     }
 }
