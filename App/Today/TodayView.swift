@@ -18,6 +18,7 @@ struct TodayView: View {
                 }
                 .padding(.horizontal)
             }
+            .background(Color("PageBackground"))
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
                 Button("Log how you feel") {
