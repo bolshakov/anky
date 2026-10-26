@@ -9,6 +9,10 @@ final class EmptyStateTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Today"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["today-date"].exists)
         XCTAssertTrue(app.staticTexts["Nothing logged today"].exists)
+        let explanation = "Log how you feel, or a medication you took. Everything stays on this iPhone."
+        XCTAssertTrue(app.staticTexts[explanation].exists)
+        XCTAssertEqual(app.cells.count, 0)
+        XCTAssertEqual(app.tables.count, 0)
 
         let logButton = app.buttons["Log how you feel"]
         XCTAssertTrue(logButton.waitForExistence(timeout: 10))
