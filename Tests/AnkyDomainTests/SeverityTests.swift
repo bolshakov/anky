@@ -28,7 +28,7 @@ struct SeverityTests {
     }
 
     @Test func encodesAsABareNumber() throws {
-        let data = try JSONEncoder().encode(try #require(Severity(4)))
+        let data = try JSONEncoder().encode(#require(Severity(4)))
         #expect(String(data: data, encoding: .utf8) == "4")
     }
 

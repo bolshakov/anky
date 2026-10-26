@@ -17,11 +17,11 @@ struct TodayListTests {
     }
 
     private func entry(at date: Date) throws -> Entry {
-        Entry(draft: EntryDraft(severity: try #require(Severity(4)), date: date))
+        try Entry(draft: EntryDraft(severity: #require(Severity(4)), date: date))
     }
 
     private func listedOnDay26(_ all: [Entry]) throws -> [Entry] {
-        TodayList.entries(all, on: try moment(12), calendar: calendar)
+        try TodayList.entries(all, on: moment(12), calendar: calendar)
     }
 
     @Test func listsOnlyTheEntriesOnThatDay() throws {
