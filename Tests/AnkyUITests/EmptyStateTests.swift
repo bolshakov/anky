@@ -23,6 +23,7 @@ final class EmptyStateTests: XCTestCase {
         attachScreenshot(named: "new-entry")
 
         cancel.tap()
-        XCTAssertTrue(app.buttons["Log how you feel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["Log how you feel"].exists)
     }
 }
