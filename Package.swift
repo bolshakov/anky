@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "Anky",
-    platforms: [.macOS(.v14), .iOS(.v18)],
+    platforms: [.macOS(.v14), .iOS(.v17)],
     products: [
         .library(name: "AnkyDomain", targets: ["AnkyDomain"]),
     ],
