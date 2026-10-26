@@ -2,7 +2,7 @@ import XCTest
 
 @MainActor
 final class EmptyStateTests: XCTestCase {
-    func testFirstLaunchShowsEmptyState() throws {
+    func testFirstLaunchShowsEmptyState() {
         continueAfterFailure = false
         let app = launchAnky()
 

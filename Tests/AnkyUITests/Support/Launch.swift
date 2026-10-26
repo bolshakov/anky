@@ -9,8 +9,8 @@ func launchAnky(arguments: [String] = []) -> XCUIApplication {
     return app
 }
 
+@MainActor
 extension XCTestCase {
-    @MainActor
     func attachScreenshot(named name: String) {
         let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         attachment.name = name
