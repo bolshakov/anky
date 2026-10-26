@@ -4,7 +4,7 @@ import SwiftUI
 struct AnkyApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("Anky")
+            TodayView()
         }
     }
 }
