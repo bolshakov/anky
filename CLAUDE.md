@@ -22,6 +22,7 @@ Run these from the worktree root. CI runs the same ones.
 - `swiftlint lint --strict`
 - `python3 -m lizard -l swift -ENS -Ecognitive -C 10 -L 40 -a 4 -T cognitive_complexity=12 -T max_nested_structures=3 -w -x "*/Tests/*" Sources App`
 - `scripts/ci/check-layers.sh`
+- `scripts/ci/check-privacy.sh`, and `scripts/ci/test-check-privacy.sh` when you change it
 - `swift test --scratch-path .build`
 - `xcodegen generate`, then `xcodebuild build -project Anky.xcodeproj -scheme Anky -destination 'generic/platform=iOS Simulator' -derivedDataPath .derived -clonedSourcePackagesDirPath .spm`
 - `proquo --explain origin/main...HEAD` prices the diff. Split it when it prices red.
