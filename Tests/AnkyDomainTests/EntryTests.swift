@@ -31,6 +31,16 @@ struct EntryTests {
         #expect(try Entry(draft: draft()).note == nil)
     }
 
+    @Test(arguments: [" ", "\n", "  \n \n  ", "\r\n", "\t"])
+    func leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note: String) throws {
+        #expect(try Entry(draft: draft(note: note)).note == nil)
+    }
+
+    @Test func keepsAMultiParagraphNoteExactlyAsTyped() throws {
+        let note = "  Walk note\n\nSecond line\n  third  "
+        #expect(try Entry(draft: draft(note: note)).note == note)
+    }
+
     @Test func roundTripsThroughCodable() throws {
         let entry = try Entry(draft: draft(note: "Walk note"))
         let decoded = try JSONDecoder().decode(Entry.self, from: JSONEncoder().encode(entry))
