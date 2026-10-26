@@ -1,0 +1,16 @@
+profiles:
+  haiku-high: {model: haiku, effort: high}
+  sonnet: {model: sonnet, effort: medium}
+  sonnet-high: {model: sonnet, effort: high}
+agents:
+  refine: sonnet
+  specify: sonnet-high
+  worker: sonnet
+  diagnose: sonnet-high
+  answer: sonnet
+  five-whys: sonnet
+  review-code: sonnet-high
+  review-tests: sonnet-high
+  qa: sonnet
+  triage: sonnet
+prompt: prompts/project.md

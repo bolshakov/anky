@@ -1,0 +1,69 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  # A new push to a PR makes its earlier run moot.
+  group: ci-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: install pinned tools
+        run: scripts/ci/install-linux-tools.sh
+
+      - name: swiftformat
+        run: swiftformat --lint .
+
+      - name: swiftlint
+        run: swiftlint lint --strict --reporter github-actions-logging
+
+      - name: complexity and nesting
+        run: >
+          python3 -m lizard -l swift -ENS -Ecognitive -C 10 -L 40 -a 4
+          -T cognitive_complexity=12 -T max_nested_structures=3 -w -x "*/Tests/*" Sources App
+
+      - name: layers
+        run: scripts/ci/check-layers.sh
+
+  ios:
+    needs: checks
+    runs-on: macos-26
+    timeout-minutes: 20
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: target edges match the allowlist
+        run: |
+          swift package dump-package | jq -r '.targets[] | .name as $n
+            | (.dependencies // [] | map(.byName[0] // .target[0]) | join(",")) | "\($n): \(.)"' \
+            | diff - architecture/edges.txt
+
+      - name: swift build
+        run: swift build --explicit-target-dependency-import-check=error --scratch-path .build
+
+      - name: swift test
+        run: swift test --scratch-path .build
+
+      - name: generate project
+        run: brew install xcodegen && xcodegen generate
+
+      - name: build the app
+        run: >
+          xcodebuild build -project Anky.xcodeproj -scheme Anky
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .derived -clonedSourcePackagesDirPath .spm

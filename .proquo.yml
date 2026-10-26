@@ -1,0 +1,15 @@
+failOn: red
+
+exclude:
+  - "**/Package.resolved"
+  - "**/Contents.json"
+  - "**/project.pbxproj"
+  - "**/*.xcscheme"
+  - "**/*.xcstrings"
+  - "**/*.xcworkspacedata"
+
+weights:
+  - pattern: "**/Tests/**"
+    weight: 0.5
+  - pattern: "**/*Tests/**"
+    weight: 0.5
