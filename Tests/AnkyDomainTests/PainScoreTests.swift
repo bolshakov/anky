@@ -7,7 +7,7 @@ struct PainScoreTests {
         #expect(PainScore(value)?.value == value)
     }
 
-    @Test(arguments: [-1, 11])
+    @Test(arguments: [-1, 7])
     func rejectsScoresOutsideZeroToTen(value: Int) {
         #expect(PainScore(value) == nil)
     }
