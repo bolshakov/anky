@@ -9,6 +9,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "AnkyDomain"),
+        .target(name: "AnkyData"),
         .testTarget(name: "AnkyDomainTests", dependencies: ["AnkyDomain"]),
     ]
 )
