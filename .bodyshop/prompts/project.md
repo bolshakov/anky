@@ -4,10 +4,15 @@ anky tracks ankylosing spondylitis symptoms on an iPhone. Read `CLAUDE.md` first
 
 ## Threat model
 
-Draft, not yet confirmed by the stakeholder. The data is health data about one person.
+Confirmed by the stakeholder on 2026-10-26. The data is health data about one person, and it stays on the phone.
+
+The promise: entries live only on the device. There is no network sync, no iCloud sync, no analytics and no HealthKit.
+Each of those is a product call. A ticket may add one only after the stakeholder approves it, and the promise is
+reworded in the same change.
 
 In scope:
 - Entries leave the device. Nothing is sent, logged, or backed up off the device without a ticket that says so.
+- Device backups copy app data by default. A ticket that stores entries decides whether to exclude them.
 - A third-party package. Each one needs a ticket that says why, and an `exact:` pin.
 - Entries in logs and crash output. Never print an entry's content.
 
