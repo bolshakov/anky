@@ -17,6 +17,9 @@ A `By: agent` example runs in a simulator that the walk creates with `xcrun simc
 deletes the simulator after. Screenshots come from `xcrun simctl io <udid> screenshot`. Two walks never share a
 simulator or a DerivedData folder.
 
+The first launch on a freshly created simulator can hang for good while `simctl bootstatus` already says booted.
+Run `simctl launch` under `timeout 45`. If it hangs, shut the simulator down, boot it again, and try once more.
+
 ## Project files
 
 Never edit `Anky.xcodeproj`. It is generated. A new Swift file under `Sources/` or `App/` needs no other change.
