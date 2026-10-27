@@ -31,6 +31,23 @@ final class NoteTests: XCTestCase {
         XCTAssertLessThan(card.frame.height, 60, "empty note card is \(card.frame.height) pt high")
     }
 
+    func testNoteCardGrowsWithText() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+
+        let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let emptyHeight = card.frame.height
+
+        typeNote("One\nTwo\nThree", in: app)
+
+        XCTAssertGreaterThan(
+            card.frame.height, emptyHeight,
+            "note card stayed \(card.frame.height) pt high with three lines"
+        )
+    }
+
     func testTappingTopOfNoteCardFocusesField() {
         continueAfterFailure = false
         let app = launchAnky()
