@@ -40,15 +40,20 @@ private struct EntryRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Text(time)
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
             Text(entry.kind.title)
             Spacer()
-            Text(entry.severity.text)
-                .foregroundStyle(.secondary)
+            value
         }
         .padding()
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(time), \(entry.kind.title), \(entry.severity.text)")
         .accessibilityIdentifier("entry-row")
+    }
+
+    private var value: some View {
+        Text("\(entry.severity.value)").bold().foregroundStyle(.primary)
+            + Text(" of 10").foregroundStyle(.secondary)
     }
 }
