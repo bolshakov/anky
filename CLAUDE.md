@@ -26,6 +26,9 @@ Run these from the worktree root. CI runs the same ones.
 - `scripts/ci/check-design-tokens.sh`, and `scripts/ci/test-check-design-tokens.sh` when you change it
 - `swift test --scratch-path .build`
 - `xcodegen generate`, then `xcodebuild build -project Anky.xcodeproj -scheme Anky -destination 'generic/platform=iOS Simulator' -derivedDataPath .derived -clonedSourcePackagesDirPath .spm`
+- `scripts/ci/run-ui-tests.sh light .derived` and the smoke names from `.github/workflows/ci.yml`, after the
+  `xcodebuild build`
+- `scripts/ci/test-run-ui-tests.sh` when you change `scripts/ci/run-ui-tests.sh`
 - `proquo --explain origin/main...HEAD` prices the diff. Split it when it prices red.
 
 ## Parallel workers
