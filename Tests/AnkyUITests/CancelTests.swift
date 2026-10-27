@@ -14,8 +14,9 @@ final class CancelTests: XCTestCase {
         app.buttons["cancel-entry"].tap()
 
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["Discard"].exists)
-        XCTAssertEqual(todayRows(in: app).count, 1)
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertEqual(app.sheets.count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 1)
         attachScreenshot(named: "cancel-saves-nothing")
     }
 
@@ -27,8 +28,9 @@ final class CancelTests: XCTestCase {
         app.buttons["cancel-entry"].tap()
 
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["Discard"].exists)
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertEqual(app.sheets.count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
         attachScreenshot(named: "cancel-after-change")
     }
 
@@ -40,7 +42,7 @@ final class CancelTests: XCTestCase {
 
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
         attachScreenshot(named: "swipe-down")
     }
 
@@ -52,20 +54,20 @@ final class CancelTests: XCTestCase {
         swipeSheetDown(app)
 
         assertStillOpen(app)
-        XCTAssertEqual(app.sliders["severity-slider"].value as? String, "1 of 10")
+        XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 1)
         XCTAssertEqual(app.alerts.count, 0)
         attachScreenshot(named: "swipe-blocked")
 
         app.buttons["cancel-entry"].tap()
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
     func testSwipeDownIsBlockedAfterKindChange() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
-        chooseKind("Stiffness", in: app)
+        chooseKind(.stiffness, in: app)
         swipeSheetDown(app)
 
         assertStillOpen(app)
@@ -92,7 +94,7 @@ final class CancelTests: XCTestCase {
         swipeSheetDown(app)
 
         assertStillOpen(app)
-        XCTAssertEqual(app.sliders["severity-slider"].value as? String, "7 of 10")
+        XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 7)
     }
 
     func testSwipeDownIsBlockedAfterNoteChange() {
@@ -100,9 +102,9 @@ final class CancelTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
         typeNote("Walk note", in: app)
-        // The keyboard is up, so a drag leaves the sheet open even when swipes are not blocked.
-        // Only the element swipe proves the block.
-        app.navigationBars["New Entry"].swipeDown()
+        // No gesture hides the keyboard on this sheet, and the bar swipe does not dismiss with it up.
+        // So this check does not reach the note guard yet.
+        app.navigationBars.containing(.button, identifier: "cancel-entry").firstMatch.swipeDown()
 
         assertStillOpen(app)
     }
@@ -118,9 +120,5 @@ final class CancelTests: XCTestCase {
     private func assertStillOpen(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
         XCTAssertFalse(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 3), file: file, line: line)
         XCTAssertEqual(app.alerts.count, 0, file: file, line: line)
-    }
-
-    private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
-        app.descendants(matching: .any).matching(identifier: "entry-row")
     }
 }

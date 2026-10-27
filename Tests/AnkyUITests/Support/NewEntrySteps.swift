@@ -15,11 +15,11 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     XCTAssertTrue(slider.waitForExistence(timeout: 10))
     for _ in 0 ..< 20 {
-        let current = severityValue(of: slider)
+        let current = severityLevel(of: slider) ?? -1
         guard current != level else { return }
         if abs(current - level) <= 2 {
             slider.adjust(toNormalizedSliderPosition: level >= 5 ? 0 : 1)
-            guard severityValue(of: slider) != level else { return }
+            guard severityLevel(of: slider) != level else { return }
         }
         slider.adjust(toNormalizedSliderPosition: CGFloat(level) / 10)
     }
@@ -34,7 +34,6 @@ func saveEntry(_ app: XCUIApplication) {
 }
 
 @MainActor
-private func severityValue(of slider: XCUIElement) -> Int {
-    let text = slider.value as? String ?? ""
-    return Int(text.prefix { $0.isNumber }) ?? -1
+func severityLevel(of slider: XCUIElement) -> Int? {
+    leadingNumber(in: slider.value as? String)
 }

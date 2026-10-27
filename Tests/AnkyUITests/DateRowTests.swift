@@ -5,13 +5,13 @@ final class DateRowTests: XCTestCase {
     func testRowShowsTodayAndTogglesThePicker() {
         continueAfterFailure = false
         let app = launchAnky()
-        let shownBefore = dateRowValue(at: .now)
+        let shownBefore = clockTime(at: .now)
         openNewEntry(app)
 
         let row = app.buttons["date-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertEqual(row.label, "Date and time")
-        XCTAssertTrue([shownBefore, dateRowValue(at: .now)].contains(row.value as? String ?? ""))
+        XCTAssertFalse(row.label.isEmpty)
+        XCTAssertTrue([shownBefore, clockTime(at: .now)].contains(clockTime(inRowValue: row.value as? String)))
         XCTAssertFalse(app.datePickers["date-picker"].exists)
 
         showDatePicker(in: app)

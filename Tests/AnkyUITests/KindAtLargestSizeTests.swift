@@ -7,18 +7,17 @@ final class KindAtLargestSizeTests: XCTestCase {
         let app = launchAnky(arguments: largestTextArguments)
         openNewEntry(app)
 
-        let picker = app.descendants(matching: .any).matching(identifier: "kind-picker").firstMatch
-        let stiffness = picker.buttons["Stiffness"]
+        let stiffness = kindSegment(.stiffness, in: app)
         XCTAssertTrue(stiffness.waitForExistence(timeout: 10))
         XCTAssertGreaterThanOrEqual(stiffness.frame.height, 44)
 
-        chooseKind("Stiffness", in: app)
+        chooseKind(.stiffness, in: app)
         scrollToSeveritySlider(in: app)
         setSeverity(4, in: app)
         saveEntry(app)
 
-        let row = app.descendants(matching: .any).matching(identifier: "entry-row").firstMatch
+        let row = app.descendants(matching: .any).matching(identifier: "entry-row-stiffness").firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertTrue(row.label.hasSuffix(", Stiffness, 4 of 10"), "row reads \(row.label)")
+        XCTAssertEqual(rowSeverity(of: row), 4)
     }
 }

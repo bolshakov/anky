@@ -8,7 +8,7 @@ final class EmptyStateTests: XCTestCase {
 
         XCTAssertTrue(app.scrollViews["today-screen"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["today-date"].exists)
-        XCTAssertTrue(app.staticTexts["empty-today-title"].exists)
+        XCTAssertTrue(app.staticTexts["empty-today"].exists)
         XCTAssertEqual(app.cells.count, 0)
         XCTAssertEqual(app.tables.count, 0)
 

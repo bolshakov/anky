@@ -24,6 +24,8 @@ targets:
     sources: [Tests/AnkyUITests]
     dependencies:
       - target: Anky
+      - package: Anky
+        product: AnkyDomain
     settings:
       GENERATE_INFOPLIST_FILE: YES
       SWIFT_VERSION: "6.0"

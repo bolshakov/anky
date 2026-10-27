@@ -1,10 +1,16 @@
 import Foundation
 import XCTest
 
-/// The date row's value for a moment, such as "Today, 08:15". The hour is zero-padded on a 24 hour clock.
-func dateRowValue(at date: Date) -> String {
+/// The clock time for a moment, such as "08:15". The hour is zero-padded on a 24 hour clock.
+func clockTime(at date: Date) -> String {
     let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
-    return String(format: "Today, %02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
+    return String(format: "%02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
+}
+
+/// The clock time at the end of the date row's value. The row reads "<day>, HH:mm", and the day word
+/// changes with the language.
+func clockTime(inRowValue value: String?) -> String? {
+    value?.components(separatedBy: ", ").last
 }
 
 /// Taps the date row and waits for the wheel to appear.
@@ -24,7 +30,7 @@ func moveHour(by delta: Int, in app: XCUIApplication) {
     XCTAssertTrue(hours.waitForExistence(timeout: 10))
     let step = delta < 0 ? -1 : 1
     for _ in 0 ..< abs(delta) {
-        let current = Int((hours.value as? String ?? "").prefix { $0.isNumber }) ?? -1
+        let current = leadingNumber(in: hours.value as? String) ?? -1
         hours.adjust(toPickerWheelValue: String(format: "%02d", (current + step + 24) % 24))
     }
 }

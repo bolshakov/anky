@@ -20,7 +20,7 @@ final class AccessibilityAuditTests: XCTestCase {
 
     /// Today empty, New Entry at the top and at the note, then Today with the row the save adds.
     private func auditEveryScreen(in app: XCUIApplication) throws {
-        XCTAssertTrue(app.staticTexts["empty-today-title"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["empty-today"].waitForExistence(timeout: 10))
         try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
 
         openNewEntry(app)
@@ -30,7 +30,7 @@ final class AccessibilityAuditTests: XCTestCase {
 
         saveEntry(app)
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
-        let row = app.descendants(matching: .any).matching(identifier: "entry-row").firstMatch
+        let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
     }

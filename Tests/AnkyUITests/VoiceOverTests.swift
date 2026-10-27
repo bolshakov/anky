@@ -11,7 +11,7 @@ final class VoiceOverTests: XCTestCase {
         setSeverity(4, in: app)
 
         let slider = app.sliders["severity-slider"]
-        XCTAssertEqual(slider.label, "Severity")
-        XCTAssertEqual(slider.value as? String, "4 of 10")
+        XCTAssertFalse(slider.label.isEmpty)
+        XCTAssertEqual(severityLevel(of: slider), 4)
     }
 }

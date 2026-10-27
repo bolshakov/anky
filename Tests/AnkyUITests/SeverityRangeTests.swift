@@ -9,8 +9,8 @@ final class SeverityRangeTests: XCTestCase {
 
         let slider = app.sliders["severity-slider"]
         XCTAssertTrue(slider.waitForExistence(timeout: 10))
-        let low = app.staticTexts["0"]
-        let high = app.staticTexts["10"]
+        let low = app.staticTexts["severity-low-label"]
+        let high = app.staticTexts["severity-high-label"]
         XCTAssertTrue(low.waitForExistence(timeout: 10))
         XCTAssertTrue(high.exists)
 
