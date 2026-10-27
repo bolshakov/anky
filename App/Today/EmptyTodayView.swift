@@ -3,9 +3,11 @@ import SwiftUI
 struct EmptyTodayView: View {
     var body: some View {
         VStack(spacing: 12) {
-            Image(systemName: "circle.dotted")
-                .font(.largeTitle)
-                .foregroundStyle(.secondary)
+            Image("AnkyMark")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 120)
+                .foregroundStyle(Color("AccentColor"))
                 .accessibilityHidden(true)
 
             Text("Nothing logged today")
