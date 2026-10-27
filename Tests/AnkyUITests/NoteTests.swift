@@ -84,7 +84,7 @@ final class NoteTests: XCTestCase {
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, note)
-        let save = app.buttons["Save entry"]
+        let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
 
@@ -108,7 +108,7 @@ final class NoteTests: XCTestCase {
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, String(note.prefix(240)))
         XCTAssertEqual(counter.label, "Limit reached")
-        let save = app.buttons["Save entry"]
+        let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
         for _ in 0 ..< 3 where counter.frame.maxY > save.frame.minY {

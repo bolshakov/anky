@@ -17,7 +17,7 @@ func scrollToNoteField(in app: XCUIApplication) {
 @MainActor
 func scrollToSeveritySlider(in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
-    let save = app.buttons["Save entry"]
+    let save = app.buttons["save-entry"]
     for _ in 0 ..< 5 where slider.frame.maxY > save.frame.minY {
         app.swipeUp()
     }

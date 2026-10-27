@@ -14,7 +14,7 @@ final class EmptyStateTests: XCTestCase {
         XCTAssertEqual(app.cells.count, 0)
         XCTAssertEqual(app.tables.count, 0)
 
-        let logButton = app.buttons["Log how you feel"]
+        let logButton = app.buttons["log-entry"]
         XCTAssertTrue(logButton.waitForExistence(timeout: 10))
         XCTAssertGreaterThanOrEqual(logButton.frame.height, 44)
         XCTAssertGreaterThan(logButton.frame.width, app.windows.firstMatch.frame.width * 0.8)
@@ -22,12 +22,12 @@ final class EmptyStateTests: XCTestCase {
 
         logButton.tap()
         XCTAssertTrue(app.staticTexts["New Entry"].waitForExistence(timeout: 10))
-        let cancel = app.buttons["Cancel"]
+        let cancel = app.buttons["cancel-entry"]
         XCTAssertTrue(cancel.exists)
         attachScreenshot(named: "new-entry")
 
         cancel.tap()
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["Log how you feel"].exists)
+        XCTAssertTrue(app.buttons["log-entry"].exists)
     }
 }

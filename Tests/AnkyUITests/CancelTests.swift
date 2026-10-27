@@ -11,7 +11,7 @@ final class CancelTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
-        app.buttons["Cancel"].tap()
+        app.buttons["cancel-entry"].tap()
 
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
         XCTAssertFalse(app.buttons["Discard"].exists)
@@ -24,7 +24,7 @@ final class CancelTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
         setSeverity(1, in: app)
-        app.buttons["Cancel"].tap()
+        app.buttons["cancel-entry"].tap()
 
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
         XCTAssertFalse(app.buttons["Discard"].exists)
@@ -56,7 +56,7 @@ final class CancelTests: XCTestCase {
         XCTAssertEqual(app.alerts.count, 0)
         attachScreenshot(named: "swipe-blocked")
 
-        app.buttons["Cancel"].tap()
+        app.buttons["cancel-entry"].tap()
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(todayRows(in: app).count, 0)
     }

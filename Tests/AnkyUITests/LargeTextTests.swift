@@ -7,7 +7,7 @@ final class LargeTextTests: XCTestCase {
         let app = launchAnky(arguments: largestTextArguments)
         openNewEntry(app)
 
-        let save = app.buttons["Save entry"]
+        let save = app.buttons["save-entry"]
         XCTAssertTrue(save.waitForExistence(timeout: 10))
         let pinned = save.frame
         XCTAssertGreaterThanOrEqual(pinned.height, 44)

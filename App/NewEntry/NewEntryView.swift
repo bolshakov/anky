@@ -37,6 +37,7 @@ struct NewEntryView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .accessibilityIdentifier("cancel-entry")
                 }
                 .withoutGlassPill()
             }
@@ -45,6 +46,7 @@ struct NewEntryView: View {
                     save()
                 }
                 .buttonStyle(PinnedButtonStyle())
+                .accessibilityIdentifier("save-entry")
                 .padding()
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {

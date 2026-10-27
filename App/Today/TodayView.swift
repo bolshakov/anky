@@ -36,6 +36,7 @@ struct TodayView: View {
                     isShowingNewEntry = true
                 }
                 .buttonStyle(PinnedButtonStyle())
+                .accessibilityIdentifier("log-entry")
                 .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {

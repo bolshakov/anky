@@ -2,7 +2,7 @@ import XCTest
 
 @MainActor
 func openNewEntry(_ app: XCUIApplication) {
-    let logButton = app.buttons["Log how you feel"]
+    let logButton = app.buttons["log-entry"]
     XCTAssertTrue(logButton.waitForExistence(timeout: 10))
     logButton.tap()
     XCTAssertTrue(app.staticTexts["New Entry"].waitForExistence(timeout: 10))
@@ -28,7 +28,7 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
 
 @MainActor
 func saveEntry(_ app: XCUIApplication) {
-    let saveButton = app.buttons["Save entry"]
+    let saveButton = app.buttons["save-entry"]
     XCTAssertTrue(saveButton.waitForExistence(timeout: 10))
     saveButton.tap()
 }
