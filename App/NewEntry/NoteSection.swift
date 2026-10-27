@@ -13,7 +13,7 @@ struct NoteSection: View {
             NoteTextView(text: $draft.note)
                 .frame(maxWidth: .infinity)
                 .background {
-                    RoundedRectangle(cornerRadius: 16)
+                    RoundedRectangle.card
                         .fill(Color("CardBackground"))
                         .accessibilityIdentifier("note-card")
                 }

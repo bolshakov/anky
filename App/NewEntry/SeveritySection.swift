@@ -34,7 +34,7 @@ struct SeveritySection: View {
                 .foregroundStyle(.secondary)
             }
             .padding()
-            .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 16))
+            .background(Color("CardBackground"), in: .card)
         }
     }
 }

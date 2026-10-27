@@ -14,7 +14,7 @@ struct TodayEntryList: View {
                     }
                 }
             }
-            .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 16))
+            .background(Color("CardBackground"), in: .card)
 
             Text("Stored on this iPhone only.")
                 .font(.footnote)
