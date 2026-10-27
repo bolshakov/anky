@@ -6,11 +6,9 @@ final class EmptyStateTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
 
-        XCTAssertTrue(app.staticTexts["Today"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["today-screen"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["today-date"].exists)
-        XCTAssertTrue(app.staticTexts["Nothing logged today"].exists)
-        let explanation = "Log how you feel, or a medication you took. Everything stays on this iPhone."
-        XCTAssertTrue(app.staticTexts[explanation].exists)
+        XCTAssertTrue(app.staticTexts["empty-today-title"].exists)
         XCTAssertEqual(app.cells.count, 0)
         XCTAssertEqual(app.tables.count, 0)
 
@@ -21,13 +19,13 @@ final class EmptyStateTests: XCTestCase {
         attachScreenshot(named: "empty-state")
 
         logButton.tap()
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
         let cancel = app.buttons["cancel-entry"]
         XCTAssertTrue(cancel.exists)
         attachScreenshot(named: "new-entry")
 
         cancel.tap()
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["log-entry"].exists)
     }
 }

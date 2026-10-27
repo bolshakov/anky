@@ -9,11 +9,11 @@ final class NoteTests: XCTestCase {
         openNewEntry(app)
         typeNote("Walk note", in: app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
         XCTAssertTrue(todayRows(in: app).firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(todayRows(in: app).count, 2)
@@ -89,7 +89,7 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
 
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
     }
 
     func testNoteStopsAtTheLimit() {

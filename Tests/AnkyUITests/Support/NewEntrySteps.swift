@@ -5,7 +5,7 @@ func openNewEntry(_ app: XCUIApplication) {
     let logButton = app.buttons["log-entry"]
     XCTAssertTrue(logButton.waitForExistence(timeout: 10))
     logButton.tap()
-    XCTAssertTrue(app.staticTexts["New Entry"].waitForExistence(timeout: 10))
+    XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
 }
 
 /// XCUIElement has no increment or decrement, so each call drives the slider by position. A short drag from a

@@ -30,6 +30,7 @@ struct NewEntryView: View {
                 .padding()
             }
             .background(Color("PageBackground"))
+            .accessibilityIdentifier("new-entry-screen")
             .navigationTitle("New Entry")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

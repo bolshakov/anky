@@ -8,12 +8,12 @@ final class CancelTests: XCTestCase {
         openNewEntry(app)
         setSeverity(6, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertFalse(app.buttons["Discard"].exists)
         XCTAssertEqual(todayRows(in: app).count, 1)
         attachScreenshot(named: "cancel-saves-nothing")
@@ -26,7 +26,7 @@ final class CancelTests: XCTestCase {
         setSeverity(1, in: app)
         app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertFalse(app.buttons["Discard"].exists)
         XCTAssertEqual(todayRows(in: app).count, 0)
         attachScreenshot(named: "cancel-after-change")
@@ -38,7 +38,7 @@ final class CancelTests: XCTestCase {
         openNewEntry(app)
         swipeSheetDown(app)
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
         XCTAssertEqual(todayRows(in: app).count, 0)
         attachScreenshot(named: "swipe-down")
@@ -57,7 +57,7 @@ final class CancelTests: XCTestCase {
         attachScreenshot(named: "swipe-blocked")
 
         app.buttons["cancel-entry"].tap()
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(todayRows(in: app).count, 0)
     }
 
@@ -116,7 +116,7 @@ final class CancelTests: XCTestCase {
 
     /// The sheet is still animating for a moment after a swipe, so a plain `exists` check could pass too early.
     private func assertStillOpen(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertFalse(app.staticTexts["New Entry"].waitForNonExistence(timeout: 3), file: file, line: line)
+        XCTAssertFalse(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 3), file: file, line: line)
         XCTAssertEqual(app.alerts.count, 0, file: file, line: line)
     }
 

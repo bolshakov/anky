@@ -30,7 +30,7 @@ final class SaveEntryTests: XCTestCase {
         app.terminate()
 
         let fresh = launchAnky()
-        XCTAssertTrue(fresh.staticTexts["Nothing logged today"].waitForExistence(timeout: 10))
+        XCTAssertTrue(fresh.staticTexts["empty-today-title"].waitForExistence(timeout: 10))
         XCTAssertEqual(todayRows(in: fresh).count, 0)
     }
 
@@ -41,7 +41,7 @@ final class SaveEntryTests: XCTestCase {
         setSeverity(4, in: app)
         saveEntry(app)
         let after = rowLabel(at: .now)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         return [before, after]
     }
 

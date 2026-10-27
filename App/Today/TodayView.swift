@@ -30,6 +30,7 @@ struct TodayView: View {
                 .padding(.horizontal)
             }
             .background(Color("PageBackground"))
+            .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
                 Button("Log how you feel") {
