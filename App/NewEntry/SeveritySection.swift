@@ -5,28 +5,38 @@ struct SeveritySection: View {
     @Binding var draft: EntryDraft
 
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("How strong")
-                Spacer()
-                Text(draft.severity.text)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Severity")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 16)
+                .accessibilityIdentifier("severity-caption")
+                .accessibilityAddTraits(.isHeader)
+
+            VStack(spacing: 12) {
+                HStack {
+                    Text("How strong")
+                    Spacer()
+                    Text(draft.severity.text)
+                }
+                Divider()
+                HStack(spacing: 12) {
+                    Text("0")
+                    Slider(value: level, in: 0 ... 10, step: 1)
+                        .tint(Color("AccentColor"))
+                        .accessibilityIdentifier("severity-slider")
+                        .accessibilityLabel("Severity")
+                        .accessibilityValue(draft.severity.text)
+                        .sensoryFeedback(.selection, trigger: draft.severity)
+                        .overlay(alignment: .bottom) { SeverityTicks() }
+                    Text("10")
+                }
+                .font(.footnote)
+                .foregroundStyle(.secondary)
             }
-            Divider()
-            HStack(spacing: 12) {
-                Text("0")
-                Slider(value: level, in: 0 ... 10, step: 1)
-                    .accessibilityIdentifier("severity-slider")
-                    .accessibilityLabel("Severity")
-                    .accessibilityValue(draft.severity.text)
-                    .sensoryFeedback(.selection, trigger: draft.severity)
-                    .overlay(alignment: .bottom) { SeverityTicks() }
-                Text("10")
-            }
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+            .padding()
+            .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
         }
-        .padding()
-        .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
     }
 
     private var level: Binding<Double> {
