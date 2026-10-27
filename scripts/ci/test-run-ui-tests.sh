@@ -5,7 +5,7 @@ runner=$here/run-ui-tests.sh
 udid=STUB-UDID-0001
 failures=0
 root=$(mktemp -d)
-trap 'rm -rf "${root:?}"' EXIT
+trap 'cat "$root"/case.*/children.pid 2>/dev/null | xargs kill 2>/dev/null; rm -rf "${root:?}"' EXIT
 
 report() {
   if [ "$2" = 0 ]; then echo "ok: $1"; else echo "FAIL: $1"; failures=$((failures + 1)); fi
@@ -31,9 +31,12 @@ EOF
 #!/bin/sh
 echo "xcodebuild \$*" >> "$calls"
 case "\$STUB_XCODEBUILD" in
-  hang) exec sleep 60 ;;
+  hang) sleep 60 & echo \$! >> "$tree/children.pid"; wait ;;
   hang-once)
-    [ "\$(grep -c '^xcodebuild ' "$calls")" -gt 1 ] || exec sleep 60 ;;
+    [ "\$(grep -c '^xcodebuild ' "$calls")" -gt 1 ] || { sleep 60 & echo \$! >> "$tree/children.pid"; wait; } ;;
+  skip-unnamed)
+    echo "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' passed (0.1 seconds)."
+    echo "Test Case '-[AnkyUITests.SaveEntryTests testSaveEntryOnToday]' skipped (0.0 seconds)." ;;
 esac
 status=0
 for arg do
@@ -64,6 +67,19 @@ run_runner() {
   STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
   code=$?
   elapsed=$(($(date +%s) - start))
+}
+
+# Polls for up to 5 seconds, and fails unless every child the hang stub started is gone.
+children_gone() {
+  for _ in 1 2 3 4 5; do
+    alive=
+    for pid in $(cat "$tree/children.pid" 2>/dev/null); do
+      kill -0 "$pid" 2>/dev/null && alive=1
+    done
+    [ -z "$alive" ] && return 0
+    sleep 1
+  done
+  return 1
 }
 
 new_tree
@@ -132,6 +148,7 @@ between=$(sed -n '/^xcodebuild /,/^xcodebuild /p' "$calls" | sed '1d;$d')
 [ "$code" -eq 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 1 timed out after 2 s" "$out" \
   && grep -qx "simulator $udid rebooted" "$out" \
   && [ "$between" = "$(printf 'xcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
+  && [ -s "$tree/children.pid" ] && children_gone \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
 
@@ -140,6 +157,7 @@ new_tree
 seconds=2
 run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 [ "$code" -ne 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 2 timed out after 2 s" "$out" \
+  && [ -s "$tree/children.pid" ] && children_gone \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
 
@@ -156,6 +174,13 @@ name="a skipped test exits non-zero"
 new_tree
 run_runner skip light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 [ "$code" -ne 0 ] && grep -qx "a test was skipped, so the run fails" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a skipped test fails the run when no test is named"
+new_tree
+run_runner skip-unnamed light "$tree/.derived"
+[ "$code" -ne 0 ] && grep -qx "a test was skipped, so the run fails" "$out" && ! grep -q '^not run:' "$out" \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
 
