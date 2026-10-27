@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-10-1/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-10-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-10-1/tmp/walk-cancel.CNSW light CancelTests/testCancelUnchangedClosesAtOnce
+exit: 0
+commit: c866599f00c2dc46fe18198ca379eb1bfa927b2e
+
+simulator EFA83A2B-3585-463D-9229-2BD35E2E4D72
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.CancelTests testCancelUnchangedClosesAtOnce]' passed (25.990 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-10-1/tmp/walk-cancel.CNSW/shots/cancel-saves-nothing.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-10-1/tmp/walk-cancel.CNSW/files/AF201A43-36F1-4733-8D05-750E499F8D6E.json
+walk exit 0
