@@ -8,7 +8,8 @@ func openNewEntry(_ app: XCUIApplication) {
     XCTAssertTrue(app.staticTexts["New Entry"].waitForExistence(timeout: 10))
 }
 
-/// XCUIElement has no increment or decrement, so each call aims one value away from the value the slider reads.
+/// XCUIElement has no increment or decrement, so each call drives the slider by position. A short drag from a
+/// nearby value can settle one step off, so a close target first goes to the far end of the track.
 @MainActor
 func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
@@ -16,8 +17,11 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
     for _ in 0 ..< 20 {
         let current = severityValue(of: slider)
         guard current != level else { return }
-        let next = current < level ? current + 1 : current - 1
-        slider.adjust(toNormalizedSliderPosition: CGFloat(next) / 10)
+        if abs(current - level) <= 2 {
+            slider.adjust(toNormalizedSliderPosition: level >= 5 ? 0 : 1)
+            guard severityValue(of: slider) != level else { return }
+        }
+        slider.adjust(toNormalizedSliderPosition: CGFloat(level) / 10)
     }
     XCTFail("the severity slider did not reach \(level)")
 }
