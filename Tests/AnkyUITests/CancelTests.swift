@@ -23,7 +23,7 @@ final class CancelTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
-        stepSeverityUpFromZero(in: app)
+        setSeverity(1, in: app)
         app.buttons["Cancel"].tap()
 
         XCTAssertTrue(app.buttons["Discard"].waitForExistence(timeout: 10))
@@ -71,14 +71,6 @@ final class CancelTests: XCTestCase {
         XCTAssertTrue(app.buttons["Discard"].waitForExistence(timeout: 10))
         app.buttons["Discard"].tap()
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-    }
-
-    /// On this slider `adjust` reads 0.05 as 0 and 0.07 as 1, so 0.07 is the position that lands on the first step.
-    private func stepSeverityUpFromZero(in app: XCUIApplication) {
-        let slider = app.sliders["severity-slider"]
-        XCTAssertTrue(slider.waitForExistence(timeout: 10))
-        slider.adjust(toNormalizedSliderPosition: 0.07)
-        XCTAssertEqual(slider.value as? String, "1 of 10")
     }
 
     private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
