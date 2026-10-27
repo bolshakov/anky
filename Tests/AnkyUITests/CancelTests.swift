@@ -19,58 +19,30 @@ final class CancelTests: XCTestCase {
         attachScreenshot(named: "cancel-saves-nothing")
     }
 
-    func testCancelAsksAfterChange() {
+    func testCancelAfterChangeClosesAtOnce() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
         setSeverity(1, in: app)
         app.buttons["Cancel"].tap()
 
-        XCTAssertTrue(app.buttons["Discard"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["Keep editing"].exists)
-        attachScreenshot(named: "cancel-asks")
-
-        app.buttons["Keep editing"].tap()
-        XCTAssertTrue(app.buttons["Discard"].waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["New Entry"].exists)
-        XCTAssertEqual(app.sliders["severity-slider"].value as? String, "1 of 10")
-        attachScreenshot(named: "cancel-kept")
-
-        app.buttons["Cancel"].tap()
-        XCTAssertTrue(app.buttons["Discard"].waitForExistence(timeout: 10))
-        app.buttons["Discard"].tap()
-
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.staticTexts["Nothing logged today"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["Discard"].exists)
         XCTAssertEqual(todayRows(in: app).count, 0)
-        attachScreenshot(named: "cancel-discarded")
+        attachScreenshot(named: "cancel-after-change")
     }
 
-    func testEveryFieldCountsAsChange() throws {
+    func testSwipeDownClosesAfterChange() {
         continueAfterFailure = false
-        let hour = Calendar.current.component(.hour, from: .now)
-        try XCTSkipIf(hour < 1, "Moving the hour one back wraps past midnight at 00:xx. Run after 01:00.")
         let app = launchAnky()
-
         openNewEntry(app)
-        chooseKind("Stiffness", in: app)
-        expectQuestionThenDiscard(in: app)
+        setSeverity(1, in: app)
+        app.navigationBars["New Entry"].swipeDown()
 
-        openNewEntry(app)
-        typeNote("Walk note", in: app)
-        expectQuestionThenDiscard(in: app)
-
-        openNewEntry(app)
-        showDatePicker(in: app)
-        moveHour(by: -1, in: app)
-        expectQuestionThenDiscard(in: app)
-    }
-
-    private func expectQuestionThenDiscard(in app: XCUIApplication) {
-        app.buttons["Cancel"].tap()
-        XCTAssertTrue(app.buttons["Discard"].waitForExistence(timeout: 10))
-        app.buttons["Discard"].tap()
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertEqual(todayRows(in: app).count, 0)
+        attachScreenshot(named: "swipe-down")
     }
 
     private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
