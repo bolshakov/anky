@@ -45,6 +45,7 @@ struct NewEntryView: View {
                         cancel()
                     }
                 }
+                .withoutGlassPill()
             }
             .safeAreaInset(edge: .bottom) {
                 Button("Save entry") {
@@ -73,6 +74,18 @@ struct NewEntryView: View {
             dismiss()
         } catch {
             isShowingSaveFailure = true
+        }
+    }
+}
+
+private extension ToolbarContent {
+    /// iOS 26 puts a toolbar item on a glass pill, which the design does not have.
+    @ToolbarContentBuilder
+    func withoutGlassPill() -> some ToolbarContent {
+        if #available(iOS 26, *) {
+            sharedBackgroundVisibility(.hidden)
+        } else {
+            self
         }
     }
 }
