@@ -14,3 +14,5 @@ agents:
   qa: sonnet
   triage: sonnet
 prompt: prompts/project.md
+prompts:
+  worker: prompts/worker.md
