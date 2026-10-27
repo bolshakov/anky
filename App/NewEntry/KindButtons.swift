@@ -19,7 +19,7 @@ struct KindButtons: View {
                             isSelected
                                 ? Color("AccentColor").opacity(0.15)
                                 : Color("CardBackground"),
-                            in: RoundedRectangle(cornerRadius: 12)
+                            in: .card
                         )
                 }
                 .accessibilityAddTraits(isSelected ? .isSelected : [])

@@ -44,6 +44,12 @@ jobs:
       - name: privacy check proves itself
         run: scripts/ci/test-check-privacy.sh
 
+      - name: design tokens
+        run: scripts/ci/check-design-tokens.sh
+
+      - name: design token check proves itself
+        run: scripts/ci/test-check-design-tokens.sh
+
   ios:
     needs: checks
     runs-on: macos-26
