@@ -1,0 +1,6 @@
+$ sh -c 'for n in icon-light-1024 icon-dark-1024; do sips -s format bmp "App/Assets.xcassets/AppIcon.appiconset/$n.png" --out "$s/$n.bmp" >/dev/null; echo "$n $(python3 -I "$s/pixel.py" "$s/$n.bmp")"; done'
+exit: 0
+commit: 107e74b94581e1b977fe4206572bd6ea9b498314
+
+icon-light-1024 C23C14
+icon-dark-1024 1C1C1E

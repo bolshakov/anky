@@ -1,0 +1,12 @@
+$ sips -g pixelWidth -g pixelHeight -g hasAlpha App/Assets.xcassets/AppIcon.appiconset/icon-light-1024.png App/Assets.xcassets/AppIcon.appiconset/icon-dark-1024.png
+exit: 0
+commit: 107e74b94581e1b977fe4206572bd6ea9b498314
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/App/Assets.xcassets/AppIcon.appiconset/icon-light-1024.png
+  pixelWidth: 1024
+  pixelHeight: 1024
+  hasAlpha: no
+/Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/App/Assets.xcassets/AppIcon.appiconset/icon-dark-1024.png
+  pixelWidth: 1024
+  pixelHeight: 1024
+  hasAlpha: no

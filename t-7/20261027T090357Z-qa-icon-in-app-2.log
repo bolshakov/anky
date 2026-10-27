@@ -1,0 +1,5 @@
+$ sh -c 'xcrun assetutil --info .derived/Build/Products/Debug-iphonesimulator/Anky.app/Assets.car | python3 -I "$s/icons.py"'
+exit: 0
+commit: 107e74b94581e1b977fe4206572bd6ea9b498314
+
+[('Any', 1024, 1024), ('UIAppearanceDark', 1024, 1024)]

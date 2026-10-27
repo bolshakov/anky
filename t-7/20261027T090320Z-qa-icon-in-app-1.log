@@ -1,0 +1,23 @@
+$ sh -c 'xcodegen generate && xcodebuild build -project Anky.xcodeproj -scheme Anky -destination '\''generic/platform=iOS Simulator'\'' -derivedDataPath .derived -clonedSourcePackagesDirPath .spm 2>&1 | tail -15'
+exit: 0
+commit: 107e74b94581e1b977fe4206572bd6ea9b498314
+
+⚙️  Generating plists...
+⚙️  Generating project...
+⚙️  Writing project...
+Created project at /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/Anky.xcodeproj
+
+RegisterExecutionPolicyException /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app (in target 'Anky' from project 'Anky' at path '/Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/Anky.xcodeproj')
+    cd /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout
+    builtin-RegisterExecutionPolicyException /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app
+
+Validate /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app (in target 'Anky' from project 'Anky' at path '/Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/Anky.xcodeproj')
+    cd /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout
+    builtin-validationUtility /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app -shallow-bundle -infoplist-subpath Info.plist
+
+Touch /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app (in target 'Anky' from project 'Anky' at path '/Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/Anky.xcodeproj')
+    cd /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout
+    /usr/bin/touch -c /Users/bolshakov/Projects/personal/anky.wt/qa-t7-01-2/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app
+
+** BUILD SUCCEEDED **
+
