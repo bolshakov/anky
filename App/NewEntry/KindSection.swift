@@ -27,7 +27,9 @@ struct KindSection: View {
         let appearance = UISegmentedControl.appearance()
         appearance.selectedSegmentTintColor = accent.withAlphaComponent(0.15)
         appearance.setTitleTextAttributes([.foregroundColor: UIColor.label], for: .normal)
-        let font = UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.boldSystemFont(ofSize: 17))
+        // A segment's height does not grow with its text, so the selected title stops at the size that fits.
+        let font = UIFontMetrics(forTextStyle: .body)
+            .scaledFont(for: UIFont.boldSystemFont(ofSize: 17), maximumPointSize: 17)
         appearance.setTitleTextAttributes([.foregroundColor: accent, .font: font], for: .selected)
     }()
 }
