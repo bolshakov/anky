@@ -1,0 +1,12 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-11-5/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-11-5/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-11-5/tmp/walk-vo.csyn light VoiceOverTests/testSeverityReadsAndSteps
+exit: 0
+commit: 13554b73998fdb259754c157dbc6cb0d56996031
+
+simulator D2C09132-5F17-494B-B190-7828F20B0554
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.VoiceOverTests testSeverityReadsAndSteps]' passed (12.010 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+walk exit 0

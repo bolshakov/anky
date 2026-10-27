@@ -1,0 +1,8 @@
+$ grep -n -E 'Severity|of 10' Tests/AnkyUITests/VoiceOverTests.swift
+exit: 0
+commit: 13554b73998fdb259754c157dbc6cb0d56996031
+
+7:    func testSeverityReadsAndSteps() {
+11:        setSeverity(4, in: app)
+14:        XCTAssertEqual(slider.label, "Severity")
+15:        XCTAssertEqual(slider.value as? String, "4 of 10")
