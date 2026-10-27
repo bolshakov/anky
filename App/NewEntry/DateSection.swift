@@ -44,6 +44,10 @@ struct DateSection: View {
         let day = Calendar.current.isDateInToday(draft.date)
             ? "Today"
             : draft.date.formatted(date: .abbreviated, time: .omitted)
-        return "\(day), \(draft.date.formatted(date: .omitted, time: .shortened))"
+        // A 24 hour clock, as the wheel shows, whatever the device's language.
+        let time = draft.date.formatted(
+            .dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits).locale(Locale(identifier: "en_GB"))
+        )
+        return "\(day), \(time)"
     }
 }

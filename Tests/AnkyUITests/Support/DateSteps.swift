@@ -1,10 +1,10 @@
 import Foundation
 import XCTest
 
-/// The date row's value for a moment, such as "Today, 08:15".
+/// The date row's value for a moment, such as "Today, 08:15". The hour is zero-padded on a 24 hour clock.
 func dateRowValue(at date: Date) -> String {
-    let style = Date.FormatStyle(date: .omitted, time: .shortened).locale(Locale(identifier: "en_GB"))
-    return "Today, \(date.formatted(style))"
+    let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
+    return String(format: "Today, %02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
 }
 
 /// Taps the date row and waits for the wheel to appear.
