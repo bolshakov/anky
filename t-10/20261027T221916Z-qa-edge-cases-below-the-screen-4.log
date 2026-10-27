@@ -1,0 +1,41 @@
+$ gh pr view 51 --json body --jq .body
+exit: 0
+commit: e3b16527cc0336de947c69d776576faf00dd816d
+
+Task 04 of ticket 10 moves the note counter's rule out of the app and into `AnkyDomain`, so unit tests reach it. Four
+UI tests checked that rule on a simulator, and they are gone now.
+
+### The problem
+
+The counter's rule sat in `NoteSection`, in `App/NewEntry`. It hid the counter at 40 or more characters left, counted
+down below that, and said "Limit reached" at 240. No unit test could reach that code, so four UI tests were the only
+check. Each one took a simulator and a few seconds.
+
+### How it is solved
+
+- `AnkyDomain` has `NoteCounter`, with `left(Int)` and `limitReached`, and `EntryDraft.noteCounter`. The property is
+  `nil` while 40 or more characters are left. It returns a value, not words, so the next task can map it to catalog
+  entries with plural forms.
+- `NoteSection` maps that value to the same words as before: "N left" and "Limit reached". Nothing on screen changes.
+- A note counts each accented letter and each emoji once, as the field does. The unit tests cover both.
+- A note of only spaces already counts as a change, because `EntryDraft` compares notes exactly. A unit test now pins
+  that, so the swipe block it supports has a unit test too.
+
+### Deleted UI tests and the unit tests that replace them
+
+| Deleted UI test | Unit test that replaces it |
+|---|---|
+| `NoteTests/testCounterReadsTenLeft` | `NoteCounterTests/noteCounterReadsTenLeftAtTwoHundredThirtyCharacters` |
+| `NoteTests/testCounterReadsOneLeft` | `NoteCounterTests/noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters` |
+| `NoteTests/testNoteCounterIsHiddenForAShortNote` | `NoteCounterTests/noteCounterIsNilWithNoNote` and `NoteCounterTests/noteCounterIsNilAtFortyCharactersLeft` |
+| `CancelTests/testSwipeDownIsBlockedAfterNoteOfOnlySpaces` | `NoteCounterTests/noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom` |
+
+`NoteTests/testNoteStopsAtTheLimit` stays as the one note-limit journey on screen. It now types 230 characters first and
+checks "10 left", then types the rest and checks "Limit reached". So both wordings still reach the screen once.
+
+### Manual verification
+
+- The full UI suite ran on a local simulator in light: 37 of 38 tests passed. `NoFutureTimeTests/testPickerStopsAtNow`
+  failed on both iterations before 23:00 local time. It fails the same way on the base commit, so this change did not
+  cause it. It is a date picker test, and this change does not touch the picker.
+

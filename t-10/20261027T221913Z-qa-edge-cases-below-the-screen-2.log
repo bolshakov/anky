@@ -1,0 +1,88 @@
+$ grep -rn -B2 -A8 -E 'noteCounter|nearestToFraction|OnlySpaces' Tests/AnkyDomainTests
+exit: 0
+commit: e3b16527cc0336de947c69d776576faf00dd816d
+
+Tests/AnkyDomainTests/NoteCounterTests.swift-10-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-11-
+Tests/AnkyDomainTests/NoteCounterTests.swift:12:    @Test func noteCounterIsNilWithNoNote() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:13:        #expect(try draft(note: "").noteCounter == nil)
+Tests/AnkyDomainTests/NoteCounterTests.swift-14-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-15-
+Tests/AnkyDomainTests/NoteCounterTests.swift:16:    @Test func noteCounterIsNilAtFortyCharactersLeft() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:17:        #expect(try draft(note: String(repeating: "a", count: 200)).noteCounter == nil)
+Tests/AnkyDomainTests/NoteCounterTests.swift-18-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-19-
+Tests/AnkyDomainTests/NoteCounterTests.swift:20:    @Test func noteCounterReadsThirtyNineLeftAtTwoHundredOneCharacters() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:21:        #expect(try draft(note: String(repeating: "a", count: 201)).noteCounter == .left(39))
+Tests/AnkyDomainTests/NoteCounterTests.swift-22-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-23-
+Tests/AnkyDomainTests/NoteCounterTests.swift:24:    @Test func noteCounterReadsTenLeftAtTwoHundredThirtyCharacters() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:25:        #expect(try draft(note: String(repeating: "a", count: 230)).noteCounter == .left(10))
+Tests/AnkyDomainTests/NoteCounterTests.swift-26-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-27-
+Tests/AnkyDomainTests/NoteCounterTests.swift:28:    @Test func noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:29:        #expect(try draft(note: String(repeating: "a", count: 239)).noteCounter == .left(1))
+Tests/AnkyDomainTests/NoteCounterTests.swift-30-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-31-
+Tests/AnkyDomainTests/NoteCounterTests.swift:32:    @Test func noteCounterIsLimitReachedAtTwoHundredFortyCharacters() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift:33:        #expect(try draft(note: String(repeating: "a", count: 240)).noteCounter == .limitReached)
+Tests/AnkyDomainTests/NoteCounterTests.swift-34-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-35-
+Tests/AnkyDomainTests/NoteCounterTests.swift:36:    @Test func noteCounterCountsAnAccentedLetterOnceNearTheLimit() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift-37-        let note = String(repeating: "e\u{301}", count: 230)
+Tests/AnkyDomainTests/NoteCounterTests.swift:38:        #expect(try draft(note: note).noteCounter == .left(10))
+Tests/AnkyDomainTests/NoteCounterTests.swift-39-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-40-
+Tests/AnkyDomainTests/NoteCounterTests.swift:41:    @Test func noteCounterCountsAnEmojiOnceAtTheLimit() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift-42-        let family = "\u{1F468}\u{200D}\u{1F469}\u{200D}\u{1F467}"
+Tests/AnkyDomainTests/NoteCounterTests.swift:43:        #expect(try draft(note: String(repeating: family, count: 240)).noteCounter == .limitReached)
+Tests/AnkyDomainTests/NoteCounterTests.swift-44-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-45-
+Tests/AnkyDomainTests/NoteCounterTests.swift:46:    @Test func noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom() throws {
+Tests/AnkyDomainTests/NoteCounterTests.swift-47-        let opening = try draft(note: "")
+Tests/AnkyDomainTests/NoteCounterTests.swift-48-        #expect(try draft(note: "   ") != opening)
+Tests/AnkyDomainTests/NoteCounterTests.swift-49-    }
+Tests/AnkyDomainTests/NoteCounterTests.swift-50-}
+--
+Tests/AnkyDomainTests/EntryTests.swift-33-
+Tests/AnkyDomainTests/EntryTests.swift-34-    @Test(arguments: [" ", "\n", "  \n \n  ", "\r\n", "\t"])
+Tests/AnkyDomainTests/EntryTests.swift:35:    func leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note: String) throws {
+Tests/AnkyDomainTests/EntryTests.swift-36-        #expect(try Entry(draft: draft(note: note)).note == nil)
+Tests/AnkyDomainTests/EntryTests.swift-37-    }
+Tests/AnkyDomainTests/EntryTests.swift-38-
+Tests/AnkyDomainTests/EntryTests.swift-39-    @Test func keepsAMultiParagraphNoteExactlyAsTyped() throws {
+Tests/AnkyDomainTests/EntryTests.swift-40-        let note = "  Walk note\n\nSecond line\n  third  "
+Tests/AnkyDomainTests/EntryTests.swift-41-        #expect(try Entry(draft: draft(note: note)).note == note)
+Tests/AnkyDomainTests/EntryTests.swift-42-    }
+Tests/AnkyDomainTests/EntryTests.swift-43-
+--
+Tests/AnkyDomainTests/SeverityTests.swift-26-    @Test(arguments: [0.0, -0.5, -Double.infinity])
+Tests/AnkyDomainTests/SeverityTests.swift-27-    func fractionAtOrBelowZeroGivesZero(fraction: Double) {
+Tests/AnkyDomainTests/SeverityTests.swift:28:        #expect(Severity(nearestToFraction: fraction) == Severity(0))
+Tests/AnkyDomainTests/SeverityTests.swift-29-    }
+Tests/AnkyDomainTests/SeverityTests.swift-30-
+Tests/AnkyDomainTests/SeverityTests.swift-31-    @Test(arguments: [1.0, 1.2, Double.infinity])
+Tests/AnkyDomainTests/SeverityTests.swift-32-    func fractionAtOrAboveOneGivesTen(fraction: Double) {
+Tests/AnkyDomainTests/SeverityTests.swift:33:        #expect(Severity(nearestToFraction: fraction) == Severity(10))
+Tests/AnkyDomainTests/SeverityTests.swift-34-    }
+Tests/AnkyDomainTests/SeverityTests.swift-35-
+Tests/AnkyDomainTests/SeverityTests.swift-36-    @Test func fractionRoundsToTheNearestLevel() {
+Tests/AnkyDomainTests/SeverityTests.swift:37:        #expect(Severity(nearestToFraction: 0.31) == Severity(3))
+Tests/AnkyDomainTests/SeverityTests.swift:38:        #expect(Severity(nearestToFraction: 0.69) == Severity(7))
+Tests/AnkyDomainTests/SeverityTests.swift-39-    }
+Tests/AnkyDomainTests/SeverityTests.swift-40-
+Tests/AnkyDomainTests/SeverityTests.swift-41-    @Test func fractionHalfwayBetweenTwoLevelsRoundsUp() {
+Tests/AnkyDomainTests/SeverityTests.swift:42:        #expect(Severity(nearestToFraction: 0.25) == Severity(3))
+Tests/AnkyDomainTests/SeverityTests.swift:43:        #expect(Severity(nearestToFraction: 0.75) == Severity(8))
+Tests/AnkyDomainTests/SeverityTests.swift-44-    }
+Tests/AnkyDomainTests/SeverityTests.swift-45-
+Tests/AnkyDomainTests/SeverityTests.swift-46-    @Test func fractionThatIsNotANumberGivesZero() {
+Tests/AnkyDomainTests/SeverityTests.swift:47:        #expect(Severity(nearestToFraction: .nan) == Severity(0))
+Tests/AnkyDomainTests/SeverityTests.swift-48-    }
+Tests/AnkyDomainTests/SeverityTests.swift-49-
+Tests/AnkyDomainTests/SeverityTests.swift-50-    @Test func writesTheLevelOutOfTen() throws {
+Tests/AnkyDomainTests/SeverityTests.swift-51-        #expect(try #require(Severity(4)).text == "4 of 10")
+Tests/AnkyDomainTests/SeverityTests.swift-52-    }
+Tests/AnkyDomainTests/SeverityTests.swift-53-
+Tests/AnkyDomainTests/SeverityTests.swift-54-    @Test func encodesAsABareNumber() throws {
+Tests/AnkyDomainTests/SeverityTests.swift-55-        let data = try JSONEncoder().encode(#require(Severity(4)))

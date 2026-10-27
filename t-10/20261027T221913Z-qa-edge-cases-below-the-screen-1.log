@@ -1,0 +1,4 @@
+$ sh -c 'grep -rnE "func (testCounterReadsTenLeft|testCounterReadsOneLeft|testNoteCounterIsHiddenForAShortNote)\(" Tests/AnkyUITests; grep -rnE "func (testSwipeDownIsBlockedAfterNoteOfOnlySpaces|testDragPastTheEndStopsAtTen)\(" Tests/AnkyUITests'
+exit: 1
+commit: e3b16527cc0336de947c69d776576faf00dd816d
+

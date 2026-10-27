@@ -1,0 +1,6 @@
+$ grep -n -E '10 left|Limit reached' Tests/AnkyUITests/NoteTests.swift
+exit: 0
+commit: e3b16527cc0336de947c69d776576faf00dd816d
+
+104:        XCTAssertEqual(counter.label, "10 left")
+110:        XCTAssertEqual(counter.label, "Limit reached")
