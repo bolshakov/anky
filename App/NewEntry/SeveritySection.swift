@@ -43,7 +43,8 @@ private struct SeverityValue: View {
     let severity: Severity
 
     var body: some View {
-        Text(severity.text)
+        Text("\(Text("\(severity.value)").bold()) of 10")
+            .accessibilityLabel(severity.text)
     }
 }
 
