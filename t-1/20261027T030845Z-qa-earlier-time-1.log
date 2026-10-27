@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk-earlier.hUg0 light EarlierTimeTests/testEntryTwoHoursAgo
+exit: 0
+commit: 0f2808708a479fecc0a0fa93a459913963110ddd
+
+simulator AF708775-D45D-4A04-B3AC-FBB49E3F2D57
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.EarlierTimeTests testEntryTwoHoursAgo]' passed (23.584 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk-earlier.hUg0/shots/earlier-time.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk-earlier.hUg0/files/A1D430D2-9538-4288-A872-86FB1D1959B5.json
+walk exit 0

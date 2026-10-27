@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk-future.Ctxi light NoFutureTimeTests/testPickerStopsAtNow
+exit: 0
+commit: 0f2808708a479fecc0a0fa93a459913963110ddd
+
+simulator D9EC0EBA-F13E-4CCE-9599-CF58BEA05CA8
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.NoFutureTimeTests testPickerStopsAtNow]' passed (13.219 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-08-3/tmp/walk-future.Ctxi/shots/no-future-time.png
+walk exit 0
