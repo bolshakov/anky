@@ -6,6 +6,13 @@ struct TodayEntryList: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
+            Text("Today")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 16)
+                .accessibilityIdentifier("today-caption")
+                .accessibilityAddTraits(.isHeader)
+
             VStack(spacing: 0) {
                 ForEach(entries) { entry in
                     EntryRow(entry: entry)
