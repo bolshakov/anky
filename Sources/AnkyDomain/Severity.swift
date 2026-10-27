@@ -15,6 +15,10 @@ public struct Severity: Equatable, Hashable, Sendable, Codable {
         "\(value) of 10"
     }
 
+    public static func startLevel(after saved: [Entry]) -> Severity {
+        saved.last?.severity ?? Severity(0)!
+    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let value = try container.decode(Int.self)
