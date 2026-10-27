@@ -1,6 +1,6 @@
 #!/bin/sh
-# Runs the named UI tests, or every UI test, on a new simulator. A try that runs past its limit is run once more on a
-# rebooted simulator. Exits with the status of xcodebuild test otherwise.
+# Runs the named UI tests, or every UI test, on a new simulator. Exits 0 only when xcodebuild test exits 0, every named
+# test ran, and no test skipped. A try that runs past its limit is run once more on a rebooted simulator.
 if [ $# -lt 2 ] || { [ "$1" != light ] && [ "$1" != dark ]; }; then
   echo "usage: run-ui-tests.sh <light|dark> <derived data dir> [Class/testMethod ...]" >&2
   exit 2
@@ -75,6 +75,32 @@ run_try() {
   grep -E "^Test Case |error:" "$log"
 }
 
+# Whether xcodebuild printed a line with this result for the test, given as "Class method".
+printed() {
+  grep -qF "Test Case '-[AnkyUITests.$1]' $2" "$log"
+}
+
+# Judges the last try by the lines xcodebuild printed. Returns 1 when a named test did not run or a test skipped.
+judge() {
+  result=0
+  if grep -q "^Test Case .* skipped" "$log"; then
+    echo "a test was skipped, so the run fails"
+    result=1
+  fi
+  for name do
+    if ! printed "${name%/*} ${name#*/}" passed && ! printed "${name%/*} ${name#*/}" failed; then
+      echo "not run: $name"
+      result=1
+    fi
+  done
+  sed -n "s/^Test Case '-\[AnkyUITests\.\(.*\)\]' failed.*/\1/p" "$log" | sort -u | while read -r failed_test; do
+    if printed "$failed_test" passed; then
+      echo "::warning::flaky: ${failed_test% *}/${failed_test#* } failed once, then passed"
+    fi
+  done
+  return "$result"
+}
+
 udid=$(xcrun simctl create "anky-ui-$$" com.apple.CoreSimulator.SimDeviceType.iPhone-17) || exit 1
 echo "simulator $udid"
 xcrun simctl boot "$udid" || exit 1
@@ -92,3 +118,4 @@ while [ -e "$mark" ]; do
   run_try "$@"
 done
 [ "$try_status" = 0 ] || exit "$try_status"
+judge "$@" || exit 1

@@ -17,6 +17,7 @@ new_tree() {
   bin=$tree/bin
   calls=$tree/calls.log
   out=$tree/out.log
+  omit=
   seconds=
   mkdir -p "$bin"
   cat > "$bin/xcrun" <<EOF
@@ -42,7 +43,11 @@ for arg do
       case_line="Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]'"
       case "\$STUB_XCODEBUILD" in
         fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
-        *) echo "\$case_line passed (0.1 seconds)." ;;
+        skip) echo "\$case_line skipped (0.0 seconds)." ;;
+        flaky)
+          echo "\$case_line failed (0.1 seconds)."
+          echo "\$case_line passed (0.1 seconds)." ;;
+        *) [ "\$name" = "\$STUB_OMIT" ] || echo "\$case_line passed (0.1 seconds)." ;;
       esac ;;
   esac
 done
@@ -56,7 +61,7 @@ run_runner() {
   mode=$1
   shift
   start=$(date +%s)
-  STUB_XCODEBUILD=$mode UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
+  STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
   code=$?
   elapsed=$(($(date +%s) - start))
 }
@@ -135,6 +140,30 @@ new_tree
 seconds=2
 run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 [ "$code" -ne 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 2 timed out after 2 s" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a named test that did not run exits non-zero"
+new_tree
+omit=SaveEntryTests/testSaveEntryOnToday
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState \
+  SaveEntryTests/testSaveEntryOnToday
+[ "$code" -ne 0 ] && grep -qx "not run: SaveEntryTests/testSaveEntryOnToday" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a skipped test exits non-zero"
+new_tree
+run_runner skip light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -ne 0 ] && grep -qx "a test was skipped, so the run fails" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a test that fails then passes stays green and warns"
+new_tree
+run_runner flaky light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -eq 0 ] \
+  && grep -qx "::warning::flaky: EmptyStateTests/testFirstLaunchShowsEmptyState failed once, then passed" "$out" \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
 
