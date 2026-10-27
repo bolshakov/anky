@@ -52,7 +52,8 @@ extension NoteTextView {
                 return true
             }
             let accepted = String(replacement.prefix(max(roomLeft, 0)))
-            textView.textStorage.replaceCharacters(in: range, with: accepted)
+            let styled = NSAttributedString(string: accepted, attributes: textView.typingAttributes)
+            textView.textStorage.replaceCharacters(in: range, with: styled)
             textView.selectedRange = NSRange(location: range.location + accepted.utf16.count, length: 0)
             textViewDidChange(textView)
             return false
