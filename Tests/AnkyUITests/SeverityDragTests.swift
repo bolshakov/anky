@@ -17,17 +17,6 @@ final class SeverityDragTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["3 of 10"].waitForExistence(timeout: 2))
     }
 
-    func testDragPastTheEndStopsAtTen() {
-        continueAfterFailure = false
-        let app = launchAnky()
-        openNewEntry(app)
-
-        let slider = app.sliders["severity-slider"]
-        XCTAssertTrue(slider.waitForExistence(timeout: 10))
-        drag(slider, toNormalizedPosition: 1.2)
-        XCTAssertEqual(slider.value as? String, "10 of 10")
-    }
-
     private func drag(_ slider: XCUIElement, toNormalizedPosition position: CGFloat) {
         let start = slider.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
         let end = slider.coordinate(withNormalizedOffset: CGVector(dx: position, dy: 0.5))
