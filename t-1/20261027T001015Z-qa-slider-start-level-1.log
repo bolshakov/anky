@@ -1,0 +1,15 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/tmp/walk-start.2iBn light SliderStartLevelTests/testOpensAtZeroThenAtLastLevel
+exit: 0
+commit: 80320147144d0ca34e03898ad768c4e2f442e033
+
+simulator B6956EF5-9089-41AB-954E-DBBD8745262B
+build-for-testing exit 0
+warm-up launch hung on try 1
+warm-up launch ok on try 2
+Test Case '-[AnkyUITests.SliderStartLevelTests testOpensAtZeroThenAtLastLevel]' passed (19.773 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/tmp/walk-start.2iBn/shots/slider-start-after-six.png
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/tmp/walk-start.2iBn/shots/slider-start-first.png
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-09-1/tmp/walk-start.2iBn/files/1E50750D-B331-477A-9BF0-599281AA7D57.json
+walk exit 0
