@@ -158,6 +158,7 @@ new_tree
 seconds=2
 run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 [ "$code" -ne 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 2 timed out after 2 s" "$out" \
+  && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 2 ] \
   && [ -s "$tree/children.pid" ] && children_gone \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
