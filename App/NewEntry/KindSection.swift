@@ -4,6 +4,7 @@ import UIKit
 
 struct KindSection: View {
     @Binding var draft: EntryDraft
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(draft: Binding<EntryDraft>) {
         _draft = draft
@@ -11,14 +12,20 @@ struct KindSection: View {
     }
 
     var body: some View {
-        Picker("Kind", selection: $draft.kind) {
-            ForEach(EntryKind.allCases, id: \.self) { kind in
-                Text(kind.title).tag(kind)
+        if dynamicTypeSize.isAccessibilitySize {
+            KindButtons(kind: $draft.kind)
+        } else {
+            Picker("Kind", selection: $draft.kind) {
+                ForEach(EntryKind.allCases, id: \.self) { kind in
+                    Text(kind.title).tag(kind)
+                }
             }
+            .pickerStyle(.segmented)
+            .labelsHidden()
+            .accessibilityIdentifier("kind-picker")
+            .padding(4)
+            .background(Color(uiColor: .secondarySystemGroupedBackground), in: Capsule())
         }
-        .pickerStyle(.segmented)
-        .labelsHidden()
-        .accessibilityIdentifier("kind-picker")
     }
 
     /// UIKit's appearance proxy is global, so it is set once for every segmented control the app makes.
@@ -27,9 +34,7 @@ struct KindSection: View {
         let appearance = UISegmentedControl.appearance()
         appearance.selectedSegmentTintColor = accent.withAlphaComponent(0.15)
         appearance.setTitleTextAttributes([.foregroundColor: UIColor.label], for: .normal)
-        // A segment's height does not grow with its text, so the selected title stops at the size that fits.
-        let font = UIFontMetrics(forTextStyle: .body)
-            .scaledFont(for: UIFont.boldSystemFont(ofSize: 17), maximumPointSize: 17)
+        let font = UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.boldSystemFont(ofSize: 17))
         appearance.setTitleTextAttributes([.foregroundColor: accent, .font: font], for: .selected)
     }()
 }

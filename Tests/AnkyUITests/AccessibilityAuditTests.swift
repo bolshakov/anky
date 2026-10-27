@@ -12,6 +12,12 @@ final class AccessibilityAuditTests: XCTestCase {
         try auditEveryScreen(in: launchAnky(arguments: largestTextArguments))
     }
 
+    func testAuditAtLargestNonAccessibilitySize() throws {
+        continueAfterFailure = false
+        let arguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryXXXL"]
+        try auditEveryScreen(in: launchAnky(arguments: arguments))
+    }
+
     /// Today empty, New Entry at the top and at the note, then Today with the row the save adds.
     private func auditEveryScreen(in app: XCUIApplication) throws {
         XCTAssertTrue(app.staticTexts["Nothing logged today"].waitForExistence(timeout: 10))
