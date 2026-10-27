@@ -42,7 +42,7 @@ private struct EntryRow: View {
         .padding()
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(time), \(entry.kind.title), \(entry.severity.text)")
-        .accessibilityIdentifier("entry-row")
+        .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
     }
 
     private var value: some View {

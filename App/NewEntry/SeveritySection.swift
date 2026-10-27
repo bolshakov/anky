@@ -25,10 +25,12 @@ struct SeveritySection: View {
                 Divider()
                 HStack(spacing: 8) {
                     Text("0")
+                        .accessibilityIdentifier("severity-low-label")
                     // The knob hangs over each end of the control by its radius, so the padding keeps the labels clear.
                     SeverityControl(severity: $draft.severity)
                         .padding(.horizontal, knobDiameter / 2)
                     Text("10")
+                        .accessibilityIdentifier("severity-high-label")
                 }
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -45,6 +47,7 @@ private struct SeverityValue: View {
     var body: some View {
         Text("\(Text("\(severity.value)").bold()) of 10")
             .accessibilityLabel(severity.text)
+            .accessibilityIdentifier("severity-value")
     }
 }
 
