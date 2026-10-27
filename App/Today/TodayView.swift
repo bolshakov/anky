@@ -24,7 +24,7 @@ struct TodayView: View {
                             .padding(.vertical, 48)
                     } else {
                         TodayEntryList(entries: todayEntries)
-                            .padding(.top, 16)
+                            .padding(.top, 40)
                     }
                 }
                 .padding(.horizontal)

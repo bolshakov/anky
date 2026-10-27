@@ -13,17 +13,35 @@ final class SectionCaptionTests: XCTestCase {
         XCTAssertLessThanOrEqual(caption.frame.maxY, app.sliders["severity-slider"].frame.minY)
     }
 
-    func testTodayCaptionSitsAboveTheEntries() {
+    func testTodayHasNoCaptionAboveTheCard() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
         saveEntry(app)
 
-        let caption = app.staticTexts.matching(identifier: "today-caption").firstMatch
-        XCTAssertTrue(caption.waitForExistence(timeout: 10))
-        XCTAssertEqual(caption.label, "Today")
         let row = app.descendants(matching: .any).matching(identifier: "entry-row").firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertLessThanOrEqual(caption.frame.maxY, row.frame.minY)
+        XCTAssertFalse(app.descendants(matching: .any).matching(identifier: "today-caption").firstMatch.exists)
+
+        let navBar = app.navigationBars["Today"]
+        XCTAssertTrue(navBar.exists)
+        let todayTexts = app.staticTexts.matching(NSPredicate(format: "label == %@", "Today")).allElementsBoundByIndex
+        XCTAssertFalse(todayTexts.isEmpty)
+        for text in todayTexts {
+            XCTAssertTrue(navBar.frame.contains(text.frame))
+        }
+    }
+
+    func testCardKeepsItsGapBelowTheDate() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+        saveEntry(app)
+
+        let date = app.descendants(matching: .any).matching(identifier: "today-date").firstMatch
+        XCTAssertTrue(date.waitForExistence(timeout: 10))
+        let row = app.descendants(matching: .any).matching(identifier: "entry-row").firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertEqual(row.frame.minY - date.frame.maxY, 55.7, accuracy: 1)
     }
 }
