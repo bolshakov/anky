@@ -41,6 +41,18 @@ struct EntryTests {
         #expect(try Entry(draft: draft(note: note)).note == note)
     }
 
+    @Test func keepsTheSameCharactersAsTheDraft() throws {
+        let typed = String(repeating: "a", count: 240) + "b"
+        #expect(try Entry(draft: draft(note: typed)).note == String(repeating: "a", count: 240))
+    }
+
+    @Test func loadsAnOlderNoteLongerThanTheLimitWhole() throws {
+        let longNote = String(repeating: "a", count: 1500)
+        let saved: [String: Any] = ["id": UUID().uuidString, "kind": "pain", "severity": 4, "date": 0, "note": longNote]
+        let data = try JSONSerialization.data(withJSONObject: saved)
+        #expect(try JSONDecoder().decode(Entry.self, from: data).note == longNote)
+    }
+
     @Test func roundTripsThroughCodable() throws {
         let entry = try Entry(draft: draft(note: "Walk note"))
         let decoded = try JSONDecoder().decode(Entry.self, from: JSONEncoder().encode(entry))
