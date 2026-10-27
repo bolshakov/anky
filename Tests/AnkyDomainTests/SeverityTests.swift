@@ -23,6 +23,30 @@ struct SeverityTests {
         #expect(Severity(exactly: value) == nil)
     }
 
+    @Test(arguments: [0.0, -0.5, -Double.infinity])
+    func fractionAtOrBelowZeroGivesZero(fraction: Double) {
+        #expect(Severity(nearestToFraction: fraction) == Severity(0))
+    }
+
+    @Test(arguments: [1.0, 1.2, Double.infinity])
+    func fractionAtOrAboveOneGivesTen(fraction: Double) {
+        #expect(Severity(nearestToFraction: fraction) == Severity(10))
+    }
+
+    @Test func fractionRoundsToTheNearestLevel() {
+        #expect(Severity(nearestToFraction: 0.31) == Severity(3))
+        #expect(Severity(nearestToFraction: 0.69) == Severity(7))
+    }
+
+    @Test func fractionHalfwayBetweenTwoLevelsRoundsUp() {
+        #expect(Severity(nearestToFraction: 0.25) == Severity(3))
+        #expect(Severity(nearestToFraction: 0.75) == Severity(8))
+    }
+
+    @Test func fractionThatIsNotANumberGivesZero() {
+        #expect(Severity(nearestToFraction: .nan) == Severity(0))
+    }
+
     @Test func writesTheLevelOutOfTen() throws {
         #expect(try #require(Severity(4)).text == "4 of 10")
     }
