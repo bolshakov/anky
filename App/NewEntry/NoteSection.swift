@@ -4,14 +4,6 @@ import SwiftUI
 struct NoteSection: View {
     @Binding var draft: EntryDraft
 
-    private var charactersLeft: Int {
-        EntryDraft.noteLimit - draft.note.count
-    }
-
-    private var counterText: String {
-        charactersLeft == 0 ? "Limit reached" : "\(charactersLeft) left"
-    }
-
     var body: some View {
         VStack(alignment: .trailing, spacing: 6) {
             NoteTextView(text: $draft.note)
@@ -22,13 +14,20 @@ struct NoteSection: View {
                         .accessibilityIdentifier("note-card")
                 }
 
-            if charactersLeft < 40 {
-                Text(counterText)
+            if let counter = draft.noteCounter {
+                Text(counterText(counter))
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 16)
                     .accessibilityIdentifier("note-counter")
             }
+        }
+    }
+
+    private func counterText(_ counter: NoteCounter) -> String {
+        switch counter {
+        case let .left(count): "\(count) left"
+        case .limitReached: "Limit reached"
         }
     }
 }

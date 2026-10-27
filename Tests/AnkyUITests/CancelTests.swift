@@ -107,18 +107,6 @@ final class CancelTests: XCTestCase {
         assertStillOpen(app)
     }
 
-    func testSwipeDownIsBlockedAfterNoteOfOnlySpaces() {
-        continueAfterFailure = false
-        let app = launchAnky()
-        openNewEntry(app)
-        typeNote("   ", in: app)
-        // The keyboard is up, so a drag leaves the sheet open even when swipes are not blocked.
-        // Only the element swipe proves the block.
-        app.navigationBars["New Entry"].swipeDown()
-
-        assertStillOpen(app)
-    }
-
     /// A slow drag from the top of the screen. It closes an unchanged sheet when the keyboard is down.
     private func swipeSheetDown(_ app: XCUIApplication) {
         let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08))

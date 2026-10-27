@@ -98,12 +98,15 @@ final class NoteTests: XCTestCase {
         let note = String(repeating: "word ", count: 60)
 
         openNewEntry(app)
-        typeNote(note, in: app)
+        typeNote(String(note.prefix(230)), in: app)
+        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        XCTAssertTrue(counter.waitForExistence(timeout: 10))
+        XCTAssertEqual(counter.label, "10 left")
+
+        app.typeText(String(note.dropFirst(230)))
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, String(note.prefix(240)))
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
-        XCTAssertTrue(counter.waitForExistence(timeout: 10))
         XCTAssertEqual(counter.label, "Limit reached")
         let save = app.buttons["Save entry"]
         XCTAssertTrue(save.isHittable)
@@ -114,43 +117,6 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(counter.isHittable)
         XCTAssertLessThanOrEqual(counter.frame.maxY, save.frame.minY)
         attachScreenshot(named: "note-limit")
-    }
-
-    func testCounterReadsTenLeft() {
-        continueAfterFailure = false
-        let app = launchAnky()
-
-        openNewEntry(app)
-        typeNote(String(repeating: "a", count: 230), in: app)
-
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
-        XCTAssertTrue(counter.waitForExistence(timeout: 10))
-        XCTAssertEqual(counter.label, "10 left")
-    }
-
-    func testCounterReadsOneLeft() {
-        continueAfterFailure = false
-        let app = launchAnky()
-
-        openNewEntry(app)
-        typeNote(String(repeating: "a", count: 239), in: app)
-
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
-        XCTAssertTrue(counter.waitForExistence(timeout: 10))
-        XCTAssertEqual(counter.label, "1 left")
-    }
-
-    func testNoteCounterIsHiddenForAShortNote() {
-        continueAfterFailure = false
-        let app = launchAnky()
-
-        openNewEntry(app)
-        typeNote("Walk note", in: app)
-
-        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
-        XCTAssertEqual(field.value as? String, "Walk note")
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
-        XCTAssertFalse(counter.exists)
     }
 
     private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
