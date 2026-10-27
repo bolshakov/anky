@@ -1,0 +1,12 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-13-1/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-13-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-13-1/tmp/walk-mark.05iy dark EmptyStateMarkTests/testFirstLaunchShowsMark
+exit: 0
+commit: e7f98a8f17e4cd9e9661fb68efbadf504af718bf
+
+simulator E757E7C5-C3B0-44AD-AD48-D9A18589ED51
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.EmptyStateMarkTests testFirstLaunchShowsMark]' passed (6.546 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-13-1/tmp/walk-mark.05iy/shots/empty-state-mark.png
+walk exit 0
