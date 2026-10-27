@@ -50,6 +50,9 @@ jobs:
       - name: design token check proves itself
         run: scripts/ci/test-check-design-tokens.sh
 
+      - name: ui test runner proves itself
+        run: scripts/ci/test-run-ui-tests.sh
+
   ios:
     needs: checks
     runs-on: macos-26
@@ -79,3 +82,15 @@ jobs:
           xcodebuild build -project Anky.xcodeproj -scheme Anky
           -destination 'generic/platform=iOS Simulator'
           -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
+
+      - name: ui smoke tests
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          SaveEntryTests/testSaveEntryOnToday
+          SaveEntryTests/testEntrySurvivesRelaunch
+          NoteTests/testSavesWithAndWithoutNote
+          CancelTests/testCancelAfterChangeClosesAtOnce
+          CancelTests/testSwipeDownIsBlockedAfterChange
+          LargeTextTests/testSaveStaysPinnedAtLargestSize
+          AccessibilityAuditTests/testAuditAtDefaultSize
