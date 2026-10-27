@@ -101,13 +101,13 @@ for name in EmptyStateTests/testFirstLaunchShowsEmptyState SaveEntryTests/testSa
   case "$line" in *" -only-testing:AnkyUITests/$name "*) ;; *) holds=1 ;; esac
 done
 [ "$holds" = 0 ]
-report "xcodebuild gets one simulator, the retry flag and each named test" $?
+report "each named test reaches xcodebuild with two iterations" $?
 
 new_tree
 run_runner fail light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 grep -qF "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' failed" "$out" \
-  && [ "$(tail -n 1 "$out")" = "ui tests exit 65" ]
-report "a failed test is named and sets the exit status" $?
+  && [ "$(tail -n 1 "$out")" = "ui tests exit 65" ] && [ "$code" -eq 65 ]
+report "a failed test exits non-zero" $?
 
 new_tree
 run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
