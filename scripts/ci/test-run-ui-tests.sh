@@ -60,11 +60,12 @@ EOF
 }
 
 # usage: run_runner <stub mode> <runner args...>. Sets code to the runner's exit status and elapsed to its run time.
+# Runs the runner under bash. The hang cases need xcodebuild in its own process group, which dash may not give.
 run_runner() {
   mode=$1
   shift
   start=$(date +%s)
-  STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
+  STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" bash "$runner" "$@" > "$out" 2>&1
   code=$?
   elapsed=$(($(date +%s) - start))
 }
@@ -99,7 +100,7 @@ grep -q '^xcodebuild ' "$calls" && sed -n '/^xcodebuild /q;p' "$calls" \
 report "the look is set before the tests run" $?
 
 new_tree
-STUB_XCODEBUILD=hang PATH="$bin:$PATH" "$runner" light "$tree/.derived" \
+STUB_XCODEBUILD=hang PATH="$bin:$PATH" bash "$runner" light "$tree/.derived" \
   EmptyStateTests/testFirstLaunchShowsEmptyState > "$out" 2>&1 &
 pid=$!
 waited=0
