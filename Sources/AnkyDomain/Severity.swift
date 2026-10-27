@@ -11,6 +11,12 @@ public struct Severity: Equatable, Hashable, Sendable, Codable {
         self.init(whole)
     }
 
+    public init(nearestToFraction fraction: Double) {
+        // NaN fails this comparison, so a fraction that is not a number gives 0.
+        let level = fraction > 0 ? min((fraction * 10).rounded(), 10) : 0
+        value = Int(level)
+    }
+
     public var text: String {
         "\(value) of 10"
     }

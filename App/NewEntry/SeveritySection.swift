@@ -95,8 +95,8 @@ private struct SeverityControl: View {
     }
 
     private func setLevel(atX x: CGFloat, width: CGFloat) {
-        let fraction = min(max(x / width, 0), 1)
-        guard let next = Severity(Int((fraction * 10).rounded())), next != severity else { return }
+        let next = Severity(nearestToFraction: Double(x / width))
+        guard next != severity else { return }
         severity = next
     }
 }
