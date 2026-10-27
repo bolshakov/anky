@@ -47,4 +47,25 @@ struct SeverityTests {
             return
         }
     }
+
+    private let date = Date(timeIntervalSince1970: 1_800_000_000)
+
+    private func entry(severity: Int, date: Date) throws -> Entry {
+        try Entry(draft: EntryDraft(severity: #require(Severity(severity)), date: date))
+    }
+
+    @Test func startLevelIsZeroWhenNothingWasSaved() {
+        #expect(Severity.startLevel(after: []) == Severity(0))
+    }
+
+    @Test func startLevelIsTheLevelOfTheOnlySavedEntry() throws {
+        let saved = try [entry(severity: 6, date: date)]
+        #expect(Severity.startLevel(after: saved) == Severity(6))
+    }
+
+    @Test func startLevelIsTheLastSavedEntryEvenWhenItIsDatedEarlier() throws {
+        let laterDated = try entry(severity: 8, date: date.addingTimeInterval(3600))
+        let earlierDated = try entry(severity: 2, date: date)
+        #expect(Severity.startLevel(after: [laterDated, earlierDated]) == Severity(2))
+    }
 }
