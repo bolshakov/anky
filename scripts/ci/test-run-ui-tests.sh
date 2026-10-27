@@ -94,21 +94,26 @@ run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmpty
 line=" $(grep '^xcodebuild ' "$calls") "
 holds=0
 case "$line" in *" -test-iterations 2 "*) ;; *) holds=1 ;; esac
+case "$line" in *" -retry-tests-on-failure "*) ;; *) holds=1 ;; esac
+case "$line" in *" -destination id=$udid "*) ;; *) holds=1 ;; esac
+case "$line" in *" -derivedDataPath $tree/.derived "*) ;; *) holds=1 ;; esac
 for name in EmptyStateTests/testFirstLaunchShowsEmptyState SaveEntryTests/testSaveEntryOnToday; do
   case "$line" in *" -only-testing:AnkyUITests/$name "*) ;; *) holds=1 ;; esac
 done
 [ "$holds" = 0 ]
-report "each named test reaches xcodebuild with two iterations" $?
+report "xcodebuild gets one simulator, the retry flag and each named test" $?
 
 new_tree
 run_runner fail light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
-[ "$code" -ne 0 ]
-report "a failed test exits non-zero" $?
+grep -qF "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' failed" "$out" \
+  && [ "$(tail -n 1 "$out")" = "ui tests exit 65" ]
+report "a failed test is named and sets the exit status" $?
 
 new_tree
 run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
-[ "$code" -eq 0 ]
-report "a passing run exits zero" $?
+[ "$code" -eq 0 ] && grep -qx "simulator $udid" "$out" && grep -qx "simulator $udid deleted" "$out" \
+  && [ "$(tail -n 1 "$out")" = "ui tests exit 0" ]
+report "a passing run names its simulator and exits zero" $?
 
 [ "$failures" = 0 ] && echo "run-ui-tests tests: all passed"
 exit "$failures"
