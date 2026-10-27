@@ -18,7 +18,7 @@ struct KindButtons: View {
                         .background(
                             isSelected
                                 ? Color("AccentColor").opacity(0.15)
-                                : Color(uiColor: .secondarySystemGroupedBackground),
+                                : Color("CardBackground"),
                             in: RoundedRectangle(cornerRadius: 12)
                         )
                 }

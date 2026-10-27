@@ -15,7 +15,7 @@ struct NoteSection: View {
             .onTapGesture { isFocused = true }
             .background {
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(uiColor: .secondarySystemGroupedBackground))
+                    .fill(Color("CardBackground"))
                     .accessibilityIdentifier("note-card")
             }
     }
