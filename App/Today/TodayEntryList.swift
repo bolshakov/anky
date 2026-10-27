@@ -9,6 +9,9 @@ struct TodayEntryList: View {
             VStack(spacing: 0) {
                 ForEach(entries) { entry in
                     EntryRow(entry: entry)
+                    if entry.id != entries.last?.id {
+                        Divider()
+                    }
                 }
             }
             .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))

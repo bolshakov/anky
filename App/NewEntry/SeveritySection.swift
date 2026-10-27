@@ -15,6 +15,7 @@ struct SeveritySection: View {
             HStack(spacing: 12) {
                 Text("0")
                 Slider(value: level, in: 0 ... 10, step: 1)
+                    .tint(Color("AccentColor"))
                     .accessibilityIdentifier("severity-slider")
                     .accessibilityLabel("Severity")
                     .accessibilityValue(draft.severity.text)
