@@ -3,20 +3,28 @@ import SwiftUI
 
 struct NoteSection: View {
     @Binding var draft: EntryDraft
-    @FocusState private var isFocused: Bool
+
+    private var charactersLeft: Int {
+        EntryDraft.noteLimit - draft.note.count
+    }
 
     var body: some View {
-        TextField("Add a note", text: $draft.note, axis: .vertical)
-            .focused($isFocused)
-            .accessibilityIdentifier("note-field")
-            .padding(.horizontal, 16)
-            .padding(.vertical, 15)
-            .contentShape(Rectangle())
-            .onTapGesture { isFocused = true }
-            .background {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color("CardBackground"))
-                    .accessibilityIdentifier("note-card")
+        VStack(alignment: .trailing, spacing: 6) {
+            NoteTextView(text: $draft.note)
+                .frame(maxWidth: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color("CardBackground"))
+                        .accessibilityIdentifier("note-card")
+                }
+
+            if charactersLeft < 40 {
+                Text("\(charactersLeft) left")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 16)
+                    .accessibilityIdentifier("note-counter")
             }
+        }
     }
 }

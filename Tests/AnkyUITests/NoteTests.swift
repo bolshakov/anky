@@ -31,6 +31,17 @@ final class NoteTests: XCTestCase {
         XCTAssertLessThan(card.frame.height, 60, "empty note card is \(card.frame.height) pt high")
     }
 
+    func testEmptyNoteFieldSpansTheCard() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+
+        let window = app.windows.firstMatch.frame
+        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        XCTAssertGreaterThan(field.frame.width, window.width * 0.8, "note field is \(field.frame.width) pt wide")
+    }
+
     func testNoteCardGrowsWithText() {
         continueAfterFailure = false
         let app = launchAnky()
@@ -65,8 +76,8 @@ final class NoteTests: XCTestCase {
     func testLongNoteKeepsSaveReachable() {
         continueAfterFailure = false
         let app = launchAnky()
-        let sentences = String(repeating: "A made-up sentence that runs on for a while. ", count: 4)
-        let note = (1 ... 6).map { "Paragraph \($0). \(sentences)" }.joined(separator: "\n\n")
+        let sentence = "A made-up sentence that runs on for a while. "
+        let note = (1 ... 4).map { "Paragraph \($0). \(sentence)" }.joined(separator: "\n\n")
 
         openNewEntry(app)
         typeNote(note, in: app)
@@ -79,6 +90,43 @@ final class NoteTests: XCTestCase {
 
         saveEntry(app)
         XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+    }
+
+    func testNoteStopsAtTheLimit() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        let note = String(repeating: "word ", count: 60)
+
+        openNewEntry(app)
+        typeNote(note, in: app)
+
+        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
+        XCTAssertEqual(field.value as? String, String(note.prefix(240)))
+        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        XCTAssertTrue(counter.waitForExistence(timeout: 10))
+        XCTAssertEqual(counter.label, "0 left")
+        let save = app.buttons["Save entry"]
+        XCTAssertTrue(save.isHittable)
+        XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
+        for _ in 0 ..< 3 where counter.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
+        XCTAssertTrue(counter.isHittable)
+        XCTAssertLessThanOrEqual(counter.frame.maxY, save.frame.minY)
+        attachScreenshot(named: "note-limit")
+    }
+
+    func testNoteCounterIsHiddenForAShortNote() {
+        continueAfterFailure = false
+        let app = launchAnky()
+
+        openNewEntry(app)
+        typeNote("Walk note", in: app)
+
+        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
+        XCTAssertEqual(field.value as? String, "Walk note")
+        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        XCTAssertFalse(counter.exists)
     }
 
     private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
