@@ -1,0 +1,11 @@
+$ grep -n -E 'performAccessibilityAudit|hitRegion|textClipped|largestText|XXXL' Tests/AnkyUITests/AccessibilityAuditTests.swift Tests/AnkyUITests/Support/LargeText.swift
+exit: 0
+commit: 21e64ede7029055afddf794e9cad25863c710c3c
+
+Tests/AnkyUITests/AccessibilityAuditTests.swift:12:        try auditEveryScreen(in: launchAnky(arguments: largestTextArguments))
+Tests/AnkyUITests/AccessibilityAuditTests.swift:17:        let arguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryXXXL"]
+Tests/AnkyUITests/AccessibilityAuditTests.swift:24:        try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
+Tests/AnkyUITests/AccessibilityAuditTests.swift:27:        try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
+Tests/AnkyUITests/AccessibilityAuditTests.swift:29:        try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
+Tests/AnkyUITests/AccessibilityAuditTests.swift:35:        try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
+Tests/AnkyUITests/Support/LargeText.swift:3:let largestTextArguments = ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"]

@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-large.680s light LargeTextTests/testSaveStaysPinnedAtLargestSize
+exit: 0
+commit: 21e64ede7029055afddf794e9cad25863c710c3c
+
+simulator F3552330-F2FE-4C74-B6B4-8D634AF1A337
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.LargeTextTests testSaveStaysPinnedAtLargestSize]' passed (17.250 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-large.680s/shots/large-text-scrolled.png
+screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-large.680s/shots/large-text-top.png
+walk exit 0

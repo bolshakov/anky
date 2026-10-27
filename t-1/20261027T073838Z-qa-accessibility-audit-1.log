@@ -1,0 +1,16 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-audit.wGvv light AccessibilityAuditTests
+exit: 0
+commit: 21e64ede7029055afddf794e9cad25863c710c3c
+
+simulator 0F5B3172-9E06-40F9-8031-0210AEC1B4C1
+build-for-testing exit 0
+warm-up launch ok on try 1
+Test Case '-[AnkyUITests.AccessibilityAuditTests testAuditAtDefaultSize]' passed (20.080 seconds).
+Test Case '-[AnkyUITests.AccessibilityAuditTests testAuditAtLargestNonAccessibilitySize]' passed (19.634 seconds).
+Test Case '-[AnkyUITests.AccessibilityAuditTests testAuditAtLargestSize]' passed (24.963 seconds).
+** TEST EXECUTE SUCCEEDED **
+test exit 0
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-audit.wGvv/files/40BE02B9-EE61-4159-AEB7-9973DDD06A57.json
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-audit.wGvv/files/21B2CE8E-F6B3-4BF9-990D-FA00A546BCFC.json
+copied /Users/bolshakov/Projects/personal/anky.wt/qa-t1-12-4/tmp/walk-audit.wGvv/files/5D4F91D3-6399-4E54-AEDB-5F7799611600.json
+walk exit 0
