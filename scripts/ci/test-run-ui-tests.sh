@@ -17,6 +17,7 @@ new_tree() {
   bin=$tree/bin
   calls=$tree/calls.log
   out=$tree/out.log
+  seconds=
   mkdir -p "$bin"
   cat > "$bin/xcrun" <<EOF
 #!/bin/sh
@@ -29,19 +30,20 @@ EOF
 #!/bin/sh
 echo "xcodebuild \$*" >> "$calls"
 case "\$STUB_XCODEBUILD" in
-  hang) exec sleep 600 ;;
+  hang) exec sleep 60 ;;
+  hang-once)
+    [ "\$(grep -c '^xcodebuild ' "$calls")" -gt 1 ] || exec sleep 60 ;;
 esac
 status=0
 for arg do
   case "\$arg" in
     -only-testing:AnkyUITests/*)
       name=\${arg#-only-testing:AnkyUITests/}
-      if [ "\$STUB_XCODEBUILD" = fail ]; then
-        echo "Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]' failed (0.1 seconds)."
-        status=65
-      else
-        echo "Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]' passed (0.1 seconds)."
-      fi ;;
+      case_line="Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]'"
+      case "\$STUB_XCODEBUILD" in
+        fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
+        *) echo "\$case_line passed (0.1 seconds)." ;;
+      esac ;;
   esac
 done
 exit \$status
@@ -49,12 +51,14 @@ EOF
   chmod +x "$bin/xcrun" "$bin/xcodebuild"
 }
 
-# usage: run_runner <pass|fail|hang> <runner args...>. Sets code to the runner's exit status.
+# usage: run_runner <stub mode> <runner args...>. Sets code to the runner's exit status and elapsed to its run time.
 run_runner() {
   mode=$1
   shift
-  STUB_XCODEBUILD=$mode PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
+  start=$(date +%s)
+  STUB_XCODEBUILD=$mode UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" "$runner" "$@" > "$out" 2>&1
   code=$?
+  elapsed=$(($(date +%s) - start))
 }
 
 new_tree
@@ -114,6 +118,25 @@ run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmpty
 [ "$code" -eq 0 ] && grep -qx "simulator $udid" "$out" && grep -qx "simulator $udid deleted" "$out" \
   && [ "$(tail -n 1 "$out")" = "ui tests exit 0" ]
 report "a passing run names its simulator and exits zero" $?
+
+name="a hung try is stopped, the simulator rebooted, and the second try passes"
+new_tree
+seconds=2
+run_runner hang-once light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+between=$(sed -n '/^xcodebuild /,/^xcodebuild /p' "$calls" | sed '1d;$d')
+[ "$code" -eq 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 1 timed out after 2 s" "$out" \
+  && grep -qx "simulator $udid rebooted" "$out" \
+  && [ "$between" = "$(printf 'xcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="two hung tries exit non-zero and delete the simulator"
+new_tree
+seconds=2
+run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -ne 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 2 timed out after 2 s" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
 
 [ "$failures" = 0 ] && echo "run-ui-tests tests: all passed"
 exit "$failures"
