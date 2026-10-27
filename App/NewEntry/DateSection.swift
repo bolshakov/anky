@@ -37,7 +37,7 @@ struct DateSection: View {
                 .accessibilityIdentifier("date-picker")
             }
         }
-        .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+        .background(Color("CardBackground"), in: RoundedRectangle(cornerRadius: 16))
     }
 
     private var shownDate: String {

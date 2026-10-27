@@ -20,7 +20,7 @@ struct KindSection: View {
     private var track: some View {
         segments
             .padding(4)
-            .background(Color(uiColor: .secondarySystemGroupedBackground), in: Capsule())
+            .background(Color("CardBackground"), in: Capsule())
             .animation(motion, value: draft.kind)
             .sensoryFeedback(.selection, trigger: draft.kind)
             .overlay {
