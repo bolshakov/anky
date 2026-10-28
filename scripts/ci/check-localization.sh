@@ -7,8 +7,12 @@ app="$root/App"
 resources=$(grep -rhoE --include="*.swift" \
   '[[:alnum:]_]+(\([^)]*\))?[[:space:]]*(:|->)[[:space:]]*(LocalizedStringResource|LocalizedStringKey|Text)([^[:alnum:](]|$)' "$app" |
   sed -E 's/^([[:alnum:]_]+).*/\1/' | tr '\n' ' ')
+# A name declared as a String anywhere is not trusted, because the grep cannot tell which declaration a use means.
+strings=$(grep -rhoE --include="*.swift" \
+  '[[:alnum:]_]+(\([^)]*\))?[[:space:]]*(:|->)[[:space:]]*String([^[:alnum:](]|$)' "$app" |
+  sed -E 's/^([[:alnum:]_]+).*/\1/' | tr '\n' ' ')
 
-hits=$(find "$app" -name '*.swift' -exec awk -v root="$root" -v resources="$resources" '
+hits=$(find "$app" -name '*.swift' -exec awk -v root="$root" -v resources="$resources" -v strings="$strings" '
 function allowed(rest, arg, name) {
   if (rest ~ /^"([^"\\]|\\.)*"([,)]|[[:space:]]*$)/ || rest ~ /^(Text\(|LocalizedString)/) return 1
   if (rest ~ /^[[:alnum:]_]+:/ && rest !~ /^verbatim:/) return 1
@@ -18,7 +22,7 @@ function allowed(rest, arg, name) {
   name = arg
   sub(/\(.*/, "", name)
   sub(/.*\./, "", name)
-  return name != "" && index(" " resources " ", " " name " ") > 0
+  return name != "" && index(" " resources " ", " " name " ") > 0 && index(" " strings " ", " " name " ") == 0
 }
 function judge(rest) {
   if (rest ~ /^[^,)]*,[[:space:]]*$/) {

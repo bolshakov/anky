@@ -3,16 +3,18 @@
 here=$(cd "$(dirname "$0")" && pwd)
 failures=0
 
-# usage: expect <pass|fail> <description> <file> <swift line> [<declaration file> <declaration line>]
+# usage: expect <pass|fail> <description> <file> <swift line> [<declaration file> <declaration line>]...
 expect() {
   want=$1 desc=$2 path=$3 line=$4
+  shift 4
   tree=$(mktemp -d)
   mkdir -p "$tree/$(dirname "$path")"
   printf '%s\n' "$line" > "$tree/$path"
-  if [ -n "$5" ]; then
-    mkdir -p "$tree/$(dirname "$5")"
-    printf '%s\n' "$6" > "$tree/$5"
-  fi
+  while [ $# -gt 0 ]; do
+    mkdir -p "$tree/$(dirname "$1")"
+    printf '%s\n' "$2" > "$tree/$1"
+    shift 2
+  done
   if "$here/check-localization.sh" "$tree" > /dev/null 2>&1; then got=pass; else got=fail; fi
   if [ "$got" != "$want" ]; then echo "FAIL: $desc (wanted $want, got $got)"; failures=$((failures + 1)); fi
   rm -rf "${tree:?}"
@@ -95,6 +97,9 @@ expect fail "a String passed to an accessibility value" App/Today/Name.swift '.a
   App/Today/Decl.swift '    let name: String'
 expect fail "a String passed to an accessibility hint" App/Today/Name.swift '.accessibilityHint(name)' \
   App/Today/Decl.swift '    let name: String'
+expect fail "a name that is a resource in one file and a String in another" App/Today/Name.swift 'Text(title)' \
+  App/Model/Kind.swift '    let title: LocalizedStringResource' \
+  App/Today/Other.swift '    let title: String'
 expect fail "a UIKit text literal" App/NewEntry/NoteTextView.swift 'label.text = "Today"'
 expect fail "a UIKit placeholder literal" App/NewEntry/NoteTextView.swift 'field.placeholder = "Add a note"'
 expect fail "a UIKit accessibility label literal" App/NewEntry/NoteTextView.swift 'cell.accessibilityLabel = "Save"'
