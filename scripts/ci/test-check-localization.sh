@@ -60,6 +60,14 @@ expect fail "a String passed to a button" App/Today/Name.swift 'Button(title) {}
   App/Today/Decl.swift '    let title: String'
 expect fail "a String passed to an accessibility label" App/Today/Name.swift '.accessibilityLabel(label)' \
   App/Today/Decl.swift '    let label: String'
+expect fail "a String passed to a label" App/Today/Name.swift 'Label(name, systemImage: "x")' \
+  App/Today/Decl.swift '    let name: String'
+expect fail "a String passed to a navigation title" App/Today/Name.swift '.navigationTitle(name)' \
+  App/Today/Decl.swift '    let name: String'
+expect fail "a String passed to an accessibility value" App/Today/Name.swift '.accessibilityValue(name)' \
+  App/Today/Decl.swift '    let name: String'
+expect fail "a String passed to an accessibility hint" App/Today/Name.swift '.accessibilityHint(name)' \
+  App/Today/Decl.swift '    let name: String'
 expect fail "a UIKit text literal" App/NewEntry/NoteTextView.swift 'label.text = "Today"'
 expect fail "a UIKit placeholder literal" App/NewEntry/NoteTextView.swift 'field.placeholder = "Add a note"'
 expect fail "a UIKit accessibility label literal" App/NewEntry/NoteTextView.swift 'cell.accessibilityLabel = "Save"'
