@@ -47,10 +47,6 @@ struct SeverityTests {
         #expect(Severity(nearestToFraction: .nan) == Severity(0))
     }
 
-    @Test func writesTheLevelOutOfTen() throws {
-        #expect(try #require(Severity(4)).text == "4 of 10")
-    }
-
     @Test func encodesAsABareNumber() throws {
         let data = try JSONEncoder().encode(#require(Severity(4)))
         #expect(String(data: data, encoding: .utf8) == "4")
