@@ -26,7 +26,7 @@ struct KindSection: View {
             .overlay {
                 Picker("Kind", selection: $draft.kind) {
                     ForEach(EntryKind.allCases, id: \.self) { kind in
-                        Text(kind.title).tag(kind)
+                        Text(kind.displayName).tag(kind)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -45,7 +45,7 @@ struct KindSection: View {
         HStack(spacing: 0) {
             ForEach(EntryKind.allCases, id: \.self) { kind in
                 KindSegment(
-                    title: kind.title,
+                    title: kind.displayName,
                     isSelected: kind == draft.kind,
                     namespace: selection,
                     showsSlide: !reduceMotion
@@ -59,7 +59,7 @@ struct KindSection: View {
 }
 
 private struct KindSegment: View {
-    let title: String
+    let title: LocalizedStringResource
     let isSelected: Bool
     let namespace: Namespace.ID
     let showsSlide: Bool

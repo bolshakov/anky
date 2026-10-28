@@ -4,7 +4,7 @@ import Testing
 
 struct EntryKindTests {
     @Test func offersPainStiffnessAndFatigueInThatOrder() {
-        #expect(EntryKind.allCases.map(\.title) == ["Pain", "Stiffness", "Fatigue"])
+        #expect(EntryKind.allCases == [.pain, .stiffness, .fatigue])
     }
 
     @Test func encodesAsItsRawValue() throws {

@@ -17,10 +17,6 @@ public struct Severity: Equatable, Hashable, Sendable, Codable {
         value = Int(level)
     }
 
-    public var text: String {
-        "\(value) of 10"
-    }
-
     public static func startLevel(after saved: [Entry]) -> Severity {
         saved.last?.severity ?? Severity(0)!
     }

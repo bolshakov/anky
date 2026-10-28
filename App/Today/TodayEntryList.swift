@@ -35,13 +35,13 @@ private struct EntryRow: View {
             Text(time)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Text(entry.kind.title)
+            Text(entry.kind.displayName)
             Spacer()
             value
         }
         .padding()
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(time), \(entry.kind.title), \(entry.severity.text)")
+        .accessibilityLabel(Text("\(time), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))"))
         .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
     }
 

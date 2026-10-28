@@ -11,7 +11,7 @@ struct KindButtons: View {
                 Button {
                     kind = option
                 } label: {
-                    Text(option.title)
+                    Text(option.displayName)
                         .font(.body.weight(.semibold))
                         .frame(maxWidth: .infinity, minHeight: 44)
                         .foregroundStyle(isSelected ? Color("AccentColor") : .primary)
