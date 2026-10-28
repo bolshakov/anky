@@ -34,6 +34,14 @@ expect pass "a key parameter" App/NewEntry/Kind.swift 'Text(title)' \
   App/NewEntry/Title.swift '    let title: LocalizedStringKey'
 expect pass "a date with a format" App/Today/Header.swift 'Text(Date.now, format: .dateTime.weekday(.wide))'
 expect pass "a number with a format" App/Today/Row.swift 'Text(entry.severity.value, format: .number)'
+expect pass "a number from a call with a format" App/Today/Row.swift 'Text(Double(count), format: .number)'
+expect pass "a number from a nested call with a format" App/Today/Row.swift 'Text(abs(delta), format: .number)'
+expect pass "a date from a method call with a format" App/Today/Header.swift \
+  'Text(entry.date.addingTimeInterval(60), format: .dateTime)'
+expect pass "a date from an initializer with a format" App/Today/Header.swift \
+  'Text(Date(timeIntervalSince1970: 0), format: .dateTime)'
+expect pass "a number from a call with a format wrapped onto the next line" App/Today/Row.swift 'Text(Double(count),
+    format: .number)'
 expect pass "a Text inside an accessibility value" App/Today/Row.swift 'Text("x").accessibilityValue(Text("x"))'
 expect pass "a Text value passed to an accessibility value" App/NewEntry/Date.swift '.accessibilityValue(shownDate)' \
   App/NewEntry/Shown.swift '    private var shownDate: Text {'
@@ -100,6 +108,9 @@ expect fail "a String passed to an accessibility hint" App/Today/Name.swift '.ac
 expect fail "a name that is a resource in one file and a String in another" App/Today/Name.swift 'Text(title)' \
   App/Model/Kind.swift '    let title: LocalizedStringResource' \
   App/Today/Other.swift '    let title: String'
+expect fail "a String button title with a formatted call later on the line" App/Today/Name.swift \
+  'Button(title) { save(entry, format: .csv) }' \
+  App/Today/Decl.swift '    let title: String'
 expect fail "a UIKit text literal" App/NewEntry/NoteTextView.swift 'label.text = "Today"'
 expect fail "a UIKit placeholder literal" App/NewEntry/NoteTextView.swift 'field.placeholder = "Add a note"'
 expect fail "a UIKit accessibility label literal" App/NewEntry/NoteTextView.swift 'cell.accessibilityLabel = "Save"'

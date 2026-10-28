@@ -13,19 +13,32 @@ strings=$(grep -rhoE --include="*.swift" \
   sed -E 's/^([[:alnum:]_]+).*/\1/' | tr '\n' ' ')
 
 hits=$(find "$app" -name '*.swift' -exec awk -v root="$root" -v resources="$resources" -v strings="$strings" '
+# Only the first argument counts, so a format: in a later call on the same line does not.
+function formatted(rest, i, c, depth) {
+  depth = 0
+  for (i = 1; i <= length(rest); i++) {
+    c = substr(rest, i, 1)
+    if (c == "(") depth++
+    else if (c == ")") {
+      if (depth == 0) return 0
+      depth--
+    } else if (c == "," && depth == 0) return substr(rest, i) ~ /^, format:/
+  }
+  return 0
+}
 function allowed(rest, arg, name) {
   if (rest ~ /^"([^"\\]|\\.)*"([,)]|[[:space:]]*$)/ || rest ~ /^(Text\(|LocalizedString)/) return 1
   if (rest ~ /^[[:alnum:]_]+:/ && rest !~ /^verbatim:/) return 1
+  if (formatted(rest)) return 1
   arg = rest
   sub(/[,)].*/, "", arg)
-  if (substr(rest, length(arg) + 1) ~ /^, format:/) return 1
   name = arg
   sub(/\(.*/, "", name)
   sub(/.*\./, "", name)
   return name != "" && index(" " resources " ", " " name " ") > 0 && index(" " strings " ", " " name " ") == 0
 }
 function judge(rest) {
-  if (rest ~ /^[^,)]*,[[:space:]]*$/) {
+  if (rest ~ /,[[:space:]]*$/) {
     waiting = 1
     waitbad = !allowed(rest)
   } else if (!allowed(rest)) bad = 1
