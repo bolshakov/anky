@@ -1,7 +1,26 @@
+import AnkyDomain
 import XCTest
 
 @MainActor
 final class KindChoiceTests: XCTestCase {
+    func testKindPillsAreButtonsWithNoSegmentedControl() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+
+        XCTAssertEqual(app.segmentedControls.count, 0)
+        let picker = app.descendants(matching: .any).matching(identifier: "kind-picker").firstMatch
+        XCTAssertTrue(picker.waitForExistence(timeout: 10))
+        XCTAssertEqual(picker.buttons.count, EntryKind.allCases.count)
+
+        XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
+        XCTAssertFalse(kindSegment(.stiffness, in: app).isSelected)
+
+        chooseKind(.stiffness, in: app)
+        XCTAssertTrue(kindSegment(.stiffness, in: app).isSelected)
+        XCTAssertFalse(kindSegment(.pain, in: app).isSelected)
+    }
+
     func testStiffnessRowAndPainDefault() {
         continueAfterFailure = false
         let app = launchAnky()
