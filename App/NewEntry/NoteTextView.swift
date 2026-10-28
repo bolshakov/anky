@@ -78,10 +78,10 @@ final class NoteUITextView: UITextView {
         isScrollEnabled = false
         textContainerInset = UIEdgeInsets(top: 15, left: 16, bottom: 15, right: 16)
         textContainer.lineFragmentPadding = 0
-        accessibilityLabel = "Add a note"
+        accessibilityLabel = String(localized: "Add a note")
         accessibilityIdentifier = "note-field"
 
-        placeholder.text = "Add a note"
+        placeholder.text = String(localized: "Add a note")
         placeholder.font = font
         placeholder.adjustsFontForContentSizeCategory = true
         placeholder.textColor = .placeholderText

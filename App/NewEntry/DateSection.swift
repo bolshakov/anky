@@ -13,7 +13,7 @@ struct DateSection: View {
                 HStack {
                     Text("Date and time")
                     Spacer()
-                    Text(shownDate)
+                    shownDate
                         .foregroundStyle(.secondary)
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
@@ -40,11 +40,11 @@ struct DateSection: View {
         .background(Color("CardBackground"), in: .card)
     }
 
-    private var shownDate: String {
+    private var shownDate: Text {
         let day = Calendar.current.isDateInToday(draft.date)
-            ? "Today"
-            : draft.date.formatted(date: .abbreviated, time: .omitted)
-        let time = draft.date.formatted(.dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits))
-        return "\(day), \(time)"
+            ? Text("Today")
+            : Text(draft.date, format: Date.FormatStyle(date: .abbreviated, time: .omitted))
+        let time = Text(draft.date, format: .dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits))
+        return Text("\(day), \(time)")
     }
 }

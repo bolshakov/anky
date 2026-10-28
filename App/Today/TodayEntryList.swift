@@ -26,13 +26,13 @@ struct TodayEntryList: View {
 private struct EntryRow: View {
     let entry: Entry
 
-    private var time: String {
-        entry.date.formatted(date: .omitted, time: .shortened)
+    private var time: Text {
+        Text(entry.date, format: Date.FormatStyle(date: .omitted, time: .shortened))
     }
 
     var body: some View {
         HStack(spacing: 12) {
-            Text(time)
+            time
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Text(entry.kind.displayName)
@@ -46,7 +46,7 @@ private struct EntryRow: View {
     }
 
     private var value: some View {
-        Text("\(entry.severity.value)").bold().foregroundStyle(.primary)
-            + Text(" of 10").foregroundStyle(.secondary)
+        Text("\(Text(entry.severity.value, format: .number).bold().foregroundStyle(.primary)) of \(10)")
+            .foregroundStyle(.secondary)
     }
 }
