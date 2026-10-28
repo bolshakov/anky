@@ -46,7 +46,7 @@ private struct SeverityValue: View {
 
     var body: some View {
         Text("\(Text("\(severity.value)").bold()) of 10")
-            .accessibilityLabel(severity.text)
+            .accessibilityLabel(severity.spokenValue)
             .accessibilityIdentifier("severity-value")
     }
 }
@@ -85,7 +85,7 @@ private struct SeverityControl: View {
                 .opacity(0.01)
                 .allowsHitTesting(false)
                 .accessibilityLabel("Severity")
-                .accessibilityValue(severity.text)
+                .accessibilityValue(severity.spokenValue)
                 .accessibilityIdentifier("severity-slider")
         }
     }
