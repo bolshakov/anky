@@ -89,6 +89,13 @@ jobs:
           -destination 'generic/platform=iOS Simulator'
           -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
 
+      - name: catalog matches the build
+        # xcodebuild does not write the catalog back, so sync it and fail on any change.
+        run: |
+          find .derived/Build/Intermediates.noindex -name '*.stringsdata' -path '*-iphonesimulator/*' -print0 \
+            | xargs -0 xcrun xcstringstool sync App/Localizable.xcstrings --stringsdata
+          git diff --exit-code App/Localizable.xcstrings
+
       - name: ui smoke tests
         run: >
           scripts/ci/run-ui-tests.sh light .derived
