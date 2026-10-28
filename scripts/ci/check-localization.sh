@@ -10,7 +10,7 @@ resources=$(grep -rhoE --include="*.swift" \
 
 hits=$(find "$app" -name '*.swift' -exec awk -v root="$root" -v resources="$resources" '
 function allowed(rest, arg, name) {
-  if (rest ~ /^"([^"\\]|\\.)*"[,)]/ || rest ~ /^(Text\(|LocalizedString)/) return 1
+  if (rest ~ /^"([^"\\]|\\.)*"([,)]|[[:space:]]*$)/ || rest ~ /^(Text\(|LocalizedString)/) return 1
   if (rest ~ /^[[:alnum:]_]+:/ && rest !~ /^verbatim:/) return 1
   arg = rest
   sub(/[,)].*/, "", arg)
@@ -23,9 +23,16 @@ function allowed(rest, arg, name) {
 {
   bad = $0 ~ /\.(text|placeholder|accessibilityLabel|title|accessibilityHint)[[:space:]]*=[[:space:]]*"/
   rest = $0
+  if (open) {
+    open = 0
+    arg = $0
+    sub(/^[[:space:]]+/, "", arg)
+    if (!allowed(arg)) bad = 1
+  }
   while (match(rest, /(^|[^[:alnum:]_])(Text|Button|Label|navigationTitle|accessibilityLabel|accessibilityValue|accessibilityHint)\(/)) {
     rest = substr(rest, RSTART + RLENGTH)
-    if (!allowed(rest)) bad = 1
+    if (rest ~ /^[[:space:]]*$/) open = 1
+    else if (!allowed(rest)) bad = 1
   }
   if (bad) {
     file = FILENAME

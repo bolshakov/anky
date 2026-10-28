@@ -36,6 +36,13 @@ expect pass "a Text value passed to an accessibility value" App/NewEntry/Date.sw
 expect pass "a resource passed to an accessibility label" App/NewEntry/Severity.swift \
   '.accessibilityLabel(severity.spokenValue)' \
   App/Model/Severity.swift '    var spokenValue: LocalizedStringResource {'
+expect pass "a literal wrapped onto its own line" App/Today/Empty.swift 'Text(
+    "Nothing logged today and the rest of the sentence runs on for a while")'
+expect pass "a literal label wrapped onto its own line" App/Today/Row.swift '.accessibilityLabel(
+    "Save the entry")'
+expect pass "a resource wrapped onto its own line" App/Today/Row.swift 'Text(
+    title)' \
+  App/Today/Decl.swift '    let title: LocalizedStringResource'
 expect pass "a labeled argument" App/NewEntry/Kind.swift 'Button(action: select) {}'
 expect pass "an image name" App/Today/Empty.swift 'Image(systemName: "pencil")'
 expect pass "a color name" App/Today/Empty.swift 'Color("AccentColor")'
@@ -55,7 +62,11 @@ expect fail "a call that returns a String" App/Today/Name.swift 'Text(makeLabel(
   App/Today/Decl.swift '    func makeLabel() -> String {'
 expect fail "a String built by hand" App/Today/Name.swift 'Text(String(localized: "Today"))'
 expect fail "a literal joined to a variable" App/Today/Name.swift 'Text("Today" + suffix)'
-expect fail "a call that breaks after its paren" App/Today/Name.swift 'Text('
+expect fail "a verbatim label wrapped onto its own line" App/Today/TodayView.swift 'Text(
+    verbatim: "Today")'
+expect fail "a String variable wrapped onto its own line" App/Today/Name.swift 'Text(
+    name)' \
+  App/Today/Decl.swift '    let name: String'
 expect fail "a String passed to a button" App/Today/Name.swift 'Button(title) {}' \
   App/Today/Decl.swift '    let title: String'
 expect fail "a String passed to an accessibility label" App/Today/Name.swift '.accessibilityLabel(label)' \
