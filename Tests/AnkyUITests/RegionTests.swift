@@ -28,6 +28,8 @@ final class RegionTests: XCTestCase {
         )
 
         let clockBefore = clockText(at: .now, in: locale)
+        // The saved time is the moment New Entry opens, so the row time is read before it opens.
+        let rowTimeBefore = listTimeText(at: .now, in: locale)
         openNewEntry(app)
         let row = app.buttons["date-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
@@ -36,7 +38,6 @@ final class RegionTests: XCTestCase {
             "date-row is \(row.value as? String ?? "nil")"
         )
 
-        let rowTimeBefore = listTimeText(at: .now, in: locale)
         setSeverity(4, in: app)
         saveEntry(app)
         let entry = entryRows(in: app).firstMatch
