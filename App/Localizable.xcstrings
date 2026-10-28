@@ -1,0 +1,87 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ of %2$lld"
+          }
+        }
+      }
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "%@, %@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "%lld left" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld left"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld left"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld of %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld of %2$lld"
+          }
+        }
+      }
+    },
+    "Add a note" : {},
+    "Cancel" : {},
+    "Date and time" : {},
+    "Fatigue" : {},
+    "How strong" : {},
+    "Kind" : {},
+    "Limit reached" : {},
+    "Log how you feel" : {},
+    "Log how you feel, or a medication you took. Everything stays on this iPhone." : {},
+    "New Entry" : {},
+    "Nothing logged today" : {},
+    "OK" : {},
+    "Pain" : {},
+    "Save entry" : {},
+    "Severity" : {},
+    "Stiffness" : {},
+    "Stored on this iPhone only." : {},
+    "This entry could not be saved." : {},
+    "Today" : {}
+  },
+  "version" : "1.0"
+}

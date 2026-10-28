@@ -24,7 +24,7 @@ struct NoteSection: View {
         }
     }
 
-    private func counterText(_ counter: NoteCounter) -> String {
+    private func counterText(_ counter: NoteCounter) -> LocalizedStringResource {
         switch counter {
         case let .left(count): "\(count) left"
         case .limitReached: "Limit reached"
