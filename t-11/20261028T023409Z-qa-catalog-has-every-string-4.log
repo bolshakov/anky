@@ -1,0 +1,6 @@
+$ sh -c 'xcodebuild build -project Anky.xcodeproj -scheme Anky -destination id=1707869D-E0ED-41F4-9F55-B92B3E2BFCD6 -derivedDataPath /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/derived -clonedSourcePackagesDirPath /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/spm >/dev/null 2>&1; echo build $?; git diff --exit-code App/Localizable.xcstrings; echo diff $?'
+exit: 0
+commit: 824a56a36eac01e400acc3e1ff743f72503bcb77
+
+build 0
+diff 0

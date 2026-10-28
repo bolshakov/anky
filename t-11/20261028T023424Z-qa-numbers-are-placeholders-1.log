@@ -1,0 +1,8 @@
+$ sh -c 'python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/catalog-check.py /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/checkout/App/Localizable.xcstrings; grep -c '\''%1$lld'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/checkout/App/Localizable.xcstrings'
+exit: 0
+commit: 824a56a36eac01e400acc3e1ff743f72503bcb77
+
+source en entries 24
+stale or unfinished []
+plural %lld left en ['one', 'other']
+1

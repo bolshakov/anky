@@ -1,0 +1,5 @@
+$ sh -c 'mkdir /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/scratch && rsync -a --exclude .git --exclude .build --exclude .derived --exclude .spm --exclude Anky.xcodeproj /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/checkout/ /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/scratch/ && python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/add-ru.py /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/scratch/App/Localizable.xcstrings'
+exit: 0
+commit: 824a56a36eac01e400acc3e1ff743f72503bcb77
+
+added %lld left

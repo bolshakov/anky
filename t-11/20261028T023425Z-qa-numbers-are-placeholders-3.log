@@ -1,0 +1,5 @@
+$ sh -c 'cd /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/scratch && xcodegen generate >/dev/null && xcodebuild build -project Anky.xcodeproj -scheme Anky -destination id=1707869D-E0ED-41F4-9F55-B92B3E2BFCD6 -derivedDataPath /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/scratch-derived -clonedSourcePackagesDirPath /Users/bolshakov/Projects/personal/anky.wt/qa-t11-03-1/tmp/walk-t11.g1gI/spm 2>&1 | grep -E '\''BUILD|warning:.*(plural|variation)'\'''
+exit: 0
+commit: 824a56a36eac01e400acc3e1ff743f72503bcb77
+
+** BUILD SUCCEEDED **
