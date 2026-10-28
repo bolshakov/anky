@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid E6C5F412-D6E2-422A-BAA6-35367ADAD6B1 | grep -o '\''entry-row-[a-z]*'\'' | sort -u'
+exit: 0
+commit: 3fed273a61ff059a2de185a0e04bd4e5f0dba0b1
+
+entry-row-fatigue
+entry-row-pain
+entry-row-stiffness

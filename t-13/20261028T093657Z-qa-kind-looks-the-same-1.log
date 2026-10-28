@@ -1,0 +1,29 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/shoot.sh E6C5F412-D6E2-422A-BAA6-35367ADAD6B1 /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL head; echo shoot exit $?; ls /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-*.png'
+exit: 0
+commit: 3fed273a61ff059a2de185a0e04bd4e5f0dba0b1
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 174.0) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B16B6FDA-1255-4F35-A16E-C35D8619BFA9 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-light-large.png
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 174.0) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B16B6FDA-1255-4F35-A16E-C35D8619BFA9 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-dark-large.png
+✓ Tap at resolved tap point at (201.0, 761.3333435058594) completed successfully
+✓ Tap at resolved tap point at (201.0, 250.99999999999997) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B16B6FDA-1255-4F35-A16E-C35D8619BFA9 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-light-accessibility-extra-extra-extra-large.png
+✓ Tap at resolved tap point at (201.0, 761.3333435058594) completed successfully
+✓ Tap at resolved tap point at (201.0, 250.99999999999997) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B16B6FDA-1255-4F35-A16E-C35D8619BFA9 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-dark-accessibility-extra-extra-extra-large.png
+shoot exit 0
+/Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-dark-accessibility-extra-extra-extra-large.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-dark-large.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-light-accessibility-extra-extra-extra-large.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/head-light-large.png

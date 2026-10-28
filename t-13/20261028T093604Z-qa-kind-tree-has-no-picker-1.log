@@ -1,0 +1,18 @@
+$ sh -c 'python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/kind-tree.py /Users/bolshakov/Projects/personal/anky.wt/qa-t13-01-2/tmp/walk-t13.evaL/tree.json | grep -E '\''segmented|AXLabel|traits|AXValue|kind-picker'\'''
+exit: 0
+commit: 3fed273a61ff059a2de185a0e04bd4e5f0dba0b1
+
+segmented nodes on screen: 0
+ "AXUniqueId": "kind-picker",
+ "traits": [],
+   "AXValue": null,
+   "traits": [],
+   "AXLabel": "Pain",
+   "traits": [],
+   "AXLabel": "Stiffness",
+   "AXValue": null,
+   "traits": [],
+   "AXLabel": "Fatigue",
+   "AXValue": null,
+ "AXLabel": null,
+ "AXValue": null,
