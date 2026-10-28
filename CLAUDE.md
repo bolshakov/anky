@@ -27,6 +27,7 @@ Run these from the worktree root. CI runs the same ones.
 - `scripts/ci/check-localization.sh`, and `scripts/ci/test-check-localization.sh` when you change it
 - `swift test --scratch-path .build`
 - `xcodegen generate`, then `xcodebuild build -project Anky.xcodeproj -scheme Anky -destination 'generic/platform=iOS Simulator' -derivedDataPath .derived -clonedSourcePackagesDirPath .spm`
+- `find .derived/Build/Intermediates.noindex -name '*.stringsdata' -path '*-iphonesimulator/*' -print0 | xargs -0 xcrun xcstringstool sync App/Localizable.xcstrings --stringsdata`, then commit any change to `App/Localizable.xcstrings`
 - `scripts/ci/run-ui-tests.sh light .derived` and the smoke names from `.github/workflows/ci.yml`, after the
   `xcodebuild build`
 - `scripts/ci/test-run-ui-tests.sh` when you change `scripts/ci/run-ui-tests.sh`
