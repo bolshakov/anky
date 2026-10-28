@@ -1,0 +1,5 @@
+$ gh run view 40682750596 --json event,conclusion,headSha
+exit: 0
+commit: 40b42f99b079080962eb59a0b238aed9a0073971
+
+{"conclusion":"success","event":"pull_request","headSha":"40b42f99b079080962eb59a0b238aed9a0073971"}

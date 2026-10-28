@@ -1,0 +1,6 @@
+$ gh run view 40682750596 --json jobs --jq '.jobs[] | "\(.databaseId) \(.name) \(.conclusion)"'
+exit: 0
+commit: 40b42f99b079080962eb59a0b238aed9a0073971
+
+122813295221 ui suite (light) success
+122813297633 ui suite (dark) success

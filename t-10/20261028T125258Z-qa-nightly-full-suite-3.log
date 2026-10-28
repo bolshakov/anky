@@ -1,0 +1,16 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t10-03-1/tmp/count.sh 40682750596 40b42f99b079080962eb59a0b238aed9a0073971 /Users/bolshakov/Projects/personal/anky.wt/qa-t10-03-1/checkout
+exit: 0
+commit: 40b42f99b079080962eb59a0b238aed9a0073971
+
+job 122813295221
+-n passed: 
+      38
+-n skipped: 
+0
+job 122813297633
+-n passed: 
+      38
+-n skipped: 
+0
+-n func test: 
+      38
