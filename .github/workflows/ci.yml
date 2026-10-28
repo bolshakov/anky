@@ -50,6 +50,12 @@ jobs:
       - name: design token check proves itself
         run: scripts/ci/test-check-design-tokens.sh
 
+      - name: check localization
+        run: scripts/ci/check-localization.sh
+
+      - name: localization check proves itself
+        run: scripts/ci/test-check-localization.sh
+
       - name: ui test runner proves itself
         run: scripts/ci/test-run-ui-tests.sh
 
