@@ -102,9 +102,7 @@ final class CancelTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
         typeNote("Walk note", in: app)
-        // No gesture hides the keyboard on this sheet, and the bar swipe does not dismiss with it up.
-        // So this check does not reach the note guard yet.
-        app.navigationBars.containing(.button, identifier: "cancel-entry").firstMatch.swipeDown()
+        dragSheetDownFromBar(app)
 
         assertStillOpen(app)
     }
@@ -112,6 +110,16 @@ final class CancelTests: XCTestCase {
     /// A slow drag from the top of the screen. It closes an unchanged sheet when the keyboard is down.
     private func swipeSheetDown(_ app: XCUIApplication) {
         let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08))
+        let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
+        start.press(forDuration: 0.1, thenDragTo: end)
+    }
+
+    /// The keyboard is up, so a flick on the bar does not reliably reach the sheet. A slow drag from the bar does.
+    /// It starts right of Cancel, so the press is not a tap on Cancel.
+    private func dragSheetDownFromBar(_ app: XCUIApplication) {
+        let cancel = app.buttons["cancel-entry"]
+        let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0))
+            .withOffset(CGVector(dx: 0, dy: cancel.frame.midY))
         let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
         start.press(forDuration: 0.1, thenDragTo: end)
     }
