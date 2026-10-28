@@ -135,6 +135,13 @@ grep -qF "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyStat
   && [ "$(tail -n 1 "$out")" = "ui tests exit 65" ] && [ "$code" -eq 65 ]
 report "a failed test exits non-zero" $?
 
+name="a failed test does not start a second try"
+new_tree
+run_runner fail light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -eq 65 ] && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 1 ] && ! grep -q 'timed out' "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
 new_tree
 run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
 [ "$code" -eq 0 ] && grep -qx "simulator $udid" "$out" && grep -qx "simulator $udid deleted" "$out" \
