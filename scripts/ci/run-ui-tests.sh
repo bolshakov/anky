@@ -5,6 +5,15 @@ if [ $# -lt 2 ] || { [ "$1" != light ] && [ "$1" != dark ]; }; then
   echo "usage: run-ui-tests.sh <light|dark> <derived data dir> [Class/testMethod ...]" >&2
   exit 2
 fi
+
+# xcodebuild forwards only TEST_RUNNER_ variables, so the look goes in under that name.
+look=${ANKY_PRESENTATION:-${TEST_RUNNER_ANKY_PRESENTATION:-english}}
+case "$look" in
+  english|doubleLength|rightToLeft) ;;
+  *) echo "the look must be english, doubleLength or rightToLeft, not $look" >&2; exit 2 ;;
+esac
+export TEST_RUNNER_ANKY_PRESENTATION=$look
+
 appearance=$1
 derived=$2
 shift 2
