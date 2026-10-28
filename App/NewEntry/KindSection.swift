@@ -15,26 +15,12 @@ struct KindSection: View {
         }
     }
 
-    /// The real picker is laid over the drawn track at 0.01 opacity. Opacity 0 would drop it from the accessibility
-    /// tree, and touches pass through it to the drawn segments.
     private var track: some View {
         segments
             .padding(4)
             .background(Color("CardBackground"), in: Capsule())
             .animation(motion, value: draft.kind)
             .sensoryFeedback(.selection, trigger: draft.kind)
-            .overlay {
-                Picker("Kind", selection: $draft.kind) {
-                    ForEach(EntryKind.allCases, id: \.self) { kind in
-                        Text(kind.displayName).tag(kind)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .labelsHidden()
-                .opacity(0.01)
-                .allowsHitTesting(false)
-                .accessibilityIdentifier("kind-picker")
-            }
     }
 
     private var motion: Animation {
@@ -54,7 +40,8 @@ struct KindSection: View {
                 }
             }
         }
-        .accessibilityHidden(true)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("kind-picker")
     }
 }
 
@@ -81,5 +68,6 @@ private struct KindSegment: View {
                 }
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
