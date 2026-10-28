@@ -20,19 +20,30 @@ function allowed(rest, arg, name) {
   sub(/.*\./, "", name)
   return name != "" && index(" " resources " ", " " name " ") > 0
 }
+function judge(rest) {
+  if (rest ~ /^[^,)]*,[[:space:]]*$/) {
+    waiting = 1
+    waitbad = !allowed(rest)
+  } else if (!allowed(rest)) bad = 1
+}
 {
+  if (FNR == 1) open = waiting = 0
   bad = $0 ~ /\.(text|placeholder|accessibilityLabel|title|accessibilityHint)[[:space:]]*=[[:space:]]*"/
+  if (waiting) {
+    waiting = 0
+    if (waitbad && $0 !~ /^[[:space:]]*format:/) bad = 1
+  }
   rest = $0
   if (open) {
     open = 0
     arg = $0
     sub(/^[[:space:]]+/, "", arg)
-    if (!allowed(arg)) bad = 1
+    judge(arg)
   }
   while (match(rest, /(^|[^[:alnum:]_])(Text|Button|Label|navigationTitle|accessibilityLabel|accessibilityValue|accessibilityHint)\(/)) {
     rest = substr(rest, RSTART + RLENGTH)
     if (rest ~ /^[[:space:]]*$/) open = 1
-    else if (!allowed(rest)) bad = 1
+    else judge(rest)
   }
   if (bad) {
     file = FILENAME

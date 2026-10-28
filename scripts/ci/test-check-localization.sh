@@ -43,6 +43,15 @@ expect pass "a literal label wrapped onto its own line" App/Today/Row.swift '.ac
 expect pass "a resource wrapped onto its own line" App/Today/Row.swift 'Text(
     title)' \
   App/Today/Decl.swift '    let title: LocalizedStringResource'
+expect pass "a date with a format wrapped onto its own lines" App/Today/Header.swift 'Text(
+    Date.now,
+    format: .dateTime.weekday(.wide)
+)'
+expect pass "a number with a format wrapped onto its own lines" App/Today/Row.swift 'Text(
+    value,
+    format: .number)'
+expect pass "a date with a format that starts on the wrapped line" App/Today/Header.swift 'Text(Date.now,
+    format: .dateTime.weekday(.wide))'
 expect pass "a labeled argument" App/NewEntry/Kind.swift 'Button(action: select) {}'
 expect pass "an image name" App/Today/Empty.swift 'Image(systemName: "pencil")'
 expect pass "a color name" App/Today/Empty.swift 'Color("AccentColor")'
@@ -67,6 +76,11 @@ expect fail "a verbatim label wrapped onto its own line" App/Today/TodayView.swi
 expect fail "a String variable wrapped onto its own line" App/Today/Name.swift 'Text(
     name)' \
   App/Today/Decl.swift '    let name: String'
+expect fail "a String followed by another argument on the next line" App/Today/Name.swift 'Button(title,
+    role: .destructive) {}' \
+  App/Today/Decl.swift '    let title: String'
+expect fail "a date with no format on the next line" App/Today/Header.swift 'Text(Date.now,
+    )'
 expect fail "a String passed to a button" App/Today/Name.swift 'Button(title) {}' \
   App/Today/Decl.swift '    let title: String'
 expect fail "a String passed to an accessibility label" App/Today/Name.swift '.accessibilityLabel(label)' \
