@@ -5,7 +5,7 @@ app="$root/App"
 
 # The grep cannot see a type, so a bare name passes only when App/ declares it as a resource or a Text.
 resources=$(grep -rhoE --include="*.swift" \
-  '[[:alnum:]_]+(\([^)]*\))?[[:space:]]*(:|->)[[:space:]]*(LocalizedStringResource|Text)([^[:alnum:](]|$)' "$app" |
+  '[[:alnum:]_]+(\([^)]*\))?[[:space:]]*(:|->)[[:space:]]*(LocalizedStringResource|LocalizedStringKey|Text)([^[:alnum:](]|$)' "$app" |
   sed -E 's/^([[:alnum:]_]+).*/\1/' | tr '\n' ' ')
 
 hits=$(find "$app" -name '*.swift' -exec awk -v root="$root" -v resources="$resources" '

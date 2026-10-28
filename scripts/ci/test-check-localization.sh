@@ -28,6 +28,8 @@ expect pass "a resource from a function" App/NewEntry/Note.swift 'Text(counterTe
   App/NewEntry/Counter.swift '    private func counterText(_ counter: Int) -> LocalizedStringResource {'
 expect pass "a resource parameter" App/NewEntry/Kind.swift 'Text(title)' \
   App/NewEntry/Title.swift '    let title: LocalizedStringResource'
+expect pass "a key parameter" App/NewEntry/Kind.swift 'Text(title)' \
+  App/NewEntry/Title.swift '    let title: LocalizedStringKey'
 expect pass "a date with a format" App/Today/Header.swift 'Text(Date.now, format: .dateTime.weekday(.wide))'
 expect pass "a number with a format" App/Today/Row.swift 'Text(entry.severity.value, format: .number)'
 expect pass "a Text inside an accessibility value" App/Today/Row.swift 'Text("x").accessibilityValue(Text("x"))'
