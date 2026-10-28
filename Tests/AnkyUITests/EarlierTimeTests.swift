@@ -15,16 +15,18 @@ final class EarlierTimeTests: XCTestCase {
         app.buttons["date-row"].tap()
         saveEntry(app)
 
-        let rows = app.descendants(matching: .any).matching(identifier: "entry-row")
+        let rows = entryRows(in: app)
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(rows.count, 1)
-        let expected = [openedAt, Date.now].map { twoHoursEarlierLabel(from: $0) }
-        XCTAssertTrue(expected.contains(rows.firstMatch.label), "row reads \(rows.firstMatch.label)")
+        let expected = [openedAt, Date.now].map { twoHoursEarlierTime(from: $0) }
+        let shown = rowTime(of: rows.firstMatch)
+        XCTAssertTrue(expected.contains(shown), "row time is \(shown)")
+        XCTAssertEqual(rowSeverity(of: rows.firstMatch), 4)
         attachScreenshot(named: "earlier-time")
     }
 
-    private func twoHoursEarlierLabel(from date: Date) -> String {
+    private func twoHoursEarlierTime(from date: Date) -> String {
         let style = Date.FormatStyle(date: .omitted, time: .shortened).locale(Locale(identifier: "en_GB"))
-        return "\(date.addingTimeInterval(-7200).formatted(style)), Pain, 4 of 10"
+        return date.addingTimeInterval(-7200).formatted(style)
     }
 }

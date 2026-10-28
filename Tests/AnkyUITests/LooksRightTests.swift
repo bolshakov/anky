@@ -5,7 +5,7 @@ final class LooksRightTests: XCTestCase {
     func testCaptureScreens() {
         continueAfterFailure = false
         let app = launchAnky()
-        XCTAssertTrue(app.staticTexts["Nothing logged today"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["empty-today"].waitForExistence(timeout: 10))
         attachScreenshot(named: "looks-today-empty")
 
         openNewEntry(app)
@@ -18,12 +18,12 @@ final class LooksRightTests: XCTestCase {
         saveEntry(app)
 
         openNewEntry(app)
-        chooseKind("Stiffness", in: app)
+        chooseKind(.stiffness, in: app)
         setSeverity(6, in: app)
         saveEntry(app)
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        let rows = app.descendants(matching: .any).matching(identifier: "entry-row")
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        let rows = entryRows(in: app)
         XCTAssertEqual(rows.count, 2)
         attachScreenshot(named: "looks-today")
     }

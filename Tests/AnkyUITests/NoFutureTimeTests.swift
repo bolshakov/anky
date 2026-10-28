@@ -14,8 +14,8 @@ final class NoFutureTimeTests: XCTestCase {
         moveHour(by: 1, in: app)
 
         // The picker clamps to the moment it was last drawn, so the row shows the opening minute or the current one.
-        let shown = app.buttons["date-row"].value as? String
-        XCTAssertTrue([dateRowValue(at: openedAt), dateRowValue(at: .now)].contains(shown))
+        let shown = clockTime(inRowValue: app.buttons["date-row"].value as? String)
+        XCTAssertTrue([clockTime(at: openedAt), clockTime(at: .now)].contains(shown))
         attachScreenshot(named: "no-future-time")
     }
 }

@@ -8,14 +8,15 @@ final class CancelTests: XCTestCase {
         openNewEntry(app)
         setSeverity(6, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
-        app.buttons["Cancel"].tap()
+        app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["Discard"].exists)
-        XCTAssertEqual(todayRows(in: app).count, 1)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertEqual(app.sheets.count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 1)
         attachScreenshot(named: "cancel-saves-nothing")
     }
 
@@ -24,11 +25,12 @@ final class CancelTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
         setSeverity(1, in: app)
-        app.buttons["Cancel"].tap()
+        app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["Discard"].exists)
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertEqual(app.alerts.count, 0)
+        XCTAssertEqual(app.sheets.count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
         attachScreenshot(named: "cancel-after-change")
     }
 
@@ -38,9 +40,9 @@ final class CancelTests: XCTestCase {
         openNewEntry(app)
         swipeSheetDown(app)
 
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
         attachScreenshot(named: "swipe-down")
     }
 
@@ -52,20 +54,20 @@ final class CancelTests: XCTestCase {
         swipeSheetDown(app)
 
         assertStillOpen(app)
-        XCTAssertEqual(app.sliders["severity-slider"].value as? String, "1 of 10")
+        XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 1)
         XCTAssertEqual(app.alerts.count, 0)
         attachScreenshot(named: "swipe-blocked")
 
-        app.buttons["Cancel"].tap()
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
-        XCTAssertEqual(todayRows(in: app).count, 0)
+        app.buttons["cancel-entry"].tap()
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
     func testSwipeDownIsBlockedAfterKindChange() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
-        chooseKind("Stiffness", in: app)
+        chooseKind(.stiffness, in: app)
         swipeSheetDown(app)
 
         assertStillOpen(app)
@@ -92,7 +94,7 @@ final class CancelTests: XCTestCase {
         swipeSheetDown(app)
 
         assertStillOpen(app)
-        XCTAssertEqual(app.sliders["severity-slider"].value as? String, "7 of 10")
+        XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 7)
     }
 
     func testSwipeDownIsBlockedAfterNoteChange() {
@@ -100,9 +102,7 @@ final class CancelTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
         typeNote("Walk note", in: app)
-        // The keyboard is up, so a drag leaves the sheet open even when swipes are not blocked.
-        // Only the element swipe proves the block.
-        app.navigationBars["New Entry"].swipeDown()
+        dragSheetDownFromBar(app)
 
         assertStillOpen(app)
     }
@@ -114,13 +114,19 @@ final class CancelTests: XCTestCase {
         start.press(forDuration: 0.1, thenDragTo: end)
     }
 
-    /// The sheet is still animating for a moment after a swipe, so a plain `exists` check could pass too early.
-    private func assertStillOpen(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
-        XCTAssertFalse(app.staticTexts["New Entry"].waitForNonExistence(timeout: 3), file: file, line: line)
-        XCTAssertEqual(app.alerts.count, 0, file: file, line: line)
+    /// The keyboard is up, so a flick on the bar does not reliably reach the sheet. A slow drag from the bar does.
+    /// It starts right of Cancel, so the press is not a tap on Cancel.
+    private func dragSheetDownFromBar(_ app: XCUIApplication) {
+        let cancel = app.buttons["cancel-entry"]
+        let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.75, dy: 0))
+            .withOffset(CGVector(dx: 0, dy: cancel.frame.midY))
+        let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
+        start.press(forDuration: 0.1, thenDragTo: end)
     }
 
-    private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
-        app.descendants(matching: .any).matching(identifier: "entry-row")
+    /// The sheet is still animating for a moment after a swipe, so a plain `exists` check could pass too early.
+    private func assertStillOpen(_ app: XCUIApplication, file: StaticString = #filePath, line: UInt = #line) {
+        XCTAssertFalse(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 3), file: file, line: line)
+        XCTAssertEqual(app.alerts.count, 0, file: file, line: line)
     }
 }

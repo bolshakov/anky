@@ -30,34 +30,32 @@ final class SaveEntryTests: XCTestCase {
         app.terminate()
 
         let fresh = launchAnky()
-        XCTAssertTrue(fresh.staticTexts["Nothing logged today"].waitForExistence(timeout: 10))
-        XCTAssertEqual(todayRows(in: fresh).count, 0)
+        XCTAssertTrue(fresh.staticTexts["empty-today"].waitForExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: fresh).count, 0)
     }
 
-    /// The row's time can fall in the minute before or after the save, so both labels are returned.
+    /// The row's time can fall in the minute before or after the save, so both times are returned.
     private func saveFourOfTen(in app: XCUIApplication) -> [String] {
-        let before = rowLabel(at: .now)
+        let before = timeText(at: .now)
         openNewEntry(app)
         setSeverity(4, in: app)
         saveEntry(app)
-        let after = rowLabel(at: .now)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        let after = timeText(at: .now)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         return [before, after]
     }
 
     private func expectOneTodayRow(in app: XCUIApplication, labelsForSaveMinute labels: [String]) {
-        let rows = todayRows(in: app)
+        let rows = entryRows(in: app)
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(rows.count, 1)
-        XCTAssertTrue(labels.contains(rows.firstMatch.label), "row reads \(rows.firstMatch.label)")
+        let row = rows.firstMatch
+        XCTAssertTrue(labels.contains(rowTime(of: row)), "row time is \(rowTime(of: row))")
+        XCTAssertEqual(rowSeverity(of: row), 4)
     }
 
-    private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
-        app.descendants(matching: .any).matching(identifier: "entry-row")
-    }
-
-    private func rowLabel(at date: Date) -> String {
+    private func timeText(at date: Date) -> String {
         let style = Date.FormatStyle(date: .omitted, time: .shortened).locale(Locale(identifier: "en_GB"))
-        return "\(date.formatted(style)), Pain, 4 of 10"
+        return date.formatted(style)
     }
 }

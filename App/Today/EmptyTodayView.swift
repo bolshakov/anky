@@ -13,6 +13,7 @@ struct EmptyTodayView: View {
             Text("Nothing logged today")
                 .font(.title2.bold())
                 .multilineTextAlignment(.center)
+                .accessibilityIdentifier("empty-today")
 
             Text("Log how you feel, or a medication you took. Everything stays on this iPhone.")
                 .font(.body)

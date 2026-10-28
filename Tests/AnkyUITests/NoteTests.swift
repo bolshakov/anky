@@ -9,14 +9,14 @@ final class NoteTests: XCTestCase {
         openNewEntry(app)
         typeNote("Walk note", in: app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
 
-        XCTAssertTrue(todayRows(in: app).firstMatch.waitForExistence(timeout: 10))
-        XCTAssertEqual(todayRows(in: app).count, 2)
+        XCTAssertTrue(entryRows(in: app).firstMatch.waitForExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: app).count, 2)
         attachScreenshot(named: "note-optional")
     }
 
@@ -84,12 +84,12 @@ final class NoteTests: XCTestCase {
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, note)
-        let save = app.buttons["Save entry"]
+        let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
 
         saveEntry(app)
-        XCTAssertTrue(app.staticTexts["New Entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
     }
 
     func testNoteStopsAtTheLimit() {
@@ -101,14 +101,14 @@ final class NoteTests: XCTestCase {
         typeNote(String(note.prefix(230)), in: app)
         let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
         XCTAssertTrue(counter.waitForExistence(timeout: 10))
-        XCTAssertEqual(counter.label, "10 left")
+        XCTAssertEqual(leadingNumber(in: counter.label), 10)
 
         app.typeText(String(note.dropFirst(230)))
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, String(note.prefix(240)))
-        XCTAssertEqual(counter.label, "Limit reached")
-        let save = app.buttons["Save entry"]
+        XCTAssertFalse(counter.label.contains { $0.isNumber })
+        let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
         for _ in 0 ..< 3 where counter.frame.maxY > save.frame.minY {
@@ -117,9 +117,5 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(counter.isHittable)
         XCTAssertLessThanOrEqual(counter.frame.maxY, save.frame.minY)
         attachScreenshot(named: "note-limit")
-    }
-
-    private func todayRows(in app: XCUIApplication) -> XCUIElementQuery {
-        app.descendants(matching: .any).matching(identifier: "entry-row")
     }
 }
