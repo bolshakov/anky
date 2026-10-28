@@ -36,6 +36,7 @@ function allowed(rest, arg, name) {
 
 if [ -n "$hits" ]
 then printf '%s\n' "$hits"
-  echo "LOCALIZATION VIOLATION: a plain String reaches the screen. Use a literal, a LocalizedStringResource, or Text(_, format:)."
+  echo "LOCALIZATION VIOLATION: a plain String reaches the screen. Use a literal, a LocalizedStringResource," \
+    "or Text(_, format:). In UIKit, use String(localized:)."
   exit 1
 fi
