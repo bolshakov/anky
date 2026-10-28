@@ -1,0 +1,46 @@
+name: ui nightly
+
+on:
+  schedule:
+    # Off the hour, since GitHub delays schedules that start on it.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/ui-nightly.yml
+      - scripts/ci/run-ui-tests.sh
+
+concurrency:
+  group: ui-nightly-${{ github.ref }}
+  # A pull request run is moot once its branch gets a new push. A run on main is never cancelled.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  suite:
+    name: ui suite (${{ matrix.appearance }})
+    strategy:
+      fail-fast: false
+      matrix:
+        appearance: [light, dark]
+    runs-on: macos-26
+    timeout-minutes: 75
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      UI_TRY_SECONDS: 1800
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: generate project
+        run: brew install xcodegen && xcodegen generate
+
+      - name: build the app
+        run: >
+          xcodebuild build -project Anky.xcodeproj -scheme Anky
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
+
+      - name: ui tests
+        run: scripts/ci/run-ui-tests.sh ${{ matrix.appearance }} .derived
