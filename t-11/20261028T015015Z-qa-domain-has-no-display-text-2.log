@@ -1,0 +1,5 @@
+$ sh -c 'scripts/ci/check-layers.sh; echo "layers exit $?"'
+exit: 0
+commit: 4090e2188bc4ff8584f9504a0582d581805ba778
+
+layers exit 0

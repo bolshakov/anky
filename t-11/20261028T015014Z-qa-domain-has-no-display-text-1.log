@@ -1,0 +1,5 @@
+$ sh -c 'grep -rnE '\''"(Pain|Stiffness|Fatigue)"| of 10'\'' Sources || echo none'
+exit: 0
+commit: 4090e2188bc4ff8584f9504a0582d581805ba778
+
+none

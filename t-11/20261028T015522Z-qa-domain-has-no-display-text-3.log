@@ -1,0 +1,12 @@
+$ timeout 580 scripts/ci/run-ui-tests.sh light /Users/bolshakov/Projects/personal/anky.wt/qa-t11-02-2/tmp/walk-t11.UBo9/uiderived KindChoiceTests SeverityRangeTests
+exit: 0
+commit: 4090e2188bc4ff8584f9504a0582d581805ba778
+
+No runtime specified, using 'iOS 26.5 (26.5 - 23F77) - com.apple.CoreSimulator.SimRuntime.iOS-26-5'
+simulator D70E31F8-67E2-40E9-A391-3544FA2E923D
+Test Case '-[AnkyUITests.KindChoiceTests testStiffnessRowAndPainDefault]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.KindChoiceTests testStiffnessRowAndPainDefault]' passed (14.318 seconds).
+Test Case '-[AnkyUITests.SeverityRangeTests testSliderShowsEndLabelsAndTicks]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.SeverityRangeTests testSliderShowsEndLabelsAndTicks]' passed (8.832 seconds).
+simulator D70E31F8-67E2-40E9-A391-3544FA2E923D deleted
+ui tests exit 0
