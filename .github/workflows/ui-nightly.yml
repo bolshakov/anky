@@ -44,3 +44,29 @@ jobs:
 
       - name: ui tests
         run: scripts/ci/run-ui-tests.sh ${{ matrix.appearance }} .derived
+
+      - name: ui smoke tests in double-length text
+        if: matrix.appearance == 'light'
+        env:
+          ANKY_PRESENTATION: doubleLength
+          UI_TRY_SECONDS: 1800
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          LargeTextTests/testSaveStaysPinnedAtLargestSize
+
+      - name: ui smoke tests in right-to-left
+        if: matrix.appearance == 'light'
+        env:
+          ANKY_PRESENTATION: rightToLeft
+          UI_TRY_SECONDS: 1800
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          SaveEntryTests/testSaveEntryOnToday
+          SaveEntryTests/testEntrySurvivesRelaunch
+          NoteTests/testSavesWithAndWithoutNote
+          CancelTests/testCancelAfterChangeClosesAtOnce
+          CancelTests/testSwipeDownIsBlockedAfterChange
+          LargeTextTests/testSaveStaysPinnedAtLargestSize
+          AccessibilityAuditTests/testAuditAtDefaultSize
