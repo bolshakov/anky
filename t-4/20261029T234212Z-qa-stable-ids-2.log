@@ -1,0 +1,8 @@
+$ git grep -n currentVersion -- Sources/AnkyDomain
+exit: 0
+commit: f291e1d61515d12b330495e80a713377180d9756
+
+Sources/AnkyDomain/FileEntryStore.swift:4:    private static let currentVersion = 1
+Sources/AnkyDomain/FileEntryStore.swift:23:        try write(EntriesFile(version: Self.currentVersion, entries: entries))
+Sources/AnkyDomain/FileEntryStore.swift:48:        if version > currentVersion {
+Sources/AnkyDomain/FileEntryStore.swift:51:        guard version == currentVersion, let file = try? decoder().decode(EntriesFile.self, from: data) else {

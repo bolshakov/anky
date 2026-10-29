@@ -1,0 +1,11 @@
+$ bash -c 'gh run view 40973244150 --log | grep -E -e '\''Test placesSurviveAReloadFromTheFile\(\) (passed|failed)'\'' -e '\''Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds\(\) (passed|failed)'\'' -e '\''Test aVersionOneFileWithoutPlacesStillLoads\(\) (passed|failed)'\'' -e '\''Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave\(\) (passed|failed)'\'' -e '\''Test theFileVersionStaysOne\(\) (passed|failed)'\'' -e '\''Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain\(\) (passed|failed)'\'' -e '\''Test theIdsTheTicketNamesAreExact\(\) (passed|failed)'\'''
+exit: 0
+commit: f291e1d61515d12b330495e80a713377180d9756
+
+ios	swift test	2026-10-29T23:28:26.9343020Z ✔ Test theIdsTheTicketNamesAreExact() passed after 0.015 seconds.
+ios	swift test	2026-10-29T23:28:26.9357550Z ✔ Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds() passed after 0.014 seconds.
+ios	swift test	2026-10-29T23:28:26.9358660Z ✔ Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave() passed after 0.014 seconds.
+ios	swift test	2026-10-29T23:28:26.9359160Z ✔ Test placesSurviveAReloadFromTheFile() passed after 0.014 seconds.
+ios	swift test	2026-10-29T23:28:26.9360140Z ✔ Test aVersionOneFileWithoutPlacesStillLoads() passed after 0.014 seconds.
+ios	swift test	2026-10-29T23:28:26.9363890Z ✔ Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain() passed after 0.014 seconds.
+ios	swift test	2026-10-29T23:28:26.9385860Z ✔ Test theFileVersionStaysOne() passed after 0.028 seconds.
