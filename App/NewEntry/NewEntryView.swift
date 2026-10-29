@@ -3,6 +3,7 @@ import SwiftUI
 
 struct NewEntryView: View {
     let model: EntryLogModel
+    let mode: EntryMode
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var startDraft: EntryDraft
@@ -10,9 +11,13 @@ struct NewEntryView: View {
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
 
-    init(model: EntryLogModel) {
+    init(model: EntryLogModel, mode: EntryMode = .new) {
         self.model = model
-        let opening = openingDraft(after: model.entries, now: .now)
+        self.mode = mode
+        let opening = switch mode {
+        case .new: openingDraft(after: model.entries, now: .now)
+        case let .edit(entry): EntryDraft(entry: entry)
+        }
         _draft = State(initialValue: opening)
         // State, not a fresh call, so a view SwiftUI makes again still compares with the draft it opened with.
         _startDraft = State(initialValue: opening)
@@ -30,8 +35,8 @@ struct NewEntryView: View {
                 .padding()
             }
             .background(Color("PageBackground"))
-            .accessibilityIdentifier("new-entry-screen")
-            .navigationTitle("New Entry")
+            .accessibilityIdentifier(screenID)
+            .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -42,7 +47,7 @@ struct NewEntryView: View {
                 }
                 .withoutGlassPill()
                 ToolbarItem(placement: .principal) {
-                    Text("New Entry")
+                    Text(title)
                         .font(.headline)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
@@ -51,7 +56,7 @@ struct NewEntryView: View {
                 .withoutGlassPill()
             }
             .safeAreaInset(edge: .bottom) {
-                Button("Save entry") {
+                Button(saveTitle) {
                     save()
                 }
                 .buttonStyle(PinnedButtonStyle())
@@ -65,12 +70,40 @@ struct NewEntryView: View {
         }
     }
 
+    private var title: LocalizedStringKey {
+        switch mode {
+        case .new: "New Entry"
+        case .edit: "Edit Entry"
+        }
+    }
+
+    private var saveTitle: LocalizedStringKey {
+        switch mode {
+        case .new: "Save entry"
+        case .edit: "Save changes"
+        }
+    }
+
+    private var screenID: String {
+        switch mode {
+        case .new: "new-entry-screen"
+        case .edit: "edit-entry-screen"
+        }
+    }
+
     private func save() {
         do {
-            try model.add(Entry(id: entryID, draft: draft))
+            try store()
             dismiss()
         } catch {
             isShowingSaveFailure = true
+        }
+    }
+
+    private func store() throws {
+        switch mode {
+        case .new: try model.add(Entry(id: entryID, draft: draft))
+        case let .edit(entry): try model.replace(Entry(id: entry.id, draft: draft))
         }
     }
 }
