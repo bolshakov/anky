@@ -4,6 +4,7 @@ import SwiftUI
 struct TodayView: View {
     let model: EntryLogModel
     @State private var isShowingNewEntry = false
+    @State private var editing: Entry?
 
     private var todayEntries: [Entry] {
         TodayList.entries(model.entries, on: .now, calendar: .current)
@@ -23,7 +24,7 @@ struct TodayView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 48)
                     } else {
-                        TodayEntryList(entries: todayEntries)
+                        TodayEntryList(entries: todayEntries, onSelect: { editing = $0 })
                             .padding(.top, 40)
                     }
                 }
@@ -42,6 +43,9 @@ struct TodayView: View {
             }
             .sheet(isPresented: $isShowingNewEntry) {
                 NewEntryView(model: model)
+            }
+            .sheet(item: $editing) { entry in
+                NewEntryView(model: model, mode: .edit(entry))
             }
         }
     }

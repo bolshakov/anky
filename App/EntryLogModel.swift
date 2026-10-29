@@ -15,4 +15,8 @@ import Observation
     func add(_ entry: Entry) throws {
         try log.add(entry)
     }
+
+    func replace(_ entry: Entry) throws {
+        try log.replace(entry)
+    }
 }
