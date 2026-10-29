@@ -43,5 +43,5 @@ func saveEntry(_ app: XCUIApplication) {
 
 @MainActor
 func severityLevel(of slider: XCUIElement) -> Int? {
-    leadingNumber(in: slider.value as? String)
+    firstNumber(in: slider.value as? String)
 }

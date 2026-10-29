@@ -12,5 +12,5 @@ func rowTime(of row: XCUIElement) -> String {
 }
 
 func rowSeverity(of row: XCUIElement) -> Int? {
-    leadingNumber(in: row.label.components(separatedBy: ", ").last)
+    firstNumber(in: row.label.components(separatedBy: ", ").last)
 }

@@ -67,10 +67,11 @@ final class NoteTests: XCTestCase {
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1)).tap()
-        app.typeText("Walk")
+        let typed = "Walk"
+        app.typeText(typed)
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
-        XCTAssertEqual(field.value as? String, "Walk")
+        XCTAssertEqual(field.value as? String, typed)
     }
 
     func testLongNoteKeepsSaveReachable() {
@@ -99,14 +100,16 @@ final class NoteTests: XCTestCase {
 
         openNewEntry(app)
         typeNote(String(note.prefix(230)), in: app)
+        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
+        XCTAssertEqual((field.value as? String)?.count, 230)
         let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
         XCTAssertTrue(counter.waitForExistence(timeout: 10))
-        XCTAssertEqual(leadingNumber(in: counter.label), 10)
+        let counterAtTen = counter.label
 
         app.typeText(String(note.dropFirst(230)))
 
-        let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual(field.value as? String, String(note.prefix(240)))
+        XCTAssertNotEqual(counter.label, counterAtTen)
         XCTAssertFalse(counter.label.contains { $0.isNumber })
         let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)

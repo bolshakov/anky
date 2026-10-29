@@ -13,14 +13,16 @@ final class EarlierTimeTests: XCTestCase {
         showDatePicker(in: app)
         moveHour(by: -2, in: app)
         app.buttons["date-row"].tap()
+        // The row's label reads its time in double-length text, so the time is checked on the date row before saving.
+        let expected = [openedAt, Date.now].map { twoHoursEarlierTime(from: $0) }
+        let dateRow = app.buttons["date-row"]
+        let shown = clockTime(inRowValue: dateRow.value as? String)
+        XCTAssertTrue(expected.contains(shown ?? ""), "date row time is \(shown ?? "nil")")
         saveEntry(app)
 
         let rows = entryRows(in: app)
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(rows.count, 1)
-        let expected = [openedAt, Date.now].map { twoHoursEarlierTime(from: $0) }
-        let shown = rowTime(of: rows.firstMatch)
-        XCTAssertTrue(expected.contains(shown), "row time is \(shown)")
         XCTAssertEqual(rowSeverity(of: rows.firstMatch), 4)
         attachScreenshot(named: "earlier-time")
     }

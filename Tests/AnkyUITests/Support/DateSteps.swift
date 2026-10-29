@@ -30,7 +30,7 @@ func moveHour(by delta: Int, in app: XCUIApplication) {
     XCTAssertTrue(hours.waitForExistence(timeout: 10))
     let step = delta < 0 ? -1 : 1
     for _ in 0 ..< abs(delta) {
-        let current = leadingNumber(in: hours.value as? String) ?? -1
+        let current = firstNumber(in: hours.value as? String) ?? -1
         hours.adjust(toPickerWheelValue: String(format: "%02d", (current + step + 24) % 24))
     }
 }
