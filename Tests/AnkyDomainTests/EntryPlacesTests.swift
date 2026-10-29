@@ -37,4 +37,20 @@ struct EntryPlacesTests {
         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0}"#
         #expect(try JSONDecoder().decode(Entry.self, from: Data(json.utf8)).places.isEmpty)
     }
+
+    @Test func anEntryReadsStoredPlacesInCatalogOrder() throws {
+        let json = #"""
+        {"id":"\#(UUID())","kind":"pain","severity":4,"date":0,
+         "places":["jaw","tentacle","si_l","lower"]}
+        """#
+        let places = try JSONDecoder().decode(Entry.self, from: Data(json.utf8)).places
+        #expect(places == ["lower", "si_l", "jaw", "tentacle"].map { PlaceID(rawValue: $0) })
+    }
+
+    @Test func anEntryFromADraftHoldsItsPlacesInCatalogOrder() throws {
+        var draft = try EntryDraft(severity: #require(Severity(4)), date: date)
+        draft.kind = .pain
+        draft.places = [PlaceID(rawValue: "jaw"), PlaceID(rawValue: "lower")]
+        #expect(Entry(draft: draft).places == [PlaceID(rawValue: "lower"), PlaceID(rawValue: "jaw")])
+    }
 }
