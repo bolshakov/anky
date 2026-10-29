@@ -1,0 +1,8 @@
+$ sh -c 'sha=$(git rev-parse HEAD); for id in $(gh run list --commit "$sha" --json databaseId --jq ".[].databaseId"); do gh run view "$id" --log; done | grep -E "RegionTests (testDatesFollowRussia|testDatesFollowGermany)\]. (passed|failed)"'
+exit: 0
+commit: bda842329d4db0bd32ccc931c841786fb0591152
+
+ui suite (light)	UNKNOWN STEP	2026-10-28T19:03:36.6209710Z Test Case '-[AnkyUITests.RegionTests testDatesFollowGermany]' passed (26.215 seconds).
+ui suite (light)	UNKNOWN STEP	2026-10-28T19:03:36.6213360Z Test Case '-[AnkyUITests.RegionTests testDatesFollowRussia]' passed (21.367 seconds).
+ui suite (dark)	UNKNOWN STEP	2026-10-28T19:04:54.3071560Z Test Case '-[AnkyUITests.RegionTests testDatesFollowGermany]' passed (17.566 seconds).
+ui suite (dark)	UNKNOWN STEP	2026-10-28T19:04:54.3074530Z Test Case '-[AnkyUITests.RegionTests testDatesFollowRussia]' passed (18.141 seconds).
