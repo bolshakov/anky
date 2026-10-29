@@ -20,3 +20,14 @@ public enum PlaceCatalog {
         return [Side.left, .right].first { joint.place($0) == place }
     }
 }
+
+extension PlaceCatalog {
+    /// Places this build does not know go last, in the order given, so a later build's place is kept, not dropped.
+    static func canonicalOrder(_ places: [PlaceID]) -> [PlaceID] {
+        let catalogIndex = Dictionary(uniqueKeysWithValues: allPlaces.enumerated().map { ($1, $0) })
+        let known = places
+            .filter { catalogIndex[$0] != nil }
+            .sorted { catalogIndex[$0, default: 0] < catalogIndex[$1, default: 0] }
+        return known + places.filter { catalogIndex[$0] == nil }
+    }
+}
