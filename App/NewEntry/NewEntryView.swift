@@ -41,6 +41,14 @@ struct NewEntryView: View {
                     .accessibilityIdentifier("cancel-entry")
                 }
                 .withoutGlassPill()
+                ToolbarItem(placement: .principal) {
+                    Text("New Entry")
+                        .font(.headline)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                        .accessibilityAddTraits(.isHeader)
+                }
+                .withoutGlassPill()
             }
             .safeAreaInset(edge: .bottom) {
                 Button("Save entry") {
