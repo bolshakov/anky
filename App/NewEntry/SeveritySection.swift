@@ -17,10 +17,17 @@ struct SeveritySection: View {
                 .accessibilityAddTraits(.isHeader)
 
             VStack(spacing: 12) {
-                HStack {
-                    Text("How strong")
-                    Spacer()
-                    SeverityValue(severity: draft.severity)
+                // In double-length text the value is clipped beside the label, so it stacks under it instead.
+                ViewThatFits(in: .horizontal) {
+                    HStack {
+                        Text("How strong")
+                        Spacer()
+                        SeverityValue(severity: draft.severity)
+                    }
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("How strong")
+                        SeverityValue(severity: draft.severity)
+                    }
                 }
                 Divider()
                 HStack(spacing: 8) {
