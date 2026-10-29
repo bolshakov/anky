@@ -15,7 +15,8 @@ final class EarlierTimeTests: XCTestCase {
         app.buttons["date-row"].tap()
         // The row's label reads its time in double-length text, so the time is checked on the date row before saving.
         let expected = [openedAt, Date.now].map { twoHoursEarlierTime(from: $0) }
-        let shown = clockTime(inRowValue: app.buttons["date-row"].value as? String)
+        let dateRow = app.buttons["date-row"]
+        let shown = clockTime(inRowValue: dateRow.value as? String)
         XCTAssertTrue(expected.contains(shown ?? ""), "date row time is \(shown ?? "nil")")
         saveEntry(app)
 

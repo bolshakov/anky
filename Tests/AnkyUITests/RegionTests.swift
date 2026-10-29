@@ -22,9 +22,10 @@ final class RegionTests: XCTestCase {
         let dayBefore = dayText(at: .now, in: locale)
         let todayDate = app.staticTexts["today-date"]
         XCTAssertTrue(todayDate.waitForExistence(timeout: 10))
+        let shownDay = todayDate.label
         XCTAssertTrue(
-            [dayBefore, dayText(at: .now, in: locale)].contains(todayDate.label),
-            "today-date is \(todayDate.label)"
+            [dayBefore, dayText(at: .now, in: locale)].contains(shownDay),
+            "today-date is \(shownDay)"
         )
 
         let clockBefore = clockText(at: .now, in: locale)
@@ -33,9 +34,10 @@ final class RegionTests: XCTestCase {
         openNewEntry(app)
         let row = app.buttons["date-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let shownRow = row.value as? String
         XCTAssertTrue(
-            [clockBefore, clockText(at: .now, in: locale)].contains(clockTime(inRowValue: row.value as? String)),
-            "date-row is \(row.value as? String ?? "nil")"
+            [clockBefore, clockText(at: .now, in: locale)].contains(clockTime(inRowValue: shownRow)),
+            "date-row is \(shownRow ?? "nil")"
         )
 
         setSeverity(4, in: app)

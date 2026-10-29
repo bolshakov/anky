@@ -67,10 +67,11 @@ final class NoteTests: XCTestCase {
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1)).tap()
-        app.typeText("Walk")
+        let typed = "Walk"
+        app.typeText(typed)
 
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
-        XCTAssertEqual(field.value as? String, "Walk")
+        XCTAssertEqual(field.value as? String, typed)
     }
 
     func testLongNoteKeepsSaveReachable() {
