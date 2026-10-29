@@ -48,7 +48,6 @@ private struct EntryRow: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("\(time), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))"))
         .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
     }
