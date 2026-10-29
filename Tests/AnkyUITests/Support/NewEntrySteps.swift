@@ -9,19 +9,27 @@ func openNewEntry(_ app: XCUIApplication) {
 }
 
 /// XCUIElement has no increment or decrement, so each call drives the slider by position. A short drag from a
-/// nearby value can settle one step off, so a close target first goes to the far end of the track.
+/// nearby value can settle one step off, so a close target first goes to the far end of the track. The position counts
+/// from the screen's left, so in right-to-left level 0 is on the right.
 @MainActor
 func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     XCTAssertTrue(slider.waitForExistence(timeout: 10))
+    let low = app.staticTexts["severity-low-label"]
+    let high = app.staticTexts["severity-high-label"]
+    let startOnRight = low.frame.minX > high.frame.minX
+    func screenPosition(_ value: Int) -> CGFloat {
+        let fromStart = CGFloat(value) / 10
+        return startOnRight ? 1 - fromStart : fromStart
+    }
     for _ in 0 ..< 20 {
         let current = severityLevel(of: slider) ?? -1
         guard current != level else { return }
         if abs(current - level) <= 2 {
-            slider.adjust(toNormalizedSliderPosition: level >= 5 ? 0 : 1)
+            slider.adjust(toNormalizedSliderPosition: screenPosition(level >= 5 ? 0 : 10))
             guard severityLevel(of: slider) != level else { return }
         }
-        slider.adjust(toNormalizedSliderPosition: CGFloat(level) / 10)
+        slider.adjust(toNormalizedSliderPosition: screenPosition(level))
     }
     XCTFail("the severity slider did not reach \(level)")
 }
