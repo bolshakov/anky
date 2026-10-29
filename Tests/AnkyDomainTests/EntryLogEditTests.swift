@@ -1,0 +1,113 @@
+import AnkyDomain
+import Foundation
+import Testing
+
+struct EntryLogEditTests {
+    private let date = Date(timeIntervalSince1970: 1_800_000_000)
+    private let calendar: Calendar
+
+    init() throws {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try #require(TimeZone(identifier: "Pacific/Auckland"))
+        self.calendar = calendar
+    }
+
+    private func entry(id: UUID = UUID(), severity: Int = 4, at date: Date? = nil) throws -> Entry {
+        try Entry(id: id, draft: EntryDraft(severity: #require(Severity(severity)), date: date ?? self.date))
+    }
+
+    private func moment(day: Int, hour: Int, minute: Int = 0) throws -> Date {
+        try #require(calendar.date(from: DateComponents(year: 2026, month: 10, day: day, hour: hour, minute: minute)))
+    }
+
+    @Test func replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace() throws {
+        let first = try entry()
+        let middle = try entry(severity: 4)
+        let last = try entry()
+        var log = EntryLog(store: FakeEntryStore(entries: [first, middle, last]))
+        let changed = try entry(id: middle.id, severity: 8)
+
+        try log.replace(changed)
+
+        #expect(log.entries == [first, changed, last])
+    }
+
+    @Test func replaceSavesTheWholeListOnce() throws {
+        let first = try entry()
+        let middle = try entry()
+        let store = FakeEntryStore(entries: [first, middle])
+        var log = EntryLog(store: store)
+        let changed = try entry(id: middle.id, severity: 8)
+
+        try log.replace(changed)
+
+        #expect(store.saveCalls == [[first, changed]])
+    }
+
+    @Test func replaceThrowsMissingWhenNoEntryHasThatId() throws {
+        let earlier = try entry()
+        let store = FakeEntryStore(entries: [earlier])
+        var log = EntryLog(store: store)
+
+        #expect(throws: EntryLogError.missing) { try log.replace(entry()) }
+
+        #expect(log.entries == [earlier])
+        #expect(store.saveCalls.isEmpty)
+    }
+
+    @Test func failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError() throws {
+        let earlier = try entry()
+        let store = FakeEntryStore(entries: [earlier])
+        store.saveFailure = SaveFailure()
+        var log = EntryLog(store: store)
+
+        #expect(throws: SaveFailure()) { try log.replace(entry(id: earlier.id, severity: 9)) }
+
+        #expect(log.entries == [earlier])
+    }
+
+    @Test func removeDropsTheEntryAndSavesTheList() throws {
+        let first = try entry()
+        let second = try entry()
+        let store = FakeEntryStore(entries: [first, second])
+        var log = EntryLog(store: store)
+
+        try log.remove(id: first.id)
+
+        #expect(log.entries == [second])
+        #expect(store.saveCalls == [[second]])
+    }
+
+    @Test func removeOfAnUnknownIdSavesNothing() throws {
+        let earlier = try entry()
+        let store = FakeEntryStore(entries: [earlier])
+        var log = EntryLog(store: store)
+
+        try log.remove(id: UUID())
+
+        #expect(log.entries == [earlier])
+        #expect(store.saveCalls.isEmpty)
+    }
+
+    @Test func failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError() throws {
+        let earlier = try entry()
+        let store = FakeEntryStore(entries: [earlier])
+        store.saveFailure = SaveFailure()
+        var log = EntryLog(store: store)
+
+        #expect(throws: SaveFailure()) { try log.remove(id: earlier.id) }
+
+        #expect(log.entries == [earlier])
+    }
+
+    @Test func anEntryMovedToYesterdayLeavesTodayAndStaysStored() throws {
+        let original = try entry(at: moment(day: 26, hour: 9))
+        let store = FakeEntryStore(entries: [original])
+        var log = EntryLog(store: store)
+
+        try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+        #expect(try TodayList.entries(log.entries, on: moment(day: 26, hour: 12), calendar: calendar).isEmpty)
+        #expect(log.entries.count == 1)
+    }
+}
