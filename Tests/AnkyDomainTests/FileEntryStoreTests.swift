@@ -146,6 +146,9 @@ struct FileEntryStoreTests {
                   "date" : "2026-10-26T08:15:00Z",
                   "id" : "3F2C0E4B-1A2B-4C3D-8E9F-0A1B2C3D4E5F",
                   "kind" : "pain",
+                  "places" : [
+
+                  ],
                   "severity" : 4
                 }
               ],

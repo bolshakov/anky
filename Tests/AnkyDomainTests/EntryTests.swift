@@ -59,10 +59,10 @@ struct EntryTests {
         #expect(decoded == entry)
     }
 
-    @Test func encodesTheFiveKeysWithTheKindAsItsRawValue() throws {
+    @Test func encodesTheSixKeysWithTheKindAsItsRawValue() throws {
         let entry = try Entry(draft: draft(note: "Walk note"))
         let object = try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
-        #expect(object.map { Set($0.keys) } == Set(["id", "kind", "severity", "date", "note"]))
+        #expect(object.map { Set($0.keys) } == Set(["id", "kind", "severity", "date", "note", "places"]))
         #expect(object?["kind"] as? String == "stiffness")
         #expect(object?["severity"] as? Int == 4)
     }
