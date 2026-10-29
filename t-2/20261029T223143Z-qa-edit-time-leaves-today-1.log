@@ -1,0 +1,5 @@
+$ bash -c 'gh run view 40964144603 --log | grep -E '\''Test anEntryMovedToYesterdayLeavesTodayAndStaysStored\(\) (passed|failed)'\'''
+exit: 0
+commit: 469893f776b0c400d684f7ecc5fbb9acd90e5bec
+
+ios	swift test	2026-10-29T22:14:19.6604670Z ✔ Test anEntryMovedToYesterdayLeavesTodayAndStaysStored() passed after 0.013 seconds.
