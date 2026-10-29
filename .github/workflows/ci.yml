@@ -110,4 +110,9 @@ jobs:
           scripts/ci/run-ui-tests.sh light .derived
           EmptyStateTests/testFirstLaunchShowsEmptyState
           SaveEntryTests/testSaveEntryOnToday
+          SaveEntryTests/testEntrySurvivesRelaunch
+          NoteTests/testSavesWithAndWithoutNote
+          CancelTests/testCancelAfterChangeClosesAtOnce
+          CancelTests/testSwipeDownIsBlockedAfterChange
           LargeTextTests/testSaveStaysPinnedAtLargestSize
+          AccessibilityAuditTests/testAuditAtDefaultSize
