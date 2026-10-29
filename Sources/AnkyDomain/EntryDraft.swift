@@ -20,4 +20,11 @@ public struct EntryDraft: Equatable, Sendable {
         self.date = date
         note = ""
     }
+
+    public init(entry: Entry) {
+        self.init(severity: entry.severity, date: entry.date)
+        kind = entry.kind
+        // Observers do not run for an assignment made in an initializer, so the note limit is applied here.
+        note = String((entry.note ?? "").prefix(Self.noteLimit))
+    }
 }
