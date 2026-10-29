@@ -104,10 +104,12 @@ struct EntryLogEditTests {
         let original = try entry(at: moment(day: 26, hour: 9))
         let store = FakeEntryStore(entries: [original])
         var log = EntryLog(store: store)
+        let today = try moment(day: 26, hour: 12)
+        #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
 
         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
 
-        #expect(try TodayList.entries(log.entries, on: moment(day: 26, hour: 12), calendar: calendar).isEmpty)
+        #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
         #expect(log.entries.count == 1)
     }
 }
