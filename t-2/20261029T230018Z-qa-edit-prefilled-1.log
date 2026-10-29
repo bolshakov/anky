@@ -1,0 +1,13 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-02-1/tmp/s1.sh
+exit: 0
+commit: eed087626173de0565456cba0d6a84ccd05b93d1
+
+Button id=entry-row-stiffness label='0:00, Stiffness, 4 of 10' value=None @16,226 370x52.333333333333314
+✓ Tap at resolved tap point at (201.0, 252.16666666666666) completed successfully
+Heading id=None label='Edit Entry' value=None @162.33333333333334,89.66666666666666 77.33333333333334x20.66666666666667
+Heading id=None label='Edit Entry' value=None @162.33333333333334,89.99999999999999 77.33333333333334x20.33333333333333
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=date-row label='Date and time' value='Today, 00:00' @16,224 370x52.333333333333314
+StaticText id=severity-value label='4 of 10' value=None @317,340 53x20.333333333333314
+TextArea id=note-field label='Add a note' value='Walk note' @16,468.66666666666663 370x52
+Button id=save-entry label='Save changes' value=None @16,768 370x56

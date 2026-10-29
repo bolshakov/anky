@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-02-1/tmp/c1.sh
+exit: 0
+commit: eed087626173de0565456cba0d6a84ccd05b93d1
+
+✓ Tap at resolved tap point at (201.0, 252.16666666666666) completed successfully
+✓ Slider set to 60 successfully (AXValue: 0.6000000238418579)
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+StaticText id=severity-value label='6 of 10' value=None @317.3333333333333,340 52.666666666666686x20.333333333333314

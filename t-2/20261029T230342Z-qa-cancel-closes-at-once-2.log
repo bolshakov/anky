@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-02-1/tmp/c2.sh
+exit: 0
+commit: eed087626173de0565456cba0d6a84ccd05b93d1
+
+✓ Tap at resolved tap point at (62.33333333333333, 100.0) completed successfully
+Button id=entry-row-pain label='0:00, Pain, 4 of 10' value=None @16,226 370x52.333333333333314

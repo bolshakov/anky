@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-02-1/tmp/g.sh
+exit: 0
+commit: eed087626173de0565456cba0d6a84ccd05b93d1
+
+ios	swift test	2026-10-29T22:48:18.3717910Z ✔ Test aChangedLevelSurvivesAReloadFromTheFile() passed after 0.017 seconds.
+ios	swift test	2026-10-29T22:48:18.3718440Z ✔ Test replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace() passed after 0.017 seconds.
+ios	swift test	2026-10-29T22:48:18.3736610Z ✔ Test draftFromAnEntryWithNoNoteHasAnEmptyNote() passed after 0.017 seconds.
+ios	swift test	2026-10-29T22:48:18.3738710Z ✔ Test draftFromAnEntryHoldsKindTimeLevelAndNote() passed after 0.017 seconds.
