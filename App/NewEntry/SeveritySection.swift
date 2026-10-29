@@ -54,26 +54,28 @@ private struct SeverityValue: View {
 private struct SeverityControl: View {
     @Binding var severity: Severity
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
         GeometryReader { proxy in
-            let knobX = proxy.size.width * CGFloat(severity.value) / 10
+            let width = proxy.size.width
+            let fillWidth = width * CGFloat(severity.value) / 10
             ZStack(alignment: .leading) {
                 Capsule()
                     .fill(Color(uiColor: .systemGray4))
                     .frame(height: trackHeight)
                 Capsule()
                     .fill(Color("AccentColor"))
-                    .frame(width: knobX, height: trackHeight)
+                    .frame(width: fillWidth, height: trackHeight)
                 SeverityKnob()
-                    .position(x: knobX, y: proxy.size.height / 2)
+                    .position(x: fillWidth, y: proxy.size.height / 2)
             }
             .animation(reduceMotion ? nil : .snappy, value: severity)
             .accessibilityHidden(true)
             .contentShape(Rectangle())
             .gesture(
                 DragGesture(minimumDistance: 0)
-                    .onChanged { setLevel(atX: $0.location.x, width: proxy.size.width) }
+                    .onChanged { setLevel(atX: $0.location.x, width: width) }
             )
         }
         .frame(height: 44)
@@ -98,7 +100,9 @@ private struct SeverityControl: View {
     }
 
     private func setLevel(atX x: CGFloat, width: CGFloat) {
-        let next = Severity(nearestToFraction: Double(x / width))
+        // Touch locations are not mirrored by the layout, unlike .position and the leading-aligned fill.
+        let fromStart = layoutDirection == .rightToLeft ? width - x : x
+        let next = Severity(nearestToFraction: Double(fromStart / width))
         guard next != severity else { return }
         severity = next
     }
