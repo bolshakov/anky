@@ -30,6 +30,7 @@ EOF
   cat > "$bin/xcodebuild" <<EOF
 #!/bin/sh
 echo "xcodebuild \$*" >> "$calls"
+echo "\${TEST_RUNNER_ANKY_PRESENTATION:-unset}" > "$tree/look.txt"
 case "\$STUB_XCODEBUILD" in
   hang) sleep 60 & echo \$! >> "$tree/children.pid"; wait ;;
   hang-once)
@@ -199,6 +200,36 @@ run_runner flaky light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmpt
 [ "$code" -eq 0 ] \
   && grep -qx "::warning::flaky: EmptyStateTests/testFirstLaunchShowsEmptyState failed once, then passed" "$out" \
   && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+unset ANKY_PRESENTATION TEST_RUNNER_ANKY_PRESENTATION
+
+new_tree
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -eq 0 ] && [ "$(cat "$tree/look.txt")" = english ]
+report "the look is english when none is set" $?
+
+new_tree
+export ANKY_PRESENTATION=doubleLength
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+unset ANKY_PRESENTATION
+[ "$code" -eq 0 ] && [ "$(cat "$tree/look.txt")" = doubleLength ]
+report "the look named by ANKY_PRESENTATION reaches the test process" $?
+
+new_tree
+export TEST_RUNNER_ANKY_PRESENTATION=rightToLeft
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+unset TEST_RUNNER_ANKY_PRESENTATION
+[ "$code" -eq 0 ] && [ "$(cat "$tree/look.txt")" = rightToLeft ]
+report "a look set before the runner is kept" $?
+
+name="a look that is not known exits 2 before a simulator is made"
+new_tree
+export ANKY_PRESENTATION=doublelength
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+unset ANKY_PRESENTATION
+[ "$code" -eq 2 ] && grep -qx "the look must be english, doubleLength or rightToLeft, not doublelength" "$out" \
+  && ! grep -q '^xcrun simctl create' "$calls" 2>/dev/null
 report "$name" $?
 
 [ "$failures" = 0 ] && echo "run-ui-tests tests: all passed"

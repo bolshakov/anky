@@ -94,3 +94,20 @@ jobs:
           CancelTests/testSwipeDownIsBlockedAfterChange
           LargeTextTests/testSaveStaysPinnedAtLargestSize
           AccessibilityAuditTests/testAuditAtDefaultSize
+
+      - name: ui smoke tests in double-length text
+        env:
+          ANKY_PRESENTATION: doubleLength
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          LargeTextTests/testSaveStaysPinnedAtLargestSize
+
+      - name: ui smoke tests in right-to-left
+        env:
+          ANKY_PRESENTATION: rightToLeft
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          SaveEntryTests/testSaveEntryOnToday
+          LargeTextTests/testSaveStaysPinnedAtLargestSize
