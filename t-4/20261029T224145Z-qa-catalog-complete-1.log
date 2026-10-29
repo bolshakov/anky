@@ -1,0 +1,9 @@
+$ bash -c 'gh run view 40964507510 --log | grep -E -e '\''Test theCatalogListsExactlyTheTwentyEightIds\(\) (passed|failed)'\'' -e '\''Test theFiveGroupsHoldTwoOrFourJointsEach\(\) (passed|failed)'\'' -e '\''Test pairedJointsGetALeftAndARightId\(\) (passed|failed)'\'' -e '\''Test theIdsTheTicketNamesAreExact\(\) (passed|failed)'\'' -e '\''Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack\(\) (passed|failed)'\'''
+exit: 0
+commit: 70fcb974bf2900afc46967c3995fef5c2562e8c4
+
+ios	swift test	2026-10-29T22:29:54.1748990Z ✔ Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack() passed after 0.015 seconds.
+ios	swift test	2026-10-29T22:29:54.1750540Z ✔ Test theIdsTheTicketNamesAreExact() passed after 0.015 seconds.
+ios	swift test	2026-10-29T22:29:54.1753160Z ✔ Test theCatalogListsExactlyTheTwentyEightIds() passed after 0.015 seconds.
+ios	swift test	2026-10-29T22:29:54.1757260Z ✔ Test theFiveGroupsHoldTwoOrFourJointsEach() passed after 0.015 seconds.
+ios	swift test	2026-10-29T22:29:54.1761440Z ✔ Test pairedJointsGetALeftAndARightId() passed after 0.015 seconds.

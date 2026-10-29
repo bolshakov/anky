@@ -1,0 +1,45 @@
+$ bash -c 'git grep -n -A40 theCatalogListsExactlyTheTwentyEightIds -- Tests/AnkyDomainTests/PlaceCatalogTests.swift'
+exit: 0
+commit: 70fcb974bf2900afc46967c3995fef5c2562e8c4
+
+Tests/AnkyDomainTests/PlaceCatalogTests.swift:6:    @Test func theCatalogListsExactlyTheTwentyEightIds() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-7-        let spine = ["neck", "upper", "lower", "tail"]
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-8-        let pelvisAndChest = ["si_l", "si_r", "hip_l", "hip_r", "ribs", "chest"]
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-9-        let arms = ["shoulder_l", "shoulder_r", "elbow_l", "elbow_r", "wrist_l", "wrist_r", "hand_l", "hand_r"]
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-10-        let legs = ["knee_l", "knee_r", "ankle_l", "ankle_r", "foot_l", "foot_r", "heel_l", "heel_r"]
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-11-        let head = ["jaw", "eyes"]
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-12-        let expected = spine + pelvisAndChest + arms + legs + head
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-13-        #expect(PlaceCatalog.allPlaces.map(\.rawValue) == expected)
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-14-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-15-
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-16-    @Test func placeIdsAreUnique() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-17-        let ids = PlaceCatalog.allPlaces.map(\.rawValue)
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-18-        #expect(ids.count == 28)
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-19-        #expect(Set(ids).count == ids.count)
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-20-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-21-
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-22-    @Test func theFiveGroupsHoldTwoOrFourJointsEach() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-23-        let counts = PlaceGroup.allCases.map { PlaceCatalog.joints(in: $0).count }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-24-        #expect(counts == [4, 4, 4, 4, 2])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-25-        #expect(counts.reduce(0, +) == 18)
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-26-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-27-
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-28-    @Test func pairedJointsGetALeftAndARightId() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-29-        #expect(Joint.siJoint.places == [PlaceID(rawValue: "si_l"), PlaceID(rawValue: "si_r")])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-30-        #expect(Joint.knee.places == [PlaceID(rawValue: "knee_l"), PlaceID(rawValue: "knee_r")])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-31-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-32-
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-33-    @Test func singleJointsUseTheirStemAsTheId() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-34-        #expect(Joint.lowerBack.places == [PlaceID(rawValue: "lower")])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-35-        #expect(Joint.ribs.places == [PlaceID(rawValue: "ribs")])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-36-        #expect(Joint.jaw.places == [PlaceID(rawValue: "jaw")])
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-37-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-38-
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-39-    @Test func theIdsTheTicketNamesAreExact() {
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-40-        let ids = Set(PlaceCatalog.allPlaces.map(\.rawValue))
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-41-        #expect(ids.contains("lower"))
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-42-        #expect(ids.contains("si_l"))
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-43-        #expect(ids.contains("hip_r"))
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-44-        #expect(ids.contains("jaw"))
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-45-    }
+Tests/AnkyDomainTests/PlaceCatalogTests.swift-46-
