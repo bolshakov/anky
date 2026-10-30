@@ -7,8 +7,9 @@ struct NewEntryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var startDraft: EntryDraft
-    /// Worked out once per opening, so the chips do not move while a person taps them.
-    @State private var chips: [PlaceID]
+    @State private var entriesAtOpen: [Entry]
+    @State private var lastChipsAtOpen: [PlaceID]
+    @State private var hasRecordedChips = false
     @State private var recents: [RecentEntry]
     @State private var isShowingPlaces = false
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
@@ -25,7 +26,8 @@ struct NewEntryView: View {
         _draft = State(initialValue: opening)
         // State, not a fresh call, so a view SwiftUI makes again still compares with the draft it opened with.
         _startDraft = State(initialValue: opening)
-        _chips = State(initialValue: PlaceChips.chips(from: model.entries))
+        _entriesAtOpen = State(initialValue: model.entries)
+        _lastChipsAtOpen = State(initialValue: model.shortcuts.lastChips)
         let recents: [RecentEntry] = switch mode {
         case .new: RecentEntries.distinct(from: model.entries, limit: 3)
         case .edit: []
@@ -88,8 +90,26 @@ struct NewEntryView: View {
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
+            .pinLimitAlert(model.shortcuts)
+            .shortcutFeedback(model.shortcuts)
+            .onAppear(perform: recordChipsOnFirstAppear)
             .interactiveDismissDisabled(draft != startDraft)
         }
+        .environment(model.shortcuts)
+    }
+
+    private var chips: [PlaceID] {
+        PlaceChips.chips(
+            from: entriesAtOpen,
+            pinned: model.shortcuts.pinned,
+            lastChips: lastChipsAtOpen
+        )
+    }
+
+    private func recordChipsOnFirstAppear() {
+        guard !hasRecordedChips else { return }
+        hasRecordedChips = true
+        model.shortcuts.recordLastChips(chips)
     }
 
     @ViewBuilder
