@@ -1,0 +1,7 @@
+$ sh -c 'gh run view 41048159938 --log | grep -E -e '\''Test anEntryAt2359AndOneAt0001FallInDifferentSections\(\) (passed|failed)'\'' -e '\''Test theSameInstantFallsOnAnotherDayInAnotherTimeZone\(\) (passed|failed)'\'' -e '\''Test yesterdayHoldsAcrossAClockChange\(\) (passed|failed)'\'''
+exit: 0
+commit: fe497467bc0d6117cf518bd87f6ecfcd7015432f
+
+ios	swift test	2026-10-30T11:28:25.5708050Z ✔ Test anEntryAt2359AndOneAt0001FallInDifferentSections() passed after 0.044 seconds.
+ios	swift test	2026-10-30T11:28:25.5709920Z ✔ Test theSameInstantFallsOnAnotherDayInAnotherTimeZone() passed after 0.044 seconds.
+ios	swift test	2026-10-30T11:28:25.5711450Z ✔ Test yesterdayHoldsAcrossAClockChange() passed after 0.044 seconds.
