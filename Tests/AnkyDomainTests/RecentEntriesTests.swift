@@ -100,6 +100,14 @@ struct RecentEntriesTests {
         #expect(RecentEntries.distinct(from: entries, limit: 1) == [newest])
     }
 
+    @Test func repeatsOfOneEntryDoNotUseUpTheLimit() throws {
+        let entries = try ["hip_l", "neck", "lower", "lower", "lower"].enumerated().map { minute, place in
+            try entry(at: minute + 1, [place])
+        }
+        let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+        #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    }
+
     @Test(arguments: [0, -1])
     func aLimitOfZeroOrLessGivesNoRecentEntries(limit: Int) throws {
         let entries = try [entry(["lower"])]
