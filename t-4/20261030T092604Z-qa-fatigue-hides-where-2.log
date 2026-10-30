@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ex2b.sh
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=entry-row-fatigue label='10:25, Whole body, Fatigue, 0 of 10' value=None @16.000000000000057,226 370x74.66666666666663

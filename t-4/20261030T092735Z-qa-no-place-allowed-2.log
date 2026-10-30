@@ -1,0 +1,14 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ci.sh aPainEntryWithNoPlacesReadsAsNoPlace aStiffnessEntryWithNoPlacesReadsAsNoPlace anEntryFromAnOldFileReadsAsNoPlace anEntryWithOnlyUnknownIdsReadsAsNoPlace
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+ci=41031791441
+ios	swift test	2026-10-30T09:14:06.3317330Z ◇ Test aPainEntryWithNoPlacesReadsAsNoPlace() started.
+ios	swift test	2026-10-30T09:14:06.3421830Z ✔ Test aPainEntryWithNoPlacesReadsAsNoPlace() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3316880Z ◇ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() started.
+ios	swift test	2026-10-30T09:14:06.3421370Z ✔ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3314730Z ◇ Test anEntryFromAnOldFileReadsAsNoPlace() started.
+ios	swift test	2026-10-30T09:14:06.3418880Z ✔ Test anEntryFromAnOldFileReadsAsNoPlace() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3313830Z ◇ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() started.
+ios	swift test	2026-10-30T09:14:06.3417610Z ✔ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() passed after 0.018 seconds.
+failed lines: 0

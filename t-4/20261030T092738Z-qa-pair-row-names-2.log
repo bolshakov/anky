@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ci.sh bothKneesListLeftThenRight aPainEntryListsItsPlaces placesFollowCatalogOrderNotPickOrder
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+ci=41031791441
+ios	swift test	2026-10-30T09:14:06.3312910Z ◇ Test bothKneesListLeftThenRight() started.
+ios	swift test	2026-10-30T09:14:06.3416350Z ✔ Test bothKneesListLeftThenRight() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3316450Z ◇ Test aPainEntryListsItsPlaces() started.
+ios	swift test	2026-10-30T09:14:06.3420580Z ✔ Test aPainEntryListsItsPlaces() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3314240Z ◇ Test placesFollowCatalogOrderNotPickOrder() started.
+ios	swift test	2026-10-30T09:14:06.3418060Z ✔ Test placesFollowCatalogOrderNotPickOrder() passed after 0.018 seconds.
+failed lines: 0

@@ -1,0 +1,31 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ci.sh
+exit: 1
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+ci=41031791441
+# aPainEntryListsItsPlaces
+ios	swift test	2026-10-30T09:14:06.3420580Z ✔ Test aPainEntryListsItsPlaces() passed after 0.018 seconds.
+# aPainEntryKeepsThePlacesOfItsDraft
+ios	swift test	2026-10-30T09:14:06.3422760Z ✔ Test aPainEntryKeepsThePlacesOfItsDraft() passed after 0.018 seconds.
+# aFatigueEntryDropsThePlacesOfItsDraft
+ios	swift test	2026-10-30T09:14:06.3422310Z ✔ Test aFatigueEntryDropsThePlacesOfItsDraft() passed after 0.018 seconds.
+# choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces
+ios	swift test	2026-10-30T09:14:06.3348690Z ✔ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() passed after 0.021 seconds.
+# aFatigueEntryReadsAsWholeBody
+ios	swift test	2026-10-30T09:14:06.3419830Z ✔ Test aFatigueEntryReadsAsWholeBody() passed after 0.018 seconds.
+# aFatigueEntryStoredWithPlacesStillReadsAsWholeBody
+ios	swift test	2026-10-30T09:14:06.3419370Z ✔ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() passed after 0.018 seconds.
+# aPainEntryWithNoPlacesReadsAsNoPlace
+ios	swift test	2026-10-30T09:14:06.3421830Z ✔ Test aPainEntryWithNoPlacesReadsAsNoPlace() passed after 0.018 seconds.
+# aStiffnessEntryWithNoPlacesReadsAsNoPlace
+ios	swift test	2026-10-30T09:14:06.3421370Z ✔ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() passed after 0.018 seconds.
+# anEntryFromAnOldFileReadsAsNoPlace
+ios	swift test	2026-10-30T09:14:06.3418880Z ✔ Test anEntryFromAnOldFileReadsAsNoPlace() passed after 0.018 seconds.
+# anEntryWithOnlyUnknownIdsReadsAsNoPlace
+ios	swift test	2026-10-30T09:14:06.3417610Z ✔ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() passed after 0.018 seconds.
+# bothKneesListLeftThenRight
+ios	swift test	2026-10-30T09:14:06.3416350Z ✔ Test bothKneesListLeftThenRight() passed after 0.018 seconds.
+# placesFollowCatalogOrderNotPickOrder
+ios	swift test	2026-10-30T09:14:06.3418060Z ✔ Test placesFollowCatalogOrderNotPickOrder() passed after 0.018 seconds.
+failed lines:
+0

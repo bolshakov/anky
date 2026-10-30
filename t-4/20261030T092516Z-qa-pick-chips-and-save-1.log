@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ex1.sh
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+✓ Tap at resolved tap point at (87.66666666666666, 358.0) completed successfully
+✓ Tap at resolved tap point at (244.99999999999997, 358.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=entry-row-pain label='10:25, Lower back, Left SI joint, Pain, 0 of 10' value=None @16.00000000000003,226 370x74.66666666666663
+[['lower', 'si_l']]

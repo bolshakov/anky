@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ex2a.sh
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Group id=where-section label=None value=None @16,300.3333435058594 370x143.66665649414062
+---
+✓ Tap at resolved tap point at (321.66666666666663, 174.0) completed successfully
+(end)

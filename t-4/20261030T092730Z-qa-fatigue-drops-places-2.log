@@ -1,0 +1,14 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ci.sh aFatigueEntryDropsThePlacesOfItsDraft choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces aFatigueEntryReadsAsWholeBody aFatigueEntryStoredWithPlacesStillReadsAsWholeBody
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+ci=41031791441
+ios	swift test	2026-10-30T09:14:06.3318510Z ◇ Test aFatigueEntryDropsThePlacesOfItsDraft() started.
+ios	swift test	2026-10-30T09:14:06.3422310Z ✔ Test aFatigueEntryDropsThePlacesOfItsDraft() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3252040Z ◇ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() started.
+ios	swift test	2026-10-30T09:14:06.3348690Z ✔ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() passed after 0.021 seconds.
+ios	swift test	2026-10-30T09:14:06.3317750Z ◇ Test aFatigueEntryReadsAsWholeBody() started.
+ios	swift test	2026-10-30T09:14:06.3419830Z ✔ Test aFatigueEntryReadsAsWholeBody() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:14:06.3315920Z ◇ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() started.
+ios	swift test	2026-10-30T09:14:06.3419370Z ✔ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() passed after 0.018 seconds.
+failed lines: 0

@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-05-1/tmp/ex5.sh
+exit: 0
+commit: 02908b6a6409036e177af4221cb149079bfb6b80
+
+Button id=entry-row-pain label='0:05, Lower back, Pain, 6 of 10' value=None @16.00000000000003,226 370x74.66666666666663
+Button id=entry-row-pain label='0:04, No place, Pain, 2 of 10' value=None @16.00000000000003,301 370x74.66666666666663
+Button id=entry-row-fatigue label='0:03, Whole body, Fatigue, 3 of 10' value=None @16.00000000000003,376 370x74.66666666666663
+Button id=entry-row-stiffness label='0:02, No place, Stiffness, 5 of 10' value=None @16.00000000000003,451 370x74.66666666666663
+Button id=entry-row-pain label='0:01, Left knee, Right knee, Pain, 4 of 10' value=None @16.00000000000003,526 370x74.66666666666663
