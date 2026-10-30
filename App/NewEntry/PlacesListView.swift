@@ -19,8 +19,8 @@ struct PlacesListView: View {
                 let joints = PlaceCatalog.joints(in: group).filter(found.contains)
                 if !joints.isEmpty {
                     Section {
-                        ForEach(joints, id: \.self) { joint in
-                            PlaceListRow(joint: joint, draft: $draft)
+                        ForEach(joints.flatMap(\.places), id: \.self) { place in
+                            PlaceListRow(place: place, draft: $draft)
                         }
                     } header: {
                         Text(group.displayName)
