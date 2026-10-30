@@ -1,0 +1,5 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-07-1/tmp/s3.sh
+exit: 0
+commit: a4459a02f7b9e986d0e837a013fec1889ee72a4e
+
+Button id=entry-row-pain label='0:01, Lower back, Pain, 4 of 10' value=None @16,226 370x74.66666666666663

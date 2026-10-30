@@ -1,0 +1,9 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-07-1/tmp/s2.sh
+exit: 0
+commit: a4459a02f7b9e986d0e837a013fec1889ee72a4e
+
+✓ Tap at resolved tap point at (228.99999999999997, 358.0) completed successfully
+✓ Tap at resolved tap point at (94.66666666666666, 358.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=entry-row-pain label='0:01, Lower back, Pain, 4 of 10' value=None @16,226 370x74.66666666666663
+[['lower']]

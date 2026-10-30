@@ -1,0 +1,9 @@
+$ sh -c 'gh run view 41034919550 --log | grep -E '\''editingAnEntryKeepsAnIdThisBuildDoesNotKnow|aReplacedEntryCarriesTheEditedPlaces|anEntryEditedFromFatigueToPainStartsWithNoPlaces|aSavedPlaceOutsideTheFiveStillShowsAsAChipWhenEditing|draftFromAnEntryHoldsItsPlaces'\'' | grep -E '\''passed|failed'\'' | sed '\''s/^.*Test /Test /'\'''
+exit: 0
+commit: a4459a02f7b9e986d0e837a013fec1889ee72a4e
+
+Test editingAnEntryKeepsAnIdThisBuildDoesNotKnow() passed after 0.035 seconds.
+Test anEntryEditedFromFatigueToPainStartsWithNoPlaces() passed after 0.035 seconds.
+Test aSavedPlaceOutsideTheFiveStillShowsAsAChipWhenEditing() passed after 0.035 seconds.
+Test draftFromAnEntryHoldsItsPlaces() passed after 0.032 seconds.
+Test aReplacedEntryCarriesTheEditedPlaces() passed after 0.037 seconds.

@@ -1,0 +1,11 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-07-1/tmp/s1.sh
+exit: 0
+commit: a4459a02f7b9e986d0e837a013fec1889ee72a4e
+
+✓ Tap at resolved tap point at (201.0, 263.3333333333333) completed successfully
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=place-chip-knee_l label='Left knee' value='selected' @28,336 133.33333333333331x44
+Button id=place-chip-lower label='Lower back' value='not selected' @169.33333333333331,336 119.33333333333331x44
+Button id=place-chip-si_l label='Left SI joint' value='not selected' @28,388 117.33333333333331x44
+Button id=place-chip-si_r label='Right SI joint' value='not selected' @153.33333333333331,388 127.33333333333331x44
+Button id=place-chip-neck label='Neck' value='not selected' @288.66666666666663,388 71.66666666666663x44
