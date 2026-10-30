@@ -9,6 +9,7 @@ struct NewEntryView: View {
     @State private var startDraft: EntryDraft
     /// Worked out once per opening, so the chips do not move while a person taps them.
     @State private var chips: [PlaceID]
+    @State private var recents: [RecentEntry]
     @State private var isShowingPlaces = false
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
@@ -25,12 +26,18 @@ struct NewEntryView: View {
         // State, not a fresh call, so a view SwiftUI makes again still compares with the draft it opened with.
         _startDraft = State(initialValue: opening)
         _chips = State(initialValue: PlaceChips.chips(from: model.entries))
+        let recents: [RecentEntry] = switch mode {
+        case .new: RecentEntries.distinct(from: model.entries, limit: 3)
+        case .edit: []
+        }
+        _recents = State(initialValue: recents)
     }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    recentChips
                     KindSection(draft: $draft)
                     DateSection(draft: $draft)
                     whereSection
@@ -82,6 +89,13 @@ struct NewEntryView: View {
                 Button("OK") {}
             }
             .interactiveDismissDisabled(draft != startDraft)
+        }
+    }
+
+    @ViewBuilder
+    private var recentChips: some View {
+        if !recents.isEmpty {
+            RecentChipsRow(recents: recents) { draft.apply($0) }
         }
     }
 
