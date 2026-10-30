@@ -1,0 +1,5 @@
+$ bash -c 'gh run view 41066442936 --log | grep -E "Test englishReadsAsBefore\(\) (passed|failed)"'
+exit: 0
+commit: 92e349871303247936ea28323ae08391cb03985a
+
+ios	swift test	2026-10-30T13:50:37.1707280Z ✔ Test englishReadsAsBefore() passed after 2.847 seconds.

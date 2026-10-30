@@ -1,0 +1,12 @@
+$ bash -c 'gh run view 41066442936 --log | grep -E -e "Test oneAndTwentyOneLeftTakeTheSingularForm\(\) (passed|failed)" -e "Test twoAndTwentyTwoLeftTakeTheFewForm\(\) (passed|failed)" -e "Test fiveAndTheTeensLeftTakeTheManyForm\(\) (passed|failed)" -e "Test theCatalogHoldsAllFourRussianPluralForms\(\) (passed|failed)" -e "Test oneAndTwentyOnePlacesTakeTheSingularForm\(\) (passed|failed)" -e "Test twoAndTwentyTwoPlacesTakeTheFewForm\(\) (passed|failed)" -e "Test fiveAndTheTeensPlacesTakeTheManyForm\(\) (passed|failed)" -e "Test theDoneButtonHoldsAllFourRussianPluralForms\(\) (passed|failed)"'
+exit: 0
+commit: 92e349871303247936ea28323ae08391cb03985a
+
+ios	swift test	2026-10-30T13:50:37.1708700Z ✔ Test oneAndTwentyOnePlacesTakeTheSingularForm() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1711240Z ✔ Test twoAndTwentyTwoPlacesTakeTheFewForm() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1712160Z ✔ Test theDoneButtonHoldsAllFourRussianPluralForms() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1712620Z ✔ Test twoAndTwentyTwoLeftTakeTheFewForm() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1713590Z ✔ Test theCatalogHoldsAllFourRussianPluralForms() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1714420Z ✔ Test oneAndTwentyOneLeftTakeTheSingularForm() passed after 2.847 seconds.
+ios	swift test	2026-10-30T13:50:37.1719720Z ✔ Test fiveAndTheTeensPlacesTakeTheManyForm() passed after 2.849 seconds.
+ios	swift test	2026-10-30T13:50:37.1816270Z ✔ Test fiveAndTheTeensLeftTakeTheManyForm() passed after 2.858 seconds.
