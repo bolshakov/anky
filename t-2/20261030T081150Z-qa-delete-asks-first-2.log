@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-03-8/tmp/a2.sh
+exit: 0
+commit: 9f3e14ec967e67d93ce05d7c66e471b7fa5a26b3
+
+✓ Tap at resolved tap point at (201.0, 566.6666666666666) completed successfully
+Sheet id=None label="Delete this entry? This can't be undone." value=None @41,377 320x148
+StaticText id=None label="Delete this entry? This can't be undone." value=None @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None @57,461 140x48
+Button id=keep-entry label='Cancel' value=None @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None @205,461 140x48
+1

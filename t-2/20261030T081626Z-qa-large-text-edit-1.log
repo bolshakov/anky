@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-03-8/tmp/l3.sh
+exit: 0
+commit: 9f3e14ec967e67d93ce05d7c66e471b7fa5a26b3
+
+✓ Tap at resolved tap point at (201.0, 424.3333333333333) completed successfully
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=delete-entry label='Delete entry' value=None @16,1063.6666666666665 370x63.333333333333485
+Button id=save-entry label='Save changes' value=None @16,760.6666870117188 370x63.33331298828125
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=delete-entry label='Delete entry' value=None @16,657.3333333333333 370x63.333333333333485
+Button id=save-entry label='Save changes' value=None @16,760.6666870117188 370x63.33331298828125

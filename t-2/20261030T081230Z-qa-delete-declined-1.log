@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-03-8/tmp/d1.sh
+exit: 0
+commit: 9f3e14ec967e67d93ce05d7c66e471b7fa5a26b3
+
+✓ Tap at resolved tap point at (201.0, 252.16666666666666) completed successfully
+✓ Tap at resolved tap point at (201.0, 566.6666666666666) completed successfully
+✓ Tap at (127.0, 485.0) completed successfully
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=delete-entry label='Delete entry' value=None @16,544.6666666666666 370x44
+1

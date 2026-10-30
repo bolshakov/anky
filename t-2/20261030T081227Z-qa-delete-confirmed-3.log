@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t2-03-8/tmp/c3.sh
+exit: 0
+commit: 9f3e14ec967e67d93ce05d7c66e471b7fa5a26b3
+
+✔ Test aRemovedEntryStaysGoneAfterAReloadFromTheFile() passed after 0.014 seconds.
+✔ Test removeDropsTheEntryAndSavesTheList() passed after 0.013 seconds.
