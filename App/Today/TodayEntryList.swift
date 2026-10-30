@@ -26,7 +26,7 @@ struct TodayEntryList: View {
     }
 }
 
-private struct EntryRow: View {
+struct EntryRow: View {
     let entry: Entry
     let onSelect: () -> Void
 
