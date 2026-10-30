@@ -82,4 +82,56 @@ struct EntryDraftPlacesTests {
         let copy = try EntryDraft(entry: Entry(draft: source))
         #expect(copy.places.isEmpty)
     }
+
+    @Test func assigningPlacesDirectlyPutsThemInCatalogOrder() throws {
+        var draft = try newDraft()
+        draft.places = [jaw, lower]
+        #expect(draft.places == [lower, jaw])
+    }
+
+    @Test func assigningAnUnknownIdKeepsItAfterTheKnownPlaces() throws {
+        var draft = try newDraft()
+        draft.places = [unknown, jaw, lower]
+        #expect(draft.places == [lower, jaw, unknown])
+    }
+
+    @Test func togglingASelectedPlaceOffKeepsTheRestInCatalogOrder() throws {
+        var draft = try newDraft()
+        draft.togglePlace(jaw)
+        draft.togglePlace(siLeft)
+        draft.togglePlace(lower)
+        draft.togglePlace(siLeft)
+        #expect(draft.places == [lower, jaw])
+    }
+
+    @Test func anEntrySavedFromADirectlyAssignedDraftHasItsPlacesInCatalogOrder() throws {
+        var source = try newDraft()
+        source.kind = .pain
+        source.places = [jaw, lower]
+        let entry = Entry(draft: source)
+        #expect(entry.places == [lower, jaw])
+    }
+
+    @Test func assigningAnEmptyListClearsThePlaces() throws {
+        var draft = try newDraft()
+        draft.togglePlace(lower)
+        draft.places = []
+        #expect(draft.places.isEmpty)
+    }
+
+    @Test func assigningAListAlreadyInCatalogOrderReadsTheSameList() throws {
+        var draft = try newDraft()
+        draft.places = [lower, jaw]
+        #expect(draft.places == [lower, jaw])
+    }
+
+    @Test func applyingARecentEntryKeepsItsPlacesInCatalogOrder() throws {
+        var source = try newDraft()
+        source.kind = .pain
+        source.places = [jaw, lower]
+        let chip = RecentEntry(Entry(draft: source))
+        var target = try newDraft()
+        target.apply(chip)
+        #expect(target.places == [lower, jaw])
+    }
 }
