@@ -1,0 +1,11 @@
+$ sh -c 'gh run view 41080641688 --log | grep -E -e '\''Test anOlderDateHeaderHasTheWeekdayInCapitalsAndTheDayAndMonth\(\) (passed|failed)'\'' -e '\''Test aDateHeaderFollowsThePhonesOrderAndLanguage\(\) (passed|failed)'\'' -e '\''Test aSameYearDateReadsLikeTheTodaySubtitleWithTheWeekdayInCapitals\(\) (passed|failed)'\'' -e '\''Test aDateInAnotherYearIncludesTheYear\(\) (passed|failed)'\'' -e '\''Test onlyTheWeekdayIsInCapitals\(\) (passed|failed)'\'' -e '\''Test aRussianWeekdayIsInCapitalsAndTheMonthIsNot\(\) (passed|failed)'\'' -e '\''Test theYearFormKeepsOnlyTheWeekdayInCapitals\(\) (passed|failed)'\'''
+exit: 0
+commit: 4d8ec5e9b00e987527a5508e682f90a37aed10cf
+
+ios	swift test	2026-10-30T15:27:52.0678480Z ✔ Test theYearFormKeepsOnlyTheWeekdayInCapitals() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0679010Z ✔ Test aRussianWeekdayIsInCapitalsAndTheMonthIsNot() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0679490Z ✔ Test onlyTheWeekdayIsInCapitals() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0680250Z ✔ Test aDateInAnotherYearIncludesTheYear() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0680790Z ✔ Test anOlderDateHeaderHasTheWeekdayInCapitalsAndTheDayAndMonth() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0682390Z ✔ Test aSameYearDateReadsLikeTheTodaySubtitleWithTheWeekdayInCapitals() passed after 3.424 seconds.
+ios	swift test	2026-10-30T15:27:52.0684460Z ✔ Test aDateHeaderFollowsThePhonesOrderAndLanguage() passed after 3.424 seconds.
