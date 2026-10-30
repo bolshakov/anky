@@ -177,7 +177,16 @@
         }
       }
     },
-    "Delete" : {},
+    "Delete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
     "Delete entry" : {
       "localizations" : {
         "ru" : {
