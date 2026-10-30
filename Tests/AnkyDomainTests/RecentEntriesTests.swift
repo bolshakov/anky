@@ -111,8 +111,9 @@ struct RecentEntriesTests {
     }
 
     @Test func entriesFromEarlierDaysAreRecentToo() throws {
-        let thirtyDaysAgo = -30 * 24 * 60
-        let entries = try [entry(at: thirtyDaysAgo, ["lower"])]
+        var made = try draft(["lower"])
+        made.date = Date.now.addingTimeInterval(-30 * 24 * 60 * 60)
+        let entries = [Entry(draft: made)]
         #expect(try RecentEntries.distinct(from: entries, limit: 10) == [recent(["lower"])])
     }
 }
