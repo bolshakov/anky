@@ -1,0 +1,8 @@
+$ zsh -c '. $TMPDIR/s.sh
+fresh
+axe tap --id log-entry --wait-timeout 5 --udid "$udid" >/dev/null
+ui | grep -E "id=(new-entry-screen|recent-chip-)" | tee $TMPDIR/o3.txt'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812

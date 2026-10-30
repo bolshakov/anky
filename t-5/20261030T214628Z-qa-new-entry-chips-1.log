@@ -1,0 +1,13 @@
+$ zsh -c '. $TMPDIR/s.sh
+fresh "pain/3/09:00/4/lower,si_l,si_r" "pain/2/09:00/4/lower,si_l,si_r" "pain/2/10:00/3/neck" "stiffness/1/09:00/5/lower" "fatigue/0/00:01/6/-"
+axe tap --id log-entry --wait-timeout 5 --udid "$udid"
+ui | grep -E "id=(new-entry-screen|kind-pain|recent-chip-)"'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812
+Button id=recent-chip-0 label='Same as last time, Fatigue, 6 of 10' value=None @16.000000000000057,148 103x44
+Button id=recent-chip-1 label='Same as last time, Stiffness, Lower back, 5 of 10' value=None @127.00000000000006,148 207.66666666666669x44
+Button id=recent-chip-2 label='Same as last time, Pain, Neck, 3 of 10' value=None @16.000000000000057,200 86.66666666666666x44
+Button id=kind-pain label='Pain' value=None @20.000000000000057,272 120.66666666666666x44

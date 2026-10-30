@@ -1,0 +1,23 @@
+$ zsh -c '. $TMPDIR/s.sh
+fresh "pain/2/09:00/4/lower" "stiffness/1/09:00/5/neck" "fatigue/0/00:01/3/-"
+tap_tab history History
+swipe_row entry-row-stiffness
+axe tap --id history-delete --wait-timeout 5 --udid "$udid"
+p=$(ui | grep "id=confirm-delete " | frame | awk '\''{ printf "%d %d", $1 + $3 / 2, $2 + $4 / 2; exit }'\'')
+axe tap -x "${p% *}" -y "${p#* }" --udid "$udid"
+tap_tab today Today
+axe tap --id log-entry --wait-timeout 5 --udid "$udid"
+ui | grep -E "id=(new-entry-screen|recent-chip-)" | tee $TMPDIR/o8.txt
+echo stored=$(stored)'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+✓ Tap at (244.0, 822.0) completed successfully
+✓ Tap at resolved tap point at (344.16666666666663, 373.33333333333337) completed successfully
+✓ Tap at (275.0, 485.0) completed successfully
+✓ Tap at (158.0, 822.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812
+Button id=recent-chip-0 label='Same as last time, Fatigue, 3 of 10' value=None @16.000000000000057,148 103x44
+Button id=recent-chip-1 label='Same as last time, Pain, Lower back, 4 of 10' value=None @127.00000000000006,148 131.66666666666669x44
+stored=2

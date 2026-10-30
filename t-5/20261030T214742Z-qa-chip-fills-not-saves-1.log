@@ -1,0 +1,15 @@
+$ zsh -c '. $TMPDIR/s.sh
+fresh "stiffness/0/00:02/6/neck" "pain/1/09:00/4/lower,si_l,si_r"
+axe tap --id log-entry --wait-timeout 5 --udid "$udid" >/dev/null
+axe tap --id recent-chip-0 --wait-timeout 5 --udid "$udid" >/dev/null
+ui | grep -E "id=(new-entry-screen|place-chip-neck|place-chip-lower|severity-value|date-row)" | tee $TMPDIR/o4.txt
+stored'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812
+Button id=date-row label='Date and time' value='Today, 22:47' @16.000000000000057,292 370x52.333333333333314
+Button id=place-chip-neck label='Neck' value='selected' @28.000000000000057,404 88.33333333333333x44
+Button id=place-chip-lower label='Lower back' value='not selected' @240.00000000000006,404 106.33333333333331x44
+StaticText id=severity-value label='6 of 10' value=None @317.3333333333333,628 52.666666666666686x20.333333333333258
+2

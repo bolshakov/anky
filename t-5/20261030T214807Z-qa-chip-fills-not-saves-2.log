@@ -1,0 +1,10 @@
+$ zsh -c '. $TMPDIR/s.sh
+axe tap --id save-entry --udid "$udid" >/dev/null
+sleep 2
+last | tee $TMPDIR/o5.txt
+age | tee -a $TMPDIR/o5.txt'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+stiffness 6 ['neck'] None
+29

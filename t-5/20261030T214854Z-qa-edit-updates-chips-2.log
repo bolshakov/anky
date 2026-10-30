@@ -1,0 +1,11 @@
+$ zsh -c '. $TMPDIR/s.sh
+axe tap --id kind-pain --udid "$udid" >/dev/null
+axe tap --id save-entry --udid "$udid" >/dev/null
+axe tap --id log-entry --wait-timeout 5 --udid "$udid" >/dev/null
+ui | grep -E "id=(new-entry-screen|recent-chip-)" | tee $TMPDIR/o7.txt'
+exit: 0
+commit: f09464ed954dc9eaa60d39758142cfcc4fe69535
+
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812
+Button id=recent-chip-0 label='Same as last time, Pain, Neck, 5 of 10' value=None @16.000000000000057,148 86.66666666666666x44
+Button id=recent-chip-1 label='Same as last time, Pain, Lower back, 4 of 10' value=None @110.66666666666671,148 131.66666666666666x44
