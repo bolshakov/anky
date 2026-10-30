@@ -31,6 +31,7 @@ struct PinSwipeRow<Content: View>: View {
     @State private var isRevealed = false
     @State private var isCommitting = false
     @State private var drag = Drag.idle
+    @State private var dragStart: CGPoint?
     @State private var rowWidth: Double = 0
 
     init(place: PlaceID, isPinned: Bool, actions: PinSwipeActions, @ViewBuilder content: () -> Content) {
@@ -112,8 +113,8 @@ struct PinSwipeRow<Content: View>: View {
     }
 
     private func dragChanged(_ value: DragGesture.Value) {
-        if drag == .idle {
-            drag = startDrag(value.translation)
+        if value.startLocation != dragStart {
+            beginDrag(value)
         }
         guard case let .swiping(from) = drag else { return }
         let next = min(max(from + Double(value.translation.width), 0), rowWidth)
@@ -123,9 +124,14 @@ struct PinSwipeRow<Content: View>: View {
         offset = next
     }
 
-    private func startDrag(_ translation: CGSize) -> Drag {
-        let isMostlyHorizontal = translation.width > 0 && translation.width > abs(translation.height)
-        return isMostlyHorizontal && rowWidth > 0 ? .swiping(from: offset) : .ignored
+    private func beginDrag(_ value: DragGesture.Value) {
+        if case .swiping = drag {
+            settle(at: isRevealed ? PinSwipe.revealWidth : 0, revealed: isRevealed)
+        }
+        dragStart = value.startLocation
+        let isMostlyHorizontal = value.translation.width > 0
+            && value.translation.width > abs(value.translation.height)
+        drag = isMostlyHorizontal && rowWidth > 0 ? .swiping(from: offset) : .ignored
     }
 
     private func dragEnded() {
@@ -133,6 +139,7 @@ struct PinSwipeRow<Content: View>: View {
             release()
         }
         drag = .idle
+        dragStart = nil
     }
 
     private func release() {
