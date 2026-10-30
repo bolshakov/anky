@@ -37,13 +37,13 @@ final class SaveEntryTests: XCTestCase {
     /// The time is read from the date row before the save, since the saved row's label has no digits in double-length
     /// text. It falls in the minute before or after the save.
     private func saveFourOfTen(in app: XCUIApplication) {
-        let before = timeText(at: .now)
+        let before = clockTime(at: .now)
         openNewEntry(app)
         setSeverity(4, in: app)
         let dateRow = app.buttons["date-row"]
         let shown = clockTime(inRowValue: dateRow.value as? String)
         saveEntry(app)
-        let after = timeText(at: .now)
+        let after = clockTime(at: .now)
         XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
         XCTAssertTrue([before, after].contains(shown ?? ""), "date row time is \(shown ?? "nil")")
     }
@@ -53,10 +53,5 @@ final class SaveEntryTests: XCTestCase {
         XCTAssertTrue(rows.firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(rows.count, 1)
         XCTAssertEqual(rowSeverity(of: rows.firstMatch), 4)
-    }
-
-    private func timeText(at date: Date) -> String {
-        let style = Date.FormatStyle(date: .omitted, time: .shortened).locale(Locale(identifier: "en_GB"))
-        return date.formatted(style)
     }
 }
