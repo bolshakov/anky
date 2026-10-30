@@ -26,11 +26,74 @@ This entry could not be saved. => Не удалось сохранить зап�
 OK => ОК
 selected => выбрано
 not selected => не выбрано
+Where => Где
+More places => Другие места
+Search joints and places => Поиск суставов и мест
+No matching places => Ничего не найдено
+Done => Готово
+Left => Слева
+Right => Справа
+Whole body => Всё тело
+No place => Место не указано
+Spine => Позвоночник
+Pelvis and chest => Таз и грудная клетка
+Arms => Руки
+Legs => Ноги
+Head => Голова
+Neck => Шея
+Upper back => Верхняя часть спины
+Lower back => Поясница
+Tailbone => Копчик
+SI joint => Крестцово-подвздошный сустав
+Hip => Тазобедренный сустав
+Ribs => Рёбра
+Chest wall => Грудная клетка
+Shoulder => Плечо
+Elbow => Локоть
+Wrist => Запястье
+Hand and fingers => Кисть и пальцы
+Knee => Колено
+Ankle => Голеностоп
+Foot and toes => Стопа и пальцы ног
+Heel => Пятка
+Jaw => Челюсть
+Eyes => Глаза
+Left SI joint => Левый крестцово-подвздошный
+Right SI joint => Правый крестцово-подвздошный
+Left hip => Левый тазобедренный сустав
+Right hip => Правый тазобедренный сустав
+Left shoulder => Левое плечо
+Right shoulder => Правое плечо
+Left elbow => Левый локоть
+Right elbow => Правый локоть
+Left wrist => Левое запястье
+Right wrist => Правое запястье
+Left hand and fingers => Левая кисть и пальцы
+Right hand and fingers => Правая кисть и пальцы
+Left knee => Левое колено
+Right knee => Правое колено
+Left ankle => Левый голеностоп
+Right ankle => Правый голеностоп
+Left foot and toes => Левая стопа и пальцы ног
+Right foot and toes => Правая стопа и пальцы ног
+Left heel => Левая пятка
+Right heel => Правая пятка
+Edit Entry => Изменить запись
+Save changes => Сохранить изменения
+Delete entry => Удалить запись
+Delete this entry? This can't be undone. => Удалить эту запись? Это нельзя отменить.
+This entry could not be deleted. => Не удалось удалить запись.
+History => История
+Yesterday => Вчера
+No entries yet => Записей пока нет
+Entries you add appear here, newest first. => Здесь появятся твои записи.
 """)
 
 private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
 %lld of %lld => %1$lld из %2$lld
+%@, %@ => %1$@, %2$@
+%@, %@, %@, %@ => %1$@, %2$@, %3$@, %4$@
 """)
 
 private let counterKey = "%lld left"
@@ -42,7 +105,18 @@ many => Осталось %lld символов
 other => Осталось %lld символа
 """)
 
-private let approvedKeys = approvedPlainValues.map(\.key) + approvedFormatValues.map(\.key) + [counterKey]
+private let donePlacesKey = "Done · %lld places"
+
+private let approvedDoneValues = table("""
+one => Готово · %lld место
+few => Готово · %lld места
+many => Готово · %lld мест
+other => Готово · %lld места
+""")
+
+private let approvedKeys = approvedPlainValues.map(\.key)
+    + approvedFormatValues.map(\.key)
+    + [counterKey, donePlacesKey]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
@@ -91,7 +165,61 @@ struct RussianCatalogTests {
     @Test func noTextOutsideTheApprovedListHasARussianValue() throws {
         let entries = try CompiledCatalog.entries()
         let keysWithRussian = entries.filter { $0.value.localizations?["ru"] != nil }.keys
-        #expect(Set(keysWithRussian) == Set(approvedKeys))
+        let unapproved = Set(keysWithRussian).subtracting(approvedKeys)
+        #expect(unapproved.isEmpty, "Russian values outside the approved list: \(unapproved.sorted())")
+    }
+
+    @Test func everyKeyOfTheCatalogHasARussianValue() throws {
+        let entries = try CompiledCatalog.entries()
+        for key in entries.keys.sorted() {
+            #expect(entries[key]?.localizations?["ru"] != nil, "\(key) has no Russian value")
+        }
+    }
+
+    @Test func theJoiningFormatsReadTheSameInRussian() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            let two = ru.localizedString(forKey: "%@, %@", value: nil, table: nil)
+            let four = ru.localizedString(forKey: "%@, %@, %@, %@", value: nil, table: nil)
+            #expect(two == "%1$@, %2$@")
+            #expect(four == "%1$@, %2$@, %3$@, %4$@")
+            #expect(String(format: two, "a", "b") == "a, b")
+        }
+    }
+
+    @Test func oneAndTwentyOnePlacesTakeTheSingularForm() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            for count in [1, 21] {
+                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
+                    "Готово · \(count) место")
+            }
+        }
+    }
+
+    @Test func twoAndTwentyTwoPlacesTakeTheFewForm() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            for count in [2, 3, 4, 22] {
+                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
+                    "Готово · \(count) места")
+            }
+        }
+    }
+
+    @Test func fiveAndTheTeensPlacesTakeTheManyForm() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            for count in [5, 11, 12, 13, 14, 20] {
+                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
+                    "Готово · \(count) мест")
+            }
+        }
+    }
+
+    @Test func theDoneButtonHoldsAllFourRussianPluralForms() throws {
+        let entries = try CompiledCatalog.entries()
+        let plural = try #require(entries[donePlacesKey]?.localizations?["ru"]?.variations?.plural)
+        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
+        for (form, value) in approvedDoneValues {
+            #expect(plural[form]?.stringUnit?.value == value)
+        }
     }
 
     @Test func oneAndTwentyOneLeftTakeTheSingularForm() throws {
@@ -137,6 +265,9 @@ struct RussianCatalogTests {
             }
             for (count, expected) in [(1, "1 left"), (5, "5 left")] {
                 #expect(String(localized: "\(count) left", bundle: en, locale: english) == expected)
+            }
+            for (count, expected) in [(1, "Done · 1 place"), (5, "Done · 5 places")] {
+                #expect(String(localized: "Done · \(count) places", bundle: en, locale: english) == expected)
             }
         }
     }
