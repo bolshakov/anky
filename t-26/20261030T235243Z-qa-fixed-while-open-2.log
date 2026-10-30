@@ -1,0 +1,28 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-06-4/tmp/r.zsh
+exit: 0
+commit: d7c671af702af45a2c86e822ec012b3476e08514
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+Button id=place-chip-neck label='Neck'
+Button id=place-chip-lower label='Lower back'
+Button id=place-chip-si_l label='Left SI joint'
+Button id=place-chip-si_r label='Right SI joint'
+Button id=place-chip-knee_l label='Left knee'
+✓ Tap at resolved tap point at (152.50000000000006, 426.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 538.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 250.33333333333331) completed successfully
+✓ Tap at resolved tap point at (201.0, 354.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+Button id=place-chip-neck label='Neck'
+Button id=place-chip-lower label='Lower back'
+Button id=place-chip-si_l label='Left SI joint'
+Button id=place-chip-si_r label='Right SI joint'
+Button id=place-chip-knee_l label='Left knee'
+same
+Button id=place-chip-lower label='Lower back' value='selected' @99.33333333333333,404 134.33333333333331x44
+Button id=more-places label='More places' value='Upper back, Tailbone' @16,512.3333333333333 370x52
+Button id=place-chip-neck label='Neck' value='not selected' @28,404 63.33333333333333x44
+Button id=place-chip-lower label='Lower back' value='selected' @99.33333333333333,404 134.33333333333331x44
+Button id=place-chip-si_l label='Left SI joint' value='not selected' @241.66666666666666,404 105.33333333333334x44
+Button id=place-chip-si_r label='Right SI joint' value='not selected' @28,456 114.33333333333331x44
+Button id=place-chip-knee_l label='Left knee' value='not selected' @150.33333333333331,456 92x44

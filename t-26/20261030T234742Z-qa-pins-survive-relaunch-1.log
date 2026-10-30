@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-06-4/tmp/p1.sh
+exit: 0
+commit: d7c671af702af45a2c86e822ec012b3476e08514
+
+ci=41138587962
+ios	swift test	2026-10-30T22:32:06.8233180Z ✔ Test aMissingFileGivesNoPinsAndNoLastChips() passed after 3.313 seconds.
+ios	swift test	2026-10-30T22:32:06.8234910Z ✔ Test aNewStoreOnTheSameFileSeesWhatWasSaved() passed after 3.313 seconds.
+ios	swift test	2026-10-30T22:32:06.8235380Z ✔ Test pinsAndLastChipsReloadFromTheFile() passed after 3.313 seconds.
+ios	swift test	2026-10-30T22:32:06.8244430Z ✔ Test anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() passed after 3.314 seconds.
+ios	swift test	2026-10-30T22:32:06.8349120Z ✔ Test aFailedSaveStillKeepsThePinForThisSession() passed after 3.320 seconds.

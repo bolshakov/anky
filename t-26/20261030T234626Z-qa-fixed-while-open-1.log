@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-06-4/tmp/s1.sh
+exit: 0
+commit: d7c671af702af45a2c86e822ec012b3476e08514
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+Button id=place-chip-neck label='Neck'
+Button id=place-chip-lower label='Lower back'
+Button id=place-chip-si_l label='Left SI joint'
+Button id=place-chip-si_r label='Right SI joint'
+Button id=place-chip-knee_l label='Left knee'

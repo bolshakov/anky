@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-06-4/tmp/p2.sh
+exit: 0
+commit: d7c671af702af45a2c86e822ec012b3476e08514
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+place-chip-lower place-chip-tail place-chip-si_l place-chip-si_r place-chip-jaw 
+✓ Tap at resolved tap point at (62.33333333333333, 100.0) completed successfully
+['tail', 'jaw']
+['lower', 'tail', 'si_l', 'si_r', 'jaw']

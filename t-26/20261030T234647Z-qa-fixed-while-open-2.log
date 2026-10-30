@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-06-4/tmp/s2.sh
+exit: 0
+commit: d7c671af702af45a2c86e822ec012b3476e08514
+
+✓ Tap at resolved tap point at (152.50000000000006, 426.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 538.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 250.33333333333331) completed successfully
+✓ Tap at resolved tap point at (201.0, 354.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+same
+Button id=place-chip-lower label='Lower back' value='selected' @99.33333333333333,404 134.33333333333331x44
+Button id=more-places label='More places' value='Upper back, Tailbone' @16,512.3333333333333 370x52
