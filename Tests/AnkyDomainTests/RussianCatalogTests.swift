@@ -80,6 +80,7 @@ Left heel => Левая пятка
 Right heel => Правая пятка
 Edit Entry => Изменить запись
 Save changes => Сохранить изменения
+Delete => Удалить
 Delete entry => Удалить запись
 Delete this entry? This can't be undone. => Удалить эту запись? Это нельзя отменить.
 This entry could not be deleted. => Не удалось удалить запись.

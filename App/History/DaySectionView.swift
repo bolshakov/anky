@@ -4,6 +4,7 @@ import SwiftUI
 struct DaySectionView: View {
     let section: DaySection
     let onSelect: (Entry) -> Void
+    let onDelete: (Entry) -> Void
 
     var body: some View {
         Section {
@@ -12,6 +13,12 @@ struct DaySectionView: View {
                     onSelect(entry)
                 }
                 .listRowInsets(EdgeInsets())
+                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                    Button("Delete", role: .destructive) {
+                        onDelete(entry)
+                    }
+                    .accessibilityIdentifier("history-delete")
+                }
             }
         } header: {
             title
