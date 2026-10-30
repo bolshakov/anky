@@ -1,0 +1,4 @@
+$ git grep -n 'PlaceChips.shown\|func shown' -- App Sources
+exit: 1
+commit: 6fb05cc68ba4a19075bddf7051ce91ec18e999d9
+

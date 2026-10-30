@@ -1,0 +1,5 @@
+$ sh -c 'gh run view 41083311829 --log | grep -E -e '\''Test theTopFiveByCountShowInBodyOrder\(\) (passed|failed)'\'''
+exit: 0
+commit: 6fb05cc68ba4a19075bddf7051ce91ec18e999d9
+
+ios	swift test	2026-10-30T15:44:30.1224910Z ✔ Test theTopFiveByCountShowInBodyOrder() passed after 2.231 seconds.

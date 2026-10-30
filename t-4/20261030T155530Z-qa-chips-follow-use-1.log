@@ -1,0 +1,13 @@
+$ sh -c 'gh run view 41083311829 --log | grep -E -e '\''Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder\(\) (passed|failed)'\'' -e '\''Test onlyTheLastTenEntriesWithAPlaceCount\(\) (passed|failed)'\'' -e '\''Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen\(\) (passed|failed)'\'' -e '\''Test aPlaceCountsOncePerEntry\(\) (passed|failed)'\'' -e '\''Test leftAndRightCountSeparately\(\) (passed|failed)'\'' -e '\''Test aPlaceNeedsACountOfTwo\(\) (passed|failed)'\'' -e '\''Test aTieGoesToTheMostRecentUse\(\) (passed|failed)'\'' -e '\''Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces\(\) (passed|failed)'\'' -e '\''Test theChipsShowInBodyOrder\(\) (passed|failed)'\'''
+exit: 0
+commit: 6fb05cc68ba4a19075bddf7051ce91ec18e999d9
+
+ios	swift test	2026-10-30T15:44:30.1211130Z ✔ Test aPlaceNeedsACountOfTwo() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1211530Z ✔ Test theChipsShowInBodyOrder() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1220150Z ✔ Test leftAndRightCountSeparately() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1220870Z ✔ Test aTieGoesToTheMostRecentUse() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1221670Z ✔ Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1222400Z ✔ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1223120Z ✔ Test onlyTheLastTenEntriesWithAPlaceCount() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1223650Z ✔ Test aPlaceCountsOncePerEntry() passed after 2.231 seconds.
+ios	swift test	2026-10-30T15:44:30.1243340Z ✔ Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder() passed after 2.231 seconds.
