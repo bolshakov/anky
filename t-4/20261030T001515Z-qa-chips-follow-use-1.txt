@@ -1,0 +1,7 @@
+ios	swift test	2026-10-29T23:49:57.5045460Z ✔ Test withNoEntriesTheChipsAreTheFiveDefaults() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5046800Z ✔ Test theFiveMostLoggedPlacesBecomeTheChips() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5048470Z ✔ Test aSelectedPlaceOutsideTheFiveIsAppendedAfterThem() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5051770Z ✔ Test tiesKeepTheDefaultOrderFirst() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5052200Z ✔ Test aMoreLoggedPlaceComesBeforeALessLoggedOne() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5052670Z ✔ Test aLeftHipLoggedMostOftenIsAmongTheFive() passed after 0.009 seconds.
+ios	swift test	2026-10-29T23:49:57.5053910Z ✔ Test fewerThanFiveLoggedPlacesAreFilledFromTheDefaultsInOrder() passed after 0.009 seconds.

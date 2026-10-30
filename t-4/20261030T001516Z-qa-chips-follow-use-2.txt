@@ -1,0 +1,2 @@
+Sources/AnkyDomain/PlaceChips.swift:4:    private static let defaultIndex = index(PlaceCatalog.defaultChips)
+Sources/AnkyDomain/PlaceChips.swift:15:        let unlogged = PlaceCatalog.defaultChips.filter { !logged.contains($0) }
