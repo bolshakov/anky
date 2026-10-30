@@ -1,0 +1,7 @@
+$ sh -c 'gh run view 41127859548 --log | grep -E -e '\''Test theChipsShowInBodyOrder\(\) (passed|failed)'\'' -e '\''Test pinsShowInBodyOrderNotInPinOrder\(\) (passed|failed)'\'' -e '\''Test theResultAlwaysHasFivePlaces\(\) (passed|failed)'\'''
+exit: 0
+commit: b2e26c0e60cf2aa47213bb196ed60793a4c558fb
+
+ios	swift test	2026-10-30T21:03:16.7174820Z ✔ Test theChipsShowInBodyOrder() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7189720Z ✔ Test theResultAlwaysHasFivePlaces() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7191470Z ✔ Test pinsShowInBodyOrderNotInPinOrder() passed after 2.329 seconds.

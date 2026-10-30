@@ -1,0 +1,10 @@
+$ sh -c 'gh run view 41127859548 --log | grep -E -e '\''Test aTieGoesToThePlaceThatWasAChipLastTime\(\) (passed|failed)'\'' -e '\''Test lastTimeBeatsTheMostRecentUseInATie\(\) (passed|failed)'\'' -e '\''Test ifBothWereChipsLastTimeTheMostRecentUseWins\(\) (passed|failed)'\'' -e '\''Test aTieGoesToTheMostRecentUse\(\) (passed|failed)'\'' -e '\''Test aStillTiedPairGoesToBodyOrder\(\) (passed|failed)'\'' -e '\''Test aPlaceThatWasAChipButHasOneUseIsNotKept\(\) (passed|failed)'\'''
+exit: 0
+commit: b2e26c0e60cf2aa47213bb196ed60793a4c558fb
+
+ios	swift test	2026-10-30T21:03:16.7178930Z ✔ Test aStillTiedPairGoesToBodyOrder() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7183830Z ✔ Test aTieGoesToThePlaceThatWasAChipLastTime() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7187410Z ✔ Test aPlaceThatWasAChipButHasOneUseIsNotKept() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7193030Z ✔ Test lastTimeBeatsTheMostRecentUseInATie() passed after 2.328 seconds.
+ios	swift test	2026-10-30T21:03:16.7194720Z ✔ Test ifBothWereChipsLastTimeTheMostRecentUseWins() passed after 2.328 seconds.
+ios	swift test	2026-10-30T21:03:16.7199400Z ✔ Test aTieGoesToTheMostRecentUse() passed after 2.329 seconds.

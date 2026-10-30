@@ -1,0 +1,10 @@
+$ sh -c 'gh run view 41127859548 --log | grep -E -e '\''Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets\(\) (passed|failed)'\'' -e '\''Test aPinnedPlaceIsNotChosenAgainByTheUsageRule\(\) (passed|failed)'\'' -e '\''Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice\(\) (passed|failed)'\'' -e '\''Test pinsComeBeforeAPlaceUsedManyTimes\(\) (passed|failed)'\'' -e '\''Test anUnknownPinNeverBecomesAChip\(\) (passed|failed)'\'' -e '\''Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes\(\) (passed|failed)'\'''
+exit: 0
+commit: b2e26c0e60cf2aa47213bb196ed60793a4c558fb
+
+ios	swift test	2026-10-30T21:03:16.7175410Z ✔ Test aPinnedPlaceIsNotChosenAgainByTheUsageRule() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7175940Z ✔ Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7176880Z ✔ Test anUnknownPinNeverBecomesAChip() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7183240Z ✔ Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7188510Z ✔ Test pinsComeBeforeAPlaceUsedManyTimes() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7190360Z ✔ Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() passed after 2.328 seconds.

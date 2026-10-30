@@ -1,0 +1,10 @@
+$ sh -c 'gh run view 41127859548 --log | grep -E -e '\''Test aPlaceNeedsACountOfTwo\(\) (passed|failed)'\'' -e '\''Test onlyTheLastTenEntriesWithAPlaceCount\(\) (passed|failed)'\'' -e '\''Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen\(\) (passed|failed)'\'' -e '\''Test aPlaceCountsOncePerEntry\(\) (passed|failed)'\'' -e '\''Test theTopFiveByCountShowInBodyOrder\(\) (passed|failed)'\'' -e '\''Test theUsageRuleStillFillsTheCardAroundOnePin\(\) (passed|failed)'\'''
+exit: 0
+commit: b2e26c0e60cf2aa47213bb196ed60793a4c558fb
+
+ios	swift test	2026-10-30T21:03:16.7179960Z ✔ Test aPlaceCountsOncePerEntry() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7180530Z ✔ Test theTopFiveByCountShowInBodyOrder() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7180970Z ✔ Test aPlaceNeedsACountOfTwo() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7182070Z ✔ Test theUsageRuleStillFillsTheCardAroundOnePin() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7185400Z ✔ Test onlyTheLastTenEntriesWithAPlaceCount() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7186770Z ✔ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() passed after 2.328 seconds.

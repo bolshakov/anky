@@ -1,0 +1,6 @@
+$ sh -c 'gh run view 41127859548 --log | grep -E -e '\''Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold\(\) (passed|failed)'\'' -e '\''Test morePinsThanFiveKeepOnlyTheFirstFivePinned\(\) (passed|failed)'\'''
+exit: 0
+commit: b2e26c0e60cf2aa47213bb196ed60793a4c558fb
+
+ios	swift test	2026-10-30T21:03:16.7177460Z ✔ Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold() passed after 2.329 seconds.
+ios	swift test	2026-10-30T21:03:16.7179440Z ✔ Test morePinsThanFiveKeepOnlyTheFirstFivePinned() passed after 2.329 seconds.
