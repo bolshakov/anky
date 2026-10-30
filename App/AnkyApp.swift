@@ -7,7 +7,9 @@ struct AnkyApp: App {
 
     init() {
         let store = FileEntryStore(fileURL: EntriesLocation.fileURL(), protection: .complete)
-        _model = State(initialValue: EntryLogModel(log: EntryLog(store: store)))
+        let shortcutsStore = FileShortcutsStore(fileURL: ShortcutsLocation.fileURL(), protection: .complete)
+        let shortcuts = ShortcutsModel(log: ShortcutsLog(store: shortcutsStore))
+        _model = State(initialValue: EntryLogModel(log: EntryLog(store: store), shortcuts: shortcuts))
     }
 
     var body: some Scene {
