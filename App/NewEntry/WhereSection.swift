@@ -25,23 +25,9 @@ struct WhereSection: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(12)
                 Divider()
-                Button {
+                MorePlacesRow(value: MorePlacesValue(selected: draft.places, chips: chips)) {
                     isShowingPlaces = true
-                } label: {
-                    HStack {
-                        Text("More places")
-                            .foregroundStyle(Color("AccentColor"))
-                        Spacer()
-                        Image(systemName: "chevron.forward")
-                            .foregroundStyle(.secondary)
-                    }
-                    .font(.body)
-                    .padding(.horizontal, 16)
-                    .frame(maxWidth: .infinity, minHeight: 52)
-                    .contentShape(Rectangle())
                 }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("more-places")
             }
             .background(Color("CardBackground"), in: .card)
         }
