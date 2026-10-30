@@ -13,6 +13,7 @@ private enum PinSwipeMetrics {
     static let pillWidth: CGFloat = 56
     static let pillHeight: CGFloat = 32
     static let pillTintOpacity: Double = 0.15
+    static let labelSpacing: CGFloat = 4
 }
 
 struct PinSwipeRow<Content: View>: View {
@@ -68,7 +69,7 @@ struct PinSwipeRow<Content: View>: View {
 
     private var pinAction: some View {
         Button(action: performAction) {
-            VStack(spacing: 4) {
+            VStack(spacing: PinSwipeMetrics.labelSpacing) {
                 Image(systemName: isPinned ? "pin.slash.fill" : "pin.fill")
                     .font(.body.weight(.semibold))
                     .frame(width: PinSwipeMetrics.pillWidth, height: PinSwipeMetrics.pillHeight)
