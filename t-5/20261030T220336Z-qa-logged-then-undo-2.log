@@ -1,0 +1,8 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; axe tap --id repeat-undo --wait-timeout 5 --udid $udid; ui | grep -E '\''id=(repeat-chip|repeat-logged|repeat-undo|entry-row)'\''; stored'
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+✓ Tap at resolved tap point at (349.33333333333326, 224.0) completed successfully
+Button id=repeat-chip label='Same as last time, Pain, Lower back, SI joints, 4 of 10' value=None @16,202 370x44
+Button id=entry-row-pain label='0:01, Lower back, Left SI joint, Right SI joint, Pain, 4 of 10' value=None @16,262 370x96.66666666666663
+1

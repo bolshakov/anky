@@ -1,0 +1,6 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; fresh; sleep 3; ui | grep -E '\''id=(today-screen|empty-today|repeat)'\'''
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+ScrollArea id=today-screen label=None value=None @0,0 402x874
+StaticText id=empty-today label='Nothing logged today' value=None @90.5,304.62068965517244 221x26.333333333333314

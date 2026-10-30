@@ -1,0 +1,11 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; axe tap --id repeat-chip --wait-timeout 5 --udid $udid; ui | grep -E "id=(repeat-chip|repeat-logged|entry-row)"; last; age'
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+✓ Tap at resolved tap point at (201.0, 224.0) completed successfully
+StaticText id=repeat-logged label='Logged, Stiffness, Neck, 5 of 10' value=None @63.666666666666664,215 200.33333333333334x18
+Button id=entry-row-stiffness label='23:03, Neck, Stiffness, 5 of 10' value=None @16,262 370x74.66666666666663
+Button id=entry-row-stiffness label='0:03, Neck, Stiffness, 5 of 10' value=None @16,337 370x74.66666666666663
+Button id=entry-row-pain label='0:02, Lower back, Left SI joint, Right SI joint, Pain, 4 of 10' value=None @16,412 370x96.66666666666663
+stiffness 5 ['neck'] None
+3

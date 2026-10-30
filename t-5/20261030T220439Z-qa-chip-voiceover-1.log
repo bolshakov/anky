@@ -1,0 +1,5 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; fresh '\''pain/0/00:01/4/neck,lower,si_l,si_r,knee_l'\''; sleep 3; ui | grep '\''id=repeat-chip '\'''
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+Button id=repeat-chip label='Same as last time, Pain, Neck, Lower back, SI joints, Left knee, 4 of 10' value=None @16,202 370x44

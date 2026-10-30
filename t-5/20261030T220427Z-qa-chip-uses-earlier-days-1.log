@@ -1,0 +1,6 @@
+$ zsh -c 'ci=$(gh run list --workflow ci.yml --commit bb493583f5cc4249eb3eba174a7208156f25cc31 --json databaseId --jq '\''.[0].databaseId'\''); echo ci=$ci; gh run view "$ci" --log | grep -E -e '\''Test entriesFromEarlierDaysAreRecentToo\(\) (passed|failed)'\'''
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+ci=41132864071
+ios	swift test	2026-10-30T21:42:32.2830160Z ✔ Test entriesFromEarlierDaysAreRecentToo() passed after 2.348 seconds.

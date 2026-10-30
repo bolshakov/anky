@@ -1,0 +1,6 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; fresh '\''pain/1/12:00/4/lower'\''; sleep 3; ui | grep -E '\''id=(empty-today|repeat-chip|entry-row)'\'''
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+Button id=repeat-chip label='Same as last time, Pain, Lower back, 4 of 10' value=None @16,202 370x44
+StaticText id=empty-today label='Nothing logged today' value=None @90.5,380.62068965517244 221x26.333333333333314

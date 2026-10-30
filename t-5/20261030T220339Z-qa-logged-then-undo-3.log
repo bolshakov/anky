@@ -1,0 +1,9 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk-t5.0X4l/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/tmp/walk.sh; CHECKOUT=/Users/bolshakov/Projects/personal/anky.wt/qa-t5-04-1/checkout; git -C "$CHECKOUT" show HEAD:App/Localizable.xcstrings | python3 -I -c '\''import json, sys
+strings = json.load(sys.stdin)["strings"]
+for key in ("Logged", "Undo"):
+    print(key, strings[key]["localizations"]["ru"]["stringUnit"]["value"])'\'''
+exit: 0
+commit: bb493583f5cc4249eb3eba174a7208156f25cc31
+
+Logged Записано
+Undo Отменить
