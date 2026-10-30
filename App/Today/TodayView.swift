@@ -10,6 +10,7 @@ struct TodayView: View {
     @State private var isShowingSaveFailure = false
     @State private var logTicks = 0
     @State private var undoTicks = 0
+    @State private var saveTicks = 0
 
     private var todayEntries: [Entry] {
         TodayList.entries(model.entries, on: .now, calendar: .current)
@@ -59,16 +60,17 @@ struct TodayView: View {
                 .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {
-                NewEntryView(model: model)
+                NewEntryView(model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editing) { entry in
-                NewEntryView(model: model, mode: .edit(entry))
+                NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
             .sensoryFeedback(.success, trigger: logTicks)
             .sensoryFeedback(.selection, trigger: undoTicks)
+            .sensoryFeedback(.success, trigger: saveTicks)
         }
     }
 

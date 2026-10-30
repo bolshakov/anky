@@ -4,6 +4,7 @@ import SwiftUI
 struct NewEntryView: View {
     let model: EntryLogModel
     let mode: EntryMode
+    let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var startDraft: EntryDraft
@@ -14,10 +15,12 @@ struct NewEntryView: View {
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
+    @State private var hasReportedSave = false
 
-    init(model: EntryLogModel, mode: EntryMode = .new) {
+    init(model: EntryLogModel, mode: EntryMode = .new, onSaved: @escaping () -> Void = {}) {
         self.model = model
         self.mode = mode
+        self.onSaved = onSaved
         let opening = switch mode {
         case .new: openingDraft(after: model.entries, now: .now)
         case let .edit(entry): EntryDraft(entry: entry)
@@ -130,6 +133,10 @@ struct NewEntryView: View {
     private func save() {
         do {
             try store()
+            if !hasReportedSave {
+                hasReportedSave = true
+                onSaved()
+            }
             dismiss()
         } catch {
             isShowingSaveFailure = true
