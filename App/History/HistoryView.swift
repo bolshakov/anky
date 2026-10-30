@@ -6,6 +6,7 @@ struct HistoryView: View {
     @State private var now = Date.now
     @State private var editing: Entry?
     @State private var pendingDelete: Entry?
+    @State private var saveTicks = 0
 
     private var sections: [DaySection] {
         HistoryList.sections(model.entries, now: now, calendar: .current)
@@ -56,8 +57,9 @@ struct HistoryView: View {
                 now = .now
             }
             .sheet(item: $editing) { entry in
-                NewEntryView(model: model, mode: .edit(entry))
+                NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }
+            .sensoryFeedback(.success, trigger: saveTicks)
         }
     }
 }
