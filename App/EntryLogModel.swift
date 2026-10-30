@@ -4,9 +4,11 @@ import Observation
 
 @MainActor @Observable final class EntryLogModel {
     private var log: EntryLog
+    let shortcuts: ShortcutsModel
 
-    init(log: EntryLog) {
+    init(log: EntryLog, shortcuts: ShortcutsModel) {
         self.log = log
+        self.shortcuts = shortcuts
     }
 
     var entries: [Entry] {
