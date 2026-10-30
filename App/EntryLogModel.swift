@@ -1,4 +1,5 @@
 import AnkyDomain
+import Foundation
 import Observation
 
 @MainActor @Observable final class EntryLogModel {
@@ -18,5 +19,9 @@ import Observation
 
     func replace(_ entry: Entry) throws {
         try log.replace(entry)
+    }
+
+    func remove(id: UUID) throws {
+        try log.remove(id: id)
     }
 }

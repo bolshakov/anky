@@ -31,6 +31,9 @@ struct NewEntryView: View {
                     DateSection(draft: $draft)
                     SeveritySection(draft: $draft)
                     NoteSection(draft: $draft)
+                    if case .edit = mode {
+                        DeleteEntrySection(onDelete: removeEntry)
+                    }
                 }
                 .padding()
             }
@@ -105,6 +108,12 @@ struct NewEntryView: View {
         case .new: try model.add(Entry(id: entryID, draft: draft))
         case let .edit(entry): try model.replace(Entry(id: entry.id, draft: draft))
         }
+    }
+
+    private func removeEntry() throws {
+        guard case let .edit(entry) = mode else { return }
+        try model.remove(id: entry.id)
+        dismiss()
     }
 }
 

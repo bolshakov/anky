@@ -66,6 +66,8 @@
     "Add a note" : {},
     "Cancel" : {},
     "Date and time" : {},
+    "Delete entry" : {},
+    "Delete this entry? This can't be undone." : {},
     "Edit Entry" : {},
     "Fatigue" : {},
     "How strong" : {},
@@ -82,6 +84,7 @@
     "Severity" : {},
     "Stiffness" : {},
     "Stored on this iPhone only." : {},
+    "This entry could not be deleted." : {},
     "This entry could not be saved." : {},
     "Today" : {}
   },
