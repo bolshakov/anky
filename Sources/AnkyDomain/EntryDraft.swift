@@ -6,7 +6,12 @@ public struct EntryDraft: Equatable, Sendable {
     public var kind: EntryKind
     public var severity: Severity
     public var date: Date
-    public var places: [PlaceID] = []
+    public var places: [PlaceID] = [] {
+        didSet {
+            places = PlaceCatalog.canonicalOrder(places)
+        }
+    }
+
     public var note: String {
         didSet {
             if note.count > Self.noteLimit {
@@ -40,6 +45,5 @@ public struct EntryDraft: Equatable, Sendable {
         } else {
             places.append(id)
         }
-        places = PlaceCatalog.canonicalOrder(places)
     }
 }
