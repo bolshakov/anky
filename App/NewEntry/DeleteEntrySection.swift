@@ -33,14 +33,19 @@ private struct EntryDeleteConfirmation: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            // An alert keeps a Cancel button. A confirmation dialog drew without one on iOS 26.5.
-            .alert("Delete this entry? This can't be undone.", isPresented: $isPresented) {
-                Button("Delete entry", role: .destructive) {
-                    delete()
-                }
-                .accessibilityIdentifier("confirm-delete")
-                Button("Cancel", role: .cancel) {}
-                    .accessibilityIdentifier("keep-entry")
+            .background {
+                Color.clear
+                    .frame(width: 0, height: 0)
+                    // An alert keeps a Cancel button. A confirmation dialog drew without one on iOS 26.5.
+                    .alert("Delete this entry? This can't be undone.", isPresented: $isPresented) {
+                        Button("Delete entry", role: .destructive) {
+                            delete()
+                        }
+                        .accessibilityIdentifier("confirm-delete")
+                        Button("Cancel", role: .cancel) {}
+                            .accessibilityIdentifier("keep-entry")
+                    }
+                    .tint(.primary)
             }
             .sensoryFeedback(trigger: isPresented) { _, isNow in isNow ? .warning : nil }
             .alert("This entry could not be deleted.", isPresented: $isShowingDeleteFailure) {
