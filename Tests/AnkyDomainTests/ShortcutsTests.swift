@@ -2,6 +2,44 @@ import AnkyDomain
 import Foundation
 import Testing
 
+final class FakeShortcutsStore: ShortcutsStore, @unchecked Sendable {
+    private let lock = NSLock()
+    private var contents: Shortcuts
+    private var calls: [Shortcuts] = []
+    private var failure: SaveFailure?
+
+    init(_ contents: Shortcuts = Shortcuts()) {
+        self.contents = contents
+    }
+
+    var saveCalls: [Shortcuts] {
+        lock.withLock { calls }
+    }
+
+    var saved: Shortcuts {
+        lock.withLock { contents }
+    }
+
+    var saveFailure: SaveFailure? {
+        get { lock.withLock { failure } }
+        set { lock.withLock { failure = newValue } }
+    }
+
+    func load() -> Shortcuts {
+        lock.withLock { contents }
+    }
+
+    func save(_ shortcuts: Shortcuts) throws {
+        try lock.withLock {
+            calls.append(shortcuts)
+            if let failure {
+                throw failure
+            }
+            contents = shortcuts
+        }
+    }
+}
+
 struct ShortcutsTests {
     private func place(_ name: String) -> PlaceID {
         PlaceID(rawValue: name)
@@ -96,7 +134,10 @@ struct FileShortcutsStoreTests {
 
     @Test func aMissingFileGivesNoPinsAndNoLastChips() throws {
         try withFolder { folder in
-            let store = FileShortcutsStore(fileURL: folder.appending(path: "shortcuts.json"), protection: .deviceDefault)
+            let store = FileShortcutsStore(
+                fileURL: folder.appending(path: "shortcuts.json"),
+                protection: .deviceDefault
+            )
             #expect(store.load() == Shortcuts())
         }
     }
@@ -121,5 +162,54 @@ struct FileShortcutsStoreTests {
             let store = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
             #expect(store.load() == Shortcuts())
         }
+    }
+}
+
+struct ShortcutsLogTests {
+    private func place(_ name: String) -> PlaceID {
+        PlaceID(rawValue: name)
+    }
+
+    @Test func theLogStartsWithWhatTheStoreHolds() {
+        let log = ShortcutsLog(store: FakeShortcutsStore(Shortcuts(pinned: [place("a")])))
+
+        #expect(log.shortcuts.pinned == [place("a")])
+    }
+
+    @Test func eachChangeIsSavedAsItHappens() {
+        let store = FakeShortcutsStore()
+        let log = ShortcutsLog(store: store)
+
+        log.pin(place("a"))
+        log.setLastChips([place("b")])
+
+        let afterPin = Shortcuts(pinned: [place("a")])
+        let afterChips = Shortcuts(pinned: [place("a")], lastChips: [place("b")])
+        #expect(store.saveCalls == [afterPin, afterChips])
+    }
+
+    @Test func aFailedSaveStillKeepsThePinForThisSession() {
+        let store = FakeShortcutsStore()
+        store.saveFailure = SaveFailure()
+        let log = ShortcutsLog(store: store)
+
+        let outcome = log.pin(place("a"))
+
+        #expect(outcome == .pinned)
+        #expect(log.shortcuts.pinned == [place("a")])
+        #expect(store.saved == Shortcuts())
+    }
+
+    @Test func theNextSaveAfterAFailureWritesEverything() {
+        let store = FakeShortcutsStore()
+        let log = ShortcutsLog(store: store)
+        store.saveFailure = SaveFailure()
+        log.pin(place("a"))
+        log.setLastChips([place("b")])
+        store.saveFailure = nil
+
+        log.pin(place("c"))
+
+        #expect(store.saved == Shortcuts(pinned: [place("a"), place("c")], lastChips: [place("b")]))
     }
 }
