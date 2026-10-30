@@ -1,0 +1,5 @@
+$ bash -c 'gh run view 41141804784 --log | grep -E -e '\''Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces\(\) (passed|failed)'\'''
+exit: 0
+commit: ade854e82af87e9ec41f0f994d2fad1a292865d6
+
+ios	swift test	2026-10-30T23:02:34.7469210Z ✔ Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces() passed after 5.069 seconds.
