@@ -10,7 +10,6 @@ struct NewEntryView: View {
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
-    @State private var isConfirmingDelete = false
 
     init(model: EntryLogModel, mode: EntryMode = .new) {
         self.model = model
@@ -33,14 +32,11 @@ struct NewEntryView: View {
                     SeveritySection(draft: $draft)
                     NoteSection(draft: $draft)
                     if case .edit = mode {
-                        DeleteEntrySection {
-                            isConfirmingDelete = true
-                        }
+                        DeleteEntrySection(onDelete: removeEntry)
                     }
                 }
                 .padding()
             }
-            .modifier(DeleteEntryConfirmation(isPresented: $isConfirmingDelete, onDelete: removeEntry))
             .background(Color("PageBackground"))
             .accessibilityIdentifier(screenID)
             .navigationTitle(title)
