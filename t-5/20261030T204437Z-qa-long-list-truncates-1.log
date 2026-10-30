@@ -1,0 +1,10 @@
+$ bash -c 'gh run view 41123404352 --log | grep -E -e '\''Test twoNamesShowWithNoCount\(\) (passed|failed)'\'' -e '\''Test threeNamesShowTwoAndCountOne\(\) (passed|failed)'\'' -e '\''Test fourNamesShowTwoAndCountTwo\(\) (passed|failed)'\'' -e '\''Test aPairCountsAsOneName\(\) (passed|failed)'\'' -e '\''Test theFullListKeepsEveryPlace\(\) (passed|failed)'\'' -e '\''Test aLongListChipReadsTwoNamesAndACount\(\) (passed|failed)'\'''
+exit: 0
+commit: 67b8f490064c1661634b4dfc7eaf4d19f7ff50ff
+
+ios	swift test	2026-10-30T20:29:15.2199860Z ✔ Test aLongListChipReadsTwoNamesAndACount() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2235630Z ✔ Test aPairCountsAsOneName() passed after 1.117 seconds.
+ios	swift test	2026-10-30T20:29:15.2235960Z ✔ Test twoNamesShowWithNoCount() passed after 1.117 seconds.
+ios	swift test	2026-10-30T20:29:15.2236310Z ✔ Test fourNamesShowTwoAndCountTwo() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2240570Z ✔ Test threeNamesShowTwoAndCountOne() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2241470Z ✔ Test theFullListKeepsEveryPlace() passed after 1.116 seconds.

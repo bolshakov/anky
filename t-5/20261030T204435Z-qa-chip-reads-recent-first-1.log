@@ -1,0 +1,9 @@
+$ bash -c 'gh run view 41123404352 --log | grep -E -e '\''Test recentEntriesComeNewestFirst\(\) (passed|failed)'\'' -e '\''Test equalDatesGoToTheEntryLoggedLater\(\) (passed|failed)'\'' -e '\''Test theLimitCapsTheList\(\) (passed|failed)'\'' -e '\''Test noEntriesGiveNoRecentEntries\(\) (passed|failed)'\'' -e '\''Test entriesFromEarlierDaysAreRecentToo\(\) (passed|failed)'\'''
+exit: 0
+commit: 67b8f490064c1661634b4dfc7eaf4d19f7ff50ff
+
+ios	swift test	2026-10-30T20:29:15.2182020Z ✔ Test entriesFromEarlierDaysAreRecentToo() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2182430Z ✔ Test recentEntriesComeNewestFirst() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2183390Z ✔ Test theLimitCapsTheList() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2183740Z ✔ Test noEntriesGiveNoRecentEntries() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2186120Z ✔ Test equalDatesGoToTheEntryLoggedLater() passed after 1.118 seconds.

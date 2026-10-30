@@ -1,0 +1,13 @@
+$ bash -c 'gh run view 41123404352 --log | grep -E -e '\''Test painShowsNoKind\(\) (passed|failed)'\'' -e '\''Test stiffnessShowsItsKind\(\) (passed|failed)'\'' -e '\''Test fatigueShowsItsKindAndNoPlaces\(\) (passed|failed)'\'' -e '\''Test aPainEntryWithNoPlaceReadsNoPlace\(\) (passed|failed)'\'' -e '\''Test aStiffnessEntryWithNoPlaceReadsNoPlace\(\) (passed|failed)'\'' -e '\''Test aPainChipHasNoKindPrefix\(\) (passed|failed)'\'' -e '\''Test aStiffnessChipReadsKindPlacesLevel\(\) (passed|failed)'\'' -e '\''Test aFatigueChipReadsKindAndLevel\(\) (passed|failed)'\'' -e '\''Test aChipWithNoPlaceReadsNoPlaceAndTheLevel\(\) (passed|failed)'\'''
+exit: 0
+commit: 67b8f490064c1661634b4dfc7eaf4d19f7ff50ff
+
+ios	swift test	2026-10-30T20:29:15.2197990Z ✔ Test aStiffnessChipReadsKindPlacesLevel() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2200260Z ✔ Test aPainChipHasNoKindPrefix() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2201120Z ✔ Test aFatigueChipReadsKindAndLevel() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2202650Z ✔ Test aChipWithNoPlaceReadsNoPlaceAndTheLevel() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2233800Z ✔ Test fatigueShowsItsKindAndNoPlaces() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2234540Z ✔ Test painShowsNoKind() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2237130Z ✔ Test aStiffnessEntryWithNoPlaceReadsNoPlace() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2238020Z ✔ Test aPainEntryWithNoPlaceReadsNoPlace() passed after 1.117 seconds.
+ios	swift test	2026-10-30T20:29:15.2239260Z ✔ Test stiffnessShowsItsKind() passed after 1.116 seconds.

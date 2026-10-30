@@ -1,0 +1,13 @@
+$ bash -c 'gh run view 41123404352 --log | grep -E -e '\''Test entriesWithTheSameKindPlacesAndLevelCountOnce\(\) (passed|failed)'\'' -e '\''Test theNoteAndTheTimeDoNotMakeEntriesDistinct\(\) (passed|failed)'\'' -e '\''Test aDifferentLevelIsADifferentRecentEntry\(\) (passed|failed)'\'' -e '\''Test aDifferentKindIsADifferentRecentEntry\(\) (passed|failed)'\'' -e '\''Test aDifferentPlaceSetIsADifferentRecentEntry\(\) (passed|failed)'\'' -e '\''Test placesSavedInAnotherOrderAreTheSameRecentEntry\(\) (passed|failed)'\'' -e '\''Test unknownPlaceIdsDoNotMakeEntriesDistinct\(\) (passed|failed)'\'' -e '\''Test aFatigueEntryIgnoresItsPlaces\(\) (passed|failed)'\'' -e '\''Test theNewestOfEqualEntriesIsTheOneKept\(\) (passed|failed)'\'''
+exit: 0
+commit: 67b8f490064c1661634b4dfc7eaf4d19f7ff50ff
+
+ios	swift test	2026-10-30T20:29:15.2180340Z ✔ Test theNewestOfEqualEntriesIsTheOneKept() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2180790Z ✔ Test unknownPlaceIdsDoNotMakeEntriesDistinct() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2184190Z ✔ Test theNoteAndTheTimeDoNotMakeEntriesDistinct() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2184750Z ✔ Test aDifferentPlaceSetIsADifferentRecentEntry() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2185210Z ✔ Test aFatigueEntryIgnoresItsPlaces() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2186590Z ✔ Test placesSavedInAnotherOrderAreTheSameRecentEntry() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2187590Z ✔ Test aDifferentLevelIsADifferentRecentEntry() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2188480Z ✔ Test aDifferentKindIsADifferentRecentEntry() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2189060Z ✔ Test entriesWithTheSameKindPlacesAndLevelCountOnce() passed after 1.118 seconds.

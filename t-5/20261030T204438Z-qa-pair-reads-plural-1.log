@@ -1,0 +1,11 @@
+$ bash -c 'gh run view 41123404352 --log | grep -E -e '\''Test bothSidesOfAPairReadAsThePair\(\) (passed|failed)'\'' -e '\''Test oneSideOfAPairStaysThatPlace\(\) (passed|failed)'\'' -e '\''Test thePairStandsWhereItsFirstSideStood\(\) (passed|failed)'\'' -e '\''Test twoPairsAreTwoNames\(\) (passed|failed)'\'' -e '\''Test leftAndRightOfDifferentJointsDoNotPair\(\) (passed|failed)'\'' -e '\''Test aPairChipReadsTheStandInPluralName\(\) (passed|failed)'\'' -e '\''Test oneSideOfAPairReadsThatPlaceInTheChip\(\) (passed|failed)'\'''
+exit: 0
+commit: 67b8f490064c1661634b4dfc7eaf4d19f7ff50ff
+
+ios	swift test	2026-10-30T20:29:15.2197100Z ✔ Test aPairChipReadsTheStandInPluralName() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2200690Z ✔ Test oneSideOfAPairReadsThatPlaceInTheChip() passed after 1.118 seconds.
+ios	swift test	2026-10-30T20:29:15.2235310Z ✔ Test twoPairsAreTwoNames() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2236700Z ✔ Test bothSidesOfAPairReadAsThePair() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2237590Z ✔ Test thePairStandsWhereItsFirstSideStood() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2238430Z ✔ Test oneSideOfAPairStaysThatPlace() passed after 1.116 seconds.
+ios	swift test	2026-10-30T20:29:15.2238860Z ✔ Test leftAndRightOfDifferentJointsDoNotPair() passed after 1.116 seconds.
