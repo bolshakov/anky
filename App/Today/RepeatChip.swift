@@ -29,10 +29,13 @@ struct RepeatLoggedCard: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .accessibilityLabel(String(localized: "Logged") + ", " + recent.spokenText)
                 .accessibilityIdentifier("repeat-logged")
-            Button("Undo", action: onUndo)
-                .foregroundStyle(Color("AccentColor"))
-                .frame(minHeight: 44)
-                .accessibilityIdentifier("repeat-undo")
+            Button(action: onUndo) {
+                Text("Undo")
+                    .frame(minHeight: 44)
+                    .contentShape(Rectangle())
+            }
+            .foregroundStyle(Color("AccentColor"))
+            .accessibilityIdentifier("repeat-undo")
         }
         .padding(.horizontal, 16)
         .frame(minHeight: 44)
