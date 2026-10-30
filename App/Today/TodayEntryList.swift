@@ -40,16 +40,25 @@ private struct EntryRow: View {
                 time
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                Text(entry.kind.displayName)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(entry.placeSummary.text)
+                    Text(entry.kind.displayName)
+                }
                 Spacer()
                 value
             }
             .padding()
+            .frame(minHeight: 44)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("\(time), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))"))
+        .accessibilityLabel(spokenLabel)
         .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+    }
+
+    private var spokenLabel: Text {
+        let places = entry.placeSummary.text
+        return Text("\(time), \(places), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))")
     }
 
     private var value: some View {

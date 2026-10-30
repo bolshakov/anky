@@ -21,12 +21,12 @@
         }
       }
     },
-    "%@, %@, %@" : {
+    "%@, %@, %@, %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@, %2$@, %3$@"
+            "value" : "%1$@, %2$@, %3$@, %4$@"
           }
         }
       }
@@ -101,6 +101,7 @@
     "Lower back" : {},
     "Neck" : {},
     "New Entry" : {},
+    "No place" : {},
     "not selected" : {},
     "Nothing logged today" : {},
     "OK" : {},
@@ -132,6 +133,7 @@
     "Today" : {},
     "Upper back" : {},
     "Where" : {},
+    "Whole body" : {},
     "Wrist" : {}
   },
   "version" : "1.0"
