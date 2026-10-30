@@ -83,6 +83,7 @@ struct PinSwipeRow<Content: View>: View {
         .buttonStyle(.plain)
         .frame(width: CGFloat(PinSwipe.revealWidth), alignment: .leading)
         .frame(maxHeight: .infinity)
+        .opacity(isMoved ? 1 : 0)
         .allowsHitTesting(isRevealed)
         .accessibilityHidden(!isActionExposed)
         .accessibilityIdentifier("pin-action-\(place.rawValue)")
