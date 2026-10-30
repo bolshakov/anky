@@ -18,17 +18,23 @@ struct RepeatChip: View {
 struct RepeatLoggedCard: View {
     let recent: RecentEntry
     let onUndo: () -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundStyle(Color("AccentColor"))
-                .accessibilityHidden(true)
-            Text(String(localized: "Logged") + " · " + recent.chipText)
-                .font(.subheadline.weight(.semibold))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .accessibilityLabel(String(localized: "Logged") + ", " + recent.spokenText)
-                .accessibilityIdentifier("repeat-logged")
+        let layout = dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
+            : AnyLayout(HStackLayout(spacing: 12))
+        layout {
+            HStack(spacing: 12) {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(Color("AccentColor"))
+                    .accessibilityHidden(true)
+                Text(String(localized: "Logged") + " · " + recent.chipText)
+                    .font(.subheadline.weight(.semibold))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel(String(localized: "Logged") + ", " + recent.spokenText)
+                    .accessibilityIdentifier("repeat-logged")
+            }
             Button(action: onUndo) {
                 Text("Undo")
                     .frame(minHeight: 44)
