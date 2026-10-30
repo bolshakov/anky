@@ -1,0 +1,8 @@
+$ sh -c 'gh run view 41049851767 --log | grep -E -e '\''Test oneAndTwentyOneLeftTakeTheSingularForm\(\) (passed|failed)'\'' -e '\''Test twoAndTwentyTwoLeftTakeTheFewForm\(\) (passed|failed)'\'' -e '\''Test fiveAndTheTeensLeftTakeTheManyForm\(\) (passed|failed)'\'' -e '\''Test theCatalogHoldsAllFourRussianPluralForms\(\) (passed|failed)'\'''
+exit: 0
+commit: a0fbcf593d77ea5db460e0fc2d0926d9210509cf
+
+ios	swift test	2026-10-30T11:55:41.1457500Z ✔ Test twoAndTwentyTwoLeftTakeTheFewForm() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1458580Z ✔ Test fiveAndTheTeensLeftTakeTheManyForm() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1459010Z ✔ Test theCatalogHoldsAllFourRussianPluralForms() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1459900Z ✔ Test oneAndTwentyOneLeftTakeTheSingularForm() passed after 1.864 seconds.

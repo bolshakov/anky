@@ -1,0 +1,8 @@
+$ sh -c 'gh run view 41049851767 --log | grep -E -e '\''Test everyApprovedTextReadsAsTheStakeholderWroteIt\(\) (passed|failed)'\'' -e '\''Test theSeverityTextReadsFourFromTenInBothKeys\(\) (passed|failed)'\'' -e '\''Test everyApprovedRussianValueIsMarkedTranslated\(\) (passed|failed)'\'' -e '\''Test noTextOutsideTheApprovedListHasARussianValue\(\) (passed|failed)'\'''
+exit: 0
+commit: a0fbcf593d77ea5db460e0fc2d0926d9210509cf
+
+ios	swift test	2026-10-30T11:55:41.1455890Z ✔ Test everyApprovedRussianValueIsMarkedTranslated() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1459460Z ✔ Test everyApprovedTextReadsAsTheStakeholderWroteIt() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1460360Z ✔ Test noTextOutsideTheApprovedListHasARussianValue() passed after 1.864 seconds.
+ios	swift test	2026-10-30T11:55:41.1468810Z ✔ Test theSeverityTextReadsFourFromTenInBothKeys() passed after 1.864 seconds.
