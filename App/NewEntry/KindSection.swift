@@ -31,7 +31,7 @@ struct KindSection: View {
         HStack(spacing: 0) {
             ForEach(EntryKind.allCases, id: \.self) { kind in
                 KindSegment(
-                    title: kind.displayName,
+                    kind: kind,
                     isSelected: kind == draft.kind,
                     namespace: selection,
                     showsSlide: !reduceMotion
@@ -46,7 +46,7 @@ struct KindSection: View {
 }
 
 private struct KindSegment: View {
-    let title: LocalizedStringResource
+    let kind: EntryKind
     let isSelected: Bool
     let namespace: Namespace.ID
     let showsSlide: Bool
@@ -54,7 +54,7 @@ private struct KindSegment: View {
 
     var body: some View {
         Button(action: select) {
-            Text(title)
+            Text(kind.displayName)
                 .font(.body.weight(isSelected ? .bold : .regular))
                 .foregroundStyle(isSelected ? Color("AccentColor") : .primary)
                 .frame(maxWidth: .infinity, minHeight: 44)
@@ -69,5 +69,6 @@ private struct KindSegment: View {
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityIdentifier("kind-\(kind.rawValue)")
     }
 }
