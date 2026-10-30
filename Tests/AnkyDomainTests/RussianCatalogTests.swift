@@ -88,6 +88,7 @@ History => История
 Yesterday => Вчера
 No entries yet => Записей пока нет
 Entries you add appear here, newest first. => Здесь появятся твои записи.
+None => Нет
 """)
 
 private let approvedFormatValues = table("""
@@ -95,6 +96,7 @@ private let approvedFormatValues = table("""
 %lld of %lld => %1$lld из %2$lld
 %@, %@ => %1$@, %2$@
 %@, %@, %@, %@ => %1$@, %2$@, %3$@, %4$@
+%@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 """)
 
 private let counterKey = "%lld left"
@@ -115,15 +117,25 @@ many => Готово · %lld мест
 other => Готово · %lld места
 """)
 
+private let morePlacesKey = "%lld places"
+
+private let approvedMorePlacesValues = table("""
+one => %lld место
+few => %lld места
+many => %lld мест
+other => %lld места
+""")
+
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
-    + [counterKey, donePlacesKey]
+    + [counterKey, donePlacesKey, morePlacesKey]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
 %lld of %lld => %1$lld of %2$lld
 %@, %@ => %1$@, %2$@
 %@, %@, %@, %@ => %1$@, %2$@, %3$@, %4$@
+%@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
 private let russian = Locale(identifier: "ru")
@@ -223,6 +235,29 @@ struct RussianCatalogTests {
         }
     }
 
+    @Test func theCountOfPlacesHoldsAllFourRussianPluralForms() throws {
+        let entries = try CompiledCatalog.entries()
+        let plural = try #require(entries[morePlacesKey]?.localizations?["ru"]?.variations?.plural)
+        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
+        for (form, value) in approvedMorePlacesValues {
+            #expect(plural[form]?.stringUnit?.value == value)
+        }
+    }
+
+    @Test func theCountOfPlacesTakesTheRussianPluralForms() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            for count in [1, 21] {
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) место")
+            }
+            for count in [2, 3, 4, 22] {
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) места")
+            }
+            for count in [5, 11, 12, 13, 14, 20] {
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) мест")
+            }
+        }
+    }
+
     @Test func oneAndTwentyOneLeftTakeTheSingularForm() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             for count in [1, 21] {
@@ -269,6 +304,9 @@ struct RussianCatalogTests {
             }
             for (count, expected) in [(1, "Done · 1 place"), (5, "Done · 5 places")] {
                 #expect(String(localized: "Done · \(count) places", bundle: en, locale: english) == expected)
+            }
+            for (count, expected) in [(1, "1 place"), (6, "6 places")] {
+                #expect(String(localized: "\(count) places", bundle: en, locale: english) == expected)
             }
         }
     }
