@@ -8,6 +8,8 @@ struct TodayView: View {
     @State private var editing: Entry?
     @State private var loggedID: UUID?
     @State private var isShowingSaveFailure = false
+    @State private var logTicks = 0
+    @State private var undoTicks = 0
 
     private var todayEntries: [Entry] {
         TodayList.entries(model.entries, on: .now, calendar: .current)
@@ -65,6 +67,8 @@ struct TodayView: View {
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
+            .sensoryFeedback(.success, trigger: logTicks)
+            .sensoryFeedback(.selection, trigger: undoTicks)
         }
     }
 
@@ -92,6 +96,7 @@ struct TodayView: View {
         do {
             try model.add(entry)
             loggedID = entry.id
+            logTicks += 1
             UIAccessibility.post(notification: .announcement, argument: String(localized: "Logged"))
         } catch {
             isShowingSaveFailure = true
@@ -103,6 +108,7 @@ struct TodayView: View {
         do {
             try model.remove(id: loggedID)
             self.loggedID = nil
+            undoTicks += 1
         } catch {
             isShowingSaveFailure = true
         }
