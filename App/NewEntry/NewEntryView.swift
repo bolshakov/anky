@@ -9,6 +9,7 @@ struct NewEntryView: View {
     @State private var startDraft: EntryDraft
     /// Ranked once per opening, so the chips do not move while a person taps them.
     @State private var rankedPlaces: [PlaceID]
+    @State private var isShowingPlaces = false
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
@@ -43,6 +44,9 @@ struct NewEntryView: View {
             }
             .background(Color("PageBackground"))
             .accessibilityIdentifier(screenID)
+            .navigationDestination(isPresented: $isShowingPlaces) {
+                PlacesListView(draft: $draft)
+            }
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -80,7 +84,7 @@ struct NewEntryView: View {
     @ViewBuilder
     private var whereSection: some View {
         if draft.kind.asksWhere {
-            WhereSection(draft: $draft, ranked: rankedPlaces)
+            WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, ranked: rankedPlaces)
         }
     }
 
