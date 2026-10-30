@@ -1,0 +1,4 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/walk.sh; ui | grep -E "^Button" | grep -vE "label=.(Today|History)"'
+exit: 1
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+

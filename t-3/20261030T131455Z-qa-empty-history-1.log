@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/walk.sh; fresh; tap_tab history History; ui | grep -E "id=(empty-history|day-header|entry-row)|No entries yet|newest first"'
+exit: 0
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+
+✓ Tap at (244.0, 822.0) completed successfully
+Heading id=empty-history label='No entries yet' value=None @129.83333333333334,475.5 142.3333333333333x26.333333333333314
+StaticText id=None label='Entries you add appear here, newest first.' value=None @43.166666666666686,513.8333333333333 315.66666666666663x20.33333333333337

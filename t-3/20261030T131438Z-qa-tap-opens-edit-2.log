@@ -1,0 +1,13 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/walk.sh; axe tap --id entry-row-stiffness --wait-timeout 5 --udid "$udid"; ui | grep -E "id=(edit-entry-screen|severity-value|note-field|date-row|save-entry) |Edit Entry"'
+exit: 0
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+
+✓ Tap at resolved tap point at (201.0, 373.66666666666674) completed successfully
+Group id=Edit Entry label=None value=None @0,78 402x54
+Heading id=None label='Edit Entry' value=None @162.33333333333334,89.66666666666666 77.33333333333334x20.66666666666667
+Heading id=None label='Edit Entry' value=None @162.33333333333334,89.99999999999999 77.33333333333334x20.33333333333333
+ScrollArea id=edit-entry-screen label=None value=None @0,62 402x812
+Button id=date-row label='Date and time' value='Oct 29, 2026, 12:00' @16,224 370x52.333333333333314
+StaticText id=severity-value label='5 of 10' value=None @317.6666666666667,560 52.333333333333314x20.333333333333258
+TextArea id=note-field label='Add a note' value='Walk note' @16,688.6666666666666 370x52
+Button id=save-entry label='Save changes' value=None @16,768 370x56

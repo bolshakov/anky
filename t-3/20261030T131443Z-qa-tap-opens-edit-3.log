@@ -1,0 +1,9 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/walk.sh; axe tap --id cancel-entry --udid "$udid"; ui | grep -E "id=(history-screen|entry-row)"'
+exit: 0
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+
+✓ Tap at resolved tap point at (62.33333333333333, 100.0) completed successfully
+Group id=history-screen label=None value=None @0,0 402x874
+Button id=entry-row-pain label='0:01, No place, Pain, 4 of 10' value=None @16,206 370x74.66666666666669
+Button id=entry-row-stiffness label='12:00, No place, Stiffness, 5 of 10' value=None @16,336.33333333333337 370x74.66666666666669
+Button id=entry-row-fatigue label='12:00, Whole body, Fatigue, 3 of 10' value=None @16,466.3333333333333 370x74.66666666666669

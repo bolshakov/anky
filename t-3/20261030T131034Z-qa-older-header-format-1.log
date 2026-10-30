@@ -1,0 +1,8 @@
+$ sh -c 'grep -E -e '\''Test anOlderDateHeaderHasTheLongWeekdayDayAndMonth\(\) (passed|failed)'\'' -e '\''Test aDateHeaderFollowsThePhonesOrderAndLanguage\(\) (passed|failed)'\'' -e '\''Test aSameYearDateReadsLikeTheTodaySubtitle\(\) (passed|failed)'\'' -e '\''Test aDateInAnotherYearIncludesTheYear\(\) (passed|failed)'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/ci.log | cut -c1-200'
+exit: 0
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+
+ios	swift test	2026-10-30T12:53:52.6893860Z ✔ Test aSameYearDateReadsLikeTheTodaySubtitle() passed after 1.761 seconds.
+ios	swift test	2026-10-30T12:53:52.6895030Z ✔ Test anOlderDateHeaderHasTheLongWeekdayDayAndMonth() passed after 1.761 seconds.
+ios	swift test	2026-10-30T12:53:52.6896340Z ✔ Test aDateInAnotherYearIncludesTheYear() passed after 1.761 seconds.
+ios	swift test	2026-10-30T12:53:52.6925990Z ✔ Test aDateHeaderFollowsThePhonesOrderAndLanguage() passed after 1.762 seconds.

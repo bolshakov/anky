@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t3-02-2/tmp/walk.sh; tap_tab history History; ui | grep -E "id=(today-screen|history-screen)"'
+exit: 0
+commit: 6ec21a33023bc7db21861be41a2a0aee1bd30218
+
+✓ Tap at (244.0, 822.0) completed successfully
+Group id=history-screen label=None value=None @0,0 402x874
