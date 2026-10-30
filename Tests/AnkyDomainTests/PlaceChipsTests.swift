@@ -104,4 +104,100 @@ struct PlaceChipsTests {
             #expect(Set(chips).count == 5)
         }
     }
+
+    private func regulars() throws -> [Entry] {
+        try (0 ..< 3).map { _ in try entry(["hip_l", "knee_l", "ankle_l", "elbow_l"]) }
+    }
+
+    @Test func twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() {
+        let chips = PlaceChips.chips(from: [], pinned: ids(["tail", "jaw"]))
+        #expect(chips == ids(["lower", "tail", "si_l", "si_r", "jaw"]))
+    }
+
+    @Test func aPinnedPlaceIsNotChosenAgainByTheUsageRule() throws {
+        let used = ["knee_l", "hip_l", "hip_r", "ribs", "chest", "elbow_l"]
+        let entries = try [entry(used), entry(used), entry(["knee_l"]), entry(["knee_l"])]
+        let chips = PlaceChips.chips(from: entries, pinned: ids(["knee_l"]))
+        #expect(chips == ids(["hip_l", "hip_r", "ribs", "chest", "knee_l"]))
+    }
+
+    @Test func aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() {
+        let chips = PlaceChips.chips(from: [], pinned: ids(["neck", "tail"]))
+        #expect(chips == ids(["neck", "lower", "tail", "si_l", "si_r"]))
+    }
+
+    @Test func pinsComeBeforeAPlaceUsedManyTimes() throws {
+        let steady = try (0 ..< 5).map { _ in try entry(["hip_l", "elbow_l", "wrist_l", "knee_l", "ankle_l"]) }
+        let chips = PlaceChips.chips(from: steady, pinned: ids(["jaw"]))
+        #expect(chips == ids(["hip_l", "elbow_l", "wrist_l", "knee_l", "jaw"]))
+    }
+
+    @Test func anUnknownPinNeverBecomesAChip() {
+        let chips = PlaceChips.chips(from: [], pinned: ids(["made_up", "tail"]))
+        #expect(chips == ids(["neck", "lower", "tail", "si_l", "si_r"]))
+    }
+
+    @Test func withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() throws {
+        let plain = try (0 ..< 6).map { _ in try entry(["lower", "si_l", "si_r"]) }
+        let entries = try [entry(["lower", "si_l", "si_r", "neck"]), entry(["lower", "si_l", "si_r", "neck"])]
+            + plain
+            + [entry(["lower", "neck", "knee_l", "upper"]), entry(["knee_l"])]
+        let chips = PlaceChips.chips(from: entries, pinned: [], lastChips: [])
+        #expect(chips == ids(["neck", "lower", "si_l", "si_r", "knee_l"]))
+    }
+
+    @Test func fivePinsAreTheChipsWhateverTheLastTenEntriesHold() throws {
+        let heavy = try (0 ..< 3).map { _ in try entry(["neck", "upper", "lower", "si_l", "si_r"]) }
+        let chips = PlaceChips.chips(from: heavy, pinned: ids(["tail", "jaw", "hip_l", "knee_l", "eyes"]))
+        #expect(chips == ids(["tail", "hip_l", "knee_l", "jaw", "eyes"]))
+    }
+
+    @Test func morePinsThanFiveKeepOnlyTheFirstFivePinned() {
+        let chips = PlaceChips.chips(from: [], pinned: ids(["tail", "jaw", "hip_l", "knee_l", "eyes", "ribs"]))
+        #expect(chips == ids(["tail", "hip_l", "knee_l", "jaw", "eyes"]))
+    }
+
+    @Test func theUsageRuleStillFillsTheCardAroundOnePin() throws {
+        let entries = try [entry(["hip_l", "knee_l"]), entry(["hip_l", "knee_l"])]
+        let chips = PlaceChips.chips(from: entries, pinned: ids(["jaw"]))
+        #expect(chips == ids(["lower", "si_l", "hip_l", "knee_l", "jaw"]))
+    }
+
+    @Test func aTieGoesToThePlaceThatWasAChipLastTime() throws {
+        let tied = try [entry(["wrist_l", "shoulder_l"], at: 100), entry(["wrist_l", "shoulder_l"], at: 110)]
+        let chips = try PlaceChips.chips(from: regulars() + tied, lastChips: ids(["wrist_l"]))
+        #expect(chips == ids(["hip_l", "elbow_l", "wrist_l", "knee_l", "ankle_l"]))
+    }
+
+    @Test func lastTimeBeatsTheMostRecentUseInATie() throws {
+        let shoulderLast = try [entry(["shoulder_l"], at: 10), entry(["shoulder_l"], at: 20)]
+        let wristRecent = try [entry(["wrist_l"], at: 100), entry(["wrist_l"], at: 120)]
+        let chips = try PlaceChips.chips(from: regulars() + shoulderLast + wristRecent, lastChips: ids(["shoulder_l"]))
+        #expect(chips == ids(["hip_l", "shoulder_l", "elbow_l", "knee_l", "ankle_l"]))
+    }
+
+    @Test func ifBothWereChipsLastTimeTheMostRecentUseWins() throws {
+        let shoulderLast = try [entry(["shoulder_l"], at: 10), entry(["shoulder_l"], at: 20)]
+        let wristRecent = try [entry(["wrist_l"], at: 100), entry(["wrist_l"], at: 120)]
+        let lastChips = ids(["shoulder_l", "wrist_l"])
+        let chips = try PlaceChips.chips(from: regulars() + shoulderLast + wristRecent, lastChips: lastChips)
+        #expect(chips == ids(["hip_l", "elbow_l", "wrist_l", "knee_l", "ankle_l"]))
+    }
+
+    @Test func aStillTiedPairGoesToBodyOrder() throws {
+        let tied = try [entry(["wrist_l", "shoulder_l"], at: 100), entry(["wrist_l", "shoulder_l"], at: 110)]
+        let chips = try PlaceChips.chips(from: regulars() + tied)
+        #expect(chips == ids(["hip_l", "shoulder_l", "elbow_l", "knee_l", "ankle_l"]))
+    }
+
+    @Test func aPlaceThatWasAChipButHasOneUseIsNotKept() throws {
+        let once = try [entry(["ribs"], at: 100)]
+        let chips = try PlaceChips.chips(from: regulars() + once, lastChips: ids(["ribs"]))
+        #expect(chips == ids(["lower", "hip_l", "elbow_l", "knee_l", "ankle_l"]))
+    }
+
+    @Test func pinsShowInBodyOrderNotInPinOrder() {
+        let chips = PlaceChips.chips(from: [], pinned: ids(["jaw", "tail"]))
+        #expect(chips == ids(["lower", "tail", "si_l", "si_r", "jaw"]))
+    }
 }
