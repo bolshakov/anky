@@ -102,6 +102,17 @@ Knees => Колени
 Ankles => Голеностопы
 Feet and toes => Стопы и пальцы ног
 Heels => Пятки
+Pin => Закрепить
+Unpin => Открепить
+Pin as shortcut => Закрепить как быстрый выбор
+Unpin shortcut => Открепить быстрый выбор
+You can pin up to 5. Unpin one to add another. => \
+Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое.
+Pin a shortcut => Закрепи быстрый выбор
+Swipe a place right to pin it as a shortcut on New Entry. => \
+Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
+Dismiss tip => Закрыть подсказку
+Pinned => Закреплено
 """)
 
 private let approvedFormatValues = table("""
