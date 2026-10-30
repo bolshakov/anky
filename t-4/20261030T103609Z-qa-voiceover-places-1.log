@@ -1,0 +1,12 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/v1.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=place-chip-lower label='Lower back' value='not selected' @28,336 119.33333333333331x44
+Button id=place-chip-si_l label='Left SI joint' value='not selected' @155.33333333333331,336 117.33333333333331x44
+Button id=place-chip-si_r label='Right SI joint' value='not selected' @28,388 127.33333333333331x44
+Button id=place-chip-neck label='Neck' value='not selected' @163.33333333333331,388 71.66666666666666x44
+Button id=place-chip-upper label='Upper back' value='not selected' @243,388 120.66666666666663x44
+✓ Tap at resolved tap point at (87.66666666666666, 358.0) completed successfully
+Button id=place-chip-lower label='Lower back' value='selected' @28,336 150.33333333333331x44

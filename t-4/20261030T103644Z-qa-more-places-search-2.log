@@ -1,0 +1,11 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/ci.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+ios	swift test	2026-10-30T09:40:42.1973630Z ✔ Test anUnknownIdIsKeptButNotCounted() passed after 0.017 seconds.
+ios	swift test	2026-10-30T09:40:42.1986440Z ✔ Test aPairWithBothSidesCountsTwoPlaces() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:40:42.2032480Z ✔ Test searchIgnoresCaseAndSpaces() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:40:42.2032860Z ✔ Test theQueryHeadFindsTheHeadGroup() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:40:42.2034700Z ✔ Test aQueryWithNoMatchFindsNothing() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:40:42.2035080Z ✔ Test aJointNameFindsThatJoint() passed after 0.018 seconds.
+ios	swift test	2026-10-30T09:40:42.2037570Z ✔ Test aGroupNameListsTheWholeGroup() passed after 0.018 seconds.

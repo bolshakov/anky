@@ -1,0 +1,19 @@
+$ git grep -n isSelected -- App/NewEntry/PlaceChip.swift App/NewEntry/PlaceListRow.swift
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+App/NewEntry/PlaceChip.swift:6:    let isSelected: Bool
+App/NewEntry/PlaceChip.swift:12:                if isSelected {
+App/NewEntry/PlaceChip.swift:17:            .font(.body.weight(isSelected ? .bold : .regular))
+App/NewEntry/PlaceChip.swift:18:            .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
+App/NewEntry/PlaceChip.swift:21:            .background(isSelected ? Color("AccentColor") : .clear, in: Capsule())
+App/NewEntry/PlaceChip.swift:23:                if !isSelected {
+App/NewEntry/PlaceChip.swift:33:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/PlaceChip.swift:37:        isSelected ? "selected" : "not selected"
+App/NewEntry/PlaceListRow.swift:36:        let isSelected = draft.places.contains(place)
+App/NewEntry/PlaceListRow.swift:41:                if isSelected {
+App/NewEntry/PlaceListRow.swift:46:            .font(.body.weight(isSelected ? .bold : .regular))
+App/NewEntry/PlaceListRow.swift:54:        .accessibilityValue(stateName(isSelected))
+App/NewEntry/PlaceListRow.swift:56:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/PlaceListRow.swift:63:    private func stateName(_ isSelected: Bool) -> LocalizedStringResource {
+App/NewEntry/PlaceListRow.swift:64:        isSelected ? "selected" : "not selected"

@@ -1,0 +1,10 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/s1.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 478.3333333333333) completed successfully
+✓ Tap at (200.99999999999994, 822.0) completed successfully
+Group id=place-row-knee label=None value=None @32,133.3333282470703 338x72.33334350585938
+Button id=place-knee_l label='Left knee' value='not selected' @32,161.66666666666669 165x44
+Button id=place-knee_r label='Right knee' value='not selected' @205,161.66666666666669 165x44

@@ -1,0 +1,35 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/m2.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+✓ Tap at resolved tap point at (201.0, 234.66666666666669) completed successfully
+--- first screen
+StaticText id=today-date label='Friday, October 30' value=None @16,189 324.66666666666663x116.66666666666663
+StaticText id=empty-today label='Nothing logged today' value=None @92.33333333333334,424.28735632183907 217.3333333333333x199
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None @53,635.2873563218391 296x435.33333333333326
+Group id=place-row-neck label=None value=None @32,230.33333333333334 338x63.33333333333334
+Group id=place-row-upper label=None value=None @32,323.66666666666663 338x63.333333333333314
+Group id=place-row-lower label=None value=None @32,417 338x63.333333333333314
+Group id=place-row-tail label=None value=None @32,510.3333333333333 338x63.333333333333314
+Group id=place-row-si label=None value=None @32,766.6666870117188 338x134.6666259765625
+StaticText id=None label='SI joint' value=None @32,766.6666666666666 150.66666666666666x63.33333333333337
+Button id=done-places label='Done' value=None @16,708.6666870117188 370x63.33331298828125
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/walk-t4.nkO2/first.png
+--- end of list
+StaticText id=today-date label='Friday, October 30' value=None @16,189 324.66666666666663x116.66666666666663
+StaticText id=empty-today label='Nothing logged today' value=None @92.33333333333334,424.28735632183907 217.3333333333333x199
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None @53,635.2873563218391 296x435.33333333333326
+Group id=place-row-foot label=None value=None @32,63 338x134.66665649414062
+StaticText id=None label='Foot and toes' value=None @32,63 304x63.33333333333333
+Button id=place-foot_l label='Left foot and toes' value='not selected' @32,134.33333333333331 165x63.33333333333334
+Button id=place-foot_r label='Right foot and toes' value='not selected' @205,134.33333333333331 165x63.33333333333334
+Group id=place-row-heel label=None value=None @32,227.6666717529297 338x134.6666717529297
+StaticText id=None label='Heel' value=None @32,227.66666666666652 103.66666666666666x63.333333333333314
+Button id=place-heel_l label='Left heel' value='not selected' @32,298.99999999999983 165x63.333333333333314
+Button id=place-heel_r label='Right heel' value='not selected' @205,298.99999999999983 165x63.333333333333314
+Group id=place-row-jaw label=None value=None @32,493 338x63.33333333333337
+Button id=place-jaw label='Jaw' value='not selected' @16,478 370x93.33333333333337
+Group id=place-row-eyes label=None value=None @32,586.333333333333 338x63.33333333333337
+Button id=place-eyes label='Eyes' value='not selected' @16,571.333333333333 370x93.33333333333337
+Button id=done-places label='Done' value=None @16,708.6666870117188 370x63.33331298828125
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/walk-t4.nkO2/end.png

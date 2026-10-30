@@ -1,0 +1,10 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/d1.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+✓ Tap at resolved tap point at (87.66666666666666, 358.0) completed successfully
+✓ Tap at resolved tap point at (244.99999999999997, 358.0) completed successfully
+✓ Tap at resolved tap point at (199.16666666666663, 410.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 530.3333333333333) completed successfully
+Button id=done-places label='Done · 3 places' value=None @16,716 370x56

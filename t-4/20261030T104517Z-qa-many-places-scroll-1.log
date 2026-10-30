@@ -1,0 +1,22 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-06-5/tmp/m3.sh
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+id=place-row-neck
+id=place-row-upper
+id=place-row-lower
+id=place-row-tail
+id=place-row-si
+id=place-row-hip
+id=place-row-ribs
+id=place-row-chest
+id=place-row-shoulder
+id=place-row-elbow
+id=place-row-wrist
+id=place-row-hand
+id=place-row-knee
+id=place-row-ankle
+id=place-row-foot
+id=place-row-heel
+id=place-row-jaw
+id=place-row-eyes

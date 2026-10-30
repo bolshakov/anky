@@ -1,0 +1,8 @@
+$ git grep -n -E 'Done · %lld place|"Done" :' -- App/Localizable.xcstrings
+exit: 0
+commit: a34776d6942ee954a113632cb685ba459b2bdfd7
+
+App/Localizable.xcstrings:74:    "Done" : {},
+App/Localizable.xcstrings:75:    "Done · %lld places" : {
+App/Localizable.xcstrings:83:                  "value" : "Done · %lld place"
+App/Localizable.xcstrings:89:                  "value" : "Done · %lld places"
