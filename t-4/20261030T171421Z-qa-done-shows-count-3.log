@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/d3.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+App/Localizable.xcstrings:278:    "Done" : {
+App/Localizable.xcstrings:288:    "Done · %lld places" : {
+App/Localizable.xcstrings:296:                  "value" : "Done · %lld place"
+App/Localizable.xcstrings:302:                  "value" : "Done · %lld places"

@@ -1,0 +1,10 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/d1.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (268.16666666666674, 358.0) completed successfully
+✓ Tap at resolved tap point at (80.66666666666671, 410.0) completed successfully
+✓ Tap at resolved tap point at (59.66666666666672, 358.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 522.3333333333333) completed successfully
+Button id=done-places label='Done · 3 places' value=None @16,716 370x56

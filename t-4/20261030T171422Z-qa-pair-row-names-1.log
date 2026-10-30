@@ -1,0 +1,12 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/p1.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at (200.99999999999994, 822.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 144.33333333333334) completed successfully
+✓ Tap at resolved tap point at (201.0, 196.33333333333331) completed successfully
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=entry-row-pain label='18:14, Left knee, Right knee, Pain, 0 of 10' value=None @16,226 370x74.66666666666663

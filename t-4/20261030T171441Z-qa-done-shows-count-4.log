@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/d4.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+ios	swift test	2026-10-30T16:51:20.2797910Z ✔ Test aPairWithBothSidesCountsTwoPlaces() passed after 3.398 seconds.
+ios	swift test	2026-10-30T16:51:20.2805780Z ✔ Test anUnknownIdIsKeptButNotCounted() passed after 3.398 seconds.

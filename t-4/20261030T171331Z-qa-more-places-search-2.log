@@ -1,0 +1,10 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/s2.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+ci=41093386338
+ios	swift test	2026-10-30T16:51:20.2765050Z ✔ Test aGroupNameListsTheWholeGroup() passed after 3.392 seconds.
+ios	swift test	2026-10-30T16:51:20.2765930Z ✔ Test searchIgnoresCaseAndSpaces() passed after 3.392 seconds.
+ios	swift test	2026-10-30T16:51:20.2766790Z ✔ Test aJointNameFindsThatJoint() passed after 3.392 seconds.
+ios	swift test	2026-10-30T16:51:20.2767160Z ✔ Test theQueryHeadFindsTheHeadGroup() passed after 3.392 seconds.
+ios	swift test	2026-10-30T16:51:20.2770080Z ✔ Test aQueryWithNoMatchFindsNothing() passed after 3.392 seconds.

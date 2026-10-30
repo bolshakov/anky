@@ -1,0 +1,18 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-12-1/tmp/v3.sh
+exit: 0
+commit: 3f92bf1a0d1856e9f0dfff07123abd85877eb82c
+
+App/NewEntry/PlaceChip.swift:6:    let isSelected: Bool
+App/NewEntry/PlaceChip.swift:14:                if isSelected {
+App/NewEntry/PlaceChip.swift:20:            .font(.subheadline.weight(isSelected ? .bold : .regular))
+App/NewEntry/PlaceChip.swift:21:            .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
+App/NewEntry/PlaceChip.swift:24:            .background(isSelected ? Color("AccentColor") : Color("PageBackground"), in: Capsule())
+App/NewEntry/PlaceChip.swift:31:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/PlaceChip.swift:35:        isSelected ? "selected" : "not selected"
+App/NewEntry/PlaceListRow.swift:9:        let isSelected = draft.places.contains(place)
+App/NewEntry/PlaceListRow.swift:15:                    .font(.body.weight(isSelected ? .semibold : .regular))
+App/NewEntry/PlaceListRow.swift:20:                    .opacity(isSelected ? 1 : 0)
+App/NewEntry/PlaceListRow.swift:32:            .accessibilityValue(stateName(isSelected))
+App/NewEntry/PlaceListRow.swift:35:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/PlaceListRow.swift:41:    private func stateName(_ isSelected: Bool) -> LocalizedStringResource {
+App/NewEntry/PlaceListRow.swift:42:        isSelected ? "selected" : "not selected"
