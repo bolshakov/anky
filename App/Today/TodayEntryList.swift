@@ -40,6 +40,7 @@ private struct EntryRow: View {
                 time
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .fixedSize()
                 VStack(alignment: .leading, spacing: 2) {
                     Text(entry.placeSummary.text)
                     Text(entry.kind.displayName)
