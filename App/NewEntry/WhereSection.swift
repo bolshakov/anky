@@ -14,7 +14,7 @@ struct WhereSection: View {
                 .padding(.horizontal, 16)
                 .accessibilityAddTraits(.isHeader)
 
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(spacing: 0) {
                 ChipFlowLayout {
                     ForEach(PlaceChips.shown(ranked: ranked, selected: draft.places), id: \.self) { place in
                         PlaceChip(place: place, isSelected: draft.places.contains(place)) {
@@ -23,24 +23,26 @@ struct WhereSection: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(12)
                 Divider()
                 Button {
                     isShowingPlaces = true
                 } label: {
                     HStack {
                         Text("More places")
+                            .foregroundStyle(Color("AccentColor"))
                         Spacer()
                         Image(systemName: "chevron.forward")
+                            .foregroundStyle(.secondary)
                     }
                     .font(.body)
-                    .foregroundStyle(.primary)
-                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .padding(.horizontal, 16)
+                    .frame(maxWidth: .infinity, minHeight: 52)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .accessibilityIdentifier("more-places")
             }
-            .padding(12)
             .background(Color("CardBackground"), in: .card)
         }
         .accessibilityElement(children: .contain)
