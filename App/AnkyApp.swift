@@ -12,7 +12,7 @@ struct AnkyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TodayView(model: model)
+            RootView(model: model)
                 .tint(Color("AccentColor"))
         }
     }

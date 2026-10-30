@@ -51,10 +51,14 @@ struct NewEntryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
+                    Group {
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                        .accessibilityIdentifier("cancel-entry")
                     }
-                    .accessibilityIdentifier("cancel-entry")
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("cancel-item")
                 }
                 .withoutGlassPill()
                 ToolbarItem(placement: .principal) {
