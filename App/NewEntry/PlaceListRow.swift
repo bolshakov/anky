@@ -8,51 +8,97 @@ struct PlaceListRow: View {
     var body: some View {
         Group {
             if joint.isPaired {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(joint.displayName)
-                    ViewThatFits(in: .horizontal) {
-                        HStack(spacing: 8) { sideButtons }
-                        VStack(alignment: .leading, spacing: 8) { sideButtons }
-                    }
-                }
+                pairedRow
             } else {
                 ForEach(joint.places, id: \.self) { place in
-                    placeButton(place, title: joint.displayName)
+                    singleRow(place)
                 }
             }
         }
+        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: joint.isPaired ? 12 : 16))
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("place-row-\(joint.rawValue)")
     }
 
-    private var sideButtons: some View {
-        ForEach(joint.places, id: \.self) { place in
-            placeButton(place, title: sideName(of: place))
+    private var pairedRow: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) {
+                Text(joint.displayName)
+                Spacer(minLength: 8)
+                sideChips
+            }
+            VStack(alignment: .leading, spacing: 8) {
+                Text(joint.displayName)
+                HStack(spacing: 8) { sideChips }
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    private func singleRow(_ place: PlaceID) -> some View {
+        let isSelected = draft.places.contains(place)
+        return placeButton(place, isSelected: isSelected) {
+            HStack {
+                Text(joint.displayName)
+                    .font(.body.weight(isSelected ? .bold : .regular))
+                Spacer(minLength: 8)
+                Image(systemName: "checkmark")
+                    .font(.body.weight(.heavy))
+                    .foregroundStyle(Color("AccentColor"))
+                    .opacity(isSelected ? 1 : 0)
+                    .accessibilityHidden(true)
+            }
+            .foregroundStyle(.primary)
+            .frame(maxWidth: .infinity, minHeight: 52)
+            .contentShape(Rectangle())
         }
     }
 
-    /// Each side is a button with its full place name as the label, so VoiceOver never reads a bare "Left".
-    private func placeButton(_ place: PlaceID, title: LocalizedStringResource) -> some View {
+    private var sideChips: some View {
+        ForEach(joint.places, id: \.self) { place in
+            sideChip(place)
+        }
+    }
+
+    private func sideChip(_ place: PlaceID) -> some View {
         let isSelected = draft.places.contains(place)
-        return Button {
-            draft.togglePlace(place)
-        } label: {
-            HStack(spacing: 6) {
+        return placeButton(place, isSelected: isSelected) {
+            HStack(spacing: 4) {
                 if isSelected {
                     Image(systemName: "checkmark")
+                        .font(.footnote.weight(.heavy))
+                        .accessibilityHidden(true)
                 }
-                Text(title)
+                Text(sideName(of: place))
             }
-            .font(.body.weight(isSelected ? .bold : .regular))
-            .foregroundStyle(.primary)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .frame(minHeight: 44)
-            .contentShape(Rectangle())
+            .font(.subheadline.weight(isSelected ? .semibold : .regular))
+            .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
+            .padding(.horizontal, 12)
+            .frame(minWidth: 64, minHeight: 44)
+            .background(Color(isSelected ? "AccentColor" : "PageBackground"), in: Capsule())
+            .contentShape(Capsule())
+        }
+    }
+
+    /// Each button is labelled with its full place name, so VoiceOver never reads a bare "Left" or "Right".
+    private func placeButton(
+        _ place: PlaceID,
+        isSelected: Bool,
+        @ViewBuilder label: () -> some View
+    ) -> some View {
+        Button {
+            draft.togglePlace(place)
+        } label: {
+            label()
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(place.displayName)
-        .accessibilityValue(stateName(isSelected))
-        .accessibilityIdentifier("place-\(place.rawValue)")
+        .accessibilityRepresentation {
+            Button(place.displayName) {
+                draft.togglePlace(place)
+            }
+            .accessibilityValue(stateName(isSelected))
+            .accessibilityIdentifier("place-\(place.rawValue)")
+        }
         .sensoryFeedback(.selection, trigger: isSelected)
     }
 

@@ -6,24 +6,22 @@ struct PlaceChip: View {
     let isSelected: Bool
     let action: () -> Void
 
+    @ScaledMetric(relativeTo: .subheadline) private var checkSize: CGFloat = 14
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
                 if isSelected {
                     Image(systemName: "checkmark")
+                        .font(.system(size: checkSize, weight: .heavy))
                 }
                 Text(place.displayName)
             }
-            .font(.body.weight(isSelected ? .bold : .regular))
+            .font(.subheadline.weight(isSelected ? .bold : .regular))
             .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 14)
             .frame(minHeight: 44)
-            .background(isSelected ? Color("AccentColor") : .clear, in: Capsule())
-            .overlay {
-                if !isSelected {
-                    Capsule().strokeBorder(Color("AccentColor"), lineWidth: 1)
-                }
-            }
+            .background(isSelected ? Color("AccentColor") : Color("PageBackground"), in: Capsule())
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)

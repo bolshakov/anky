@@ -4,19 +4,18 @@ import XCTest
 @MainActor
 final class RegionTests: XCTestCase {
     func testDatesFollowRussia() {
-        checkDatesFollowRegion(language: "ru", region: "RU")
+        checkDatesFollowRegion(language: "ru", region: "RU", locale: Locale(identifier: "ru_RU"))
     }
 
     func testDatesFollowGermany() {
-        checkDatesFollowRegion(language: "de", region: "DE")
+        // No German words ship yet.
+        checkDatesFollowRegion(language: "de", region: "DE", locale: Locale(identifier: "en_DE"))
     }
 
     /// The app shows `Date.now`, so each shown text may hold the moment before or after the read, as the entry
     /// row's time may fall in the minute before or after the save.
-    private func checkDatesFollowRegion(language: String, region: String) {
+    private func checkDatesFollowRegion(language: String, region: String, locale: Locale) {
         continueAfterFailure = false
-        // No Russian or German words ship yet, so the app shows English words in the region's formats.
-        let locale = Locale(identifier: "en_\(region)")
         let app = launchAnky(presentation: .region(language: language, region: region))
 
         let dayBefore = dayText(at: .now, in: locale)
@@ -48,8 +47,10 @@ final class RegionTests: XCTestCase {
                       "entry row time is \(rowTime(of: entry))")
     }
 
+    /// The shown date starts with a capital letter, where `Date.formatted` leaves a Russian weekday in lower case.
     private func dayText(at date: Date, in locale: Locale) -> String {
-        date.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(locale))
+        let text = date.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(locale))
+        return text.prefix(1).uppercased() + text.dropFirst()
     }
 
     private func clockText(at date: Date, in locale: Locale) -> String {
