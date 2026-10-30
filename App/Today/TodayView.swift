@@ -1,13 +1,24 @@
 import AnkyDomain
 import SwiftUI
+import UIKit
 
 struct TodayView: View {
     let model: EntryLogModel
     @State private var isShowingNewEntry = false
     @State private var editing: Entry?
+    @State private var loggedID: UUID?
+    @State private var isShowingSaveFailure = false
 
     private var todayEntries: [Entry] {
         TodayList.entries(model.entries, on: .now, calendar: .current)
+    }
+
+    private var recent: RecentEntry? {
+        RecentEntries.distinct(from: model.entries, limit: 1).first
+    }
+
+    private var loggedEntry: Entry? {
+        model.entries.first { $0.id == loggedID }
     }
 
     var body: some View {
@@ -19,17 +30,21 @@ struct TodayView: View {
                         .foregroundStyle(.secondary)
                         .accessibilityIdentifier("today-date")
 
+                    repeatBlock
+
                     if todayEntries.isEmpty {
                         EmptyTodayView()
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 48)
+                            .padding(.top, recent == nil ? 48 : 64)
+                            .padding(.bottom, 48)
                     } else {
-                        TodayEntryList(entries: todayEntries, onSelect: { editing = $0 })
-                            .padding(.top, 40)
+                        TodayEntryList(entries: todayEntries, onSelect: open)
+                            .padding(.top, 16)
                     }
                 }
                 .padding(.horizontal)
             }
+            .onDisappear { loggedID = nil }
             .background(Color("PageBackground"))
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
@@ -47,6 +62,49 @@ struct TodayView: View {
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry))
             }
+            .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var repeatBlock: some View {
+        if let loggedEntry {
+            RepeatLoggedCard(recent: RecentEntry(loggedEntry), onUndo: undoLogged)
+                .padding(.top, 16)
+        } else if let recent {
+            RepeatChip(recent: recent) { logRecent(recent) }
+                .padding(.top, 16)
+        }
+    }
+
+    private func open(_ entry: Entry) {
+        if entry.id == loggedID {
+            loggedID = nil
+        }
+        editing = entry
+    }
+
+    private func logRecent(_ recent: RecentEntry) {
+        guard loggedEntry == nil else { return }
+        let entry = Entry(draft: recent.draft(at: .now))
+        do {
+            try model.add(entry)
+            loggedID = entry.id
+            UIAccessibility.post(notification: .announcement, argument: String(localized: "Logged"))
+        } catch {
+            isShowingSaveFailure = true
+        }
+    }
+
+    private func undoLogged() {
+        guard let loggedID else { return }
+        do {
+            try model.remove(id: loggedID)
+            self.loggedID = nil
+        } catch {
+            isShowingSaveFailure = true
         }
     }
 }
