@@ -1,0 +1,4 @@
+$ sh -c '. "$TMPDIR/walk.sh";  ui | grep -E '\''^Button'\'' | grep -vE "label='\''(Today|History)"'
+exit: 1
+commit: 07d6a50b8ce192f22ca6218b0672b9959ddfef67
+
