@@ -71,6 +71,29 @@
     "Date and time" : {},
     "Delete entry" : {},
     "Delete this entry? This can't be undone." : {},
+    "Done" : {},
+    "Done · %lld places" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Done · %lld place"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Done · %lld places"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Edit Entry" : {},
     "Elbow" : {},
     "Eyes" : {},
@@ -84,6 +107,7 @@
     "Jaw" : {},
     "Kind" : {},
     "Knee" : {},
+    "Left" : {},
     "Left ankle" : {},
     "Left elbow" : {},
     "Left foot and toes" : {},
@@ -99,14 +123,17 @@
     "Log how you feel" : {},
     "Log how you feel, or a medication you took. Everything stays on this iPhone." : {},
     "Lower back" : {},
+    "More places" : {},
     "Neck" : {},
     "New Entry" : {},
+    "No matching places" : {},
     "not selected" : {},
     "Nothing logged today" : {},
     "OK" : {},
     "Pain" : {},
     "Pelvis and chest" : {},
     "Ribs" : {},
+    "Right" : {},
     "Right ankle" : {},
     "Right elbow" : {},
     "Right foot and toes" : {},
@@ -119,6 +146,7 @@
     "Right wrist" : {},
     "Save changes" : {},
     "Save entry" : {},
+    "Search joints and places" : {},
     "selected" : {},
     "Severity" : {},
     "Shoulder" : {},
