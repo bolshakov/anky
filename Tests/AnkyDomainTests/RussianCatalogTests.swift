@@ -89,6 +89,17 @@ Yesterday => Вчера
 No entries yet => Записей пока нет
 Entries you add appear here, newest first. => Здесь появятся твои записи.
 None => Нет
+Same as last time => Как в прошлый раз
+SI joints => Крестцово-подвздошные суставы
+Hips => Тазобедренные суставы
+Shoulders => Плечи
+Elbows => Локти
+Wrists => Запястья
+Hands and fingers => Кисти и пальцы
+Knees => Колени
+Ankles => Голеностопы
+Feet and toes => Стопы и пальцы ног
+Heels => Пятки
 """)
 
 private let approvedFormatValues = table("""
