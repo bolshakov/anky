@@ -1,18 +1,22 @@
 import AnkyDomain
 import Foundation
 
-private let pluralJointNames: [String: LocalizedStringResource] = [
-    "si": "SI joints",
-    "hip": "Hips",
-    "shoulder": "Shoulders",
-    "elbow": "Elbows",
-    "wrist": "Wrists",
-    "hand": "Hands and fingers",
-    "knee": "Knees",
-    "ankle": "Ankles",
-    "foot": "Feet and toes",
-    "heel": "Heels",
-]
+private let pluralJointNames = keyed(
+    ("si", "SI joints"),
+    ("hip", "Hips"),
+    ("shoulder", "Shoulders"),
+    ("elbow", "Elbows"),
+    ("wrist", "Wrists"),
+    ("hand", "Hands and fingers"),
+    ("knee", "Knees"),
+    ("ankle", "Ankles"),
+    ("foot", "Feet and toes"),
+    ("heel", "Heels")
+)
+
+private func keyed(_ pairs: (String, LocalizedStringResource)...) -> [String: LocalizedStringResource] {
+    Dictionary(uniqueKeysWithValues: pairs)
+}
 
 extension Joint {
     var pluralDisplayName: LocalizedStringResource {
