@@ -5,12 +5,26 @@ struct HistoryView: View {
     let model: EntryLogModel
     @State private var now = Date.now
     @State private var editing: Entry?
+    @State private var pendingDelete: Entry?
 
     private var sections: [DaySection] {
         HistoryList.sections(model.entries, now: now, calendar: .current)
     }
 
+    private var isConfirmingDelete: Binding<Bool> {
+        Binding(
+            get: { pendingDelete != nil },
+            set: { isShowing in
+                if !isShowing {
+                    pendingDelete = nil
+                }
+            }
+        )
+    }
+
     var body: some View {
+        // Captured here, so the alert's button deletes the entry it was asked about even after the binding clears.
+        let target = pendingDelete
         NavigationStack {
             Group {
                 if sections.isEmpty {
@@ -18,13 +32,21 @@ struct HistoryView: View {
                 } else {
                     List {
                         ForEach(sections) { section in
-                            DaySectionView(section: section, onSelect: { editing = $0 })
+                            DaySectionView(
+                                section: section,
+                                onSelect: { editing = $0 },
+                                onDelete: { pendingDelete = $0 }
+                            )
                         }
                     }
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
                     .headerProminence(.increased)
                 }
+            }
+            .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
+                guard let target else { return }
+                try model.remove(id: target.id)
             }
             .background(Color("PageBackground"))
             .accessibilityElement(children: .contain)
