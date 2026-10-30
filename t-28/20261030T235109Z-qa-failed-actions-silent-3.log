@@ -1,0 +1,20 @@
+$ sh -c '
+grep -n -A3 '\''try model.add(entry)'\'' App/Today/TodayView.swift
+grep -n -A3 '\''try model.remove(id: loggedID)'\'' App/Today/TodayView.swift
+grep -n -A4 '\''try store()'\'' App/NewEntry/NewEntryView.swift'
+exit: 0
+commit: 087c759447246f4605e9255be0a2206aa8a94fed
+
+99:            try model.add(entry)
+100-            loggedID = entry.id
+101-            logTicks += 1
+102-            UIAccessibility.post(notification: .announcement, argument: String(localized: "Logged"))
+111:            try model.remove(id: loggedID)
+112-            self.loggedID = nil
+113-            undoTicks += 1
+114-        } catch {
+135:            try store()
+136-            if !hasReportedSave {
+137-                hasReportedSave = true
+138-                onSaved()
+139-            }

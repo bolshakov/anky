@@ -1,0 +1,16 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t28-02-1/tmp/walk-t28.pg4r; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t28-02-1/tmp/walk-t28.pg4r/udid); . $TMPDIR/walk.sh
+axe tap --label OK --element-type Button --wait-timeout 5 --udid "$udid"
+axe tap --id log-entry --wait-timeout 5 --udid "$udid"
+axe tap --id save-entry --wait-timeout 5 --udid "$udid"
+{ ui | grep -E '\''id=new-entry-screen|could not be saved'\''; stored; }'
+exit: 0
+commit: 087c759447246f4605e9255be0a2206aa8a94fed
+
+✓ Tap at resolved tap point at (201.0, 474.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+ScrollArea id=new-entry-screen label=None value=None @0,62 402x812
+Sheet id=None label='This entry could not be saved.' value=None @41,388 320x126
+StaticText id=None label='This entry could not be saved.' value=None @71,409.6666666666667 260x20.333333333333314
+1
