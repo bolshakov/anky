@@ -23,6 +23,7 @@ struct KindButtons: View {
                         )
                 }
                 .accessibilityAddTraits(isSelected ? .isSelected : [])
+                .accessibilityIdentifier("kind-\(option.rawValue)")
             }
         }
         .accessibilityElement(children: .contain)

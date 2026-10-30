@@ -7,6 +7,8 @@ struct NewEntryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var startDraft: EntryDraft
+    /// Ranked once per opening, so the chips do not move while a person taps them.
+    @State private var rankedPlaces: [PlaceID]
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
@@ -21,6 +23,7 @@ struct NewEntryView: View {
         _draft = State(initialValue: opening)
         // State, not a fresh call, so a view SwiftUI makes again still compares with the draft it opened with.
         _startDraft = State(initialValue: opening)
+        _rankedPlaces = State(initialValue: PlaceChips.ranked(from: model.entries))
     }
 
     var body: some View {
@@ -29,6 +32,7 @@ struct NewEntryView: View {
                 VStack(spacing: 24) {
                     KindSection(draft: $draft)
                     DateSection(draft: $draft)
+                    whereSection
                     SeveritySection(draft: $draft)
                     NoteSection(draft: $draft)
                     if case .edit = mode {
@@ -70,6 +74,13 @@ struct NewEntryView: View {
                 Button("OK") {}
             }
             .interactiveDismissDisabled(draft != startDraft)
+        }
+    }
+
+    @ViewBuilder
+    private var whereSection: some View {
+        if draft.kind.asksWhere {
+            WhereSection(draft: $draft, ranked: rankedPlaces)
         }
     }
 
