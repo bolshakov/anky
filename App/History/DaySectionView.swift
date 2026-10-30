@@ -12,7 +12,6 @@ struct DaySectionView: View {
                     onSelect(entry)
                 }
                 .listRowInsets(EdgeInsets())
-                .listRowBackground(Color("CardBackground"))
             }
         } header: {
             title
