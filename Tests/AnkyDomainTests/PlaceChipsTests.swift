@@ -122,7 +122,7 @@ struct PlaceChipsTests {
     }
 
     @Test func aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() {
-        let chips = PlaceChips.chips(from: [], pinned: ids(["neck", "tail"]))
+        let chips = PlaceChips.chips(from: [], pinned: ids(["lower", "tail"]))
         #expect(chips == ids(["neck", "lower", "tail", "si_l", "si_r"]))
     }
 
