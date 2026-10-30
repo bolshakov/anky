@@ -56,3 +56,70 @@ struct ShortcutsTests {
         #expect(shortcuts.pinned == [place("a"), place("b"), place("c")])
     }
 }
+
+struct FileShortcutsStoreTests {
+    private let shortcuts = Shortcuts(
+        pinned: [PlaceID(rawValue: "a"), PlaceID(rawValue: "b")],
+        lastChips: [PlaceID(rawValue: "c"), PlaceID(rawValue: "a"), PlaceID(rawValue: "d")]
+    )
+
+    private func withFolder<T>(_ body: (URL) throws -> T) throws -> T {
+        let folder = FileManager.default.temporaryDirectory
+            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        return try body(folder)
+    }
+
+    @Test func pinsAndLastChipsReloadFromTheFile() throws {
+        try withFolder { folder in
+            let fileURL = folder.appending(path: "shortcuts.json")
+            let store = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
+            try store.save(shortcuts)
+
+            let file = try JSONSerialization.jsonObject(with: Data(contentsOf: fileURL)) as? [String: Any]
+            #expect(file?["version"] as? Int == 1)
+            #expect(file?["pinned"] as? [String] == ["a", "b"])
+            #expect(file?["lastChips"] as? [String] == ["c", "a", "d"])
+        }
+    }
+
+    @Test func aNewStoreOnTheSameFileSeesWhatWasSaved() throws {
+        try withFolder { folder in
+            let fileURL = folder.appending(path: "shortcuts.json")
+            try FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault).save(shortcuts)
+
+            let reopened = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
+            #expect(reopened.load() == shortcuts)
+        }
+    }
+
+    @Test func aMissingFileGivesNoPinsAndNoLastChips() throws {
+        try withFolder { folder in
+            let store = FileShortcutsStore(fileURL: folder.appending(path: "shortcuts.json"), protection: .deviceDefault)
+            #expect(store.load() == Shortcuts())
+        }
+    }
+
+    @Test func anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() throws {
+        try withFolder { folder in
+            let fileURL = folder.appending(path: "shortcuts.json")
+            try Data("this is not a shortcuts file".utf8).write(to: fileURL)
+            let store = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
+            #expect(store.load() == Shortcuts())
+
+            try store.save(shortcuts)
+
+            #expect(FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault).load() == shortcuts)
+        }
+    }
+
+    @Test func aFileOfAnotherVersionGivesNoPinsAndNoLastChips() throws {
+        try withFolder { folder in
+            let fileURL = folder.appending(path: "shortcuts.json")
+            try Data(#"{"version":2,"pinned":["a"],"lastChips":["b"]}"#.utf8).write(to: fileURL)
+            let store = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
+            #expect(store.load() == Shortcuts())
+        }
+    }
+}
