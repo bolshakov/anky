@@ -24,12 +24,24 @@
             "state" : "translated",
             "value" : "%1$@, %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
         }
       }
     },
     "%@, %@, %@, %@" : {
       "localizations" : {
         "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@, %4$@"
+          }
+        },
+        "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$@, %3$@, %4$@"
@@ -115,8 +127,26 @@
         }
       }
     },
-    "Ankle" : {},
-    "Arms" : {},
+    "Ankle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Голеностоп"
+          }
+        }
+      }
+    },
+    "Arms" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Руки"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -127,7 +157,16 @@
         }
       }
     },
-    "Chest wall" : {},
+    "Chest wall" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Грудная клетка"
+          }
+        }
+      }
+    },
     "Date and time" : {
       "localizations" : {
         "ru" : {
@@ -138,9 +177,36 @@
         }
       }
     },
-    "Delete entry" : {},
-    "Delete this entry? This can't be undone." : {},
-    "Done" : {},
+    "Delete entry" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить запись"
+          }
+        }
+      }
+    },
+    "Delete this entry? This can't be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить эту запись? Это нельзя отменить."
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово"
+          }
+        }
+      }
+    },
     "Done · %lld places" : {
       "localizations" : {
         "en" : {
@@ -160,13 +226,79 @@
               }
             }
           }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Готово · %lld место"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Готово · %lld места"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Готово · %lld мест"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Готово · %lld места"
+                }
+              }
+            }
+          }
         }
       }
     },
-    "Edit Entry" : {},
-    "Elbow" : {},
-    "Entries you add appear here, newest first." : {},
-    "Eyes" : {},
+    "Edit Entry" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить запись"
+          }
+        }
+      }
+    },
+    "Elbow" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Локоть"
+          }
+        }
+      }
+    },
+    "Entries you add appear here, newest first." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здесь появятся твои записи."
+          }
+        }
+      }
+    },
+    "Eyes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глаза"
+          }
+        }
+      }
+    },
     "Fatigue" : {
       "localizations" : {
         "ru" : {
@@ -177,12 +309,66 @@
         }
       }
     },
-    "Foot and toes" : {},
-    "Hand and fingers" : {},
-    "Head" : {},
-    "Heel" : {},
-    "Hip" : {},
-    "History" : {},
+    "Foot and toes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стопа и пальцы ног"
+          }
+        }
+      }
+    },
+    "Hand and fingers" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кисть и пальцы"
+          }
+        }
+      }
+    },
+    "Head" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Голова"
+          }
+        }
+      }
+    },
+    "Heel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пятка"
+          }
+        }
+      }
+    },
+    "Hip" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тазобедренный сустав"
+          }
+        }
+      }
+    },
+    "History" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "История"
+          }
+        }
+      }
+    },
     "How strong" : {
       "localizations" : {
         "ru" : {
@@ -193,7 +379,16 @@
         }
       }
     },
-    "Jaw" : {},
+    "Jaw" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Челюсть"
+          }
+        }
+      }
+    },
     "Kind" : {
       "localizations" : {
         "ru" : {
@@ -204,19 +399,136 @@
         }
       }
     },
-    "Knee" : {},
-    "Left" : {},
-    "Left ankle" : {},
-    "Left elbow" : {},
-    "Left foot and toes" : {},
-    "Left hand and fingers" : {},
-    "Left heel" : {},
-    "Left hip" : {},
-    "Left knee" : {},
-    "Left shoulder" : {},
-    "Left SI joint" : {},
-    "Left wrist" : {},
-    "Legs" : {},
+    "Knee" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Колено"
+          }
+        }
+      }
+    },
+    "Left" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слева"
+          }
+        }
+      }
+    },
+    "Left ankle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левый голеностоп"
+          }
+        }
+      }
+    },
+    "Left elbow" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левый локоть"
+          }
+        }
+      }
+    },
+    "Left foot and toes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левая стопа и пальцы ног"
+          }
+        }
+      }
+    },
+    "Left hand and fingers" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левая кисть и пальцы"
+          }
+        }
+      }
+    },
+    "Left heel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левая пятка"
+          }
+        }
+      }
+    },
+    "Left hip" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левый тазобедренный сустав"
+          }
+        }
+      }
+    },
+    "Left knee" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левое колено"
+          }
+        }
+      }
+    },
+    "Left shoulder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левое плечо"
+          }
+        }
+      }
+    },
+    "Left SI joint" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левый крестцово-подвздошный"
+          }
+        }
+      }
+    },
+    "Left wrist" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Левое запястье"
+          }
+        }
+      }
+    },
+    "Legs" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ноги"
+          }
+        }
+      }
+    },
     "Limit reached" : {
       "localizations" : {
         "ru" : {
@@ -247,9 +559,36 @@
         }
       }
     },
-    "Lower back" : {},
-    "More places" : {},
-    "Neck" : {},
+    "Lower back" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поясница"
+          }
+        }
+      }
+    },
+    "More places" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другие места"
+          }
+        }
+      }
+    },
+    "Neck" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шея"
+          }
+        }
+      }
+    },
     "New Entry" : {
       "localizations" : {
         "ru" : {
@@ -260,9 +599,36 @@
         }
       }
     },
-    "No entries yet" : {},
-    "No matching places" : {},
-    "No place" : {},
+    "No entries yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записей пока нет"
+          }
+        }
+      }
+    },
+    "No matching places" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ничего не найдено"
+          }
+        }
+      }
+    },
+    "No place" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Место не указано"
+          }
+        }
+      }
+    },
     "not selected" : {
       "localizations" : {
         "ru" : {
@@ -303,20 +669,146 @@
         }
       }
     },
-    "Pelvis and chest" : {},
-    "Ribs" : {},
-    "Right" : {},
-    "Right ankle" : {},
-    "Right elbow" : {},
-    "Right foot and toes" : {},
-    "Right hand and fingers" : {},
-    "Right heel" : {},
-    "Right hip" : {},
-    "Right knee" : {},
-    "Right shoulder" : {},
-    "Right SI joint" : {},
-    "Right wrist" : {},
-    "Save changes" : {},
+    "Pelvis and chest" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таз и грудная клетка"
+          }
+        }
+      }
+    },
+    "Ribs" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рёбра"
+          }
+        }
+      }
+    },
+    "Right" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Справа"
+          }
+        }
+      }
+    },
+    "Right ankle" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правый голеностоп"
+          }
+        }
+      }
+    },
+    "Right elbow" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правый локоть"
+          }
+        }
+      }
+    },
+    "Right foot and toes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правая стопа и пальцы ног"
+          }
+        }
+      }
+    },
+    "Right hand and fingers" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правая кисть и пальцы"
+          }
+        }
+      }
+    },
+    "Right heel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правая пятка"
+          }
+        }
+      }
+    },
+    "Right hip" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правый тазобедренный сустав"
+          }
+        }
+      }
+    },
+    "Right knee" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правое колено"
+          }
+        }
+      }
+    },
+    "Right shoulder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правое плечо"
+          }
+        }
+      }
+    },
+    "Right SI joint" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правый крестцово-подвздошный"
+          }
+        }
+      }
+    },
+    "Right wrist" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правое запястье"
+          }
+        }
+      }
+    },
+    "Save changes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить изменения"
+          }
+        }
+      }
+    },
     "Save entry" : {
       "localizations" : {
         "ru" : {
@@ -327,7 +819,16 @@
         }
       }
     },
-    "Search joints and places" : {},
+    "Search joints and places" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск суставов и мест"
+          }
+        }
+      }
+    },
     "selected" : {
       "localizations" : {
         "ru" : {
@@ -348,9 +849,36 @@
         }
       }
     },
-    "Shoulder" : {},
-    "SI joint" : {},
-    "Spine" : {},
+    "Shoulder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плечо"
+          }
+        }
+      }
+    },
+    "SI joint" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Крестцово-подвздошный сустав"
+          }
+        }
+      }
+    },
+    "Spine" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позвоночник"
+          }
+        }
+      }
+    },
     "Stiffness" : {
       "localizations" : {
         "ru" : {
@@ -371,8 +899,26 @@
         }
       }
     },
-    "Tailbone" : {},
-    "This entry could not be deleted." : {},
+    "Tailbone" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копчик"
+          }
+        }
+      }
+    },
+    "This entry could not be deleted." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить запись."
+          }
+        }
+      }
+    },
     "This entry could not be saved." : {
       "localizations" : {
         "ru" : {
@@ -393,11 +939,56 @@
         }
       }
     },
-    "Upper back" : {},
-    "Where" : {},
-    "Whole body" : {},
-    "Wrist" : {},
-    "Yesterday" : {}
+    "Upper back" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Верхняя часть спины"
+          }
+        }
+      }
+    },
+    "Where" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Где"
+          }
+        }
+      }
+    },
+    "Whole body" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё тело"
+          }
+        }
+      }
+    },
+    "Wrist" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запястье"
+          }
+        }
+      }
+    },
+    "Yesterday" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вчера"
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }
