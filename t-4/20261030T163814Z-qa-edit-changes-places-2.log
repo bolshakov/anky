@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/tmp/e2.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/tmp/walk-t411.lDnF
+exit: 0
+commit: 43bd7686d53dd63c438a556989e4e90f93b7a3fc
+
+✓ Tap at resolved tap point at (268.16666666666663, 358.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+Button id=entry-row-pain label='0:01, Lower back, Left knee, Pain, 4 of 10' value=None @16,226 370x74.66666666666663
+[['lower', 'knee_l']]

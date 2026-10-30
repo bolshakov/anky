@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/tmp/n1.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/tmp/walk-t411.lDnF
+exit: 0
+commit: 43bd7686d53dd63c438a556989e4e90f93b7a3fc
+
+✓ Tap at resolved tap point at (201.0, 274.3333333333333) completed successfully
+Button id=more-places label='More places' value='Left hip, Left shoulder, Left knee, Left ankle' @16,444.3333333333333 370x52

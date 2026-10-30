@@ -1,0 +1,8 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/checkout grep -n -E '"None"|and %lld more|"%lld places"' -- App/Localizable.xcstrings
+exit: 0
+commit: 43bd7686d53dd63c438a556989e4e90f93b7a3fc
+
+App/Localizable.xcstrings:36:    "%@, %@ and %lld more" : {
+App/Localizable.xcstrings:136:    "%lld places" : {
+App/Localizable.xcstrings:150:                  "value" : "%lld places"
+App/Localizable.xcstrings:710:    "None" : {

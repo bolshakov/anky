@@ -1,0 +1,12 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t4-11-1/tmp/c3.sh
+exit: 0
+commit: 43bd7686d53dd63c438a556989e4e90f93b7a3fc
+
+ci=41087840676
+ios	swift test	2026-10-30T16:14:23.6006270Z ✔ Test morePlacesCountsEveryPlaceAfterTheFirstTwo() passed after 2.321 seconds.
+ios	swift test	2026-10-30T16:14:23.6007620Z ✔ Test onePlaceOutsideTheChipsIsListed() passed after 2.321 seconds.
+ios	swift test	2026-10-30T16:14:23.6015900Z ✔ Test aPickedPlaceWithAChipIsNotInTheValue() passed after 2.321 seconds.
+ios	swift test	2026-10-30T16:14:23.6016420Z ✔ Test twoPlacesOutsideTheChipsAreBothListed() passed after 2.321 seconds.
+ios	swift test	2026-10-30T16:14:23.6018550Z ✔ Test threePlacesShowTwoNamesAndOneMore() passed after 2.322 seconds.
+ios	swift test	2026-10-30T16:14:23.6019040Z ✔ Test placesOutsideTheChipsFollowBodyOrder() passed after 2.321 seconds.
+ios	swift test	2026-10-30T16:14:23.6020510Z ✔ Test noPlaceOutsideTheChipsIsNone() passed after 2.322 seconds.
