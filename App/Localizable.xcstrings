@@ -285,6 +285,16 @@
         }
       }
     },
+    "Dismiss tip" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть подсказку"
+          }
+        }
+      }
+    },
     "Done" : {
       "localizations" : {
         "ru" : {
@@ -847,6 +857,46 @@
         }
       }
     },
+    "Pin" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрепить"
+          }
+        }
+      }
+    },
+    "Pin a shortcut" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрепи быстрый выбор"
+          }
+        }
+      }
+    },
+    "Pin as shortcut" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрепить как быстрый выбор"
+          }
+        }
+      }
+    },
+    "Pinned" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закреплено"
+          }
+        }
+      }
+    },
     "Ribs" : {
       "localizations" : {
         "ru" : {
@@ -1097,6 +1147,16 @@
         }
       }
     },
+    "Swipe a place right to pin it as a shortcut on New Entry." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи."
+          }
+        }
+      }
+    },
     "Tailbone" : {
       "localizations" : {
         "ru" : {
@@ -1143,6 +1203,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отменить"
+          }
+        }
+      }
+    },
+    "Unpin" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открепить"
+          }
+        }
+      }
+    },
+    "Unpin shortcut" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открепить быстрый выбор"
           }
         }
       }
@@ -1203,6 +1283,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вчера"
+          }
+        }
+      }
+    },
+    "You can pin up to 5. Unpin one to add another." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое."
           }
         }
       }
