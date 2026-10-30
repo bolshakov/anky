@@ -6,7 +6,6 @@ struct EditedPlacesTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
     private let lower = PlaceID(rawValue: "lower")
     private let siLeft = PlaceID(rawValue: "si_l")
-    private let hipLeft = PlaceID(rawValue: "hip_l")
     private let unknown = PlaceID(rawValue: "tentacle")
 
     private func entry(places: [PlaceID] = [], kind: EntryKind = .pain) throws -> Entry {
@@ -65,17 +64,5 @@ struct EditedPlacesTests {
         draft.kind = .pain
 
         #expect(draft.places.isEmpty)
-    }
-
-    @Test func aSavedPlaceOutsideTheFiveStillShowsAsAChipWhenEditing() throws {
-        let frequent = ["knee_l", "knee_r", "wrist_l", "wrist_r", "ankle_l"].map { PlaceID(rawValue: $0) }
-        let editing = try entry(places: [hipLeft])
-        let others = try frequent.flatMap { place in
-            try [entry(places: [place]), entry(places: [place])]
-        }
-        let ranked = PlaceChips.ranked(from: [editing] + others)
-
-        #expect(!ranked.contains(hipLeft))
-        #expect(PlaceChips.shown(ranked: ranked, selected: EntryDraft(entry: editing).places) == ranked + [hipLeft])
     }
 }

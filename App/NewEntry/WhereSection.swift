@@ -4,7 +4,7 @@ import SwiftUI
 struct WhereSection: View {
     @Binding var draft: EntryDraft
     @Binding var isShowingPlaces: Bool
-    let ranked: [PlaceID]
+    let chips: [PlaceID]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -16,7 +16,7 @@ struct WhereSection: View {
 
             VStack(spacing: 0) {
                 ChipFlowLayout {
-                    ForEach(PlaceChips.shown(ranked: ranked, selected: draft.places), id: \.self) { place in
+                    ForEach(chips, id: \.self) { place in
                         PlaceChip(place: place, isSelected: draft.places.contains(place)) {
                             draft.togglePlace(place)
                         }
