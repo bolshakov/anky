@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t3-03-4/tmp/walk-t3.0TC6/s1.sh
+exit: 0
+commit: 81a6c4dd5d0c5e9ceb8a2a87404c888de8eeb1f5
+
+✓ Tap at (244.0, 822.0) completed successfully
+Button id=history-delete label='Delete' value=None @312.49999999999994,340.33333333333337 63.333333333333314x66

@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t3-03-4/tmp/walk-t3.0TC6/s3.sh
+exit: 0
+commit: 81a6c4dd5d0c5e9ceb8a2a87404c888de8eeb1f5
+
+✓ Tap at (275.0, 485.0) completed successfully
+Heading id=day-header label='Today' value=None @16,168 370x38
+Button id=entry-row-pain label='0:01, No place, Pain, 4 of 10' value=None @16,206 370x74.66666666666669
+1
