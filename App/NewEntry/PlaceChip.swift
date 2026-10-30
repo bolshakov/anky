@@ -18,7 +18,12 @@ struct PlaceChip: View {
             .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
             .padding(.horizontal, 16)
             .frame(minHeight: 44)
-            .background(isSelected ? Color("AccentColor") : Color("PageBackground"), in: Capsule())
+            .background(isSelected ? Color("AccentColor") : .clear, in: Capsule())
+            .overlay {
+                if !isSelected {
+                    Capsule().strokeBorder(Color("AccentColor"), lineWidth: 1)
+                }
+            }
             .contentShape(Capsule())
         }
         .buttonStyle(.plain)
