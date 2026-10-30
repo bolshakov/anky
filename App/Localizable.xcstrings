@@ -8,6 +8,12 @@
             "state" : "translated",
             "value" : "%1$@ of %2$lld"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ из %2$lld"
+          }
         }
       }
     },
@@ -50,6 +56,36 @@
               }
             }
           }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Остался %lld символ"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символа"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символа"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -60,15 +96,48 @@
             "state" : "translated",
             "value" : "%1$lld of %2$lld"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld из %2$lld"
+          }
         }
       }
     },
-    "Add a note" : {},
+    "Add a note" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить заметку"
+          }
+        }
+      }
+    },
     "Ankle" : {},
     "Arms" : {},
-    "Cancel" : {},
+    "Cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
     "Chest wall" : {},
-    "Date and time" : {},
+    "Date and time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата и время"
+          }
+        }
+      }
+    },
     "Delete entry" : {},
     "Delete this entry? This can't be undone." : {},
     "Done" : {},
@@ -97,15 +166,42 @@
     "Edit Entry" : {},
     "Elbow" : {},
     "Eyes" : {},
-    "Fatigue" : {},
+    "Fatigue" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость"
+          }
+        }
+      }
+    },
     "Foot and toes" : {},
     "Hand and fingers" : {},
     "Head" : {},
     "Heel" : {},
     "Hip" : {},
-    "How strong" : {},
+    "How strong" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Насколько сильно"
+          }
+        }
+      }
+    },
     "Jaw" : {},
-    "Kind" : {},
+    "Kind" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тип"
+          }
+        }
+      }
+    },
     "Knee" : {},
     "Left" : {},
     "Left ankle" : {},
@@ -119,19 +215,91 @@
     "Left SI joint" : {},
     "Left wrist" : {},
     "Legs" : {},
-    "Limit reached" : {},
-    "Log how you feel" : {},
-    "Log how you feel, or a medication you took. Everything stays on this iPhone." : {},
+    "Limit reached" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Достигнут лимит символов"
+          }
+        }
+      }
+    },
+    "Log how you feel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметь самочувствие"
+          }
+        }
+      }
+    },
+    "Log how you feel, or a medication you took. Everything stays on this iPhone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмечай самочувствие и записывай принятые лекарства. Все данные хранятся только на этом iPhone"
+          }
+        }
+      }
+    },
     "Lower back" : {},
     "More places" : {},
     "Neck" : {},
-    "New Entry" : {},
+    "New Entry" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая запись"
+          }
+        }
+      }
+    },
     "No matching places" : {},
     "No place" : {},
-    "not selected" : {},
-    "Nothing logged today" : {},
-    "OK" : {},
-    "Pain" : {},
+    "not selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "не выбрано"
+          }
+        }
+      }
+    },
+    "Nothing logged today" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня записей нет"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        }
+      }
+    },
+    "Pain" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль"
+          }
+        }
+      }
+    },
     "Pelvis and chest" : {},
     "Ribs" : {},
     "Right" : {},
@@ -146,19 +314,82 @@
     "Right SI joint" : {},
     "Right wrist" : {},
     "Save changes" : {},
-    "Save entry" : {},
+    "Save entry" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить запись"
+          }
+        }
+      }
+    },
     "Search joints and places" : {},
-    "selected" : {},
-    "Severity" : {},
+    "selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "выбрано"
+          }
+        }
+      }
+    },
+    "Severity" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сила симптома"
+          }
+        }
+      }
+    },
     "Shoulder" : {},
     "SI joint" : {},
     "Spine" : {},
-    "Stiffness" : {},
-    "Stored on this iPhone only." : {},
+    "Stiffness" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность"
+          }
+        }
+      }
+    },
+    "Stored on this iPhone only." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Хранится только на этом iPhone."
+          }
+        }
+      }
+    },
     "Tailbone" : {},
     "This entry could not be deleted." : {},
-    "This entry could not be saved." : {},
-    "Today" : {},
+    "This entry could not be saved." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить запись."
+          }
+        }
+      }
+    },
+    "Today" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня"
+          }
+        }
+      }
+    },
     "Upper back" : {},
     "Where" : {},
     "Whole body" : {},
