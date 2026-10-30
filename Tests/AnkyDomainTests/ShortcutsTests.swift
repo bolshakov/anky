@@ -93,9 +93,40 @@ struct ShortcutsTests {
         #expect(outcome == .pinned)
         #expect(shortcuts.pinned == [place("a"), place("b"), place("c")])
     }
+
+    @Test func pinningAllDropsPinnedPlacesBeforeCountingThem() {
+        var shortcuts = Shortcuts(pinned: [place("a"), place("b"), place("c"), place("d")])
+
+        let outcome = shortcuts.pin(all: [place("a"), place("e")])
+
+        #expect(outcome == .pinned)
+        #expect(shortcuts.pinned == [place("a"), place("b"), place("c"), place("d"), place("e")])
+    }
+
+    @Test func pinningAllOfAlreadyPinnedPlacesChangesNothing() {
+        var shortcuts = Shortcuts(pinned: [place("a"), place("b")])
+
+        let outcome = shortcuts.pin(all: [place("a"), place("b")])
+
+        #expect(outcome == .alreadyPinned)
+        #expect(shortcuts.pinned == [place("a"), place("b")])
+    }
+
+    @Test func pinningAllPinsARepeatedPlaceOnce() {
+        var shortcuts = Shortcuts()
+
+        let outcome = shortcuts.pin(all: [place("a"), place("a")])
+
+        #expect(outcome == .pinned)
+        #expect(shortcuts.pinned == [place("a")])
+    }
 }
 
 struct FileShortcutsStoreTests {
+    private func place(_ name: String) -> PlaceID {
+        PlaceID(rawValue: name)
+    }
+
     private let shortcuts = Shortcuts(
         pinned: [PlaceID(rawValue: "a"), PlaceID(rawValue: "b")],
         lastChips: [PlaceID(rawValue: "c"), PlaceID(rawValue: "a"), PlaceID(rawValue: "d")]
@@ -119,6 +150,10 @@ struct FileShortcutsStoreTests {
             #expect(file?["version"] as? Int == 1)
             #expect(file?["pinned"] as? [String] == ["a", "b"])
             #expect(file?["lastChips"] as? [String] == ["c", "a", "d"])
+
+            try Data(#"{"version": 1, "pinned": ["a", "b"], "lastChips": ["c"]}"#.utf8).write(to: fileURL)
+            let handWritten = FileShortcutsStore(fileURL: fileURL, protection: .deviceDefault)
+            #expect(handWritten.load() == Shortcuts(pinned: [place("a"), place("b")], lastChips: [place("c")]))
         }
     }
 
@@ -198,6 +233,19 @@ struct ShortcutsLogTests {
         #expect(outcome == .pinned)
         #expect(log.shortcuts.pinned == [place("a")])
         #expect(store.saved == Shortcuts())
+    }
+
+    @Test func aRepeatedChangeAfterAFailedSaveWritesEverything() {
+        let store = FakeShortcutsStore()
+        let log = ShortcutsLog(store: store)
+        log.pin(place("a"))
+        store.saveFailure = SaveFailure()
+        log.setLastChips([place("b")])
+        store.saveFailure = nil
+
+        log.setLastChips([place("b")])
+
+        #expect(store.saved == Shortcuts(pinned: [place("a")], lastChips: [place("b")]))
     }
 
     @Test func theNextSaveAfterAFailureWritesEverything() {
