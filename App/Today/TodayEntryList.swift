@@ -59,12 +59,16 @@ struct EntryRow: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(spokenLabel)
-        .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+        // The row's visible texts stay out of the accessibility tree, so the row is one element.
+        .accessibilityRepresentation {
+            Button(action: onSelect) { Color.clear }
+                .accessibilityLabel(spokenLabel)
+                .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+        }
     }
 
     private var spokenLabel: Text {
-        let places = entry.placeSummary.text
+        let places = RecentEntry(entry).spokenPlaces
         return Text("\(time), \(places), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))")
     }
 
