@@ -6,6 +6,7 @@ struct MorePlacesRow: View {
     let action: () -> Void
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(ShortcutsModel.self) private var shortcuts
 
     var body: some View {
         Button(action: action) {
@@ -21,6 +22,7 @@ struct MorePlacesRow: View {
         .accessibilityValue(value.listText)
         .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("more-places")
+        .modifier(PinAllMenu(places: value.all, shortcuts: shortcuts))
     }
 
     @ViewBuilder
@@ -70,5 +72,24 @@ struct MorePlacesRow: View {
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(.secondary)
             .frame(width: 8, height: 14)
+    }
+}
+
+private struct PinAllMenu: ViewModifier {
+    let places: [PlaceID]
+    let shortcuts: ShortcutsModel
+
+    func body(content: Content) -> some View {
+        if places.isEmpty {
+            content
+        } else {
+            content.contextMenu {
+                Button {
+                    shortcuts.pin(all: places, event: .pinChangedByMenu)
+                } label: {
+                    Label("Pin as shortcut", systemImage: "pin.fill")
+                }
+            }
+        }
     }
 }
