@@ -51,7 +51,7 @@ struct MedicationDraftTests {
         #expect(saved.strength == "5 мг")
     }
 
-    @Test func aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() throws {
+    @Test func aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() {
         let id = UUID()
         let saved = draft(name: "Zorblex").medication(id: id, at: date)
         #expect(saved.id == id)
