@@ -1,0 +1,5 @@
+$ grep -c -w -e MIT -e 'Permission is hereby granted' LICENSE
+exit: 1
+commit: 89a74168bed7b56373c212bb910ecd7d948d316a
+
+0

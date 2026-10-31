@@ -1,0 +1,6 @@
+$ sh -c 'curl -sS -o "$TMPDIR/gpl-3.0.txt" https://www.gnu.org/licenses/gpl-3.0.txt && shasum -a 256 "$TMPDIR/gpl-3.0.txt" LICENSE'
+exit: 0
+commit: 89a74168bed7b56373c212bb910ecd7d948d316a
+
+3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986  /Users/bolshakov/Projects/personal/anky.wt/qa-t39-02-1/tmp/gpl-3.0.txt
+3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986  LICENSE

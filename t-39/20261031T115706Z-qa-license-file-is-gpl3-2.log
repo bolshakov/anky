@@ -1,0 +1,5 @@
+$ sh -c 'cmp LICENSE "$TMPDIR/gpl-3.0.txt" && echo same'
+exit: 0
+commit: 89a74168bed7b56373c212bb910ecd7d948d316a
+
+same
