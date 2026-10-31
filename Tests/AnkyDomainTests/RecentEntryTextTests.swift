@@ -74,9 +74,13 @@ struct RecentEntryTextTests {
         #expect(try recent(["si_l"]).chipText(words: words) == "Left SI joint · 4")
     }
 
-    @Test func theSpokenTextHoldsEveryNameAndTheKind() throws {
+    @Test func theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() throws {
         let chip = try recent(["neck", "lower", "si_l", "si_r", "knee_l"])
-        #expect(chip.spokenText(words: words) == "Pain, Neck, Lower back, SI joints, Left knee, 4 of 10")
+        #expect(chip.spokenText(words: words) == "Neck, Lower back, SI joints, Left knee, 4 of 10")
+    }
+
+    @Test func theSpokenTextOfAStiffnessEntryStartsWithItsKind() throws {
+        #expect(try recent(["lower"], kind: .stiffness).spokenText(words: words) == "Stiffness, Lower back, 4 of 10")
     }
 
     @Test func theSpokenTextOfAFatigueEntryHasNoPlace() throws {

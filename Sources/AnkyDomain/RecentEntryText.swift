@@ -26,7 +26,8 @@ extension RecentEntry {
     }
 
     public func spokenText(words: RecentWords) -> String {
-        ([words.kind(kind)] + spokenPlaces(words) + [words.level(severity)]).joined(separator: ", ")
+        let kindPart = showsKind ? [words.kind(kind)] : []
+        return (kindPart + spokenNames(words) + [words.level(severity)]).joined(separator: ", ")
     }
 
     private func chipPlaces(_ words: RecentWords) -> String {
@@ -37,7 +38,7 @@ extension RecentEntry {
         return hiddenCount > 0 ? "\(listed) +\(hiddenCount)" : listed
     }
 
-    private func spokenPlaces(_ words: RecentWords) -> [String] {
+    private func spokenNames(_ words: RecentWords) -> [String] {
         guard kind.asksWhere else { return [] }
         return showsNoPlace ? [words.noPlace] : names.map(words.name)
     }
