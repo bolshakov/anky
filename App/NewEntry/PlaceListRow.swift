@@ -17,21 +17,26 @@ struct PlaceListRow: View {
     var body: some View {
         let isSelected = draft.places.contains(place)
         let isPinned = shortcuts.isPinned(place)
-        PinSwipeRow(place: place, isPinned: isPinned, actions: pinActions) { isLifted in
-            rowButton(isSelected: isSelected, isPinned: isPinned, isLifted: isLifted)
-                .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
-        }
-        .sensoryFeedback(.selection, trigger: isSelected)
-        .listRowInsets(EdgeInsets())
-        .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("place-row-\(place.rawValue)")
+        rowButton(isSelected: isSelected, isPinned: isPinned)
+            .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
+            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                Button {
+                    togglePin(event: .pinChangedByLongSwipe)
+                } label: {
+                    Label(pinActionTitle(isPinned), systemImage: isPinned ? "pin.slash.fill" : "pin.fill")
+                }
+                .tint(.accentColor)
+                .accessibilityIdentifier("pin-action-\(place.rawValue)")
+            }
+            .sensoryFeedback(.selection, trigger: isSelected)
+            .listRowInsets(EdgeInsets())
+            .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("place-row-\(place.rawValue)")
     }
 
-    private func rowButton(isSelected: Bool, isPinned: Bool, isLifted: Bool) -> some View {
+    private func rowButton(isSelected: Bool, isPinned: Bool) -> some View {
         Button {
-            // The finger that ends a swipe lifts on this button, and that lift is not a tap.
-            guard !isLifted else { return }
             togglePlace(isSelected: isSelected)
         } label: {
             HStack {
@@ -91,14 +96,6 @@ struct PlaceListRow: View {
                 .accessibilityHidden(true)
                 .accessibilityIdentifier("pin-icon-\(place.rawValue)")
         }
-    }
-
-    private var pinActions: PinSwipeActions {
-        PinSwipeActions(
-            onCrossedCommitPoint: { shortcuts.report(.crossedCommitPoint) },
-            onAction: { togglePin(event: .pinChangedByAction) },
-            onCommit: { togglePin(event: .pinChangedByLongSwipe) }
-        )
     }
 
     private func togglePlace(isSelected: Bool) {
