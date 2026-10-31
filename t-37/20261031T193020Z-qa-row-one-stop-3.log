@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t37-07-3/tmp/s3.sh
+exit: 0
+commit: b45d5d2d605678cbedafcf9f316c5d607ab0c285
+
+✓ Tap at (244.0, 822.0) completed successfully
+True
