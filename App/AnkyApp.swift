@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyStore
 import SwiftUI
 import TipKit
 
 @main
 struct AnkyApp: App {
     @State private var model: EntryLogModel
+    @State private var medications: MedicationsModel
 
     init() {
         let folder = ShortcutsLocation.fileURL().deletingLastPathComponent()
@@ -22,12 +24,21 @@ struct AnkyApp: App {
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
         ))
+        _medications = State(initialValue: MedicationsModel(store: Self.medicationStore()))
     }
 
     var body: some Scene {
         WindowGroup {
-            RootView(model: model)
+            RootView(model: model, medications: medications)
                 .tint(Color("AccentColor"))
+        }
+    }
+
+    private static func medicationStore() -> MedicationStore {
+        do {
+            return try SwiftDataMedicationStore(url: MedicationsLocation.fileURL())
+        } catch {
+            return UnavailableMedicationStore()
         }
     }
 

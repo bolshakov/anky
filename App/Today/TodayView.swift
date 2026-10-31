@@ -5,7 +5,10 @@ import UIKit
 
 struct TodayView: View {
     let model: EntryLogModel
+    let medications: MedicationsModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isShowingNewEntry = false
+    @State private var isShowingLogDose = false
     @State private var editing: Entry?
     @State private var loggedID: UUID?
     @State private var isShowingSaveFailure = false
@@ -50,6 +53,10 @@ struct TodayView: View {
                         TodayEntryList(entries: todayEntries, onSelect: open)
                             .padding(.top, 16)
                     }
+
+                    if dynamicTypeSize.isAccessibilitySize {
+                        logMedicationButton
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -58,15 +65,24 @@ struct TodayView: View {
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
-                Button("Log how you feel") {
-                    isShowingNewEntry = true
+                VStack(spacing: 0) {
+                    if !dynamicTypeSize.isAccessibilitySize {
+                        logMedicationButton
+                            .padding(.horizontal)
+                    }
+                    Button("Log how you feel") {
+                        isShowingNewEntry = true
+                    }
+                    .buttonStyle(PinnedButtonStyle())
+                    .accessibilityIdentifier("log-entry")
+                    .padding()
                 }
-                .buttonStyle(PinnedButtonStyle())
-                .accessibilityIdentifier("log-entry")
-                .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
+            }
+            .sheet(isPresented: $isShowingLogDose) {
+                LogDoseView(medications: medications)
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
@@ -78,6 +94,15 @@ struct TodayView: View {
             .sensoryFeedback(.selection, trigger: undoTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
         }
+    }
+
+    private var logMedicationButton: some View {
+        Button("Log medication") {
+            isShowingLogDose = true
+        }
+        .frame(maxWidth: .infinity, minHeight: 44)
+        .accessibilityIdentifier("log-medication")
+        .padding(.vertical, 8)
     }
 
     @ViewBuilder

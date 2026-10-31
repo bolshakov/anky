@@ -3,11 +3,12 @@ import SwiftUI
 
 struct RootView: View {
     let model: EntryLogModel
+    let medications: MedicationsModel
     @State private var selection = Tab.today
 
     var body: some View {
         TabView(selection: $selection) {
-            TodayView(model: model)
+            TodayView(model: model, medications: medications)
                 .tabItem {
                     Label("Today", systemImage: "calendar")
                         .fontWeight(selection == .today ? .bold : .regular)
