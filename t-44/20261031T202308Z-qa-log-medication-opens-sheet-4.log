@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/pre.sh; axe tap --id log-medication --wait-timeout 5 --udid "$udid"; sleep 1; axe swipe --start-x 200 --start-y 120 --end-x 200 --end-y 800 --duration 0.3 --udid "$udid"; ui | grep -c "label=.Log Dose."'
+exit: 0
+commit: 61d2ff388e368f8109f110e0402e04973c62386d
+
+✓ Tap at resolved tap point at (201.16666666666663, 673.1666666666667) completed successfully
+1

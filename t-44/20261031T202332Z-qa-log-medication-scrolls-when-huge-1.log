@@ -1,0 +1,12 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t44-01-4/tmp/size.sh accessibility-medium
+exit: 0
+commit: 61d2ff388e368f8109f110e0402e04973c62386d
+
+== accessibility-medium top
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @108.33333333333333,613 185.66666666666669x33.66666666666674
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+/Users/bolshakov/Projects/personal/anky.wt/qa-t44-01-4/tmp/walk-t44.Fxqb/huge-accessibility-medium-top.png
+== accessibility-medium scrolled
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @108.33333333333333,613 185.66666666666669x33.66666666666674
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+/Users/bolshakov/Projects/personal/anky.wt/qa-t44-01-4/tmp/walk-t44.Fxqb/huge-accessibility-medium-scrolled.png

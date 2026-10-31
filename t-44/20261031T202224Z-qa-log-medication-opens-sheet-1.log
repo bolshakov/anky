@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/pre.sh; ui | grep -E "id=(log-medication|log-entry) "'
+exit: 0
+commit: 61d2ff388e368f8109f110e0402e04973c62386d
+
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56

@@ -1,0 +1,23 @@
+$ bash -c '. $TMPDIR/pre.sh; ui | grep -c "label=.Log Dose."; echo ---; ui | grep -iE "alert|dialog|Dialog"; echo "rest:"; ui'
+exit: 0
+commit: 61d2ff388e368f8109f110e0402e04973c62386d
+
+0
+---
+rest:
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+ScrollArea id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Saturday, October 31' value=None enabled=True actions= traits= @16,168 144.33333333333331x18
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,304.62068965517244 221x26.333333333333314
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,342.95402298850576 291x42.333333333333314
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=None label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=None label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
