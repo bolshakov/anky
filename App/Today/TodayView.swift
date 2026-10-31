@@ -6,6 +6,7 @@ import UIKit
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
@@ -53,12 +54,9 @@ struct TodayView: View {
                             .padding(.top, 16)
                     }
 
-                    Button("Log medication") {
-                        isShowingLogDose = true
+                    if dynamicTypeSize.isAccessibilitySize {
+                        logMedicationButton
                     }
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .accessibilityIdentifier("log-medication")
-                    .padding(.vertical, 8)
                 }
                 .padding(.horizontal)
             }
@@ -67,12 +65,18 @@ struct TodayView: View {
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
-                Button("Log how you feel") {
-                    isShowingNewEntry = true
+                VStack(spacing: 0) {
+                    if !dynamicTypeSize.isAccessibilitySize {
+                        logMedicationButton
+                            .padding(.horizontal)
+                    }
+                    Button("Log how you feel") {
+                        isShowingNewEntry = true
+                    }
+                    .buttonStyle(PinnedButtonStyle())
+                    .accessibilityIdentifier("log-entry")
+                    .padding()
                 }
-                .buttonStyle(PinnedButtonStyle())
-                .accessibilityIdentifier("log-entry")
-                .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
@@ -90,6 +94,15 @@ struct TodayView: View {
             .sensoryFeedback(.selection, trigger: undoTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
         }
+    }
+
+    private var logMedicationButton: some View {
+        Button("Log medication") {
+            isShowingLogDose = true
+        }
+        .frame(maxWidth: .infinity, minHeight: 44)
+        .accessibilityIdentifier("log-medication")
+        .padding(.vertical, 8)
     }
 
     @ViewBuilder
