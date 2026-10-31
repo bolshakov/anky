@@ -49,6 +49,10 @@ extension RecentEntry {
     var spokenText: String {
         spokenText(words: .app)
     }
+
+    var spokenPlaces: String {
+        spokenPlaces(words: .app, wholeBody: String(localized: "Whole body"), locale: .current)
+    }
 }
 
 enum RecentEntryText {

@@ -5,6 +5,7 @@ import Testing
 
 struct RecentEntryTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
+    private let english = Locale(identifier: "en")
 
     private var words: RecentWords {
         RecentWords(
@@ -89,5 +90,29 @@ struct RecentEntryTextTests {
 
     @Test func theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() throws {
         #expect(try recent([], kind: .stiffness).spokenText(words: words) == "Stiffness, No place, 4 of 10")
+    }
+
+    @Test func theSpokenPlacesJoinThePairAndThePlaceWithAnd() throws {
+        let places = try recent(["lower", "si_l", "si_r"]).spokenPlaces(
+            words: words, wholeBody: "Whole body", locale: english
+        )
+        #expect(places == "Lower back and SI joints")
+    }
+
+    @Test func theSpokenPlacesOfOneNameStandAlone() throws {
+        let places = try recent(["neck"]).spokenPlaces(words: words, wholeBody: "Whole body", locale: english)
+        #expect(places == "Neck")
+    }
+
+    @Test func theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() throws {
+        let places = try recent([]).spokenPlaces(words: words, wholeBody: "Whole body", locale: english)
+        #expect(places == "No place")
+    }
+
+    @Test func theSpokenPlacesOfAFatigueEntrySayTheWholeBody() throws {
+        let places = try recent([], kind: .fatigue).spokenPlaces(
+            words: words, wholeBody: "Whole body", locale: english
+        )
+        #expect(places == "Whole body")
     }
 }
