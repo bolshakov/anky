@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t37-05-1/tmp/s1.sh
+exit: 0
+commit: df53f07eb004450f8a47cbaff6c67ca6fabc4cd7
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 538.3333333333333) completed successfully
+Button id=place-neck label='Neck' value=None actions=['Pin as shortcut'] @16,325.33333333333337 370x52
+Button id=place-lower label='Lower back' value='Pinned' actions=['Unpin shortcut'] @16,429 370x52

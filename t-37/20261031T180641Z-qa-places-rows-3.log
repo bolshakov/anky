@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t37-05-1/tmp/s3.sh
+exit: 0
+commit: df53f07eb004450f8a47cbaff6c67ca6fabc4cd7
+
+Button id=xmark label='Dismiss tip' value=None @322,186 44x44
+TextField id=None label=None value='Search joints and places' @32.99999999999994,803 336x38
+Image id=magnifyingglass label='Search' value=None @45.99999999999994,812.3333333333334 20.33333333333333x18.66666666666663
