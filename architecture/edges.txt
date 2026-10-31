@@ -1,2 +1,4 @@
 AnkyDomain: 
 AnkyDomainTests: AnkyDomain
+AnkyStore: AnkyDomain
+AnkyStoreTests: AnkyDomain,AnkyStore
