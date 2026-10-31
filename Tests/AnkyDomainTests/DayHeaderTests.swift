@@ -35,21 +35,11 @@ struct DayHeaderTests {
         return firstRange.lowerBound < secondRange.lowerBound
     }
 
-    private func subtitle(of day: Date, _ locale: Locale) -> String {
-        day.formatted(Date.FormatStyle(locale: locale, calendar: calendar, timeZone: calendar.timeZone)
-            .weekday(.wide).day().month(.wide))
-    }
-
-    @Test func anOlderDateHeaderHasTheWeekdayInCapitalsAndTheDayAndMonth() throws {
+    @Test func anOlderDateHeaderHasTheWeekdayCapitalisedAndTheDayAndMonth() throws {
         let header = try header(day: 24)
         let start = try dayStart(day: 24)
         #expect(header == .date(start, includesYear: false))
-        let text = try dateText(of: header, us)
-        #expect(text.contains("SATURDAY"))
-        #expect(text.contains("24"))
-        #expect(text.contains("October"))
-        #expect(!text.contains("Saturday"))
-        #expect(!text.contains("2026"))
+        #expect(try dateText(of: header, us) == "Saturday, October 24")
     }
 
     @Test func aDateHeaderFollowsThePhonesOrderAndLanguage() throws {
@@ -59,14 +49,14 @@ struct DayHeaderTests {
         let frText = try dateText(of: header, Locale(identifier: "fr_FR"))
         #expect(try precedes("October", "24", in: usText))
         #expect(try precedes("24", "October", in: gbText))
-        #expect(frText.contains("SAMEDI"))
+        #expect(frText.contains("Samedi"))
         #expect(frText.contains("octobre"))
     }
 
-    @Test func aSameYearDateReadsLikeTheTodaySubtitleWithTheWeekdayInCapitals() throws {
+    @Test func aSameYearDateReadsLikeTheTodayLineWithTheWeekdayCapitalised() throws {
         let header = try header(day: 24)
         let start = try dayStart(day: 24)
-        let expected = subtitle(of: start, us).replacingOccurrences(of: "Saturday", with: "SATURDAY")
+        let expected = DayDateText.text(for: start, includesYear: false, calendar: calendar, locale: us)
         #expect(try dateText(of: header, us) == expected)
     }
 
@@ -76,33 +66,20 @@ struct DayHeaderTests {
         #expect(try dateText(of: header, us).contains("2025"))
     }
 
-    @Test func onlyTheWeekdayIsInCapitals() throws {
-        let start = try dayStart(day: 24)
+    @Test func onlyTheWeekdayIsCapitalisedInEnglishAndTheOrderStays() throws {
         let header = try header(day: 24)
-        for locale in [us, Locale(identifier: "en_GB")] {
-            let text = try dateText(of: header, locale).replacingOccurrences(of: "SATURDAY", with: "")
-            let plain = subtitle(of: start, locale).replacingOccurrences(of: "Saturday", with: "")
-            #expect(text == plain)
-        }
+        #expect(try dateText(of: header, us) == "Saturday, October 24")
+        #expect(try dateText(of: header, Locale(identifier: "en_GB")) == "Saturday 24 October")
     }
 
-    @Test func aRussianWeekdayIsInCapitalsAndTheMonthIsNot() throws {
+    @Test func aRussianWeekdayIsCapitalisedAndTheMonthIsNot() throws {
         let header = try header(day: 24)
-        let text = try dateText(of: header, Locale(identifier: "ru_RU"))
-        #expect(text.contains("СУББОТА"))
-        #expect(text.contains("октября"))
-        #expect(!text.contains("Суббота"))
-        #expect(!text.contains("суббота"))
-        #expect(!text.contains("ОКТЯБРЯ"))
+        #expect(try dateText(of: header, Locale(identifier: "ru_RU")) == "Суббота, 24 октября")
     }
 
-    @Test func theYearFormKeepsOnlyTheWeekdayInCapitals() throws {
+    @Test func theYearFormCapitalisesOnlyTheWeekday() throws {
         let header = try header(year: 2025, month: 12, day: 31)
-        let text = try dateText(of: header, us)
-        #expect(text.contains("WEDNESDAY"))
-        #expect(text.contains("December"))
-        #expect(text.contains("2025"))
-        #expect(!text.contains("Wednesday"))
+        #expect(try dateText(of: header, us) == "Wednesday, December 31, 2025")
     }
 
     @Test func aDateInTheSameYearLeavesTheYearOut() throws {
