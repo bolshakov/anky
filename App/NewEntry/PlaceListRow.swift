@@ -16,8 +16,8 @@ struct PlaceListRow: View {
     var body: some View {
         let isSelected = draft.places.contains(place)
         let isPinned = shortcuts.isPinned(place)
-        PinSwipeRow(place: place, isPinned: isPinned, actions: pinActions) {
-            rowButton(isSelected: isSelected, isPinned: isPinned)
+        PinSwipeRow(place: place, isPinned: isPinned, actions: pinActions) { isLifted in
+            rowButton(isSelected: isSelected, isPinned: isPinned, isLifted: isLifted)
                 .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
         }
         .sensoryFeedback(.selection, trigger: isSelected)
@@ -27,8 +27,10 @@ struct PlaceListRow: View {
         .accessibilityIdentifier("place-row-\(place.rawValue)")
     }
 
-    private func rowButton(isSelected: Bool, isPinned: Bool) -> some View {
+    private func rowButton(isSelected: Bool, isPinned: Bool, isLifted: Bool) -> some View {
         Button {
+            // The finger that ends a swipe lifts on this button, and that lift is not a tap.
+            guard !isLifted else { return }
             togglePlace(isSelected: isSelected)
         } label: {
             HStack {
