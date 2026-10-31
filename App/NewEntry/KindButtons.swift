@@ -28,6 +28,7 @@ struct KindButtons: View {
             }
         }
         .accessibilityElement(children: .contain)
+        .accessibilityLabel("What are you logging")
         .accessibilityIdentifier("kind-picker")
         .sensoryFeedback(.selection, trigger: kind)
     }
