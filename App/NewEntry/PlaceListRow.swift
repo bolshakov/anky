@@ -1,12 +1,36 @@
 import AnkyDomain
 import SwiftUI
 
+private enum PlaceListRowMetrics {
+    static let leadingInset: CGFloat = 16
+    static let pinIconInset: CGFloat = 3
+    static let pinIconSize: CGFloat = 11
+}
+
 struct PlaceListRow: View {
     let place: PlaceID
     @Binding var draft: EntryDraft
+    @Environment(ShortcutsModel.self) private var shortcuts
 
     var body: some View {
         let isSelected = draft.places.contains(place)
+        let isPinned = shortcuts.isPinned(place)
+        PinSwipeRow(place: place, isPinned: isPinned, actions: pinActions) {
+            rowButton(isSelected: isSelected, isPinned: isPinned)
+                .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
+        }
+        .sensoryFeedback(.selection, trigger: isSelected)
+        .listRowInsets(EdgeInsets(
+            top: 0,
+            leading: PlaceListRowMetrics.leadingInset,
+            bottom: 0,
+            trailing: 16
+        ))
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("place-row-\(place.rawValue)")
+    }
+
+    private func rowButton(isSelected: Bool, isPinned: Bool) -> some View {
         Button {
             draft.togglePlace(place)
         } label: {
@@ -31,11 +55,42 @@ struct PlaceListRow: View {
             }
             .accessibilityValue(stateName(isSelected))
             .accessibilityIdentifier("place-\(place.rawValue)")
+            .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
+                togglePin(event: .pinChangedByAction)
+            }
         }
-        .sensoryFeedback(.selection, trigger: isSelected)
-        .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("place-row-\(place.rawValue)")
+    }
+
+    @ViewBuilder
+    private func pinIcon(isPinned: Bool) -> some View {
+        if isPinned {
+            Image(systemName: "pin.fill")
+                .font(.system(size: PlaceListRowMetrics.pinIconSize))
+                .foregroundStyle(.secondary)
+                .offset(x: PlaceListRowMetrics.pinIconInset - PlaceListRowMetrics.leadingInset)
+                .accessibilityLabel("Pinned")
+                .accessibilityIdentifier("pin-icon-\(place.rawValue)")
+        }
+    }
+
+    private var pinActions: PinSwipeActions {
+        PinSwipeActions(
+            onCrossedCommitPoint: { shortcuts.report(.crossedCommitPoint) },
+            onAction: { togglePin(event: .pinChangedByAction) },
+            onCommit: { togglePin(event: .pinChangedByLongSwipe) }
+        )
+    }
+
+    private func togglePin(event: ShortcutEvent) {
+        if shortcuts.isPinned(place) {
+            shortcuts.unpin(place, event: event)
+        } else {
+            shortcuts.pin(place, event: event)
+        }
+    }
+
+    private func pinActionTitle(_ isPinned: Bool) -> LocalizedStringResource {
+        isPinned ? "Unpin" : "Pin"
     }
 
     private func stateName(_ isSelected: Bool) -> LocalizedStringResource {
