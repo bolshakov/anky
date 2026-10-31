@@ -172,11 +172,11 @@ struct PinSwipeRow<Content: View>: View {
     private func commit() {
         isRevealed = false
         isCommitting = true
-        actions.onCommit()
         withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration), completionCriteria: .logicallyComplete) {
             offset = 0
         } completion: {
             isCommitting = false
+            actions.onCommit()
             endLiftIfClosed()
         }
     }
