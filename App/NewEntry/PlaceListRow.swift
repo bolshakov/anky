@@ -21,7 +21,7 @@ struct PlaceListRow: View {
             .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                 Button {
-                    togglePin(event: .pinChangedByLongSwipe)
+                    togglePin(event: .pinChangedBySwipe)
                 } label: {
                     Label(pinActionTitle(isPinned), systemImage: isPinned ? "pin.slash.fill" : "pin.fill")
                 }
