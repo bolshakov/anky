@@ -8,8 +8,7 @@ struct MedicationFormView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draft = MedicationDraft()
     // Made once per opening, so a retry after a failed save writes the same medication.
-    @State private var medicationID = UUID()
-    @State private var hasSaved = false
+    @State private var saver = MedicationSave(id: UUID())
     @FocusState private var focus: Field?
 
     private enum Field: Hashable {
@@ -54,13 +53,11 @@ struct MedicationFormView: View {
     }
 
     private func save() {
-        guard !hasSaved else { return }
         do {
-            try medications.add(draft.medication(id: medicationID, at: .now))
+            guard try saver.save(draft, at: .now, add: medications.add) else { return }
         } catch {
             return
         }
-        hasSaved = true
         onSaved()
         dismiss()
     }
