@@ -8,4 +8,8 @@ Your entries stay on your phone. The app has no network sync, no iCloud sync, no
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Anky's code is licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
+
+Copies taken before 2026-10-31 stay under the terms they came with.
+
+© 2026 Tëma Bolshakov

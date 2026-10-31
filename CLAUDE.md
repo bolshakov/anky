@@ -1,9 +1,9 @@
 # anky
 
-An iOS app for tracking ankylosing spondylitis symptoms. It is open source under the MIT license. It handles health
-data, so it stays on the device unless the stakeholder decides otherwise. Never commit real symptom data, not even as a
-test fixture. Product calls about privacy are the stakeholder's, so ask before adding analytics, network sync, or
-HealthKit.
+An iOS app for tracking ankylosing spondylitis symptoms. It is open source under the GPL-3.0-or-later license. It
+handles health data, so it stays on the device unless the stakeholder decides otherwise. Never commit real symptom data,
+not even as a test fixture. Product calls about privacy are the stakeholder's, so ask before adding analytics, network
+sync, or HealthKit.
 
 ## Toolchain
 
