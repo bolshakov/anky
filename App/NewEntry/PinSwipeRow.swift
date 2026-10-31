@@ -45,18 +45,20 @@ struct PinSwipeRow<Content: View>: View {
     }
 
     var body: some View {
-        ZStack(alignment: .leading) {
-            pinAction
-            content(isLifted)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(SwipeShade.color.opacity(isLifted ? 1 : 0), in: Capsule())
-                .overlay { closeCatcher }
-                .offset(x: CGFloat(offset))
-                .simultaneousGesture(swipe)
-        }
-        .background { widthReader }
-        .listRowBackground(isLifted ? Color.clear : nil)
-        .listRowSeparator(isLifted ? .hidden : .automatic)
+        content(isLifted)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(SwipeShade.color.opacity(isLifted ? 1 : 0), in: Capsule())
+            .overlay { closeCatcher }
+            .offset(x: CGFloat(offset))
+            .simultaneousGesture(swipe)
+            .background {
+                GeometryReader { _ in
+                    pinAction.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                }
+            }
+            .background { widthReader }
+            .listRowBackground(isLifted ? Color.clear : nil)
+            .listRowSeparator(isLifted ? .hidden : .automatic)
     }
 
     private var isMoved: Bool {
@@ -85,11 +87,9 @@ struct PinSwipeRow<Content: View>: View {
                     .foregroundStyle(.secondary)
             }
             .padding(.leading, PinSwipeMetrics.pillLeadingInset)
-            .frame(maxHeight: .infinity)
         }
         .buttonStyle(.plain)
         .frame(width: CGFloat(PinSwipe.revealWidth), alignment: .leading)
-        .frame(maxHeight: .infinity)
         .opacity(isMoved ? 1 : 0)
         .allowsHitTesting(isRevealed)
         .accessibilityHidden(!isActionExposed)
