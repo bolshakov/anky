@@ -1,0 +1,9 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; launch_ru; tab История; ui | grep "id=day-header "; check header ru older'
+exit: 0
+commit: 023c69c36d9d803ecd83c6a01c9af4505a1b540f
+
+Heading id=day-header label='Сегодня' value=None @16,168 370x38
+Heading id=day-header label='Вчера' value=None @16,293.6666666666667 370x38
+Heading id=day-header label='Вторник, 27 октября' value=None @16,419 370x38
+Heading id=day-header label='Пятница, 19 декабря 2025\u202fг.' value=None @16,544.6666666666667 370x38
+ok 'Вторник, 27 октября'

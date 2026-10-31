@@ -1,0 +1,9 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; launch_en; tab History; ui | grep "id=day-header "; check header en older'
+exit: 0
+commit: 023c69c36d9d803ecd83c6a01c9af4505a1b540f
+
+Heading id=day-header label='Today' value=None @16,168 370x38
+Heading id=day-header label='Yesterday' value=None @16,293.6666666666667 370x38
+Heading id=day-header label='Tuesday, October 27' value=None @16,419 370x38
+Heading id=day-header label='Friday, December 19, 2025' value=None @16,544.6666666666667 370x38
+ok 'Tuesday, October 27'

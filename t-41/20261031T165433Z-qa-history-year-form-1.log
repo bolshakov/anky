@@ -1,0 +1,5 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; launch_en; tab History; check header en lastyear'
+exit: 0
+commit: 023c69c36d9d803ecd83c6a01c9af4505a1b540f
+
+ok 'Friday, December 19, 2025'

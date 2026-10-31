@@ -1,0 +1,7 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; launch_en; ui | python3 -I "$TMPDIR/when.py" todaywords en; tab History; check words en older; check words en lastyear'
+exit: 0
+commit: 023c69c36d9d803ecd83c6a01c9af4505a1b540f
+
+same words 'Saturday, October 31'
+same words 'Tuesday, October 27'
+same words 'Friday, December 19, 2025'

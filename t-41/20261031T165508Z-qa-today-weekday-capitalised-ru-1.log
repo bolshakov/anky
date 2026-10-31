@@ -1,0 +1,6 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; launch_ru; ui | grep "id=today-date "; ui | python3 -I "$TMPDIR/when.py" today ru'
+exit: 0
+commit: 023c69c36d9d803ecd83c6a01c9af4505a1b540f
+
+StaticText id=today-date label='Суббота, 31 октября' value=None @16,168 145x18
+ok 'Суббота, 31 октября'
