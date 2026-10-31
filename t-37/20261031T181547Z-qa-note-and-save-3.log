@@ -1,0 +1,5 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t37-02-1/checkout grep -n -E '\.offset\(|ScrollView' -- App/NewEntry/NewEntryView.swift App/NewEntry/NoteSection.swift
+exit: 0
+commit: 13c0d3ae9e66c3c1e77f302a475c5efd88dcfca9
+
+App/NewEntry/NewEntryView.swift:44:            ScrollView {
