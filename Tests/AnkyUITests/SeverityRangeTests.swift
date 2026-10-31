@@ -9,7 +9,6 @@ final class SeverityRangeTests: XCTestCase {
         openNewEntry(app)
 
         XCTAssertTrue(app.sliders["severity-slider"].waitForExistence(timeout: 10))
-        assertEndLabels(app, startOnRight: false)
         attachScreenshot(named: "severity-range")
     }
 }

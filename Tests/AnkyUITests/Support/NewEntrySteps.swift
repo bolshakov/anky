@@ -16,9 +16,9 @@ func openNewEntry(_ app: XCUIApplication) {
 func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     XCTAssertTrue(slider.waitForExistence(timeout: 10))
-    let low = app.staticTexts["severity-low-label"]
-    let high = app.staticTexts["severity-high-label"]
-    let startOnRight = low.frame.minX > high.frame.minX
+    // Reads the direction from the level at the screen's left edge, which needs no end label.
+    slider.adjust(toNormalizedSliderPosition: 0)
+    let startOnRight = severityLevel(of: slider) == 10
     func screenPosition(_ value: Int) -> CGFloat {
         let fromStart = CGFloat(value) / 10
         return startOnRight ? 1 - fromStart : fromStart
