@@ -84,13 +84,17 @@ private struct PinAllMenu: ViewModifier {
         if places.isEmpty {
             content
         } else {
-            content.contextMenu {
-                Button {
-                    shortcuts.pin(all: places, event: .pinChangedByMenu)
-                } label: {
-                    Label("Pin as shortcut", systemImage: "pin.fill")
+            content
+                .contextMenu {
+                    Button {
+                        shortcuts.pin(all: places, event: .pinChangedByMenu)
+                    } label: {
+                        Label("Pin as shortcut", systemImage: "pin.fill")
+                    }
                 }
-            }
+                .accessibilityAction(named: Text("Pin as shortcut")) {
+                    shortcuts.pin(all: places, event: .pinChangedByAction)
+                }
         }
     }
 }
