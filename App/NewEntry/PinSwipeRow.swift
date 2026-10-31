@@ -162,6 +162,10 @@ struct PinSwipeRow<Content: View>: View {
 
     private func settle(at target: Double, revealed: Bool) {
         isRevealed = revealed
+        guard offset != target else {
+            endLiftIfClosed()
+            return
+        }
         withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration), completionCriteria: .logicallyComplete) {
             offset = target
         } completion: {
