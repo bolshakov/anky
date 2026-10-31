@@ -707,6 +707,15 @@
         }
       }
     },
+    "Log Dose" : {
+
+    },
+    "Log medication" : {
+
+    },
+    "Medication" : {
+
+    },
     "Log how you feel" : {
       "localizations" : {
         "ru" : {

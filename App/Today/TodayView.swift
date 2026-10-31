@@ -5,7 +5,9 @@ import UIKit
 
 struct TodayView: View {
     let model: EntryLogModel
+    let medications: MedicationsModel
     @State private var isShowingNewEntry = false
+    @State private var isShowingLogDose = false
     @State private var editing: Entry?
     @State private var loggedID: UUID?
     @State private var isShowingSaveFailure = false
@@ -50,6 +52,13 @@ struct TodayView: View {
                         TodayEntryList(entries: todayEntries, onSelect: open)
                             .padding(.top, 16)
                     }
+
+                    Button("Log medication") {
+                        isShowingLogDose = true
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .accessibilityIdentifier("log-medication")
+                    .padding(.vertical, 8)
                 }
                 .padding(.horizontal)
             }
@@ -67,6 +76,9 @@ struct TodayView: View {
             }
             .sheet(isPresented: $isShowingNewEntry) {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
+            }
+            .sheet(isPresented: $isShowingLogDose) {
+                LogDoseView(medications: medications)
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })

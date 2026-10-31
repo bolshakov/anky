@@ -167,6 +167,9 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
+/// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
+private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
+
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
 
@@ -213,8 +216,15 @@ struct RussianCatalogTests {
 
     @Test func everyKeyOfTheCatalogHasARussianValue() throws {
         let entries = try CompiledCatalog.entries()
-        for key in entries.keys.sorted() {
+        for key in entries.keys.sorted() where !awaitingRussian.contains(key) {
             #expect(entries[key]?.localizations?["ru"] != nil, "\(key) has no Russian value")
+        }
+    }
+
+    @Test func noAwaitingKeyHasARussianValueYet() throws {
+        let entries = try CompiledCatalog.entries()
+        for key in awaitingRussian {
+            #expect(entries[key]?.localizations?["ru"] == nil, "\(key) has a Russian value; approve it in the list")
         }
     }
 
