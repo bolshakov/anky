@@ -1,0 +1,30 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/parts.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/walk-t26.hugM 2
+exit: 0
+commit: abc1a18288ce3e99f692dfb753220ea98e2b46b7
+
+== row_menu_check '' select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+✓ Tap at resolved tap point at (201.0, 271.33333333333337) completed successfully
+Button id=place-neck label='Neck' value='selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== row_menu_check 'neck' select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+✓ Tap at resolved tap point at (201.0, 271.33333333333337) completed successfully
+Button id=place-neck label='Neck' value='selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []
+== row_menu_check '' keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 271.33333333333337) completed successfully
+Button id=place-neck label='Neck' value='not selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== row_menu_check 'neck' keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 271.33333333333337) completed successfully
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []

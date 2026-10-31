@@ -1,0 +1,26 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/parts.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/walk-t26.hugM 3
+exit: 0
+commit: abc1a18288ce3e99f692dfb753220ea98e2b46b7
+
+== chip_menu_check '' select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (59.66666666666672, 358.0) completed successfully
+✓ Tap at resolved tap point at (146.33333333333337, 430.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='selected' @28.000000000000057,336 88.33333333333333x44
+pins: ['neck']
+== chip_menu_check 'neck' select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (59.66666666666672, 358.0) completed successfully
+✓ Tap at resolved tap point at (146.33333333333337, 430.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='selected' @28.000000000000057,336 88.33333333333333x44
+pins: []
+== chip_menu_check '' keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (148.33333333333337, 430.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='not selected' @28.000000000000057,336 63.33333333333333x44
+pins: ['neck']
+== chip_menu_check 'neck' keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (148.33333333333337, 430.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='not selected' @28.000000000000057,336 63.33333333333333x44
+pins: []

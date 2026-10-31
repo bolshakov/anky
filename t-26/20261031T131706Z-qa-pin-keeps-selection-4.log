@@ -1,0 +1,13 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/parts.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/walk-t26.hugM 4
+exit: 0
+commit: abc1a18288ce3e99f692dfb753220ea98e2b46b7
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 464.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 354.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 397.3333333333333) completed successfully
+Button id=place-chip-tail label='Tailbone' value='selected' @213.6666666666667,336 112.66666666666666x44
+Button id=place-chip-si_l label='Left SI joint' value='selected' @28.000000000000057,388 134x44
+pins: ['tail']

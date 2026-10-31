@@ -1,0 +1,52 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/parts.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-15-5/tmp/walk-t26.hugM 1
+exit: 0
+commit: abc1a18288ce3e99f692dfb753220ea98e2b46b7
+
+== swipe_check '' 100 select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+✓ Tap at resolved tap point at (56.0, 198.41666412353516) completed successfully
+Button id=place-neck label='Neck' value='selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== swipe_check 'neck' 100 select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+✓ Tap at resolved tap point at (56.0, 198.41666412353516) completed successfully
+Button id=place-neck label='Neck' value='selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []
+== swipe_check '' 300 select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+Button id=place-neck label='Neck' value='selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== swipe_check 'neck' 300 select
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+Button id=place-neck label='Neck' value='selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []
+== swipe_check '' 100 keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (56.0, 198.41666412353516) completed successfully
+Button id=place-neck label='Neck' value='not selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== swipe_check 'neck' 100 keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (56.0, 198.41666412353516) completed successfully
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []
+== swipe_check '' 300 keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Button id=place-neck label='Neck' value='not selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+pins: ['neck']
+== swipe_check 'neck' 300 keep
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+pins: []
