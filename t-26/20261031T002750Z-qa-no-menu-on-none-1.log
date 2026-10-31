@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-09-1/tmp/s_none.sh
+exit: 1
+commit: 46b118da143739ae4649db215d6178de76cff3a5
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+Button id=more-places label='More places' value='None' @16.000000000000057,444.3333333333333 370x52
+0

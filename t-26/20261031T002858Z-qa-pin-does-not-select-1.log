@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-09-1/tmp/s_sel.sh
+exit: 0
+commit: 46b118da143739ae4649db215d6178de76cff3a5
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (148.33333333333337, 430.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='not selected' @28.000000000000057,336 63.33333333333333x44
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+pain 0 [] None

@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-09-1/tmp/s_chip.sh
+exit: 0
+commit: 46b118da143739ae4649db215d6178de76cff3a5
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (148.33333333333337, 430.3333333333333) completed successfully
+Button id=pin.slash.fill label='Unpin shortcut' value=None @79.33333333333331,409.3333333333333 250x42
+✓ Tap at resolved tap point at (204.33333333333331, 430.3333333333333) completed successfully
+['neck']

@@ -1,0 +1,17 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-09-1/tmp/s_more.sh
+exit: 0
+commit: 46b118da143739ae4649db215d6178de76cff3a5
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 538.3333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 198.33333333333334) completed successfully
+✓ Tap at resolved tap point at (201.0, 354.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 465.3333333333333) completed successfully
+Button id=place-chip-neck label='Neck' value='selected' @28.000000000000057,404 88.33333333333333x44
+Button id=place-chip-lower label='Lower back' value='not selected' @124.33333333333339,404 106.33333333333333x44
+Button id=place-chip-tail label='Tailbone' value='selected' @238.6666666666667,404 112.66666666666666x44
+Button id=place-chip-hip_l label='Left hip' value='not selected' @28.000000000000057,456 79.66666666666666x44
+Button id=place-chip-hip_r label='Right hip' value='not selected' @115.66666666666671,456 89x44
+Button id=more-places label='More places' value='None' @16.000000000000057,512.3333333333333 370x52
+['neck', 'tail']
