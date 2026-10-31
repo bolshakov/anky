@@ -58,6 +58,24 @@ struct PlaceListRow: View {
                 togglePin(event: .pinChangedByAction)
             }
         }
+        .contextMenu { pinMenuItems(isPinned: isPinned) }
+    }
+
+    @ViewBuilder
+    private func pinMenuItems(isPinned: Bool) -> some View {
+        if isPinned {
+            Button {
+                shortcuts.unpin(place, event: .pinChangedByMenu)
+            } label: {
+                Label("Unpin shortcut", systemImage: "pin.slash.fill")
+            }
+        } else {
+            Button {
+                shortcuts.pin(place, event: .pinChangedByMenu)
+            } label: {
+                Label("Pin as shortcut", systemImage: "pin.fill")
+            }
+        }
     }
 
     @ViewBuilder
