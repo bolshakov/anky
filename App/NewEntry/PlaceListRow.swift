@@ -23,9 +23,10 @@ struct PlaceListRow: View {
                 Button {
                     togglePin(event: .pinChangedBySwipe)
                 } label: {
-                    Label(pinActionTitle(isPinned), systemImage: isPinned ? "pin.slash.fill" : "pin.fill")
+                    Label(pinSwipeTitle(isPinned), systemImage: isPinned ? "pin.slash.fill" : "pin.fill")
                 }
                 .tint(.accentColor)
+                .accessibilityLabel(Text(pinActionTitle(isPinned)))
                 .accessibilityIdentifier("pin-action-\(place.rawValue)")
             }
             .sensoryFeedback(.selection, trigger: isSelected)
@@ -52,7 +53,7 @@ struct PlaceListRow: View {
             .padding(.trailing, 16)
             .foregroundStyle(.primary)
             .padding(.leading, PlaceListRowMetrics.nameLeadingInset)
-            .frame(maxWidth: .infinity, minHeight: 52)
+            .frame(maxWidth: .infinity, minHeight: 60)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -123,5 +124,9 @@ struct PlaceListRow: View {
 
     private func pinActionTitle(_ isPinned: Bool) -> LocalizedStringResource {
         isPinned ? "Unpin shortcut" : "Pin as shortcut"
+    }
+
+    private func pinSwipeTitle(_ isPinned: Bool) -> LocalizedStringResource {
+        isPinned ? "Unpin" : "Pin"
     }
 }
