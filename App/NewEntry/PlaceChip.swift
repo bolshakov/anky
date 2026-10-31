@@ -28,7 +28,6 @@ struct PlaceChip: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(place.displayName)
-        .accessibilityValue(isPinned ? String(localized: "Pinned") : "")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
         .accessibilityAction(named: Text(pinActionName)) {
             togglePin(event: .pinChangedByAction)
