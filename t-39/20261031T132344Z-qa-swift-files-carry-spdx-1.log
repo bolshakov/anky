@@ -1,0 +1,4 @@
+$ sh -c 'git ls-files '\''*.swift'\'' '\'':!.claude/skills'\'' | while IFS= read -r f; do [ "$(head -n 1 "$f")" = '\''// SPDX-License-Identifier: GPL-3.0-or-later'\'' ] || echo "MISSING $f"; done'
+exit: 0
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+

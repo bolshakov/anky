@@ -1,0 +1,6 @@
+$ sh -c 'git ls-files '\''*.swift'\'' '\'':!.claude/skills'\'' | wc -l; echo ---; git ls-files '\''*.swift'\'' '\'':!.claude/skills'\'' | grep -v -e '\''^App/'\'' -e '\''^Sources/'\'' -e '\''^Tests/'\'' -e '\''^Package.swift$'\'''
+exit: 1
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+
+     141
+---

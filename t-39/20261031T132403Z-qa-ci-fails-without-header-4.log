@@ -1,0 +1,6 @@
+$ grep -n license-headers .github/workflows/ci.yml
+exit: 0
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+
+54:        run: scripts/ci/check-license-headers.sh
+57:        run: scripts/ci/test-check-license-headers.sh

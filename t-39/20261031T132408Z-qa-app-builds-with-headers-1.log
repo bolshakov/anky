@@ -1,0 +1,40 @@
+$ swift build --explicit-target-dependency-import-check=error --scratch-path /Users/bolshakov/Projects/personal/anky.wt/qa-t39-05-3/tmp/walk-t39-build.rU6u/build
+exit: 0
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+
+Building for debugging...
+[0/2] Write sources
+[1/2] Write swift-version--58304C5D6DBC2206.txt
+[3/31] Compiling AnkyDomain RecentEntryText.swift
+[4/31] Compiling AnkyDomain Severity.swift
+[5/31] Compiling AnkyDomain ShortcutFeedback.swift
+[6/34] Compiling AnkyDomain TipProgress.swift
+[7/34] Compiling AnkyDomain TipProgressStore.swift
+[8/34] Compiling AnkyDomain TodayList.swift
+[9/34] Compiling AnkyDomain PlaceSummary.swift
+[10/34] Compiling AnkyDomain RecentEntries.swift
+[11/34] Compiling AnkyDomain RecentEntry.swift
+[12/34] Emitting module AnkyDomain
+[13/34] Compiling AnkyDomain NoteCounter.swift
+[14/34] Compiling AnkyDomain PinSwipe.swift
+[15/34] Compiling AnkyDomain PlaceCatalog.swift
+[16/34] Compiling AnkyDomain PlaceChips.swift
+[17/34] Compiling AnkyDomain PlaceID.swift
+[18/34] Compiling AnkyDomain PlaceSearch.swift
+[19/34] Compiling AnkyDomain EntryDraft.swift
+[20/34] Compiling AnkyDomain EntryKind.swift
+[21/34] Compiling AnkyDomain EntryLog.swift
+[22/34] Compiling AnkyDomain Shortcuts.swift
+[23/34] Compiling AnkyDomain ShortcutsLog.swift
+[24/34] Compiling AnkyDomain ShortcutsStore.swift
+[25/34] Compiling AnkyDomain HistoryList.swift
+[26/34] Compiling AnkyDomain Joint.swift
+[27/34] Compiling AnkyDomain MorePlacesValue.swift
+[28/34] Compiling AnkyDomain EntryLogError.swift
+[29/34] Compiling AnkyDomain EntryStore.swift
+[30/34] Compiling AnkyDomain FileEntryStore.swift
+[31/34] Compiling AnkyDomain DayHeader.swift
+[32/34] Compiling AnkyDomain DaySection.swift
+[33/34] Compiling AnkyDomain Entry.swift
+[34/34] Compiling AnkyDomain EntryDraft+Recent.swift
+Build complete! (4.07s)

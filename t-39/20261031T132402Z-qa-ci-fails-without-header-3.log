@@ -1,0 +1,5 @@
+$ sh -c 'rm Sources/AnkyDomain/NoHeader.swift; scripts/ci/check-license-headers.sh > "$TMPDIR/out.txt"; echo "exit $?"; cat "$TMPDIR/out.txt"'
+exit: 0
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+
+exit 0

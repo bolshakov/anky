@@ -1,0 +1,6 @@
+$ sh -c 'printf "import Foundation\n" > Sources/AnkyDomain/NoHeader.swift; scripts/ci/check-license-headers.sh > "$TMPDIR/out.txt"; echo "exit $?"; cat "$TMPDIR/out.txt"'
+exit: 0
+commit: be425cfe71aedffedcc73846cb67639c795d6fe2
+
+exit 1
+LICENSE HEADER VIOLATION: ./Sources/AnkyDomain/NoHeader.swift
