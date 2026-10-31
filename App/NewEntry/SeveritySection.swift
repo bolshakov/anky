@@ -13,7 +13,7 @@ struct SeveritySection: View {
             Text("Severity")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-                .padding(.horizontal, 16)
+                .cardCaption()
                 .accessibilityIdentifier("severity-caption")
                 .accessibilityAddTraits(.isHeader)
 
