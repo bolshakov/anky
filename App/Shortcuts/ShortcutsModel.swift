@@ -2,6 +2,7 @@
 import AnkyDomain
 import Observation
 import TipKit
+import UIKit
 
 @MainActor @Observable final class ShortcutsModel {
     @ObservationIgnored private let log: ShortcutsLog
@@ -33,6 +34,7 @@ import TipKit
         log.unpin(place)
         copyFromLog()
         report(event)
+        announce(String(localized: "Unpinned"))
     }
 
     func recordLastChips(_ chips: [PlaceID]) {
@@ -52,6 +54,7 @@ import TipKit
         case .pinned:
             copyFromLog()
             report(event)
+            announce(String(localized: "Pinned"))
             PinShortcutTip().invalidate(reason: .actionPerformed)
         case .refused:
             isShowingPinLimit = true
@@ -64,5 +67,9 @@ import TipKit
     private func copyFromLog() {
         pinned = log.shortcuts.pinned
         lastChips = log.shortcuts.lastChips
+    }
+
+    private func announce(_ text: String) {
+        UIAccessibility.post(notification: .announcement, argument: text)
     }
 }
