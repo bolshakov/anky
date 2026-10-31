@@ -52,16 +52,25 @@ struct PlaceListRow: View {
         }
         .buttonStyle(.plain)
         .accessibilityRepresentation {
-            Button(place.displayName) {
-                togglePlace(isSelected: isSelected)
-            }
-            .accessibilityValue(Text(accessibilityValue(isSelected: isSelected, isPinned: isPinned)))
-            .accessibilityIdentifier("place-\(place.rawValue)")
-            .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
-                togglePin(event: .pinChangedByAction)
+            if isPinned {
+                accessibleButton(isSelected: isSelected, isPinned: isPinned)
+                    .accessibilityValue(Text("Pinned"))
+            } else {
+                accessibleButton(isSelected: isSelected, isPinned: isPinned)
             }
         }
         .contextMenu { pinMenuItems(isPinned: isPinned) }
+    }
+
+    private func accessibleButton(isSelected: Bool, isPinned: Bool) -> some View {
+        Button(place.displayName) {
+            togglePlace(isSelected: isSelected)
+        }
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityIdentifier("place-\(place.rawValue)")
+        .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
+            togglePin(event: .pinChangedByAction)
+        }
     }
 
     @ViewBuilder
@@ -89,7 +98,6 @@ struct PlaceListRow: View {
                 .foregroundStyle(.secondary)
                 .padding(.leading, PlaceListRowMetrics.pinIconInset)
                 .accessibilityHidden(true)
-                .accessibilityIdentifier("pin-icon-\(place.rawValue)")
         }
     }
 
@@ -117,12 +125,6 @@ struct PlaceListRow: View {
     }
 
     private func pinActionTitle(_ isPinned: Bool) -> LocalizedStringResource {
-        isPinned ? "Unpin" : "Pin"
-    }
-
-    private func accessibilityValue(isSelected: Bool, isPinned: Bool) -> String {
-        let selection = isSelected ? String(localized: "selected") : String(localized: "not selected")
-        let pin = isPinned ? String(localized: "Pinned") : nil
-        return [selection, pin].compactMap(\.self).joined(separator: ", ")
+        isPinned ? "Unpin shortcut" : "Pin as shortcut"
     }
 }
