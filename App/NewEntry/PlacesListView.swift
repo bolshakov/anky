@@ -1,9 +1,11 @@
 import AnkyDomain
 import SwiftUI
+import TipKit
 
 struct PlacesListView: View {
     @Binding var draft: EntryDraft
     @Environment(\.dismiss) private var dismiss
+    @Environment(TipProgressModel.self) private var tipProgress
     @State private var query = ""
 
     var body: some View {
@@ -15,6 +17,12 @@ struct PlacesListView: View {
             )
         )
         List {
+            Section {
+                TipView(PinShortcutTip())
+                    .tipViewStyle(PinTipStyle())
+                    .accessibilityIdentifier("pin-tip")
+            }
+            .listRowBackground(Color.clear)
             ForEach(PlaceGroup.allCases, id: \.self) { group in
                 let joints = PlaceCatalog.joints(in: group).filter(found.contains)
                 if !joints.isEmpty {
@@ -35,6 +43,9 @@ struct PlacesListView: View {
         .navigationTitle("Where")
         .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $query, prompt: "Search joints and places")
+        .onAppear {
+            tipProgress.recordVisit()
+        }
         .safeAreaInset(edge: .bottom) {
             DonePlacesButton(count: draft.placeCount) {
                 dismiss()

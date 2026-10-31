@@ -1,5 +1,6 @@
 import AnkyDomain
 import Observation
+import TipKit
 
 @MainActor @Observable final class ShortcutsModel {
     @ObservationIgnored private let log: ShortcutsLog
@@ -50,6 +51,7 @@ import Observation
         case .pinned:
             copyFromLog()
             report(event)
+            PinShortcutTip().invalidate(reason: .actionPerformed)
         case .refused:
             isShowingPinLimit = true
             report(.pinRefused)
