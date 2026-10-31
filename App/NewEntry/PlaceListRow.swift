@@ -59,24 +59,21 @@ struct PlaceListRow: View {
         .buttonStyle(.plain)
         .accessibilityRepresentation {
             if isPinned {
-                accessibleButton(isSelected: isSelected, isPinned: isPinned)
+                accessibleButton(isSelected: isSelected)
                     .accessibilityValue(Text("Pinned"))
             } else {
-                accessibleButton(isSelected: isSelected, isPinned: isPinned)
+                accessibleButton(isSelected: isSelected)
             }
         }
         .contextMenu { pinMenuItems(isPinned: isPinned) }
     }
 
-    private func accessibleButton(isSelected: Bool, isPinned: Bool) -> some View {
+    private func accessibleButton(isSelected: Bool) -> some View {
         Button(place.displayName) {
             togglePlace(isSelected: isSelected)
         }
         .accessibilityAddTraits(isSelected ? .isSelected : [])
         .accessibilityIdentifier("place-\(place.rawValue)")
-        .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
-            togglePin(event: .pinChangedByAction)
-        }
     }
 
     @ViewBuilder
