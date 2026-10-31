@@ -21,6 +21,7 @@ struct MedicationFormView: View {
             Form {
                 Section {
                     TextField("Name", text: $draft.name)
+                        .autocorrectionDisabled()
                         .focused($focus, equals: .name)
                         .submitLabel(.next)
                         .onSubmit { focus = .strength }
