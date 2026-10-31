@@ -397,6 +397,16 @@
         }
       }
     },
+    "Entry removed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запись удалена"
+          }
+        }
+      }
+    },
     "Eyes" : {
       "localizations" : {
         "ru" : {
@@ -817,6 +827,16 @@
         }
       }
     },
+    "Note" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заметка"
+          }
+        }
+      }
+    },
     "Nothing logged today" : {
       "localizations" : {
         "ru" : {
@@ -1227,12 +1247,32 @@
         }
       }
     },
+    "Unpinned" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откреплено"
+          }
+        }
+      }
+    },
     "Upper back" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Верхняя часть спины"
+          }
+        }
+      }
+    },
+    "What are you logging" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что ты отмечаешь"
           }
         }
       }

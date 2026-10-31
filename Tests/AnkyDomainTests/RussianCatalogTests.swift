@@ -114,6 +114,10 @@ Swipe a place right to pin it as a shortcut on New Entry. => \
 Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
 Dismiss tip => Закрыть подсказку
 Pinned => Закреплено
+What are you logging => Что ты отмечаешь
+Note => Заметка
+Unpinned => Откреплено
+Entry removed => Запись удалена
 """)
 
 private let approvedFormatValues = table("""
