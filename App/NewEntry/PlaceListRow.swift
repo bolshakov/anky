@@ -11,6 +11,7 @@ struct PlaceListRow: View {
     let place: PlaceID
     @Binding var draft: EntryDraft
     @Environment(ShortcutsModel.self) private var shortcuts
+    @Environment(TipProgressModel.self) private var tipProgress
 
     var body: some View {
         let isSelected = draft.places.contains(place)
@@ -32,7 +33,7 @@ struct PlaceListRow: View {
 
     private func rowButton(isSelected: Bool, isPinned: Bool) -> some View {
         Button {
-            draft.togglePlace(place)
+            togglePlace(isSelected: isSelected)
         } label: {
             HStack {
                 Text(place.displayName)
@@ -51,7 +52,7 @@ struct PlaceListRow: View {
         .buttonStyle(.plain)
         .accessibilityRepresentation {
             Button(place.displayName) {
-                draft.togglePlace(place)
+                togglePlace(isSelected: isSelected)
             }
             .accessibilityValue(stateName(isSelected))
             .accessibilityIdentifier("place-\(place.rawValue)")
@@ -79,6 +80,13 @@ struct PlaceListRow: View {
             onAction: { togglePin(event: .pinChangedByAction) },
             onCommit: { togglePin(event: .pinChangedByLongSwipe) }
         )
+    }
+
+    private func togglePlace(isSelected: Bool) {
+        if !isSelected {
+            tipProgress.recordPick(place)
+        }
+        draft.togglePlace(place)
     }
 
     private func togglePin(event: ShortcutEvent) {

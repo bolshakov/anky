@@ -99,6 +99,7 @@ struct NewEntryView: View {
         }
         .pinLimitAlert(model.shortcuts)
         .environment(model.shortcuts)
+        .environment(model.tipProgress)
     }
 
     private var chips: [PlaceID] {
