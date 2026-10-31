@@ -6,6 +6,7 @@ struct PlaceChip: View {
     let isSelected: Bool
     let action: () -> Void
 
+    @Environment(ShortcutsModel.self) private var shortcuts
     @ScaledMetric(relativeTo: .subheadline) private var checkSize: CGFloat = 14
 
     var body: some View {
@@ -29,6 +30,21 @@ struct PlaceChip: View {
         .accessibilityValue(stateName)
         .accessibilityIdentifier("place-chip-\(place.rawValue)")
         .sensoryFeedback(.selection, trigger: isSelected)
+        .contextMenu {
+            if shortcuts.isPinned(place) {
+                Button {
+                    shortcuts.unpin(place, event: .pinChangedByMenu)
+                } label: {
+                    Label("Unpin shortcut", systemImage: "pin.slash.fill")
+                }
+            } else {
+                Button {
+                    shortcuts.pin(place, event: .pinChangedByMenu)
+                } label: {
+                    Label("Pin as shortcut", systemImage: "pin.fill")
+                }
+            }
+        }
     }
 
     private var stateName: LocalizedStringResource {
