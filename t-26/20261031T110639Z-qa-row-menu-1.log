@@ -1,0 +1,93 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/step1.sh
+exit: 0
+commit: 204256b52201b2f82619c91693c5c984556c08b9
+
++ PINS=lower
++ fresh
++ stop
++ xcrun simctl terminate A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky
+++ folder
++++ entries_file
+++++ xcrun simctl get_app_container A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky data
++++ echo '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
+++ dirname '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
++ mkdir -p '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk'
+++ folder
++++ entries_file
+++++ xcrun simctl get_app_container A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky data
++++ echo '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
+++ dirname '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
++ find '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk' -mindepth 1 -delete
+++ entries_file
++++ xcrun simctl get_app_container A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky data
+++ echo '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/seed.py '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
++ launch
++ SIMCTL_CHILD_ANKY_ENTRIES_FOLDER=walk
++ xcrun simctl launch A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky
++ sleep 2
++ to_places
++ axe tap --id log-entry --wait-timeout 5 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
++ axe tap --id more-places --wait-timeout 5 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
++ long_press place-row-tail
+++ ui
+++ sleep 1
+++ grep 'id=place-row-tail '
+++ frame
+++ sed -E 's/.*@([0-9.]+),([0-9.]+) ([0-9.]+)x([0-9.]+)$/\1 \2 \3 \4/'
+++ awk '{ printf "%d %d", $1 + $3 / 2, $2 + $4 / 2; exit }'
+++ axe describe-ui --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/ui.py
++ p='201 354'
++ '[' -n '201 354' ']'
++ axe touch -x 201 -y 354 --down --up --delay 1.2 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
++ ui
++ sleep 1
++ grep -E 'label='\''(Pin as shortcut|Unpin shortcut)'\'''
++ axe describe-ui --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/ui.py
+Button id=pin.fill label='Pin as shortcut' value=None @76,406.3333333333333 250x42
++ axe tap --label 'Pin as shortcut' --wait-timeout 5 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+✓ Tap at resolved tap point at (201.0, 427.3333333333333) completed successfully
++ long_press place-row-lower
+++ grep 'id=place-row-lower '
+++ ui
+++ sleep 1
+++ awk '{ printf "%d %d", $1 + $3 / 2, $2 + $4 / 2; exit }'
+++ frame
+++ sed -E 's/.*@([0-9.]+),([0-9.]+) ([0-9.]+)x([0-9.]+)$/\1 \2 \3 \4/'
+++ axe describe-ui --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/ui.py
++ p='201 302'
++ '[' -n '201 302' ']'
++ axe touch -x 201 -y 302 --down --up --delay 1.2 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
++ ui
++ sleep 1
++ grep -E 'label='\''(Pin as shortcut|Unpin shortcut)'\'''
++ axe describe-ui --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/ui.py
+Button id=pin.slash.fill label='Unpin shortcut' value=None @76,354.3333333333333 250x42
++ axe tap --label 'Unpin shortcut' --wait-timeout 5 --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
+✓ Tap at resolved tap point at (201.0, 375.3333333333333) completed successfully
++ pins
++ json_field shortcuts.json pinned
+++ folder
++++ entries_file
+++++ xcrun simctl get_app_container A415C8EB-6FF5-4CD3-BD1D-2B566032D62F dev.bolshakov.Anky data
++++ echo '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
+++ dirname '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/entries.json'
++ python3 -I -c 'import json,sys
+try:
+    print(json.load(open(sys.argv[1]))[sys.argv[2]])
+except (OSError, KeyError):
+    print("none")' '/Users/bolshakov/Library/Developer/CoreSimulator/Devices/A415C8EB-6FF5-4CD3-BD1D-2B566032D62F/data/Containers/Data/Application/53851F61-EF67-46C6-A7C1-C4E122C328B5/Library/Application Support/walk/shortcuts.json' pinned
+['tail']
++ ui
++ sleep 1
++ grep -E 'id=place-(tail|lower) '
++ axe describe-ui --udid A415C8EB-6FF5-4CD3-BD1D-2B566032D62F
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t26-14-1/tmp/ui.py
+Button id=place-lower label='Lower back' value='not selected' actions=['Pin'] @16,276.33333333333337 370x52
+Button id=place-tail label='Tailbone' value='not selected, Pinned' actions=['Unpin'] @16,328.33333333333337 370x52
