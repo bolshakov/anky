@@ -1,0 +1,10 @@
+$ sed -n 1,6p CLAUDE.md
+exit: 0
+commit: 61de1ef5dd8a58feda52c09f86fab8c441fc88e7
+
+# anky
+
+An iOS app for tracking ankylosing spondylitis symptoms. It is open source under the GPL-3.0-or-later license. It
+handles health data, so it stays on the device unless the stakeholder decides otherwise. Never commit real symptom data,
+not even as a test fixture. Product calls about privacy are the stakeholder's, so ask before adding analytics, network
+sync, or HealthKit.

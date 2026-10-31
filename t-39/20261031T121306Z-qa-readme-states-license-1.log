@@ -1,0 +1,11 @@
+$ sed -n '/^## License/,$p' README.md
+exit: 0
+commit: 61de1ef5dd8a58feda52c09f86fab8c441fc88e7
+
+## License
+
+Anky's code is licensed under GPL-3.0-or-later. See [LICENSE](LICENSE).
+
+Copies taken before 2026-10-31 stay under the terms they came with.
+
+© 2026 Tëma Bolshakov
