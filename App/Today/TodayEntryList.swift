@@ -64,7 +64,7 @@ struct EntryRow: View {
     }
 
     private var spokenLabel: Text {
-        let places = entry.placeSummary.text
+        let places = RecentEntry(entry).spokenPlaces
         return Text("\(time), \(places), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))")
     }
 
