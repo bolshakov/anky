@@ -8,12 +8,8 @@ struct ShortcutFeedbackTests {
         #expect(ShortcutFeedbackRule.feedback(for: .menuOpened) == ShortcutFeedback.none)
     }
 
-    @Test func crossingTheCommitPointGivesALightTap() {
-        #expect(ShortcutFeedbackRule.feedback(for: .crossedCommitPoint) == .lightImpact)
-    }
-
-    @Test func aLongSwipeThatTakesEffectGivesNoSecondTap() {
-        #expect(ShortcutFeedbackRule.feedback(for: .pinChangedByLongSwipe) == ShortcutFeedback.none)
+    @Test func aPinFromTheSwipeGivesNoTapOfTheAppsOwn() {
+        #expect(ShortcutFeedbackRule.feedback(for: .pinChangedBySwipe) == ShortcutFeedback.none)
     }
 
     @Test func aPinFromTheActionOrAMenuGivesASelectionTap() {

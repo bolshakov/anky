@@ -7,7 +7,6 @@ enum ShortcutFeedbackStyle {
         switch feedback {
         case .selection: .selection
         case .warning: .warning
-        case .lightImpact: .impact(weight: .light)
         case .none: nil
         }
     }
