@@ -1,0 +1,5 @@
+$ zsh -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep "id=repeat-chip " | grep -c "+"'
+exit: 1
+commit: ca10ec1e8d956694c1b8003c759aea2c299ebb48
+
+0

@@ -1,0 +1,5 @@
+$ zsh -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; fresh "stiffness/1/09:00/5/lower"; sleep 3; ui | grep "id=repeat-chip " | python3 -I -c '\''import re,sys; print(bool(re.search(r"label=.Same as last time, Stiffness, Lower back, 5 of 10.", sys.stdin.read())))'\'''
+exit: 0
+commit: ca10ec1e8d956694c1b8003c759aea2c299ebb48
+
+True

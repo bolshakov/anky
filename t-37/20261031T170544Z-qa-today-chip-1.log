@@ -1,0 +1,6 @@
+$ zsh -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; fresh "pain/1/09:00/4/neck,upper,lower,si_l,si_r"; sleep 3; ui | grep "id=repeat-chip "; ui | grep "id=repeat-chip " | python3 -I -c '\''import re,sys; print(bool(re.search(r"label=.Same as last time, Neck, Upper back, Lower back, SI joints, 4 of 10.", sys.stdin.read())))'\'''
+exit: 0
+commit: ca10ec1e8d956694c1b8003c759aea2c299ebb48
+
+Button id=repeat-chip label='Same as last time, Neck, Upper back, Lower back, SI joints, 4 of 10' value=None @16,202 370x44
+True
