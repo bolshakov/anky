@@ -21,6 +21,6 @@ public enum PinSwipe {
 
     public static func crossedCommitPoint(from: Double, to: Double, rowWidth: Double) -> Bool {
         let point = commitPoint(rowWidth: rowWidth)
-        return from < point && to >= point
+        return (from >= point) != (to >= point)
     }
 }
