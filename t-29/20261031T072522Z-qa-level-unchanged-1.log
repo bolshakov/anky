@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"
+fresh "pain/0/00:01/4/-"
+ui | grep "id=entry-row-pain " | python3 -I -c "import re,sys; print(bool(re.search(r\"label=.(12:01\s?AM|0:01|00:01), No place, Pain, 4 of 10.\", sys.stdin.read())))"'
+exit: 0
+commit: 768ea3368c5420eab8a4cacbad4787043d1ec94d
+
+True

@@ -1,0 +1,4 @@
+$ bash -c 'git -C "/Users/bolshakov/Projects/personal/anky.wt/qa-t29-01-6/checkout" diff -U0 origin/main...HEAD -- App/Today/TodayEntryList.swift | grep -E '\''^[-+].*(accessibilityLabel|accessibilityIdentifier|spokenLabel|var value|\.bold\(\)|of \\\(10\))'\'''
+exit: 1
+commit: 768ea3368c5420eab8a4cacbad4787043d1ec94d
+

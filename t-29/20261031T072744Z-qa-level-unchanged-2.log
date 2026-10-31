@@ -1,0 +1,13 @@
+$ bash -c '. "$TMPDIR/walk.sh"
+fresh "pain/1/09:00/4/-"
+tap_tab history History
+ui | grep "id=entry-row-pain " | python3 -I -c "import re,sys; print(bool(re.search(r\"label=.(9:00\s?AM|9:00|09:00), No place, Pain, 4 of 10.\", sys.stdin.read())))"
+axe tap --id entry-row-pain --wait-timeout 5 --udid "$udid"
+ui | grep -c "id=edit-entry-screen"'
+exit: 0
+commit: 768ea3368c5420eab8a4cacbad4787043d1ec94d
+
+✓ Tap at (244.0, 822.0) completed successfully
+True
+✓ Tap at resolved tap point at (201.0, 241.0) completed successfully
+1
