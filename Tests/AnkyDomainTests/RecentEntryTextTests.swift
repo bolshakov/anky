@@ -5,6 +5,7 @@ import Testing
 
 struct RecentEntryTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
+    private let english = Locale(identifier: "en")
 
     private var words: RecentWords {
         RecentWords(
@@ -74,9 +75,13 @@ struct RecentEntryTextTests {
         #expect(try recent(["si_l"]).chipText(words: words) == "Left SI joint · 4")
     }
 
-    @Test func theSpokenTextHoldsEveryNameAndTheKind() throws {
+    @Test func theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() throws {
         let chip = try recent(["neck", "lower", "si_l", "si_r", "knee_l"])
-        #expect(chip.spokenText(words: words) == "Pain, Neck, Lower back, SI joints, Left knee, 4 of 10")
+        #expect(chip.spokenText(words: words) == "Neck, Lower back, SI joints, Left knee, 4 of 10")
+    }
+
+    @Test func theSpokenTextOfAStiffnessEntryStartsWithItsKind() throws {
+        #expect(try recent(["lower"], kind: .stiffness).spokenText(words: words) == "Stiffness, Lower back, 4 of 10")
     }
 
     @Test func theSpokenTextOfAFatigueEntryHasNoPlace() throws {
@@ -85,5 +90,29 @@ struct RecentEntryTextTests {
 
     @Test func theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() throws {
         #expect(try recent([], kind: .stiffness).spokenText(words: words) == "Stiffness, No place, 4 of 10")
+    }
+
+    @Test func theSpokenPlacesJoinThePairAndThePlaceWithAnd() throws {
+        let places = try recent(["lower", "si_l", "si_r"]).spokenPlaces(
+            words: words, wholeBody: "Whole body", locale: english
+        )
+        #expect(places == "Lower back and SI joints")
+    }
+
+    @Test func theSpokenPlacesOfOneNameStandAlone() throws {
+        let places = try recent(["neck"]).spokenPlaces(words: words, wholeBody: "Whole body", locale: english)
+        #expect(places == "Neck")
+    }
+
+    @Test func theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() throws {
+        let places = try recent([]).spokenPlaces(words: words, wholeBody: "Whole body", locale: english)
+        #expect(places == "No place")
+    }
+
+    @Test func theSpokenPlacesOfAFatigueEntrySayTheWholeBody() throws {
+        let places = try recent([], kind: .fatigue).spokenPlaces(
+            words: words, wholeBody: "Whole body", locale: english
+        )
+        #expect(places == "Whole body")
     }
 }
