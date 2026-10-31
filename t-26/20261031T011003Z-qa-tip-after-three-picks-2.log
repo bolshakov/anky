@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-10-1/tmp/s_pa.sh
+exit: 0
+commit: 0dbbffb480ec0425cd10495c6b8e27dbfcfef750
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+0
+✓ Tap at resolved tap point at (201.0, 354.33333333333337) completed successfully
+Group id=pin-tip label=None value=None @32,182 338x70.33332824707031

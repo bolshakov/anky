@@ -1,0 +1,8 @@
+$ sh -c 'gh run view 41152336960 --log | grep -E -e '\''Test theThirdPickOfOnePlaceMakesTheTipReady\(\) (passed|failed)'\'' -e '\''Test picksOfDifferentPlacesAreNotAdded\(\) (passed|failed)'\'' -e '\''Test aPickThatClearsAPlaceIsNotCounted\(\) (passed|failed)'\'' -e '\''Test picksSurviveAReload\(\) (passed|failed)'\'''
+exit: 0
+commit: 0dbbffb480ec0425cd10495c6b8e27dbfcfef750
+
+ios	swift test	2026-10-31T00:51:48.9398110Z ✔ Test aPickThatClearsAPlaceIsNotCounted() passed after 1.841 seconds.
+ios	swift test	2026-10-31T00:51:48.9399950Z ✔ Test picksOfDifferentPlacesAreNotAdded() passed after 1.841 seconds.
+ios	swift test	2026-10-31T00:51:48.9400310Z ✔ Test picksSurviveAReload() passed after 1.841 seconds.
+ios	swift test	2026-10-31T00:51:48.9402700Z ✔ Test theThirdPickOfOnePlaceMakesTheTipReady() passed after 1.841 seconds.

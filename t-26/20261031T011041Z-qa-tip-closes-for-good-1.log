@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-10-1/tmp/s_c.sh
+exit: 1
+commit: 0dbbffb480ec0425cd10495c6b8e27dbfcfef750
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+✓ Tap at resolved tap point at (344.0, 208.0) completed successfully
+0
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+0

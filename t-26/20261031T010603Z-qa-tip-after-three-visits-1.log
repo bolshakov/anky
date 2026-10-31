@@ -1,0 +1,7 @@
+$ sh -c 'gh run view 41152336960 --log | grep -E -e '\''Test theThirdVisitMakesTheTipReady\(\) (passed|failed)'\'' -e '\''Test twoVisitsAreNotEnough\(\) (passed|failed)'\'' -e '\''Test visitsSurviveAReload\(\) (passed|failed)'\'''
+exit: 0
+commit: 0dbbffb480ec0425cd10495c6b8e27dbfcfef750
+
+ios	swift test	2026-10-31T00:51:48.9399150Z ✔ Test visitsSurviveAReload() passed after 1.841 seconds.
+ios	swift test	2026-10-31T00:51:48.9400660Z ✔ Test theThirdVisitMakesTheTipReady() passed after 1.841 seconds.
+ios	swift test	2026-10-31T00:51:48.9401450Z ✔ Test twoVisitsAreNotEnough() passed after 1.841 seconds.
