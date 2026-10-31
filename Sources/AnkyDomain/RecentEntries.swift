@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum RecentEntries {
     public static func distinct(from entries: [Entry], limit: Int) -> [RecentEntry] {
         guard limit > 0 else { return [] }

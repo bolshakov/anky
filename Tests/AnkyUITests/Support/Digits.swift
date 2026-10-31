@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
 /// The first word that is a whole number. The pseudolanguage mangles the words around a number, so "4 of 10" in double

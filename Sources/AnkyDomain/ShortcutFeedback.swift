@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum ShortcutEvent: Equatable, Sendable {
     case crossedCommitPoint, pinChangedByLongSwipe, pinChangedByAction, pinChangedByMenu, pinRefused, menuOpened
 }

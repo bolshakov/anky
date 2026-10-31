@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum NoteCounter: Equatable, Sendable {
     case left(Int) // 1 to 39 characters left
     case limitReached // the note holds EntryDraft.noteLimit characters

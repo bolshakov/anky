@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
 /// Checks that the 0 and 10 labels sit beyond the slider's two ends, on its row. In right-to-left the start edge is the

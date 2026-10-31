@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public struct TipProgress: Equatable, Sendable {
     public static let visitsNeeded = 3
     public static let picksNeeded = 3

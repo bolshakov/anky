@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
 /// Today's entry rows. Each id is `entry-row-<kind raw value>`, so the prefix finds a row of any kind.
