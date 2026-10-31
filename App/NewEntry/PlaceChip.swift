@@ -28,7 +28,11 @@ struct PlaceChip: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(place.displayName)
-        .accessibilityValue(stateName)
+        .accessibilityValue(isPinned ? String(localized: "Pinned") : "")
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
+        .accessibilityAction(named: Text(pinActionName)) {
+            togglePin(event: .pinChangedByAction)
+        }
         .accessibilityIdentifier("place-chip-\(place.rawValue)")
         .sensoryFeedback(.selection, trigger: isSelected)
         .contextMenu {
@@ -48,7 +52,19 @@ struct PlaceChip: View {
         }
     }
 
-    private var stateName: LocalizedStringResource {
-        isSelected ? "selected" : "not selected"
+    private var isPinned: Bool {
+        shortcuts.isPinned(place)
+    }
+
+    private var pinActionName: LocalizedStringResource {
+        isPinned ? "Unpin shortcut" : "Pin as shortcut"
+    }
+
+    private func togglePin(event: ShortcutEvent) {
+        if isPinned {
+            shortcuts.unpin(place, event: event)
+        } else {
+            shortcuts.pin(place, event: event)
+        }
     }
 }
