@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/cur.sh
+exit: 0
+commit: 9dea2ae0b65b55f4d55e49dae34f339b0de4d84c
+
+Done · 4 places
+Button id=place-eyes label='Eyes' value='not selected' actions=['Pin', 'Pin'] @16,620 370x52
+Button id=place-neck label='Neck' value='selected' actions=['Pin', 'Pin'] @16,172.33333333333334 370x52

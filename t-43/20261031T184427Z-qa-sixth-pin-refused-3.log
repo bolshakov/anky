@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/cur.sh
+exit: 0
+commit: 9dea2ae0b65b55f4d55e49dae34f339b0de4d84c
+
+5
+Button id=place-si_r label='Right SI joint' value='not selected' actions=['Pin', 'Pin'] @16,490.3333333333333 370x51.99999999999994
+Done

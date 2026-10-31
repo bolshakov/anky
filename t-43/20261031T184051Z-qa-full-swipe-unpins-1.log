@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/cur.sh
+exit: 0
+commit: 9dea2ae0b65b55f4d55e49dae34f339b0de4d84c
+
+Button id=place-tail label='Tailbone' value='not selected' actions=['Pin', 'Pin'] @16,328.33333333333337 370x52
+0
+Done · 1 place

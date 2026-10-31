@@ -1,0 +1,89 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/cur.sh
+exit: 0
+commit: 9dea2ae0b65b55f4d55e49dae34f339b0de4d84c
+
++ fresh
++ uuidgen
++ launch
++ stop
++ xcrun simctl terminate 3CA066BB-0A16-46A9-B280-14C1CEBB2A22 dev.bolshakov.Anky
+++ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/walk-t43.K0Za/folder
++ SIMCTL_CHILD_ANKY_ENTRIES_FOLDER=D2325C73-57A4-4192-9419-3F1512457E0F
++ timeout 45 xcrun simctl launch 3CA066BB-0A16-46A9-B280-14C1CEBB2A22 dev.bolshakov.Anky -AppleLanguages '(en)' -AppleLocale en_US
++ sleep 2
++ to_places
++ tap_id log-entry
++ axe tap --id log-entry --wait-timeout 10 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ tap_id more-places
++ axe tap --id more-places --wait-timeout 10 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ tap_id place-neck
++ axe tap --id place-neck --wait-timeout 10 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ done_label
++ ui
++ sleep 1
++ grep 'id=done-places '
++ sed -E 's/.*label='\''([^'\'']*)'\''.*/\1/'
++ timeout 30 axe describe-ui --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/ui.py
+Done · 1 place
++ scroll down
++ '[' down = down ']'
++ set -- 650 250 6
+++ seq 6
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 650 --end-x 200 --end-y 250 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ ui
++ sleep 1
++ grep 'id=place-eyes '
++ timeout 30 axe describe-ui --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/ui.py
+Button id=place-eyes label='Eyes' value='not selected' actions=['Pin', 'Pin'] @16,620 370x52
++ shot scroll-one-down
++ xcrun simctl io 3CA066BB-0A16-46A9-B280-14C1CEBB2A22 screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/walk-t43.K0Za/scroll-one-down.png
++ scroll up
++ '[' up = down ']'
++ set -- 250 650 6
+++ seq 6
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ for flick in '$(seq "$3")'
++ axe swipe --start-x 200 --start-y 250 --end-x 200 --end-y 650 --duration 0.4 --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ sleep 1
++ ui
++ sleep 1
++ grep 'id=place-neck '
++ timeout 30 axe describe-ui --udid 3CA066BB-0A16-46A9-B280-14C1CEBB2A22
++ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/ui.py
+Button id=place-neck label='Neck' value='selected' actions=['Pin', 'Pin'] @16,172.33333333333334 370x52

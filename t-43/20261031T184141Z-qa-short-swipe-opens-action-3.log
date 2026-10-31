@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t43-01-1/tmp/cur.sh
+exit: 0
+commit: 9dea2ae0b65b55f4d55e49dae34f339b0de4d84c
+
+Button id=pin-action-neck label='Unpin' value=None @26,176.33333333333334 84x44
+16
+Button id=place-neck label='Neck' value='not selected' actions=['Pin', 'Pin'] @16,172.33333333333334 370x52
