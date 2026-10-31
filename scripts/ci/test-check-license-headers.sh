@@ -11,10 +11,10 @@ expect() {
   want=$1 desc=$2 setup=$3 line=$4 root=${5:-.}
   tree=$(mktemp -d)
   mkdir -p "$tree/App" "$tree/Sources/AnkyDomain" "$tree/Tests/AnkyDomainTests"
-  printf '%s\n' "$header" > "$tree/App/AnkyApp.swift"
-  printf '%s\n' "$header" > "$tree/Sources/AnkyDomain/Clean.swift"
-  printf '%s\n' "$header" > "$tree/Tests/AnkyDomainTests/Clean.swift"
-  printf '%s\n' "$header" > "$tree/Package.swift"
+  printf '%s\nimport Foundation\n' "$header" > "$tree/App/AnkyApp.swift"
+  printf '%s\nimport Foundation\n' "$header" > "$tree/Sources/AnkyDomain/Clean.swift"
+  printf '%s\nimport Testing\n' "$header" > "$tree/Tests/AnkyDomainTests/Clean.swift"
+  printf '%s\n// swift-tools-version: 6.0\n' "$header" > "$tree/Package.swift"
   (cd "$tree" && eval "$setup")
   out=$(cd "$tree" && "$here/check-license-headers.sh" "$root" 2>&1)
   status=$?
