@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t50-01-1/tmp/s4.sh
+exit: 0
+commit: cc62d6090d248bfab91ab722766a0f47ff1a986b
+
+Button id=pin-action-tail label='Закрепить как быстрый выбор' value=None @25.833333333333336,356.5 66.33333333333331x32.333333333333314
+word Закрепить under the icon
+StaticText id=None label='Закрепить' value=None @25.833333333333336,392.83333333333337 66.33333333333331x15.666666666666686

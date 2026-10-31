@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t50-01-1/tmp/s3.sh
+exit: 0
+commit: cc62d6090d248bfab91ab722766a0f47ff1a986b
+
+Button id=place-tail label='Tailbone' value=None actions=['Pin as shortcut', 'Pin as shortcut'] @16,352.33333333333337 370x60
+Button id=place-tail label='Tailbone' value='Pinned' actions=['Unpin shortcut', 'Unpin shortcut'] @16,352.33333333333337 370x60

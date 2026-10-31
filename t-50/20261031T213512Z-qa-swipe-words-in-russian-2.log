@@ -1,0 +1,7 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t50-01-1/tmp/walk-t50.bfNP; udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; full_swipe tail; open_row tail; pill tail; ui | grep "StaticText .*label='\''Открепить'\''"; shot swipe-words-in-russian-unpin'
+exit: 0
+commit: cc62d6090d248bfab91ab722766a0f47ff1a986b
+
+Button id=pin-action-tail label='Открепить быстрый выбор' value=None @25.83333333333333,356.5 67.66666666666667x32.333333333333314
+word Открепить under the icon
+StaticText id=None label='Открепить' value=None @25.83333333333333,392.83333333333337 67.66666666666667x15.666666666666686

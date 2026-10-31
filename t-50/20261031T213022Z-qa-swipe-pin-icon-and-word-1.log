@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t50-01-1/tmp/s1.sh
+exit: 0
+commit: cc62d6090d248bfab91ab722766a0f47ff1a986b
+
+Error: No translation object returned for simulator. This means you have likely specified a point onscreen that is invalid or invisible due to a fullscreen dialog
+no log-entry
+Button id=pin-action-tail label='Pin as shortcut' value=None @26,356.5 60x32.333333333333314
+word Pin under the icon
+0

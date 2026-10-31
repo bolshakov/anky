@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t50-01-1/tmp/s2.sh
+exit: 0
+commit: cc62d6090d248bfab91ab722766a0f47ff1a986b
+
+Button id=pin-action-tail label='Unpin shortcut' value=None @26,356.5 60x32.333333333333314
+word Unpin under the icon
+0
