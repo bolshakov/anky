@@ -48,7 +48,7 @@ struct PinSwipeRow<Content: View>: View {
             pinAction
             content
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(SwipeShade.color.opacity(isMoved ? 1 : 0), in: Capsule())
+                .background(SwipeShade.color.opacity(isLifted ? 1 : 0), in: Capsule())
                 .overlay { closeCatcher }
                 .offset(x: CGFloat(offset))
                 .simultaneousGesture(swipe)
@@ -182,7 +182,8 @@ struct PinSwipeRow<Content: View>: View {
     }
 
     private func endLiftIfClosed() {
-        if offset == 0 {
+        guard offset == 0 else { return }
+        withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration)) {
             isLifted = false
         }
     }
