@@ -10,6 +10,7 @@ struct DonePlacesButton: View {
             Text(title)
         }
         .buttonStyle(PinnedButtonStyle())
+        .accessibilityLabel(spokenTitle)
         .accessibilityIdentifier("done-places")
     }
 
@@ -18,5 +19,12 @@ struct DonePlacesButton: View {
             return "Done"
         }
         return "Done · \(count) places"
+    }
+
+    private var spokenTitle: String {
+        if count == 0 {
+            return String(localized: "Done")
+        }
+        return [String(localized: "Done"), String(localized: "\(count) places")].joined(separator: ", ")
     }
 }
