@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public struct Severity: Equatable, Hashable, Sendable, Codable {
     public let value: Int
 

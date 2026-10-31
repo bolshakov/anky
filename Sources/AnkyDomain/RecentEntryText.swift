@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public struct RecentWords {
     public let kind: (EntryKind) -> String
     public let name: (RecentName) -> String

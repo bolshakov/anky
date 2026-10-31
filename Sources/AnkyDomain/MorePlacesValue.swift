@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public struct MorePlacesValue: Equatable, Sendable {
     private static let nameCount = 2
 

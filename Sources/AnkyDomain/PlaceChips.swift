@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum PlaceChips {
     private static let chipCount = 5
     private static let recentCount = 10

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum SwipeRelease: Equatable, Sendable { case close, reveal, commit }
 
 public enum PinSwipe {
