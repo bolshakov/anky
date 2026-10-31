@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-08-1/tmp/ex4.sh
+exit: 0
+commit: 3f9900f68dbb9692a1ac80f2dfde39e8f51cee05
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Group id=place-row-neck label=None value=None @32,172.33333333333334 338x52
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+Group id=place-row-lower label=None value=None @21,276.3333435058594 349x52
+Button id=place-lower label='Lower back' value='not selected' actions=['Unpin'] @32,276.33333333333337 338x52

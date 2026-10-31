@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-08-1/tmp/ex3.sh
+exit: 0
+commit: 3f9900f68dbb9692a1ac80f2dfde39e8f51cee05
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+Button id=place-lower label='Lower back' value='not selected' actions=['Unpin'] @32,276.33333333333337 338x52
+Image id=pin-icon-lower label='Pinned' value=None @21,296.00000000000006 8.666666984558105x12.666666984558105
+Button id=place-tail label='Tailbone' value='not selected' actions=['Unpin'] @32,328.33333333333337 338x52
+Image id=pin-icon-tail label='Pinned' value=None @21,348.00000000000006 8.666666984558105x12.666666984558105
+Button id=place-si_l label='Left SI joint' value='not selected' actions=['Pin'] @16,438 370x52

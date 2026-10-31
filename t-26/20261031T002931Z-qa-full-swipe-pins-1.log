@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t26-08-1/tmp/ex2.sh
+exit: 0
+commit: 3f9900f68dbb9692a1ac80f2dfde39e8f51cee05
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+['lower', 'neck']
+['neck']
+['neck']
