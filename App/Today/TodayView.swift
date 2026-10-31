@@ -117,6 +117,7 @@ struct TodayView: View {
             try model.remove(id: loggedID)
             self.loggedID = nil
             undoTicks += 1
+            UIAccessibility.post(notification: .announcement, argument: String(localized: "Entry removed"))
         } catch {
             isShowingSaveFailure = true
         }

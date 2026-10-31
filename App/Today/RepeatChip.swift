@@ -33,7 +33,7 @@ struct RepeatLoggedCard: View {
                 Text(String(localized: "Logged") + " · " + recent.chipText)
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .accessibilityLabel(String(localized: "Logged") + ", " + recent.spokenText)
+                    .accessibilityHidden(true)
                     .accessibilityIdentifier("repeat-logged")
             }
             Button(action: onUndo) {
