@@ -1,0 +1,21 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t26-11-4/tmp/h2.sh
+exit: 0
+commit: 7b535b13a03a406dde1d8d2b78223c896a4cc28f
+
+App/History/HistoryView.swift:62:            .sensoryFeedback(.success, trigger: saveTicks)
+App/NewEntry/DeleteEntrySection.swift:50:            .sensoryFeedback(trigger: isPresented) { _, isNow in isNow ? .warning : nil }
+App/NewEntry/KindButtons.swift:31:        .sensoryFeedback(.selection, trigger: kind)
+App/NewEntry/KindSection.swift:23:            .sensoryFeedback(.selection, trigger: draft.kind)
+App/NewEntry/PlaceChip.swift:32:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/PlaceListRow.swift:23:        .sensoryFeedback(.selection, trigger: isSelected)
+App/NewEntry/RecentChipsRow.swift:23:        .sensoryFeedback(.selection, trigger: taps)
+App/NewEntry/SeveritySection.swift:89:        .sensoryFeedback(.selection, trigger: severity)
+App/Shortcuts/ShortcutFeedbackStyle.swift:5:    static func sensoryFeedback(for feedback: ShortcutFeedback) -> SensoryFeedback? {
+App/Shortcuts/ShortcutFeedbackStyle.swift:25:        content.sensoryFeedback(trigger: shortcuts.feedbackCount) { _, _ in
+App/Shortcuts/ShortcutFeedbackStyle.swift:26:            ShortcutFeedbackStyle.sensoryFeedback(for: shortcuts.lastFeedback)
+App/Today/TodayView.swift:71:            .sensoryFeedback(.success, trigger: logTicks)
+App/Today/TodayView.swift:72:            .sensoryFeedback(.selection, trigger: undoTicks)
+App/Today/TodayView.swift:73:            .sensoryFeedback(.success, trigger: saveTicks)
+App/NewEntry/PlaceChip.swift:1
+App/NewEntry/PlaceListRow.swift:1
+App/Shortcuts/ShortcutFeedbackStyle.swift:3

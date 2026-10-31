@@ -1,0 +1,9 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t26-11-4/tmp/h1.sh
+exit: 0
+commit: 7b535b13a03a406dde1d8d2b78223c896a4cc28f
+
+ios	swift test	2026-10-31T01:27:08.6064770Z ✔ Test aPinFromTheActionOrAMenuGivesASelectionTap() passed after 1.832 seconds.
+ios	swift test	2026-10-31T01:27:08.6068760Z ✔ Test openingAMenuGivesNoFeedback() passed after 1.832 seconds.
+ios	swift test	2026-10-31T01:27:08.6070290Z ✔ Test aLongSwipeThatTakesEffectGivesNoSecondTap() passed after 1.832 seconds.
+ios	swift test	2026-10-31T01:27:08.6071040Z ✔ Test aRefusedPinGivesAWarning() passed after 1.832 seconds.
+ios	swift test	2026-10-31T01:27:08.6071440Z ✔ Test crossingTheCommitPointGivesALightTap() passed after 1.832 seconds.

@@ -1,0 +1,15 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t26-11-4/tmp/w.sh 'VISITS=2 fresh
+launch_ru
+to_places
+ui | grep -E "Закрепи быстрый выбор|Смахни место вправо|Закрыть подсказку"
+drag_row place-row-neck 100
+ui | grep "id=pin-action-neck "'
+exit: 0
+commit: 7b535b13a03a406dde1d8d2b78223c896a4cc28f
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 574.3333333333333) completed successfully
+StaticText id=None label='Закрепи быстрый выбор' value=None @76,186 207x20.333333333333314
+StaticText id=None label='Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.' value=None @76,210.33333333333331 212.66666666666663x78
+Button id=xmark label='Закрыть подсказку' value=None @322,186 44x44
+Button id=pin-action-neck label='Закрепить' value=None @32,366.3333435058594 61.66667175292969x50.166656494140625
