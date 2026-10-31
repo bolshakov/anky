@@ -5,10 +5,12 @@ import Observation
 @MainActor @Observable final class EntryLogModel {
     private var log: EntryLog
     let shortcuts: ShortcutsModel
+    let tipProgress: TipProgressModel
 
-    init(log: EntryLog, shortcuts: ShortcutsModel) {
+    init(log: EntryLog, shortcuts: ShortcutsModel, tipProgress: TipProgressModel) {
         self.log = log
         self.shortcuts = shortcuts
+        self.tipProgress = tipProgress
     }
 
     var entries: [Entry] {
