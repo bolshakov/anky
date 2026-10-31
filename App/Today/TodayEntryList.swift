@@ -38,12 +38,17 @@ struct EntryRow: View {
         Button(action: onSelect) {
             HStack(spacing: 12) {
                 time
-                    .font(.subheadline)
+                    .font(.footnote)
+                    .monospacedDigit()
                     .foregroundStyle(.secondary)
                     .fixedSize()
                 VStack(alignment: .leading, spacing: 2) {
                     Text(entry.placeSummary.text)
+                        .font(.body)
+                        .foregroundStyle(.primary)
                     Text(entry.kind.displayName)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
                 Spacer()
                 value
