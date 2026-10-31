@@ -93,11 +93,11 @@ struct NewEntryView: View {
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
-            .pinLimitAlert(model.shortcuts)
             .shortcutFeedback(model.shortcuts)
             .onAppear(perform: recordChipsOnFirstAppear)
             .interactiveDismissDisabled(draft != startDraft)
         }
+        .pinLimitAlert(model.shortcuts)
         .environment(model.shortcuts)
     }
 
