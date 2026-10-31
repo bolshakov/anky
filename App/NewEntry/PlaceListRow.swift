@@ -21,7 +21,7 @@ struct PlaceListRow: View {
                 .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
         }
         .sensoryFeedback(.selection, trigger: isSelected)
-        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+        .listRowInsets(EdgeInsets())
         .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("place-row-\(place.rawValue)")
@@ -41,6 +41,7 @@ struct PlaceListRow: View {
                     .opacity(isSelected ? 1 : 0)
                     .accessibilityHidden(true)
             }
+            .padding(.trailing, 16)
             .foregroundStyle(.primary)
             .padding(.leading, PlaceListRowMetrics.nameLeadingInset)
             .frame(maxWidth: .infinity, minHeight: 52)
