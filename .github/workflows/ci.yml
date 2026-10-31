@@ -50,6 +50,9 @@ jobs:
       - name: design token check proves itself
         run: scripts/ci/test-check-design-tokens.sh
 
+      - name: license headers
+        run: scripts/ci/check-license-headers.sh
+
       - name: license header check proves itself
         run: scripts/ci/test-check-license-headers.sh
 

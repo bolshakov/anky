@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public enum PlaceSummary: Equatable, Sendable {
     case wholeBody
     case noPlace

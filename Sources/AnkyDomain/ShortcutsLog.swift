@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public final class ShortcutsLog {
     private let store: any ShortcutsStore
     public private(set) var shortcuts: Shortcuts

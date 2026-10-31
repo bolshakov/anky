@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 public protocol EntryStore: Sendable {
     /// Returns the entries in save order, oldest saved first.
     func load() throws -> [Entry]
