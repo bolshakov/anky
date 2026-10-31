@@ -29,10 +29,15 @@ struct TodayView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(Date.now, format: .dateTime.weekday(.wide).day().month(.wide))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .accessibilityIdentifier("today-date")
+                    Text(verbatim: DayDateText.text(
+                        for: .now,
+                        includesYear: false,
+                        calendar: .current,
+                        locale: .current
+                    ))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("today-date")
 
                     repeatBlock
 
