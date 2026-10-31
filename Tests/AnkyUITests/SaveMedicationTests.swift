@@ -15,10 +15,7 @@ final class SaveMedicationTests: XCTestCase {
         name.typeText("Zorblex")
 
         let save = app.buttons["medication-save"]
-        save.tap()
-        if save.exists {
-            save.tap()
-        }
+        save.doubleTap()
 
         XCTAssertTrue(save.waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
