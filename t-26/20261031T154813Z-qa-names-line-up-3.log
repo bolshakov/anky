@@ -1,0 +1,8 @@
+$ bash -c '. "$TMPDIR/walk.sh"; python3 -I "$TMPDIR/measure.py" "$out/names.png" neck=198.3 upper=250.3 lower=302.3 si_l=464'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+neck edge_px 48 edge_pt 16.0 ink groups (pt from edge): [(12.7, 22.7), (33.3, 66.7)]
+upper edge_px 48 edge_pt 16.0 ink groups (pt from edge): [(33.3, 43.0), (45.3, 66.7)]
+lower edge_px 48 edge_pt 16.0 ink groups (pt from edge): [(33.3, 66.7)]
+si_l edge_px 48 edge_pt 16.0 ink groups (pt from edge): [(12.7, 22.7), (33.3, 61.0)]

@@ -1,0 +1,13 @@
+$ bash -c '. "$TMPDIR/walk.sh"; sleep 2
+drag_row place-row-neck 300
+sleep 2
+pins
+ui | grep -E "id=place(-row)?-(neck|upper) "'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+['si_l']
+Group id=place-row-neck label=None value=None @16,172.33333333333334 370x52
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,172.33333333333334 370x52
+Group id=place-row-upper label=None value=None @16,224.33333333333331 370x52
+Button id=place-upper label='Upper back' value='not selected' actions=['Pin'] @16,224.33333333333331 370x52

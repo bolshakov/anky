@@ -1,0 +1,17 @@
+$ bash -c '. "$TMPDIR/walk.sh"; PINS=neck,tail fresh
+to_places
+ui | grep -E "id=(pin-icon-|place(-row)?-)(neck|tail) "
+axe screenshot --udid "$udid" --output "$out/position.png"'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Group id=place-row-neck label=None value=None @16,172.33333333333334 370x52
+Button id=place-neck label='Neck' value='not selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+Image id=pin-icon-neck label='Pin' value=None @28.666666666666664,191 10x15
+Group id=place-row-tail label=None value=None @16,328.33333333333337 370x52
+Button id=place-tail label='Tailbone' value='not selected, Pinned' actions=['Unpin'] @16,328.33333333333337 370x52
+Image id=pin-icon-tail label='Pin' value=None @28.666666666666664,347.00000000000006 10x15
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t26-13-4/tmp/walk-t26.azbE/position.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t26-13-4/tmp/walk-t26.azbE/position.png

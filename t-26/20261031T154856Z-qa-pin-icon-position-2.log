@@ -1,0 +1,15 @@
+$ bash -c '. "$TMPDIR/walk.sh"; git -C "$CHECKOUT" grep -n -E "pin\.fill|pinIconSize|pinIconInset|nameLeadingInset|\.secondary|alignment: \.leading|\.overlay" -- App/NewEntry/PlaceListRow.swift'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+App/NewEntry/PlaceListRow.swift:5:    static let nameLeadingInset: CGFloat = 32
+App/NewEntry/PlaceListRow.swift:6:    static let pinIconInset: CGFloat = 10
+App/NewEntry/PlaceListRow.swift:7:    static let pinIconSize: CGFloat = 13
+App/NewEntry/PlaceListRow.swift:21:                .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
+App/NewEntry/PlaceListRow.swift:25:        .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
+App/NewEntry/PlaceListRow.swift:48:            .padding(.leading, PlaceListRowMetrics.nameLeadingInset)
+App/NewEntry/PlaceListRow.swift:78:                Label("Pin as shortcut", systemImage: "pin.fill")
+App/NewEntry/PlaceListRow.swift:86:            Image(systemName: "pin.fill")
+App/NewEntry/PlaceListRow.swift:87:                .font(.system(size: PlaceListRowMetrics.pinIconSize))
+App/NewEntry/PlaceListRow.swift:88:                .foregroundStyle(.secondary)
+App/NewEntry/PlaceListRow.swift:89:                .padding(.leading, PlaceListRowMetrics.pinIconInset)

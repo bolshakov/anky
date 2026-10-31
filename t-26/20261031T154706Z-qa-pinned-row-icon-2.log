@@ -1,0 +1,25 @@
+$ bash -c '. "$TMPDIR/walk.sh"; git -C "$CHECKOUT" grep -n -E "pin\.fill|isPinned|accessibilityHidden" -- App/NewEntry/PlaceListRow.swift'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+App/NewEntry/PlaceListRow.swift:18:        let isPinned = shortcuts.isPinned(place)
+App/NewEntry/PlaceListRow.swift:19:        PinSwipeRow(place: place, isPinned: isPinned, actions: pinActions) { isLifted in
+App/NewEntry/PlaceListRow.swift:20:            rowButton(isSelected: isSelected, isPinned: isPinned, isLifted: isLifted)
+App/NewEntry/PlaceListRow.swift:21:                .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
+App/NewEntry/PlaceListRow.swift:30:    private func rowButton(isSelected: Bool, isPinned: Bool, isLifted: Bool) -> some View {
+App/NewEntry/PlaceListRow.swift:44:                    .accessibilityHidden(true)
+App/NewEntry/PlaceListRow.swift:57:            .accessibilityValue(Text(accessibilityValue(isSelected: isSelected, isPinned: isPinned)))
+App/NewEntry/PlaceListRow.swift:59:            .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
+App/NewEntry/PlaceListRow.swift:63:        .contextMenu { pinMenuItems(isPinned: isPinned) }
+App/NewEntry/PlaceListRow.swift:67:    private func pinMenuItems(isPinned: Bool) -> some View {
+App/NewEntry/PlaceListRow.swift:68:        if isPinned {
+App/NewEntry/PlaceListRow.swift:78:                Label("Pin as shortcut", systemImage: "pin.fill")
+App/NewEntry/PlaceListRow.swift:84:    private func pinIcon(isPinned: Bool) -> some View {
+App/NewEntry/PlaceListRow.swift:85:        if isPinned {
+App/NewEntry/PlaceListRow.swift:86:            Image(systemName: "pin.fill")
+App/NewEntry/PlaceListRow.swift:90:                .accessibilityHidden(true)
+App/NewEntry/PlaceListRow.swift:111:        if shortcuts.isPinned(place) {
+App/NewEntry/PlaceListRow.swift:118:    private func pinActionTitle(_ isPinned: Bool) -> LocalizedStringResource {
+App/NewEntry/PlaceListRow.swift:119:        isPinned ? "Unpin" : "Pin"
+App/NewEntry/PlaceListRow.swift:122:    private func accessibilityValue(isSelected: Bool, isPinned: Bool) -> String {
+App/NewEntry/PlaceListRow.swift:124:        let pin = isPinned ? String(localized: "Pinned") : nil

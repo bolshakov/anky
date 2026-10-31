@@ -1,0 +1,37 @@
+$ bash -c '. "$TMPDIR/walk.sh"; PINS=si_r fresh
+to_places
+xcrun simctl ui "$udid" content_size accessibility-extra-extra-extra-large
+ui | grep -E "id=place(-row)?-neck "
+axe swipe --start-x 200 --start-y 700 --end-x 200 --end-y 450 --duration 1.5 --udid "$udid"
+ui | grep -E "id=(pin-icon|place-row|place)-si_r "
+axe screenshot --udid "$udid" --output "$out/large.png"
+ui | grep -E "id=place-" | cut -c1-60
+xcrun simctl ui "$udid" content_size large'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Group id=place-row-neck label=None value=None @16,198 370x98.66665649414062
+Button id=place-neck label='Neck' value='not selected' actions=['Pin'] @16,215.33333333333331 370x63.333333333333314
+Group id=place-row-si_r label=None value=None @16,579 370x125.33333333333337
+Button id=place-si_r label='Right SI joint' value='not selected, Pinned' actions=['Unpin'] @16,579 370x125.33333333333337
+Image id=pin-icon-si_r label='Pin' value=None @28.666666666666664,634.3333333333334 10x15
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t26-13-4/tmp/walk-t26.azbE/large.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t26-13-4/tmp/walk-t26.azbE/large.png
+Group id=place-row-upper label=None value=None @16,38.666666
+Button id=place-upper label='Upper back' value='not selected
+Group id=place-row-lower label=None value=None @16,164 370x1
+Button id=place-lower label='Lower back' value='not selected
+Group id=place-row-tail label=None value=None @16,272 370x98
+Button id=place-tail label='Tailbone' value='not selected' a
+Group id=place-row-si_l label=None value=None @16,498.333343
+Button id=place-si_l label='Left SI joint' value='not select
+Group id=place-row-si_r label=None value=None @16,579 370x12
+Button id=place-si_r label='Right SI joint' value='not selec
+Group id=place-row-hip_l label=None value=None @16,687 370x9
+Button id=place-hip_l label='Left hip' value='not selected' 
+Group id=place-row-hip_r label=None value=None @16,750.33331
+Button id=place-hip_r label='Right hip' value='not selected'
+Group id=place-row-ribs label=None value=None @16,813.666687
+Button id=place-ribs label='Ribs' value='not selected' actio

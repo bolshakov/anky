@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; python3 -I "$TMPDIR/title.py" "$out/title.png"; git -C "$CHECKOUT" grep -n -E "padding" -- App/NewEntry/PlacesListView.swift'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+Spine title first ink pt from card edge: 19.3
+Neck name first ink pt from card edge: 33.7
+App/NewEntry/PlacesListView.swift:53:            .padding()

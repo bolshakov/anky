@@ -1,0 +1,16 @@
+$ bash -c '. "$TMPDIR/walk.sh"; PINS=neck,si_l fresh
+to_places
+ui | grep -E "id=place(-row)?-(neck|upper|lower|si_l) "'
+exit: 0
+commit: bdaab3a05295b0c4b55894cc488e6822832ad2eb
+
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 470.3333333333333) completed successfully
+Group id=place-row-neck label=None value=None @16,172.33333333333334 370x52
+Button id=place-neck label='Neck' value='not selected, Pinned' actions=['Unpin'] @16,172.33333333333334 370x52
+Group id=place-row-upper label=None value=None @16,224.33333333333331 370x52
+Button id=place-upper label='Upper back' value='not selected' actions=['Pin'] @16,224.33333333333331 370x52
+Group id=place-row-lower label=None value=None @16,276.33333333333337 370x52
+Button id=place-lower label='Lower back' value='not selected' actions=['Pin'] @16,276.33333333333337 370x52
+Group id=place-row-si_l label=None value=None @16,438 370x52
+Button id=place-si_l label='Left SI joint' value='not selected, Pinned' actions=['Unpin'] @16,438 370x52
