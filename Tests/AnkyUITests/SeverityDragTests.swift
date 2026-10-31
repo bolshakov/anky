@@ -10,14 +10,11 @@ final class SeverityDragTests: XCTestCase {
 
         let slider = app.sliders["severity-slider"]
         XCTAssertTrue(slider.waitForExistence(timeout: 10))
-        let readout = app.staticTexts["severity-value"]
 
         drag(slider, toNormalizedPosition: 0.8)
         XCTAssertEqual(severityLevel(of: slider), 8)
-        XCTAssertEqual(firstNumber(in: readout.label), 8)
         drag(slider, toNormalizedPosition: 0.3)
         XCTAssertEqual(severityLevel(of: slider), 3)
-        XCTAssertEqual(firstNumber(in: readout.label), 3)
     }
 
     private func drag(_ slider: XCUIElement, toNormalizedPosition position: CGFloat) {

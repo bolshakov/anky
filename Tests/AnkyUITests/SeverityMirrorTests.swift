@@ -10,7 +10,6 @@ final class SeverityMirrorTests: XCTestCase {
 
         let slider = app.sliders["severity-slider"]
         XCTAssertTrue(slider.waitForExistence(timeout: 10))
-        assertEndLabels(app, startOnRight: true)
         XCTAssertEqual(severityLevel(of: slider), 0)
         attachScreenshot(named: "new-entry-rtl-0")
 
