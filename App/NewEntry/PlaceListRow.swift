@@ -2,9 +2,9 @@ import AnkyDomain
 import SwiftUI
 
 private enum PlaceListRowMetrics {
-    static let leadingInset: CGFloat = 16
-    static let pinIconInset: CGFloat = 3
-    static let pinIconSize: CGFloat = 11
+    static let nameLeadingInset: CGFloat = 32
+    static let pinIconInset: CGFloat = 10
+    static let pinIconSize: CGFloat = 13
 }
 
 struct PlaceListRow: View {
@@ -21,12 +21,8 @@ struct PlaceListRow: View {
                 .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
         }
         .sensoryFeedback(.selection, trigger: isSelected)
-        .listRowInsets(EdgeInsets(
-            top: 0,
-            leading: PlaceListRowMetrics.leadingInset,
-            bottom: 0,
-            trailing: 16
-        ))
+        .listRowInsets(EdgeInsets())
+        .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("place-row-\(place.rawValue)")
     }
@@ -45,7 +41,9 @@ struct PlaceListRow: View {
                     .opacity(isSelected ? 1 : 0)
                     .accessibilityHidden(true)
             }
+            .padding(.trailing, 16)
             .foregroundStyle(.primary)
+            .padding(.leading, PlaceListRowMetrics.nameLeadingInset)
             .frame(maxWidth: .infinity, minHeight: 52)
             .contentShape(Rectangle())
         }
@@ -54,7 +52,7 @@ struct PlaceListRow: View {
             Button(place.displayName) {
                 togglePlace(isSelected: isSelected)
             }
-            .accessibilityValue(stateName(isSelected))
+            .accessibilityValue(Text(accessibilityValue(isSelected: isSelected, isPinned: isPinned)))
             .accessibilityIdentifier("place-\(place.rawValue)")
             .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
                 togglePin(event: .pinChangedByAction)
@@ -68,8 +66,8 @@ struct PlaceListRow: View {
             Image(systemName: "pin.fill")
                 .font(.system(size: PlaceListRowMetrics.pinIconSize))
                 .foregroundStyle(.secondary)
-                .offset(x: PlaceListRowMetrics.pinIconInset - PlaceListRowMetrics.leadingInset)
-                .accessibilityLabel("Pinned")
+                .padding(.leading, PlaceListRowMetrics.pinIconInset)
+                .accessibilityHidden(true)
                 .accessibilityIdentifier("pin-icon-\(place.rawValue)")
         }
     }
@@ -101,7 +99,9 @@ struct PlaceListRow: View {
         isPinned ? "Unpin" : "Pin"
     }
 
-    private func stateName(_ isSelected: Bool) -> LocalizedStringResource {
-        isSelected ? "selected" : "not selected"
+    private func accessibilityValue(isSelected: Bool, isPinned: Bool) -> String {
+        let selection = isSelected ? String(localized: "selected") : String(localized: "not selected")
+        let pin = isPinned ? String(localized: "Pinned") : nil
+        return [selection, pin].compactMap(\.self).joined(separator: ", ")
     }
 }

@@ -10,10 +10,10 @@ struct PinSwipeActions {
 private enum PinSwipeMetrics {
     static let dragStartDistance: CGFloat = 10
     static let slideDuration: Double = 0.2
-    static let pillWidth: CGFloat = 56
-    static let pillHeight: CGFloat = 32
-    static let pillTintOpacity: Double = 0.15
-    static let labelSpacing: CGFloat = 4
+    static let pillWidth: CGFloat = 60
+    static let pillHeight: CGFloat = 28
+    static let labelSpacing: CGFloat = 2
+    static let pillLeadingInset: CGFloat = 10
 }
 
 struct PinSwipeRow<Content: View>: View {
@@ -31,6 +31,7 @@ struct PinSwipeRow<Content: View>: View {
     @State private var offset: Double = 0
     @State private var isRevealed = false
     @State private var isCommitting = false
+    @State private var isLifted = false
     @State private var drag = Drag.idle
     @State private var dragStart: CGPoint?
     @State private var rowWidth: Double = 0
@@ -47,12 +48,14 @@ struct PinSwipeRow<Content: View>: View {
             pinAction
             content
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(SwipeShade.color.opacity(isMoved ? 1 : 0), in: Capsule())
+                .background(SwipeShade.color.opacity(isLifted ? 1 : 0), in: Capsule())
                 .overlay { closeCatcher }
                 .offset(x: CGFloat(offset))
                 .simultaneousGesture(swipe)
         }
-        .background { screenBackdrop }
+        .background { widthReader }
+        .listRowBackground(isLifted ? Color.clear : nil)
+        .listRowSeparator(isLifted ? .hidden : .automatic)
     }
 
     private var isMoved: Bool {
@@ -72,13 +75,15 @@ struct PinSwipeRow<Content: View>: View {
             VStack(spacing: PinSwipeMetrics.labelSpacing) {
                 Image(systemName: isPinned ? "pin.slash.fill" : "pin.fill")
                     .font(.body.weight(.semibold))
+                    .foregroundStyle(Color("OnAccent"))
                     .frame(width: PinSwipeMetrics.pillWidth, height: PinSwipeMetrics.pillHeight)
-                    .background(Color.accentColor.opacity(PinSwipeMetrics.pillTintOpacity), in: Capsule())
+                    .background(Color.accentColor, in: Capsule())
                     .accessibilityHidden(true)
                 Text(actionTitle)
                     .font(.caption)
+                    .foregroundStyle(.secondary)
             }
-            .foregroundStyle(Color.accentColor)
+            .padding(.leading, PinSwipeMetrics.pillLeadingInset)
             .frame(maxHeight: .infinity)
         }
         .buttonStyle(.plain)
@@ -99,10 +104,9 @@ struct PinSwipeRow<Content: View>: View {
             .allowsHitTesting(isRevealed)
     }
 
-    private var screenBackdrop: some View {
+    private var widthReader: some View {
         GeometryReader { proxy in
-            Color(.systemGroupedBackground)
-                .opacity(isMoved ? 1 : 0)
+            Color.clear
                 .onAppear { rowWidth = Double(proxy.size.width) }
                 .onChange(of: proxy.size.width) { _, width in rowWidth = Double(width) }
         }
@@ -119,6 +123,7 @@ struct PinSwipeRow<Content: View>: View {
             beginDrag(value)
         }
         guard case let .swiping(from) = drag else { return }
+        isLifted = true
         let next = min(max(from + Double(value.translation.width), 0), rowWidth)
         if PinSwipe.crossedCommitPoint(from: offset, to: next, rowWidth: rowWidth) {
             actions.onCrossedCommitPoint()
@@ -157,19 +162,33 @@ struct PinSwipeRow<Content: View>: View {
 
     private func settle(at target: Double, revealed: Bool) {
         isRevealed = revealed
-        withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration)) {
+        guard offset != target else {
+            endLiftIfClosed()
+            return
+        }
+        withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration), completionCriteria: .logicallyComplete) {
             offset = target
+        } completion: {
+            endLiftIfClosed()
         }
     }
 
     private func commit() {
         isRevealed = false
         isCommitting = true
-        actions.onCommit()
         withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration), completionCriteria: .logicallyComplete) {
             offset = 0
         } completion: {
             isCommitting = false
+            actions.onCommit()
+            endLiftIfClosed()
+        }
+    }
+
+    private func endLiftIfClosed() {
+        guard offset == 0 else { return }
+        withAnimation(.easeOut(duration: PinSwipeMetrics.slideDuration)) {
+            isLifted = false
         }
     }
 
