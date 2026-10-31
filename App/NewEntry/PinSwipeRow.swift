@@ -26,7 +26,7 @@ struct PinSwipeRow<Content: View>: View {
     let place: PlaceID
     let isPinned: Bool
     let actions: PinSwipeActions
-    let content: Content
+    let content: (Bool) -> Content
 
     @State private var offset: Double = 0
     @State private var isRevealed = false
@@ -36,17 +36,17 @@ struct PinSwipeRow<Content: View>: View {
     @State private var dragStart: CGPoint?
     @State private var rowWidth: Double = 0
 
-    init(place: PlaceID, isPinned: Bool, actions: PinSwipeActions, @ViewBuilder content: () -> Content) {
+    init(place: PlaceID, isPinned: Bool, actions: PinSwipeActions, @ViewBuilder content: @escaping (Bool) -> Content) {
         self.place = place
         self.isPinned = isPinned
         self.actions = actions
-        self.content = content()
+        self.content = content
     }
 
     var body: some View {
         ZStack(alignment: .leading) {
             pinAction
-            content
+            content(isLifted)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(SwipeShade.color.opacity(isLifted ? 1 : 0), in: Capsule())
                 .overlay { closeCatcher }
