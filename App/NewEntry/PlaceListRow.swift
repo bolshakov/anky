@@ -58,7 +58,7 @@ struct PlaceListRow: View {
             .accessibilityValue(Text(accessibilityValue(isSelected: isSelected, isPinned: isPinned)))
             .accessibilityIdentifier("place-\(place.rawValue)")
             .accessibilityAction(named: Text(pinActionTitle(isPinned))) {
-                togglePin(event: .pinChangedByAction)
+                togglePin(event: .pinChangedByVoiceOver)
             }
         }
         .contextMenu { pinMenuItems(isPinned: isPinned) }
