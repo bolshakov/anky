@@ -716,6 +716,30 @@
     "Medication" : {
 
     },
+    "No medications yet" : {
+
+    },
+    "Add medication" : {
+
+    },
+    "New Medication" : {
+
+    },
+    "Name" : {
+
+    },
+    "Strength, for example 500 mg" : {
+
+    },
+    "Save medication" : {
+
+    },
+    "As needed" : {
+
+    },
+    "Scheduled" : {
+
+    },
     "Log how you feel" : {
       "localizations" : {
         "ru" : {

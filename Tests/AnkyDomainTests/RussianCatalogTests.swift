@@ -169,6 +169,8 @@ private let englishFormatValues = table("""
 
 /// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
 private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
+    + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
+    + ["Save medication", "As needed", "Scheduled"]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")

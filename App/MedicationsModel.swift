@@ -12,6 +12,10 @@ import Observation
         medications = (try? store.all()) ?? []
     }
 
+    var active: [Medication] {
+        MedicationOrder.active(medications)
+    }
+
     func add(_ medication: Medication) throws {
         try store.add(medication)
         medications.append(medication)
