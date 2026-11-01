@@ -1,0 +1,5 @@
+$ echo 'cancel-entry @20,78 76.67x44'
+exit: 0
+commit: 3ad593dff220bf6b579e6db78920beeff84f96ac
+
+cancel-entry @20,78 76.67x44

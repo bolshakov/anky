@@ -1,0 +1,4 @@
+$ grep -rn 'sharedBackgroundVisibility\|withoutGlassPill' App Tests
+exit: 1
+commit: 3ad593dff220bf6b579e6db78920beeff84f96ac
+
