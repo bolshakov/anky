@@ -1415,6 +1415,21 @@
     "Archived" : {
 
     },
+    "Archive medication" : {
+
+    },
+    "Edit Medication" : {
+
+    },
+    "Restore" : {
+
+    },
+    "Restore medication" : {
+
+    },
+    "Swipe left to restore. Doses you logged stay in History." : {
+
+    },
     "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History." : {
 
     },

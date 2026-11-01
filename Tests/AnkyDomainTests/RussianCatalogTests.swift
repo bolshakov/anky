@@ -175,6 +175,8 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
     + ["Anky asks how your pain is after this long. Off until you choose a time."]
     + ["Manage", "Medications", "Archive", "Archived"]
+    + ["Edit Medication", "Archive medication", "Restore", "Restore medication"]
+    + ["Swipe left to restore. Doses you logged stay in History."]
     + ["Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."]
     + ["Add what you take, then log a dose in two taps. Everything stays on this iPhone."]
 

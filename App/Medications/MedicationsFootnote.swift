@@ -2,8 +2,10 @@
 import SwiftUI
 
 struct MedicationsFootnote: View {
+    let text: LocalizedStringKey
+
     var body: some View {
-        Text("Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.")
+        Text(text)
             .font(.footnote)
             .foregroundStyle(.secondary)
             .padding(.leading, -16)

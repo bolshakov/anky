@@ -74,4 +74,60 @@ struct MedicationDraftTests {
         #expect(saved.takenAs == .scheduled)
         #expect(saved.checkInAfter == .twoHours)
     }
+
+    private func existing(strength: String? = "25 mg") -> Medication {
+        var medication = Medication(
+            id: UUID(),
+            name: "Zorblex",
+            takenAs: .asNeeded,
+            createdAt: date.addingTimeInterval(-600)
+        )
+        medication.strength = strength
+        medication.checkInAfter = .oneHour
+        medication.archivedAt = date.addingTimeInterval(-300)
+        return medication
+    }
+
+    @Test func aDraftOfAMedicationCopiesEveryEditableField() {
+        let medication = existing()
+        let draft = MedicationDraft(medication)
+        #expect(draft.name == "Zorblex")
+        #expect(draft.strength == "25 mg")
+        #expect(draft.takenAs == .asNeeded)
+        #expect(draft.checkInAfter == .oneHour)
+    }
+
+    @Test func aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() {
+        #expect(MedicationDraft(existing(strength: nil)).strength == "")
+    }
+
+    @Test func applyingADraftChangesTheEditableFieldsAndMovesTheUpdatedTime() {
+        let medication = existing()
+        var draft = MedicationDraft(medication)
+        draft.name = "  Quibbanol "
+        draft.strength = " 50 mg "
+        draft.takenAs = .scheduled
+        draft.checkInAfter = .fourHours
+        let applied = draft.applied(to: medication, at: date)
+        #expect(applied.name == "Quibbanol")
+        #expect(applied.strength == "50 mg")
+        #expect(applied.takenAs == .scheduled)
+        #expect(applied.checkInAfter == .fourHours)
+        #expect(applied.updatedAt == date)
+    }
+
+    @Test func applyingADraftKeepsTheIdCreatedTimeAndArchivedTime() {
+        let medication = existing()
+        let applied = MedicationDraft(medication).applied(to: medication, at: date)
+        #expect(applied.id == medication.id)
+        #expect(applied.createdAt == medication.createdAt)
+        #expect(applied.archivedAt == medication.archivedAt)
+    }
+
+    @Test func clearingTheStrengthRemovesIt() {
+        let medication = existing()
+        var draft = MedicationDraft(medication)
+        draft.strength = "   "
+        #expect(draft.applied(to: medication, at: date).strength == nil)
+    }
 }

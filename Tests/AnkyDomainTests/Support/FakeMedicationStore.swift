@@ -34,4 +34,24 @@ import Foundation
         }
         contents[index].archivedAt = date
     }
+
+    func update(_ medication: Medication) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = contents.firstIndex(where: { $0.id == medication.id }) else {
+            throw MedicationStoreError.notSaved
+        }
+        contents[index] = medication
+    }
+
+    func restore(id: UUID) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = contents.firstIndex(where: { $0.id == id }) else {
+            throw MedicationStoreError.notSaved
+        }
+        contents[index].archivedAt = nil
+    }
 }

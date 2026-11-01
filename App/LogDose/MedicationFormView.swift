@@ -4,15 +4,24 @@ import SwiftUI
 
 struct MedicationFormView: View {
     let medications: MedicationsModel
+    let editing: Medication?
     let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
-    @State private var draft = MedicationDraft()
+    @State private var draft: MedicationDraft
     // Made once per opening, so a retry after a failed save writes the same medication.
     @State private var saver = MedicationSave(id: UUID())
+    @State private var isSaved = false
     @FocusState private var focus: Field?
 
     private enum Field: Hashable {
         case name, strength
+    }
+
+    init(medications: MedicationsModel, editing: Medication? = nil, onSaved: @escaping () -> Void) {
+        self.medications = medications
+        self.editing = editing
+        self.onSaved = onSaved
+        _draft = State(initialValue: editing.map(MedicationDraft.init) ?? MedicationDraft())
     }
 
     var body: some View {
@@ -32,8 +41,11 @@ struct MedicationFormView: View {
                         .accessibilityIdentifier("medication-strength")
                 }
                 MedicationTakingSections(draft: $draft)
+                if let editing {
+                    lifecycleSection(for: editing)
+                }
             }
-            .navigationTitle("New Medication")
+            .navigationTitle(editing == nil ? "New Medication" : "Edit Medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -42,7 +54,7 @@ struct MedicationFormView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Button("Save medication") {
+                Button(editing == nil ? "Save medication" : "Save changes") {
                     save()
                 }
                 .buttonStyle(PinnedButtonStyle())
@@ -53,13 +65,59 @@ struct MedicationFormView: View {
         }
     }
 
+    private func lifecycleSection(for medication: Medication) -> some View {
+        Section {
+            if medication.archivedAt == nil {
+                Button("Archive medication") {
+                    archive(medication)
+                }
+                .accessibilityIdentifier("medication-archive")
+            } else {
+                Button("Restore medication") {
+                    restore(medication)
+                }
+                .accessibilityIdentifier("medication-restore")
+            }
+        }
+    }
+
     private func save() {
         do {
-            guard try saver.save(draft, at: .now, add: medications.add) else { return }
+            guard try writeDraft() else { return }
         } catch {
             return
         }
         onSaved()
+        dismiss()
+    }
+
+    /// Returns false when this opening has already saved, so a second tap writes nothing.
+    private func writeDraft() throws -> Bool {
+        guard let editing else {
+            return try saver.save(draft, at: .now, add: medications.add)
+        }
+        guard !isSaved else { return false }
+        try medications.update(draft.applied(to: editing, at: .now))
+        isSaved = true
+        return true
+    }
+
+    /// Archive and restore are not saves, so they close the form without calling `onSaved`.
+    private func archive(_ medication: Medication) {
+        do {
+            try medications.archive(id: medication.id)
+        } catch {
+            return
+        }
+        dismiss()
+    }
+
+    private func restore(_ medication: Medication) {
+        do {
+            try medications.restore(id: medication.id)
+        } catch {
+            return
+        }
         dismiss()
     }
 }
