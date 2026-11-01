@@ -20,6 +20,7 @@ struct LogDoseView: View {
     @State private var doseID = UUID()
     @State private var takenAt = Date.now
     @State private var painBefore: Severity
+    @State private var checkIn = DoseCheckIn(savedDelay: nil)
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
 
@@ -70,6 +71,9 @@ struct LogDoseView: View {
                             .listRowSeparator(.hidden)
                     }
                 }
+                if let medication = checkedMedication {
+                    DoseCheckInSection(checkIn: $checkIn, medicationName: medication.name)
+                }
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
@@ -108,6 +112,9 @@ struct LogDoseView: View {
             .onChange(of: active) {
                 selectedID = MedicationSelection.kept(selectedID, in: active)
             }
+            .onChange(of: checkedID, initial: true) {
+                checkIn = DoseCheckIn(savedDelay: checkedMedication?.checkInAfter)
+            }
             .sheet(isPresented: $isShowingNewMedication) {
                 MedicationFormView(medications: medications, onSaved: medicationSaved)
             }
@@ -123,6 +130,10 @@ struct LogDoseView: View {
 
     private var checkedID: UUID? {
         MedicationSelection.kept(selectedID, in: active)
+    }
+
+    private var checkedMedication: Medication? {
+        active.first(where: { $0.id == checkedID })
     }
 
     private func medicationRow(_ medication: Medication) -> some View {
@@ -163,9 +174,9 @@ struct LogDoseView: View {
     }
 
     private func saveDose() {
-        guard let medication = active.first(where: { $0.id == checkedID }) else { return }
+        guard let medication = checkedMedication else { return }
         var dose = Dose(id: doseID, medicationID: medication.id, takenAt: takenAt, painBefore: painBefore)
-        dose.checkInAfter = medication.checkInAfter
+        dose.checkInAfter = checkIn.checkInAfter
         do {
             let logged = try doseSave.save(dose, log: medications.logDose)
             if logged {

@@ -119,6 +119,29 @@ import Testing
         #expect(inner.doseContents.isEmpty)
     }
 
+    @Test func aDoseWithNoDelayClearsTheSavedDelay() throws {
+        var zorblex = medication("Zorblex")
+        zorblex.checkInAfter = .oneHour
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        try model.logDose(dose(for: zorblex, checkInAfter: nil))
+        #expect(model.medications.first?.checkInAfter == nil)
+        #expect(try inner.all().first?.checkInAfter == nil)
+    }
+
+    @Test func aFailedLogKeepsTheSavedDelay() throws {
+        var zorblex = medication("Zorblex")
+        zorblex.checkInAfter = .oneHour
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        inner.writeFailure = true
+        #expect(throws: MedicationStoreError.notSaved) {
+            try model.logDose(dose(for: zorblex, checkInAfter: .fourHours))
+        }
+        #expect(model.medications == [zorblex])
+        #expect(try inner.all() == [zorblex])
+    }
+
     @Test func reloadReadsTheDosesWithTheMedications() throws {
         let zorblex = medication("Zorblex")
         let stored = try dose(for: zorblex)
