@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-07-2/tmp/w.sh 'ui | grep -E "id=pain-before-(footnote|slider) "; LC_ALL=en_GB.UTF-8 date -v-8d "+%a %-d %b"'
+exit: 0
+commit: 5755be2fa099e5edf4ff5d0f31f64a6f03c062f2
+
+Slider id=pain-before-slider label='Pain before' value=0.5 enabled=True actions= traits= @63.33333333333333,478.66666666666663 269.3333333333333x30.66666666666663
+StaticText id=pain-before-footnote label='Filled in from your entry on Sat 24 Oct at 08:15. Change it if it is different.' value=None enabled=True actions= traits= @16,532 370x71.66666666666663
+Sat 24 Oct
