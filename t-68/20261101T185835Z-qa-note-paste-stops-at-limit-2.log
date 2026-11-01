@@ -1,0 +1,6 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk.sh; field_len; ui | grep "id=note-field " | head -c 400 | tail -c 120'
+exit: 0
+commit: 6ab4d00b3945a85b5f1ef4e0958e4a9156fbcebc
+
+240
+e Walk note Walk note Walk note Zebra quilt hums over a lazy dune while ' enabled=True actions= traits= @32,603 338x132

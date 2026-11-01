@@ -1,0 +1,6 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk.sh; ui | grep "id=note-field "; shot note-empty'
+exit: 0
+commit: 6ab4d00b3945a85b5f1ef4e0958e4a9156fbcebc
+
+TextField id=note-field label='Note' value='Add a note' enabled=True actions= traits= @32,703.6666666666666 338x22
+/Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN/note-empty.png

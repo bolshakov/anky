@@ -1,0 +1,8 @@
+$ zsh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk.sh; field_len; ui | grep -E "id=(note-counter|save-entry) "; shot note-full'
+exit: 0
+commit: 6ab4d00b3945a85b5f1ef4e0958e4a9156fbcebc
+
+240
+StaticText id=note-counter label='Limit reached' value=None enabled=True actions= traits= @287.6666666666667,856.6666666666665 82.33333333333331x15.666666666666629
+Button id=save-entry label='Save entry' value=None enabled=True actions= traits= @16,768 370x56
+/Users/bolshakov/Projects/personal/anky.wt/qa-t68-01-4/tmp/walk-t68.ZetN/note-full.png
