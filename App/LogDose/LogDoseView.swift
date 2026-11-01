@@ -14,6 +14,7 @@ struct LogDoseView: View {
     // Made once per opening, so a second tap on "Save dose" logs the same dose again.
     @State private var doseID = UUID()
     @State private var takenAt = Date.now
+    @State private var painBefore = Severity(0)!
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
 
@@ -38,7 +39,24 @@ struct LogDoseView: View {
                     }
                     .accessibilityIdentifier("dose-add-medication")
                 }
+                Section {
+                    DateSection(date: $takenAt)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    SeveritySection(
+                        caption: "Pain before",
+                        spokenLabel: "Pain before",
+                        idPrefix: "pain-before",
+                        severity: $painBefore
+                    )
+                    .listRowInsets(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color("PageBackground"))
             .navigationTitle("Log Dose")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -120,7 +138,7 @@ struct LogDoseView: View {
 
     private func saveDose() {
         guard let medication = active.first(where: { $0.id == checkedID }) else { return }
-        var dose = Dose(id: doseID, medicationID: medication.id, takenAt: takenAt, painBefore: Severity(0)!)
+        var dose = Dose(id: doseID, medicationID: medication.id, takenAt: takenAt, painBefore: painBefore)
         dose.checkInAfter = medication.checkInAfter
         do {
             let logged = try doseSave.save(dose, log: medications.logDose)
