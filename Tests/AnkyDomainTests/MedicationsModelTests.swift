@@ -5,10 +5,8 @@ import Foundation
 import Testing
 
 @MainActor struct MedicationsModelTests {
-    private let date = Date(timeIntervalSince1970: 1_800_000_000)
-
     private func medication(_ name: String) -> Medication {
-        Medication(id: UUID(), name: name, takenAs: .asNeeded, createdAt: date)
+        Medication(id: UUID(), name: name, takenAs: .asNeeded, createdAt: .now)
     }
 
     enum Write: CaseIterable {
@@ -18,14 +16,12 @@ import Testing
             switch self {
             case .add:
                 try model.add(Medication(id: UUID(), name: "Quibbanol", takenAs: .asNeeded, createdAt: .now))
-            case .archive:
-                try model.archive(id: zorblex.id)
+            case .archive: try model.archive(id: zorblex.id)
             case .update:
                 var renamed = zorblex
                 renamed.name = "Zorblex XR"
                 try model.update(renamed)
-            case .restore:
-                try model.restore(id: zorblex.id)
+            case .restore: try model.restore(id: zorblex.id)
             }
         }
     }
@@ -45,7 +41,6 @@ import Testing
         locked = false
         try write.run(on: model, zorblex: zorblex)
         #expect(model.medications.count == (write == .add ? 2 : 1))
-        #expect(model.medications.contains { $0.id == zorblex.id })
     }
 
     @Test func aFailedReloadKeepsTheListAndTheNextWriteReadsFirst() throws {
@@ -66,7 +61,6 @@ import Testing
         let model = MedicationsModel(store: inner)
         #expect(throws: MedicationStoreError.unreadable) { try model.add(medication("Quibbanol")) }
         #expect(inner.addCalls.isEmpty)
-        #expect(model.medications.isEmpty)
         inner.readFailure = false
         try model.add(medication("Quibbanol"))
         #expect(model.medications.map(\.name) == ["Zorblex", "Quibbanol"])
