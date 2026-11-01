@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t45-03-1/tmp/s2.sh
+exit: 0
+commit: 6b778be335c852973034b93cd5042237b2ef7103
+
+0
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337

@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t45-03-1/tmp/s1b.sh
+exit: 0
+commit: 6b778be335c852973034b93cd5042237b2ef7103
+
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+Button id=date-row label='Date and time' value='Today, 12:40' enabled=True actions= traits= @16,311.33333333333337 370x52.333333333333314
+Slider id=pain-before-slider label='Pain before' value=0 enabled=True actions= traits= @63.33333333333333,478.66666666666663 269.3333333333333x30.66666666666663
+Button id=save-dose label='Save dose' value=None enabled=False actions= traits= @16,768 370x56
