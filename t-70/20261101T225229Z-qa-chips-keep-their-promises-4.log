@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-02-1/tmp/w 'long_press place-chip-lower; ui | grep "id=pin.fill "; shot menu'
+exit: 0
+commit: 717d83dbb6701a348d7ae49475a22b58101c3a45
+
+Button id=pin.fill label='Pin as shortcut' value=None enabled=True actions= traits= @20,456.3333333333333 250x42
+Image id=pin.fill label='pin' value=None enabled=True actions= traits= @50.33333333333333,467 19.66666666666667x21.666666666666686
+/Users/bolshakov/Projects/personal/anky.wt/qa-t70-02-1/tmp/walk-t70.Hxr3/menu.png

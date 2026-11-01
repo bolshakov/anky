@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-02-1/tmp/w 'text_size large; echo status=$?'
+exit: 0
+commit: 717d83dbb6701a348d7ae49475a22b58101c3a45
+
+status=0

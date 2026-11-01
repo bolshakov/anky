@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-02-1/tmp/w 'axe tap --label "Pin as shortcut" --element-type Button --wait-timeout 5 --udid "$udid"; pins; ui | grep "id=place-chip-lower "'
+exit: 0
+commit: 717d83dbb6701a348d7ae49475a22b58101c3a45
+
+✓ Tap at resolved tap point at (145.0, 477.3333333333333) completed successfully
+['lower']
+Button id=place-chip-lower label='Lower back' value=None enabled=True actions=Unpin shortcut traits= @28.000000000000057,383 102.33333333333331x44
