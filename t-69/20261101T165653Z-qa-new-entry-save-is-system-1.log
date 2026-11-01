@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t69-02-1/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t69-02-1/tmp/walk-t69.3cpn; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t69-02-1/tmp/walk-t69.3cpn/udid); ui | grep '\''id=save-entry '\''; measure save-entry save-entry'
+exit: 0
+commit: 577c4fc288498d5a5750f3d8bf6819922e563487
+
+Button id=save-entry label='Save entry' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+frame 16 773.6666666666666 370 50.33333333333337
+fill #c13b14 text #ffffff contrast 5.38 drawn 16 to 386 text from 161
