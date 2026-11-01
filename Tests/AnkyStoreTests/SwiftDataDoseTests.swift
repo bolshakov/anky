@@ -30,9 +30,9 @@ struct SwiftDataDoseTests {
             id: UUID(),
             medicationID: medication.id,
             takenAt: date.addingTimeInterval(120),
-            painBefore: Severity(6)!,
-            checkInAfter: .oneHour
+            painBefore: Severity(6)!
         )
+        dose.checkInAfter = .oneHour
         dose.painAfter = Severity(3)!
         dose.checkedInAt = date.addingTimeInterval(3720)
         return dose

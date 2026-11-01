@@ -85,13 +85,14 @@ import Testing
     }
 
     private func dose(for medication: Medication, checkInAfter: CheckInDelay? = nil) throws -> Dose {
-        try Dose(
+        var dose = try Dose(
             id: UUID(),
             medicationID: medication.id,
             takenAt: .now,
-            painBefore: #require(Severity(4)),
-            checkInAfter: checkInAfter
+            painBefore: #require(Severity(4))
         )
+        dose.checkInAfter = checkInAfter
+        return dose
     }
 
     @Test func logDoseAddsTheDoseAndTheSavedDelayToTheModel() throws {

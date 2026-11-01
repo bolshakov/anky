@@ -11,17 +11,10 @@ public struct Dose: Identifiable, Equatable, Sendable {
     public var painAfter: Severity?
     public var checkedInAt: Date?
 
-    public init(
-        id: UUID,
-        medicationID: UUID,
-        takenAt: Date,
-        painBefore: Severity,
-        checkInAfter: CheckInDelay? = nil
-    ) {
+    public init(id: UUID, medicationID: UUID, takenAt: Date, painBefore: Severity) {
         self.id = id
         self.medicationID = medicationID
         self.takenAt = takenAt
         self.painBefore = painBefore
-        self.checkInAfter = checkInAfter
     }
 }

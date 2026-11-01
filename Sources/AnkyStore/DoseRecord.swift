@@ -34,7 +34,8 @@ import SwiftData
             guard let severity = Severity(value) else { throw MedicationStoreError.unreadable }
             after = severity
         }
-        var dose = Dose(id: id, medicationID: medicationID, takenAt: takenAt, painBefore: before, checkInAfter: checkIn)
+        var dose = Dose(id: id, medicationID: medicationID, takenAt: takenAt, painBefore: before)
+        dose.checkInAfter = checkIn
         dose.painAfter = after
         dose.checkedInAt = checkedInAt
         return dose
