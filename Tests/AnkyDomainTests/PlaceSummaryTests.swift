@@ -64,10 +64,4 @@ struct PlaceSummaryTests {
     @Test func anEntryWithOnlyUnknownIdsReadsAsNoPlace() throws {
         #expect(try entry(.pain, places: ["tentacle"]).placeSummary == .noPlace)
     }
-
-    @Test func anEntryFromAnOldFileReadsAsNoPlace() throws {
-        let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0}"#
-        let entry = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
-        #expect(entry.placeSummary == .noPlace)
-    }
 }

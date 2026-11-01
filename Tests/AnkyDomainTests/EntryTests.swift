@@ -60,26 +60,6 @@ struct EntryTests {
         #expect(entry.note == longNote)
     }
 
-    @Test func roundTripsThroughCodable() throws {
-        let entry = try Entry(draft: draft(note: "Walk note"))
-        let decoded = try JSONDecoder().decode(Entry.self, from: JSONEncoder().encode(entry))
-        #expect(decoded == entry)
-    }
-
-    @Test func encodesTheSixKeysWithTheKindAsItsRawValue() throws {
-        let entry = try Entry(draft: draft(note: "Walk note"))
-        let object = try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
-        #expect(object.map { Set($0.keys) } == Set(["id", "kind", "severity", "date", "note", "places"]))
-        #expect(object?["kind"] as? String == "stiffness")
-        #expect(object?["severity"] as? Int == 4)
-    }
-
-    @Test func omitsTheNoteKeyWhenThereIsNoNote() throws {
-        let entry = try Entry(draft: draft())
-        let object = try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
-        #expect(object?["note"] == nil)
-    }
-
     @Test func storedFieldsInitKeepsEveryFieldAndTheGivenID() throws {
         let id = UUID()
         let entry = try Entry(

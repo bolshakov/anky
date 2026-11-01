@@ -34,11 +34,6 @@ struct EntryPlacesTests {
         #expect(try Entry(draft: draft(kind: .fatigue)).places.isEmpty)
     }
 
-    @Test func anEntryReadsAMissingPlacesKeyAsNoPlaces() throws {
-        let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0}"#
-        #expect(try JSONDecoder().decode(Entry.self, from: Data(json.utf8)).places.isEmpty)
-    }
-
     @Test func anEntryReadsStoredPlacesInCatalogOrder() throws {
         let entry = try Entry(
             id: UUID(),

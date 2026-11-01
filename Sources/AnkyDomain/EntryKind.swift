@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-public enum EntryKind: String, CaseIterable, Codable, Sendable {
+public enum EntryKind: String, CaseIterable, Sendable {
     case pain
     case stiffness
     case fatigue

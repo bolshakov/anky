@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-public struct Entry: Identifiable, Equatable, Codable, Sendable {
+public struct Entry: Identifiable, Equatable, Sendable {
     public let id: UUID
     public let kind: EntryKind
     public let severity: Severity
@@ -27,25 +27,6 @@ public struct Entry: Identifiable, Equatable, Codable, Sendable {
         self.date = date
         self.note = note
         self.places = Self.keptPlaces(places, for: kind)
-    }
-
-    public init(from decoder: any Decoder) throws {
-        let stored = try StoredEntry(from: decoder)
-        id = stored.id
-        kind = stored.kind
-        severity = stored.severity
-        date = stored.date
-        note = stored.note
-        places = Self.keptPlaces(stored.places ?? [], for: stored.kind)
-    }
-
-    private struct StoredEntry: Decodable {
-        let id: UUID
-        let kind: EntryKind
-        let severity: Severity
-        let date: Date
-        let note: String?
-        let places: [PlaceID]?
     }
 
     private static func keptPlaces(_ places: [PlaceID], for kind: EntryKind) -> [PlaceID] {
