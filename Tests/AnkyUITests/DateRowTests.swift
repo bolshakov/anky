@@ -11,8 +11,12 @@ final class DateRowTests: XCTestCase {
 
         let row = app.buttons["date-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertFalse(row.label.isEmpty)
-        XCTAssertTrue([shownBefore, clockTime(at: .now)].contains(clockTime(inRowValue: row.value as? String)))
+        XCTAssertEqual(row.label, "Date and time")
+        let spoken = row.value as? String ?? ""
+        XCTAssertTrue(
+            ["Today \(shownBefore)", "Today \(clockTime(at: .now))"].contains(spoken),
+            "date-row is \(spoken)"
+        )
         XCTAssertFalse(app.datePickers["date-picker"].exists)
 
         showDatePicker(in: app)
