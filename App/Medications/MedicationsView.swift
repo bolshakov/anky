@@ -23,10 +23,14 @@ struct MedicationsView: View {
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) {
-            Button("Add medication") {
+            Button {
                 isShowingNewMedication = true
+            } label: {
+                Text("Add medication")
+                    .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PinnedButtonStyle())
+            .buttonStyle(.glassProminent)
+            .controlSize(.large)
             .accessibilityIdentifier("medications-add")
             .padding()
         }
