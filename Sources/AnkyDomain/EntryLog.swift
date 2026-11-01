@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-public struct EntryLog: Sendable {
+@MainActor
+public struct EntryLog {
     private let store: any EntryStore
     public private(set) var entries: [Entry]
 
@@ -12,26 +13,22 @@ public struct EntryLog: Sendable {
 
     public mutating func add(_ entry: Entry) throws {
         guard !entries.contains(where: { $0.id == entry.id }) else { return }
-        let saved = entries + [entry]
-        // The list changes only after the store accepts it, so a failed save leaves the log as it was.
-        try store.save(saved)
-        entries = saved
+        // The list changes only after the store accepts the write, so a refused write leaves the log as it was.
+        try store.add(entry)
+        entries.append(entry)
     }
 
     public mutating func replace(_ entry: Entry) throws {
         guard let index = entries.firstIndex(where: { $0.id == entry.id }) else {
             throw EntryLogError.missing
         }
-        var saved = entries
-        saved[index] = entry
-        try store.save(saved)
-        entries = saved
+        try store.replace(entry)
+        entries[index] = entry
     }
 
     public mutating func remove(id: UUID) throws {
         guard entries.contains(where: { $0.id == id }) else { return }
-        let saved = entries.filter { $0.id != id }
-        try store.save(saved)
-        entries = saved
+        try store.remove(id: id)
+        entries.removeAll { $0.id == id }
     }
 }
