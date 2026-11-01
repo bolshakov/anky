@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep "label='\''Archive'\''"'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Button id=archivebox label='Archive' value=None enabled=True actions= traits= @326,177.33333333333334 50x50
+StaticText id=None label='Archive' value=None enabled=True actions= traits= @328.1666666666667,231.16666666666666 45.666666666666686x15.666666666666657

@@ -1,0 +1,5 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep "label='\''New Medication'\''"'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Heading id=None label='New Medication' value=None enabled=True actions= traits= @137,99.66666666666666 127.66666666666669x20.66666666666667

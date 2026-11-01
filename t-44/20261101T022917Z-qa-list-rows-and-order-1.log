@@ -1,0 +1,13 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -E "id=medication-row |label=.Medications.|Image"'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Heading id=None label='Medications' value=None enabled=True actions= traits= @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+Button id=medication-row label='Zorblex 25 mg, As needed' value=None enabled=True actions=Archive traits= @16,167 370x90
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,206.33333333333331 6.6666669845581055x11.666666984558105
+Button id=medication-row label='Quibbanol, Scheduled' value=None enabled=True actions=Archive traits= @16,257 370x90
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,296.3333333333333 6.6666669845581055x11.666666984558105
+Button id=medication-row label='Fennimax-Glorptine-Extended-Release-Sustained-Formula 500 mg, As needed' value=None enabled=True actions=Archive traits= @16,347 370x90.66666666666669
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,386.6666666666667 6.6666669845581055x11.666666984558105

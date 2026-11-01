@@ -1,0 +1,8 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -E "id=dose-(medication-row|no-medications) "; echo ---; meds'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+StaticText id=dose-no-medications label='No medications yet' value=None enabled=True actions= traits= @16,172.33333333333334 370x52
+---
+Zorblex|-|1
+Quibbanol|-|1

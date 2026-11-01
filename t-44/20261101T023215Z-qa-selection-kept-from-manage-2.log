@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep "id=dose-medication-row "'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Button id=dose-medication-row label='Zorblex, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+Button id=dose-medication-row label='Fennimax, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669

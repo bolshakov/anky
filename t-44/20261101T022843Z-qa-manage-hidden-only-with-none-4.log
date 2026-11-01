@@ -1,0 +1,10 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -E "id=log-dose-manage |No medications yet|id=dose-"; echo ---; meds'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Group id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,82 73.33333333333331x36
+Button id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,78 73.33333333333331x44
+StaticText id=dose-no-medications label='No medications yet' value=None enabled=True actions= traits= @16,172.33333333333334 370x52
+Button id=dose-add-medication label='Add medication' value=None enabled=True actions= traits= @16,224.33333333333331 370x52
+---
+Zorblex|-|1

@@ -1,0 +1,21 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -vE "Vertical scroll|Tab Bar|RadioButton|id=calendar|id=clock|id=today|id=empty-today|id=log-"'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,342.95402298850576 291x42.333333333333314
+Group id=Medications label=None value=None enabled=True actions= traits= @0,78 402x54
+Button id=BackButton label='Log Dose' value=None enabled=True actions= traits= @16,78 44x44
+Heading id=None label='Medications' value=None enabled=True actions= traits= @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+Button id=medication-row label='Quibbanol, As needed' value=None enabled=True actions=Archive traits= @16,167 370x90
+StaticText id=None label='Quibbanol' value=None enabled=True actions=Archive traits= @32,192.66666666666666 78x20.333333333333343
+StaticText id=None label='As needed' value=None enabled=True actions=Archive traits= @32,215.66666666666666 64.33333333333333x15.666666666666657
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,206.33333333333331 6.6666669845581055x11.666666984558105
+Button id=archived-card label='Archived' value='1' enabled=True actions= traits= @16,269 370x52
+StaticText id=None label='Archived' value=None enabled=True actions= traits= @32,284.8333333333333 67x20.33333333333337
+StaticText id=None label='1' value=None enabled=True actions= traits= @344.66666666666663,284.8333333333333 7.666666666666686x20.33333333333337
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @362.66666666666663,289.3333333333333 6.6666669845581055x11.666666984558105
+StaticText id=None label='Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.' value=None enabled=True actions= traits= @16,321 370x47.666666666666686
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @16,768 370x56

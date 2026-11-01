@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -E "Swipe left to archive|id=medications-add "'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+StaticText id=None label='Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.' value=None enabled=True actions= traits= @16,257 370x47.666666666666686
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @16,768 370x56

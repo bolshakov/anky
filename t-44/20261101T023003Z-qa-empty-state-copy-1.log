@@ -1,0 +1,25 @@
+$ zsh -c 'setopt nonomatch; udid=$(cat /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk-t44.Ng34/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-04-3/tmp/walk.sh; ui | grep -vE "Vertical scroll|Tab Bar|RadioButton|id=calendar|id=clock"'
+exit: 0
+commit: 519148a8aec124f66da20df9babec4436b020391
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+ScrollArea id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Sunday, November 1' value=None enabled=True actions= traits= @16,168 139.66666666666666x18
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,304.62068965517244 221x26.333333333333314
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,342.95402298850576 291x42.333333333333314
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+Group id=Medications label=None value=None enabled=True actions= traits= @0,78 402x54
+Button id=BackButton label='Log Dose' value=None enabled=True actions= traits= @16,78 44x44
+Heading id=None label='Medications' value=None enabled=True actions= traits= @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+Button id=archived-card label='Archived' value='1' enabled=True actions= traits= @16,167 370x52
+StaticText id=None label='Archived' value=None enabled=True actions= traits= @32,182.83333333333334 67x20.333333333333343
+StaticText id=None label='1' value=None enabled=True actions= traits= @344.66666666666663,182.83333333333334 7.666666666666686x20.333333333333343
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @362.66666666666663,187.33333333333334 6.6666669845581055x11.666666984558077
+StaticText id=medications-empty label='No medications yet, Add what you take, then log a dose in two taps. Everything stays on this iPhone.' value=None enabled=True actions= traits= @16,315 370x142.33333333333337
+Image id=pills label='pills' value=None enabled=True actions= traits= @174.66666666666666,318 52x45.66666793823242
+StaticText id=None label='No medications yet' value=None enabled=True actions= traits= @105,382.66666666666663 192x26.33333333333337
+StaticText id=None label='Add what you take, then log a dose in two taps. Everything stays on this iPhone.' value=None enabled=True actions= traits= @48.166666666666686,417 305.66666666666663x40.333333333333314
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @16,768 370x56
