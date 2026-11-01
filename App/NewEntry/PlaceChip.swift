@@ -11,7 +11,24 @@ struct PlaceChip: View {
     @ScaledMetric(relativeTo: .subheadline) private var checkSize: CGFloat = 14
 
     var body: some View {
-        Button(action: action) {
+        chipButton
+            .frame(minHeight: 44)
+            .contentShape(Capsule())
+            .accessibilityLabel(place.displayName)
+            .accessibilityAddTraits(isSelected ? .isSelected : [])
+            .accessibilityAction(named: Text(pinActionName)) {
+                togglePin(event: .pinChangedByAction)
+            }
+            .accessibilityIdentifier("place-chip-\(place.rawValue)")
+            .sensoryFeedback(.selection, trigger: isSelected)
+            .contextMenu {
+                pinMenuItem
+            }
+    }
+
+    @ViewBuilder
+    private var chipButton: some View {
+        let button = Button(action: action) {
             HStack(spacing: 6) {
                 if isSelected {
                     Image(systemName: "checkmark")
@@ -19,34 +36,29 @@ struct PlaceChip: View {
                 }
                 Text(place.displayName)
             }
-            .font(.subheadline.weight(isSelected ? .bold : .regular))
-            .foregroundStyle(isSelected ? Color("OnAccent") : .primary)
-            .padding(.horizontal, 14)
-            .frame(minHeight: 44)
-            .background(isSelected ? Color("AccentColor") : Color("PageBackground"), in: Capsule())
-            .contentShape(Capsule())
+            .font(.subheadline)
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel(place.displayName)
-        .accessibilityAddTraits(isSelected ? .isSelected : [])
-        .accessibilityAction(named: Text(pinActionName)) {
-            togglePin(event: .pinChangedByAction)
+        .buttonBorderShape(.capsule)
+        if isSelected {
+            button.buttonStyle(.borderedProminent)
+        } else {
+            button.buttonStyle(.bordered)
         }
-        .accessibilityIdentifier("place-chip-\(place.rawValue)")
-        .sensoryFeedback(.selection, trigger: isSelected)
-        .contextMenu {
-            if shortcuts.isPinned(place) {
-                Button {
-                    shortcuts.unpin(place, event: .pinChangedByMenu)
-                } label: {
-                    Label("Unpin shortcut", systemImage: "pin.slash.fill")
-                }
-            } else {
-                Button {
-                    shortcuts.pin(place, event: .pinChangedByMenu)
-                } label: {
-                    Label("Pin as shortcut", systemImage: "pin.fill")
-                }
+    }
+
+    @ViewBuilder
+    private var pinMenuItem: some View {
+        if isPinned {
+            Button {
+                shortcuts.unpin(place, event: .pinChangedByMenu)
+            } label: {
+                Label("Unpin shortcut", systemImage: "pin.slash.fill")
+            }
+        } else {
+            Button {
+                shortcuts.pin(place, event: .pinChangedByMenu)
+            } label: {
+                Label("Pin as shortcut", systemImage: "pin.fill")
             }
         }
     }
