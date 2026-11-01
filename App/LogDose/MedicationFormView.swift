@@ -34,6 +34,7 @@ struct MedicationFormView: View {
                         .focused($focus, equals: .name)
                         .submitLabel(.next)
                         .onSubmit { focus = .strength }
+                        .accessibilityLabel("Name")
                         .accessibilityIdentifier("medication-name")
                     TextField("Strength, for example 500 mg", text: $draft.strength)
                         .focused($focus, equals: .strength)
