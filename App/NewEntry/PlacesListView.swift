@@ -22,7 +22,7 @@ struct PlacesListView: View {
                 TipView(PinShortcutTip())
                     .tipViewStyle(PinTipStyle())
                     .accessibilityIdentifier("pin-tip")
-                    .tipRowSpansCard()
+                    .listRowInsets(.horizontal, 0)
             }
             .listRowBackground(Color.clear)
             ForEach(PlaceGroup.allCases, id: \.self) { group in
@@ -54,17 +54,6 @@ struct PlacesListView: View {
                 dismiss()
             }
             .padding()
-        }
-    }
-}
-
-private extension View {
-    @ViewBuilder
-    func tipRowSpansCard() -> some View {
-        if #available(iOS 26, *) {
-            listRowInsets(.horizontal, 0)
-        } else {
-            listRowInsets(EdgeInsets(top: 11, leading: 0, bottom: 11, trailing: 0))
         }
     }
 }
