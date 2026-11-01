@@ -16,6 +16,10 @@ import Observation
         MedicationOrder.active(medications)
     }
 
+    var archived: [Medication] {
+        MedicationOrder.archived(medications)
+    }
+
     var archivedCount: Int {
         medications.count { $0.archivedAt != nil }
     }
@@ -30,5 +34,17 @@ import Observation
         try store.archive(id: id, at: date)
         guard let index = medications.firstIndex(where: { $0.id == id }) else { return }
         medications[index].archivedAt = date
+    }
+
+    func update(_ medication: Medication) throws {
+        try store.update(medication)
+        guard let index = medications.firstIndex(where: { $0.id == medication.id }) else { return }
+        medications[index] = medication
+    }
+
+    func restore(id: UUID) throws {
+        try store.restore(id: id)
+        guard let index = medications.firstIndex(where: { $0.id == id }) else { return }
+        medications[index].archivedAt = nil
     }
 }
