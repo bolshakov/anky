@@ -23,6 +23,7 @@ struct TodayEntryList: View {
             Text("Stored on this iPhone only.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .cardCaption()
         }
     }
 }

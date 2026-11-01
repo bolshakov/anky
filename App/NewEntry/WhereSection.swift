@@ -12,7 +12,7 @@ struct WhereSection: View {
             Text("Where")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-                .padding(.horizontal, 16)
+                .cardCaption()
                 .accessibilityAddTraits(.isHeader)
 
             VStack(spacing: 0) {
