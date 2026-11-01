@@ -3,17 +3,16 @@ import AnkyDomain
 import SwiftUI
 
 struct TodayEntryList: View {
-    let entries: [Entry]
+    let items: [LoggedItem]
+    let medications: [Medication]
     let onSelect: (Entry) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(spacing: 0) {
-                ForEach(entries) { entry in
-                    EntryRow(entry: entry) {
-                        onSelect(entry)
-                    }
-                    if entry.id != entries.last?.id {
+                ForEach(items) { item in
+                    row(for: item)
+                    if item.id != items.last?.id {
                         Divider()
                     }
                 }
@@ -24,6 +23,18 @@ struct TodayEntryList: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .cardCaption()
+        }
+    }
+
+    @ViewBuilder
+    private func row(for item: LoggedItem) -> some View {
+        switch item {
+        case let .entry(entry):
+            EntryRow(entry: entry) {
+                onSelect(entry)
+            }
+        case let .dose(dose):
+            DoseRow(dose: dose, title: DoseRowText.title(for: dose, in: medications))
         }
     }
 }

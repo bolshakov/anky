@@ -357,6 +357,9 @@
         }
       }
     },
+    "Dose" : {
+
+    },
     "Edit Entry" : {
       "localizations" : {
         "ru" : {
@@ -937,6 +940,18 @@
       }
     },
     "Pain before" : {
+
+    },
+    "Pain %lld before, %lld after" : {
+
+    },
+    "Pain was %lld of 10" : {
+
+    },
+    "pain %lld before, %lld after" : {
+
+    },
+    "pain was %lld of 10" : {
 
     },
     "Pelvis and chest" : {
