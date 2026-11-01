@@ -45,6 +45,28 @@ struct SwiftDataMedicationStoreTests {
         }
     }
 
+    @Test func everyCheckInDelayReadsBackAfterReopen() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let medications = CheckInDelay.allCases.enumerated().map { index, delay in
+                var medication = Medication(
+                    id: UUID(),
+                    name: "Zorblex",
+                    takenAs: .asNeeded,
+                    createdAt: date.addingTimeInterval(TimeInterval(index))
+                )
+                medication.checkInAfter = delay
+                return medication
+            }
+            let store = try SwiftDataMedicationStore(url: url)
+            for medication in medications {
+                try store.add(medication)
+            }
+            let reopened = try SwiftDataMedicationStore(url: url)
+            #expect(try reopened.all() == medications)
+        }
+    }
+
     @Test func storeHoldsNoMedicationBeforeTheFirstAdd() throws {
         try withFolder { folder in
             let store = try SwiftDataMedicationStore(url: folder.appending(path: "medications.store"))
