@@ -115,6 +115,64 @@ struct SwiftDataMedicationStoreTests {
         }
     }
 
+    @Test func archiveSetsTheArchivedTimeAndChangesNoOtherField() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let original = fullMedication(name: "Zorblex")
+            var unarchived = original
+            unarchived.archivedAt = nil
+            let archivedAt = date.addingTimeInterval(300)
+            var expected = unarchived
+            expected.archivedAt = archivedAt
+
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(unarchived)
+            try store.archive(id: unarchived.id, at: archivedAt)
+            #expect(try store.all() == [expected])
+            #expect(try SwiftDataMedicationStore(url: url).all() == [expected])
+        }
+    }
+
+    @Test func archiveOfAnUnknownIdThrowsAndChangesNothing() throws {
+        try withFolder { folder in
+            let store = try SwiftDataMedicationStore(url: folder.appending(path: "medications.store"))
+            let zorblex = fullMedication(name: "Zorblex")
+            try store.add(zorblex)
+            #expect(throws: MedicationStoreError.notSaved) {
+                try store.archive(id: UUID(), at: date)
+            }
+            #expect(try store.all() == [zorblex])
+        }
+    }
+
+    @Test func failedArchiveLeavesTheMedicationActiveAndRetryArchivesIt() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var writesRefused = false
+            let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+                if writesRefused {
+                    throw WriteRefused()
+                }
+            })
+            var active = Medication(id: UUID(), name: "Zorblex", takenAs: .asNeeded, createdAt: date)
+            active.updatedAt = date
+            try store.add(active)
+
+            writesRefused = true
+            #expect(throws: MedicationStoreError.notSaved) {
+                try store.archive(id: active.id, at: date.addingTimeInterval(60))
+            }
+            #expect(try store.all() == [active])
+            #expect(try SwiftDataMedicationStore(url: url).all() == [active])
+
+            writesRefused = false
+            try store.archive(id: active.id, at: date.addingTimeInterval(60))
+            var archived = active
+            archived.archivedAt = date.addingTimeInterval(60)
+            #expect(try store.all() == [archived])
+        }
+    }
+
     @Test func aFailedWriteThrowsAnErrorThatNamesNoMedication() throws {
         let store = try SwiftDataMedicationStore.inMemory(beforeSave: { throw WriteRefused() })
         let medication = fullMedication(name: "Zorblex")

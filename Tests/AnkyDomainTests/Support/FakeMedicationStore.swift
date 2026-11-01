@@ -24,4 +24,14 @@ import Foundation
         }
         contents.append(medication)
     }
+
+    func archive(id: UUID, at date: Date) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = contents.firstIndex(where: { $0.id == id }) else {
+            throw MedicationStoreError.notSaved
+        }
+        contents[index].archivedAt = date
+    }
 }
