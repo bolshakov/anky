@@ -1,0 +1,13 @@
+$ sh -c 'for s in today history entry edit places; do echo "== $s"; diff "/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51-base.uY4z/$s.txt" "/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv/$s.txt"; done'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+== today
+== history
+== entry
+35c35
+< StaticText id=None label='Today, 02:29\u202fAM' value=None @223.33333333333337,360 126x20.333333333333314
+---
+> StaticText id=None label='Today, 02:30\u202fAM' value=None @223.33333333333337,360 126x20.333333333333314
+== edit
+== places

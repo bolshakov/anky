@@ -1,0 +1,14 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv; udid=DA54E334-6DA5-4FE2-A3D7-68E88575E12A; . "$TMPDIR/walk.sh"
+axe swipe --start-x 200 --start-y 300 --end-x 200 --end-y 500 --duration 0.3 --udid "$udid" >/dev/null; sleep 1
+ui | grep Heading | cut -c1-110
+edges header-wraps-places "Pelvis and chest"
+text_size large'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+Heading id=None label='Today' value=None @16,116 165.66666666666666x71.66666666666669
+Heading id=None label='Where' value=None @169.33333333333334,87.33333333333334 63.33333333333334x25.3333333333
+Heading id=None label='Pelvis and chest' value=None @16,207 370x145.33333333333337
+Heading id=None label='Arms' value=None @16,811.6666666666667 370x83.33333333333337
+header 'Pelvis and chest' frame x=16.0 ink top x=19.3 bottom x=17.7 card x=16.0 @y=207 h=145

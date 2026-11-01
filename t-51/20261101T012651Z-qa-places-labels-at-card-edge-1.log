@@ -1,0 +1,24 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv; udid=DA54E334-6DA5-4FE2-A3D7-68E88575E12A; . "$TMPDIR/walk.sh"
+appearance light; text_size large; seed_week; sleep 3; to_places; sleep 2
+for n in 1 2 3 4; do echo "== places-labels-$n"; edges places-labels-$n Spine "Pelvis and chest" Arms Legs Head; scroll_down; done
+echo "== extra: scroll back up one step for Arms"
+axe swipe --start-x 200 --start-y 200 --end-x 200 --end-y 600 --duration 0.3 --udid "$udid" >/dev/null; sleep 1
+edges places-labels-arms Spine "Pelvis and chest" Arms Legs Head'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+== places-labels-1
+header 'Spine' frame x=16.0 ink top x=17.3 bottom x=17.0 card x=16.0 @y=132 h=40
+header 'Pelvis and chest' frame x=16.0 ink top x=17.3 bottom x=17.3 card x=16.0 @y=430 h=40
+header 'Arms' off the measured area @y=848, scroll it into view
+== places-labels-2
+header 'Legs' frame x=16.0 ink top x=17.3 bottom x=17.3 card x=16.0 @y=320 h=40
+header 'Head' off the measured area @y=857, scroll it into view
+== places-labels-3
+header 'Head' frame x=16.0 ink top x=17.3 bottom x=17.3 card x=16.0 @y=512 h=40
+== places-labels-4
+header 'Head' frame x=16.0 ink top x=17.3 bottom x=17.3 card x=16.0 @y=512 h=40
+== extra: scroll back up one step for Arms
+header 'Pelvis and chest' off the measured area @y=23, scroll it into view
+header 'Arms' frame x=16.0 ink top x=19.0 bottom x=16.7 card x=16.0 @y=440 h=40

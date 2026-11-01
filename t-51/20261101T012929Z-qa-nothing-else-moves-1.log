@@ -1,0 +1,13 @@
+$ sh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51-base.uY4z; udid=CD2401D7-E2ED-4AF3-9D4C-2F29ED25F96C; . /Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/screens.sh; ls "$out"/*.txt "$out"/*.png | xargs -n1 basename'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+edit.txt
+entry.png
+entry.txt
+history.png
+history.txt
+places.png
+places.txt
+today.png
+today.txt

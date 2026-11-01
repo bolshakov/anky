@@ -1,0 +1,9 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv; udid=DA54E334-6DA5-4FE2-A3D7-68E88575E12A; . "$TMPDIR/walk.sh"
+appearance light; seed_week; text_size accessibility-extra-extra-extra-large; launch; sleep 3; to_history; scroll_down
+edges header-wraps-history day-header'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+header 'Yesterday' off the measured area @y=73, scroll it into view
+header 'Sunday, October 25' frame x=16.0 ink top x=17.7 bottom x=18.0 card x=16.3 @y=479 h=137

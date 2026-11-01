@@ -1,0 +1,9 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv; udid=DA54E334-6DA5-4FE2-A3D7-68E88575E12A; . "$TMPDIR/walk.sh"
+appearance light; text_size large; seed_week; sleep 3; to_history; edges history-labels-at-card-edge day-header'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+header 'Today' frame x=16.0 ink top x=16.7 bottom x=20.0 card x=16.0 @y=168 h=38
+header 'Yesterday' frame x=16.0 ink top x=16.7 bottom x=19.7 card x=16.3 @y=344 h=38
+header 'Sunday, October 25' frame x=16.0 ink top x=17.0 bottom x=16.7 card x=16.3 @y=459 h=38

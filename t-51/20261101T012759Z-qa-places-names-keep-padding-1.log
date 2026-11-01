@@ -1,0 +1,12 @@
+$ sh -c '
+out=/Users/bolshakov/Projects/personal/anky.wt/qa-t51-02-1/tmp/walk-t51.8nhv; udid=DA54E334-6DA5-4FE2-A3D7-68E88575E12A; . "$TMPDIR/walk.sh"
+appearance light; text_size large; PINS=neck seeded pain/0/08:15/6/neck; sleep 3; to_places; sleep 2
+ui | grep "id=place-neck \|id=place-upper "
+names places-names-keep-padding 202 262'
+exit: 0
+commit: ec126bb87f5cc7ecd9e19a08d35985fcf10c92bd
+
+Button id=place-neck label='Neck' value='Pinned' actions=['Unpin shortcut'] @16,172.33333333333334 370x60
+Button id=place-upper label='Upper back' value=None actions=['Pin as shortcut'] @16,232.33333333333331 370x60
+y=202 card x=16.3 ink starts x=28.7 x=49.3
+y=262 card x=16.0 ink starts x=49.3 x=100.7
