@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyMedicationModel
 import SwiftUI
 
 struct ArchivedView: View {
@@ -7,6 +8,7 @@ struct ArchivedView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editing: Medication?
     @State private var saveTicks = 0
+    @State private var failure: MedicationFailure?
 
     var body: some View {
         List {
@@ -21,7 +23,7 @@ struct ArchivedView: View {
                     .accessibilityIdentifier("archived-row")
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Restore", systemImage: "arrow.counterclockwise") {
-                            try? medications.restore(id: medication.id)
+                            restore(medication)
                         }
                         .tint(.accentColor)
                     }
@@ -33,6 +35,7 @@ struct ArchivedView: View {
         .navigationTitle("Archived")
         .navigationBarTitleDisplayMode(.inline)
         .sensoryFeedback(.success, trigger: saveTicks)
+        .medicationFailureAlert($failure)
         .onChange(of: medications.archived.isEmpty) {
             if medications.archived.isEmpty {
                 dismiss()
@@ -40,6 +43,14 @@ struct ArchivedView: View {
         }
         .sheet(item: $editing) { medication in
             MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
+        }
+    }
+
+    private func restore(_ medication: Medication) {
+        do {
+            try medications.restore(id: medication.id)
+        } catch {
+            failure = .restore
         }
     }
 }

@@ -8,13 +8,18 @@ import Foundation
     private(set) var addCalls: [Medication] = []
     /// Set to make the next writes throw. Set back to false to let them succeed.
     var writeFailure = false
+    /// Set to make reads throw. Set back to false to let them succeed.
+    var readFailure = false
 
     init(_ medications: [Medication] = []) {
         contents = medications
     }
 
     func all() throws -> [Medication] {
-        contents
+        if readFailure {
+            throw MedicationStoreError.unreadable
+        }
+        return contents
     }
 
     func add(_ medication: Medication) throws {

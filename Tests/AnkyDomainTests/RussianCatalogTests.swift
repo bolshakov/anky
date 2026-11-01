@@ -179,6 +179,8 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Swipe left to restore. Doses you logged stay in History."]
     + ["Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."]
     + ["Add what you take, then log a dose in two taps. Everything stays on this iPhone."]
+    + ["This medication could not be saved.", "This medication could not be archived."]
+    + ["This medication could not be restored.", "Strength, optional"]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")

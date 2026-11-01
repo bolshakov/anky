@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyMedicationModel
 import SwiftUI
 
 struct LogDoseView: View {
@@ -53,6 +54,7 @@ struct LogDoseView: View {
             }
             .sensoryFeedback(.selection, trigger: selectionTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
+            .onAppear { medications.reload() }
         }
     }
 

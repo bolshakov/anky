@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyMedicationModel
 import AnkyStore
 import SwiftUI
 import TipKit
@@ -35,11 +36,18 @@ struct AnkyApp: App {
     }
 
     private static func medicationStore() -> MedicationStore {
-        do {
-            return try SwiftDataMedicationStore(url: MedicationsLocation.fileURL())
-        } catch {
-            return UnavailableMedicationStore()
+        DeferredMedicationStore {
+            try SwiftDataMedicationStore(url: MedicationsLocation.fileURL(), beforeSave: medicationWriteGuard)
         }
+    }
+
+    private static var medicationWriteGuard: @MainActor () throws -> Void {
+        #if DEBUG
+            let folder = MedicationsLocation.folder()
+            return { try MedicationWriteSwitch.check(folder: folder) }
+        #else
+            return {}
+        #endif
     }
 
     private static func tipOptions(folder: URL) -> [Tips.ConfigurationOption] {

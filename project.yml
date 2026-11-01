@@ -16,6 +16,8 @@ targets:
         product: AnkyDomain
       - package: Anky
         product: AnkyStore
+      - package: Anky
+        product: AnkyMedicationModel
     settings:
       GENERATE_INFOPLIST_FILE: YES
       SWIFT_VERSION: "6.0"
