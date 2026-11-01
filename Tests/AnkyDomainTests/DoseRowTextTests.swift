@@ -64,10 +64,32 @@ struct DoseRowTextTests {
         #expect(label == "08:30. Naproxen 500 mg. Dose. Pain 6 before, 3 after.")
     }
 
-    @Test func theTitleIsTheCurrentNameAndStrengthOfAnArchivedMedication() throws {
+    @Test func theTitleIsTheDosesOwnMedicationNameAndStrength() throws {
+        let first = UUID()
+        let archived = UUID()
+        let third = UUID()
+        let naproxen = medication(id: first, name: "Naproxen", strength: "250 mg", archived: false)
+        let fennimax = medication(id: archived, name: "Fennimax", strength: "500 mg", archived: true)
+        let zorblex = medication(id: third, name: "Zorblex", strength: "10 mg", archived: false)
+        let medications = [naproxen, fennimax, zorblex]
+        let firstDose = try dose(for: first)
+        let archivedDose = try dose(for: archived)
+        let thirdDose = try dose(for: third)
+        #expect(DoseRowText.title(for: archivedDose, in: medications) == "Fennimax 500 mg")
+        #expect(DoseRowText.title(for: thirdDose, in: medications) == "Zorblex 10 mg")
+        #expect(DoseRowText.title(for: firstDose, in: medications) == "Naproxen 250 mg")
+    }
+
+    @Test func aMedicationWithoutAStrengthReadsAsItsBareName() throws {
         let id = UUID()
-        let medications = [medication(id: id, name: "Fennimax", strength: "500 mg", archived: true)]
+        let medications = [medication(id: id, name: "Naproxen", strength: nil, archived: false)]
         let taken = try dose(for: id)
-        #expect(DoseRowText.title(for: taken, in: medications) == "Fennimax 500 mg")
+        #expect(DoseRowText.title(for: taken, in: medications) == "Naproxen")
+    }
+
+    @Test func aDoseOfAMedicationNotInTheListReadsAnEmptyTitle() throws {
+        let medications = [medication(id: UUID(), name: "Naproxen", strength: nil, archived: false)]
+        let taken = try dose(for: UUID())
+        #expect(DoseRowText.title(for: taken, in: medications) == "")
     }
 }
