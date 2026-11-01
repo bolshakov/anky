@@ -23,6 +23,8 @@ struct MedicationRow: View {
                     .accessibilityHidden(true)
             }
         }
+        .padding(.horizontal)
+        .padding(.vertical, 8)
         .frame(minHeight: 60)
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
