@@ -54,8 +54,9 @@ struct EntryRow: View {
                 Spacer()
                 value
             }
-            .padding()
-            .frame(minHeight: 44)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .frame(minHeight: 60)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
