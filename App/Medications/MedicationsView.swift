@@ -54,6 +54,7 @@ struct MedicationsView: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("medication-row")
+                    .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Archive", systemImage: "archivebox") {
                             archive(medication)

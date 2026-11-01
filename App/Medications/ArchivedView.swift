@@ -21,6 +21,7 @@ struct ArchivedView: View {
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("archived-row")
+                    .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Restore", systemImage: "arrow.counterclockwise") {
                             restore(medication)
