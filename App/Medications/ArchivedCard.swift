@@ -17,7 +17,6 @@ struct ArchivedCard: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Archived"))
         .accessibilityValue("\(count)")
-        .accessibilityAddTraits(.isButton)
         .accessibilityIdentifier("archived-card")
     }
 }

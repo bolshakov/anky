@@ -5,6 +5,8 @@ import SwiftUI
 struct MedicationsView: View {
     let medications: MedicationsModel
     @State private var isShowingNewMedication = false
+    @State private var editing: Medication?
+    @State private var isShowingArchived = false
     @State private var saveTicks = 0
 
     var body: some View {
@@ -17,6 +19,14 @@ struct MedicationsView: View {
         .listSectionSpacing(.custom(12))
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(isPresented: $isShowingArchived) {
+            ArchivedView(medications: medications, onEdit: { editing = $0 })
+        }
+        .onChange(of: medications.archivedCount) {
+            if medications.archivedCount == 0 {
+                isShowingArchived = false
+            }
+        }
         .safeAreaInset(edge: .bottom) {
             Button("Add medication") {
                 isShowingNewMedication = true
@@ -27,6 +37,9 @@ struct MedicationsView: View {
         }
         .sheet(isPresented: $isShowingNewMedication) {
             MedicationFormView(medications: medications, onSaved: { saveTicks += 1 })
+        }
+        .sheet(item: $editing) { medication in
+            MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
         }
     }
 
@@ -39,30 +52,47 @@ struct MedicationsView: View {
         if !active.isEmpty {
             Section {
                 ForEach(active) { medication in
-                    MedicationRow(medication: medication)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button("Archive", systemImage: "archivebox") {
-                                try? medications.archive(id: medication.id)
-                            }
-                            .tint(.accentColor)
+                    Button {
+                        editing = medication
+                    } label: {
+                        MedicationRow(medication: medication)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("medication-row")
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button("Archive", systemImage: "archivebox") {
+                            try? medications.archive(id: medication.id)
                         }
+                        .tint(.accentColor)
+                    }
                 }
             } footer: {
                 if medications.archivedCount == 0 {
-                    MedicationsFootnote()
+                    archiveFootnote
                 }
             }
         }
+    }
+
+    private var archiveFootnote: some View {
+        MedicationsFootnote(
+            text: "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."
+        )
     }
 
     @ViewBuilder
     private var archivedSection: some View {
         if medications.archivedCount > 0 {
             Section {
-                ArchivedCard(count: medications.archivedCount)
+                Button {
+                    isShowingArchived = true
+                } label: {
+                    ArchivedCard(count: medications.archivedCount)
+                }
+                .buttonStyle(.plain)
             } footer: {
                 if !active.isEmpty {
-                    MedicationsFootnote()
+                    archiveFootnote
                 }
             }
         }
