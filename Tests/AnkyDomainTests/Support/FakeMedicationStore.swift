@@ -6,13 +6,15 @@ import Foundation
 @MainActor final class FakeMedicationStore: MedicationStore {
     private(set) var contents: [Medication]
     private(set) var addCalls: [Medication] = []
+    private(set) var doseContents: [Dose] = []
     /// Set to make the next writes throw. Set back to false to let them succeed.
     var writeFailure = false
     /// Set to make reads throw. Set back to false to let them succeed.
     var readFailure = false
 
-    init(_ medications: [Medication] = []) {
+    init(_ medications: [Medication] = [], doses: [Dose] = []) {
         contents = medications
+        doseContents = doses
     }
 
     func all() throws -> [Medication] {
@@ -58,5 +60,23 @@ import Foundation
             throw MedicationStoreError.notSaved
         }
         contents[index].archivedAt = nil
+    }
+
+    func doses() throws -> [Dose] {
+        if readFailure {
+            throw MedicationStoreError.unreadable
+        }
+        return doseContents
+    }
+
+    func logDose(_ dose: Dose) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = contents.firstIndex(where: { $0.id == dose.medicationID }) else {
+            throw MedicationStoreError.notSaved
+        }
+        doseContents.append(dose)
+        contents[index].checkInAfter = dose.checkInAfter
     }
 }

@@ -7,6 +7,10 @@ import Foundation
     func archive(id: UUID, at date: Date) throws
     func update(_ medication: Medication) throws
     func restore(id: UUID) throws
+    func doses() throws -> [Dose]
+    /// Stores the dose and sets its medication's saved delay to the dose's, in one save. Throws `notSaved` for a
+    /// medication id the store does not hold.
+    func logDose(_ dose: Dose) throws
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

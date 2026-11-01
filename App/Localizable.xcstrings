@@ -1126,6 +1126,9 @@
         }
       }
     },
+    "Save dose" : {
+
+    },
     "Save entry" : {
       "localizations" : {
         "ru" : {
@@ -1280,6 +1283,9 @@
 
     },
     "This medication could not be restored." : {
+
+    },
+    "This dose could not be saved." : {
 
     },
     "This medication could not be saved." : {

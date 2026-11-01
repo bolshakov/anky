@@ -58,4 +58,27 @@ import Testing
         try store.add(medication("Fennimax"))
         #expect(inner.contents.map(\.name) == ["Fennimax"])
     }
+
+    @Test func doseCallsForwardThroughTheOpenedStore() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let store = DeferredMedicationStore { inner }
+        let dose = try Dose(id: UUID(), medicationID: zorblex.id, takenAt: date, painBefore: #require(Severity(4)))
+        try store.logDose(dose)
+        #expect(try store.doses() == [dose])
+        #expect(inner.doseContents == [dose])
+    }
+
+    @Test func aDoseWriteWhileLockedNeverReachesTheStore() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let store = DeferredMedicationStore {
+            throw Locked()
+        }
+        let dose = try Dose(id: UUID(), medicationID: zorblex.id, takenAt: date, painBefore: #require(Severity(4)))
+        #expect(throws: MedicationStoreError.unavailable) {
+            try store.logDose(dose)
+        }
+        #expect(inner.doseContents.isEmpty)
+    }
 }

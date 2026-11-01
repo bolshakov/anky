@@ -83,4 +83,60 @@ import Testing
         #expect(throws: MedicationStoreError.notSaved) { try write.run(on: model, zorblex: zorblex) }
         #expect(model.medications == [zorblex])
     }
+
+    private func dose(for medication: Medication, checkInAfter: CheckInDelay? = nil) throws -> Dose {
+        var dose = try Dose(
+            id: UUID(),
+            medicationID: medication.id,
+            takenAt: .now,
+            painBefore: #require(Severity(4))
+        )
+        dose.checkInAfter = checkInAfter
+        return dose
+    }
+
+    @Test func logDoseAddsTheDoseAndTheSavedDelayToTheModel() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        let dose = try dose(for: zorblex, checkInAfter: .twoHours)
+        try model.logDose(dose)
+        #expect(model.doses == [dose])
+        #expect(model.medications.first?.checkInAfter == .twoHours)
+        #expect(try inner.doses() == [dose])
+    }
+
+    @Test func aFailedLogLeavesTheModelAsItWas() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        inner.writeFailure = true
+        #expect(throws: MedicationStoreError.notSaved) {
+            try model.logDose(dose(for: zorblex, checkInAfter: .oneHour))
+        }
+        #expect(model.doses.isEmpty)
+        #expect(model.medications == [zorblex])
+        #expect(inner.doseContents.isEmpty)
+    }
+
+    @Test func reloadReadsTheDosesWithTheMedications() throws {
+        let zorblex = medication("Zorblex")
+        let stored = try dose(for: zorblex)
+        let inner = FakeMedicationStore([zorblex], doses: [stored])
+        let model = MedicationsModel(store: inner)
+        #expect(model.doses == [stored])
+    }
+
+    @Test func aFailedDoseReadKeepsTheMedicationsAndTheNextWriteReadsFirst() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        inner.readFailure = true
+        model.reload()
+        #expect(model.medications == [zorblex])
+        #expect(model.doses.isEmpty)
+        inner.readFailure = false
+        try model.logDose(dose(for: zorblex))
+        #expect(model.doses.count == 1)
+    }
 }

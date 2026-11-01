@@ -5,11 +5,22 @@ import SwiftUI
 
 struct LogDoseView: View {
     let medications: MedicationsModel
+    let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var selectionTicks = 0
     @State private var saveTicks = 0
     @State private var isShowingNewMedication = false
+    // Made once per opening, so a second tap on "Save dose" logs the same dose again.
+    @State private var doseID = UUID()
+    @State private var takenAt = Date.now
+    @State private var doseSave = DoseSave()
+    @State private var isShowingSaveFailure = false
+
+    init(medications: MedicationsModel, onSaved: @escaping () -> Void) {
+        self.medications = medications
+        self.onSaved = onSaved
+    }
 
     var body: some View {
         NavigationStack {
@@ -47,6 +58,18 @@ struct LogDoseView: View {
                         .accessibilityIdentifier("log-dose-manage")
                     }
                 }
+            }
+            .safeAreaInset(edge: .bottom) {
+                Button("Save dose") {
+                    saveDose()
+                }
+                .buttonStyle(PinnedButtonStyle())
+                .disabled(checkedID == nil)
+                .accessibilityIdentifier("save-dose")
+                .padding()
+            }
+            .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
             }
             .onChange(of: active) {
                 selectedID = MedicationSelection.kept(selectedID, in: active)
@@ -93,6 +116,21 @@ struct LogDoseView: View {
         .buttonStyle(.plain)
         .accessibilityIdentifier("dose-medication-row")
         .accessibilityAddTraits(isChecked ? .isSelected : [])
+    }
+
+    private func saveDose() {
+        guard let medication = active.first(where: { $0.id == checkedID }) else { return }
+        var dose = Dose(id: doseID, medicationID: medication.id, takenAt: takenAt, painBefore: Severity(0)!)
+        dose.checkInAfter = medication.checkInAfter
+        do {
+            let logged = try doseSave.save(dose, log: medications.logDose)
+            if logged {
+                onSaved()
+            }
+            dismiss()
+        } catch {
+            isShowingSaveFailure = true
+        }
     }
 
     private func select(_ medication: Medication) {
