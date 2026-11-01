@@ -28,12 +28,8 @@ struct DoseRow: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .frame(minHeight: 60)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
         // The visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
             Button {} label: { Color.clear }

@@ -12,7 +12,6 @@ struct DaySectionView: View {
         Section {
             ForEach(section.items) { item in
                 row(for: item)
-                    .listRowInsets(EdgeInsets())
             }
         } header: {
             title
