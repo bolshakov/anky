@@ -31,6 +31,7 @@ struct MedicationFormView: View {
                         .onSubmit { focus = nil }
                         .accessibilityIdentifier("medication-strength")
                 }
+                MedicationTakingSections(draft: $draft)
             }
             .navigationTitle("New Medication")
             .navigationBarTitleDisplayMode(.inline)
