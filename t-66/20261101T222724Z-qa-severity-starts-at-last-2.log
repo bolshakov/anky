@@ -1,0 +1,8 @@
+$ sh -c '. "$TMPDIR/walk.sh"; drag_to 7; shot at-seven; axe tap --id save-entry --wait-timeout 5 --udid "$udid"; sleep 2; entries'
+exit: 0
+commit: 74e7d0f6ba40a6e1e3eefdd1b86fa16915a716bc
+
+landed on 7
+/Users/bolshakov/Projects/personal/anky.wt/qa-t66-01-6/tmp/walk-t66.bpd0/at-seven.png
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+pain|7|2026-11-01 23:27|0

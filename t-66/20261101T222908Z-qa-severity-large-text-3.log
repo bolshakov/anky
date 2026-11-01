@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; text_size large; echo status $?'
+exit: 0
+commit: 74e7d0f6ba40a6e1e3eefdd1b86fa16915a716bc
+
+status 0

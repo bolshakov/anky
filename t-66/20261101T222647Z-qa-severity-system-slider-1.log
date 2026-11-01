@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=severity-(caption|slider) "; ui | grep -c "id=severity-slider "'
+exit: 0
+commit: 74e7d0f6ba40a6e1e3eefdd1b86fa16915a716bc
+
+Heading id=severity-caption label='Severity' value=None enabled=True actions= traits= @16.00000000000003,520.3333333333333 49.33333333333333x15.666666666666742
+Slider id=severity-slider label='Severity' value=0 enabled=True actions= traits= @32,611 338x31
+1

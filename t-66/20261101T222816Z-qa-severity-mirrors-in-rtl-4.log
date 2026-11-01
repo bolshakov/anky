@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/walk.sh"; drag_to 10; shot rtl-ten'
+exit: 0
+commit: 74e7d0f6ba40a6e1e3eefdd1b86fa16915a716bc
+
+landed on 10
+/Users/bolshakov/Projects/personal/anky.wt/qa-t66-01-6/tmp/walk-t66.bpd0/rtl-ten.png
