@@ -204,6 +204,21 @@ struct SwiftDataEntryStoreTests {
         }
     }
 
+    @Test func anIdThisBuildDoesNotKnowSurvivesALoadAndASave() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "entries.store")
+            let lower = PlaceID(rawValue: "lower")
+            let unknown = PlaceID(rawValue: "tentacle")
+            try SwiftDataEntryStore(url: url).add(entry(places: [lower, unknown]))
+            let store = try SwiftDataEntryStore(url: url)
+
+            let loaded = try #require(store.load().first)
+            try store.replace(loaded)
+
+            #expect(try SwiftDataEntryStore(url: url).load().map(\.places) == [[lower, unknown]])
+        }
+    }
+
     @Test func anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() throws {
         try withFolder { folder in
             let url = folder.appending(path: "entries.store")
