@@ -1,0 +1,5 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; full_swipe_open_row_label Zorblex; ui | grep "id=archived-row "'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Button id=archived-row label='Quibbanol, As needed' value=None enabled=True actions=Restore traits= @16,167 370x90

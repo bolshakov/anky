@@ -1,0 +1,5 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; ui | grep -c "id=archived-card "'
+exit: 1
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+0

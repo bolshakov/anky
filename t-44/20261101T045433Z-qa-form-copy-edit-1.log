@@ -1,0 +1,52 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; tap_row Zorblex; ui'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+✓ Tap at (200.0, 212.0) completed successfully
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+ScrollArea id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Sunday, November 1' value=None enabled=True actions= traits= @16,168 139.66666666666666x18
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,304.62068965517244 221x26.333333333333314
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,342.95402298850576 291x42.333333333333314
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Group id=Medications label=None value=None enabled=True actions= traits= @16,76.72636815920399 370x49.70149253731343
+Button id=BackButton label='Log Dose' value=None enabled=True actions= traits= @30.72636815920398,76.72636815920399 40.49751243781095x40.49751243781094
+Heading id=None label='Medications' value=None enabled=True actions= traits= @156.2072968490879,87.46434494195688 89.58540630182421x19.02155887230515
+Button id=medication-row label='Zorblex 25 mg, Scheduled' value=None enabled=True actions=Archive traits= @30.72636815920398,158.64179104477614 340.5472636815921x82.8358208955224
+StaticText id=None label='Zorblex 25 mg' value=None enabled=True actions=Archive traits= @45.45273631840796,182.26533996683247 101.85737976782751x18.71475953565505
+StaticText id=None label='Scheduled' value=None enabled=True actions=Archive traits= @45.45273631840796,203.4344941956882 59.212271973466x14.419568822553885
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @349.79767827529014,194.84411276948586 6.1359870255882925x10.737977075339558
+StaticText id=None label='Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.' value=None enabled=True actions= traits= @30.72636815920398,241.47761194029852 340.5472636815921x43.872305140961885
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @355.6268656716418,126.42786069651741 27.611940298507477x563.2835820895523
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @355.6268656716418,126.42786069651741 27.611940298507477x563.2835820895523
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @30.726367950439453,711.801025390625 340.5472412109375x51.542236328125
+Group id=Edit Medication label=None value=None enabled=True actions= traits= @0,88 402x54
+Group id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,92 76.66666666666667x36
+Button id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,92 76.66666666666666x36
+Heading id=None label='Edit Medication' value=None enabled=True actions= traits= @139.33333333333331,99.66666666666666 123.33333333333331x20.66666666666667
+TextField id=medication-name label=None value='Zorblex' enabled=True actions= traits= @32,192 338x22
+TextField id=medication-strength label=None value='25 mg' enabled=True actions= traits= @32,244 338x22
+Heading id=None label='How you take it' value=None enabled=True actions= traits= @16,298.66666666666663 370x35.666666666666686
+Group id=None label='How you take it' value=None enabled=True actions= traits= @32,349.33333333333337 338x52
+Button id=taken-asNeeded label='As needed' value=None enabled=True actions= traits= @36,353.33333333333337 163x44
+Button id=taken-scheduled label='Scheduled' value=None enabled=True actions= traits= @203,353.33333333333337 163x44
+Heading id=None label='Check in after a dose' value=None enabled=True actions= traits= @16,433.6666666666667 370x35.666666666666686
+PopUpButton id=check-in-after label='Check in after' value='1 hour' enabled=True actions= traits= @16,469.3333333333333 370x51.99999999999994
+StaticText id=None label='After' value=None enabled=True actions= traits= @32,485.16666666666663 37.66666666666666x20.33333333333337
+StaticText id=None label='1 hour' value=None enabled=True actions= traits= @300,485.16666666666663 46.666666666666686x20.33333333333337
+Image id=chevron.up.chevron.down label='Up And Down Chevrons' value=None enabled=True actions= traits= @356.66666666666663,487.3333333333333 11.333333969116211x16
+StaticText id=None label='Anky asks how your pain is after this long. Off until you choose a time.' value=None enabled=True actions= traits= @16,521.3333333333333 370x47.66666666666663
+Button id=medication-archive label='Archive medication' value=None enabled=True actions= traits= @16,586.3333333333333 370x52
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,142 30x602
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,142 30x602
+Button id=medication-save label='Save changes' value=None enabled=True actions= traits= @16,768 370x56

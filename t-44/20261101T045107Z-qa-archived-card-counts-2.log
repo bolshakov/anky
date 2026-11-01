@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; full_swipe_label Zorblex; full_swipe_label Quibbanol; ui | grep "id=archived-card "'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Button id=archived-card label='Archived' value='2' enabled=True actions= traits= @16,167 370x52
+GenericElement id=archived-card label='Archived' value='2' enabled=True actions= traits= @32,182.8333282470703 316x20.333328247070312

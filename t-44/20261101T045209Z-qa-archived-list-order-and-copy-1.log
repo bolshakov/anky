@@ -1,0 +1,35 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; ui'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+ScrollArea id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Sunday, November 1' value=None enabled=True actions= traits= @16,168 139.66666666666666x18
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,304.62068965517244 221x26.333333333333314
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,342.95402298850576 291x42.333333333333314
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x519
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,663 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Group id=Archived label=None value=None enabled=True actions= traits= @0,78 402x54
+Button id=BackButton label='Medications' value=None enabled=True actions= traits= @16,78 44x44
+Heading id=None label='Archived' value=None enabled=True actions= traits= @165.66666666666666,89.66666666666666 70.66666666666666x20.66666666666667
+Button id=archived-row label='Fennimax, As needed' value=None enabled=True actions=Restore traits= @16,167 370x90
+StaticText id=None label='Fennimax' value=None enabled=True actions=Restore traits= @32,192.66666666666666 73.33333333333333x20.333333333333343
+StaticText id=None label='As needed' value=None enabled=True actions=Restore traits= @32,215.66666666666666 64.33333333333333x15.666666666666657
+Button id=archived-row label='Zorblex, As needed' value=None enabled=True actions=Restore traits= @16,257 370x90
+StaticText id=None label='Zorblex' value=None enabled=True actions=Restore traits= @32,282.6666666666667 57.66666666666666x20.333333333333314
+StaticText id=None label='As needed' value=None enabled=True actions=Restore traits= @32,305.6666666666667 64.33333333333333x15.666666666666629
+Button id=archived-row label='Quibbanol, As needed' value=None enabled=True actions=Restore traits= @16,347 370x90
+StaticText id=None label='Quibbanol' value=None enabled=True actions=Restore traits= @32,372.6666666666667 78x20.333333333333314
+StaticText id=None label='As needed' value=None enabled=True actions=Restore traits= @32,395.6666666666667 64.33333333333333x15.666666666666629
+StaticText id=None label='Swipe left to restore. Doses you logged stay in History.' value=None enabled=True actions= traits= @16,437 370x29.666666666666686
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,132 30x680
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,132 30x680

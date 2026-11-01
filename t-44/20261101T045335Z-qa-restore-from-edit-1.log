@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; tap_row Zorblex; ui | grep -E "id=medication-(archive|restore) "'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+✓ Tap at (200.0, 302.0) completed successfully
+Button id=medication-restore label='Restore medication' value=None enabled=True actions= traits= @16,586.3333333333333 370x52

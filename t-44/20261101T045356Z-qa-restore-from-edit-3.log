@@ -1,0 +1,9 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; ui | grep -E "label='\''Medications'\''|id=medication-row "; meds'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Heading id=None label='Medications' value=None enabled=True actions= traits= @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+Button id=medication-row label='Zorblex, As needed' value=None enabled=True actions=Archive traits= @16,167 370x90
+Button id=medication-row label='Quibbanol, As needed' value=None enabled=True actions=Archive traits= @16,257 370x90
+Zorblex|-|0
+Quibbanol|-|0

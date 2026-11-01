@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; ui | grep -E "label='\''Archived'\''|id=archived-row "'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Heading id=None label='Archived' value=None enabled=True actions= traits= @165.66666666666666,89.66666666666666 70.66666666666666x20.66666666666667
+Button id=archived-row label='Quibbanol, As needed' value=None enabled=True actions=Restore traits= @16,167 370x90

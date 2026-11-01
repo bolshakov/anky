@@ -1,0 +1,9 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; ui | grep -E "label=.Medications.|id=medication-row |id=archived-card |id=medications-empty|lert|ialog"; meds'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Heading id=None label='Medications' value=None enabled=True actions= traits= @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+Button id=archived-card label='Archived' value='1' enabled=True actions= traits= @16,167 370x52
+GenericElement id=archived-card label='Archived' value='1' enabled=True actions= traits= @32,182.8333282470703 316x20.333328247070312
+StaticText id=medications-empty label='No medications yet, Add what you take, then log a dose in two taps. Everything stays on this iPhone.' value=None enabled=True actions= traits= @16,315 370x142.33333333333337
+Zorblex|50 mg|1

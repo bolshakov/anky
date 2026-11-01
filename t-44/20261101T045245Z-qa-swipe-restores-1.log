@@ -1,0 +1,6 @@
+$ zsh -c 'setopt nonomatch; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk-t44.7r9Q; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t44-05-7/tmp/walk.sh; swipe_label Zorblex; ui | grep "label='\''Restore'\''"'
+exit: 0
+commit: 18cb33d80a8b1f829fb4c2e1dc62e1f1a027bb7b
+
+Button id=arrow.counterclockwise label='Restore' value=None enabled=True actions= traits= @326,267.33333333333337 50x50
+StaticText id=None label='Restore' value=None enabled=True actions= traits= @327.6666666666667,321.16666666666663 46.666666666666686x15.666666666666686
