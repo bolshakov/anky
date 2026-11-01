@@ -73,7 +73,6 @@ struct NewEntryView: View {
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("cancel-item")
                 }
-                .withoutGlassPill()
                 ToolbarItem(placement: .principal) {
                     Text(title)
                         .font(.headline)
@@ -81,7 +80,6 @@ struct NewEntryView: View {
                         .minimumScaleFactor(0.5)
                         .accessibilityAddTraits(.isHeader)
                 }
-                .withoutGlassPill()
             }
             .safeAreaInset(edge: .bottom) {
                 Button(saveTitle) {
@@ -176,17 +174,5 @@ struct NewEntryView: View {
         guard case let .edit(entry) = mode else { return }
         try model.remove(id: entry.id)
         dismiss()
-    }
-}
-
-private extension ToolbarContent {
-    /// iOS 26 puts a toolbar item on a glass pill, which the design does not have.
-    @ToolbarContentBuilder
-    func withoutGlassPill() -> some ToolbarContent {
-        if #available(iOS 26, *) {
-            sharedBackgroundVisibility(.hidden)
-        } else {
-            self
-        }
     }
 }
