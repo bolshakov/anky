@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t69-04-1/tmp/s2.sh
+exit: 0
+commit: 7cfb6f3c075f3ae04803d630982f2d4075f30816
+
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+TextField id=medication-name label='Name' value='Name' enabled=True actions= traits= @32,192 338x44
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,768 370x56

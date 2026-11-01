@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t69-04-1/tmp/s1.sh
+exit: 0
+commit: 7cfb6f3c075f3ae04803d630982f2d4075f30816
+
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+frame 16 773.6666666666666 370 50.33333333333337
+fill #c13b14 text #ffffff contrast 5.38 drawn 16 to 386 text from 142
