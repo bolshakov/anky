@@ -71,10 +71,14 @@ struct TodayView: View {
                         logMedicationButton
                             .padding(.horizontal)
                     }
-                    Button("Log how you feel") {
+                    Button {
                         isShowingNewEntry = true
+                    } label: {
+                        Text("Log how you feel")
+                            .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(PinnedButtonStyle())
+                    .buttonStyle(.glassProminent)
+                    .controlSize(.large)
                     .accessibilityIdentifier("log-entry")
                     .padding()
                 }
