@@ -1,0 +1,7 @@
+$ bash -c 'git -C "$1" grep -n RecentChipButtonStyle; echo "grep exit $?"; git -C "$1" grep -c "buttonStyle(.bordered)" -- App/NewEntry/RecentChipsRow.swift App/Today/RepeatChip.swift' _ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-01-1/checkout
+exit: 0
+commit: d12e236cb811f0fe3062a405e9c0ec2c15c8fee4
+
+grep exit 1
+App/NewEntry/RecentChipsRow.swift:1
+App/Today/RepeatChip.swift:1

@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; look dark; sleep 2; measure repeat-chip repeat-dark; look light'
+exit: 0
+commit: d12e236cb811f0fe3062a405e9c0ec2c15c8fee4
+
+frame 16.000000000000057 202 370 44
+fill #401e14 text #ff7a50 contrast 5.77 drawn 16 to 386 text from 29

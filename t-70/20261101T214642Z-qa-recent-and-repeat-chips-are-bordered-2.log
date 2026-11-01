@@ -1,0 +1,13 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep "id=recent-chip-"; measure recent-chip-0 recent-0; measure recent-chip-1 recent-1; measure recent-chip-2 recent-2'
+exit: 0
+commit: d12e236cb811f0fe3062a405e9c0ec2c15c8fee4
+
+Button id=recent-chip-0 label='Same as last time, Upper back, 4 of 10' value=None enabled=True actions= traits= @16.000000000000057,148 125.33333333333331x44
+Button id=recent-chip-1 label='Same as last time, Stiffness, Lower back, 5 of 10' value=None enabled=True actions= traits= @149.33333333333337,148 196x44
+Button id=recent-chip-2 label='Same as last time, Neck, 6 of 10' value=None enabled=True actions= traits= @16.000000000000057,200 81x44
+frame 16.000000000000057 148 125.33333333333331 44
+fill #e9d1ce text #c23c14 contrast 3.66 drawn 16 to 345 text from 29
+frame 149.33333333333337 148 196 44
+fill #e9d1ce text #c23c14 contrast 3.66 drawn 16 to 345 text from 162
+frame 16.000000000000057 200 81 44
+fill #e9d1ce text #c23c14 contrast 3.66 drawn 16 to 97 text from 29

@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep "id=repeat-chip "; measure repeat-chip repeat'
+exit: 0
+commit: d12e236cb811f0fe3062a405e9c0ec2c15c8fee4
+
+Button id=repeat-chip label='Same as last time, Upper back, 4 of 10' value=None enabled=True actions= traits= @16.000000000000057,202 370x44
+frame 16.000000000000057 202 370 44
+fill #e9d1ce text #c23c14 contrast 3.66 drawn 16 to 386 text from 29
