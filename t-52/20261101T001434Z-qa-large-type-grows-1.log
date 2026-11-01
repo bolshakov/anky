@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t52-01-1/tmp/ex4.sh
+exit: 0
+commit: ad933c9a9ada75c6f59f749c19f8d1ff4b2316ed
+
+Button id=entry-row-pain label='12:09\u202fAM, Neck, Pain, 4 of 10' value=None @16,474.3333333333333 370x309.99999999999994
+Button id=entry-row-pain label='12:09\u202fAM, Neck, Pain, 4 of 10' value=None @16,267.6666666666667 370x310.00000000000006

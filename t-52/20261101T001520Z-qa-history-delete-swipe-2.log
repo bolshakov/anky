@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t52-01-1/tmp/ex6b.sh
+exit: 0
+commit: ad933c9a9ada75c6f59f749c19f8d1ff4b2316ed
+
+Button id=date-row label='Date and time' value='Today, 12:08\u202fAM' @16.000000000000057,224 370x52.333333333333314
+Button id=save-entry label='Save changes' value=None @16,768 370x56

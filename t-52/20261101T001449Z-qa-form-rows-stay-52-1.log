@@ -1,0 +1,9 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t52-01-1/tmp/ex5.sh
+exit: 0
+commit: ad933c9a9ada75c6f59f749c19f8d1ff4b2316ed
+
+Button id=entry-row-pain label='12:09\u202fAM, Neck, Pain, 4 of 10' value=None @16.00000000000003,262 370x60
+Button id=entry-row-stiffness label='12:08\u202fAM, Neck, Stiffness, 6 of 10' value=None @16.00000000000003,322.3333333333333 370x60
+Button id=entry-row-fatigue label='12:07\u202fAM, Whole body, Fatigue, 3 of 10' value=None @16.00000000000003,382.66666666666663 370x60
+Button id=date-row label='Date and time' value='Today, 01:14\u202fAM' @16.000000000000057,292 370x52.333333333333314
+Button id=more-places label='More places' value='None' @16.000000000000057,512.3333333333333 370x52

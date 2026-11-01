@@ -1,0 +1,13 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t52-01-1/tmp/ex2.sh
+exit: 0
+commit: ad933c9a9ada75c6f59f749c19f8d1ff4b2316ed
+
+Heading id=day-header label='Today' value=None @16,168 370x38
+Button id=entry-row-pain label='12:09\u202fAM, Neck, Pain, 4 of 10' value=None @16,206 370x60
+Button id=entry-row-stiffness label='12:08\u202fAM, Neck, Stiffness, 6 of 10' value=None @16,266 370x60
+Button id=entry-row-fatigue label='12:07\u202fAM, Whole body, Fatigue, 3 of 10' value=None @16,326 370x60
+Heading id=day-header label='Yesterday' value=None @16,403.66666666666663 370x38
+Button id=entry-row-pain label='12:20\u202fAM, No place, Pain, 5 of 10' value=None @16,441.6666666666667 370x60
+Button id=entry-row-fatigue label='12:09\u202fAM, Whole body, Fatigue, 2 of 10' value=None @16,501.6666666666667 370x60.00000000000006
+Heading id=day-header label='Thursday, October 29' value=None @16,579 370x38
+Button id=entry-row-stiffness label='12:12\u202fAM, Neck, Stiffness, 7 of 10' value=None @16,617 370x60

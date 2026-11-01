@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t52-01-1/tmp/ex6a.sh
+exit: 0
+commit: ad933c9a9ada75c6f59f749c19f8d1ff4b2316ed
+
+Button id=entry-row-pain label='12:09\u202fAM, Neck, Pain, 4 of 10' value=None @-67.33333333333334,206 370x60
+Button id=history-delete label='Delete' value=None @312.49999999999994,210 63.333333333333314x52
