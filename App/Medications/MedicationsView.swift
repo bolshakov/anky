@@ -42,6 +42,7 @@ struct MedicationsView: View {
                             Button("Archive", systemImage: "archivebox") {
                                 try? medications.archive(id: medication.id)
                             }
+                            .tint(.accentColor)
                         }
                 }
             } footer: {
