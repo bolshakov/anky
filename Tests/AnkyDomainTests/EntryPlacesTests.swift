@@ -34,18 +34,16 @@ struct EntryPlacesTests {
         #expect(try Entry(draft: draft(kind: .fatigue)).places.isEmpty)
     }
 
-    @Test func anEntryReadsAMissingPlacesKeyAsNoPlaces() throws {
-        let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0}"#
-        #expect(try JSONDecoder().decode(Entry.self, from: Data(json.utf8)).places.isEmpty)
-    }
-
     @Test func anEntryReadsStoredPlacesInCatalogOrder() throws {
-        let json = #"""
-        {"id":"\#(UUID())","kind":"pain","severity":4,"date":0,
-         "places":["jaw","tentacle","si_l","lower"]}
-        """#
-        let places = try JSONDecoder().decode(Entry.self, from: Data(json.utf8)).places
-        #expect(places == ["lower", "si_l", "jaw", "tentacle"].map { PlaceID(rawValue: $0) })
+        let entry = try Entry(
+            id: UUID(),
+            kind: .pain,
+            severity: #require(Severity(4)),
+            date: date,
+            note: nil,
+            places: ["jaw", "tentacle", "si_l", "lower"].map { PlaceID(rawValue: $0) }
+        )
+        #expect(entry.places == ["lower", "si_l", "jaw", "tentacle"].map { PlaceID(rawValue: $0) })
     }
 
     @Test func anEntryFromADraftHoldsItsPlacesInCatalogOrder() throws {

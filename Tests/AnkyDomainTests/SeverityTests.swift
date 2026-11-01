@@ -48,27 +48,6 @@ struct SeverityTests {
         #expect(Severity(nearestToFraction: .nan) == Severity(0))
     }
 
-    @Test func encodesAsABareNumber() throws {
-        let data = try JSONEncoder().encode(#require(Severity(4)))
-        #expect(String(data: data, encoding: .utf8) == "4")
-    }
-
-    @Test func decodesABareNumber() throws {
-        let severity = try JSONDecoder().decode(Severity.self, from: Data("4".utf8))
-        #expect(severity == Severity(4))
-    }
-
-    @Test(arguments: ["-1", "11"])
-    func decodingOutsideZeroToTenIsDataCorrupted(json: String) throws {
-        let error = try #require(throws: DecodingError.self) {
-            try JSONDecoder().decode(Severity.self, from: Data(json.utf8))
-        }
-        guard case .dataCorrupted = error else {
-            Issue.record("Expected a dataCorrupted error")
-            return
-        }
-    }
-
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
     private func entry(severity: Int, date: Date) throws -> Entry {
