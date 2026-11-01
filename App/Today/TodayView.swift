@@ -87,7 +87,7 @@ struct TodayView: View {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(isPresented: $isShowingLogDose) {
-                LogDoseView(medications: medications, onSaved: { saveTicks += 1 })
+                LogDoseView(medications: medications, entries: model.entries, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })

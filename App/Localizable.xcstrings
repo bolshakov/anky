@@ -450,6 +450,15 @@
         }
       }
     },
+    "Filled in from your %@ entry. Change it if it is different." : {
+
+    },
+    "Filled in from your entry on %@ at %@. Change it if it is different." : {
+
+    },
+    "Filled in from your entry yesterday at %@. Change it if it is different." : {
+
+    },
     "Foot and toes" : {
       "localizations" : {
         "ru" : {
