@@ -1,0 +1,7 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t51-01-1/tmp/walk.sh; ui | grep -c '\''id=edit-entry-screen '\''; edges entry-labels-edit Where severity-caption'
+exit: 0
+commit: 3f2d27a55c42c7d670eecbd645fc3ad359a8bb95
+
+1
+header 'Where' frame x=16.0 ink top x=16.7 bottom x=17.7 card x=16.3 @y=300 h=16
+header 'Severity' frame x=16.0 ink top x=17.0 bottom x=16.7 card x=16.3 @y=520 h=16

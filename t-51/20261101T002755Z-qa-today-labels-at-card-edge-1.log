@@ -1,0 +1,5 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t51-01-1/tmp/walk.sh; edges today-labels-at-card-edge '\''Stored on this iPhone only.'\'''
+exit: 0
+commit: 3f2d27a55c42c7d670eecbd645fc3ad359a8bb95
+
+footnote 'Stored on this iPhone only.' frame x=16.0 ink top x=17.0 bottom x=16.7 card x=16.3 @y=410 h=16
