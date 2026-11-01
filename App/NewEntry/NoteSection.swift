@@ -4,15 +4,36 @@ import SwiftUI
 
 struct NoteSection: View {
     @Binding var draft: EntryDraft
+    @FocusState private var isFocused: Bool
+    @State private var note: String
+
+    init(draft: Binding<EntryDraft>) {
+        _draft = draft
+        _note = State(initialValue: draft.wrappedValue.note)
+    }
 
     var body: some View {
         VStack(alignment: .trailing, spacing: 6) {
-            NoteTextView(text: $draft.note)
-                .frame(maxWidth: .infinity)
+            TextField("Add a note", text: $note, axis: .vertical)
+                .font(.body)
+                .focused($isFocused)
+                .accessibilityLabel("Note")
+                .accessibilityIdentifier("note-field")
+                .padding(.horizontal, 16)
+                .padding(.vertical, 15)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .background {
                     RoundedRectangle.card
                         .fill(Color("CardBackground"))
                         .accessibilityIdentifier("note-card")
+                        .onTapGesture { isFocused = true }
+                }
+                .onChange(of: note) { _, typed in
+                    let kept = String(typed.prefix(EntryDraft.noteLimit))
+                    if kept != typed {
+                        note = kept
+                    }
+                    draft.note = kept
                 }
 
             if let counter = draft.noteCounter {
