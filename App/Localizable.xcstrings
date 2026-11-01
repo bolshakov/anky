@@ -798,6 +798,15 @@
     "Anky asks how your pain is after this long. Off until you choose a time." : {
 
     },
+    "Check in later" : {
+
+    },
+    "Anky asks how your pain is after this long. Turn it on to choose a time." : {
+
+    },
+    "Saved for %@. Next time it starts the same." : {
+
+    },
     "Log how you feel" : {
       "localizations" : {
         "ru" : {
