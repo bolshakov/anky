@@ -1,0 +1,8 @@
+$ sh -c '. $TMPDIR/w.sh; ui | grep -E "id=(day-header|dose-row|entry-row-pain) "'
+exit: 0
+commit: eaff2722a1ca7cebf3b7e8f7d05d5403f99c5da0
+
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,168 370x38
+Button id=dose-row label='16:50. Zorblex 500 mg. Dose. Pain 4 before, 3 after.' value=None enabled=True actions= traits= @16,206 370x60
+Button id=entry-row-pain label='16:49, No place, Pain, 0 of 10' value=None enabled=True actions=Delete traits= @16,266 370x60
+Button id=dose-row label='16:48. Zorblex 500 mg. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,326 370x60

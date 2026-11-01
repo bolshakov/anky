@@ -1,0 +1,5 @@
+$ sh -c '. $TMPDIR/w.sh; ui | grep -c "label='\''Zorblex 500 mg'\''"'
+exit: 1
+commit: eaff2722a1ca7cebf3b7e8f7d05d5403f99c5da0
+
+0

@@ -1,0 +1,6 @@
+$ sh -c '. $TMPDIR/w.sh; axe tap --label Today --element-type RadioButton --udid "$udid" >/dev/null; ui | grep "id=dose-row "; axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; ui | grep "id=dose-row "'
+exit: 0
+commit: eaff2722a1ca7cebf3b7e8f7d05d5403f99c5da0
+
+Button id=dose-row label='16:54. Fennimax 500 mg. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,202 370x60
+Button id=dose-row label='16:54. Fennimax 500 mg. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,206 370x60
