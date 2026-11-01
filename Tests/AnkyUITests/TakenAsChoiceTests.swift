@@ -53,7 +53,12 @@ final class TakenAsChoiceTests: XCTestCase {
         XCTAssertTrue(app.buttons["taken-as"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.segmentedControls["taken-as"].exists)
 
-        choose("Scheduled", in: app)
+        scrollToChoice(in: app)
+        XCTAssertEqual(selectedChoice(in: app), "As needed")
+        app.buttons["taken-as"].tap()
+        XCTAssertTrue(app.buttons["As needed"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
+        app.buttons["Scheduled"].tap()
         saveNewMedication(named: "Zorblex", app)
 
         openMedicationsFromLogDose(app)
