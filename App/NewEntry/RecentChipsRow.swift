@@ -15,8 +15,13 @@ struct RecentChipsRow: View {
                     taps += 1
                 } label: {
                     Text(recent.chipText)
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
                 }
-                .buttonStyle(RecentChipButtonStyle())
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.capsule)
+                .frame(minHeight: 44)
+                .contentShape(Capsule())
                 .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
                 .accessibilityIdentifier("recent-chip-\(index)")
             }

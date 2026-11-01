@@ -9,8 +9,14 @@ struct RepeatChip: View {
     var body: some View {
         Button(action: onTap) {
             Text(RecentEntryText.sameAsLastTime + " · " + recent.chipText)
+                .font(.subheadline)
+                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .buttonStyle(RecentChipButtonStyle(fillsWidth: true))
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.capsule)
+        .frame(minHeight: 44)
+        .contentShape(Capsule())
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
         .accessibilityIdentifier("repeat-chip")
     }
