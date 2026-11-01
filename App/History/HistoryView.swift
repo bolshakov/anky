@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyMedicationModel
 import SwiftUI
 
 struct HistoryView: View {
     let model: EntryLogModel
+    let medications: MedicationsModel
     @State private var now = Date.now
     @State private var editing: Entry?
     @State private var pendingDelete: Entry?
     @State private var saveTicks = 0
 
     private var sections: [DaySection] {
-        HistoryList.sections(model.entries, now: now, calendar: .current)
+        HistoryList.sections(model.entries, doses: medications.doses, now: now, calendar: .current)
     }
 
     private var isConfirmingDelete: Binding<Bool> {
@@ -36,6 +38,7 @@ struct HistoryView: View {
                         ForEach(sections) { section in
                             DaySectionView(
                                 section: section,
+                                medications: medications.medications,
                                 onSelect: { editing = $0 },
                                 onDelete: { pendingDelete = $0 }
                             )

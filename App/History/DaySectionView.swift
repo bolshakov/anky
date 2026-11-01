@@ -4,22 +4,15 @@ import SwiftUI
 
 struct DaySectionView: View {
     let section: DaySection
+    let medications: [Medication]
     let onSelect: (Entry) -> Void
     let onDelete: (Entry) -> Void
 
     var body: some View {
         Section {
-            ForEach(section.entries) { entry in
-                EntryRow(entry: entry) {
-                    onSelect(entry)
-                }
-                .listRowInsets(EdgeInsets())
-                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                    Button("Delete", role: .destructive) {
-                        onDelete(entry)
-                    }
-                    .accessibilityIdentifier("history-delete")
-                }
+            ForEach(section.items) { item in
+                row(for: item)
+                    .listRowInsets(EdgeInsets())
             }
         } header: {
             title
@@ -27,6 +20,24 @@ struct DaySectionView: View {
                 .foregroundStyle(.secondary)
                 .cardCaption()
                 .accessibilityIdentifier("day-header")
+        }
+    }
+
+    @ViewBuilder
+    private func row(for item: LoggedItem) -> some View {
+        switch item {
+        case let .entry(entry):
+            EntryRow(entry: entry) {
+                onSelect(entry)
+            }
+            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                Button("Delete", role: .destructive) {
+                    onDelete(entry)
+                }
+                .accessibilityIdentifier("history-delete")
+            }
+        case let .dose(dose):
+            DoseRow(dose: dose, title: DoseRowText.title(for: dose, in: medications))
         }
     }
 

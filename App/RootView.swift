@@ -16,7 +16,7 @@ struct RootView: View {
                 }
                 .tag(Tab.today)
 
-            HistoryView(model: model)
+            HistoryView(model: model, medications: medications)
                 .tabItem {
                     Label("History", systemImage: "clock")
                         .fontWeight(selection == .history ? .bold : .regular)

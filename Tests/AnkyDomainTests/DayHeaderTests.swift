@@ -22,7 +22,7 @@ struct DayHeaderTests {
     private func header(year: Int = 2026, month: Int = 10, day: Int) throws -> DayHeader {
         let moment = try #require(calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12)))
         let entry = try Entry(draft: EntryDraft(severity: #require(Severity(4)), date: moment))
-        return try #require(HistoryList.sections([entry], now: now, calendar: calendar).first?.header)
+        return try #require(HistoryList.sections([entry], doses: [], now: now, calendar: calendar).first?.header)
     }
 
     private func dateText(of header: DayHeader, _ locale: Locale) throws -> String {
