@@ -8,8 +8,10 @@ struct DonePlacesButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
+                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PinnedButtonStyle())
+        .buttonStyle(.glassProminent)
+        .controlSize(.large)
         .accessibilityLabel(spokenTitle)
         .accessibilityIdentifier("done-places")
     }
