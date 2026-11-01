@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
+import AnkyMedicationModel
 import AnkyStore
 import SwiftUI
 import TipKit

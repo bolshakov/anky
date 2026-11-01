@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyMedicationModel
 import SwiftUI
 
 struct RootView: View {

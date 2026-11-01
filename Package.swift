@@ -8,11 +8,13 @@ let package = Package(
     products: [
         .library(name: "AnkyDomain", targets: ["AnkyDomain"]),
         .library(name: "AnkyStore", targets: ["AnkyStore"]),
+        .library(name: "AnkyMedicationModel", targets: ["AnkyMedicationModel"]),
     ],
     targets: [
         .target(name: "AnkyDomain"),
-        .testTarget(name: "AnkyDomainTests", dependencies: ["AnkyDomain"]),
+        .testTarget(name: "AnkyDomainTests", dependencies: ["AnkyDomain", "AnkyMedicationModel"]),
         .target(name: "AnkyStore", dependencies: ["AnkyDomain"]),
         .testTarget(name: "AnkyStoreTests", dependencies: ["AnkyDomain", "AnkyStore"]),
+        .target(name: "AnkyMedicationModel", dependencies: ["AnkyDomain"]),
     ]
 )
