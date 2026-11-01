@@ -53,6 +53,7 @@ struct LogDoseView: View {
             }
             .sensoryFeedback(.selection, trigger: selectionTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
+            .onAppear { medications.reload() }
         }
     }
 

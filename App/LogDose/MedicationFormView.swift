@@ -11,6 +11,7 @@ struct MedicationFormView: View {
     // Made once per opening, so a retry after a failed save writes the same medication.
     @State private var saver = MedicationSave(id: UUID())
     @State private var isSaved = false
+    @State private var failure: MedicationFailure?
     @FocusState private var focus: Field?
 
     private enum Field: Hashable {
@@ -38,6 +39,7 @@ struct MedicationFormView: View {
                         .focused($focus, equals: .strength)
                         .submitLabel(.done)
                         .onSubmit { focus = nil }
+                        .accessibilityLabel("Strength, optional")
                         .accessibilityIdentifier("medication-strength")
                 }
                 MedicationTakingSections(draft: $draft)
@@ -62,6 +64,7 @@ struct MedicationFormView: View {
                 .accessibilityIdentifier("medication-save")
                 .padding()
             }
+            .medicationFailureAlert($failure)
         }
     }
 
@@ -85,6 +88,7 @@ struct MedicationFormView: View {
         do {
             guard try writeDraft() else { return }
         } catch {
+            failure = .save
             return
         }
         onSaved()
@@ -107,6 +111,7 @@ struct MedicationFormView: View {
         do {
             try medications.archive(id: medication.id)
         } catch {
+            failure = .archive
             return
         }
         dismiss()
@@ -116,6 +121,7 @@ struct MedicationFormView: View {
         do {
             try medications.restore(id: medication.id)
         } catch {
+            failure = .restore
             return
         }
         dismiss()

@@ -731,6 +731,9 @@
     "Strength, for example 500 mg" : {
 
     },
+    "Strength, optional" : {
+
+    },
     "Save medication" : {
 
     },
@@ -1272,6 +1275,15 @@
           }
         }
       }
+    },
+    "This medication could not be archived." : {
+
+    },
+    "This medication could not be restored." : {
+
+    },
+    "This medication could not be saved." : {
+
     },
     "Today" : {
       "localizations" : {

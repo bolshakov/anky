@@ -7,6 +7,7 @@ struct MedicationsView: View {
     @State private var isShowingNewMedication = false
     @State private var editing: Medication?
     @State private var saveTicks = 0
+    @State private var failure: MedicationFailure?
 
     var body: some View {
         List {
@@ -15,6 +16,8 @@ struct MedicationsView: View {
             emptySection
         }
         .sensoryFeedback(.success, trigger: saveTicks)
+        .medicationFailureAlert($failure)
+        .onAppear { medications.reload() }
         .listSectionSpacing(.custom(12))
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
@@ -52,7 +55,7 @@ struct MedicationsView: View {
                     .accessibilityIdentifier("medication-row")
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Archive", systemImage: "archivebox") {
-                            try? medications.archive(id: medication.id)
+                            archive(medication)
                         }
                         .tint(.accentColor)
                     }
@@ -62,6 +65,14 @@ struct MedicationsView: View {
                     archiveFootnote
                 }
             }
+        }
+    }
+
+    private func archive(_ medication: Medication) {
+        do {
+            try medications.archive(id: medication.id)
+        } catch {
+            failure = .archive
         }
     }
 
