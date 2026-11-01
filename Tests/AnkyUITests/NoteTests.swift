@@ -205,6 +205,27 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
     }
+
+    func testEmptyNoteFieldIsTheSystemTextField() {
+        continueAfterFailure = false
+        let app = launchAnky()
+
+        openNewEntry(app)
+        let asTextField = app.textFields["note-field"]
+        let asTextView = app.textViews["note-field"]
+        XCTAssertTrue(asTextField.waitForExistence(timeout: 10) || asTextView.exists)
+        let field = asTextField.exists ? asTextField : asTextView
+        XCTAssertEqual(field.label, "Note")
+        XCTAssertEqual(field.placeholderValue, "Add a note")
+
+        typeNote("Walk note", in: app)
+        saveEntry(app)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+
+        entryRows(in: app).firstMatch.tap()
+        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertEqual(noteField(in: app).value as? String, "Walk note")
+    }
 }
 
 @MainActor
