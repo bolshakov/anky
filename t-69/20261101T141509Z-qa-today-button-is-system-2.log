@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/walk.sh"; axe tap --id log-entry --wait-timeout 5 --udid "$udid" || { sleep 2; axe tap --id log-entry --wait-timeout 5 --udid "$udid"; }; ui | grep -c "id=save-entry "'
+exit: 0
+commit: cd4d86d34463b493db38a4f5c2cc3a3c76d3b685
+
+✓ Tap at resolved tap point at (201.0, 749.8333333333333) completed successfully
+1

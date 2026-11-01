@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep "id=log-entry "; measure log-entry today-button'
+exit: 0
+commit: cd4d86d34463b493db38a4f5c2cc3a3c76d3b685
+
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,724.6666666666666 370x50.33333333333337
+frame 16 724.6666666666666 370 50.33333333333337
+fill #c13b14 text #ffffff contrast 5.38 drawn 16 to 386 text from 138
