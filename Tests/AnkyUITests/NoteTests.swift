@@ -122,4 +122,113 @@ final class NoteTests: XCTestCase {
         XCTAssertLessThanOrEqual(counter.frame.maxY, save.frame.minY)
         attachScreenshot(named: "note-limit")
     }
+
+    func testTappingBesideTheTextFocusesField() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+
+        let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        card.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.95)).tap()
+        app.typeText("Walk")
+
+        XCTAssertEqual(noteField(in: app).value as? String, "Walk")
+    }
+
+    func testSkinToneEmojiAsTheLastCharacterIsKept() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        let typed = String(String(repeating: "Walk note ", count: 24).prefix(239))
+        let emoji = "👍🏽"
+
+        openNewEntry(app)
+        typeNote(typed, in: app)
+        app.typeText(emoji)
+        app.typeText("x")
+
+        XCTAssertEqual(noteField(in: app).value as? String, typed + emoji)
+        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        XCTAssertEqual(counter.label, "Limit reached")
+    }
+
+    func testTypingPastTheLimitInSeparateBatchesKeepsTheLimit() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        let typed = String(String(repeating: "Walk note ", count: 24).prefix(240))
+
+        openNewEntry(app)
+        typeNote(typed, in: app)
+        app.typeText("x")
+        app.typeText("x")
+        app.typeText("x")
+
+        XCTAssertEqual(noteField(in: app).value as? String, typed)
+    }
+
+    func testEditedNoteShowsItsTextAndCounterAndSavesUnchanged() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        let note = String(String(repeating: "Walk note ", count: 24).prefix(235))
+
+        openNewEntry(app)
+        typeNote(note, in: app)
+        saveEntry(app)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+
+        entryRows(in: app).firstMatch.tap()
+        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertEqual(noteField(in: app).value as? String, note)
+        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        XCTAssertEqual(counter.label, "5 left")
+
+        saveEntry(app)
+        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForNonExistence(timeout: 10))
+        entryRows(in: app).firstMatch.tap()
+        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertEqual(noteField(in: app).value as? String, note)
+    }
+
+    func testLongNoteAtLargestSizeGrowsAndKeepsSaveReachable() {
+        continueAfterFailure = false
+        let app = launchAnky(arguments: largestTextArguments)
+        let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
+        openNewEntry(app)
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let emptyHeight = card.frame.height
+
+        typeNote(String(repeating: "Walk note ", count: 20), in: app)
+        scrollToNoteField(in: app)
+
+        XCTAssertGreaterThan(card.frame.height, emptyHeight)
+        let save = app.buttons["save-entry"]
+        XCTAssertTrue(save.isHittable)
+        XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
+    }
+
+    func testEmptyNoteFieldIsTheSystemTextField() {
+        continueAfterFailure = false
+        let app = launchAnky()
+
+        openNewEntry(app)
+        let asTextField = app.textFields["note-field"]
+        let asTextView = app.textViews["note-field"]
+        XCTAssertTrue(asTextField.waitForExistence(timeout: 10) || asTextView.exists)
+        let field = asTextField.exists ? asTextField : asTextView
+        XCTAssertEqual(field.label, "Note")
+        XCTAssertEqual(field.placeholderValue, "Add a note")
+
+        typeNote("Walk note", in: app)
+        saveEntry(app)
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+
+        entryRows(in: app).firstMatch.tap()
+        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertEqual(noteField(in: app).value as? String, "Walk note")
+    }
+}
+
+@MainActor
+private func noteField(in app: XCUIApplication) -> XCUIElement {
+    app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
 }
