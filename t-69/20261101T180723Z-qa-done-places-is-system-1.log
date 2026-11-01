@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep "id=done-places "; measure done-places done-none'
+exit: 0
+commit: 2f46030b388011cff6fbaba43fe9565e314e0bfa
+
+Button id=done-places label='Done' value=None enabled=True actions= traits= @16,721.6666666666666 370x50.33333333333337
+frame 16 721.6666666666666 370 50.33333333333337
+fill #c13c14 text #ffffff contrast 5.35 drawn 16 to 386 text from 182

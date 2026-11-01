@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep "id=more-places "'
+exit: 0
+commit: 2f46030b388011cff6fbaba43fe9565e314e0bfa
+
+Button id=more-places label='More places' value='Tailbone' enabled=True actions=Pin as shortcut traits= @16.000000000000057,423.3333333333333 370x52
