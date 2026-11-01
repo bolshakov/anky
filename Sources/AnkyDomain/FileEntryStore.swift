@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-public struct FileEntryStore: EntryStore {
+public struct FileEntryStore {
     private static let currentVersion = 1
 
     private let fileURL: URL
@@ -66,6 +66,30 @@ public struct FileEntryStore: EntryStore {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return decoder
+    }
+}
+
+extension FileEntryStore: EntryStore {
+    public func add(_ entry: Entry) throws {
+        var entries = try load()
+        guard !entries.contains(where: { $0.id == entry.id }) else { return }
+        entries.append(entry)
+        try save(entries)
+    }
+
+    public func replace(_ entry: Entry) throws {
+        var entries = try load()
+        guard let index = entries.firstIndex(where: { $0.id == entry.id }) else {
+            throw EntryStoreError.notSaved
+        }
+        entries[index] = entry
+        try save(entries)
+    }
+
+    public func remove(id: UUID) throws {
+        let entries = try load()
+        guard entries.contains(where: { $0.id == id }) else { return }
+        try save(entries.filter { $0.id != id })
     }
 }
 

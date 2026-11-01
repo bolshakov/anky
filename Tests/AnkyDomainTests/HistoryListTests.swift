@@ -3,6 +3,7 @@ import AnkyDomain
 import Foundation
 import Testing
 
+@MainActor
 struct HistoryListTests {
     private let calendar: Calendar
     private let now: Date
@@ -110,10 +111,12 @@ struct HistoryListTests {
         #expect(result.map(\.header) == [.today, .date(tenYearsBackStart, includesYear: true)])
     }
 
-    @Test func anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays() throws {
+    @Test(arguments: StoreKind.allCases) func anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(
+        _ kind: StoreKind
+    ) throws {
         let today = try entry(at: at(9))
         let otherYesterday = try entry(at: at(9, day: 27))
-        var log = EntryLog(store: FakeEntryStore(entries: [today, otherYesterday]))
+        var log = try EntryLog(store: kind.fixture(holding: [today, otherYesterday]).store)
         var draft = EntryDraft(entry: today)
         draft.date = try at(23, 50, day: 27)
         let moved = Entry(id: today.id, draft: draft)
