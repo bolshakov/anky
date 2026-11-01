@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -c "id=pin-icon-"'
+exit: 1
+commit: 29af4ca1f1f57fec48fd8c76c91ab0198dd16530
+
+0

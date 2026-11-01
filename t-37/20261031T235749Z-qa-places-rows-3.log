@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -i -E "search|label=.Dismiss tip."'
+exit: 0
+commit: 29af4ca1f1f57fec48fd8c76c91ab0198dd16530
+
+Button id=xmark label='Dismiss tip' value=None @322,186 44x44
+TextField id=None label=None value='Search joints and places' @32.99999999999994,803 336x38
+Image id=magnifyingglass label='Search' value=None @45.99999999999994,812.3333333333334 20.33333333333333x18.66666666666663

@@ -1,0 +1,9 @@
+$ bash -c '. "$TMPDIR/walk.sh"; normal; PINS=lower PICKS=neck:3 fresh "pain/1/09:00/4/lower"; to_places || { PINS=lower PICKS=neck:3 fresh "pain/1/09:00/4/lower"; to_places; }; ui | grep -E "id=place-(lower|neck) "'
+exit: 0
+commit: 29af4ca1f1f57fec48fd8c76c91ab0198dd16530
+
+Error: No translation object returned for simulator. This means you have likely specified a point onscreen that is invalid or invisible due to a fullscreen dialog
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (201.00000000000006, 538.3333333333333) completed successfully
+Button id=place-neck label='Neck' value=None actions=['Pin as shortcut'] @16,325.33333333333337 370x60
+Button id=place-lower label='Lower back' value='Pinned' actions=['Unpin shortcut'] @16,445 370x60

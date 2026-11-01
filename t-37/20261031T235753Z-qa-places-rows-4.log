@@ -1,0 +1,8 @@
+$ bash -c '. "$TMPDIR/walk.sh"; for p in neck upper tail; do axe tap --id place-$p --wait-timeout 5 --udid "$udid"; done; ui | grep "id=done-places "'
+exit: 0
+commit: 29af4ca1f1f57fec48fd8c76c91ab0198dd16530
+
+✓ Tap at resolved tap point at (201.0, 355.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 415.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 535.3333333333333) completed successfully
+Button id=done-places label='Done, 3 places' value=None @16,716 370x56
