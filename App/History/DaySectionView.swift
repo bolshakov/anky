@@ -25,7 +25,7 @@ struct DaySectionView: View {
             title
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-                .textCase(nil)
+                .cardCaption()
                 .accessibilityIdentifier("day-header")
         }
     }
