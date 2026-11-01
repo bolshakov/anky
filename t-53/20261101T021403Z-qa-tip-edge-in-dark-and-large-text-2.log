@@ -1,0 +1,22 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/s2b.sh
+exit: 0
+commit: 44f84dab6fbe6a528f112a2ad94681b060e3baba
+
+Heading None 'Today' 16.0..181.7 @16.00,116.00 165.67x71.67
+Heading None 'Where' 169.3..232.7 @169.33,87.33 63.33x25.33
+Group pin-tip None 15.7..386.3 @15.67,182.00 370.67x486.00 drawn 16.0..386.0
+StaticText None 'Pin a shortcut' 102.0..302.7 @102.00,186.00 200.67x125.33
+StaticText None 'Swipe a place right to pin it as a shortcut on New Entry.' 102.0..326.3 @102.00,315.33 224.33x348.67
+Button xmark 'Dismiss tip' 338.3..382.3 @338.33,186.00 44.00x44.00
+Heading None 'Spine' 16.0..386.0 @16.00,700.67 370.00x83.33
+Group place-row-neck None 16.0..386.0 @16.00,784.00 370.00x63.33 drawn 28.3..373.7
+Group place-row-upper None 16.0..386.0 @16.00,847.33 370.00x125.33 drawn none..none
+Heading None 'Today' 16.0..181.7 @16.00,116.00 165.67x71.67
+Heading None 'Where' 169.3..232.7 @169.33,87.33 63.33x25.33
+Group pin-tip None 15.7..386.3 @15.67,182.00 370.67x486.00 drawn 16.0..386.0
+StaticText None 'Pin a shortcut' 102.0..302.7 @102.00,186.00 200.67x125.33
+StaticText None 'Swipe a place right to pin it as a shortcut on New Entry.' 102.0..326.3 @102.00,315.33 224.33x348.67
+Button xmark 'Dismiss tip' 338.3..382.3 @338.33,186.00 44.00x44.00
+Heading None 'Spine' 16.0..386.0 @16.00,700.67 370.00x83.33
+Group place-row-neck None 16.0..386.0 @16.00,784.00 370.00x63.33 drawn 24.0..379.7
+Group place-row-upper None 16.0..386.0 @16.00,847.33 370.00x125.33 drawn none..none

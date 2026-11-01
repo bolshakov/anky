@@ -1,0 +1,16 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/s4.sh
+exit: 0
+commit: 44f84dab6fbe6a528f112a2ad94681b060e3baba
+
+Heading id=None label='Spine' value=None @16,284.66666666666663 370x40.333333333333314
+Group id=place-row-neck label=None value=None actions=['Pin as shortcut'] @16,325.33333333333337 370x60
+Group id=place-row-upper label=None value=None actions=['Pin as shortcut'] @16,385.33333333333337 370x60
+Group id=place-row-lower label=None value=None actions=['Pin as shortcut'] @16,445 370x60
+Group id=place-row-tail label=None value=None actions=['Pin as shortcut'] @16,505.3333333333333 370x59.99999999999994
+Heading id=None label='Pelvis and chest' value=None @16,582.6666666666667 370x40.33333333333337
+Group id=place-row-si_l label=None value=None actions=['Pin as shortcut'] @16,623 370x60
+Group id=place-row-si_r label=None value=None actions=['Pin as shortcut'] @16,683 370x60
+Group id=place-row-hip_l label=None value=None actions=['Pin as shortcut'] @16,743 370x60
+Group id=place-row-hip_r label=None value=None actions=['Pin as shortcut'] @16,803 370x60
+Group id=place-row-ribs label=None value=None actions=['Pin as shortcut'] @16,863 370x60
+Button id=done-places label='Done' value=None @16,716 370x56

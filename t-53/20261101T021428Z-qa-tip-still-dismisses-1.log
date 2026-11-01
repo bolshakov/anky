@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/s3a.sh
+exit: 0
+commit: 44f84dab6fbe6a528f112a2ad94681b060e3baba
+
+Group id=pin-tip label=None value=None @16,182 370x70.33332824707031
+Button id=xmark label='Dismiss tip' value=None @338,186 44x44
+Heading id=None label='Spine' value=None @16,132 370x40.33333333333334
+Group id=place-row-neck label=None value=None actions=['Pin as shortcut'] @16,172.33333333333334 370x60

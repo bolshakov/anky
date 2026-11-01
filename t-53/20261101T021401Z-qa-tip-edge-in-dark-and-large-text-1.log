@@ -1,0 +1,21 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/cards.py /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/walk-t53.GoCH/edge-dark.txt /Users/bolshakov/Projects/personal/anky.wt/qa-t53-01-1/tmp/walk-t53.GoCH/edge-dark.png
+exit: 0
+commit: 44f84dab6fbe6a528f112a2ad94681b060e3baba
+
+Heading None 'Today' 16.0..111.3 @16.00,119.67 95.33x40.67
+Heading None 'Where' 174.7..227.0 @174.67,89.67 52.33x20.67
+Group pin-tip None 16.0..386.0 @16.00,182.00 370.00x70.33 drawn 16.0..386.0
+StaticText None 'Pin a shortcut' 60.0..170.3 @60.00,186.00 110.33x20.33
+StaticText None 'Swipe a place right to pin it as a shortcut on New Entry.' 60.0..281.3 @60.00,210.33 221.33x38.00
+Button xmark 'Dismiss tip' 338.0..382.0 @338.00,186.00 44.00x44.00
+Heading None 'Spine' 16.0..386.0 @16.00,284.67 370.00x40.33
+Group place-row-neck None 16.0..386.0 @16.00,325.33 370.00x60.00 drawn 16.0..386.0
+Group place-row-upper None 16.0..386.0 @16.00,385.33 370.00x60.00 drawn 16.0..386.0
+Group place-row-lower None 16.0..386.0 @16.00,445.00 370.00x60.00 drawn 16.0..386.0
+Group place-row-tail None 16.0..386.0 @16.00,505.33 370.00x60.00 drawn 16.0..386.0
+Heading None 'Pelvis and chest' 16.0..386.0 @16.00,582.67 370.00x40.33
+Group place-row-si_l None 16.0..386.0 @16.00,623.00 370.00x60.00 drawn 16.0..386.0
+Group place-row-si_r None 16.0..386.0 @16.00,683.00 370.00x60.00 drawn 16.0..386.0
+Group place-row-hip_l None 16.0..386.0 @16.00,743.00 370.00x60.00 drawn 16.0..386.0
+Group place-row-hip_r None 16.0..386.0 @16.00,803.00 370.00x60.00 drawn 30.7..371.3
+Group place-row-ribs None 16.0..386.0 @16.00,863.00 370.00x60.00 drawn none..none
