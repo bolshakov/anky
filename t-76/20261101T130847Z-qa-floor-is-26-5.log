@@ -1,0 +1,12 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; timeout 90 xcrun simctl install "$(cat "$out/old-udid")" "$(app)"; echo "install exit $?"'
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+An error was encountered processing the command (domain=IXUserPresentableErrorDomain, code=16):
+App installation failed: “Anky” Requires a Newer Version of iOS
+You need to update this iPhone to iOS 26.0 to install this app.
+The system version is lower than the minimum OS version specified for bundle at /Users/bolshakov/Library/Developer/CoreSimulator/Devices/AF55FF7D-B37D-42EB-ACEE-098BAA0A2730/data/Library/Caches/com.apple.mobile.installd.staging/temp.w6kxUp/extracted/Anky.app. Have 18.2; need 26.0
+Underlying error (domain=IXUserPresentableErrorDomain, code=16):
+	“Anky” Requires a Newer Version of iOS
+	You need to update this iPhone to iOS 26.0 to install this app.
+install exit 16

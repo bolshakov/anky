@@ -1,0 +1,6 @@
+$ sh -c 'grep -n '\''listRowInsets'\'' App/Design/CardCaption.swift App/NewEntry/PlacesListView.swift'
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+App/Design/CardCaption.swift:8:            .listRowInsets(.leading, 0)
+App/NewEntry/PlacesListView.swift:25:                    .listRowInsets(.horizontal, 0)

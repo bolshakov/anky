@@ -1,0 +1,7 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; runtime "$udid"; stop; launch; sleep 3; ui | grep "id=log-entry "; shot today-26'
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+com.apple.CoreSimulator.SimRuntime.iOS-26-5
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,719 370x56
+/Users/bolshakov/Projects/personal/anky.wt/qa-t76-01-3/tmp/walk-t76.dxE4/today-26.png

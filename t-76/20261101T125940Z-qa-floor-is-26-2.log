@@ -1,0 +1,5 @@
+$ sh -c 'swift package dump-package | jq -c '\''[.platforms[] | {platformName, version}]'\'''
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+[{"platformName":"macos","version":"14.0"},{"platformName":"ios","version":"26.0"}]

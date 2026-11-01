@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; plutil -extract MinimumOSVersion raw "$(app)/Info.plist"'
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+26.0

@@ -1,0 +1,9 @@
+$ sh -c 'grep -n -A1 '\''deploymentTarget'\'' project.yml; grep -n '\''platforms'\'' Package.swift; sed -n 2p Package.swift; swift package tools-version'
+exit: 0
+commit: 7a705bdea57f1388b4ec4f764194c72cf5d5b4bc
+
+4:  deploymentTarget:
+5-    iOS: "26.0"
+7:    platforms: [.macOS(.v14), .iOS(.v26)],
+// swift-tools-version: 6.2
+6.2.0
