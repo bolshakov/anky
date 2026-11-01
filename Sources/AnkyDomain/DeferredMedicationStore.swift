@@ -31,6 +31,14 @@ import Foundation
         try current().restore(id: id)
     }
 
+    public func doses() throws -> [Dose] {
+        try current().doses()
+    }
+
+    public func logDose(_ dose: Dose) throws {
+        try current().logDose(dose)
+    }
+
     private func current() throws -> MedicationStore {
         if let opened {
             return opened

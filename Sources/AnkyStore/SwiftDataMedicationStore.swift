@@ -10,7 +10,7 @@ import SwiftData
 
     public convenience init(url: URL, beforeSave: @escaping @MainActor () throws -> Void = {}) throws {
         let container = try ModelContainer(
-            for: MedicationRecord.self,
+            for: MedicationRecord.self, DoseRecord.self,
             configurations: ModelConfiguration(url: url)
         )
         self.init(container: container, beforeSave: beforeSave)
@@ -20,7 +20,7 @@ import SwiftData
         beforeSave: @escaping @MainActor () throws -> Void = {}
     ) throws -> SwiftDataMedicationStore {
         let container = try ModelContainer(
-            for: MedicationRecord.self,
+            for: MedicationRecord.self, DoseRecord.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
         return SwiftDataMedicationStore(container: container, beforeSave: beforeSave)
@@ -69,6 +69,22 @@ import SwiftData
             throw MedicationStoreError.notSaved
         }
         return record
+    }
+
+    public func doses() throws -> [Dose] {
+        do {
+            let descriptor = FetchDescriptor<DoseRecord>(sortBy: [SortDescriptor(\.takenAt)])
+            return try context.fetch(descriptor).map { try $0.dose() }
+        } catch {
+            throw MedicationStoreError.unreadable
+        }
+    }
+
+    public func logDose(_ dose: Dose) throws {
+        let medication = try record(id: dose.medicationID)
+        context.insert(DoseRecord(dose))
+        medication.checkInAfterMinutes = dose.checkInAfter?.rawValue
+        try commit()
     }
 
     /// A failed commit discards every change made since the last one, so a retry starts from the stored state.
