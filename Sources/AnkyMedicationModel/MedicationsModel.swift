@@ -6,6 +6,7 @@ import Observation
 @MainActor @Observable public final class MedicationsModel {
     private let store: MedicationStore
     public private(set) var medications: [Medication] = []
+    public private(set) var doses: [Dose] = []
     /// False until a read from the store has worked, so a store that was locked at launch is read before a write.
     private var isLoaded = false
 
@@ -26,11 +27,10 @@ import Observation
         medications.count { $0.archivedAt != nil }
     }
 
-    /// Reads the store again. A failed read keeps the list as it was and leaves the next write to read first.
+    /// Reads the store again. A failed read keeps the lists as they were and leaves the next write to read first.
     public func reload() {
         do {
-            medications = try store.all()
-            isLoaded = true
+            try readAll()
         } catch {
             isLoaded = false
         }
@@ -64,9 +64,25 @@ import Observation
         medications[index].archivedAt = nil
     }
 
+    public func logDose(_ dose: Dose) throws {
+        try loadIfNeeded()
+        try store.logDose(dose)
+        doses.append(dose)
+        guard let index = medications.firstIndex(where: { $0.id == dose.medicationID }) else { return }
+        medications[index].checkInAfter = dose.checkInAfter
+    }
+
+    /// Reads both lists before it changes either, so a failed read of doses leaves the medications as they were.
+    private func readAll() throws {
+        let medications = try store.all()
+        let doses = try store.doses()
+        self.medications = medications
+        self.doses = doses
+        isLoaded = true
+    }
+
     private func loadIfNeeded() throws {
         guard !isLoaded else { return }
-        medications = try store.all()
-        isLoaded = true
+        try readAll()
     }
 }
