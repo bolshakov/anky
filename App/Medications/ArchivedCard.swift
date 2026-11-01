@@ -10,9 +10,6 @@ struct ArchivedCard: View {
             Spacer()
             Text("\(count)")
                 .foregroundStyle(.secondary)
-            Image(systemName: "chevron.right")
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.secondary)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Archived"))

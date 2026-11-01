@@ -6,7 +6,6 @@ struct MedicationsView: View {
     let medications: MedicationsModel
     @State private var isShowingNewMedication = false
     @State private var editing: Medication?
-    @State private var isShowingArchived = false
     @State private var saveTicks = 0
 
     var body: some View {
@@ -19,14 +18,6 @@ struct MedicationsView: View {
         .listSectionSpacing(.custom(12))
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(isPresented: $isShowingArchived) {
-            ArchivedView(medications: medications, onEdit: { editing = $0 })
-        }
-        .onChange(of: medications.archivedCount) {
-            if medications.archivedCount == 0 {
-                isShowingArchived = false
-            }
-        }
         .safeAreaInset(edge: .bottom) {
             Button("Add medication") {
                 isShowingNewMedication = true
@@ -84,12 +75,11 @@ struct MedicationsView: View {
     private var archivedSection: some View {
         if medications.archivedCount > 0 {
             Section {
-                Button {
-                    isShowingArchived = true
+                NavigationLink {
+                    ArchivedView(medications: medications)
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }
-                .buttonStyle(.plain)
             } footer: {
                 if !active.isEmpty {
                     archiveFootnote
