@@ -11,6 +11,14 @@ final class MedicationTapTargetTests: XCTestCase {
         assertAtLeast44Square(app.buttons["log-dose-cancel"])
     }
 
+    func testNewEntryCancelIsAtLeast44Square() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-entry"].tap()
+
+        assertAtLeast44Square(app.buttons["cancel-entry"])
+    }
+
     func testMedicationFormCancelAndFieldsAreAtLeast44() {
         continueAfterFailure = false
         let app = launchAnky()
