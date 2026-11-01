@@ -1,0 +1,2 @@
+Button id=archived-card label='Archived' value='2' enabled=True actions= traits= @16,167 370x60
+StaticText id=medications-empty ... @16,323 370x142.33

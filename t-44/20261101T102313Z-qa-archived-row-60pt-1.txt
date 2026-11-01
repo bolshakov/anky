@@ -1,0 +1,2 @@
+Button id=archived-card label='Archived' value='1' enabled=True actions= traits= @16,269 370x60
+GenericElement id=archived-card label='Archived' value='1' enabled=True actions= traits= @32,288.8333435058594 316x20.333343505859375

@@ -1,0 +1,8 @@
+$ sh -c 'axe describe-ui --udid DBA0E8B5-FF30-4930-98D8-489BC69AE04C | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t44-10-1/tmp/ui.py | grep -E '\''Heading|archived-row'\'''
+exit: 0
+commit: be19c4e39e4c27d3a34cb094036584d0a99d1292
+
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Heading id=None label='Archived' value=None enabled=True actions= traits= @165.66666666666666,89.66666666666666 70.66666666666666x20.66666666666667
+Button id=archived-row label='Quibbanol, As needed' value=None enabled=True actions=Restore traits= @16,167 370x90
+Button id=archived-row label='Zorblex 500 mg, As needed' value=None enabled=True actions=Restore traits= @16,257 370x90
