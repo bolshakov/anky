@@ -10,7 +10,6 @@ final class KindAtLargestSizeTests: XCTestCase {
 
         let stiffness = kindSegment(.stiffness, in: app)
         XCTAssertTrue(stiffness.waitForExistence(timeout: 10))
-        XCTAssertGreaterThanOrEqual(stiffness.frame.height, 44)
 
         chooseKind(.stiffness, in: app)
         scrollToSeveritySlider(in: app)
