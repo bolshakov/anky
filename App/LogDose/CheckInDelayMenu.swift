@@ -23,7 +23,6 @@ struct CheckInDelayMenu: View {
                 Image(systemName: "chevron.up.chevron.down")
                     .foregroundStyle(.secondary)
             }
-            .frame(minHeight: 52)
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
