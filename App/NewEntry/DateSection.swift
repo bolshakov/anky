@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import SwiftUI
 
 struct DateSection: View {
@@ -13,7 +14,7 @@ struct DateSection: View {
                 HStack {
                     Text("Date and time")
                     Spacer()
-                    shownDate
+                    Text("\(day), \(clock)")
                         .foregroundStyle(.secondary)
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
@@ -24,7 +25,7 @@ struct DateSection: View {
             .buttonStyle(.plain)
             .accessibilityIdentifier("date-row")
             .accessibilityLabel("Date and time")
-            .accessibilityValue(shownDate)
+            .accessibilityValue(Text([day, clock].joined(separator: " ")))
             if isShowingPicker {
                 DatePicker(
                     "Date and time",
@@ -40,11 +41,20 @@ struct DateSection: View {
         .background(Color("CardBackground"), in: .card)
     }
 
-    private var shownDate: Text {
-        let day = Calendar.current.isDateInToday(date)
-            ? Text("Today")
-            : Text(date, format: Date.FormatStyle(date: .abbreviated, time: .omitted))
-        let time = Text(date, format: .dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits))
-        return Text("\(day), \(time)")
+    private var day: String {
+        switch ShortDayText.day(for: date, now: .now, calendar: .current, locale: .current) {
+        case .today:
+            String(localized: "Today")
+        case .yesterday:
+            String(localized: "Yesterday")
+        case let .sameYear(shortDay):
+            shortDay
+        case let .otherYear(shortDay, year):
+            String(localized: "\(shortDay) \(year)")
+        }
+    }
+
+    private var clock: String {
+        ClockText.text(for: date, calendar: .current, locale: .current)
     }
 }

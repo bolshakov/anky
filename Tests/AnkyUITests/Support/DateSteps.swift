@@ -8,10 +8,10 @@ func clockTime(at date: Date) -> String {
     return String(format: "%02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
 }
 
-/// The clock time at the end of the date row's value. The row reads "<day>, HH:mm", and the day word
-/// changes with the language.
+/// The clock time at the end of the date row's value, which reads "<day> <time>". The day word changes with the
+/// language. A 12 hour time's space before AM or PM is U+202F, so it does not split here.
 func clockTime(inRowValue value: String?) -> String? {
-    value?.components(separatedBy: ", ").last
+    value?.components(separatedBy: " ").last
 }
 
 /// Taps the date row and waits for the wheel to appear.

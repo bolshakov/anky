@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import Foundation
 import XCTest
 
@@ -55,7 +56,7 @@ final class RegionTests: XCTestCase {
     }
 
     private func clockText(at date: Date, in locale: Locale) -> String {
-        date.formatted(.dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits).locale(locale))
+        ClockText.text(for: date, calendar: .current, locale: locale)
     }
 
     private func listTimeText(at date: Date, in locale: Locale) -> String {
