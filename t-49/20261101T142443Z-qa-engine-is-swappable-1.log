@@ -1,0 +1,1044 @@
+$ swift test --scratch-path .build
+exit: 0
+commit: 466d3841dda5440fb2b32dec8beb4302dfa03fce
+
+[0/1] Planning build
+Building for debugging...
+[0/2] Write swift-version--58304C5D6DBC2206.txt
+Build complete! (0.76s)
+Test Suite 'All tests' started at 2026-11-01 15:24:45.968.
+Test Suite 'All tests' passed at 2026-11-01 15:24:45.980.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.012) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite SwiftDataMedicationEditTests started.
+◇ Suite SwiftDataMedicationStoreTests started.
+◇ Suite SwiftDataDoseTests started.
+◇ Suite SwiftDataEntryStoreTests started.
+◇ Suite EntryKindTests started.
+◇ Suite EditedPlacesTests started.
+◇ Suite TodayListTests started.
+◇ Suite EntryDraftPlacesTests started.
+◇ Suite RecentEntryDraftTests started.
+◇ Suite FileShortcutsStoreTests started.
+◇ Suite RussianCatalogTests started.
+◇ Suite PlaceCatalogTests started.
+◇ Suite EntryPlacesStoreTests started.
+◇ Suite DayHeaderTests started.
+◇ Suite TipProgressTests started.
+◇ Suite ShortcutsLogTests started.
+◇ Suite EntryLogEditTests started.
+◇ Suite EntryStoreContractTests started.
+◇ Suite MedicationSelectionTests started.
+◇ Suite EntryDraftFromEntryTests started.
+◇ Suite ShortcutFeedbackTests started.
+◇ Suite RecentEntryNamesTests started.
+◇ Suite DayDateTextTests started.
+◇ Suite MedicationSaveTests started.
+◇ Suite MorePlacesValueTests started.
+◇ Suite ShortcutsTests started.
+◇ Suite PlaceChipsTests started.
+◇ Suite EntryLogTests started.
+◇ Suite MedicationOrderTests started.
+◇ Suite NoteCounterTests started.
+◇ Suite RecentEntryTextTests started.
+◇ Suite BackdatedEntryTests started.
+◇ Suite EditedEntryReloadTests started.
+◇ Suite EntryDraftTests started.
+◇ Suite SpokenListTests started.
+◇ Suite EntryPlacesTests started.
+◇ Suite PlaceSummaryTests started.
+◇ Suite DeferredMedicationStoreTests started.
+◇ Suite EntryTests started.
+◇ Suite RecentEntriesTests started.
+◇ Suite MedicationsModelTests started.
+◇ Suite HistoryListTests started.
+◇ Suite CheckInChoicesTests started.
+◇ Suite DoseSaveTests started.
+◇ Test reopenedStoreReadsBackEveryField() started.
+◇ Suite PlaceSearchTests started.
+◇ Test restoreClearsTheArchivedTimeAndKeepsEveryOtherField() started.
+◇ Test aDamagedStoreFileFailsToOpenAndIsLeftAsItWas() started.
+◇ Test archiveSetsTheArchivedTimeAndChangesNoOtherField() started.
+◇ Suite FileEntryStoreTests started.
+◇ Suite SeverityTests started.
+◇ Suite DoseRowTextTests started.
+◇ Test restoreOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test updateOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test everyCheckInDelayReadsBackAfterReopen() started.
+◇ Test storeHoldsNoMedicationBeforeTheFirstAdd() started.
+◇ Test failedUpdateLeavesTheMedicationAsItWasAndRetrySavesOneChange() started.
+◇ Test failedArchiveLeavesTheMedicationActiveAndRetryArchivesIt() started.
+◇ Test aRecordWithAnUnreadableLevelLoadsAsUnreadable() started.
+◇ Suite MedicationDraftTests started.
+◇ Test reopenedStoreReadsBackEveryField() started.
+◇ Test failedRestoreLeavesTheMedicationArchivedAndRetryRestoresIt() started.
+◇ Test refusedReplaceLeavesTheSameStoreReadingAsItWas() started.
+◇ Test aFailedWriteThrowsAnErrorThatNamesNoMedication() started.
+◇ Test replaceLeavesEveryOtherRecordAsItWas() started.
+◇ Test deletingTheNewestThenAddingKeepsTheNewOneLast() started.
+◇ Test inMemoryStoreRollsBackARefusedWriteToo() started.
+◇ Test saveOrderSurvivesDatesThatRunBackwards() started.
+◇ Test anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() started.
+◇ Test refusedRemoveLeavesTheSameStoreReadingAsItWas() started.
+◇ Test aNewStoreAtANewURLReadsNoEntries() started.
+◇ Test refusedAddLeavesTheSameStoreReadingAsItWas() started.
+◇ Test failedWriteLeavesStoreAsItWasAndRetrySavesOneRecord() started.
+◇ Test failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() started.
+◇ Test logDoseSetsTheSavedDelayAndLeavesTheUpdatedTime() started.
+◇ Test doseForAnUnknownMedicationThrowsAndLeavesNoPendingRow() started.
+◇ Test offersPainStiffnessAndFatigueInThatOrder() started.
+◇ Test storeFileWrittenWithOnlyMedicationsOpensWithThemAndNoDoses() started.
+◇ Test reopenedStoreReadsBackEveryDoseField() started.
+◇ Test failedWriteOfTheSameIdSavesOneRecord() started.
+◇ Test aRecordWithAnUnreadableKindLoadsAsUnreadable() started.
+◇ Test updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime() started.
+◇ Test archiveOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test anEntryEditedFromFatigueToPainStartsWithNoPlaces() started.
+◇ Test aReplacedEntryCarriesTheEditedPlaces() started.
+◇ Test listsTheLaterStoredDoseFirstWhenTimesMatch() started.
+◇ Test listsTheLaterSavedFirstWhenDatesMatch() started.
+◇ Test ordersByDateNotBySaveOrder() started.
+◇ Test listsOnlyTheEntriesOnThatDay() started.
+◇ Test encodesAsItsRawValue() started.
+◇ Test aDoseSecondsAfterAnEntryInTheSameMinuteListsFirst() started.
+◇ Test editingAnEntryKeepsAnIdThisBuildDoesNotKnow() started.
+◇ Test countsTheDayInTheGivenCalendar() started.
+◇ Test aDoseAtTheSameTimeAsAnEntryListsFirst() started.
+◇ Test draftFromAnEntryHoldsItsPlaces() started.
+◇ Test anEntrySecondsAfterADoseInTheSameMinuteListsFirst() started.
+◇ Test anEntrySavedFromADirectlyAssignedDraftHasItsPlacesInCatalogOrder() started.
+◇ Test doseAndEntriesOfTheDayListNewestFirst() started.
+◇ Test assigningPlacesDirectlyPutsThemInCatalogOrder() started.
+◇ Test aPairWithBothSidesCountsTwoPlaces() started.
+◇ Test togglingASelectedPlaceOffKeepsTheRestInCatalogOrder() started.
+◇ Test assigningAListAlreadyInCatalogOrderReadsTheSameList() started.
+◇ Test aSecondAddOfAKnownIdLeavesOneRecord() started.
+◇ Test applyingARecentEntryKeepsItsPlacesInCatalogOrder() started.
+◇ Test togglingAPlaceAddsItAndTogglingAgainRemovesIt() started.
+◇ Test assigningAnEmptyListClearsThePlaces() started.
+◇ Test draftFromAnEntryWithNoPlacesHasNone() started.
+◇ Test aDraftWithAChangedPlaceIsNotEqualToTheStartDraft() started.
+◇ Test aNewDraftHasNoPlaces() started.
+◇ Test pinsAndLastChipsReloadFromTheFile() started.
+◇ Test applyingAFatigueEntryClearsThePlaces() started.
+◇ Test applyingARecentEntryCopiesKindLevelAndPlaces() started.
+◇ Test aNewStoreOnTheSameFileSeesWhatWasSaved() started.
+◇ Test aMissingFileGivesNoPinsAndNoLastChips() started.
+◇ Test returnsNothingWhenNoEntryIsOnThatDay() started.
+◇ Test aFileOfAnotherVersionGivesNoPinsAndNoLastChips() started.
+◇ Test theCountOfPlacesTakesTheRussianPluralForms() started.
+◇ Test anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() started.
+◇ Test twoAndTwentyTwoLeftTakeTheFewForm() started.
+◇ Test applyingARecentEntryKeepsTheDateAndTheNote() started.
+◇ Test leavesOutDosesOfOtherDays() started.
+◇ Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces() started.
+◇ Test twoAndTwentyTwoPlacesTakeTheFewForm() started.
+◇ Test theCatalogHoldsAllFourRussianPluralForms() started.
+◇ Test theSeverityTextReadsFourFromTenInBothKeys() started.
+◇ Test theJoiningFormatsReadTheSameInRussian() started.
+◇ Test fiveAndTheTeensLeftTakeTheManyForm() started.
+◇ Test fiveAndTheTeensPlacesTakeTheManyForm() started.
+◇ Test englishReadsAsBefore() started.
+◇ Test noAwaitingKeyHasARussianValueYet() started.
+◇ Test everyKeyOfTheCatalogHasARussianValue() started.
+◇ Test theDoneButtonHoldsAllFourRussianPluralForms() started.
+◇ Test theCountOfPlacesHoldsAllFourRussianPluralForms() started.
+◇ Test everyDefaultChipIsInTheCatalog() started.
+◇ Test anUnknownIdIsKeptButNotCounted() started.
+◇ Test noTextOutsideTheApprovedListHasARussianValue() started.
+◇ Test aPlaceLooksUpItsJointAndSide() started.
+◇ Test theIdsTheTicketNamesAreExact() started.
+◇ Test everyApprovedTextReadsAsTheStakeholderWroteIt() started.
+◇ Test oneAndTwentyOneLeftTakeTheSingularForm() started.
+◇ Test placesAreKeptInCatalogOrderWhateverOrderTheyWerePicked() started.
+◇ Test anUnknownIdHasNoJointAndNoSide() started.
+◇ Test aVersionOneFileWithoutPlacesStillLoads() started.
+◇ Test theCatalogListsExactlyTheTwentyEightIds() started.
+◇ Test pairedJointsGetALeftAndARightId() started.
+◇ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() started.
+◇ Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds() started.
+◇ Test everyApprovedRussianValueIsMarkedTranslated() started.
+◇ Test aDraftFromARecentEntryHasTheGivenDateAndNoNote() started.
+◇ Test theFileVersionStaysOne() started.
+◇ Test theFiveGroupsHoldTwoOrFourJointsEach() started.
+◇ Test placeIdsAreUnique() started.
+◇ Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain() started.
+◇ Test todayAndYesterdayHaveNoDateText() started.
+◇ Test aDateInTheSameYearLeavesTheYearOut() started.
+◇ Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack() started.
+◇ Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave() started.
+◇ Test aDateInAnotherYearIncludesTheYear() started.
+◇ Test aDateHeaderFollowsThePhonesOrderAndLanguage() started.
+◇ Test oneAndTwentyOnePlacesTakeTheSingularForm() started.
+◇ Test theYearFormCapitalisesOnlyTheWeekday() started.
+◇ Test theFileHoldsAVersionVisitsAndPicks() started.
+◇ Test theLogStartsWithWhatTheStoreHolds() started.
+◇ Test aFailedSaveStillKeepsThePinForThisSession() started.
+◇ Test picksOfDifferentPlacesAreNotAdded() started.
+◇ Test aRepeatedChangeAfterAFailedSaveWritesEverything() started.
+◇ Test theThirdPickOfOnePlaceMakesTheTipReady() started.
+◇ Test anOlderDateHeaderHasTheWeekdayCapitalisedAndTheDayAndMonth() started.
+◇ Test aRussianWeekdayIsCapitalisedAndTheMonthIsNot() started.
+◇ Test visitsSurviveAReload() started.
+◇ Test singleJointsUseTheirStemAsTheId() started.
+◇ Test eachChangeIsSavedAsItHappens() started.
+◇ Test aSameYearDateReadsLikeTheTodayLineWithTheWeekdayCapitalised() started.
+◇ Test theThirdVisitMakesTheTipReady() started.
+◇ Test aPlaceIdEncodesAsAPlainString() started.
+◇ Test replaceSavesTheWholeListOnce(_:) started.
+◇ Test aMissingFileGivesAnEmptyProgress() started.
+◇ Test replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test aPickThatClearsAPlaceIsNotCounted() started.
+◇ Test theNextSaveAfterAFailureWritesEverything() started.
+◇ Test failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test replaceKeepsThePlace(_:) started.
+◇ Test addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test aSelectionNoLongerActiveFallsToTheFirstActiveRow() started.
+◇ Test noSelectionFallsToTheFirstActiveRow() started.
+◇ Test removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test noActiveMedicationGivesNoSelection() started.
+◇ Test placesSurviveAReloadFromTheFile() started.
+◇ Test draftFromAnEntryIsNotChangedUntilAFieldChanges() started.
+◇ Test draftFromAnEntryHoldsKindTimeLevelAndNote() started.
+◇ Test onlyTheWeekdayIsCapitalisedInEnglishAndTheOrderStays() started.
+◇ Test draftFromAnEntryCutsANoteOverTheLimit() started.
+◇ Test draftFromAnEntryWithNoNoteHasAnEmptyNote() started.
+◇ Test aPinFromTheSwipeGivesNoTapOfTheAppsOwn() started.
+◇ Test aSelectedActiveMedicationStaysSelected() started.
+◇ Test fourNamesShowTwoAndCountTwo() started.
+◇ Test twoPairsAreTwoNames() started.
+◇ Test openingAMenuGivesNoFeedback() started.
+◇ Test leftAndRightOfDifferentJointsDoNotPair() started.
+◇ Test aPinFromTheActionOrAMenuGivesASelectionTap() started.
+◇ Test theFullListKeepsEveryPlace() started.
+◇ Test replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test bothSidesOfAPairReadAsThePair() started.
+◇ Test threeNamesShowTwoAndCountOne() started.
+◇ Test oneSideOfAPairStaysThatPlace() started.
+◇ Test twoNamesShowWithNoCount() started.
+◇ Test stiffnessShowsItsKind() started.
+◇ Test twoVisitsAreNotEnough() started.
+◇ Test thePairStandsWhereItsFirstSideStood() started.
+◇ Test removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test fatigueShowsItsKindAndNoPlaces() started.
+◇ Test aRefusedPinGivesAWarning() started.
+◇ Test aPainEntryWithNoPlaceReadsNoPlace() started.
+◇ Test aPairCountsAsOneName() started.
+◇ Test onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test russianWeekdayIsCapitalisedAndTheMonthKeepsItsCase() started.
+◇ Test onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test aStiffnessEntryWithNoPlaceReadsNoPlace() started.
+◇ Test aFailedWriteLeavesTheSaveOpenAndTheRetryUsesTheSameId() started.
+◇ Test anUnknownIdIsNotInTheValue() started.
+◇ Test aPickedPlaceWithAChipIsNotInTheValue() started.
+◇ Test englishWeekdayIsCapitalisedAndTheRestIsLowercase() started.
+◇ Test twoPlacesOutsideTheChipsAreBothListed() started.
+◇ Test painShowsNoKind() started.
+◇ Test morePlacesCountsEveryPlaceAfterTheFirstTwo() started.
+◇ Test noPlaceOutsideTheChipsIsNone() started.
+◇ Test unpinningRemovesOnlyThatPlace() started.
+◇ Test placesOutsideTheChipsFollowBodyOrder() started.
+◇ Test aSecondSaveAfterASuccessWritesNothing() started.
+◇ Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces() started.
+◇ Test aSixthPinIsRefusedAndChangesNothing() started.
+◇ Test onePlaceOutsideTheChipsIsListed() started.
+◇ Test pinningAllPinsARepeatedPlaceOnce() started.
+◇ Test aFatigueEntryAddsNothingToTheCounts() started.
+◇ Test pinsShowInBodyOrderNotInPinOrder() started.
+◇ Test threePlacesShowTwoNamesAndOneMore() started.
+◇ Test aTieGoesToThePlaceThatWasAChipLastTime() started.
+◇ Test pinningAllSkipsPlacesThatAreAlreadyPinned() started.
+◇ Test picksSurviveAReload() started.
+◇ Test pinningAllOfAlreadyPinnedPlacesChangesNothing() started.
+◇ Test aNewUserWithOneEntryGetsTheFivePresets() started.
+◇ Test anUnreadableOrNewerFileGivesAnEmptyProgress() started.
+◇ Test failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test onlyTheLastTenEntriesWithAPlaceCount() started.
+◇ Test addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test theResultAlwaysHasFivePlaces() started.
+◇ Test aPlaceCountsOncePerEntry() started.
+◇ Test retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test lastTimeBeatsTheMostRecentUseInATie() started.
+◇ Test anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() started.
+◇ Test pinningAllIsAllOrNothing() started.
+◇ Test aStillTiedPairGoesToBodyOrder() started.
+◇ Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold() started.
+◇ Test pinningAllDropsPinnedPlacesBeforeCountingThem() started.
+◇ Test morePinsThanFiveKeepOnlyTheFirstFivePinned() started.
+◇ Test pinningAPinnedPlaceChangesNothing() started.
+◇ Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder() started.
+◇ Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() started.
+◇ Test theTopFiveByCountShowInBodyOrder() started.
+◇ Test pinsComeBeforeAPlaceUsedManyTimes() started.
+◇ Test anUnknownPinNeverBecomesAChip() started.
+◇ Test aPinnedPlaceIsNotChosenAgainByTheUsageRule() started.
+◇ Test leftAndRightCountSeparately() started.
+◇ Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() started.
+◇ Test theChipsShowInBodyOrder() started.
+◇ Test aPlaceThatWasAChipButHasOneUseIsNotKept() started.
+◇ Test aRestoredMedicationReturnsToItsCreatedPositionInTheActiveList() started.
+◇ Test noArchivedMedicationGivesAnEmptyList() started.
+◇ Test activeMedicationsAreLeftOutOfArchived() started.
+◇ Test aTieGoesToTheMostRecentUse() started.
+◇ Test aPlaceNeedsACountOfTwo() started.
+◇ Test activeMedicationsAreOrderedByCreatedTimeOldestFirst() started.
+◇ Test theSpokenTextOfAFatigueEntryHasNoPlace() started.
+◇ Test anUnknownIdNeverBecomesAChip() started.
+◇ Test theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() started.
+◇ Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() started.
+◇ Test archivedMedicationsAreOrderedByArchivedTimeNewestFirst() started.
+◇ Test aChipWithNoPlaceReadsNoPlaceAndTheLevel() started.
+◇ Test theUsageRuleStillFillsTheCardAroundOnePin() started.
+◇ Test ifBothWereChipsLastTimeTheMostRecentUseWins() started.
+◇ Test theSpokenPlacesJoinThePairAndThePlaceWithAnd() started.
+◇ Test archivedMedicationsAreLeftOut() started.
+◇ Test aLongListChipReadsTwoNamesAndACount() started.
+◇ Test aPainChipHasNoKindPrefix() started.
+◇ Test aFatigueChipReadsKindAndLevel() started.
+◇ Test aPairChipReadsTheStandInPluralName() started.
+◇ Test failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test noMedicationsGivesAnEmptyList() started.
+◇ Test noteCounterIsNilAtFortyCharactersLeft() started.
+◇ Test noteCounterIsNilWithNoNote() started.
+◇ Test entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test noteCounterCountsAnEmojiOnceAtTheLimit() started.
+◇ Test noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom() started.
+◇ Test noteCounterCountsAnAccentedLetterOnceNearTheLimit() started.
+◇ Test noteCounterReadsThirtyNineLeftAtTwoHundredOneCharacters() started.
+◇ Test noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters() started.
+◇ Test theSpokenPlacesOfAFatigueEntrySayTheWholeBody() started.
+◇ Test countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test keepsANoteOfExactlyTheLimitWhole() started.
+◇ Test noteCounterReadsTenLeftAtTwoHundredThirtyCharacters() started.
+◇ Test noteCounterIsLimitReachedAtTwoHundredFortyCharacters() started.
+◇ Test aRemovedEntryStaysGoneAfterAReloadFromTheFile() started.
+◇ Test cutsANoteOneCharacterOverTheLimitBackToTheLimit() started.
+◇ Test theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() started.
+◇ Test theSpokenTextOfAStiffnessEntryStartsWithItsKind() started.
+◇ Test keepsAWholeCharacterThatEndsOnTheLimit() started.
+◇ Test twoNamesJoinWithAndInEnglish() started.
+◇ Test twoNamesJoinWithAndInRussian() started.
+◇ Test theSpokenPlacesOfOneNameStandAlone() started.
+◇ Test aFatigueEntryDropsThePlacesOfItsDraft() started.
+◇ Test aStiffnessEntryKeepsThePlacesOfItsDraft() started.
+◇ Test oneSideOfAPairReadsThatPlaceInTheChip() started.
+◇ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() started.
+◇ Test anEntryReadsStoredPlacesInCatalogOrder() started.
+◇ Test startsAsPainWithNoNote() started.
+◇ Test anEntryReadsAMissingPlacesKeyAsNoPlaces() started.
+◇ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() started.
+◇ Test aChangedLevelSurvivesAReloadFromTheFile() started.
+◇ Test placesFollowCatalogOrderNotPickOrder() started.
+◇ Test aPainEntryKeepsThePlacesOfItsDraft() started.
+◇ Test anEntryFromADraftHoldsItsPlacesInCatalogOrder() started.
+◇ Test unknownIdsAreLeftOutOfTheList() started.
+◇ Test noNameSpeaksNothing() started.
+◇ Test onlyFatigueDoesNotAskWhere() started.
+◇ Test aPainEntryListsItsPlaces() started.
+◇ Test bothKneesListLeftThenRight() started.
+◇ Test anEntryFromAnOldFileReadsAsNoPlace() started.
+◇ Test aFatigueEntryReadsAsWholeBody() started.
+◇ Test oneNameStandsAlone() started.
+◇ Test aStiffnessChipReadsKindPlacesLevel() started.
+◇ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() started.
+◇ Test doseCallsForwardThroughTheOpenedStore() started.
+◇ Test logDoseAddsTheDoseAndTheSavedDelayToTheModel() started.
+◇ Test aLoadedListSavesWhileReadsFail() started.
+◇ Test aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test aFailedLogLeavesTheModelAsItWas() started.
+◇ Test aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test aFailedDoseReadKeepsTheMedicationsAndTheNextWriteReadsFirst() started.
+◇ Test reloadReadsTheDosesWithTheMedications() started.
+◇ Test keepsAShortNoteAsTyped() started.
+◇ Test aWriteWhileTheListIsUnreadNeverReachesTheStore() started.
+◇ Test aFatigueEntryIgnoresItsPlaces() started.
+◇ Test aFailedReloadKeepsTheListAndTheNextWriteReadsFirst() started.
+◇ Test storedFieldsInitKeepsEveryFieldAndTheGivenID() started.
+◇ Test keepsTheDraftsFieldsAndTheGivenID() started.
+◇ Test loadsAnOlderNoteLongerThanTheLimitWhole() started.
+◇ Test encodesTheSixKeysWithTheKindAsItsRawValue() started.
+◇ Test omitsTheNoteKeyWhenThereIsNoNote() started.
+◇ Test theLimitCapsTheList() started.
+◇ Test aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() started.
+◇ Test leavesTheNoteOutWhenTheDraftHasNone() started.
+◇ Test aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() started.
+◇ Test recentEntriesComeNewestFirst() started.
+◇ Test storedFieldsInitDropsPlacesForFatigue() started.
+◇ Test theNewestOfEqualEntriesIsTheOneKept() started.
+◇ Test givesEachNewEntryItsOwnID() started.
+◇ Test keepsTheSameCharactersAsTheDraft() started.
+◇ Test aDifferentLevelIsADifferentRecentEntry() started.
+◇ Test keepsAMultiParagraphNoteExactlyAsTyped() started.
+◇ Test aDoseWriteWhileLockedNeverReachesTheStore() started.
+◇ Test entriesOnThreeDaysMakeThreeSectionsNewestFirst() started.
+◇ Test noEntriesGiveNoRecentEntries() started.
+◇ Test placesSavedInAnotherOrderAreTheSameRecentEntry() started.
+◇ Test aDifferentKindIsADifferentRecentEntry() started.
+◇ Test theSameInstantFallsOnAnotherDayInAnotherTimeZone() started.
+◇ Test leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() started.
+◇ Test aLogWithNoEntriesHasNoSections() started.
+◇ Test aPainEntryWithNoPlacesReadsAsNoPlace() started.
+◇ Test storedFieldsInitPutsKnownPlacesInCatalogOrderAndKeepsUnknownOnesLast() started.
+◇ Test theNoteAndTheTimeDoNotMakeEntriesDistinct() started.
+◇ Test aDayWithNoEntriesHasNoSection() started.
+◇ Test equalDatesGoToTheEntryLoggedLater() started.
+◇ Test entriesWithTheSameKindPlacesAndLevelCountOnce() started.
+◇ Test anEntryAt2359AndOneAt0001FallInDifferentSections() started.
+◇ Test yesterdayHoldsAcrossAClockChange() started.
+◇ Test anEntryFromYearsAgoStillGetsASection() started.
+◇ Test entriesFromEarlierDaysAreRecentToo() started.
+◇ Test aDateAfterTodaySitsOnTopUnderItsOwnDateHeader() started.
+◇ Test theLaterEntryIsFirstInsideADay() started.
+◇ Test roundTripsThroughCodable() started.
+◇ Test aSecondSaveAfterASuccessLogsNothing() started.
+◇ Test aFailedLogLeavesTheSaveOpenAndTheRetryLogsTheSameDose() started.
+◇ Test eachDelayIsStoredAsItsMinutes() started.
+◇ Test aDifferentPlaceSetIsADifferentRecentEntry() started.
+◇ Test anOpenedStoreIsNotOpenedAgain() started.
+◇ Test unknownPlaceIdsDoNotMakeEntriesDistinct() started.
+◇ Test storedFieldsInitKeepsANoteAsGiven() started.
+◇ Test theAfterMenuOffersOffThenTheFiveDelaysInOrder() started.
+◇ Test repeatsOfOneEntryDoNotUseUpTheLimit() started.
+◇ Test entriesInTheSameMinuteListTheLaterSavedFirst() started.
+◇ Test anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceSavesTheWholeListOnce(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceSavesTheWholeListOnce(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceKeepsThePlace(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceKeepsThePlace(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test searchIgnoresCaseAndSpaces() started.
+◇ Test searchIgnoresAccents() started.
+◇ Test theQueryHeadFindsTheHeadGroup() started.
+◇ Test resultsKeepCatalogOrderAndHoldEachJointOnce() started.
+◇ Test aJointNameFindsThatJoint() started.
+◇ Test anEmptyQueryListsEveryJointInCatalogOrder() started.
+◇ Test case passing 1 argument kind → .swiftData to removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test aGroupNameListsTheWholeGroup() started.
+◇ Test aQueryWithNoMatchFindsNothing() started.
+◇ Test decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+◇ Test fractionRoundsToTheNearestLevel() started.
+◇ Test startLevelIsTheLevelOfTheOnlySavedEntry() started.
+◇ Test case passing 1 argument kind → .inMemory to replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test fractionHalfwayBetweenTwoLevelsRoundsUp() started.
+◇ Test acceptsScoresFromZeroToTen(value:) started.
+◇ Test fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test fractionThatIsNotANumberGivesZero() started.
+◇ Test encodesAsABareNumber() started.
+◇ Test fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test theSpokenLabelReadsTimeTitleKindAndPainWas() started.
+◇ Test rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test aCheckedInDoseReadsThePainBeforeAndAfter() started.
+◇ Test startLevelIsTheLastSavedEntryEvenWhenItIsDatedEarlier() started.
+◇ Test rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test decodesABareNumber() started.
+◇ Test aDoseOfAMedicationNotInTheListReadsAnEmptyTitle() started.
+◇ Test theSpokenLabelOfACheckedInDoseReadsBeforeAndAfter() started.
+◇ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() started.
+◇ Test unreadableFileIsKept() started.
+◇ Test aDoseBeforeCheckInReadsThePainWas() started.
+◇ Test case passing 1 argument kind → .swiftData to replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test aMedicationWithoutAStrengthReadsAsItsBareName() started.
+◇ Test theTitleIsTheDosesOwnMedicationNameAndStrength() started.
+◇ Test savedFileStaysInBackup() started.
+◇ Test missingFileReadsAsNoEntries() started.
+◇ Test errorTextNeverCarriesEntryContent() started.
+◇ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() started.
+◇ Test failedSaveLeavesTheEarlierFileWhole() started.
+◇ Test case passing 1 argument kind → .inMemory to removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test newerVersionFileIsLeftAsItWas() started.
+◇ Test acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test startLevelIsZeroWhenNothingWasSaved() started.
+◇ Test case passing 3 arguments identifier → "en_US", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test loadThrowsUnreadableForBytesItCannotDecode() started.
+◇ Test case passing 3 arguments identifier → "en_GB", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "en_US", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "ru_RU", lowercase → "суббота", capitalised → "Суббота" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test aSavedMedicationKeepsHowItIsTakenAndItsCheckIn() started.
+◇ Test case passing 3 arguments identifier → "ru_RU", lowercase → "суббота", capitalised → "Суббота" to onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() started.
+◇ Test case passing 3 arguments identifier → "en_DE", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test clearingTheStrengthRemovesIt() started.
+◇ Test applyingADraftKeepsTheIdCreatedTimeAndArchivedTime() started.
+◇ Test aNewDraftIsTakenAsNeededWithNoCheckIn() started.
+◇ Test aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() started.
+◇ Test aNewDraftHasNoNameAndIsNotSavable() started.
+◇ Test aBlankNameIsNotSavable(name:) started.
+◇ Test aNameInAnotherScriptWithAnEmojiIsSavedAsTyped() started.
+◇ Test applyingADraftChangesTheEditableFieldsAndMovesTheUpdatedTime() started.
+◇ Test aNameIsSavedTrimmed() started.
+◇ Test aNameWithTextIsSavable() started.
+◇ Test aDraftOfAMedicationCopiesEveryEditableField() started.
+◇ Test aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test aStrengthIsSavedTrimmed() started.
+◇ Test case passing 1 argument kind → .inMemory to anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test case passing 1 argument character → "é" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument character → "é" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument character → "👍🏽" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument character → "👨‍👩‍👧" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument write → .add to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .archive to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .update to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .restore to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+✔ Test offersPainStiffnessAndFatigueInThatOrder() passed after 0.112 seconds.
+◇ Test case passing 1 argument write → .archive to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .add to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .update to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .restore to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument limit → 0 to aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test case passing 1 argument limit → -1 to aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test case passing 1 argument note → " " to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "
+" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "  
+ 
+  " to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "
+" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "	" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+✔ Test encodesAsItsRawValue() passed after 0.115 seconds.
+◇ Test case passing 1 argument kind → .swiftData to anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+✔ Test aDoseAtTheSameTimeAsAnEntryListsFirst() passed after 0.115 seconds.
+✔ Test aDoseSecondsAfterAnEntryInTheSameMinuteListsFirst() passed after 0.115 seconds.
+✔ Test countsTheDayInTheGivenCalendar() passed after 0.115 seconds.
+✔ Test aPairWithBothSidesCountsTwoPlaces() passed after 0.115 seconds.
+✔ Test doseAndEntriesOfTheDayListNewestFirst() passed after 0.115 seconds.
+✔ Test togglingASelectedPlaceOffKeepsTheRestInCatalogOrder() passed after 0.115 seconds.
+✔ Test listsTheLaterStoredDoseFirstWhenTimesMatch() passed after 0.116 seconds.
+✔ Test draftFromAnEntryHoldsItsPlaces() passed after 0.115 seconds.
+✔ Test togglingAPlaceAddsItAndTogglingAgainRemovesIt() passed after 0.115 seconds.
+✔ Test aDraftWithAChangedPlaceIsNotEqualToTheStartDraft() passed after 0.115 seconds.
+✔ Test anEntrySecondsAfterADoseInTheSameMinuteListsFirst() passed after 0.116 seconds.
+✔ Test draftFromAnEntryWithNoPlacesHasNone() passed after 0.115 seconds.
+✔ Test aNewDraftHasNoPlaces() passed after 0.115 seconds.
+✔ Test listsOnlyTheEntriesOnThatDay() passed after 0.116 seconds.
+✔ Test listsTheLaterSavedFirstWhenDatesMatch() passed after 0.116 seconds.
+✔ Test ordersByDateNotBySaveOrder() passed after 0.116 seconds.
+✔ Test applyingARecentEntryKeepsItsPlacesInCatalogOrder() passed after 0.116 seconds.
+✔ Test assigningPlacesDirectlyPutsThemInCatalogOrder() passed after 0.115 seconds.
+✔ Test anEntrySavedFromADirectlyAssignedDraftHasItsPlacesInCatalogOrder() passed after 0.116 seconds.
+✔ Test returnsNothingWhenNoEntryIsOnThatDay() passed after 0.116 seconds.
+✔ Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces() passed after 0.115 seconds.
+✔ Test applyingARecentEntryCopiesKindLevelAndPlaces() passed after 0.116 seconds.
+✔ Test assigningAListAlreadyInCatalogOrderReadsTheSameList() passed after 0.116 seconds.
+✔ Test theCatalogHoldsAllFourRussianPluralForms() passed after 0.115 seconds.
+✔ Test aMissingFileGivesNoPinsAndNoLastChips() passed after 0.116 seconds.
+✔ Test applyingAFatigueEntryClearsThePlaces() passed after 0.115 seconds.
+✔ Test applyingARecentEntryKeepsTheDateAndTheNote() passed after 0.116 seconds.
+✔ Test aFileOfAnotherVersionGivesNoPinsAndNoLastChips() passed after 0.116 seconds.
+✔ Test aNewStoreOnTheSameFileSeesWhatWasSaved() passed after 0.116 seconds.
+✔ Test anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() passed after 0.116 seconds.
+✔ Test leavesOutDosesOfOtherDays() passed after 0.115 seconds.
+✔ Test assigningAnEmptyListClearsThePlaces() passed after 0.115 seconds.
+✔ Test noAwaitingKeyHasARussianValueYet() passed after 0.115 seconds.
+✔ Test everyKeyOfTheCatalogHasARussianValue() passed after 0.115 seconds.
+✔ Test theDoneButtonHoldsAllFourRussianPluralForms() passed after 0.115 seconds.
+✔ Test everyDefaultChipIsInTheCatalog() passed after 0.115 seconds.
+✔ Test anUnknownIdIsKeptButNotCounted() passed after 0.115 seconds.
+✔ Test theCountOfPlacesHoldsAllFourRussianPluralForms() passed after 0.115 seconds.
+✔ Test theIdsTheTicketNamesAreExact() passed after 0.115 seconds.
+✔ Test aPlaceLooksUpItsJointAndSide() passed after 0.115 seconds.
+✔ Test placesAreKeptInCatalogOrderWhateverOrderTheyWerePicked() passed after 0.115 seconds.
+✔ Test everyApprovedTextReadsAsTheStakeholderWroteIt() passed after 0.115 seconds.
+✔ Test noTextOutsideTheApprovedListHasARussianValue() passed after 0.115 seconds.
+✔ Test anUnknownIdHasNoJointAndNoSide() passed after 0.115 seconds.
+✔ Test twoAndTwentyTwoPlacesTakeTheFewForm() passed after 0.116 seconds.
+✔ Test englishReadsAsBefore() passed after 0.115 seconds.
+✔ Test twoAndTwentyTwoLeftTakeTheFewForm() passed after 0.116 seconds.
+✔ Test theSeverityTextReadsFourFromTenInBothKeys() passed after 0.116 seconds.
+✔ Test fiveAndTheTeensPlacesTakeTheManyForm() passed after 0.116 seconds.
+✔ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() passed after 0.115 seconds.
+✔ Test placeIdsAreUnique() passed after 0.115 seconds.
+✔ Test fiveAndTheTeensLeftTakeTheManyForm() passed after 0.116 seconds.
+✔ Test aDateInTheSameYearLeavesTheYearOut() passed after 0.115 seconds.
+✔ Test todayAndYesterdayHaveNoDateText() passed after 0.115 seconds.
+✔ Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack() passed after 0.115 seconds.
+✔ Test theCountOfPlacesTakesTheRussianPluralForms() passed after 0.116 seconds.
+✔ Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds() passed after 0.115 seconds.
+✔ Test aVersionOneFileWithoutPlacesStillLoads() passed after 0.115 seconds.
+✔ Test pinsAndLastChipsReloadFromTheFile() passed after 0.116 seconds.
+✔ Test everyApprovedRussianValueIsMarkedTranslated() passed after 0.115 seconds.
+✔ Test pairedJointsGetALeftAndARightId() passed after 0.115 seconds.
+✔ Test theJoiningFormatsReadTheSameInRussian() passed after 0.116 seconds.
+✔ Test theCatalogListsExactlyTheTwentyEightIds() passed after 0.115 seconds.
+✔ Test aRepeatedChangeAfterAFailedSaveWritesEverything() passed after 0.115 seconds.
+✔ Test picksOfDifferentPlacesAreNotAdded() passed after 0.115 seconds.
+✔ Test theThirdPickOfOnePlaceMakesTheTipReady() passed after 0.115 seconds.
+✔ Test aFailedSaveStillKeepsThePinForThisSession() passed after 0.115 seconds.
+✔ Test theFileVersionStaysOne() passed after 0.115 seconds.
+✔ Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain() passed after 0.115 seconds.
+✔ Test theFileHoldsAVersionVisitsAndPicks() passed after 0.115 seconds.
+✔ Test aDraftFromARecentEntryHasTheGivenDateAndNoNote() passed after 0.115 seconds.
+✔ Test theFiveGroupsHoldTwoOrFourJointsEach() passed after 0.115 seconds.
+✔ Test theLogStartsWithWhatTheStoreHolds() passed after 0.115 seconds.
+✔ Test anOlderDateHeaderHasTheWeekdayCapitalisedAndTheDayAndMonth() passed after 0.115 seconds.
+✔ Test singleJointsUseTheirStemAsTheId() passed after 0.115 seconds.
+✔ Test aPlaceIdEncodesAsAPlainString() passed after 0.115 seconds.
+✔ Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave() passed after 0.115 seconds.
+✔ Test aRussianWeekdayIsCapitalisedAndTheMonthIsNot() passed after 0.115 seconds.
+✔ Test aDateInAnotherYearIncludesTheYear() passed after 0.115 seconds.
+✔ Test aSameYearDateReadsLikeTheTodayLineWithTheWeekdayCapitalised() passed after 0.115 seconds.
+✔ Test theNextSaveAfterAFailureWritesEverything() passed after 0.115 seconds.
+✔ Test aMissingFileGivesAnEmptyProgress() passed after 0.115 seconds.
+✔ Test eachChangeIsSavedAsItHappens() passed after 0.115 seconds.
+✔ Test aPickThatClearsAPlaceIsNotCounted() passed after 0.115 seconds.
+✔ Test noActiveMedicationGivesNoSelection() passed after 0.115 seconds.
+✔ Test draftFromAnEntryIsNotChangedUntilAFieldChanges() passed after 0.115 seconds.
+✔ Test theThirdVisitMakesTheTipReady() passed after 0.115 seconds.
+✔ Test draftFromAnEntryHoldsKindTimeLevelAndNote() passed after 0.115 seconds.
+✔ Test visitsSurviveAReload() passed after 0.115 seconds.
+✔ Test aSelectionNoLongerActiveFallsToTheFirstActiveRow() passed after 0.115 seconds.
+✔ Test draftFromAnEntryCutsANoteOverTheLimit() passed after 0.115 seconds.
+✔ Test theYearFormCapitalisesOnlyTheWeekday() passed after 0.116 seconds.
+✔ Test noSelectionFallsToTheFirstActiveRow() passed after 0.115 seconds.
+✔ Test aDateHeaderFollowsThePhonesOrderAndLanguage() passed after 0.116 seconds.
+✔ Test aSelectedActiveMedicationStaysSelected() passed after 0.114 seconds.
+✔ Test aPinFromTheActionOrAMenuGivesASelectionTap() passed after 0.114 seconds.
+✔ Test draftFromAnEntryWithNoNoteHasAnEmptyNote() passed after 0.115 seconds.
+✔ Test twoPairsAreTwoNames() passed after 0.114 seconds.
+✔ Test leftAndRightOfDifferentJointsDoNotPair() passed after 0.114 seconds.
+✔ Test theFullListKeepsEveryPlace() passed after 0.114 seconds.
+✔ Test openingAMenuGivesNoFeedback() passed after 0.114 seconds.
+◇ Test case passing 1 argument json → "11" to decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+◇ Test case passing 1 argument json → "-1" to decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+✔ Test fourNamesShowTwoAndCountTwo() passed after 0.115 seconds.
+◇ Test case passing 1 argument value → 0 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument fraction → 0.0 to fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test case passing 1 argument fraction → -0.5 to fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test case passing 1 argument value → 10 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument fraction → -inf to fractionAtOrBelowZeroGivesZero(fraction:) started.
+✔ Test oneSideOfAPairStaysThatPlace() passed after 0.115 seconds.
+◇ Test case passing 1 argument fraction → 1.0 to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument value → 4 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument fraction → 1.2 to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument fraction → inf to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument value → -1 to rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 11 to rejectsScoresOutsideZeroToTen(value:) started.
+✔ Test onlyTheWeekdayIsCapitalisedInEnglishAndTheOrderStays() passed after 0.116 seconds.
+◇ Test case passing 1 argument value → -1.0 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 11.0 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 4.5 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → nan to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+✔ Test placesSurviveAReloadFromTheFile() passed after 0.117 seconds.
+◇ Test case passing 1 argument value → inf to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+✔ Test stiffnessShowsItsKind() passed after 0.115 seconds.
+✔ Test twoVisitsAreNotEnough() passed after 0.117 seconds.
+✔ Test fatigueShowsItsKindAndNoPlaces() passed after 0.115 seconds.
+✔ Test twoNamesShowWithNoCount() passed after 0.125 seconds.
+◇ Test case passing 1 argument value → 0.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 4.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 10.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+✔ Test aRefusedPinGivesAWarning() passed after 0.125 seconds.
+✔ Test aPinFromTheSwipeGivesNoTapOfTheAppsOwn() passed after 0.125 seconds.
+✔ Test aPairCountsAsOneName() passed after 0.128 seconds.
+✔ Test thePairStandsWhereItsFirstSideStood() passed after 0.129 seconds.
+✔ Test onlyTheWeekdayChanges(identifier:lowercase:capitalised:) with 4 test cases passed after 0.128 seconds.
+✔ Test onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) with 2 test cases passed after 0.128 seconds.
+✔ Test russianWeekdayIsCapitalisedAndTheMonthKeepsItsCase() passed after 0.128 seconds.
+✔ Test aPainEntryWithNoPlaceReadsNoPlace() passed after 0.128 seconds.
+✔ Test threeNamesShowTwoAndCountOne() passed after 0.129 seconds.
+✔ Test aPickedPlaceWithAChipIsNotInTheValue() passed after 0.128 seconds.
+✔ Test anUnknownIdIsNotInTheValue() passed after 0.128 seconds.
+✔ Test twoPlacesOutsideTheChipsAreBothListed() passed after 0.128 seconds.
+✔ Test aStiffnessEntryWithNoPlaceReadsNoPlace() passed after 0.129 seconds.
+✔ Test painShowsNoKind() passed after 0.129 seconds.
+✔ Test morePlacesCountsEveryPlaceAfterTheFirstTwo() passed after 0.128 seconds.
+◇ Test case passing 1 argument name → "" to aBlankNameIsNotSavable(name:) started.
+◇ Test case passing 1 argument name → "   " to aBlankNameIsNotSavable(name:) started.
+✔ Test bothSidesOfAPairReadAsThePair() passed after 0.129 seconds.
+◇ Test case passing 1 argument name → "
+	 " to aBlankNameIsNotSavable(name:) started.
+✔ Test noPlaceOutsideTheChipsIsNone() passed after 0.129 seconds.
+✔ Test placesOutsideTheChipsFollowBodyOrder() passed after 0.129 seconds.
+✔ Test aSixthPinIsRefusedAndChangesNothing() passed after 0.128 seconds.
+✔ Test onePlaceOutsideTheChipsIsListed() passed after 0.129 seconds.
+✔ Test unpinningRemovesOnlyThatPlace() passed after 0.129 seconds.
+◇ Test case passing 1 argument strength → "" to aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument strength → "   " to aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument strength → "	" to aBlankStrengthIsSavedAsNone(strength:) started.
+✔ Test pinningAllPinsARepeatedPlaceOnce() passed after 0.129 seconds.
+✔ Test pinningAllOfAlreadyPinnedPlacesChangesNothing() passed after 0.129 seconds.
+✔ Test pinningAllSkipsPlacesThatAreAlreadyPinned() passed after 0.129 seconds.
+✔ Test aFatigueEntryAddsNothingToTheCounts() passed after 0.129 seconds.
+✔ Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces() passed after 0.129 seconds.
+✔ Test aNewUserWithOneEntryGetsTheFivePresets() passed after 0.129 seconds.
+✔ Test threePlacesShowTwoNamesAndOneMore() passed after 0.129 seconds.
+✔ Test aTieGoesToThePlaceThatWasAChipLastTime() passed after 0.129 seconds.
+✔ Test aPlaceCountsOncePerEntry() passed after 0.128 seconds.
+✔ Test pinsShowInBodyOrderNotInPinOrder() passed after 0.129 seconds.
+✔ Test picksSurviveAReload() passed after 0.131 seconds.
+✔ Test pinningAllIsAllOrNothing() passed after 0.129 seconds.
+✔ Test pinningAllDropsPinnedPlacesBeforeCountingThem() passed after 0.128 seconds.
+✔ Test onlyTheLastTenEntriesWithAPlaceCount() passed after 0.129 seconds.
+✔ Test lastTimeBeatsTheMostRecentUseInATie() passed after 0.128 seconds.
+✔ Test pinningAPinnedPlaceChangesNothing() passed after 0.129 seconds.
+✔ Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder() passed after 0.128 seconds.
+✔ Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() passed after 0.128 seconds.
+✔ Test aStillTiedPairGoesToBodyOrder() passed after 0.128 seconds.
+✔ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() passed after 0.128 seconds.
+✔ Test theTopFiveByCountShowInBodyOrder() passed after 0.128 seconds.
+✔ Test pinsComeBeforeAPlaceUsedManyTimes() passed after 0.128 seconds.
+✔ Test theChipsShowInBodyOrder() passed after 0.128 seconds.
+✔ Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold() passed after 0.128 seconds.
+✔ Test noArchivedMedicationGivesAnEmptyList() passed after 0.128 seconds.
+✔ Test activeMedicationsAreLeftOutOfArchived() passed after 0.128 seconds.
+✔ Test aPinnedPlaceIsNotChosenAgainByTheUsageRule() passed after 0.128 seconds.
+✔ Test aPlaceThatWasAChipButHasOneUseIsNotKept() passed after 0.128 seconds.
+✔ Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() passed after 0.128 seconds.
+✔ Test activeMedicationsAreOrderedByCreatedTimeOldestFirst() passed after 0.128 seconds.
+✔ Test theSpokenTextOfAFatigueEntryHasNoPlace() passed after 0.128 seconds.
+✔ Test anUnreadableOrNewerFileGivesAnEmptyProgress() passed after 0.129 seconds.
+✔ Test aPlaceNeedsACountOfTwo() passed after 0.128 seconds.
+✔ Test theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() passed after 0.128 seconds.
+✔ Test leftAndRightCountSeparately() passed after 0.128 seconds.
+✔ Test anUnknownIdNeverBecomesAChip() passed after 0.128 seconds.
+✔ Test aChipWithNoPlaceReadsNoPlaceAndTheLevel() passed after 0.128 seconds.
+✔ Test aRestoredMedicationReturnsToItsCreatedPositionInTheActiveList() passed after 0.128 seconds.
+✔ Test theUsageRuleStillFillsTheCardAroundOnePin() passed after 0.128 seconds.
+✔ Test archivedMedicationsAreLeftOut() passed after 0.128 seconds.
+✔ Test aLongListChipReadsTwoNamesAndACount() passed after 0.128 seconds.
+✔ Test theSpokenPlacesJoinThePairAndThePlaceWithAnd() passed after 0.128 seconds.
+✔ Test anUnknownPinNeverBecomesAChip() passed after 0.129 seconds.
+✔ Test aPainChipHasNoKindPrefix() passed after 0.128 seconds.
+✔ Test aTieGoesToTheMostRecentUse() passed after 0.128 seconds.
+✔ Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() passed after 0.128 seconds.
+✔ Test noteCounterIsNilAtFortyCharactersLeft() passed after 0.128 seconds.
+✔ Test noteCounterIsNilWithNoNote() passed after 0.128 seconds.
+✔ Test aPairChipReadsTheStandInPluralName() passed after 0.128 seconds.
+✔ Test noteCounterCountsAnEmojiOnceAtTheLimit() passed after 0.128 seconds.
+✔ Test archivedMedicationsAreOrderedByArchivedTimeNewestFirst() passed after 0.128 seconds.
+✔ Test theResultAlwaysHasFivePlaces() passed after 0.129 seconds.
+✔ Test keepsANoteOfExactlyTheLimitWhole() passed after 0.128 seconds.
+✔ Test countsEachCharacterOnceSoNoneIsCutInHalf(character:) with 4 test cases passed after 0.128 seconds.
+✔ Test noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters() passed after 0.128 seconds.
+✔ Test theSpokenPlacesOfAFatigueEntrySayTheWholeBody() passed after 0.128 seconds.
+✔ Test noMedicationsGivesAnEmptyList() passed after 0.128 seconds.
+✔ Test aFatigueChipReadsKindAndLevel() passed after 0.128 seconds.
+✔ Test cutsANoteOneCharacterOverTheLimitBackToTheLimit() passed after 0.128 seconds.
+✔ Test theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() passed after 0.128 seconds.
+✔ Test noteCounterReadsThirtyNineLeftAtTwoHundredOneCharacters() passed after 0.128 seconds.
+✔ Test ifBothWereChipsLastTimeTheMostRecentUseWins() passed after 0.129 seconds.
+✔ Test keepsAWholeCharacterThatEndsOnTheLimit() passed after 0.128 seconds.
+✔ Test noteCounterIsLimitReachedAtTwoHundredFortyCharacters() passed after 0.128 seconds.
+✔ Test theSpokenPlacesOfOneNameStandAlone() passed after 0.128 seconds.
+✔ Test aFatigueEntryDropsThePlacesOfItsDraft() passed after 0.128 seconds.
+✔ Test aStiffnessEntryKeepsThePlacesOfItsDraft() passed after 0.128 seconds.
+✔ Test oneSideOfAPairReadsThatPlaceInTheChip() passed after 0.129 seconds.
+✔ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() passed after 0.128 seconds.
+✔ Test twoNamesJoinWithAndInEnglish() passed after 0.128 seconds.
+✔ Test theSpokenTextOfAStiffnessEntryStartsWithItsKind() passed after 0.128 seconds.
+✔ Test anEntryReadsAMissingPlacesKeyAsNoPlaces() passed after 0.128 seconds.
+✔ Test startsAsPainWithNoNote() passed after 0.128 seconds.
+✔ Test placesFollowCatalogOrderNotPickOrder() passed after 0.128 seconds.
+✔ Test aPainEntryKeepsThePlacesOfItsDraft() passed after 0.128 seconds.
+✔ Test anEntryFromADraftHoldsItsPlacesInCatalogOrder() passed after 0.128 seconds.
+✔ Test noNameSpeaksNothing() passed after 0.128 seconds.
+✔ Test unknownIdsAreLeftOutOfTheList() passed after 0.128 seconds.
+✔ Test anEntryReadsStoredPlacesInCatalogOrder() passed after 0.128 seconds.
+✔ Test aPainEntryListsItsPlaces() passed after 0.128 seconds.
+✔ Test onlyFatigueDoesNotAskWhere() passed after 0.128 seconds.
+✔ Test anEntryFromAnOldFileReadsAsNoPlace() passed after 0.128 seconds.
+✔ Test aFatigueEntryReadsAsWholeBody() passed after 0.128 seconds.
+✔ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() passed after 0.128 seconds.
+✔ Test twoNamesJoinWithAndInRussian() passed after 0.128 seconds.
+✔ Test bothKneesListLeftThenRight() passed after 0.128 seconds.
+✔ Test aStiffnessChipReadsKindPlacesLevel() passed after 0.128 seconds.
+✔ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() passed after 0.128 seconds.
+✔ Test storedFieldsInitKeepsEveryFieldAndTheGivenID() passed after 0.127 seconds.
+✔ Test keepsTheDraftsFieldsAndTheGivenID() passed after 0.127 seconds.
+✔ Test keepsAShortNoteAsTyped() passed after 0.128 seconds.
+✔ Test loadsAnOlderNoteLongerThanTheLimitWhole() passed after 0.128 seconds.
+✔ Test aFatigueEntryIgnoresItsPlaces() passed after 0.128 seconds.
+✔ Test noteCounterCountsAnAccentedLetterOnceNearTheLimit() passed after 0.129 seconds.
+✔ Test noteCounterReadsTenLeftAtTwoHundredThirtyCharacters() passed after 0.129 seconds.
+✔ Test aLimitOfZeroOrLessGivesNoRecentEntries(limit:) with 2 test cases passed after 0.128 seconds.
+✔ Test encodesTheSixKeysWithTheKindAsItsRawValue() passed after 0.128 seconds.
+✔ Test storedFieldsInitDropsPlacesForFatigue() passed after 0.127 seconds.
+✔ Test givesEachNewEntryItsOwnID() passed after 0.127 seconds.
+✔ Test leavesTheNoteOutWhenTheDraftHasNone() passed after 0.127 seconds.
+✔ Test keepsTheSameCharactersAsTheDraft() passed after 0.127 seconds.
+✔ Test omitsTheNoteKeyWhenThereIsNoNote() passed after 0.128 seconds.
+✔ Test noEntriesGiveNoRecentEntries() passed after 0.127 seconds.
+✔ Test keepsAMultiParagraphNoteExactlyAsTyped() passed after 0.127 seconds.
+✔ Test recentEntriesComeNewestFirst() passed after 0.128 seconds.
+✔ Test leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) with 5 test cases passed after 0.127 seconds.
+✔ Test aDifferentLevelIsADifferentRecentEntry() passed after 0.127 seconds.
+✔ Test aPainEntryWithNoPlacesReadsAsNoPlace() passed after 0.128 seconds.
+✔ Test placesSavedInAnotherOrderAreTheSameRecentEntry() passed after 0.127 seconds.
+✔ Test theLimitCapsTheList() passed after 0.128 seconds.
+✔ Test storedFieldsInitPutsKnownPlacesInCatalogOrderAndKeepsUnknownOnesLast() passed after 0.128 seconds.
+✔ Test theNewestOfEqualEntriesIsTheOneKept() passed after 0.128 seconds.
+✔ Test aDifferentKindIsADifferentRecentEntry() passed after 0.128 seconds.
+✔ Test entriesWithTheSameKindPlacesAndLevelCountOnce() passed after 0.128 seconds.
+✔ Test equalDatesGoToTheEntryLoggedLater() passed after 0.128 seconds.
+✔ Test roundTripsThroughCodable() passed after 0.128 seconds.
+✔ Test aDifferentPlaceSetIsADifferentRecentEntry() passed after 0.128 seconds.
+✔ Test storedFieldsInitKeepsANoteAsGiven() passed after 0.128 seconds.
+✔ Test theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() passed after 0.130 seconds.
+✔ Test theAfterMenuOffersOffThenTheFiveDelaysInOrder() passed after 0.127 seconds.
+✔ Test oneNameStandsAlone() passed after 0.129 seconds.
+✔ Test entriesFromEarlierDaysAreRecentToo() passed after 0.128 seconds.
+✔ Test eachDelayIsStoredAsItsMinutes() passed after 0.128 seconds.
+✔ Test repeatsOfOneEntryDoNotUseUpTheLimit() passed after 0.128 seconds.
+✔ Test unknownPlaceIdsDoNotMakeEntriesDistinct() passed after 0.128 seconds.
+✔ Test theNoteAndTheTimeDoNotMakeEntriesDistinct() passed after 0.128 seconds.
+✔ Test noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom() passed after 0.128 seconds.
+✔ Test morePinsThanFiveKeepOnlyTheFirstFivePinned() passed after 0.128 seconds.
+✔ Test theQueryHeadFindsTheHeadGroup() passed after 0.035 seconds.
+✔ Test searchIgnoresCaseAndSpaces() passed after 0.035 seconds.
+✔ Test aJointNameFindsThatJoint() passed after 0.035 seconds.
+✔ Test anEmptyQueryListsEveryJointInCatalogOrder() passed after 0.035 seconds.
+✔ Test aGroupNameListsTheWholeGroup() passed after 0.035 seconds.
+✔ Test resultsKeepCatalogOrderAndHoldEachJointOnce() passed after 0.035 seconds.
+✔ Test fractionRoundsToTheNearestLevel() passed after 0.035 seconds.
+✔ Test searchIgnoresAccents() passed after 0.036 seconds.
+✔ Test startLevelIsTheLevelOfTheOnlySavedEntry() passed after 0.034 seconds.
+✔ Test fractionHalfwayBetweenTwoLevelsRoundsUp() passed after 0.034 seconds.
+✔ Test acceptsScoresFromZeroToTen(value:) with 3 test cases passed after 0.034 seconds.
+✔ Test fractionAtOrBelowZeroGivesZero(fraction:) with 3 test cases passed after 0.034 seconds.
+✔ Test fractionThatIsNotANumberGivesZero() passed after 0.034 seconds.
+✔ Test aQueryWithNoMatchFindsNothing() passed after 0.036 seconds.
+✔ Test fractionAtOrAboveOneGivesTen(fraction:) with 3 test cases passed after 0.034 seconds.
+✔ Test theSpokenLabelReadsTimeTitleKindAndPainWas() passed after 0.034 seconds.
+✔ Test decodingOutsideZeroToTenIsDataCorrupted(json:) with 2 test cases passed after 0.035 seconds.
+✔ Test rejectsScoresOutsideZeroToTen(value:) with 2 test cases passed after 0.034 seconds.
+✔ Test encodesAsABareNumber() passed after 0.034 seconds.
+✔ Test rejectsFractionsAndValuesOutsideZeroToTen(value:) with 5 test cases passed after 0.034 seconds.
+✔ Test aCheckedInDoseReadsThePainBeforeAndAfter() passed after 0.034 seconds.
+✔ Test startLevelIsTheLastSavedEntryEvenWhenItIsDatedEarlier() passed after 0.034 seconds.
+✔ Test theSpokenLabelOfACheckedInDoseReadsBeforeAndAfter() passed after 0.034 seconds.
+✔ Test aMedicationWithoutAStrengthReadsAsItsBareName() passed after 0.034 seconds.
+✔ Test theTitleIsTheDosesOwnMedicationNameAndStrength() passed after 0.034 seconds.
+✔ Test decodesABareNumber() passed after 0.034 seconds.
+✔ Test aDoseOfAMedicationNotInTheListReadsAnEmptyTitle() passed after 0.034 seconds.
+✔ Test aDoseBeforeCheckInReadsThePainWas() passed after 0.034 seconds.
+✔ Test oneAndTwentyOneLeftTakeTheSingularForm() passed after 0.135 seconds.
+✔ Test startLevelIsZeroWhenNothingWasSaved() passed after 0.033 seconds.
+✔ Test acceptsWholeNumbersFromZeroToTen(value:) with 3 test cases passed after 0.033 seconds.
+✔ Test newerVersionFileIsLeftAsItWas() passed after 0.033 seconds.
+✔ Test loadThrowsUnreadableForBytesItCannotDecode() passed after 0.034 seconds.
+✔ Test aSavedMedicationKeepsHowItIsTakenAndItsCheckIn() passed after 0.033 seconds.
+✔ Test aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() passed after 0.033 seconds.
+✔ Test clearingTheStrengthRemovesIt() passed after 0.033 seconds.
+✔ Test aNewDraftIsTakenAsNeededWithNoCheckIn() passed after 0.033 seconds.
+✔ Test aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() passed after 0.033 seconds.
+✔ Test aNewDraftHasNoNameAndIsNotSavable() passed after 0.033 seconds.
+✔ Test aBlankNameIsNotSavable(name:) with 3 test cases passed after 0.033 seconds.
+✔ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() passed after 0.034 seconds.
+✔ Test applyingADraftChangesTheEditableFieldsAndMovesTheUpdatedTime() passed after 0.032 seconds.
+✔ Test missingFileReadsAsNoEntries() passed after 0.034 seconds.
+✔ Test aNameIsSavedTrimmed() passed after 0.032 seconds.
+✔ Test aNameWithTextIsSavable() passed after 0.033 seconds.
+✔ Test failedSaveLeavesTheEarlierFileWhole() passed after 0.034 seconds.
+✔ Test aNameInAnotherScriptWithAnEmojiIsSavedAsTyped() passed after 0.033 seconds.
+✔ Test aBlankStrengthIsSavedAsNone(strength:) with 3 test cases passed after 0.033 seconds.
+✔ Test aStrengthIsSavedTrimmed() passed after 0.031 seconds.
+✔ Test applyingADraftKeepsTheIdCreatedTimeAndArchivedTime() passed after 0.033 seconds.
+✔ Test aDraftOfAMedicationCopiesEveryEditableField() passed after 0.032 seconds.
+✔ Test unreadableFileIsKept() passed after 0.035 seconds.
+✔ Suite EntryKindTests passed after 0.140 seconds.
+✔ Suite TodayListTests passed after 0.140 seconds.
+✔ Suite EntryDraftPlacesTests passed after 0.140 seconds.
+✔ Suite RecentEntryDraftTests passed after 0.140 seconds.
+✔ Suite FileShortcutsStoreTests passed after 0.140 seconds.
+✔ Suite PlaceCatalogTests passed after 0.140 seconds.
+✔ Suite DayHeaderTests passed after 0.140 seconds.
+✔ Suite EntryPlacesStoreTests passed after 0.140 seconds.
+✔ Suite ShortcutsLogTests passed after 0.140 seconds.
+✔ Suite MedicationSelectionTests passed after 0.140 seconds.
+✔ Suite EntryDraftFromEntryTests passed after 0.140 seconds.
+✔ Suite ShortcutFeedbackTests passed after 0.140 seconds.
+✔ Suite RecentEntryNamesTests passed after 0.140 seconds.
+✔ Suite MorePlacesValueTests passed after 0.140 seconds.
+✔ Suite ShortcutsTests passed after 0.140 seconds.
+✔ Suite MedicationOrderTests passed after 0.140 seconds.
+✔ Suite RecentEntryTextTests passed after 0.140 seconds.
+✔ Suite NoteCounterTests passed after 0.140 seconds.
+✔ Suite EntryDraftTests passed after 0.140 seconds.
+✔ Suite EntryPlacesTests passed after 0.140 seconds.
+✔ Suite SpokenListTests passed after 0.140 seconds.
+✔ Suite EntryTests passed after 0.140 seconds.
+✔ Suite RecentEntriesTests passed after 0.140 seconds.
+✔ Suite PlaceSearchTests passed after 0.140 seconds.
+✔ Suite DoseRowTextTests passed after 0.140 seconds.
+✔ Test savedFileStaysInBackup() passed after 0.036 seconds.
+✔ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() passed after 0.036 seconds.
+✔ Suite TipProgressTests passed after 0.141 seconds.
+✔ Test englishWeekdayIsCapitalisedAndTheRestIsLowercase() passed after 0.129 seconds.
+✔ Suite PlaceChipsTests passed after 0.141 seconds.
+✔ Suite PlaceSummaryTests passed after 0.140 seconds.
+✔ Suite MedicationDraftTests passed after 0.140 seconds.
+✔ Suite SeverityTests passed after 0.140 seconds.
+✔ Test errorTextNeverCarriesEntryContent() passed after 0.036 seconds.
+✔ Suite CheckInChoicesTests passed after 0.140 seconds.
+✔ Suite DayDateTextTests passed after 0.141 seconds.
+✔ Suite FileEntryStoreTests passed after 0.141 seconds.
+✔ Test oneAndTwentyOnePlacesTakeTheSingularForm() passed after 0.148 seconds.
+✔ Suite RussianCatalogTests passed after 0.153 seconds.
+CoreData: error: (26) Fatal error.  The database at /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store is corrupted.  SQLite error code:26, 'file is not a database'
+CoreData: error: Encountered exception Fatal error.  The database at /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store is corrupted.  SQLite error code:26, 'file is not a database' with userInfo {
+    NSFilePath = "/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store";
+    NSSQLiteErrorDomain = 26;
+} while checking table name from store: <NSSQLiteConnection: 0x85244c000>
+CoreData: error: addPersistentStoreWithType:configuration:URL:options:error: returned error NSSQLiteErrorDomain (26)
+CoreData: error: userInfo:
+CoreData: error: 	NSFilePath : /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store
+CoreData: error: 	NSSQLiteErrorDomain : 26
+CoreData: error: storeType: SQLite
+CoreData: error: configuration: default
+CoreData: error: URL: file:///var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store
+CoreData: annotation: options:
+CoreData: annotation: 	NSMigratePersistentStoresAutomaticallyOption : 1
+CoreData: annotation: 	NSInferMappingModelAutomaticallyOption : 1
+CoreData: annotation: 	NSPersistentStoreRemoteChangeNotificationOptionKey : 1
+CoreData: annotation: 	NSPersistentHistoryTrackingKey : 1
+CoreData: error: <NSPersistentStoreCoordinator: 0x852418780>: Attempting recovery from error encountered during addPersistentStore: 0x84fed5050 Error Domain=NSSQLiteErrorDomain Code=26 "(null)" UserInfo={NSFilePath=/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store, NSSQLiteErrorDomain=26}
+CoreData: error: Store failed to load.  <NSPersistentStoreDescription: 0x84fed5200> (type: SQLite, url: file:///var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store) with error = Error Domain=NSSQLiteErrorDomain Code=26 "(null)" UserInfo={NSFilePath=/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store, NSSQLiteErrorDomain=26} with userInfo {
+    NSFilePath = "/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/912FD7E3-5D3D-41B7-B00B-7434C58948F8/medications.store";
+    NSSQLiteErrorDomain = 26;
+}
+✔ Test reopenedStoreReadsBackEveryField() passed after 1.450 seconds.
+✔ Test restoreClearsTheArchivedTimeAndKeepsEveryOtherField() passed after 1.450 seconds.
+✔ Test aDamagedStoreFileFailsToOpenAndIsLeftAsItWas() passed after 1.450 seconds.
+✔ Test archiveSetsTheArchivedTimeAndChangesNoOtherField() passed after 1.450 seconds.
+✔ Test everyCheckInDelayReadsBackAfterReopen() passed after 1.473 seconds.
+✔ Test aRecordWithAnUnreadableLevelLoadsAsUnreadable() passed after 1.473 seconds.
+✔ Test failedArchiveLeavesTheMedicationActiveAndRetryArchivesIt() passed after 1.473 seconds.
+✔ Test failedUpdateLeavesTheMedicationAsItWasAndRetrySavesOneChange() passed after 1.474 seconds.
+✔ Test reopenedStoreReadsBackEveryField() passed after 1.473 seconds.
+✔ Test failedRestoreLeavesTheMedicationArchivedAndRetryRestoresIt() passed after 1.473 seconds.
+✔ Test storeHoldsNoMedicationBeforeTheFirstAdd() passed after 1.474 seconds.
+✔ Test aFailedWriteThrowsAnErrorThatNamesNoMedication() passed after 1.473 seconds.
+✔ Test replaceLeavesEveryOtherRecordAsItWas() passed after 1.473 seconds.
+✔ Test deletingTheNewestThenAddingKeepsTheNewOneLast() passed after 1.473 seconds.
+✔ Test inMemoryStoreRollsBackARefusedWriteToo() passed after 1.473 seconds.
+✔ Test restoreOfAnUnknownIdThrowsAndChangesNothing() passed after 1.474 seconds.
+✔ Test updateOfAnUnknownIdThrowsAndChangesNothing() passed after 1.473 seconds.
+✔ Test anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() passed after 1.473 seconds.
+✔ Test refusedRemoveLeavesTheSameStoreReadingAsItWas() passed after 1.473 seconds.
+✔ Test refusedReplaceLeavesTheSameStoreReadingAsItWas() passed after 1.474 seconds.
+✔ Test saveOrderSurvivesDatesThatRunBackwards() passed after 1.473 seconds.
+✔ Test aNewStoreAtANewURLReadsNoEntries() passed after 1.574 seconds.
+✔ Test refusedAddLeavesTheSameStoreReadingAsItWas() passed after 1.585 seconds.
+✔ Test failedWriteLeavesStoreAsItWasAndRetrySavesOneRecord() passed after 1.598 seconds.
+✔ Test failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() passed after 1.619 seconds.
+✔ Test logDoseSetsTheSavedDelayAndLeavesTheUpdatedTime() passed after 1.625 seconds.
+✔ Test doseForAnUnknownMedicationThrowsAndLeavesNoPendingRow() passed after 1.625 seconds.
+✔ Test reopenedStoreReadsBackEveryDoseField() passed after 1.631 seconds.
+✔ Test storeFileWrittenWithOnlyMedicationsOpensWithThemAndNoDoses() passed after 1.631 seconds.
+✔ Test failedWriteOfTheSameIdSavesOneRecord() passed after 1.631 seconds.
+✔ Test updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime() passed after 1.631 seconds.
+✔ Test aRecordWithAnUnreadableKindLoadsAsUnreadable() passed after 1.631 seconds.
+✔ Test anEntryEditedFromFatigueToPainStartsWithNoPlaces() passed after 1.631 seconds.
+✔ Test archiveOfAnUnknownIdThrowsAndChangesNothing() passed after 1.632 seconds.
+✔ Suite SwiftDataDoseTests passed after 1.633 seconds.
+✔ Test aReplacedEntryCarriesTheEditedPlaces() passed after 1.631 seconds.
+✔ Test editingAnEntryKeepsAnIdThisBuildDoesNotKnow() passed after 1.630 seconds.
+✔ Suite SwiftDataMedicationEditTests passed after 1.633 seconds.
+✔ Test aSecondAddOfAKnownIdLeavesOneRecord() passed after 1.630 seconds.
+✔ Suite SwiftDataMedicationStoreTests passed after 1.634 seconds.
+✔ Suite EditedPlacesTests passed after 1.633 seconds.
+✔ Suite SwiftDataEntryStoreTests passed after 1.634 seconds.
+✔ Test replaceKeepsThePlace(_:) with 2 test cases passed after 1.779 seconds.
+✔ Test removeOfAnUnknownIdWritesNothing(_:) with 2 test cases passed after 1.836 seconds.
+✔ Test addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) with 2 test cases passed after 1.837 seconds.
+✔ Test replaceOfAnUnknownIdThrowsNotSaved(_:) with 2 test cases passed after 1.837 seconds.
+✔ Suite EntryStoreContractTests passed after 1.842 seconds.
+✔ Test aFailedWriteLeavesTheSaveOpenAndTheRetryUsesTheSameId() passed after 1.892 seconds.
+✔ Test aSecondSaveAfterASuccessWritesNothing() passed after 1.892 seconds.
+✔ Suite MedicationSaveTests passed after 1.898 seconds.
+✔ Test startsEmptyWhenTheStoreCannotBeRead(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test addSavesTheWholeListWithTheEntryAppended(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test loadsTheStoredEntriesInSaveOrder(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test retryingAfterAFailedSaveAddsTheSameEntry(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test anotherEntryWithAKnownIDChangesNothing(_:) with 2 test cases passed after 1.923 seconds.
+✔ Test failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 1.945 seconds.
+✔ Test aRemovedEntryStaysGoneAfterAReloadFromTheFile() passed after 1.944 seconds.
+✔ Test aChangedLevelSurvivesAReloadFromTheFile() passed after 1.943 seconds.
+✔ Test logDoseAddsTheDoseAndTheSavedDelayToTheModel() passed after 1.943 seconds.
+✔ Test doseCallsForwardThroughTheOpenedStore() passed after 1.943 seconds.
+✔ Test aFailedLogLeavesTheModelAsItWas() passed after 1.943 seconds.
+✔ Test aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) with 4 test cases passed after 1.943 seconds.
+✔ Test aFailedDoseReadKeepsTheMedicationsAndTheNextWriteReadsFirst() passed after 1.943 seconds.
+✔ Test reloadReadsTheDosesWithTheMedications() passed after 1.943 seconds.
+✔ Test aFailedWriteLeavesTheListAsItWas(_:) with 4 test cases passed after 1.943 seconds.
+✔ Test aLoadedListSavesWhileReadsFail() passed after 1.943 seconds.
+✔ Test aWriteWhileTheListIsUnreadNeverReachesTheStore() passed after 1.943 seconds.
+✔ Test aFailedReloadKeepsTheListAndTheNextWriteReadsFirst() passed after 1.943 seconds.
+✔ Test aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() passed after 1.943 seconds.
+✔ Test aDoseWriteWhileLockedNeverReachesTheStore() passed after 1.943 seconds.
+✔ Suite EditedEntryReloadTests passed after 1.952 seconds.
+✔ Suite EntryLogTests passed after 1.952 seconds.
+✔ Test aFailedLogLeavesTheSaveOpenAndTheRetryLogsTheSameDose() passed after 1.942 seconds.
+✔ Test aSecondSaveAfterASuccessLogsNothing() passed after 1.942 seconds.
+✔ Suite MedicationsModelTests passed after 1.952 seconds.
+✔ Test anOpenedStoreIsNotOpenedAgain() passed after 1.942 seconds.
+✔ Suite DoseSaveTests passed after 1.952 seconds.
+✔ Test aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() passed after 1.965 seconds.
+✔ Test replaceSavesTheWholeListOnce(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test removeDropsTheEntryAndSavesTheList(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test removeOfAnUnknownIdSavesNothing(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 1.968 seconds.
+✔ Test entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) with 2 test cases passed after 1.966 seconds.
+✔ Test theSameInstantFallsOnAnotherDayInAnotherTimeZone() passed after 1.965 seconds.
+✔ Test aLogWithNoEntriesHasNoSections() passed after 1.965 seconds.
+✔ Test entriesOnThreeDaysMakeThreeSectionsNewestFirst() passed after 1.965 seconds.
+✔ Test aDayWithNoEntriesHasNoSection() passed after 1.964 seconds.
+✔ Test aDateAfterTodaySitsOnTopUnderItsOwnDateHeader() passed after 1.964 seconds.
+✔ Test yesterdayHoldsAcrossAClockChange() passed after 1.964 seconds.
+✔ Test anEntryAt2359AndOneAt0001FallInDifferentSections() passed after 1.964 seconds.
+✔ Test replaceThrowsMissingWhenNoEntryHasThatId(_:) with 2 test cases passed after 1.970 seconds.
+✔ Test theLaterEntryIsFirstInsideADay() passed after 1.964 seconds.
+✔ Test entriesInTheSameMinuteListTheLaterSavedFirst() passed after 1.964 seconds.
+✔ Test anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) with 2 test cases passed after 1.964 seconds.
+✔ Test anEntryFromYearsAgoStillGetsASection() passed after 1.964 seconds.
+✔ Suite BackdatedEntryTests passed after 1.974 seconds.
+✔ Suite DeferredMedicationStoreTests passed after 1.974 seconds.
+✔ Suite HistoryListTests passed after 1.974 seconds.
+✔ Suite EntryLogEditTests passed after 1.975 seconds.
+✔ Test run with 405 tests in 49 suites passed after 1.976 seconds.

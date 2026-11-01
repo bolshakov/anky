@@ -1,0 +1,4 @@
+$ sh -c 'scripts/ci/check-layers.sh && scripts/ci/check-privacy.sh'
+exit: 0
+commit: 466d3841dda5440fb2b32dec8beb4302dfa03fce
+

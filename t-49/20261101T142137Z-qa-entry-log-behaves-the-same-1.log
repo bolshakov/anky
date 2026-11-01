@@ -1,0 +1,2217 @@
+$ swift test --scratch-path .build
+exit: 0
+commit: 466d3841dda5440fb2b32dec8beb4302dfa03fce
+
+Building for debugging...
+[0/10] /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/.build/arm64-apple-macosx/debug/AnkyPackageTests.derived/runner.swift
+[0/10] Write sources
+[7/10] Write swift-version--58304C5D6DBC2206.txt
+[9/51] Compiling AnkyDomain FileEntryStore.swift
+[10/51] Compiling AnkyDomain HistoryList.swift
+[11/51] Compiling AnkyDomain Joint.swift
+[12/51] Compiling AnkyDomain LoggedItem.swift
+[13/51] Compiling AnkyDomain Medication.swift
+[14/51] Compiling AnkyDomain CheckInChoices.swift
+[15/51] Compiling AnkyDomain DayDateText.swift
+[16/51] Compiling AnkyDomain DayHeader.swift
+[17/51] Compiling AnkyDomain DaySection.swift
+[18/51] Compiling AnkyDomain DeferredMedicationStore.swift
+[19/51] Emitting module AnkyDomain
+[20/55] Compiling AnkyDomain MedicationDraft.swift
+[21/55] Compiling AnkyDomain MedicationOrder.swift
+[22/55] Compiling AnkyDomain MedicationSave.swift
+[23/55] Compiling AnkyDomain MedicationSelection.swift
+[24/55] Compiling AnkyDomain MedicationStore.swift
+[25/55] Compiling AnkyDomain MorePlacesValue.swift
+[26/55] Compiling AnkyDomain NoteCounter.swift
+[27/55] Compiling AnkyDomain PlaceCatalog.swift
+[28/55] Compiling AnkyDomain Dose.swift
+[29/55] Compiling AnkyDomain DoseRowText.swift
+[30/55] Compiling AnkyDomain DoseSave.swift
+[31/55] Compiling AnkyDomain Entry.swift
+[32/55] Compiling AnkyDomain EntryDraft+Recent.swift
+[33/55] Compiling AnkyDomain PlaceChips.swift
+[34/55] Compiling AnkyDomain PlaceID.swift
+[35/55] Compiling AnkyDomain PlaceSearch.swift
+[36/55] Compiling AnkyDomain PlaceSummary.swift
+[37/55] Compiling AnkyDomain RecentEntries.swift
+[38/55] Compiling AnkyDomain RecentEntry.swift
+[39/55] Compiling AnkyDomain RecentEntryText.swift
+[40/55] Compiling AnkyDomain Severity.swift
+[41/55] Compiling AnkyDomain ShortcutFeedback.swift
+[42/55] Compiling AnkyDomain Shortcuts.swift
+[43/55] Compiling AnkyDomain ShortcutsLog.swift
+[44/55] Compiling AnkyDomain ShortcutsStore.swift
+[45/55] Compiling AnkyDomain EntryDraft.swift
+[46/55] Compiling AnkyDomain EntryKind.swift
+[47/55] Compiling AnkyDomain EntryLog.swift
+[48/55] Compiling AnkyDomain EntryLogError.swift
+[49/55] Compiling AnkyDomain EntryStore.swift
+[50/55] Compiling AnkyDomain SpokenList.swift
+[51/55] Compiling AnkyDomain TipProgress.swift
+[52/55] Compiling AnkyDomain TipProgressStore.swift
+[53/55] Compiling AnkyDomain TodayList.swift
+[54/63] Compiling AnkyStore SwiftDataMedicationStore.swift
+[55/63] Compiling AnkyStore SwiftDataEntryStore.swift
+[56/63] Emitting module AnkyMedicationModel
+[57/63] Compiling AnkyMedicationModel MedicationsModel.swift
+[58/63] Compiling AnkyStore DoseRecord.swift
+[59/63] Compiling AnkyStore EntryRecord.swift
+[60/63] Emitting module AnkyStore
+[61/63] Compiling AnkyStore MedicationRecord.swift
+[62/113] Compiling AnkyDomainTests SpokenListTests.swift
+[63/113] Compiling AnkyDomainTests CompiledCatalog.swift
+[64/113] Compiling AnkyDomainTests FakeMedicationStore.swift
+[65/113] Compiling AnkyDomainTests InMemoryEntryStore.swift
+[66/117] Compiling AnkyStoreTests SwiftDataMedicationEditTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataMedicationEditTests.swift:81:27: warning: 'writesRefused' mutated after capture by sendable closure
+ 63 |         try withFolder { folder in
+ 64 |             let url = folder.appending(path: "medications.store")
+ 65 |             var writesRefused = false
+    |                 `- note: variable defined here
+ 66 |             let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+    |                                                                            `- note: variable captured by sendable closure
+ 67 |                 if writesRefused {
+    |                    `- note: capturing use
+ 68 |                     throw WriteRefused()
+ 69 |                 }
+    :
+ 79 |             #expect(try SwiftDataMedicationStore(url: url).all() == [original])
+ 80 | 
+ 81 |             writesRefused = false
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+ 82 |             try store.update(edited)
+ 83 |             #expect(try store.all() == [edited])
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataMedicationEditTests.swift:130:27: warning: 'writesRefused' mutated after capture by sendable closure
+114 |         try withFolder { folder in
+115 |             let url = folder.appending(path: "medications.store")
+116 |             var writesRefused = false
+    |                 `- note: variable defined here
+117 |             let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+    |                                                                            `- note: variable captured by sendable closure
+118 |                 if writesRefused {
+    |                    `- note: capturing use
+119 |                     throw WriteRefused()
+120 |                 }
+    :
+128 |             #expect(try SwiftDataMedicationStore(url: url).all() == [archived])
+129 | 
+130 |             writesRefused = false
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+131 |             try store.restore(id: archived.id)
+132 |             var restored = archived
+[67/117] Compiling AnkyStoreTests SwiftDataMedicationStoreTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataMedicationStoreTests.swift:95:27: warning: 'writesRefused' mutated after capture by sendable closure
+ 78 |         try withFolder { folder in
+ 79 |             let url = folder.appending(path: "medications.store")
+ 80 |             var writesRefused = false
+    |                 `- note: variable defined here
+ 81 |             let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+    |                                                                            `- note: variable captured by sendable closure
+ 82 |                 if writesRefused {
+    |                    `- note: capturing use
+ 83 |                     throw WriteRefused()
+ 84 |                 }
+    :
+ 93 |             #expect(try SwiftDataMedicationStore(url: url).all() == [existing])
+ 94 | 
+ 95 |             writesRefused = false
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+ 96 |             try store.add(pending)
+ 97 |             #expect(try store.all() == [existing, pending])
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataMedicationStoreTests.swift:112:27: warning: 'writesRefused' mutated after capture by sendable closure
+102 |     @Test func failedWriteOfTheSameIdSavesOneRecord() throws {
+103 |         try withFolder { folder in
+104 |             var writesRefused = true
+    |                 `- note: variable defined here
+105 |             let store = try SwiftDataMedicationStore(url: folder.appending(path: "medications.store"), beforeSave: {
+    |                                                                                                                    `- note: variable captured by sendable closure
+106 |                 if writesRefused {
+    |                    `- note: capturing use
+107 |                     throw WriteRefused()
+108 |                 }
+    :
+110 |             let medication = fullMedication()
+111 |             #expect(throws: MedicationStoreError.notSaved) { try store.add(medication) }
+112 |             writesRefused = false
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+113 |             try store.add(medication)
+114 |             #expect(try store.all() == [medication])
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataMedicationStoreTests.swift:168:27: warning: 'writesRefused' mutated after capture by sendable closure
+149 |         try withFolder { folder in
+150 |             let url = folder.appending(path: "medications.store")
+151 |             var writesRefused = false
+    |                 `- note: variable defined here
+152 |             let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+    |                                                                            `- note: variable captured by sendable closure
+153 |                 if writesRefused {
+    |                    `- note: capturing use
+154 |                     throw WriteRefused()
+155 |                 }
+    :
+166 |             #expect(try SwiftDataMedicationStore(url: url).all() == [active])
+167 | 
+168 |             writesRefused = false
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+169 |             try store.archive(id: active.id, at: date.addingTimeInterval(60))
+170 |             var archived = active
+[68/117] Compiling AnkyStoreTests SwiftDataDoseTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataDoseTests.swift:82:27: warning: 'writesRefused' mutated after capture by sendable closure
+ 71 |         try withFolder { folder in
+ 72 |             let url = folder.appending(path: "medications.store")
+ 73 |             var writesRefused = false
+    |                 `- note: variable defined here
+ 74 |             let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+    |                                                                            `- note: variable captured by sendable closure
+ 75 |                 if writesRefused {
+    |                    `- note: capturing use
+ 76 |                     throw WriteRefused()
+ 77 |                 }
+    :
+ 80 |             try store.add(zorblex)
+ 81 | 
+ 82 |             writesRefused = true
+    |                           `- warning: 'writesRefused' mutated after capture by sendable closure
+ 83 |             #expect(throws: MedicationStoreError.notSaved) { try store.logDose(fullDose(for: zorblex)) }
+ 84 |             #expect(try store.doses().isEmpty)
+[69/117] Emitting module AnkyStoreTests
+[70/117] Compiling AnkyStoreTests SwiftDataEntryStoreTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataEntryStoreTests.swift:97:21: warning: 'refuses' mutated after capture by sendable closure
+ 81 |     @Test func refusedAddLeavesTheSameStoreReadingAsItWas() throws {
+ 82 |         try withFolder { folder in
+ 83 |             var refuses = false
+    |                 `- note: variable defined here
+ 84 |             let store = try SwiftDataEntryStore(url: folder.appending(path: "entries.store")) {
+    |                                                                                               `- note: variable captured by sendable closure
+ 85 |                 if refuses {
+    |                    `- note: capturing use
+ 86 |                     throw WriteRefused()
+ 87 |                 }
+    :
+ 95 | 
+ 96 |             #expect(try store.load() == [kept])
+ 97 |             refuses = false
+    |                     `- warning: 'refuses' mutated after capture by sendable closure
+ 98 |             try store.add(refused)
+ 99 |             #expect(try store.load() == [kept, refused])
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataEntryStoreTests.swift:113:21: warning: 'refuses' mutated after capture by sendable closure
+103 |     @Test func refusedReplaceLeavesTheSameStoreReadingAsItWas() throws {
+104 |         try withFolder { folder in
+105 |             var refuses = false
+    |                 `- note: variable defined here
+106 |             let store = try SwiftDataEntryStore(url: folder.appending(path: "entries.store")) {
+    |                                                                                               `- note: variable captured by sendable closure
+107 |                 if refuses {
+    |                    `- note: capturing use
+108 |                     throw WriteRefused()
+109 |                 }
+    :
+111 |             let kept = try entry(severity: 2)
+112 |             try store.add(kept)
+113 |             refuses = true
+    |                     `- warning: 'refuses' mutated after capture by sendable closure
+114 | 
+115 |             #expect(throws: EntryStoreError.notSaved) { try store.replace(entry(id: kept.id, severity: 8)) }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataEntryStoreTests.swift:131:21: warning: 'refuses' mutated after capture by sendable closure
+121 |     @Test func refusedRemoveLeavesTheSameStoreReadingAsItWas() throws {
+122 |         try withFolder { folder in
+123 |             var refuses = false
+    |                 `- note: variable defined here
+124 |             let store = try SwiftDataEntryStore(url: folder.appending(path: "entries.store")) {
+    |                                                                                               `- note: variable captured by sendable closure
+125 |                 if refuses {
+    |                    `- note: capturing use
+126 |                     throw WriteRefused()
+127 |                 }
+    :
+129 |             let kept = try entry(severity: 2)
+130 |             try store.add(kept)
+131 |             refuses = true
+    |                     `- warning: 'refuses' mutated after capture by sendable closure
+132 | 
+133 |             #expect(throws: EntryStoreError.notSaved) { try store.remove(id: kept.id) }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyStoreTests/SwiftDataEntryStoreTests.swift:148:17: warning: 'refuses' mutated after capture by sendable closure
+138 | 
+139 |     @Test func inMemoryStoreRollsBackARefusedWriteToo() throws {
+140 |         var refuses = false
+    |             `- note: variable defined here
+141 |         let store = try SwiftDataEntryStore.inMemory {
+    |                                                      `- note: variable captured by sendable closure
+142 |             if refuses {
+    |                `- note: capturing use
+143 |                 throw WriteRefused()
+144 |             }
+    :
+146 |         let kept = try entry(severity: 2)
+147 |         try store.add(kept)
+148 |         refuses = true
+    |                 `- warning: 'refuses' mutated after capture by sendable closure
+149 | 
+150 |         #expect(throws: EntryStoreError.notSaved) { try store.add(entry(severity: 9)) }
+[71/117] Compiling AnkyDomainTests BackdatedEntryTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:27:16: warning: 'locked' mutated after capture by sendable closure
+15 |     @Test func aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() throws {
+16 |         let inner = FakeMedicationStore([medication("Zorblex")])
+17 |         var locked = true
+   |             `- note: variable defined here
+18 |         var attempts = 0
+19 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+20 |             attempts += 1
+21 |             if locked {
+   |                `- note: capturing use
+22 |                 throw Locked()
+23 |             }
+   :
+25 |         }
+26 |         #expect(throws: MedicationStoreError.unavailable) { try store.all() }
+27 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+28 |         #expect(try store.all().map(\.name) == ["Zorblex"])
+29 |         #expect(attempts == 2)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:57:16: warning: 'locked' mutated after capture by sendable closure
+44 |     @Test func aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() throws {
+45 |         let inner = FakeMedicationStore()
+46 |         var locked = true
+   |             `- note: variable defined here
+47 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+48 |             if locked {
+   |                `- note: capturing use
+49 |                 throw Locked()
+50 |             }
+   :
+55 |         }
+56 |         #expect(inner.addCalls.isEmpty)
+57 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+58 |         try store.add(medication("Fennimax"))
+59 |         #expect(inner.contents.map(\.name) == ["Fennimax"])
+[72/117] Compiling AnkyDomainTests CheckInChoicesTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:27:16: warning: 'locked' mutated after capture by sendable closure
+15 |     @Test func aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() throws {
+16 |         let inner = FakeMedicationStore([medication("Zorblex")])
+17 |         var locked = true
+   |             `- note: variable defined here
+18 |         var attempts = 0
+19 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+20 |             attempts += 1
+21 |             if locked {
+   |                `- note: capturing use
+22 |                 throw Locked()
+23 |             }
+   :
+25 |         }
+26 |         #expect(throws: MedicationStoreError.unavailable) { try store.all() }
+27 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+28 |         #expect(try store.all().map(\.name) == ["Zorblex"])
+29 |         #expect(attempts == 2)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:57:16: warning: 'locked' mutated after capture by sendable closure
+44 |     @Test func aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() throws {
+45 |         let inner = FakeMedicationStore()
+46 |         var locked = true
+   |             `- note: variable defined here
+47 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+48 |             if locked {
+   |                `- note: capturing use
+49 |                 throw Locked()
+50 |             }
+   :
+55 |         }
+56 |         #expect(inner.addCalls.isEmpty)
+57 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+58 |         try store.add(medication("Fennimax"))
+59 |         #expect(inner.contents.map(\.name) == ["Fennimax"])
+[73/117] Compiling AnkyDomainTests DayDateTextTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:27:16: warning: 'locked' mutated after capture by sendable closure
+15 |     @Test func aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() throws {
+16 |         let inner = FakeMedicationStore([medication("Zorblex")])
+17 |         var locked = true
+   |             `- note: variable defined here
+18 |         var attempts = 0
+19 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+20 |             attempts += 1
+21 |             if locked {
+   |                `- note: capturing use
+22 |                 throw Locked()
+23 |             }
+   :
+25 |         }
+26 |         #expect(throws: MedicationStoreError.unavailable) { try store.all() }
+27 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+28 |         #expect(try store.all().map(\.name) == ["Zorblex"])
+29 |         #expect(attempts == 2)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:57:16: warning: 'locked' mutated after capture by sendable closure
+44 |     @Test func aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() throws {
+45 |         let inner = FakeMedicationStore()
+46 |         var locked = true
+   |             `- note: variable defined here
+47 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+48 |             if locked {
+   |                `- note: capturing use
+49 |                 throw Locked()
+50 |             }
+   :
+55 |         }
+56 |         #expect(inner.addCalls.isEmpty)
+57 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+58 |         try store.add(medication("Fennimax"))
+59 |         #expect(inner.contents.map(\.name) == ["Fennimax"])
+[74/117] Compiling AnkyDomainTests DayHeaderTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:27:16: warning: 'locked' mutated after capture by sendable closure
+15 |     @Test func aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() throws {
+16 |         let inner = FakeMedicationStore([medication("Zorblex")])
+17 |         var locked = true
+   |             `- note: variable defined here
+18 |         var attempts = 0
+19 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+20 |             attempts += 1
+21 |             if locked {
+   |                `- note: capturing use
+22 |                 throw Locked()
+23 |             }
+   :
+25 |         }
+26 |         #expect(throws: MedicationStoreError.unavailable) { try store.all() }
+27 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+28 |         #expect(try store.all().map(\.name) == ["Zorblex"])
+29 |         #expect(attempts == 2)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:57:16: warning: 'locked' mutated after capture by sendable closure
+44 |     @Test func aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() throws {
+45 |         let inner = FakeMedicationStore()
+46 |         var locked = true
+   |             `- note: variable defined here
+47 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+48 |             if locked {
+   |                `- note: capturing use
+49 |                 throw Locked()
+50 |             }
+   :
+55 |         }
+56 |         #expect(inner.addCalls.isEmpty)
+57 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+58 |         try store.add(medication("Fennimax"))
+59 |         #expect(inner.contents.map(\.name) == ["Fennimax"])
+[75/117] Compiling AnkyDomainTests DeferredMedicationStoreTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:27:16: warning: 'locked' mutated after capture by sendable closure
+15 |     @Test func aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() throws {
+16 |         let inner = FakeMedicationStore([medication("Zorblex")])
+17 |         var locked = true
+   |             `- note: variable defined here
+18 |         var attempts = 0
+19 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+20 |             attempts += 1
+21 |             if locked {
+   |                `- note: capturing use
+22 |                 throw Locked()
+23 |             }
+   :
+25 |         }
+26 |         #expect(throws: MedicationStoreError.unavailable) { try store.all() }
+27 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+28 |         #expect(try store.all().map(\.name) == ["Zorblex"])
+29 |         #expect(attempts == 2)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/DeferredMedicationStoreTests.swift:57:16: warning: 'locked' mutated after capture by sendable closure
+44 |     @Test func aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() throws {
+45 |         let inner = FakeMedicationStore()
+46 |         var locked = true
+   |             `- note: variable defined here
+47 |         let store = DeferredMedicationStore {
+   |                                             `- note: variable captured by sendable closure
+48 |             if locked {
+   |                `- note: capturing use
+49 |                 throw Locked()
+50 |             }
+   :
+55 |         }
+56 |         #expect(inner.addCalls.isEmpty)
+57 |         locked = false
+   |                `- warning: 'locked' mutated after capture by sendable closure
+58 |         try store.add(medication("Fennimax"))
+59 |         #expect(inner.contents.map(\.name) == ["Fennimax"])
+[76/117] Compiling AnkyDomainTests DoseRowTextTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:30:21: warning: no calls to throwing functions occur within 'try' expression
+28 |     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
+29 |         let saved = try entry(places: [unknown])
+30 |         var draft = try EntryDraft(entry: saved)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+31 | 
+32 |         draft.togglePlace(lower)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:48:25: warning: no calls to throwing functions occur within 'try' expression
+46 |             try log.add(middle)
+47 |             try log.add(last)
+48 |             var draft = try EntryDraft(entry: middle)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+49 |             draft.togglePlace(lower)
+50 |             draft.togglePlace(siLeft)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:64:21: warning: no calls to throwing functions occur within 'try' expression
+62 |         fatigue.kind = .fatigue
+63 |         fatigue.togglePlace(lower)
+64 |         var draft = try EntryDraft(entry: Entry(draft: fatigue))
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+65 | 
+66 |         draft.kind = .pain
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:33:107: note: expanded code originates here
+31 |         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
+32 |         let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+33 |         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
+   |         `- note: in expansion of macro 'expect' here
+   +--- macro expansion #expect ----------------------------------------
+   |1 | Testing.__checkValue(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit),expression: .__fromSyntaxNode(#"try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit)"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+   |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+   +--------------------------------------------------------------------
+34 |     }
+35 | 
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+36 |     @Test func draftFromAnEntryIsNotChangedUntilAFieldChanges() throws {
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+39 |         let untouched = try EntryDraft(entry: source)
+40 |         #expect(draft == untouched)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:39:25: warning: no calls to throwing functions occur within 'try' expression
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+39 |         let untouched = try EntryDraft(entry: source)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+40 |         #expect(draft == untouched)
+41 | 
+[77/117] Compiling AnkyDomainTests DoseSaveTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:30:21: warning: no calls to throwing functions occur within 'try' expression
+28 |     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
+29 |         let saved = try entry(places: [unknown])
+30 |         var draft = try EntryDraft(entry: saved)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+31 | 
+32 |         draft.togglePlace(lower)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:48:25: warning: no calls to throwing functions occur within 'try' expression
+46 |             try log.add(middle)
+47 |             try log.add(last)
+48 |             var draft = try EntryDraft(entry: middle)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+49 |             draft.togglePlace(lower)
+50 |             draft.togglePlace(siLeft)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:64:21: warning: no calls to throwing functions occur within 'try' expression
+62 |         fatigue.kind = .fatigue
+63 |         fatigue.togglePlace(lower)
+64 |         var draft = try EntryDraft(entry: Entry(draft: fatigue))
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+65 | 
+66 |         draft.kind = .pain
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:33:107: note: expanded code originates here
+31 |         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
+32 |         let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+33 |         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
+   |         `- note: in expansion of macro 'expect' here
+   +--- macro expansion #expect ----------------------------------------
+   |1 | Testing.__checkValue(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit),expression: .__fromSyntaxNode(#"try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit)"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+   |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+   +--------------------------------------------------------------------
+34 |     }
+35 | 
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+36 |     @Test func draftFromAnEntryIsNotChangedUntilAFieldChanges() throws {
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+39 |         let untouched = try EntryDraft(entry: source)
+40 |         #expect(draft == untouched)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:39:25: warning: no calls to throwing functions occur within 'try' expression
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+39 |         let untouched = try EntryDraft(entry: source)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+40 |         #expect(draft == untouched)
+41 | 
+[78/117] Compiling AnkyDomainTests EditedEntryReloadTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:30:21: warning: no calls to throwing functions occur within 'try' expression
+28 |     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
+29 |         let saved = try entry(places: [unknown])
+30 |         var draft = try EntryDraft(entry: saved)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+31 | 
+32 |         draft.togglePlace(lower)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:48:25: warning: no calls to throwing functions occur within 'try' expression
+46 |             try log.add(middle)
+47 |             try log.add(last)
+48 |             var draft = try EntryDraft(entry: middle)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+49 |             draft.togglePlace(lower)
+50 |             draft.togglePlace(siLeft)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:64:21: warning: no calls to throwing functions occur within 'try' expression
+62 |         fatigue.kind = .fatigue
+63 |         fatigue.togglePlace(lower)
+64 |         var draft = try EntryDraft(entry: Entry(draft: fatigue))
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+65 | 
+66 |         draft.kind = .pain
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:33:107: note: expanded code originates here
+31 |         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
+32 |         let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+33 |         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
+   |         `- note: in expansion of macro 'expect' here
+   +--- macro expansion #expect ----------------------------------------
+   |1 | Testing.__checkValue(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit),expression: .__fromSyntaxNode(#"try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit)"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+   |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+   +--------------------------------------------------------------------
+34 |     }
+35 | 
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+36 |     @Test func draftFromAnEntryIsNotChangedUntilAFieldChanges() throws {
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+39 |         let untouched = try EntryDraft(entry: source)
+40 |         #expect(draft == untouched)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:39:25: warning: no calls to throwing functions occur within 'try' expression
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+39 |         let untouched = try EntryDraft(entry: source)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+40 |         #expect(draft == untouched)
+41 | 
+[79/117] Compiling AnkyDomainTests EditedPlacesTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:30:21: warning: no calls to throwing functions occur within 'try' expression
+28 |     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
+29 |         let saved = try entry(places: [unknown])
+30 |         var draft = try EntryDraft(entry: saved)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+31 | 
+32 |         draft.togglePlace(lower)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:48:25: warning: no calls to throwing functions occur within 'try' expression
+46 |             try log.add(middle)
+47 |             try log.add(last)
+48 |             var draft = try EntryDraft(entry: middle)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+49 |             draft.togglePlace(lower)
+50 |             draft.togglePlace(siLeft)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:64:21: warning: no calls to throwing functions occur within 'try' expression
+62 |         fatigue.kind = .fatigue
+63 |         fatigue.togglePlace(lower)
+64 |         var draft = try EntryDraft(entry: Entry(draft: fatigue))
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+65 | 
+66 |         draft.kind = .pain
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:33:107: note: expanded code originates here
+31 |         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
+32 |         let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+33 |         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
+   |         `- note: in expansion of macro 'expect' here
+   +--- macro expansion #expect ----------------------------------------
+   |1 | Testing.__checkValue(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit),expression: .__fromSyntaxNode(#"try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit)"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+   |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+   +--------------------------------------------------------------------
+34 |     }
+35 | 
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+36 |     @Test func draftFromAnEntryIsNotChangedUntilAFieldChanges() throws {
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+39 |         let untouched = try EntryDraft(entry: source)
+40 |         #expect(draft == untouched)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:39:25: warning: no calls to throwing functions occur within 'try' expression
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+39 |         let untouched = try EntryDraft(entry: source)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+40 |         #expect(draft == untouched)
+41 | 
+[80/117] Compiling AnkyDomainTests EntryDraftFromEntryTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:30:21: warning: no calls to throwing functions occur within 'try' expression
+28 |     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
+29 |         let saved = try entry(places: [unknown])
+30 |         var draft = try EntryDraft(entry: saved)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+31 | 
+32 |         draft.togglePlace(lower)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:48:25: warning: no calls to throwing functions occur within 'try' expression
+46 |             try log.add(middle)
+47 |             try log.add(last)
+48 |             var draft = try EntryDraft(entry: middle)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+49 |             draft.togglePlace(lower)
+50 |             draft.togglePlace(siLeft)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EditedPlacesTests.swift:64:21: warning: no calls to throwing functions occur within 'try' expression
+62 |         fatigue.kind = .fatigue
+63 |         fatigue.togglePlace(lower)
+64 |         var draft = try EntryDraft(entry: Entry(draft: fatigue))
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+65 | 
+66 |         draft.kind = .pain
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:33:107: note: expanded code originates here
+31 |         let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
+32 |         let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+33 |         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
+   |         `- note: in expansion of macro 'expect' here
+   +--- macro expansion #expect ----------------------------------------
+   |1 | Testing.__checkValue(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit),expression: .__fromSyntaxNode(#"try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit)"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+   |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+   +--------------------------------------------------------------------
+34 |     }
+35 | 
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:38:21: warning: no calls to throwing functions occur within 'try' expression
+36 |     @Test func draftFromAnEntryIsNotChangedUntilAFieldChanges() throws {
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+   |                     `- warning: no calls to throwing functions occur within 'try' expression
+39 |         let untouched = try EntryDraft(entry: source)
+40 |         #expect(draft == untouched)
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftFromEntryTests.swift:39:25: warning: no calls to throwing functions occur within 'try' expression
+37 |         let source = try entry(kind: .fatigue, severity: 4, note: "Walk note")
+38 |         var draft = try EntryDraft(entry: source)
+39 |         let untouched = try EntryDraft(entry: source)
+   |                         `- warning: no calls to throwing functions occur within 'try' expression
+40 |         #expect(draft == untouched)
+41 | 
+[81/117] Compiling AnkyDomainTests SaveFailure.swift
+[82/117] Compiling AnkyDomainTests StoreKind.swift
+[83/117] Compiling AnkyDomainTests TipProgressTests.swift
+[84/117] Compiling AnkyDomainTests TodayListTests.swift
+[85/117] Emitting module AnkyDomainTests
+[86/117] Compiling AnkyDomainTests EntryPlacesStoreTests.swift
+[87/117] Compiling AnkyDomainTests EntryPlacesTests.swift
+[88/117] Compiling AnkyDomainTests EntryStoreContractTests.swift
+[89/117] Compiling AnkyDomainTests EntryTests.swift
+[90/117] Compiling AnkyDomainTests FileEntryStoreTests.swift
+[91/117] Compiling AnkyDomainTests EntryDraftPlacesTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:76:20: warning: no calls to throwing functions occur within 'try' expression
+ 74 |         source.togglePlace(lower)
+ 75 |         source.togglePlace(siLeft)
+ 76 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 77 |         #expect(copy.places == [lower, siLeft])
+ 78 |     }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:83:20: warning: no calls to throwing functions occur within 'try' expression
+ 81 |         var source = try newDraft()
+ 82 |         source.kind = .pain
+ 83 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 84 |         #expect(copy.places.isEmpty)
+ 85 |     }
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:120:110: note: expanded code originates here
+118 |         var log = EntryLog(store: fixture.store)
+119 |         let today = try moment(day: 26, hour: 12)
+120 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id],expression: .__fromSyntaxNode(#"try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id]"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+121 | 
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:124:91: note: expanded code originates here
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+123 | 
+124 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty,expression: .__fromSyntaxNode("try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+125 |         #expect(log.entries.count == 1)
+126 |     }
+[92/117] Compiling AnkyDomainTests EntryDraftTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:76:20: warning: no calls to throwing functions occur within 'try' expression
+ 74 |         source.togglePlace(lower)
+ 75 |         source.togglePlace(siLeft)
+ 76 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 77 |         #expect(copy.places == [lower, siLeft])
+ 78 |     }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:83:20: warning: no calls to throwing functions occur within 'try' expression
+ 81 |         var source = try newDraft()
+ 82 |         source.kind = .pain
+ 83 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 84 |         #expect(copy.places.isEmpty)
+ 85 |     }
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:120:110: note: expanded code originates here
+118 |         var log = EntryLog(store: fixture.store)
+119 |         let today = try moment(day: 26, hour: 12)
+120 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id],expression: .__fromSyntaxNode(#"try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id]"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+121 | 
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:124:91: note: expanded code originates here
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+123 | 
+124 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty,expression: .__fromSyntaxNode("try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+125 |         #expect(log.entries.count == 1)
+126 |     }
+[93/117] Compiling AnkyDomainTests EntryKindTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:76:20: warning: no calls to throwing functions occur within 'try' expression
+ 74 |         source.togglePlace(lower)
+ 75 |         source.togglePlace(siLeft)
+ 76 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 77 |         #expect(copy.places == [lower, siLeft])
+ 78 |     }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:83:20: warning: no calls to throwing functions occur within 'try' expression
+ 81 |         var source = try newDraft()
+ 82 |         source.kind = .pain
+ 83 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 84 |         #expect(copy.places.isEmpty)
+ 85 |     }
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:120:110: note: expanded code originates here
+118 |         var log = EntryLog(store: fixture.store)
+119 |         let today = try moment(day: 26, hour: 12)
+120 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id],expression: .__fromSyntaxNode(#"try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id]"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+121 | 
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:124:91: note: expanded code originates here
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+123 | 
+124 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty,expression: .__fromSyntaxNode("try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+125 |         #expect(log.entries.count == 1)
+126 |     }
+[94/117] Compiling AnkyDomainTests EntryLogEditTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:76:20: warning: no calls to throwing functions occur within 'try' expression
+ 74 |         source.togglePlace(lower)
+ 75 |         source.togglePlace(siLeft)
+ 76 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 77 |         #expect(copy.places == [lower, siLeft])
+ 78 |     }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:83:20: warning: no calls to throwing functions occur within 'try' expression
+ 81 |         var source = try newDraft()
+ 82 |         source.kind = .pain
+ 83 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 84 |         #expect(copy.places.isEmpty)
+ 85 |     }
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:120:110: note: expanded code originates here
+118 |         var log = EntryLog(store: fixture.store)
+119 |         let today = try moment(day: 26, hour: 12)
+120 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id],expression: .__fromSyntaxNode(#"try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id]"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+121 | 
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:124:91: note: expanded code originates here
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+123 | 
+124 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty,expression: .__fromSyntaxNode("try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+125 |         #expect(log.entries.count == 1)
+126 |     }
+[95/117] Compiling AnkyDomainTests EntryLogTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:76:20: warning: no calls to throwing functions occur within 'try' expression
+ 74 |         source.togglePlace(lower)
+ 75 |         source.togglePlace(siLeft)
+ 76 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 77 |         #expect(copy.places == [lower, siLeft])
+ 78 |     }
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryDraftPlacesTests.swift:83:20: warning: no calls to throwing functions occur within 'try' expression
+ 81 |         var source = try newDraft()
+ 82 |         source.kind = .pain
+ 83 |         let copy = try EntryDraft(entry: Entry(draft: source))
+    |                    `- warning: no calls to throwing functions occur within 'try' expression
+ 84 |         #expect(copy.places.isEmpty)
+ 85 |     }
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:120:110: note: expanded code originates here
+118 |         var log = EntryLog(store: fixture.store)
+119 |         let today = try moment(day: 26, hour: 12)
+120 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id],expression: .__fromSyntaxNode(#"try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id]"#),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+121 | 
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/EntryLogEditTests.swift:124:91: note: expanded code originates here
+122 |         try log.replace(entry(id: original.id, at: moment(day: 25, hour: 23, minute: 50)))
+123 | 
+124 |         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty,expression: .__fromSyntaxNode("try TodayList.entries(log.entries, on: today, calendar: calendar).isEmpty"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+125 |         #expect(log.entries.count == 1)
+126 |     }
+[96/117] Compiling AnkyDomainTests HistoryListTests.swift
+[97/117] Compiling AnkyDomainTests MedicationDraftTests.swift
+[98/117] Compiling AnkyDomainTests MedicationOrderTests.swift
+[99/117] Compiling AnkyDomainTests MedicationSaveTests.swift
+[100/117] Compiling AnkyDomainTests MedicationSelectionTests.swift
+[101/117] Compiling AnkyDomainTests RecentEntryTextTests.swift
+[102/117] Compiling AnkyDomainTests RussianCatalogTests.swift
+[103/117] Compiling AnkyDomainTests SeverityTests.swift
+[104/117] Compiling AnkyDomainTests ShortcutFeedbackTests.swift
+[105/117] Compiling AnkyDomainTests ShortcutsTests.swift
+[106/117] Compiling AnkyDomainTests PlaceSearchTests.swift
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:87:82: note: expanded code originates here
+ 85 |         let entries = try [entry(at: 1, ["neck"]), entry(at: 3, ["lower"]), entry(at: 2, ["hip_l"])]
+ 86 |         let expected = try [recent(["lower"]), recent(["hip_l"]), recent(["neck"])]
+ 87 |         #expect(try RecentEntries.distinct(from: entries, limit: 10) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 10) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 10) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+ 88 |     }
+ 89 | 
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:109:81: note: expanded code originates here
+107 |         }
+108 |         let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+109 |         #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 3) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 3) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+110 |     }
+111 | 
+[107/117] Compiling AnkyDomainTests PlaceSummaryTests.swift
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:87:82: note: expanded code originates here
+ 85 |         let entries = try [entry(at: 1, ["neck"]), entry(at: 3, ["lower"]), entry(at: 2, ["hip_l"])]
+ 86 |         let expected = try [recent(["lower"]), recent(["hip_l"]), recent(["neck"])]
+ 87 |         #expect(try RecentEntries.distinct(from: entries, limit: 10) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 10) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 10) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+ 88 |     }
+ 89 | 
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:109:81: note: expanded code originates here
+107 |         }
+108 |         let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+109 |         #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 3) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 3) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+110 |     }
+111 | 
+[108/117] Compiling AnkyDomainTests RecentEntriesTests.swift
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:87:82: note: expanded code originates here
+ 85 |         let entries = try [entry(at: 1, ["neck"]), entry(at: 3, ["lower"]), entry(at: 2, ["hip_l"])]
+ 86 |         let expected = try [recent(["lower"]), recent(["hip_l"]), recent(["neck"])]
+ 87 |         #expect(try RecentEntries.distinct(from: entries, limit: 10) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 10) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 10) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+ 88 |     }
+ 89 | 
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:109:81: note: expanded code originates here
+107 |         }
+108 |         let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+109 |         #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 3) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 3) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+110 |     }
+111 | 
+[109/117] Compiling AnkyDomainTests RecentEntryDraftTests.swift
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:87:82: note: expanded code originates here
+ 85 |         let entries = try [entry(at: 1, ["neck"]), entry(at: 3, ["lower"]), entry(at: 2, ["hip_l"])]
+ 86 |         let expected = try [recent(["lower"]), recent(["hip_l"]), recent(["neck"])]
+ 87 |         #expect(try RecentEntries.distinct(from: entries, limit: 10) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 10) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 10) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+ 88 |     }
+ 89 | 
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:109:81: note: expanded code originates here
+107 |         }
+108 |         let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+109 |         #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 3) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 3) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+110 |     }
+111 | 
+[110/117] Compiling AnkyDomainTests RecentEntryNamesTests.swift
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:87:82: note: expanded code originates here
+ 85 |         let entries = try [entry(at: 1, ["neck"]), entry(at: 3, ["lower"]), entry(at: 2, ["hip_l"])]
+ 86 |         let expected = try [recent(["lower"]), recent(["hip_l"]), recent(["neck"])]
+ 87 |         #expect(try RecentEntries.distinct(from: entries, limit: 10) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 10) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 10) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+ 88 |     }
+ 89 | 
+
+macro expansion #expect:1:22: warning: no calls to throwing functions occur within 'try' expression
+`- /Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/RecentEntriesTests.swift:109:81: note: expanded code originates here
+107 |         }
+108 |         let expected = try [recent(["lower"]), recent(["neck"]), recent(["hip_l"])]
+109 |         #expect(try RecentEntries.distinct(from: entries, limit: 3) == expected)
+    |         `- note: in expansion of macro 'expect' here
+    +--- macro expansion #expect ---------------------------------------
+    |1 | Testing.__checkValue(try RecentEntries.distinct(from: entries, limit: 3) == expected,expression: .__fromSyntaxNode("try RecentEntries.distinct(from: entries, limit: 3) == expected"),comments: [],isRequired: false,sourceLocation: Testing.SourceLocation.__here()).__expected()
+    |  |                      `- warning: no calls to throwing functions occur within 'try' expression
+    +-------------------------------------------------------------------
+110 |     }
+111 | 
+[111/117] Compiling AnkyDomainTests MedicationsModelTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/MedicationsModelTests.swift:41:16: warning: 'locked' mutated after capture by sendable closure
+ 30 |     func aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_ write: Write) throws {
+ 31 |         let zorblex = medication("Zorblex")
+ 32 |         var locked = true
+    |             `- note: variable defined here
+ 33 |         let store = DeferredMedicationStore {
+    |                                             `- note: variable captured by sendable closure
+ 34 |             if locked {
+    |                `- note: capturing use
+ 35 |                 throw MedicationStoreError.unavailable
+ 36 |             }
+    :
+ 39 |         let model = MedicationsModel(store: store)
+ 40 |         #expect(model.medications.isEmpty)
+ 41 |         locked = false
+    |                `- warning: 'locked' mutated after capture by sendable closure
+ 42 |         try write.run(on: model, zorblex: zorblex)
+ 43 |         #expect(model.medications.count == (write == .add ? 2 : 1))
+[112/117] Compiling AnkyDomainTests MorePlacesValueTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/MedicationsModelTests.swift:41:16: warning: 'locked' mutated after capture by sendable closure
+ 30 |     func aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_ write: Write) throws {
+ 31 |         let zorblex = medication("Zorblex")
+ 32 |         var locked = true
+    |             `- note: variable defined here
+ 33 |         let store = DeferredMedicationStore {
+    |                                             `- note: variable captured by sendable closure
+ 34 |             if locked {
+    |                `- note: capturing use
+ 35 |                 throw MedicationStoreError.unavailable
+ 36 |             }
+    :
+ 39 |         let model = MedicationsModel(store: store)
+ 40 |         #expect(model.medications.isEmpty)
+ 41 |         locked = false
+    |                `- warning: 'locked' mutated after capture by sendable closure
+ 42 |         try write.run(on: model, zorblex: zorblex)
+ 43 |         #expect(model.medications.count == (write == .add ? 2 : 1))
+[113/117] Compiling AnkyDomainTests NoteCounterTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/MedicationsModelTests.swift:41:16: warning: 'locked' mutated after capture by sendable closure
+ 30 |     func aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_ write: Write) throws {
+ 31 |         let zorblex = medication("Zorblex")
+ 32 |         var locked = true
+    |             `- note: variable defined here
+ 33 |         let store = DeferredMedicationStore {
+    |                                             `- note: variable captured by sendable closure
+ 34 |             if locked {
+    |                `- note: capturing use
+ 35 |                 throw MedicationStoreError.unavailable
+ 36 |             }
+    :
+ 39 |         let model = MedicationsModel(store: store)
+ 40 |         #expect(model.medications.isEmpty)
+ 41 |         locked = false
+    |                `- warning: 'locked' mutated after capture by sendable closure
+ 42 |         try write.run(on: model, zorblex: zorblex)
+ 43 |         #expect(model.medications.count == (write == .add ? 2 : 1))
+[114/117] Compiling AnkyDomainTests PlaceCatalogTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/MedicationsModelTests.swift:41:16: warning: 'locked' mutated after capture by sendable closure
+ 30 |     func aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_ write: Write) throws {
+ 31 |         let zorblex = medication("Zorblex")
+ 32 |         var locked = true
+    |             `- note: variable defined here
+ 33 |         let store = DeferredMedicationStore {
+    |                                             `- note: variable captured by sendable closure
+ 34 |             if locked {
+    |                `- note: capturing use
+ 35 |                 throw MedicationStoreError.unavailable
+ 36 |             }
+    :
+ 39 |         let model = MedicationsModel(store: store)
+ 40 |         #expect(model.medications.isEmpty)
+ 41 |         locked = false
+    |                `- warning: 'locked' mutated after capture by sendable closure
+ 42 |         try write.run(on: model, zorblex: zorblex)
+ 43 |         #expect(model.medications.count == (write == .add ? 2 : 1))
+[115/117] Compiling AnkyDomainTests PlaceChipsTests.swift
+/Users/bolshakov/Projects/personal/anky.wt/qa-t49-02-1/checkout/Tests/AnkyDomainTests/MedicationsModelTests.swift:41:16: warning: 'locked' mutated after capture by sendable closure
+ 30 |     func aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_ write: Write) throws {
+ 31 |         let zorblex = medication("Zorblex")
+ 32 |         var locked = true
+    |             `- note: variable defined here
+ 33 |         let store = DeferredMedicationStore {
+    |                                             `- note: variable captured by sendable closure
+ 34 |             if locked {
+    |                `- note: capturing use
+ 35 |                 throw MedicationStoreError.unavailable
+ 36 |             }
+    :
+ 39 |         let model = MedicationsModel(store: store)
+ 40 |         #expect(model.medications.isEmpty)
+ 41 |         locked = false
+    |                `- warning: 'locked' mutated after capture by sendable closure
+ 42 |         try write.run(on: model, zorblex: zorblex)
+ 43 |         #expect(model.medications.count == (write == .add ? 2 : 1))
+[116/119] Emitting module AnkyPackageTests
+[117/119] Compiling AnkyPackageTests runner.swift
+[117/119] Write Objects.LinkFileList
+[118/119] Linking AnkyPackageTests
+Build complete! (31.64s)
+Test Suite 'All tests' started at 2026-11-01 15:22:13.320.
+Test Suite 'All tests' passed at 2026-11-01 15:22:13.329.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.010) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite EntryDraftTests started.
+◇ Suite BackdatedEntryTests started.
+◇ Suite ShortcutFeedbackTests started.
+◇ Suite TodayListTests started.
+◇ Suite DoseRowTextTests started.
+◇ Suite DayHeaderTests started.
+◇ Suite ShortcutsTests started.
+◇ Suite ShortcutsLogTests started.
+◇ Suite RecentEntryDraftTests started.
+◇ Suite EntryTests started.
+◇ Suite RecentEntryNamesTests started.
+◇ Suite EntryLogTests started.
+◇ Suite MedicationOrderTests started.
+◇ Suite TipProgressTests started.
+◇ Suite MedicationSelectionTests started.
+◇ Suite PlaceChipsTests started.
+◇ Suite NoteCounterTests started.
+◇ Suite EditedPlacesTests started.
+◇ Suite DeferredMedicationStoreTests started.
+◇ Suite PlaceSummaryTests started.
+◇ Suite EntryPlacesStoreTests started.
+◇ Suite FileShortcutsStoreTests started.
+◇ Suite SpokenListTests started.
+◇ Suite HistoryListTests started.
+◇ Suite MedicationDraftTests started.
+◇ Suite MedicationsModelTests started.
+◇ Suite FileEntryStoreTests started.
+◇ Suite MedicationSaveTests started.
+◇ Suite RecentEntryTextTests started.
+◇ Suite RecentEntriesTests started.
+◇ Suite PlaceSearchTests started.
+◇ Suite PlaceCatalogTests started.
+◇ Suite EditedEntryReloadTests started.
+◇ Suite EntryLogEditTests started.
+◇ Suite SeverityTests started.
+◇ Suite EntryDraftPlacesTests started.
+◇ Suite MorePlacesValueTests started.
+◇ Suite CheckInChoicesTests started.
+◇ Suite EntryDraftFromEntryTests started.
+◇ Suite DoseSaveTests started.
+◇ Suite EntryKindTests started.
+◇ Suite EntryStoreContractTests started.
+◇ Suite RussianCatalogTests started.
+◇ Suite EntryPlacesTests started.
+◇ Suite DayDateTextTests started.
+◇ Suite SwiftDataDoseTests started.
+◇ Suite SwiftDataMedicationEditTests started.
+◇ Suite SwiftDataMedicationStoreTests started.
+◇ Suite SwiftDataEntryStoreTests started.
+◇ Test keepsAShortNoteAsTyped() started.
+◇ Test cutsANoteOneCharacterOverTheLimitBackToTheLimit() started.
+◇ Test countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test keepsAWholeCharacterThatEndsOnTheLimit() started.
+◇ Test startsAsPainWithNoNote() started.
+◇ Test keepsANoteOfExactlyTheLimitWhole() started.
+◇ Test entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test aPinFromTheActionOrAMenuGivesASelectionTap() started.
+◇ Test openingAMenuGivesNoFeedback() started.
+◇ Test aPinFromTheSwipeGivesNoTapOfTheAppsOwn() started.
+◇ Test aRefusedPinGivesAWarning() started.
+◇ Test listsTheLaterSavedFirstWhenDatesMatch() started.
+◇ Test listsOnlyTheEntriesOnThatDay() started.
+◇ Test aDoseSecondsAfterAnEntryInTheSameMinuteListsFirst() started.
+◇ Test leavesOutDosesOfOtherDays() started.
+◇ Test returnsNothingWhenNoEntryIsOnThatDay() started.
+◇ Test listsTheLaterStoredDoseFirstWhenTimesMatch() started.
+◇ Test doseAndEntriesOfTheDayListNewestFirst() started.
+◇ Test anEntrySecondsAfterADoseInTheSameMinuteListsFirst() started.
+◇ Test aDoseAtTheSameTimeAsAnEntryListsFirst() started.
+◇ Test ordersByDateNotBySaveOrder() started.
+◇ Test aDoseOfAMedicationNotInTheListReadsAnEmptyTitle() started.
+◇ Test aDoseBeforeCheckInReadsThePainWas() started.
+◇ Test aCheckedInDoseReadsThePainBeforeAndAfter() started.
+◇ Test theSpokenLabelReadsTimeTitleKindAndPainWas() started.
+◇ Test theSpokenLabelOfACheckedInDoseReadsBeforeAndAfter() started.
+◇ Test theTitleIsTheDosesOwnMedicationNameAndStrength() started.
+◇ Test aMedicationWithoutAStrengthReadsAsItsBareName() started.
+◇ Test onlyTheWeekdayIsCapitalisedInEnglishAndTheOrderStays() started.
+◇ Test aDateInAnotherYearIncludesTheYear() started.
+◇ Test aSameYearDateReadsLikeTheTodayLineWithTheWeekdayCapitalised() started.
+◇ Test anOlderDateHeaderHasTheWeekdayCapitalisedAndTheDayAndMonth() started.
+◇ Test todayAndYesterdayHaveNoDateText() started.
+◇ Test aDateHeaderFollowsThePhonesOrderAndLanguage() started.
+◇ Test aRussianWeekdayIsCapitalisedAndTheMonthIsNot() started.
+◇ Test aDateInTheSameYearLeavesTheYearOut() started.
+◇ Test theYearFormCapitalisesOnlyTheWeekday() started.
+◇ Test pinningAllPinsARepeatedPlaceOnce() started.
+◇ Test unpinningRemovesOnlyThatPlace() started.
+◇ Test pinningAllIsAllOrNothing() started.
+◇ Test pinningAllOfAlreadyPinnedPlacesChangesNothing() started.
+◇ Test pinningAllDropsPinnedPlacesBeforeCountingThem() started.
+◇ Test pinningAllSkipsPlacesThatAreAlreadyPinned() started.
+◇ Test pinningAPinnedPlaceChangesNothing() started.
+◇ Test aSixthPinIsRefusedAndChangesNothing() started.
+◇ Test theLogStartsWithWhatTheStoreHolds() started.
+◇ Test theNextSaveAfterAFailureWritesEverything() started.
+◇ Test aRepeatedChangeAfterAFailedSaveWritesEverything() started.
+◇ Test aFailedSaveStillKeepsThePinForThisSession() started.
+◇ Test applyingARecentEntryCopiesKindLevelAndPlaces() started.
+◇ Test applyingAFatigueEntryClearsThePlaces() started.
+◇ Test aDraftFromARecentEntryHasTheGivenDateAndNoNote() started.
+◇ Test applyingARecentEntryKeepsTheDateAndTheNote() started.
+◇ Test storedFieldsInitPutsKnownPlacesInCatalogOrderAndKeepsUnknownOnesLast() started.
+◇ Test keepsTheDraftsFieldsAndTheGivenID() started.
+◇ Test roundTripsThroughCodable() started.
+◇ Test encodesTheSixKeysWithTheKindAsItsRawValue() started.
+◇ Test storedFieldsInitKeepsEveryFieldAndTheGivenID() started.
+◇ Test keepsTheSameCharactersAsTheDraft() started.
+◇ Test loadsAnOlderNoteLongerThanTheLimitWhole() started.
+◇ Test storedFieldsInitDropsPlacesForFatigue() started.
+◇ Test keepsAMultiParagraphNoteExactlyAsTyped() started.
+◇ Test leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test leavesTheNoteOutWhenTheDraftHasNone() started.
+◇ Test storedFieldsInitKeepsANoteAsGiven() started.
+◇ Test givesEachNewEntryItsOwnID() started.
+◇ Test aStiffnessEntryWithNoPlaceReadsNoPlace() started.
+◇ Test omitsTheNoteKeyWhenThereIsNoNote() started.
+◇ Test oneSideOfAPairStaysThatPlace() started.
+◇ Test stiffnessShowsItsKind() started.
+◇ Test eachChangeIsSavedAsItHappens() started.
+◇ Test threeNamesShowTwoAndCountOne() started.
+◇ Test leftAndRightOfDifferentJointsDoNotPair() started.
+◇ Test twoPairsAreTwoNames() started.
+◇ Test aPainEntryWithNoPlaceReadsNoPlace() started.
+◇ Test fourNamesShowTwoAndCountTwo() started.
+◇ Test thePairStandsWhereItsFirstSideStood() started.
+◇ Test fatigueShowsItsKindAndNoPlaces() started.
+◇ Test aPairCountsAsOneName() started.
+◇ Test anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test bothSidesOfAPairReadAsThePair() started.
+◇ Test addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test theFullListKeepsEveryPlace() started.
+◇ Test failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test archivedMedicationsAreLeftOut() started.
+◇ Test activeMedicationsAreLeftOutOfArchived() started.
+◇ Test aRestoredMedicationReturnsToItsCreatedPositionInTheActiveList() started.
+◇ Test noArchivedMedicationGivesAnEmptyList() started.
+◇ Test noMedicationsGivesAnEmptyList() started.
+◇ Test activeMedicationsAreOrderedByCreatedTimeOldestFirst() started.
+◇ Test archivedMedicationsAreOrderedByArchivedTimeNewestFirst() started.
+◇ Test picksOfDifferentPlacesAreNotAdded() started.
+◇ Test picksSurviveAReload() started.
+◇ Test theThirdPickOfOnePlaceMakesTheTipReady() started.
+◇ Test twoVisitsAreNotEnough() started.
+◇ Test theFileHoldsAVersionVisitsAndPicks() started.
+◇ Test retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test theThirdVisitMakesTheTipReady() started.
+◇ Test aMissingFileGivesAnEmptyProgress() started.
+◇ Test anUnreadableOrNewerFileGivesAnEmptyProgress() started.
+◇ Test visitsSurviveAReload() started.
+◇ Test noSelectionFallsToTheFirstActiveRow() started.
+◇ Test noActiveMedicationGivesNoSelection() started.
+◇ Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() started.
+◇ Test aSelectionNoLongerActiveFallsToTheFirstActiveRow() started.
+◇ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() started.
+◇ Test pinsComeBeforeAPlaceUsedManyTimes() started.
+◇ Test loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test aPinnedPlaceIsNotChosenAgainByTheUsageRule() started.
+◇ Test theTopFiveByCountShowInBodyOrder() started.
+◇ Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() started.
+◇ Test aTieGoesToThePlaceThatWasAChipLastTime() started.
+◇ Test pinsShowInBodyOrderNotInPinOrder() started.
+◇ Test lastTimeBeatsTheMostRecentUseInATie() started.
+◇ Test anUnknownPinNeverBecomesAChip() started.
+◇ Test onlyTheLastTenEntriesWithAPlaceCount() started.
+◇ Test ifBothWereChipsLastTimeTheMostRecentUseWins() started.
+◇ Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() started.
+◇ Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder() started.
+◇ Test aNewUserWithOneEntryGetsTheFivePresets() started.
+◇ Test anUnknownIdNeverBecomesAChip() started.
+◇ Test theUsageRuleStillFillsTheCardAroundOnePin() started.
+◇ Test theChipsShowInBodyOrder() started.
+◇ Test morePinsThanFiveKeepOnlyTheFirstFivePinned() started.
+◇ Test theResultAlwaysHasFivePlaces() started.
+◇ Test aPlaceThatWasAChipButHasOneUseIsNotKept() started.
+◇ Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold() started.
+◇ Test aTieGoesToTheMostRecentUse() started.
+◇ Test aStillTiedPairGoesToBodyOrder() started.
+◇ Test aPlaceNeedsACountOfTwo() started.
+◇ Test noteCounterReadsThirtyNineLeftAtTwoHundredOneCharacters() started.
+◇ Test noteCounterReadsTenLeftAtTwoHundredThirtyCharacters() started.
+◇ Test aPlaceCountsOncePerEntry() started.
+◇ Test noteCounterIsLimitReachedAtTwoHundredFortyCharacters() started.
+◇ Test aSelectedActiveMedicationStaysSelected() started.
+◇ Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces() started.
+◇ Test noteCounterIsNilAtFortyCharactersLeft() started.
+◇ Test noteCounterCountsAnAccentedLetterOnceNearTheLimit() started.
+◇ Test noteCounterIsNilWithNoNote() started.
+◇ Test noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters() started.
+◇ Test anEntryEditedFromFatigueToPainStartsWithNoPlaces() started.
+◇ Test aReplacedEntryCarriesTheEditedPlaces() started.
+◇ Test editingAnEntryKeepsAnIdThisBuildDoesNotKnow() started.
+◇ Test leftAndRightCountSeparately() started.
+◇ Test aFatigueEntryAddsNothingToTheCounts() started.
+◇ Test anOpenedStoreIsNotOpenedAgain() started.
+◇ Test aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() started.
+◇ Test noteCounterCountsAnEmojiOnceAtTheLimit() started.
+◇ Test placesFollowCatalogOrderNotPickOrder() started.
+◇ Test aDoseWriteWhileLockedNeverReachesTheStore() started.
+◇ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() started.
+◇ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() started.
+◇ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() started.
+◇ Test aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() started.
+◇ Test anEntryFromAnOldFileReadsAsNoPlace() started.
+◇ Test aPainEntryListsItsPlaces() started.
+◇ Test aPainEntryWithNoPlacesReadsAsNoPlace() started.
+◇ Test placesSurviveAReloadFromTheFile() started.
+◇ Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds() started.
+◇ Test bothKneesListLeftThenRight() started.
+◇ Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave() started.
+◇ Test painShowsNoKind() started.
+◇ Test theFileVersionStaysOne() started.
+◇ Test aFileOfAnotherVersionGivesNoPinsAndNoLastChips() started.
+◇ Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain() started.
+◇ Test aMissingFileGivesNoPinsAndNoLastChips() started.
+◇ Test anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() started.
+◇ Test doseCallsForwardThroughTheOpenedStore() started.
+◇ Test pinsAndLastChipsReloadFromTheFile() started.
+◇ Test twoNamesJoinWithAndInEnglish() started.
+◇ Test noNameSpeaksNothing() started.
+◇ Test twoNamesJoinWithAndInRussian() started.
+◇ Test theLaterEntryIsFirstInsideADay() started.
+◇ Test theSameInstantFallsOnAnotherDayInAnotherTimeZone() started.
+◇ Test noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom() started.
+◇ Test entriesInTheSameMinuteListTheLaterSavedFirst() started.
+◇ Test oneNameStandsAlone() started.
+◇ Test aPickThatClearsAPlaceIsNotCounted() started.
+◇ Test yesterdayHoldsAcrossAClockChange() started.
+◇ Test aDayWithNoEntriesHasNoSection() started.
+◇ Test aFatigueEntryReadsAsWholeBody() started.
+◇ Test aLogWithNoEntriesHasNoSections() started.
+◇ Test anEntryFromYearsAgoStillGetsASection() started.
+◇ Test aVersionOneFileWithoutPlacesStillLoads() started.
+◇ Test aStrengthIsSavedTrimmed() started.
+◇ Test aNewDraftIsTakenAsNeededWithNoCheckIn() started.
+◇ Test aNameIsSavedTrimmed() started.
+◇ Test aDateAfterTodaySitsOnTopUnderItsOwnDateHeader() started.
+◇ Test aNewDraftHasNoNameAndIsNotSavable() started.
+◇ Test aBlankNameIsNotSavable(name:) started.
+◇ Test aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() started.
+◇ Test applyingADraftChangesTheEditableFieldsAndMovesTheUpdatedTime() started.
+◇ Test aDraftOfAMedicationCopiesEveryEditableField() started.
+◇ Test aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test aNameWithTextIsSavable() started.
+◇ Test applyingADraftKeepsTheIdCreatedTimeAndArchivedTime() started.
+◇ Test aNameInAnotherScriptWithAnEmojiIsSavedAsTyped() started.
+◇ Test unknownIdsAreLeftOutOfTheList() started.
+◇ Test clearingTheStrengthRemovesIt() started.
+◇ Test aNewStoreOnTheSameFileSeesWhatWasSaved() started.
+◇ Test aFailedDoseReadKeepsTheMedicationsAndTheNextWriteReadsFirst() started.
+◇ Test aSavedMedicationKeepsHowItIsTakenAndItsCheckIn() started.
+◇ Test aWriteWhileTheListIsUnreadNeverReachesTheStore() started.
+◇ Test aFailedLogLeavesTheModelAsItWas() started.
+◇ Test reloadReadsTheDosesWithTheMedications() started.
+◇ Test aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test aLoadedListSavesWhileReadsFail() started.
+◇ Test unreadableFileIsKept() started.
+◇ Test aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() started.
+◇ Test anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+◇ Test loadThrowsUnreadableForBytesItCannotDecode() started.
+◇ Test missingFileReadsAsNoEntries() started.
+◇ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() started.
+◇ Test aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test savedFileStaysInBackup() started.
+◇ Test anEntryAt2359AndOneAt0001FallInDifferentSections() started.
+◇ Test newerVersionFileIsLeftAsItWas() started.
+◇ Test aSecondSaveAfterASuccessWritesNothing() started.
+◇ Test aFailedReloadKeepsTheListAndTheNextWriteReadsFirst() started.
+◇ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() started.
+◇ Test theSpokenPlacesOfOneNameStandAlone() started.
+◇ Test failedSaveLeavesTheEarlierFileWhole() started.
+◇ Test oneSideOfAPairReadsThatPlaceInTheChip() started.
+◇ Test theSpokenTextOfAStiffnessEntryStartsWithItsKind() started.
+◇ Test aPairChipReadsTheStandInPluralName() started.
+◇ Test theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() started.
+◇ Test aStiffnessChipReadsKindPlacesLevel() started.
+◇ Test logDoseAddsTheDoseAndTheSavedDelayToTheModel() started.
+◇ Test theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() started.
+◇ Test theSpokenTextOfAFatigueEntryHasNoPlace() started.
+◇ Test theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() started.
+◇ Test theSpokenPlacesJoinThePairAndThePlaceWithAnd() started.
+◇ Test aChipWithNoPlaceReadsNoPlaceAndTheLevel() started.
+◇ Test theLimitCapsTheList() started.
+◇ Test equalDatesGoToTheEntryLoggedLater() started.
+◇ Test aFatigueEntryIgnoresItsPlaces() started.
+◇ Test aLongListChipReadsTwoNamesAndACount() started.
+◇ Test aDifferentLevelIsADifferentRecentEntry() started.
+◇ Test aFatigueChipReadsKindAndLevel() started.
+◇ Test recentEntriesComeNewestFirst() started.
+◇ Test aDifferentPlaceSetIsADifferentRecentEntry() started.
+◇ Test aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test placesSavedInAnotherOrderAreTheSameRecentEntry() started.
+◇ Test unknownPlaceIdsDoNotMakeEntriesDistinct() started.
+◇ Test aFailedWriteLeavesTheSaveOpenAndTheRetryUsesTheSameId() started.
+◇ Test aDifferentKindIsADifferentRecentEntry() started.
+◇ Test theNewestOfEqualEntriesIsTheOneKept() started.
+◇ Test theSpokenPlacesOfAFatigueEntrySayTheWholeBody() started.
+◇ Test theNoteAndTheTimeDoNotMakeEntriesDistinct() started.
+◇ Test entriesWithTheSameKindPlacesAndLevelCountOnce() started.
+◇ Test resultsKeepCatalogOrderAndHoldEachJointOnce() started.
+◇ Test aGroupNameListsTheWholeGroup() started.
+◇ Test aQueryWithNoMatchFindsNothing() started.
+◇ Test aJointNameFindsThatJoint() started.
+◇ Test noEntriesGiveNoRecentEntries() started.
+◇ Test theQueryHeadFindsTheHeadGroup() started.
+◇ Test searchIgnoresCaseAndSpaces() started.
+◇ Test entriesOnThreeDaysMakeThreeSectionsNewestFirst() started.
+◇ Test twoNamesShowWithNoCount() started.
+◇ Test theFiveGroupsHoldTwoOrFourJointsEach() started.
+◇ Test everyDefaultChipIsInTheCatalog() started.
+◇ Test errorTextNeverCarriesEntryContent() started.
+◇ Test aPlaceLooksUpItsJointAndSide() started.
+◇ Test anEmptyQueryListsEveryJointInCatalogOrder() started.
+◇ Test theIdsTheTicketNamesAreExact() started.
+◇ Test placeIdsAreUnique() started.
+◇ Test singleJointsUseTheirStemAsTheId() started.
+◇ Test pairedJointsGetALeftAndARightId() started.
+◇ Test theCatalogListsExactlyTheTwentyEightIds() started.
+◇ Test aPainChipHasNoKindPrefix() started.
+◇ Test aChangedLevelSurvivesAReloadFromTheFile() started.
+◇ Test failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test replaceSavesTheWholeListOnce(_:) started.
+◇ Test aRemovedEntryStaysGoneAfterAReloadFromTheFile() started.
+◇ Test startLevelIsZeroWhenNothingWasSaved() started.
+◇ Test fractionRoundsToTheNearestLevel() started.
+◇ Test repeatsOfOneEntryDoNotUseUpTheLimit() started.
+◇ Test startLevelIsTheLastSavedEntryEvenWhenItIsDatedEarlier() started.
+◇ Test startLevelIsTheLevelOfTheOnlySavedEntry() started.
+◇ Test fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test aPlaceIdEncodesAsAPlainString() started.
+◇ Test acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+◇ Test decodesABareNumber() started.
+◇ Test encodesAsABareNumber() started.
+◇ Test acceptsScoresFromZeroToTen(value:) started.
+◇ Test entriesFromEarlierDaysAreRecentToo() started.
+◇ Test fractionThatIsNotANumberGivesZero() started.
+◇ Test fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test fractionHalfwayBetweenTwoLevelsRoundsUp() started.
+◇ Test anUnknownIdIsKeptButNotCounted() started.
+◇ Test aDraftWithAChangedPlaceIsNotEqualToTheStartDraft() started.
+◇ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() started.
+◇ Test assigningAnEmptyListClearsThePlaces() started.
+◇ Test applyingARecentEntryKeepsItsPlacesInCatalogOrder() started.
+◇ Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces() started.
+◇ Test failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test assigningPlacesDirectlyPutsThemInCatalogOrder() started.
+◇ Test aNewDraftHasNoPlaces() started.
+◇ Test anEntrySavedFromADirectlyAssignedDraftHasItsPlacesInCatalogOrder() started.
+◇ Test assigningAListAlreadyInCatalogOrderReadsTheSameList() started.
+◇ Test draftFromAnEntryWithNoPlacesHasNone() started.
+◇ Test placesAreKeptInCatalogOrderWhateverOrderTheyWerePicked() started.
+◇ Test draftFromAnEntryHoldsItsPlaces() started.
+◇ Test rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test searchIgnoresAccents() started.
+◇ Test togglingASelectedPlaceOffKeepsTheRestInCatalogOrder() started.
+◇ Test placesOutsideTheChipsFollowBodyOrder() started.
+◇ Test noPlaceOutsideTheChipsIsNone() started.
+◇ Test threePlacesShowTwoNamesAndOneMore() started.
+◇ Test morePlacesCountsEveryPlaceAfterTheFirstTwo() started.
+◇ Test aPickedPlaceWithAChipIsNotInTheValue() started.
+◇ Test twoPlacesOutsideTheChipsAreBothListed() started.
+◇ Test theAfterMenuOffersOffThenTheFiveDelaysInOrder() started.
+◇ Test onePlaceOutsideTheChipsIsListed() started.
+◇ Test eachDelayIsStoredAsItsMinutes() started.
+◇ Test draftFromAnEntryIsNotChangedUntilAFieldChanges() started.
+◇ Test togglingAPlaceAddsItAndTogglingAgainRemovesIt() started.
+◇ Test draftFromAnEntryCutsANoteOverTheLimit() started.
+◇ Test aSecondSaveAfterASuccessLogsNothing() started.
+◇ Test anUnknownIdIsNotInTheValue() started.
+◇ Test draftFromAnEntryWithNoNoteHasAnEmptyNote() started.
+◇ Test offersPainStiffnessAndFatigueInThatOrder() started.
+◇ Test replaceKeepsThePlace(_:) started.
+◇ Test addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test draftFromAnEntryHoldsKindTimeLevelAndNote() started.
+◇ Test theCountOfPlacesHoldsAllFourRussianPluralForms() started.
+◇ Test theSeverityTextReadsFourFromTenInBothKeys() started.
+◇ Test aPairWithBothSidesCountsTwoPlaces() started.
+◇ Test oneAndTwentyOneLeftTakeTheSingularForm() started.
+◇ Test theCountOfPlacesTakesTheRussianPluralForms() started.
+◇ Test replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test anUnknownIdHasNoJointAndNoSide() started.
+◇ Test everyApprovedRussianValueIsMarkedTranslated() started.
+◇ Test oneAndTwentyOnePlacesTakeTheSingularForm() started.
+◇ Test twoAndTwentyTwoLeftTakeTheFewForm() started.
+◇ Test everyApprovedTextReadsAsTheStakeholderWroteIt() started.
+◇ Test everyKeyOfTheCatalogHasARussianValue() started.
+◇ Test theDoneButtonHoldsAllFourRussianPluralForms() started.
+◇ Test fiveAndTheTeensPlacesTakeTheManyForm() started.
+◇ Test englishReadsAsBefore() started.
+◇ Test encodesAsItsRawValue() started.
+◇ Test theCatalogHoldsAllFourRussianPluralForms() started.
+◇ Test aStiffnessEntryKeepsThePlacesOfItsDraft() started.
+◇ Test anEntryReadsStoredPlacesInCatalogOrder() started.
+◇ Test onlyFatigueDoesNotAskWhere() started.
+◇ Test aFailedLogLeavesTheSaveOpenAndTheRetryLogsTheSameDose() started.
+◇ Test aFatigueEntryDropsThePlacesOfItsDraft() started.
+◇ Test aPainEntryKeepsThePlacesOfItsDraft() started.
+◇ Test noAwaitingKeyHasARussianValueYet() started.
+◇ Test russianWeekdayIsCapitalisedAndTheMonthKeepsItsCase() started.
+◇ Test anEntryReadsAMissingPlacesKeyAsNoPlaces() started.
+◇ Test englishWeekdayIsCapitalisedAndTheRestIsLowercase() started.
+◇ Test logDoseSetsTheSavedDelayAndLeavesTheUpdatedTime() started.
+◇ Test reopenedStoreReadsBackEveryDoseField() started.
+◇ Test noTextOutsideTheApprovedListHasARussianValue() started.
+◇ Test failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() started.
+◇ Test doseForAnUnknownMedicationThrowsAndLeavesNoPendingRow() started.
+◇ Test storeFileWrittenWithOnlyMedicationsOpensWithThemAndNoDoses() started.
+◇ Test updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime() started.
+◇ Test failedRestoreLeavesTheMedicationArchivedAndRetryRestoresIt() started.
+◇ Test restoreClearsTheArchivedTimeAndKeepsEveryOtherField() started.
+◇ Test failedUpdateLeavesTheMedicationAsItWasAndRetrySavesOneChange() started.
+◇ Test restoreOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test updateOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test everyCheckInDelayReadsBackAfterReopen() started.
+◇ Test failedArchiveLeavesTheMedicationActiveAndRetryArchivesIt() started.
+◇ Test archiveSetsTheArchivedTimeAndChangesNoOtherField() started.
+◇ Test aFailedWriteThrowsAnErrorThatNamesNoMedication() started.
+◇ Test storeHoldsNoMedicationBeforeTheFirstAdd() started.
+◇ Test anEntryFromADraftHoldsItsPlacesInCatalogOrder() started.
+◇ Test onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test reopenedStoreReadsBackEveryField() started.
+◇ Test onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test archiveOfAnUnknownIdThrowsAndChangesNothing() started.
+◇ Test aDamagedStoreFileFailsToOpenAndIsLeftAsItWas() started.
+◇ Test aNewStoreAtANewURLReadsNoEntries() started.
+◇ Test aRecordWithAnUnreadableKindLoadsAsUnreadable() started.
+◇ Test replaceLeavesEveryOtherRecordAsItWas() started.
+◇ Test reopenedStoreReadsBackEveryField() started.
+◇ Test aSecondAddOfAKnownIdLeavesOneRecord() started.
+◇ Test refusedRemoveLeavesTheSameStoreReadingAsItWas() started.
+◇ Test anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() started.
+◇ Test saveOrderSurvivesDatesThatRunBackwards() started.
+◇ Test refusedReplaceLeavesTheSameStoreReadingAsItWas() started.
+◇ Test fiveAndTheTeensLeftTakeTheManyForm() started.
+◇ Test failedWriteOfTheSameIdSavesOneRecord() started.
+◇ Test refusedAddLeavesTheSameStoreReadingAsItWas() started.
+◇ Test failedWriteLeavesStoreAsItWasAndRetrySavesOneRecord() started.
+◇ Test case passing 1 argument character → "é" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test deletingTheNewestThenAddingKeepsTheNewOneLast() started.
+◇ Test case passing 1 argument character → "é" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test aRecordWithAnUnreadableLevelLoadsAsUnreadable() started.
+◇ Test case passing 1 argument character → "👍🏽" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument character → "👨‍👩‍👧" to countsEachCharacterOnceSoNoneIsCutInHalf(character:) started.
+◇ Test case passing 1 argument kind → .inMemory to entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test inMemoryStoreRollsBackARefusedWriteToo() started.
+◇ Test theJoiningFormatsReadTheSameInRussian() started.
+◇ Test case passing 1 argument kind → .swiftData to entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) started.
+◇ Test twoAndTwentyTwoPlacesTakeTheFewForm() started.
+◇ Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack() started.
+◇ Test countsTheDayInTheGivenCalendar() started.
+◇ Test case passing 1 argument note → " " to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "
+" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "  
+ 
+  " to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "
+" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument note → "	" to leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) started.
+◇ Test case passing 1 argument kind → .inMemory to anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to anotherEntryWithAKnownIDChangesNothing(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addSavesTheWholeListWithTheEntryAppended(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to startsEmptyWhenTheStoreCannotBeRead(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to retryingAfterAFailedSaveAddsTheSameEntry(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to loadsTheStoredEntriesInSaveOrder(_:) started.
+◇ Test case passing 1 argument strength → "" to aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument strength → "   " to aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument name → "   " to aBlankNameIsNotSavable(name:) started.
+◇ Test case passing 1 argument name → "
+	 " to aBlankNameIsNotSavable(name:) started.
+◇ Test case passing 1 argument strength → "	" to aBlankStrengthIsSavedAsNone(strength:) started.
+◇ Test case passing 1 argument name → "" to aBlankNameIsNotSavable(name:) started.
+◇ Test case passing 1 argument write → .archive to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .update to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .restore to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument write → .add to aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) started.
+◇ Test case passing 1 argument write → .add to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .archive to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .restore to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument write → .update to aFailedWriteLeavesTheListAsItWas(_:) started.
+◇ Test case passing 1 argument limit → 0 to aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test case passing 1 argument limit → -1 to aLimitOfZeroOrLessGivesNoRecentEntries(limit:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to removeOfAnUnknownIdSavesNothing(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to removeDropsTheEntryAndSavesTheList(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceSavesTheWholeListOnce(_:) started.
+◇ Test case passing 1 argument fraction → 1.2 to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceSavesTheWholeListOnce(_:) started.
+◇ Test case passing 1 argument value → 0.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 4.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 10.0 to acceptsWholeNumbersFromZeroToTen(value:) started.
+◇ Test case passing 1 argument json → "-1" to decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+◇ Test case passing 1 argument json → "11" to decodingOutsideZeroToTenIsDataCorrupted(json:) started.
+◇ Test case passing 1 argument fraction → 1.0 to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument value → 4 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 0 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 10 to acceptsScoresFromZeroToTen(value:) started.
+◇ Test case passing 1 argument fraction → 0.0 to fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test case passing 1 argument fraction → -0.5 to fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test case passing 1 argument fraction → -inf to fractionAtOrBelowZeroGivesZero(fraction:) started.
+◇ Test case passing 1 argument kind → .inMemory to failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) started.
+◇ Test case passing 1 argument value → 11 to rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → -1 to rejectsScoresOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 4.5 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → -1.0 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → nan to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → inf to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument value → 11.0 to rejectsFractionsAndValuesOutsideZeroToTen(value:) started.
+◇ Test case passing 1 argument fraction → inf to fractionAtOrAboveOneGivesTen(fraction:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceKeepsThePlace(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceKeepsThePlace(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceOfAnUnknownIdThrowsNotSaved(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to replaceThrowsMissingWhenNoEntryHasThatId(_:) started.
+◇ Test case passing 1 argument kind → .inMemory to removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to removeOfAnUnknownIdWritesNothing(_:) started.
+◇ Test case passing 1 argument kind → .swiftData to addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) started.
+◇ Test case passing 3 arguments identifier → "en_US", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "ru_RU", lowercase → "суббота", capitalised → "Суббота" to onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "en_US", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "en_GB", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "en_DE", lowercase → "Saturday", capitalised → "Saturday" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+◇ Test case passing 3 arguments identifier → "ru_RU", lowercase → "суббота", capitalised → "Суббота" to onlyTheWeekdayChanges(identifier:lowercase:capitalised:) started.
+✔ Test keepsAShortNoteAsTyped() passed after 0.089 seconds.
+✔ Test cutsANoteOneCharacterOverTheLimitBackToTheLimit() passed after 0.089 seconds.
+✔ Test countsEachCharacterOnceSoNoneIsCutInHalf(character:) with 4 test cases passed after 0.089 seconds.
+✔ Test keepsAWholeCharacterThatEndsOnTheLimit() passed after 0.090 seconds.
+✔ Test startsAsPainWithNoNote() passed after 0.090 seconds.
+✔ Test keepsANoteOfExactlyTheLimitWhole() passed after 0.090 seconds.
+✔ Test aPinFromTheSwipeGivesNoTapOfTheAppsOwn() passed after 0.090 seconds.
+✔ Test aRefusedPinGivesAWarning() passed after 0.090 seconds.
+✔ Test aPinFromTheActionOrAMenuGivesASelectionTap() passed after 0.152 seconds.
+✔ Test openingAMenuGivesNoFeedback() passed after 0.152 seconds.
+✔ Test returnsNothingWhenNoEntryIsOnThatDay() passed after 0.152 seconds.
+✔ Test listsTheLaterStoredDoseFirstWhenTimesMatch() passed after 0.152 seconds.
+✔ Test listsOnlyTheEntriesOnThatDay() passed after 0.152 seconds.
+✔ Test listsTheLaterSavedFirstWhenDatesMatch() passed after 0.152 seconds.
+✔ Test aCheckedInDoseReadsThePainBeforeAndAfter() passed after 0.152 seconds.
+✔ Test theSpokenLabelReadsTimeTitleKindAndPainWas() passed after 0.152 seconds.
+✔ Test aDoseBeforeCheckInReadsThePainWas() passed after 0.152 seconds.
+✔ Test anEntrySecondsAfterADoseInTheSameMinuteListsFirst() passed after 0.152 seconds.
+✔ Test ordersByDateNotBySaveOrder() passed after 0.152 seconds.
+✔ Test leavesOutDosesOfOtherDays() passed after 0.152 seconds.
+✔ Test aMedicationWithoutAStrengthReadsAsItsBareName() passed after 0.152 seconds.
+✔ Test theTitleIsTheDosesOwnMedicationNameAndStrength() passed after 0.152 seconds.
+✔ Test aDoseSecondsAfterAnEntryInTheSameMinuteListsFirst() passed after 0.152 seconds.
+✔ Test doseAndEntriesOfTheDayListNewestFirst() passed after 0.152 seconds.
+✔ Test theSpokenLabelOfACheckedInDoseReadsBeforeAndAfter() passed after 0.152 seconds.
+✔ Test aDateInTheSameYearLeavesTheYearOut() passed after 0.152 seconds.
+✔ Test todayAndYesterdayHaveNoDateText() passed after 0.152 seconds.
+✔ Test pinningAllPinsARepeatedPlaceOnce() passed after 0.152 seconds.
+✔ Test unpinningRemovesOnlyThatPlace() passed after 0.152 seconds.
+✔ Test aDoseAtTheSameTimeAsAnEntryListsFirst() passed after 0.152 seconds.
+✔ Test pinningAllOfAlreadyPinnedPlacesChangesNothing() passed after 0.152 seconds.
+✔ Test pinningAllIsAllOrNothing() passed after 0.152 seconds.
+✔ Test pinningAllSkipsPlacesThatAreAlreadyPinned() passed after 0.152 seconds.
+✔ Test pinningAPinnedPlaceChangesNothing() passed after 0.152 seconds.
+✔ Test aSixthPinIsRefusedAndChangesNothing() passed after 0.152 seconds.
+✔ Test theLogStartsWithWhatTheStoreHolds() passed after 0.152 seconds.
+✔ Test aRepeatedChangeAfterAFailedSaveWritesEverything() passed after 0.152 seconds.
+✔ Test theNextSaveAfterAFailureWritesEverything() passed after 0.152 seconds.
+✔ Test aFailedSaveStillKeepsThePinForThisSession() passed after 0.152 seconds.
+✔ Test applyingARecentEntryCopiesKindLevelAndPlaces() passed after 0.152 seconds.
+✔ Test pinningAllDropsPinnedPlacesBeforeCountingThem() passed after 0.152 seconds.
+✔ Test applyingARecentEntryKeepsTheDateAndTheNote() passed after 0.152 seconds.
+✔ Test applyingAFatigueEntryClearsThePlaces() passed after 0.152 seconds.
+✔ Test aDraftFromARecentEntryHasTheGivenDateAndNoNote() passed after 0.152 seconds.
+✔ Test keepsTheDraftsFieldsAndTheGivenID() passed after 0.152 seconds.
+✔ Test theYearFormCapitalisesOnlyTheWeekday() passed after 0.152 seconds.
+✔ Test roundTripsThroughCodable() passed after 0.152 seconds.
+✔ Test storedFieldsInitKeepsEveryFieldAndTheGivenID() passed after 0.152 seconds.
+✔ Test encodesTheSixKeysWithTheKindAsItsRawValue() passed after 0.152 seconds.
+✔ Test keepsTheSameCharactersAsTheDraft() passed after 0.152 seconds.
+✔ Test storedFieldsInitDropsPlacesForFatigue() passed after 0.152 seconds.
+✔ Test aRussianWeekdayIsCapitalisedAndTheMonthIsNot() passed after 0.152 seconds.
+✔ Test keepsAMultiParagraphNoteExactlyAsTyped() passed after 0.152 seconds.
+✔ Test leavesTheNoteOutWhenTheDraftHasNone() passed after 0.152 seconds.
+✔ Test loadsAnOlderNoteLongerThanTheLimitWhole() passed after 0.152 seconds.
+✔ Test leavesTheNoteOutWhenItIsOnlySpacesAndNewLines(note:) with 5 test cases passed after 0.152 seconds.
+✔ Test aDateInAnotherYearIncludesTheYear() passed after 0.152 seconds.
+✔ Test storedFieldsInitKeepsANoteAsGiven() passed after 0.152 seconds.
+✔ Test givesEachNewEntryItsOwnID() passed after 0.152 seconds.
+✔ Test omitsTheNoteKeyWhenThereIsNoNote() passed after 0.152 seconds.
+✔ Test eachChangeIsSavedAsItHappens() passed after 0.152 seconds.
+✔ Test aDateHeaderFollowsThePhonesOrderAndLanguage() passed after 0.153 seconds.
+✔ Test threeNamesShowTwoAndCountOne() passed after 0.152 seconds.
+✔ Test leftAndRightOfDifferentJointsDoNotPair() passed after 0.152 seconds.
+✔ Test twoPairsAreTwoNames() passed after 0.152 seconds.
+✔ Test anOlderDateHeaderHasTheWeekdayCapitalisedAndTheDayAndMonth() passed after 0.153 seconds.
+✔ Test stiffnessShowsItsKind() passed after 0.152 seconds.
+✔ Test aPainEntryWithNoPlaceReadsNoPlace() passed after 0.152 seconds.
+✔ Test oneSideOfAPairStaysThatPlace() passed after 0.152 seconds.
+✔ Test aSameYearDateReadsLikeTheTodayLineWithTheWeekdayCapitalised() passed after 0.153 seconds.
+✔ Test fourNamesShowTwoAndCountTwo() passed after 0.152 seconds.
+✔ Test activeMedicationsAreLeftOutOfArchived() passed after 0.151 seconds.
+✔ Test aPairCountsAsOneName() passed after 0.152 seconds.
+✔ Test onlyTheWeekdayIsCapitalisedInEnglishAndTheOrderStays() passed after 0.153 seconds.
+✔ Test aRestoredMedicationReturnsToItsCreatedPositionInTheActiveList() passed after 0.151 seconds.
+✔ Test thePairStandsWhereItsFirstSideStood() passed after 0.152 seconds.
+✔ Test fatigueShowsItsKindAndNoPlaces() passed after 0.152 seconds.
+✔ Test aStiffnessEntryWithNoPlaceReadsNoPlace() passed after 0.152 seconds.
+✔ Test noArchivedMedicationGivesAnEmptyList() passed after 0.152 seconds.
+✔ Test twoVisitsAreNotEnough() passed after 0.151 seconds.
+✔ Test noMedicationsGivesAnEmptyList() passed after 0.152 seconds.
+✔ Test picksOfDifferentPlacesAreNotAdded() passed after 0.152 seconds.
+✔ Test theFullListKeepsEveryPlace() passed after 0.152 seconds.
+✔ Test theThirdVisitMakesTheTipReady() passed after 0.151 seconds.
+✔ Test bothSidesOfAPairReadAsThePair() passed after 0.152 seconds.
+✔ Test archivedMedicationsAreOrderedByArchivedTimeNewestFirst() passed after 0.152 seconds.
+✔ Test archivedMedicationsAreLeftOut() passed after 0.152 seconds.
+✔ Test storedFieldsInitPutsKnownPlacesInCatalogOrderAndKeepsUnknownOnesLast() passed after 0.153 seconds.
+✔ Test noSelectionFallsToTheFirstActiveRow() passed after 0.151 seconds.
+✔ Test aSelectionNoLongerActiveFallsToTheFirstActiveRow() passed after 0.151 seconds.
+✔ Test theThirdPickOfOnePlaceMakesTheTipReady() passed after 0.152 seconds.
+✔ Test twoPinsAndNoEntriesGiveThePinsAndTheFirstThreePresets() passed after 0.151 seconds.
+✔ Test noActiveMedicationGivesNoSelection() passed after 0.151 seconds.
+✔ Test aPinnedPlaceIsNotChosenAgainByTheUsageRule() passed after 0.151 seconds.
+✔ Test aDoseOfAMedicationNotInTheListReadsAnEmptyTitle() passed after 0.154 seconds.
+✔ Test pinsComeBeforeAPlaceUsedManyTimes() passed after 0.152 seconds.
+✔ Test pinsShowInBodyOrderNotInPinOrder() passed after 0.151 seconds.
+✔ Test anEntryWithNoPlaceDoesNotUseUpOneOfTheTen() passed after 0.152 seconds.
+✔ Test anUnknownPinNeverBecomesAChip() passed after 0.151 seconds.
+✔ Test lastTimeBeatsTheMostRecentUseInATie() passed after 0.151 seconds.
+✔ Test withNoPinsAndNoLastChipsTheChipsAreTheOldOnes() passed after 0.152 seconds.
+✔ Test aPinnedPlaceThatIsAlsoAPresetIsNotCountedTwice() passed after 0.151 seconds.
+✔ Test theTopFiveByCountShowInBodyOrder() passed after 0.152 seconds.
+✔ Test withNoEntriesTheChipsAreTheFivePresetsInBodyOrder() passed after 0.151 seconds.
+✔ Test onlyTheLastTenEntriesWithAPlaceCount() passed after 0.151 seconds.
+✔ Test ifBothWereChipsLastTimeTheMostRecentUseWins() passed after 0.151 seconds.
+✔ Test theUsageRuleStillFillsTheCardAroundOnePin() passed after 0.151 seconds.
+✔ Test aNewUserWithOneEntryGetsTheFivePresets() passed after 0.151 seconds.
+✔ Test morePinsThanFiveKeepOnlyTheFirstFivePinned() passed after 0.151 seconds.
+✔ Test anUnknownIdNeverBecomesAChip() passed after 0.151 seconds.
+✔ Test theChipsShowInBodyOrder() passed after 0.151 seconds.
+✔ Test aPlaceThatWasAChipButHasOneUseIsNotKept() passed after 0.151 seconds.
+✔ Test fivePinsAreTheChipsWhateverTheLastTenEntriesHold() passed after 0.151 seconds.
+✔ Test aPlaceNeedsACountOfTwo() passed after 0.151 seconds.
+✔ Test noteCounterReadsThirtyNineLeftAtTwoHundredOneCharacters() passed after 0.151 seconds.
+✔ Test noteCounterReadsTenLeftAtTwoHundredThirtyCharacters() passed after 0.151 seconds.
+✔ Test aPlaceCountsOncePerEntry() passed after 0.151 seconds.
+✔ Test aStillTiedPairGoesToBodyOrder() passed after 0.151 seconds.
+✔ Test aSelectedActiveMedicationStaysSelected() passed after 0.152 seconds.
+✔ Test freeSlotsFillFromThePresetsInOrderSkippingChosenPlaces() passed after 0.152 seconds.
+✔ Test noteCounterIsNilAtFortyCharactersLeft() passed after 0.151 seconds.
+✔ Test noteCounterCountsAnAccentedLetterOnceNearTheLimit() passed after 0.151 seconds.
+✔ Test noteCounterIsNilWithNoNote() passed after 0.151 seconds.
+✔ Test noteCounterReadsOneLeftAtTwoHundredThirtyNineCharacters() passed after 0.151 seconds.
+✔ Test noteCounterIsLimitReachedAtTwoHundredFortyCharacters() passed after 0.151 seconds.
+✔ Test aTieGoesToTheMostRecentUse() passed after 0.152 seconds.
+✔ Test aFatigueEntryAddsNothingToTheCounts() passed after 0.151 seconds.
+✔ Test placesFollowCatalogOrderNotPickOrder() passed after 0.151 seconds.
+✔ Test noteCounterCountsAnEmojiOnceAtTheLimit() passed after 0.151 seconds.
+✔ Test leftAndRightCountSeparately() passed after 0.151 seconds.
+✔ Test anEntryWithOnlyUnknownIdsReadsAsNoPlace() passed after 0.151 seconds.
+✔ Test aStiffnessEntryWithNoPlacesReadsAsNoPlace() passed after 0.151 seconds.
+✔ Test anEntryFromAnOldFileReadsAsNoPlace() passed after 0.151 seconds.
+✔ Test aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() passed after 0.151 seconds.
+✔ Test aTieGoesToThePlaceThatWasAChipLastTime() passed after 0.152 seconds.
+✔ Test aPainEntryListsItsPlaces() passed after 0.151 seconds.
+✔ Test aPainEntryWithNoPlacesReadsAsNoPlace() passed after 0.151 seconds.
+✔ Test bothKneesListLeftThenRight() passed after 0.151 seconds.
+✔ Test painShowsNoKind() passed after 0.153 seconds.
+✔ Test theResultAlwaysHasFivePlaces() passed after 0.152 seconds.
+✔ Test aMissingFileGivesAnEmptyProgress() passed after 0.153 seconds.
+✔ Test theFileHoldsAVersionVisitsAndPicks() passed after 0.153 seconds.
+✔ Test placesSurviveAReloadFromTheFile() passed after 0.151 seconds.
+✔ Test visitsSurviveAReload() passed after 0.153 seconds.
+✔ Test theFileVersionStaysOne() passed after 0.151 seconds.
+✔ Test twoNamesJoinWithAndInEnglish() passed after 0.151 seconds.
+✔ Test noNameSpeaksNothing() passed after 0.151 seconds.
+✔ Test twoNamesJoinWithAndInRussian() passed after 0.151 seconds.
+✔ Test aMissingFileGivesNoPinsAndNoLastChips() passed after 0.151 seconds.
+✔ Test noteOfOnlySpacesIsAChangeToTheDraftItOpenedFrom() passed after 0.151 seconds.
+✔ Test oneNameStandsAlone() passed after 0.151 seconds.
+✔ Test aPickThatClearsAPlaceIsNotCounted() passed after 0.151 seconds.
+✔ Test aFatigueEntryReadsAsWholeBody() passed after 0.152 seconds.
+✔ Test picksSurviveAReload() passed after 0.153 seconds.
+✔ Test aStrengthIsSavedTrimmed() passed after 0.151 seconds.
+✔ Test aNewDraftIsTakenAsNeededWithNoCheckIn() passed after 0.151 seconds.
+✔ Test anUnreadableOrNewerFileGivesAnEmptyProgress() passed after 0.153 seconds.
+✔ Test aNameIsSavedTrimmed() passed after 0.151 seconds.
+✔ Test aNewDraftHasNoNameAndIsNotSavable() passed after 0.151 seconds.
+✔ Test pinsAndLastChipsReloadFromTheFile() passed after 0.151 seconds.
+✔ Test applyingADraftChangesTheEditableFieldsAndMovesTheUpdatedTime() passed after 0.151 seconds.
+✔ Test aDraftOfAMedicationCopiesEveryEditableField() passed after 0.151 seconds.
+✔ Test aBlankStrengthIsSavedAsNone(strength:) with 3 test cases passed after 0.151 seconds.
+✔ Test aBlankNameIsNotSavable(name:) with 3 test cases passed after 0.151 seconds.
+✔ Test aNameWithTextIsSavable() passed after 0.151 seconds.
+✔ Test anUnreadableFileGivesNoPinsAndTheNextSaveRepairsIt() passed after 0.152 seconds.
+✔ Test applyingADraftKeepsTheIdCreatedTimeAndArchivedTime() passed after 0.151 seconds.
+✔ Test aVersionOneFileWithoutPlacesStillLoads() passed after 0.151 seconds.
+✔ Test aKnownIdIsNeverRewrittenWhenAnEntryIsSavedAgain() passed after 0.152 seconds.
+✔ Test clearingTheStrengthRemovesIt() passed after 0.151 seconds.
+✔ Test aSavedMedicationKeepsHowItIsTakenAndItsCheckIn() passed after 0.151 seconds.
+✔ Test anIdThisBuildDoesNotKnowSurvivesALoadAndASave() passed after 0.152 seconds.
+✔ Test aSavedMedicationKeepsTheIdAndUsesTheDateForBothTimes() passed after 0.151 seconds.
+✔ Test aNewStoreOnTheSameFileSeesWhatWasSaved() passed after 0.151 seconds.
+✔ Test unknownIdsAreLeftOutOfTheList() passed after 0.151 seconds.
+✔ Test aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() passed after 0.151 seconds.
+✔ Test loadThrowsUnreadableForBytesItCannotDecode() passed after 0.151 seconds.
+✔ Test unreadableFileIsKept() passed after 0.151 seconds.
+✔ Test activeMedicationsAreOrderedByCreatedTimeOldestFirst() passed after 0.151 seconds.
+✔ Test missingFileReadsAsNoEntries() passed after 0.151 seconds.
+✔ Test newerVersionFileIsLeftAsItWas() passed after 0.151 seconds.
+✔ Test oneSideOfAPairReadsThatPlaceInTheChip() passed after 0.151 seconds.
+✔ Test aPairChipReadsTheStandInPluralName() passed after 0.151 seconds.
+✔ Test theSpokenPlacesOfAnEntryWithNoPlaceSayNoPlace() passed after 0.151 seconds.
+✔ Test theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() passed after 0.151 seconds.
+✔ Test aStiffnessChipReadsKindPlacesLevel() passed after 0.151 seconds.
+✔ Test theSpokenTextOfAStiffnessEntryStartsWithItsKind() passed after 0.151 seconds.
+✔ Test theSpokenTextOfAFatigueEntryHasNoPlace() passed after 0.151 seconds.
+✔ Test theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() passed after 0.151 seconds.
+✔ Test theSpokenPlacesJoinThePairAndThePlaceWithAnd() passed after 0.151 seconds.
+✔ Test failedSaveLeavesTheEarlierFileWhole() passed after 0.151 seconds.
+✔ Test aFatigueEntryIgnoresItsPlaces() passed after 0.151 seconds.
+✔ Test writesVersionOneWithSortedKeysPrettyPrintedAndWholeSecondDates() passed after 0.151 seconds.
+✔ Test aLongListChipReadsTwoNamesAndACount() passed after 0.151 seconds.
+✔ Test theLimitCapsTheList() passed after 0.151 seconds.
+✔ Test theSpokenPlacesOfOneNameStandAlone() passed after 0.151 seconds.
+✔ Test aNameInAnotherScriptWithAnEmojiIsSavedAsTyped() passed after 0.152 seconds.
+✔ Test equalDatesGoToTheEntryLoggedLater() passed after 0.151 seconds.
+✔ Test recentEntriesComeNewestFirst() passed after 0.151 seconds.
+✔ Test aLimitOfZeroOrLessGivesNoRecentEntries(limit:) with 2 test cases passed after 0.151 seconds.
+✔ Test aDifferentPlaceSetIsADifferentRecentEntry() passed after 0.151 seconds.
+✔ Test placesSavedInAnotherOrderAreTheSameRecentEntry() passed after 0.151 seconds.
+✔ Test keepsEveryFieldInSaveOrderThroughSaveAndLoad() passed after 0.151 seconds.
+✔ Test aDifferentKindIsADifferentRecentEntry() passed after 0.151 seconds.
+✔ Test aDifferentLevelIsADifferentRecentEntry() passed after 0.151 seconds.
+✔ Test unknownPlaceIdsDoNotMakeEntriesDistinct() passed after 0.151 seconds.
+✔ Test resultsKeepCatalogOrderAndHoldEachJointOnce() passed after 0.150 seconds.
+✔ Test aGroupNameListsTheWholeGroup() passed after 0.150 seconds.
+✔ Test aJointNameFindsThatJoint() passed after 0.150 seconds.
+✔ Test aQueryWithNoMatchFindsNothing() passed after 0.151 seconds.
+✔ Test noEntriesGiveNoRecentEntries() passed after 0.150 seconds.
+✔ Test entriesWithTheSameKindPlacesAndLevelCountOnce() passed after 0.151 seconds.
+✔ Test searchIgnoresCaseAndSpaces() passed after 0.150 seconds.
+✔ Test theSpokenPlacesOfAFatigueEntrySayTheWholeBody() passed after 0.151 seconds.
+✔ Test twoNamesShowWithNoCount() passed after 0.155 seconds.
+✔ Test theFiveGroupsHoldTwoOrFourJointsEach() passed after 0.150 seconds.
+✔ Test aFatigueChipReadsKindAndLevel() passed after 0.151 seconds.
+✔ Test theNewestOfEqualEntriesIsTheOneKept() passed after 0.151 seconds.
+✔ Test anEmptyQueryListsEveryJointInCatalogOrder() passed after 0.150 seconds.
+✔ Test theIdsTheTicketNamesAreExact() passed after 0.150 seconds.
+✔ Test theQueryHeadFindsTheHeadGroup() passed after 0.151 seconds.
+✔ Test aPlaceLooksUpItsJointAndSide() passed after 0.150 seconds.
+✔ Test theNoteAndTheTimeDoNotMakeEntriesDistinct() passed after 0.151 seconds.
+✔ Test aSavedFileWritesPlacesAsAnArrayOfTheRawIds() passed after 0.153 seconds.
+✔ Test placeIdsAreUnique() passed after 0.150 seconds.
+✔ Test pairedJointsGetALeftAndARightId() passed after 0.150 seconds.
+✔ Test singleJointsUseTheirStemAsTheId() passed after 0.150 seconds.
+✔ Test aFileOfAnotherVersionGivesNoPinsAndNoLastChips() passed after 0.153 seconds.
+✔ Test fractionRoundsToTheNearestLevel() passed after 0.150 seconds.
+✔ Test everyDefaultChipIsInTheCatalog() passed after 0.151 seconds.
+✔ Test aPlaceIdEncodesAsAPlainString() passed after 0.150 seconds.
+✔ Test startLevelIsTheLevelOfTheOnlySavedEntry() passed after 0.150 seconds.
+✔ Test theCatalogListsExactlyTheTwentyEightIds() passed after 0.150 seconds.
+✔ Test startLevelIsZeroWhenNothingWasSaved() passed after 0.150 seconds.
+✔ Test acceptsWholeNumbersFromZeroToTen(value:) with 3 test cases passed after 0.150 seconds.
+✔ Test startLevelIsTheLastSavedEntryEvenWhenItIsDatedEarlier() passed after 0.150 seconds.
+✔ Test fractionAtOrAboveOneGivesTen(fraction:) with 3 test cases passed after 0.150 seconds.
+✔ Test aChipWithNoPlaceReadsNoPlaceAndTheLevel() passed after 0.151 seconds.
+✔ Test aPainChipHasNoKindPrefix() passed after 0.151 seconds.
+✔ Test encodesAsABareNumber() passed after 0.150 seconds.
+✔ Test decodingOutsideZeroToTenIsDataCorrupted(json:) with 2 test cases passed after 0.150 seconds.
+✔ Test decodesABareNumber() passed after 0.150 seconds.
+✔ Test acceptsScoresFromZeroToTen(value:) with 3 test cases passed after 0.150 seconds.
+✔ Test fractionHalfwayBetweenTwoLevelsRoundsUp() passed after 0.150 seconds.
+✔ Test fractionAtOrBelowZeroGivesZero(fraction:) with 3 test cases passed after 0.150 seconds.
+✔ Test fractionThatIsNotANumberGivesZero() passed after 0.150 seconds.
+✔ Test aDraftWithAChangedPlaceIsNotEqualToTheStartDraft() passed after 0.150 seconds.
+✔ Test entriesFromEarlierDaysAreRecentToo() passed after 0.151 seconds.
+✔ Test assigningAnEmptyListClearsThePlaces() passed after 0.150 seconds.
+✔ Test assigningPlacesDirectlyPutsThemInCatalogOrder() passed after 0.150 seconds.
+✔ Test aNewDraftHasNoPlaces() passed after 0.150 seconds.
+✔ Test draftFromAnEntryWithNoPlacesHasNone() passed after 0.150 seconds.
+✔ Test assigningAListAlreadyInCatalogOrderReadsTheSameList() passed after 0.150 seconds.
+✔ Test anUnknownIdIsKeptButNotCounted() passed after 0.150 seconds.
+✔ Test placesAreKeptInCatalogOrderWhateverOrderTheyWerePicked() passed after 0.150 seconds.
+✔ Test rejectsScoresOutsideZeroToTen(value:) with 2 test cases passed after 0.150 seconds.
+✔ Test rejectsFractionsAndValuesOutsideZeroToTen(value:) with 5 test cases passed after 0.150 seconds.
+✔ Test choosingFatigueAndThenPainAgainKeepsTheDraftsPlaces() passed after 0.150 seconds.
+✔ Test assigningAnUnknownIdKeepsItAfterTheKnownPlaces() passed after 0.150 seconds.
+✔ Test placesOutsideTheChipsFollowBodyOrder() passed after 0.150 seconds.
+✔ Test draftFromAnEntryHoldsItsPlaces() passed after 0.150 seconds.
+✔ Test togglingASelectedPlaceOffKeepsTheRestInCatalogOrder() passed after 0.150 seconds.
+✔ Test noPlaceOutsideTheChipsIsNone() passed after 0.150 seconds.
+✔ Test applyingARecentEntryKeepsItsPlacesInCatalogOrder() passed after 0.150 seconds.
+✔ Test aPickedPlaceWithAChipIsNotInTheValue() passed after 0.150 seconds.
+✔ Test twoPlacesOutsideTheChipsAreBothListed() passed after 0.150 seconds.
+✔ Test theAfterMenuOffersOffThenTheFiveDelaysInOrder() passed after 0.150 seconds.
+✔ Test onePlaceOutsideTheChipsIsListed() passed after 0.150 seconds.
+✔ Test eachDelayIsStoredAsItsMinutes() passed after 0.150 seconds.
+✔ Test morePlacesCountsEveryPlaceAfterTheFirstTwo() passed after 0.150 seconds.
+✔ Test anUnknownIdIsNotInTheValue() passed after 0.150 seconds.
+✔ Test draftFromAnEntryWithNoNoteHasAnEmptyNote() passed after 0.150 seconds.
+✔ Test draftFromAnEntryCutsANoteOverTheLimit() passed after 0.150 seconds.
+✔ Test searchIgnoresAccents() passed after 0.150 seconds.
+✔ Test aPairWithBothSidesCountsTwoPlaces() passed after 0.150 seconds.
+✔ Test togglingAPlaceAddsItAndTogglingAgainRemovesIt() passed after 0.150 seconds.
+✔ Test offersPainStiffnessAndFatigueInThatOrder() passed after 0.150 seconds.
+✔ Test draftFromAnEntryHoldsKindTimeLevelAndNote() passed after 0.150 seconds.
+✔ Test repeatsOfOneEntryDoNotUseUpTheLimit() passed after 0.152 seconds.
+✔ Test anUnknownIdHasNoJointAndNoSide() passed after 0.150 seconds.
+✔ Test draftFromAnEntryIsNotChangedUntilAFieldChanges() passed after 0.150 seconds.
+✔ Test theCountOfPlacesHoldsAllFourRussianPluralForms() passed after 0.150 seconds.
+✔ Test everyApprovedRussianValueIsMarkedTranslated() passed after 0.150 seconds.
+✔ Test everyKeyOfTheCatalogHasARussianValue() passed after 0.150 seconds.
+✔ Test theDoneButtonHoldsAllFourRussianPluralForms() passed after 0.150 seconds.
+✔ Test savedFileStaysInBackup() passed after 0.153 seconds.
+✔ Test encodesAsItsRawValue() passed after 0.150 seconds.
+✔ Test aStiffnessEntryKeepsThePlacesOfItsDraft() passed after 0.150 seconds.
+✔ Test anEntryReadsStoredPlacesInCatalogOrder() passed after 0.150 seconds.
+✔ Test theCatalogHoldsAllFourRussianPluralForms() passed after 0.150 seconds.
+✔ Test onlyFatigueDoesNotAskWhere() passed after 0.150 seconds.
+✔ Test aFatigueEntryDropsThePlacesOfItsDraft() passed after 0.150 seconds.
+✔ Test aPainEntryKeepsThePlacesOfItsDraft() passed after 0.150 seconds.
+✔ Test noAwaitingKeyHasARussianValueYet() passed after 0.150 seconds.
+✔ Test anEntryReadsAMissingPlacesKeyAsNoPlaces() passed after 0.150 seconds.
+✔ Test russianWeekdayIsCapitalisedAndTheMonthKeepsItsCase() passed after 0.150 seconds.
+✔ Test englishWeekdayIsCapitalisedAndTheRestIsLowercase() passed after 0.150 seconds.
+✔ Test threePlacesShowTwoNamesAndOneMore() passed after 0.150 seconds.
+✔ Test noTextOutsideTheApprovedListHasARussianValue() passed after 0.149 seconds.
+✔ Test anEntryFromADraftHoldsItsPlacesInCatalogOrder() passed after 0.150 seconds.
+✔ Test onlyTheWeekdayChangesInTheYearForm(identifier:lowercase:capitalised:) with 2 test cases passed after 0.149 seconds.
+✔ Test onlyTheWeekdayChanges(identifier:lowercase:capitalised:) with 4 test cases passed after 0.149 seconds.
+✔ Test errorTextNeverCarriesEntryContent() passed after 0.152 seconds.
+✔ Test oneAndTwentyOnePlacesTakeTheSingularForm() passed after 0.150 seconds.
+✔ Test theDefaultChipsAreLowerBackThenBothSiJointsThenNeckThenUpperBack() passed after 0.148 seconds.
+✔ Test oneAndTwentyOneLeftTakeTheSingularForm() passed after 0.150 seconds.
+✔ Test countsTheDayInTheGivenCalendar() passed after 0.148 seconds.
+✔ Test theCountOfPlacesTakesTheRussianPluralForms() passed after 0.150 seconds.
+✔ Test twoAndTwentyTwoLeftTakeTheFewForm() passed after 0.150 seconds.
+✔ Test fiveAndTheTeensLeftTakeTheManyForm() passed after 0.149 seconds.
+✔ Suite EntryDraftTests passed after 0.162 seconds.
+✔ Suite ShortcutFeedbackTests passed after 0.162 seconds.
+✔ Suite DoseRowTextTests passed after 0.162 seconds.
+✔ Suite ShortcutsLogTests passed after 0.162 seconds.
+✔ Suite DayHeaderTests passed after 0.162 seconds.
+✔ Suite ShortcutsTests passed after 0.162 seconds.
+✔ Suite RecentEntryDraftTests passed after 0.162 seconds.
+✔ Suite EntryTests passed after 0.162 seconds.
+✔ Suite RecentEntryNamesTests passed after 0.162 seconds.
+✔ Suite MedicationOrderTests passed after 0.162 seconds.
+✔ Suite MedicationSelectionTests passed after 0.162 seconds.
+✔ Suite TipProgressTests passed after 0.162 seconds.
+✔ Suite NoteCounterTests passed after 0.162 seconds.
+✔ Suite PlaceSummaryTests passed after 0.162 seconds.
+✔ Suite EntryPlacesStoreTests passed after 0.162 seconds.
+✔ Suite SpokenListTests passed after 0.162 seconds.
+✔ Suite FileShortcutsStoreTests passed after 0.162 seconds.
+✔ Suite MedicationDraftTests passed after 0.162 seconds.
+✔ Suite FileEntryStoreTests passed after 0.162 seconds.
+✔ Suite PlaceChipsTests passed after 0.162 seconds.
+✔ Suite RecentEntryTextTests passed after 0.162 seconds.
+✔ Suite PlaceSearchTests passed after 0.162 seconds.
+✔ Suite RecentEntriesTests passed after 0.162 seconds.
+✔ Suite PlaceCatalogTests passed after 0.162 seconds.
+✔ Suite CheckInChoicesTests passed after 0.162 seconds.
+✔ Suite SeverityTests passed after 0.162 seconds.
+✔ Suite MorePlacesValueTests passed after 0.162 seconds.
+✔ Test anEntrySavedFromADirectlyAssignedDraftHasItsPlacesInCatalogOrder() passed after 0.150 seconds.
+✔ Suite EntryPlacesTests passed after 0.162 seconds.
+✔ Suite DayDateTextTests passed after 0.162 seconds.
+✔ Suite TodayListTests passed after 0.163 seconds.
+✔ Suite EntryDraftPlacesTests passed after 0.162 seconds.
+✔ Suite EntryDraftFromEntryTests passed after 0.162 seconds.
+✔ Suite EntryKindTests passed after 0.162 seconds.
+✔ Test theSeverityTextReadsFourFromTenInBothKeys() passed after 0.153 seconds.
+✔ Test theJoiningFormatsReadTheSameInRussian() passed after 0.154 seconds.
+✔ Test englishReadsAsBefore() passed after 0.154 seconds.
+✔ Test everyApprovedTextReadsAsTheStakeholderWroteIt() passed after 0.155 seconds.
+✔ Test twoAndTwentyTwoPlacesTakeTheFewForm() passed after 0.231 seconds.
+✔ Test fiveAndTheTeensPlacesTakeTheManyForm() passed after 0.231 seconds.
+✔ Suite RussianCatalogTests passed after 0.242 seconds.
+CoreData: error: (26) Fatal error.  The database at /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store is corrupted.  SQLite error code:26, 'file is not a database'
+CoreData: error: Encountered exception Fatal error.  The database at /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store is corrupted.  SQLite error code:26, 'file is not a database' with userInfo {
+    NSFilePath = "/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store";
+    NSSQLiteErrorDomain = 26;
+} while checking table name from store: <NSSQLiteConnection: 0x812358000>
+CoreData: error: addPersistentStoreWithType:configuration:URL:options:error: returned error NSSQLiteErrorDomain (26)
+CoreData: error: userInfo:
+CoreData: error: 	NSFilePath : /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store
+CoreData: error: 	NSSQLiteErrorDomain : 26
+CoreData: error: storeType: SQLite
+CoreData: error: configuration: default
+CoreData: error: URL: file:///var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store
+CoreData: annotation: options:
+CoreData: annotation: 	NSMigratePersistentStoresAutomaticallyOption : 1
+CoreData: annotation: 	NSInferMappingModelAutomaticallyOption : 1
+CoreData: annotation: 	NSPersistentStoreRemoteChangeNotificationOptionKey : 1
+CoreData: annotation: 	NSPersistentHistoryTrackingKey : 1
+CoreData: error: <NSPersistentStoreCoordinator: 0x811d7d600>: Attempting recovery from error encountered during addPersistentStore: 0x80f795aa0 Error Domain=NSSQLiteErrorDomain Code=26 "(null)" UserInfo={NSFilePath=/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store, NSSQLiteErrorDomain=26}
+CoreData: error: Store failed to load.  <NSPersistentStoreDescription: 0x80f7958f0> (type: SQLite, url: file:///var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store) with error = Error Domain=NSSQLiteErrorDomain Code=26 "(null)" UserInfo={NSFilePath=/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store, NSSQLiteErrorDomain=26} with userInfo {
+    NSFilePath = "/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/A269196B-DAB6-4762-990E-289921AAD911/medications.store";
+    NSSQLiteErrorDomain = 26;
+}
+✔ Test anotherEntryWithAKnownIDChangesNothing(_:) with 2 test cases passed after 2.470 seconds.
+✔ Test addSavesTheWholeListWithTheEntryAppended(_:) with 2 test cases passed after 2.470 seconds.
+✔ Test failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 2.470 seconds.
+✔ Test startsEmptyWhenTheStoreCannotBeRead(_:) with 2 test cases passed after 2.470 seconds.
+✔ Test addingTheSameEntryTwiceKeepsOneAndSavesOnce(_:) with 2 test cases passed after 2.470 seconds.
+✔ Test retryingAfterAFailedSaveAddsTheSameEntry(_:) with 2 test cases passed after 2.469 seconds.
+✔ Test loadsTheStoredEntriesInSaveOrder(_:) with 2 test cases passed after 2.469 seconds.
+✔ Test anEntryEditedFromFatigueToPainStartsWithNoPlaces() passed after 2.468 seconds.
+✔ Test aReplacedEntryCarriesTheEditedPlaces() passed after 2.468 seconds.
+✔ Test editingAnEntryKeepsAnIdThisBuildDoesNotKnow() passed after 2.468 seconds.
+✔ Test anOpenedStoreIsNotOpenedAgain() passed after 2.468 seconds.
+✔ Test aWriteWhileLockedNeverReachesTheStoreAndSucceedsOnceOpened() passed after 2.468 seconds.
+✔ Test aDoseWriteWhileLockedNeverReachesTheStore() passed after 2.468 seconds.
+✔ Test aStoreThatCannotOpenThrowsUnavailableAndOpensOnALaterCall() passed after 2.468 seconds.
+✔ Test doseCallsForwardThroughTheOpenedStore() passed after 2.468 seconds.
+✔ Test aFailedDoseReadKeepsTheMedicationsAndTheNextWriteReadsFirst() passed after 2.467 seconds.
+✔ Test aFailedLogLeavesTheModelAsItWas() passed after 2.467 seconds.
+✔ Test aWriteWhileTheListIsUnreadNeverReachesTheStore() passed after 2.467 seconds.
+✔ Test reloadReadsTheDosesWithTheMedications() passed after 2.467 seconds.
+✔ Test aLoadedListSavesWhileReadsFail() passed after 2.467 seconds.
+✔ Test aWriteAfterALockedLaunchReadsTheStoredRowsFirst(_:) with 4 test cases passed after 2.467 seconds.
+✔ Suite EditedPlacesTests passed after 2.475 seconds.
+✔ Suite EntryLogTests passed after 2.475 seconds.
+✔ Suite DeferredMedicationStoreTests passed after 2.475 seconds.
+✔ Test aFailedWriteLeavesTheListAsItWas(_:) with 4 test cases passed after 2.515 seconds.
+✔ Test aSecondSaveAfterASuccessWritesNothing() passed after 2.515 seconds.
+✔ Test aFailedReloadKeepsTheListAndTheNextWriteReadsFirst() passed after 2.516 seconds.
+✔ Test logDoseAddsTheDoseAndTheSavedDelayToTheModel() passed after 2.515 seconds.
+✔ Test aFailedWriteLeavesTheSaveOpenAndTheRetryUsesTheSameId() passed after 2.515 seconds.
+✔ Suite MedicationsModelTests passed after 2.523 seconds.
+✔ Suite MedicationSaveTests passed after 2.523 seconds.
+✔ Test aChangedLevelSurvivesAReloadFromTheFile() passed after 2.515 seconds.
+✔ Test aRemovedEntryStaysGoneAfterAReloadFromTheFile() passed after 2.886 seconds.
+✔ Suite EditedEntryReloadTests passed after 2.895 seconds.
+✔ Test aSecondSaveAfterASuccessLogsNothing() passed after 2.897 seconds.
+✔ Test replaceKeepsThePlace(_:) with 2 test cases passed after 2.897 seconds.
+✔ Test replaceOfAnUnknownIdThrowsNotSaved(_:) with 2 test cases passed after 2.897 seconds.
+✔ Test removeOfAnUnknownIdWritesNothing(_:) with 2 test cases passed after 2.945 seconds.
+✔ Test addOfAKnownIdLeavesOneEntryAndWritesNothing(_:) with 2 test cases passed after 2.945 seconds.
+✔ Test aFailedLogLeavesTheSaveOpenAndTheRetryLogsTheSameDose() passed after 2.945 seconds.
+✔ Test logDoseSetsTheSavedDelayAndLeavesTheUpdatedTime() passed after 2.945 seconds.
+✔ Test doseForAnUnknownMedicationThrowsAndLeavesNoPendingRow() passed after 2.945 seconds.
+✔ Test storeFileWrittenWithOnlyMedicationsOpensWithThemAndNoDoses() passed after 2.945 seconds.
+✔ Test updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime() passed after 2.945 seconds.
+✔ Test failedRestoreLeavesTheMedicationArchivedAndRetryRestoresIt() passed after 2.945 seconds.
+✔ Test restoreOfAnUnknownIdThrowsAndChangesNothing() passed after 2.945 seconds.
+✔ Test failedArchiveLeavesTheMedicationActiveAndRetryArchivesIt() passed after 2.945 seconds.
+✔ Test failedUpdateLeavesTheMedicationAsItWasAndRetrySavesOneChange() passed after 2.945 seconds.
+✔ Test updateOfAnUnknownIdThrowsAndChangesNothing() passed after 2.945 seconds.
+✔ Test everyCheckInDelayReadsBackAfterReopen() passed after 2.945 seconds.
+✔ Test archiveSetsTheArchivedTimeAndChangesNoOtherField() passed after 2.945 seconds.
+✔ Test restoreClearsTheArchivedTimeAndKeepsEveryOtherField() passed after 2.945 seconds.
+✔ Test reopenedStoreReadsBackEveryDoseField() passed after 2.945 seconds.
+✔ Test aFailedWriteThrowsAnErrorThatNamesNoMedication() passed after 2.945 seconds.
+✔ Test storeHoldsNoMedicationBeforeTheFirstAdd() passed after 2.945 seconds.
+✔ Test archiveOfAnUnknownIdThrowsAndChangesNothing() passed after 2.945 seconds.
+✔ Test aRecordWithAnUnreadableKindLoadsAsUnreadable() passed after 2.944 seconds.
+✔ Test aDamagedStoreFileFailsToOpenAndIsLeftAsItWas() passed after 2.945 seconds.
+✔ Test replaceLeavesEveryOtherRecordAsItWas() passed after 2.944 seconds.
+✔ Test reopenedStoreReadsBackEveryField() passed after 2.945 seconds.
+✔ Test aSecondAddOfAKnownIdLeavesOneRecord() passed after 2.944 seconds.
+✔ Test reopenedStoreReadsBackEveryField() passed after 2.944 seconds.
+✔ Test refusedRemoveLeavesTheSameStoreReadingAsItWas() passed after 2.944 seconds.
+✔ Test anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() passed after 2.944 seconds.
+✔ Test saveOrderSurvivesDatesThatRunBackwards() passed after 2.944 seconds.
+✔ Test refusedReplaceLeavesTheSameStoreReadingAsItWas() passed after 2.944 seconds.
+✔ Test failedWriteLeavesStoreAsItWasAndRetrySavesOneRecord() passed after 2.945 seconds.
+✔ Test deletingTheNewestThenAddingKeepsTheNewOneLast() passed after 2.944 seconds.
+✔ Test refusedAddLeavesTheSameStoreReadingAsItWas() passed after 2.944 seconds.
+✔ Test aRecordWithAnUnreadableLevelLoadsAsUnreadable() passed after 2.944 seconds.
+✔ Test inMemoryStoreRollsBackARefusedWriteToo() passed after 2.945 seconds.
+✔ Test entryBackdatedAcrossMidnightIsSavedButNotListedOnToday(_:) with 2 test cases passed after 2.953 seconds.
+✔ Test theSameInstantFallsOnAnotherDayInAnotherTimeZone() passed after 2.950 seconds.
+✔ Test failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() passed after 2.945 seconds.
+✔ Test yesterdayHoldsAcrossAClockChange() passed after 2.949 seconds.
+✔ Test aDayWithNoEntriesHasNoSection() passed after 2.949 seconds.
+✔ Test aDateAfterTodaySitsOnTopUnderItsOwnDateHeader() passed after 2.949 seconds.
+✔ Test theLaterEntryIsFirstInsideADay() passed after 2.950 seconds.
+✔ Test anEntryMovedToYesterdayLeavesTodaysSectionAndJoinsYesterdays(_:) with 2 test cases passed after 2.949 seconds.
+✔ Test anEntryAt2359AndOneAt0001FallInDifferentSections() passed after 2.950 seconds.
+✔ Test entriesOnThreeDaysMakeThreeSectionsNewestFirst() passed after 2.948 seconds.
+✔ Test failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test failedWriteOfTheSameIdSavesOneRecord() passed after 2.944 seconds.
+✔ Test removeOfAnUnknownIdSavesNothing(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test aNewStoreAtANewURLReadsNoEntries() passed after 2.945 seconds.
+✔ Test anEntryMovedToYesterdayLeavesTodayAndStaysStored(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test removeDropsTheEntryAndSavesTheList(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test entriesInTheSameMinuteListTheLaterSavedFirst() passed after 2.949 seconds.
+✔ Test replaceSavesTheWholeListOnce(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(_:) with 2 test cases passed after 2.947 seconds.
+✔ Test replaceThrowsMissingWhenNoEntryHasThatId(_:) with 2 test cases passed after 2.946 seconds.
+✔ Test anEntryFromYearsAgoStillGetsASection() passed after 2.950 seconds.
+✔ Suite EntryStoreContractTests passed after 2.956 seconds.
+✔ Suite DoseSaveTests passed after 2.956 seconds.
+✔ Suite SwiftDataDoseTests passed after 2.956 seconds.
+✔ Suite SwiftDataMedicationEditTests passed after 2.956 seconds.
+✔ Suite BackdatedEntryTests passed after 2.957 seconds.
+✔ Suite SwiftDataMedicationStoreTests passed after 2.956 seconds.
+✔ Test aLogWithNoEntriesHasNoSections() passed after 2.949 seconds.
+✔ Suite EntryLogEditTests passed after 2.956 seconds.
+✔ Suite HistoryListTests passed after 2.957 seconds.
+✔ Suite SwiftDataEntryStoreTests passed after 2.956 seconds.
+✔ Test run with 405 tests in 49 suites passed after 2.958 seconds.
