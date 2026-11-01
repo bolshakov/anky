@@ -11,6 +11,7 @@ struct MedicationTakingSections: View {
                 .listRowBackground(Color.clear)
         } header: {
             Text("How you take it")
+                .font(.footnote)
                 .accessibilityAddTraits(.isHeader)
         }
 
@@ -18,9 +19,11 @@ struct MedicationTakingSections: View {
             CheckInDelayMenu(checkInAfter: $draft.checkInAfter)
         } header: {
             Text("Check in after a dose")
+                .font(.footnote)
                 .accessibilityAddTraits(.isHeader)
         } footer: {
             Text("Anky asks how your pain is after this long. Off until you choose a time.")
+                .font(.footnote)
         }
     }
 }
