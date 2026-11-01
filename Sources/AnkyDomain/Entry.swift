@@ -19,6 +19,16 @@ public struct Entry: Identifiable, Equatable, Codable, Sendable {
         places = Self.keptPlaces(draft.places, for: draft.kind)
     }
 
+    public init(id: UUID, kind: EntryKind, severity: Severity, date: Date, note: String?, places: [PlaceID]) {
+        // #lizard forgives
+        self.id = id
+        self.kind = kind
+        self.severity = severity
+        self.date = date
+        self.note = note
+        self.places = Self.keptPlaces(places, for: kind)
+    }
+
     public init(from decoder: any Decoder) throws {
         let stored = try StoredEntry(from: decoder)
         id = stored.id

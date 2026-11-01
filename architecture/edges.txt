@@ -1,5 +1,5 @@
 AnkyDomain: 
-AnkyDomainTests: AnkyDomain,AnkyMedicationModel
+AnkyDomainTests: AnkyDomain,AnkyMedicationModel,AnkyStore
 AnkyStore: AnkyDomain
 AnkyStoreTests: AnkyDomain,AnkyStore
 AnkyMedicationModel: AnkyDomain

@@ -12,7 +12,7 @@ let package = Package(
     ],
     targets: [
         .target(name: "AnkyDomain"),
-        .testTarget(name: "AnkyDomainTests", dependencies: ["AnkyDomain", "AnkyMedicationModel"]),
+        .testTarget(name: "AnkyDomainTests", dependencies: ["AnkyDomain", "AnkyMedicationModel", "AnkyStore"]),
         .target(name: "AnkyStore", dependencies: ["AnkyDomain"]),
         .testTarget(name: "AnkyStoreTests", dependencies: ["AnkyDomain", "AnkyStore"]),
         .target(name: "AnkyMedicationModel", dependencies: ["AnkyDomain"]),
