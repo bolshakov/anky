@@ -35,12 +35,18 @@ struct MedicationFormView: View {
                         .focused($focus, equals: .name)
                         .submitLabel(.next)
                         .onSubmit { focus = .strength }
+                        .frame(minHeight: 44)
+                        .contentShape(Rectangle())
+                        .onTapGesture { focus = .name }
                         .accessibilityLabel("Name")
                         .accessibilityIdentifier("medication-name")
                     TextField("Strength, for example 500 mg", text: $draft.strength)
                         .focused($focus, equals: .strength)
                         .submitLabel(.done)
                         .onSubmit { focus = nil }
+                        .frame(minHeight: 44)
+                        .contentShape(Rectangle())
+                        .onTapGesture { focus = .strength }
                         .accessibilityLabel("Strength, optional")
                         .accessibilityIdentifier("medication-strength")
                 }
@@ -54,6 +60,8 @@ struct MedicationFormView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .frame(minHeight: 44)
+                        .contentShape(Rectangle())
                         .accessibilityIdentifier("medication-cancel")
                 }
             }
