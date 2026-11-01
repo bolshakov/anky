@@ -186,4 +186,16 @@ struct SwiftDataMedicationStoreTests {
             #expect((error as NSError).userInfo.isEmpty)
         }
     }
+
+    @Test func aDamagedStoreFileFailsToOpenAndIsLeftAsItWas() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let damaged = Data("not a store".utf8)
+            try damaged.write(to: url)
+            #expect(throws: (any Error).self) {
+                try SwiftDataMedicationStore(url: url)
+            }
+            #expect(try Data(contentsOf: url) == damaged)
+        }
+    }
 }

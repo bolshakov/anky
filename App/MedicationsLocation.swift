@@ -2,10 +2,14 @@
 import Foundation
 
 enum MedicationsLocation {
+    static func folder() -> URL {
+        EntriesLocation.fileURL().deletingLastPathComponent()
+    }
+
     /// The store sits beside the entries file. The folder is set to complete protection on every call, because
     /// `createDirectory` leaves an existing folder's protection alone.
     static func fileURL() throws -> URL {
-        let folder = EntriesLocation.fileURL().deletingLastPathComponent()
+        let folder = folder()
         let protection: [FileAttributeKey: Any] = [.protectionKey: FileProtectionType.complete]
         try FileManager.default.createDirectory(
             at: folder,
