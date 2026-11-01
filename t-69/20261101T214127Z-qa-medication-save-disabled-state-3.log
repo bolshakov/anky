@@ -1,0 +1,6 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -c "id=medication-save "; meds'
+exit: 0
+commit: cf4994adc16acdb2438cb7a7a33b52f1c27a3065
+
+0
+Zorblex|-|0

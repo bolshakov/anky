@@ -1,0 +1,7 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep "id=medication-save "; measure medication-save save-off'
+exit: 0
+commit: cf4994adc16acdb2438cb7a7a33b52f1c27a3065
+
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,773.6666666666666 370x50.33333333333337
+frame 16 773.6666666666666 370 50.33333333333337
+fill #eaeaee text #b5b5b9 contrast 1.70 drawn 9 to 392 text from 139
