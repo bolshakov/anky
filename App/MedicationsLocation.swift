@@ -3,10 +3,10 @@ import Foundation
 
 enum MedicationsLocation {
     static func folder() -> URL {
-        EntriesLocation.fileURL().deletingLastPathComponent()
+        EntriesLocation.folder()
     }
 
-    /// The store sits beside the entries file. The folder is set to complete protection on every call, because
+    /// The store sits beside the entries store. The folder is set to complete protection on every call, because
     /// `createDirectory` leaves an existing folder's protection alone.
     static func fileURL() throws -> URL {
         let folder = folder()
