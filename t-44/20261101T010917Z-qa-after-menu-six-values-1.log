@@ -1,0 +1,11 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; ui | grep -E "^(Button|Image id=checkmark).*(@76,|@97,)"'
+exit: 0
+commit: b54c9bcafc9c87fbcc6a3c6555bc414e3a6099e8
+
+Button id=None label='Off' value=None enabled=True actions= traits= @76,243.66666666666663 250x42
+Image id=checkmark label='selected' value=None enabled=True actions= traits= @97,258.66666666666663 13.333333333333329x12.333333333333314
+Button id=None label='30 minutes' value=None enabled=True actions= traits= @76,285.66666666666663 250x42
+Button id=None label='1 hour' value=None enabled=True actions= traits= @76,327.66666666666663 250x42
+Button id=None label='2 hours' value=None enabled=True actions= traits= @76,369.66666666666663 250x42
+Button id=None label='3 hours' value=None enabled=True actions= traits= @76,411.66666666666663 250x42
+Button id=None label='4 hours' value=None enabled=True actions= traits= @76,453.66666666666663 250x42

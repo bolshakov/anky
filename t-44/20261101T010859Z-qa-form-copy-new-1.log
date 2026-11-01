@@ -1,0 +1,20 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; ui | grep -E "New Medication|medication-(name|strength|cancel|save)|How you take|taken-|Check in|After|Off|Anky asks"'
+exit: 0
+commit: b54c9bcafc9c87fbcc6a3c6555bc414e3a6099e8
+
+Group id=New Medication label=None value=None enabled=True actions= traits= @0,88 402x54
+Group id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,92 76.66666666666667x36
+Button id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,92 76.66666666666666x36
+Heading id=None label='New Medication' value=None enabled=True actions= traits= @137,99.66666666666666 127.66666666666669x20.66666666666667
+TextField id=medication-name label=None value='Name' enabled=True actions= traits= @32,192 338x22
+TextField id=medication-strength label=None value='Strength, for example 500 mg' enabled=True actions= traits= @32,244 338x22
+Heading id=None label='How you take it' value=None enabled=True actions= traits= @16,298.66666666666663 370x35.666666666666686
+Group id=None label='How you take it' value=None enabled=True actions= traits= @32,349.33333333333337 338x52
+Button id=taken-asNeeded label='As needed' value=None enabled=True actions= traits= @36,353.33333333333337 163x44
+Button id=taken-scheduled label='Scheduled' value=None enabled=True actions= traits= @203,353.33333333333337 163x44
+Heading id=None label='Check in after a dose' value=None enabled=True actions= traits= @16,433.6666666666667 370x35.666666666666686
+PopUpButton id=check-in-after label='Check in after' value='Off' enabled=True actions= traits= @16,469.3333333333333 370x51.99999999999994
+StaticText id=None label='After' value=None enabled=True actions= traits= @32,485.16666666666663 37.66666666666666x20.33333333333337
+StaticText id=None label='Off' value=None enabled=True actions= traits= @322.33333333333337,485.16666666666663 24.333333333333314x20.33333333333337
+StaticText id=None label='Anky asks how your pain is after this long. Off until you choose a time.' value=None enabled=True actions= traits= @16,521.3333333333333 370x47.66666666666663
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,768 370x56

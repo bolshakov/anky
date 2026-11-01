@@ -1,0 +1,6 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=check-in-after |id=checkmark"'
+exit: 0
+commit: b54c9bcafc9c87fbcc6a3c6555bc414e3a6099e8
+
+PopUpButton id=check-in-after label='Check in after' value='2 hours' enabled=True actions= traits= @16,469.3333333333333 370x51.99999999999994
+Image id=checkmark label='selected' value=None enabled=True actions= traits= @97,384.66666666666663 13.333333333333329x12.333333333333314
