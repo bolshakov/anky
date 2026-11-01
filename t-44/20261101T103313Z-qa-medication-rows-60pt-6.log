@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/env.sh; full_swipe_label Zorblex; sleep 2; meds'
+exit: 0
+commit: 3236faa36e4daf37717a72667794ebcb9b6bbc42
+
+Zorblex|500 mg|0
+Quibbanol extended release tablets for the morning|-|0

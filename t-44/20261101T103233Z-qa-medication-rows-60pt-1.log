@@ -1,0 +1,9 @@
+$ zsh -c '. $TMPDIR/env.sh; ui | grep -E "^Button id=medication-row |chevron"; shot medications-rows'
+exit: 0
+commit: 3236faa36e4daf37717a72667794ebcb9b6bbc42
+
+Button id=medication-row label='Zorblex 500 mg, As needed' value=None enabled=True actions=Archive traits= @16,167 370x60
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,191.33333333333334 6.6666669845581055x11.666666984558077
+Button id=medication-row label='Quibbanol extended release tablets for the morning, Scheduled' value=None enabled=True actions=Archive traits= @16,227 370x76.66666666666669
+Image id=chevron.right label='Forward' value=None enabled=True actions=Archive traits= @362.66666666666663,259.6666666666667 6.6666669845581055x11.666666984558105
+/Users/bolshakov/Projects/personal/anky.wt/qa-t44-11-1/tmp/walk-t44.DJ16/medications-rows.png

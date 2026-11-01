@@ -1,0 +1,11 @@
+$ zsh -c '. $TMPDIR/env.sh; tap_row Zorblex; ui | grep -E "id=medication-(name|cancel)"|cut -c1-160; axe tap --id medication-cancel --element-type Button --wait-timeout 5 --udid $udid; ui | grep -E "^Button id=medication-row "'
+exit: 0
+commit: 3236faa36e4daf37717a72667794ebcb9b6bbc42
+
+✓ Tap at (200.0, 197.0) completed successfully
+Group id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,92 76.66666666666667x36
+Button id=medication-cancel label='Cancel' value=None enabled=True actions= traits= @20,88 76.66666666666666x44
+TextField id=medication-name label='Name' value='Zorblex' enabled=True actions= traits= @32,192 338x44
+✓ Tap at resolved tap point at (58.33333333333333, 110.0) completed successfully
+Button id=medication-row label='Zorblex 500 mg, As needed' value=None enabled=True actions=Archive traits= @16,167 370x60
+Button id=medication-row label='Quibbanol extended release tablets for the morning, Scheduled' value=None enabled=True actions=Archive traits= @16,227 370x76.66666666666669

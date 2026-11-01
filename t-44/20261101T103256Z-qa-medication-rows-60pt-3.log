@@ -1,0 +1,7 @@
+$ zsh -c '. $TMPDIR/env.sh; text_size accessibility-extra-extra-extra-large; sleep 2; ui | grep "^Button id=medication-row "; shot medications-ax5; text_size large'
+exit: 0
+commit: 3236faa36e4daf37717a72667794ebcb9b6bbc42
+
+Button id=medication-row label='Zorblex 500 mg, As needed' value=None enabled=True actions=Archive traits= @16,167 370x193.66666666666663
+Button id=medication-row label='Quibbanol extended release tablets for the morning, Scheduled' value=None enabled=True actions=Archive traits= @16,360.66666666666663 370x380
+/Users/bolshakov/Projects/personal/anky.wt/qa-t44-11-1/tmp/walk-t44.DJ16/medications-ax5.png

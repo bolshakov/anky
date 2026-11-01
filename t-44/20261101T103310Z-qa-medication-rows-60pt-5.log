@@ -1,0 +1,7 @@
+$ zsh -c '. $TMPDIR/env.sh; axe tap --id archived-card --element-type Button --wait-timeout 5 --udid $udid; ui | grep -E "^Button id=archived-row |chevron"; shot archived-rows'
+exit: 0
+commit: 3236faa36e4daf37717a72667794ebcb9b6bbc42
+
+✓ Tap at resolved tap point at (201.0, 281.6666666666667) completed successfully
+Button id=archived-row label='Zorblex 500 mg, As needed' value=None enabled=True actions=Restore traits= @16,167 370x60
+/Users/bolshakov/Projects/personal/anky.wt/qa-t44-11-1/tmp/walk-t44.DJ16/archived-rows.png
