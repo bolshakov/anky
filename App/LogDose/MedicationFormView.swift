@@ -37,6 +37,7 @@ struct MedicationFormView: View {
                         .onSubmit { focus = .strength }
                         .frame(minHeight: 44)
                         .contentShape(Rectangle())
+                        .onTapGesture { focus = .name }
                         .accessibilityLabel("Name")
                         .accessibilityIdentifier("medication-name")
                     TextField("Strength, for example 500 mg", text: $draft.strength)
@@ -45,6 +46,7 @@ struct MedicationFormView: View {
                         .onSubmit { focus = nil }
                         .frame(minHeight: 44)
                         .contentShape(Rectangle())
+                        .onTapGesture { focus = .strength }
                         .accessibilityLabel("Strength, optional")
                         .accessibilityIdentifier("medication-strength")
                 }
