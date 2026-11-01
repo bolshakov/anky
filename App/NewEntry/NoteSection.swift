@@ -30,10 +30,9 @@ struct NoteSection: View {
                 }
                 .onChange(of: note) { _, typed in
                     let kept = String(typed.prefix(EntryDraft.noteLimit))
-                    if kept != typed {
-                        note = kept
-                    }
                     draft.note = kept
+                    guard kept != typed else { return }
+                    Task { note = kept }
                 }
 
             if let counter = draft.noteCounter {
