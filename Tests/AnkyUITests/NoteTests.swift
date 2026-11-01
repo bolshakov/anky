@@ -152,6 +152,20 @@ final class NoteTests: XCTestCase {
         XCTAssertEqual(counter.label, "Limit reached")
     }
 
+    func testTypingPastTheLimitInSeparateBatchesKeepsTheLimit() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        let typed = String(String(repeating: "Walk note ", count: 24).prefix(240))
+
+        openNewEntry(app)
+        typeNote(typed, in: app)
+        app.typeText("x")
+        app.typeText("x")
+        app.typeText("x")
+
+        XCTAssertEqual(noteField(in: app).value as? String, typed)
+    }
+
     func testEditedNoteShowsItsTextAndCounterAndSavesUnchanged() {
         continueAfterFailure = false
         let app = launchAnky()
