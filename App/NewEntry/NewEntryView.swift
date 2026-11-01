@@ -89,10 +89,14 @@ struct NewEntryView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Button(saveTitle) {
+                Button {
                     save()
+                } label: {
+                    Text(saveTitle)
+                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PinnedButtonStyle())
+                .buttonStyle(.glassProminent)
+                .controlSize(.large)
                 .accessibilityIdentifier("save-entry")
                 .padding()
             }
