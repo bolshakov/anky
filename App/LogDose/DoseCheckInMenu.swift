@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DoseCheckInMenu: View {
     @Binding var delay: CheckInDelay
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         Menu {
@@ -14,18 +15,20 @@ struct DoseCheckInMenu: View {
             }
             .labelsHidden()
         } label: {
-            // At accessibility sizes the value does not fit beside the label, so it stacks under it.
-            ViewThatFits(in: .horizontal) {
-                HStack {
-                    Text("After")
-                        .foregroundStyle(.primary)
-                    Spacer()
-                    value
-                }
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("After")
-                        .foregroundStyle(.primary)
-                    value
+            Group {
+                if dynamicTypeSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("After")
+                            .foregroundStyle(.primary)
+                        value
+                    }
+                } else {
+                    HStack {
+                        Text("After")
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        value
+                    }
                 }
             }
             .contentShape(.rect)
