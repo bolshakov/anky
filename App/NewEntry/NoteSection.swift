@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
 import SwiftUI
+import UIKit
 
 struct NoteSection: View {
     @Binding var draft: EntryDraft
     @FocusState private var isFocused: Bool
     @State private var note: String
+    private static let textDidChange = NotificationCenter.default
+        .publisher(for: UITextView.textDidChangeNotification)
 
     init(draft: Binding<EntryDraft>) {
         _draft = draft
@@ -29,10 +32,15 @@ struct NoteSection: View {
                         .onTapGesture { isFocused = true }
                 }
                 .onChange(of: note) { _, typed in
-                    let kept = String(typed.prefix(EntryDraft.noteLimit))
-                    draft.note = kept
-                    guard kept != typed else { return }
-                    Task { note = kept }
+                    draft.note = String(typed.prefix(EntryDraft.noteLimit))
+                }
+                .onReceive(Self.textDidChange) { notification in
+                    guard let textView = notification.object as? UITextView,
+                          textView.isFirstResponder else { return }
+                    let kept = String(textView.text.prefix(EntryDraft.noteLimit))
+                    guard kept != textView.text else { return }
+                    textView.text = kept
+                    note = kept
                 }
 
             if let counter = draft.noteCounter {
