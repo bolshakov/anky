@@ -67,6 +67,36 @@ struct SwiftDataDoseTests {
         }
     }
 
+    @Test func logDoseWithNoDelayClearsTheSavedDelay() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var zorblex = medication()
+            zorblex.checkInAfter = .fourHours
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            var dose = fullDose(for: zorblex)
+            dose.checkInAfter = nil
+            try store.logDose(dose)
+
+            var expected = zorblex
+            expected.checkInAfter = nil
+            #expect(try SwiftDataMedicationStore(url: url).all() == [expected])
+        }
+    }
+
+    @Test func failedDoseWriteKeepsTheSavedDelayItHad() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var zorblex = medication()
+            zorblex.checkInAfter = .fourHours
+            try SwiftDataMedicationStore(url: url).add(zorblex)
+
+            let refusing = try SwiftDataMedicationStore(url: url, beforeSave: { throw WriteRefused() })
+            #expect(throws: MedicationStoreError.notSaved) { try refusing.logDose(fullDose(for: zorblex)) }
+            #expect(try SwiftDataMedicationStore(url: url).all() == [zorblex])
+        }
+    }
+
     @Test func failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() throws {
         try withFolder { folder in
             let url = folder.appending(path: "medications.store")
