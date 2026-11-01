@@ -1,0 +1,8 @@
+$ sh -c '. $TMPDIR/walk.sh; ui | grep -E "id=kind-picker |label=.(Pain|Stiffness|Fatigue)."'
+exit: 0
+commit: e3e5ae00fc3319f12c3553a8b1f0d7d2b1b3112c
+
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16.000000000000057,148 370x31
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,148 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,148 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,148 124x32

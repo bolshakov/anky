@@ -1,0 +1,6 @@
+$ sh -c '. $TMPDIR/walk.sh; ui | grep "id=entry-row-"'
+exit: 0
+commit: e3e5ae00fc3319f12c3553a8b1f0d7d2b1b3112c
+
+Button id=entry-row-fatigue label='13:53, Whole body, Fatigue, 6 of 10' value=None enabled=True actions= traits= @16.000000000000057,262 370x60
+Button id=entry-row-stiffness label='13:52, No place, Stiffness, 4 of 10' value=None enabled=True actions= traits= @16.000000000000057,322.3333333333333 370x60

@@ -1,0 +1,5 @@
+$ sh -c '. $TMPDIR/walk.sh; ui | grep -cE "id=kind-(pain|stiffness|fatigue) "'
+exit: 1
+commit: e3e5ae00fc3319f12c3553a8b1f0d7d2b1b3112c
+
+0

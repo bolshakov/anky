@@ -1,0 +1,5 @@
+$ sh -c '. $TMPDIR/walk.sh; ui | grep "id=entry-row-"'
+exit: 0
+commit: e3e5ae00fc3319f12c3553a8b1f0d7d2b1b3112c
+
+Button id=entry-row-pain label='13:55, No place, Pain, 4 of 10' value=None enabled=True actions= traits= @16,262 370x60

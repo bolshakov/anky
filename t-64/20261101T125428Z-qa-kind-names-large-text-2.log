@@ -1,0 +1,5 @@
+$ sh -c '. $TMPDIR/walk.sh; ui | grep "id=save-entry " | frame'
+exit: 0
+commit: e3e5ae00fc3319f12c3553a8b1f0d7d2b1b3112c
+
+16 760.6666870117188 370 63.33331298828125
