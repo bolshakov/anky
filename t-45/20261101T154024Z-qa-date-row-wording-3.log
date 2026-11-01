@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t45-06-1/tmp/run.sh 'ui | grep "id=date-row "; LC_ALL=en_GB.UTF-8 date -v-8d "+%a %-d %b"'
+exit: 0
+commit: 36415dff4790777d1d5e5984f3adf52a5de379e2
+
+Button id=date-row label='Date and time' value='Sat 24 Oct 16:39' enabled=True actions= traits= @16,328 370x52.333333333333314
+Sat 24 Oct
