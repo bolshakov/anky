@@ -48,12 +48,27 @@ import SwiftData
     }
 
     public func archive(id: UUID, at date: Date) throws {
+        try record(id: id).archivedAt = date
+        try commit()
+    }
+
+    public func update(_ medication: Medication) throws {
+        let record = try record(id: medication.id)
+        record.assign(medication)
+        try commit()
+    }
+
+    public func restore(id: UUID) throws {
+        try record(id: id).archivedAt = nil
+        try commit()
+    }
+
+    private func record(id: UUID) throws -> MedicationRecord {
         let descriptor = FetchDescriptor<MedicationRecord>(predicate: #Predicate { $0.id == id })
         guard let record = try? context.fetch(descriptor).first else {
             throw MedicationStoreError.notSaved
         }
-        record.archivedAt = date
-        try commit()
+        return record
     }
 
     /// A failed commit discards every change made since the last one, so a retry starts from the stored state.

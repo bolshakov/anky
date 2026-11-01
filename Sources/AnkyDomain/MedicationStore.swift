@@ -5,6 +5,8 @@ import Foundation
     func all() throws -> [Medication]
     func add(_ medication: Medication) throws
     func archive(id: UUID, at date: Date) throws
+    func update(_ medication: Medication) throws
+    func restore(id: UUID) throws
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

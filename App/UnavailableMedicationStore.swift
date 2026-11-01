@@ -16,4 +16,12 @@ import Foundation
     func archive(id _: UUID, at _: Date) throws {
         throw MedicationStoreError.unavailable
     }
+
+    func update(_: Medication) throws {
+        throw MedicationStoreError.unavailable
+    }
+
+    func restore(id _: UUID) throws {
+        throw MedicationStoreError.unavailable
+    }
 }

@@ -24,6 +24,16 @@ import SwiftData
         archivedAt = medication.archivedAt
     }
 
+    /// Writes every field except the id and the created time.
+    func assign(_ medication: Medication) {
+        name = medication.name
+        strength = medication.strength
+        takenAs = medication.takenAs.rawValue
+        checkInAfterMinutes = medication.checkInAfter?.rawValue
+        updatedAt = medication.updatedAt
+        archivedAt = medication.archivedAt
+    }
+
     func medication() throws -> Medication {
         guard let takenWay = TakenAs(rawValue: takenAs) else { throw MedicationStoreError.unreadable }
         var checkIn: CheckInDelay?

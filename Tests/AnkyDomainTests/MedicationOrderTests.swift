@@ -34,4 +34,41 @@ struct MedicationOrderTests {
     @Test func noMedicationsGivesAnEmptyList() {
         #expect(MedicationOrder.active([]).isEmpty)
     }
+
+    private func archivedMedication(_ name: String, archivedAt seconds: TimeInterval) -> Medication {
+        var archived = medication(name, createdAt: 100)
+        archived.archivedAt = Date(timeIntervalSince1970: seconds)
+        return archived
+    }
+
+    @Test func archivedMedicationsAreOrderedByArchivedTimeNewestFirst() {
+        let quibbanol = archivedMedication("Quibbanol", archivedAt: 200)
+        let zorblex = archivedMedication("Zorblex", archivedAt: 400)
+        let fennimax = archivedMedication("Fennimax", archivedAt: 300)
+        let ordered = MedicationOrder.archived([quibbanol, zorblex, fennimax])
+        #expect(ordered.map(\.id) == [zorblex.id, fennimax.id, quibbanol.id])
+    }
+
+    @Test func activeMedicationsAreLeftOutOfArchived() {
+        let zorblex = medication("Zorblex", createdAt: 100)
+        let quibbanol = archivedMedication("Quibbanol", archivedAt: 200)
+        #expect(MedicationOrder.archived([zorblex, quibbanol]).map(\.id) == [quibbanol.id])
+    }
+
+    @Test func noArchivedMedicationGivesAnEmptyList() {
+        #expect(MedicationOrder.archived([medication("Zorblex", createdAt: 100)]).isEmpty)
+    }
+
+    @Test func aRestoredMedicationReturnsToItsCreatedPositionInTheActiveList() {
+        let zorblex = medication("Zorblex", createdAt: 100)
+        var quibbanol = medication("Quibbanol", createdAt: 200)
+        let fennimax = medication("Fennimax", createdAt: 300)
+        quibbanol.archivedAt = Date(timeIntervalSince1970: 400)
+        #expect(MedicationOrder.active([fennimax, quibbanol, zorblex]).map(\.id) == [zorblex.id, fennimax.id])
+
+        quibbanol.archivedAt = nil
+        #expect(
+            MedicationOrder.active([fennimax, quibbanol, zorblex]).map(\.id) == [zorblex.id, quibbanol.id, fennimax.id]
+        )
+    }
 }
