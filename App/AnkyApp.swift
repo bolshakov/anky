@@ -13,7 +13,6 @@ struct AnkyApp: App {
     init() {
         let folder = ShortcutsLocation.fileURL().deletingLastPathComponent()
         try? Tips.configure(Self.tipOptions(folder: folder))
-        let store = FileEntryStore(fileURL: EntriesLocation.fileURL(), protection: .complete)
         let shortcutsStore = FileShortcutsStore(fileURL: ShortcutsLocation.fileURL(), protection: .complete)
         let shortcuts = ShortcutsModel(log: ShortcutsLog(store: shortcutsStore))
         let tipStore = FileTipProgressStore(
@@ -21,7 +20,7 @@ struct AnkyApp: App {
             protection: .complete
         )
         _model = State(initialValue: EntryLogModel(
-            log: EntryLog(store: store),
+            log: EntryLog(store: Self.entryStore()),
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
         ))
@@ -33,6 +32,21 @@ struct AnkyApp: App {
             RootView(model: model, medications: medications)
                 .tint(Color("AccentColor"))
         }
+    }
+
+    private static func entryStore() -> EntryStore {
+        DeferredEntryStore {
+            try SwiftDataEntryStore(url: EntriesLocation.storeURL(), beforeSave: entryWriteGuard)
+        }
+    }
+
+    private static var entryWriteGuard: @MainActor () throws -> Void {
+        #if DEBUG
+            let folder = EntriesLocation.folder()
+            return { try EntryWriteSwitch.check(folder: folder) }
+        #else
+            return {}
+        #endif
     }
 
     private static func medicationStore() -> MedicationStore {

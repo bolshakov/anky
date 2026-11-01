@@ -22,4 +22,5 @@ public enum EntryStoreError: Error, Equatable {
     case unreadable
     case newerVersion(Int)
     case notSaved
+    case unavailable
 }
