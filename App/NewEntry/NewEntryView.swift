@@ -68,6 +68,8 @@ struct NewEntryView: View {
                         Button("Cancel") {
                             dismiss()
                         }
+                        .frame(minHeight: 44)
+                        .contentShape(Rectangle())
                         .accessibilityIdentifier("cancel-entry")
                     }
                     .accessibilityElement(children: .contain)
