@@ -45,9 +45,14 @@ struct NewEntryView: View {
                 VStack(spacing: 24) {
                     recentChips
                     KindSection(draft: $draft)
-                    DateSection(draft: $draft)
+                    DateSection(date: $draft.date)
                     whereSection
-                    SeveritySection(draft: $draft)
+                    SeveritySection(
+                        caption: "Severity",
+                        spokenLabel: "Severity",
+                        idPrefix: "severity",
+                        severity: $draft.severity
+                    )
                     NoteSection(draft: $draft)
                     if case .edit = mode {
                         DeleteEntrySection(onDelete: removeEntry)

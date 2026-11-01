@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-import AnkyDomain
 import SwiftUI
 
 struct DateSection: View {
-    @Binding var draft: EntryDraft
+    @Binding var date: Date
     @State private var isShowingPicker = false
 
     var body: some View {
@@ -29,7 +28,7 @@ struct DateSection: View {
             if isShowingPicker {
                 DatePicker(
                     "Date and time",
-                    selection: $draft.date,
+                    selection: $date,
                     in: ...Date.now,
                     displayedComponents: [.date, .hourAndMinute]
                 )
@@ -42,10 +41,10 @@ struct DateSection: View {
     }
 
     private var shownDate: Text {
-        let day = Calendar.current.isDateInToday(draft.date)
+        let day = Calendar.current.isDateInToday(date)
             ? Text("Today")
-            : Text(draft.date, format: Date.FormatStyle(date: .abbreviated, time: .omitted))
-        let time = Text(draft.date, format: .dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits))
+            : Text(date, format: Date.FormatStyle(date: .abbreviated, time: .omitted))
+        let time = Text(date, format: .dateTime.hour(.twoDigits(amPM: .abbreviated)).minute(.twoDigits))
         return Text("\(day), \(time)")
     }
 }

@@ -6,15 +6,18 @@ private let knobDiameter: CGFloat = 30
 private let trackHeight: CGFloat = 4
 
 struct SeveritySection: View {
-    @Binding var draft: EntryDraft
+    let caption: LocalizedStringKey
+    let spokenLabel: LocalizedStringKey
+    let idPrefix: String
+    @Binding var severity: Severity
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Severity")
+            Text(caption)
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .cardCaption()
-                .accessibilityIdentifier("severity-caption")
+                .accessibilityIdentifier("\(idPrefix)-caption")
                 .accessibilityAddTraits(.isHeader)
 
             VStack(spacing: 12) {
@@ -23,24 +26,24 @@ struct SeveritySection: View {
                     HStack {
                         Text("How strong")
                         Spacer()
-                        SeverityValue(severity: draft.severity)
+                        SeverityValue(severity: severity, idPrefix: idPrefix)
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("How strong")
-                        SeverityValue(severity: draft.severity)
+                        SeverityValue(severity: severity, idPrefix: idPrefix)
                     }
                 }
                 .accessibilityHidden(true)
                 Divider()
                 HStack(spacing: 8) {
                     Text(0, format: .number)
-                        .accessibilityIdentifier("severity-low-label")
+                        .accessibilityIdentifier("\(idPrefix)-low-label")
                         .accessibilityHidden(true)
                     // The knob hangs over each end of the control by its radius, so the padding keeps the labels clear.
-                    SeverityControl(severity: $draft.severity)
+                    SeverityControl(severity: $severity, spokenLabel: spokenLabel, idPrefix: idPrefix)
                         .padding(.horizontal, knobDiameter / 2)
                     Text(10, format: .number)
-                        .accessibilityIdentifier("severity-high-label")
+                        .accessibilityIdentifier("\(idPrefix)-high-label")
                         .accessibilityHidden(true)
                 }
                 .font(.footnote)
@@ -54,15 +57,18 @@ struct SeveritySection: View {
 
 private struct SeverityValue: View {
     let severity: Severity
+    let idPrefix: String
 
     var body: some View {
         Text("\(Text(severity.value, format: .number).bold()) of \(10)")
-            .accessibilityIdentifier("severity-value")
+            .accessibilityIdentifier("\(idPrefix)-value")
     }
 }
 
 private struct SeverityControl: View {
     @Binding var severity: Severity
+    let spokenLabel: LocalizedStringKey
+    let idPrefix: String
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.layoutDirection) private var layoutDirection
 
@@ -96,9 +102,9 @@ private struct SeverityControl: View {
             Slider(value: level, in: 0 ... 10, step: 1)
                 .opacity(0.01)
                 .allowsHitTesting(false)
-                .accessibilityLabel("Severity")
+                .accessibilityLabel(spokenLabel)
                 .accessibilityValue(severity.spokenValue)
-                .accessibilityIdentifier("severity-slider")
+                .accessibilityIdentifier("\(idPrefix)-slider")
         }
     }
 
