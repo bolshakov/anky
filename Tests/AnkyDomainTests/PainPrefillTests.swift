@@ -23,8 +23,11 @@ struct PainPrefillTests {
 
     @Test func theLatestPainEntryNotLaterThanNowWins() throws {
         let older = try entry(.pain, severity: 2, secondsFromNow: -3600)
+        let middle = try entry(.pain, severity: 4, secondsFromNow: -600)
         let newer = try entry(.pain, severity: 5, secondsFromNow: -60)
         #expect(PainPrefill.latest(in: [newer, older], notAfter: now) == newer)
+        #expect(PainPrefill.latest(in: [older, newer], notAfter: now) == newer)
+        #expect(PainPrefill.latest(in: [middle, older, newer], notAfter: now) == newer)
     }
 
     @Test func aPainEntryOfAnyAgeCounts() throws {
