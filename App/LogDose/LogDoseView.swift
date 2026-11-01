@@ -3,9 +3,14 @@ import AnkyDomain
 import AnkyMedicationModel
 import SwiftUI
 
+enum DoseMode {
+    case new
+}
+
 struct LogDoseView: View {
     let medications: MedicationsModel
     let onSaved: () -> Void
+    private let prefill: Entry?
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var selectionTicks = 0
@@ -14,13 +19,19 @@ struct LogDoseView: View {
     // Made once per opening, so a second tap on "Save dose" logs the same dose again.
     @State private var doseID = UUID()
     @State private var takenAt = Date.now
-    @State private var painBefore = Severity(0)!
+    @State private var painBefore: Severity
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
 
-    init(medications: MedicationsModel, onSaved: @escaping () -> Void) {
+    init(medications: MedicationsModel, entries: [Entry], mode: DoseMode = .new, onSaved: @escaping () -> Void) {
         self.medications = medications
         self.onSaved = onSaved
+        let prefill: Entry? = switch mode {
+        case .new:
+            PainPrefill.latest(in: entries, notAfter: .now)
+        }
+        self.prefill = prefill
+        _painBefore = State(initialValue: prefill?.severity ?? Severity(0)!)
     }
 
     var body: some View {
@@ -53,6 +64,11 @@ struct LogDoseView: View {
                     .listRowInsets(EdgeInsets(top: 24, leading: 0, bottom: 0, trailing: 0))
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
+                    if let prefill {
+                        prefillFootnote(for: prefill)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                    }
                 }
             }
             .scrollContentBackground(.hidden)
@@ -134,6 +150,16 @@ struct LogDoseView: View {
         .buttonStyle(.plain)
         .accessibilityIdentifier("dose-medication-row")
         .accessibilityAddTraits(isChecked ? .isSelected : [])
+    }
+
+    private func prefillFootnote(for entry: Entry) -> some View {
+        let note = PainPrefillNote(entry: entry, now: .now, calendar: .current, locale: .current)
+        return Text(PrefillFootnoteText.text(for: note))
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .cardCaption()
+            .padding(.top, 8)
+            .accessibilityIdentifier("pain-before-footnote")
     }
 
     private func saveDose() {
