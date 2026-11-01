@@ -4,11 +4,18 @@ import SwiftUI
 
 struct MedicationTakingSections: View {
     @Binding var draft: MedicationDraft
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         Section {
-            TakenAsControl(takenAs: $draft.takenAs)
-                .listRowBackground(Color.clear)
+            if dynamicTypeSize.isAccessibilitySize {
+                takenAsPicker
+                    .pickerStyle(.menu)
+            } else {
+                takenAsPicker
+                    .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+            }
         } header: {
             Text("How you take it")
                 .font(.footnote)
@@ -25,5 +32,15 @@ struct MedicationTakingSections: View {
             Text("Anky asks how your pain is after this long. Off until you choose a time.")
                 .font(.footnote)
         }
+    }
+
+    private var takenAsPicker: some View {
+        Picker("How you take it", selection: $draft.takenAs) {
+            ForEach(TakenAs.allCases, id: \.self) { option in
+                Text(option.title).tag(option)
+            }
+        }
+        .labelsHidden()
+        .accessibilityIdentifier("taken-as")
     }
 }
