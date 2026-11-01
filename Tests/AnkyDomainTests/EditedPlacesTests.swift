@@ -17,14 +17,6 @@ struct EditedPlacesTests {
         return Entry(draft: draft)
     }
 
-    private func withFolder<T>(_ body: (URL) throws -> T) throws -> T {
-        let folder = FileManager.default.temporaryDirectory
-            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        defer { try? FileManager.default.removeItem(at: folder) }
-        return try body(folder)
-    }
-
     @Test func editingAnEntryKeepsAnIdThisBuildDoesNotKnow() throws {
         let saved = try entry(places: [unknown])
         var draft = try EntryDraft(entry: saved)
@@ -35,26 +27,24 @@ struct EditedPlacesTests {
         #expect(Entry(id: saved.id, draft: draft).places == [lower, unknown])
     }
 
-    @Test func aReplacedEntryCarriesTheEditedPlaces() throws {
-        try withFolder { folder in
-            let store = FileEntryStore(fileURL: folder.appending(path: "entries.json"), protection: .deviceDefault)
-            let first = try entry()
-            let middle = try entry()
-            let last = try entry()
-            var log = EntryLog(store: store)
-            try log.add(first)
-            try log.add(middle)
-            try log.add(last)
-            var draft = try EntryDraft(entry: middle)
-            draft.togglePlace(lower)
-            draft.togglePlace(siLeft)
+    @Test(arguments: StoreKind.allCases) func aReplacedEntryCarriesTheEditedPlaces(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [])
+        let first = try entry()
+        let middle = try entry()
+        let last = try entry()
+        var log = EntryLog(store: fixture.store)
+        try log.add(first)
+        try log.add(middle)
+        try log.add(last)
+        var draft = try EntryDraft(entry: middle)
+        draft.togglePlace(lower)
+        draft.togglePlace(siLeft)
 
-            try log.replace(Entry(id: middle.id, draft: draft))
+        try log.replace(Entry(id: middle.id, draft: draft))
 
-            let reloaded = EntryLog(store: store).entries
-            #expect(reloaded.map(\.id) == [first.id, middle.id, last.id])
-            #expect(reloaded[1].places == [lower, siLeft])
-        }
+        let reloaded = try EntryLog(store: fixture.reopen()).entries
+        #expect(reloaded.map(\.id) == [first.id, middle.id, last.id])
+        #expect(reloaded[1].places == [lower, siLeft])
     }
 
     @Test func anEntryEditedFromFatigueToPainStartsWithNoPlaces() throws {
