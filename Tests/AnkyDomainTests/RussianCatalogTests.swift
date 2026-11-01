@@ -171,6 +171,9 @@ private let englishFormatValues = table("""
 private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
     + ["Save medication", "As needed", "Scheduled"]
+    + ["How you take it", "Check in after a dose", "Check in after", "After", "Off"]
+    + ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
+    + ["Anky asks how your pain is after this long. Off until you choose a time."]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
