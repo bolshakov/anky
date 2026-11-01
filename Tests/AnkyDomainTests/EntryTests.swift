@@ -73,4 +73,67 @@ struct EntryTests {
         let object = try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
         #expect(object?["note"] == nil)
     }
+
+    @Test func storedFieldsInitKeepsEveryFieldAndTheGivenID() throws {
+        let id = UUID()
+        let entry = try Entry(
+            id: id,
+            kind: .pain,
+            severity: #require(Severity(7)),
+            date: date,
+            note: "Walk note",
+            places: []
+        )
+        #expect(entry.id == id)
+        #expect(entry.kind == .pain)
+        #expect(entry.severity == Severity(7))
+        #expect(entry.date == date)
+        #expect(entry.note == "Walk note")
+    }
+
+    @Test func storedFieldsInitKeepsANoteAsGiven() throws {
+        let longNote = String(repeating: "a", count: 1500)
+        let entry = try Entry(
+            id: UUID(),
+            kind: .pain,
+            severity: #require(Severity(4)),
+            date: date,
+            note: longNote,
+            places: []
+        )
+        #expect(entry.note == longNote)
+        let blank = try Entry(
+            id: UUID(),
+            kind: .pain,
+            severity: #require(Severity(4)),
+            date: date,
+            note: "  ",
+            places: []
+        )
+        #expect(blank.note == "  ")
+    }
+
+    @Test func storedFieldsInitDropsPlacesForFatigue() throws {
+        let jaw = PlaceID(rawValue: "jaw")
+        let entry = try Entry(
+            id: UUID(),
+            kind: .fatigue,
+            severity: #require(Severity(4)),
+            date: date,
+            note: nil,
+            places: [jaw]
+        )
+        #expect(entry.places.isEmpty)
+    }
+
+    @Test func storedFieldsInitPutsKnownPlacesInCatalogOrderAndKeepsUnknownOnesLast() throws {
+        let jaw = PlaceID(rawValue: "jaw")
+        let lower = PlaceID(rawValue: "lower")
+        let later = PlaceID(rawValue: "tentacle")
+        let entry = try Entry(
+            id: UUID(), kind: .stiffness, severity: #require(Severity(4)), date: date, note: nil,
+            places: [later, jaw, lower]
+        )
+        #expect(entry.places == [lower, jaw, later])
+    }
 }
