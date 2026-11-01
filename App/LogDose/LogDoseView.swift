@@ -94,10 +94,14 @@ struct LogDoseView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Button("Save dose") {
+                Button {
                     saveDose()
+                } label: {
+                    Text("Save dose")
+                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PinnedButtonStyle())
+                .buttonStyle(.glassProminent)
+                .controlSize(.large)
                 .disabled(checkedID == nil)
                 .accessibilityIdentifier("save-dose")
                 .padding()
