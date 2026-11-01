@@ -33,6 +33,8 @@ struct LogDoseView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .frame(minHeight: 44)
+                        .contentShape(Rectangle())
                         .accessibilityIdentifier("log-dose-cancel")
                 }
                 if !medications.medications.isEmpty {
