@@ -1402,6 +1402,24 @@
           }
         }
       }
+    },
+    "Manage" : {
+
+    },
+    "Medications" : {
+
+    },
+    "Archive" : {
+
+    },
+    "Archived" : {
+
+    },
+    "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History." : {
+
+    },
+    "Add what you take, then log a dose in two taps. Everything stays on this iPhone." : {
+
     }
   },
   "version" : "1.0"

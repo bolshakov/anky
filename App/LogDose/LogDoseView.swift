@@ -34,6 +34,19 @@ struct LogDoseView: View {
                     Button("Cancel") { dismiss() }
                         .accessibilityIdentifier("log-dose-cancel")
                 }
+                if !medications.medications.isEmpty {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink("Manage") {
+                            MedicationsView(medications: medications)
+                        }
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
+                        .accessibilityIdentifier("log-dose-manage")
+                    }
+                }
+            }
+            .onChange(of: active) {
+                selectedID = MedicationSelection.kept(selectedID, in: active)
             }
             .sheet(isPresented: $isShowingNewMedication) {
                 MedicationFormView(medications: medications, onSaved: medicationSaved)
@@ -47,12 +60,8 @@ struct LogDoseView: View {
         medications.active
     }
 
-    /// The row the person last chose, or the first active row while none is chosen or the chosen one has gone.
     private var checkedID: UUID? {
-        if let selectedID, active.contains(where: { $0.id == selectedID }) {
-            return selectedID
-        }
-        return active.first?.id
+        MedicationSelection.kept(selectedID, in: active)
     }
 
     private func medicationRow(_ medication: Medication) -> some View {
