@@ -5,6 +5,7 @@ import SwiftUI
 struct MedicationsView: View {
     let medications: MedicationsModel
     @State private var isShowingNewMedication = false
+    @State private var saveTicks = 0
 
     var body: some View {
         List {
@@ -12,6 +13,7 @@ struct MedicationsView: View {
             archivedSection
             emptySection
         }
+        .sensoryFeedback(.success, trigger: saveTicks)
         .listSectionSpacing(.custom(12))
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
@@ -24,7 +26,7 @@ struct MedicationsView: View {
             .padding()
         }
         .sheet(isPresented: $isShowingNewMedication) {
-            MedicationFormView(medications: medications, onSaved: {})
+            MedicationFormView(medications: medications, onSaved: { saveTicks += 1 })
         }
     }
 
