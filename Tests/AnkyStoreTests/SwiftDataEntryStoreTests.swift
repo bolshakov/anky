@@ -204,6 +204,22 @@ struct SwiftDataEntryStoreTests {
         }
     }
 
+    @Test func anEntryMovedToYesterdayKeepsItsPlaceInSaveOrderAfterReopen() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "entries.store")
+            let first = try entry()
+            let moved = try entry()
+            let store = try SwiftDataEntryStore(url: url)
+            try store.add(first)
+            try store.add(moved)
+            let yesterday = try entry(id: moved.id, date: date.addingTimeInterval(-86400))
+
+            try store.replace(yesterday)
+
+            #expect(try SwiftDataEntryStore(url: url).load() == [first, yesterday])
+        }
+    }
+
     @Test func aSecondAddOfAKnownIdLeavesOneRecord() throws {
         try withFolder { folder in
             let url = folder.appending(path: "entries.store")
