@@ -33,6 +33,7 @@ struct PlacesListView: View {
                         }
                     } header: {
                         Text(group.displayName)
+                            .cardCaption()
                     }
                 }
             }
