@@ -6,13 +6,14 @@ struct CheckInDelayMenu: View {
     @Binding var checkInAfter: CheckInDelay?
 
     var body: some View {
-        Picker("After", selection: $checkInAfter) {
+        Picker(selection: $checkInAfter) {
             ForEach(CheckInChoices.all, id: \.self) { choice in
                 Text(title(for: choice)).tag(choice)
             }
+        } label: {
+            Text("After").accessibilityLabel("Check in after")
         }
         .pickerStyle(.menu)
-        .accessibilityLabel("Check in after")
         .accessibilityIdentifier("check-in-after")
     }
 

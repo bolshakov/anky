@@ -22,6 +22,14 @@ final class CheckInDelayChoiceTests: XCTestCase {
         XCTAssertEqual(Set(tops).count, titles.count)
     }
 
+    func testRowIsSpokenAsCheckInAfterOff() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        scrollToCheckIn(in: app)
+        XCTAssertEqual(app.buttons["check-in-after"].label, "Check in after, Off")
+    }
+
     func testChoosingTwoHoursShowsItAndSavesIt() {
         continueAfterFailure = false
         let app = launchAnky()
