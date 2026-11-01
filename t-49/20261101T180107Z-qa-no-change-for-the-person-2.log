@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; rows'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Heading id=empty-history label='No entries yet' value=None

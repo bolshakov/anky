@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; /usr/bin/xattr -l "$(folder)/entries.store"; /usr/bin/xattr -l "$(folder)"; echo xattr-done'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+xattr-done

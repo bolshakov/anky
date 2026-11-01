@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; codesign -d --entitlements - "$(xcrun simctl get_app_container "$udid" dev.bolshakov.Anky)" 2>&1'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Executable=/Users/bolshakov/Library/Developer/CoreSimulator/Devices/DA3E758E-3B9B-42BF-8211-73637D61D586/data/Containers/Bundle/Application/DBA4EB24-B056-493B-988D-4E770207FD38/Anky.app/Anky

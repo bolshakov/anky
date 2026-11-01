@@ -1,0 +1,9 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(severity-slider|note-field|delete-entry|save-entry) |label=.Pain."'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,148 123x32
+Slider id=severity-slider label='Severity' value=0.30000001192092896 enabled=True actions= traits= @63.333333333333385,590 269.3333333333333x31
+TextArea id=note-field label='Note' value=None enabled=True actions= traits= @16,667.6666666666666 370x52
+Button id=delete-entry label='Delete entry' value=None enabled=True actions= traits= @16.000000000000057,743.6666666666666 370x44
+Button id=save-entry label='Save changes' value=None enabled=True actions= traits= @16,768 370x56

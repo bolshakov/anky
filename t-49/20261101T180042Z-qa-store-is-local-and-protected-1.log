@@ -1,0 +1,12 @@
+$ bash -c '. "$TMPDIR/walk.sh"; folder; ls -1 "$(folder)"'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+/Users/bolshakov/Library/Developer/CoreSimulator/Devices/DA3E758E-3B9B-42BF-8211-73637D61D586/data/Containers/Data/Application/9DDEA96E-F8A2-4834-A9A2-4492ADAC189A/Library/Application Support/walk
+entries.store
+entries.store-shm
+entries.store-wal
+medications.store
+medications.store-shm
+medications.store-wal
+shortcuts.json

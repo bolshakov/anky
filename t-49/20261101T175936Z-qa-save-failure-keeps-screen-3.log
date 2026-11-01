@@ -1,0 +1,9 @@
+$ bash -c '. "$TMPDIR/walk.sh"; rows; entries'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Button id=repeat-chip label='Same as last time, Fatigue, 8 of 10' value=None
+Button id=entry-row-fatigue label='18:58, Whole body, Fatigue, 8 of 10' value=None
+Button id=entry-row-pain label='18:58, No place, Pain, 3 of 10' value=None
+pain|3|-
+fatigue|8|Invented walk note

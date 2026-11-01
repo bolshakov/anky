@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=severity-slider |Invented walk note"; entries'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Slider id=severity-slider label='Severity' value=0.800000011920929 enabled=True actions= traits= @63.33333333333333,438.3333333333333 269.3333333333333x31
+TextArea id=note-field label='Note' value='Invented walk note' enabled=True actions= traits= @16,515.6666666666666 370x52
+pain|3|-

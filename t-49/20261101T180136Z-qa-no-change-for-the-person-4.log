@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; rows'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Heading id=day-header label='Today' value=None
+Button id=entry-row-pain label='19:01, No place, Pain, 3 of 10' value=None

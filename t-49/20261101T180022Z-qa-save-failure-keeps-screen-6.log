@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep "could not be deleted"; entries'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+pain|6|-
+fatigue|8|Invented walk note

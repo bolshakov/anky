@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; rows | diff "$out/history.txt" -; echo diff-history-rc=$?'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+diff-history-rc=0

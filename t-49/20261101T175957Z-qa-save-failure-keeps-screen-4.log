@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "could not be saved|id=severity-slider "; entries'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Slider id=severity-slider label='Severity' value=0.6000000238418579 enabled=True actions= traits= @63.333333333333385,590 269.3333333333333x31
+pain|3|-
+fatigue|8|Invented walk note

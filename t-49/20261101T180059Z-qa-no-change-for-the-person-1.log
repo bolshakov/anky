@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; rows; ui | grep -E "id=(log-entry|log-medication) "'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+StaticText id=empty-today label='Nothing logged today' value=None
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,668.6666666666666 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,724.6666666666666 370x50.33333333333337

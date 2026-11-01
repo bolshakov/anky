@@ -1,0 +1,6 @@
+$ sh -c 'git grep -n -i -E '\''cloudkit|application-groups|groupContainer'\'' -- Sources App project.yml Package.swift; echo grep-rc=$?; git ls-files '\''*.entitlements'\''; echo lsfiles-done'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+grep-rc=1
+lsfiles-done

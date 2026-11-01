@@ -1,0 +1,13 @@
+$ bash -c '. "$TMPDIR/walk.sh"; entries; ls -1 "$(folder)"'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+stiffness|6|-
+fatigue|7|-
+entries.store
+entries.store-shm
+entries.store-wal
+medications.store
+medications.store-shm
+medications.store-wal
+shortcuts.json

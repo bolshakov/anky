@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "could not be saved|label=.OK."'
+exit: 0
+commit: a23ed3fe002057090585ff453f9a876ebf13e4e2
+
+Sheet id=None label='This entry could not be saved.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This entry could not be saved.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48
