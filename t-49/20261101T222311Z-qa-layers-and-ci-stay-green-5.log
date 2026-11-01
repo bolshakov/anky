@@ -1,0 +1,6 @@
+$ sh -c 'scripts/ci/check-layers.sh; echo "exit $?"; git grep -h "^import" -- Sources/AnkyDomain | sort -u'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+exit 0
+import Foundation

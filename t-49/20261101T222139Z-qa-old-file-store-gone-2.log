@@ -1,0 +1,17 @@
+$ bash -c '. $TMPDIR/walk.sh; axe tap --label Today --element-type RadioButton --udid "$udid" >/dev/null; echo "== today"; rows; axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; echo "== history"; rows; echo "== entries"; entries; echo "entries exit $?"; ls -1 "$(folder)"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+== today
+StaticText id=empty-today label='Nothing logged today' value=None
+== history
+Heading id=empty-history label='No entries yet' value=None
+== entries
+entries exit 0
+entries.json
+entries.store
+entries.store-shm
+entries.store-wal
+medications.store
+medications.store-shm
+medications.store-wal

@@ -1,0 +1,5 @@
+$ sh -c 'python3 -m lizard -l swift -ENS -Ecognitive -C 10 -L 40 -a 4 -T cognitive_complexity=12 -T max_nested_structures=3 -w -x "*/Tests/*" Sources App; echo "exit $?"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+exit 0

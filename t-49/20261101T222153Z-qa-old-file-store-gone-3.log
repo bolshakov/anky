@@ -1,0 +1,12 @@
+$ bash -c '. $TMPDIR/walk.sh; axe tap --label Today --element-type RadioButton --udid "$udid" >/dev/null; add_entry stiffness 5; echo "add exit $?"; stop; launch; echo "== rows"; rows; echo "== entries"; entries; echo "== diff"; shasum -a 256 "$(folder)/entries.json" | diff "$out/old.sha" -; echo "diff exit $?"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+add exit 0
+== rows
+Button id=repeat-chip label='Same as last time, Stiffness, No place, 5 of 10' value=None
+Button id=entry-row-stiffness label='23:21, No place, Stiffness, 5 of 10' value=None
+== entries
+stiffness|5|-
+== diff
+diff exit 0

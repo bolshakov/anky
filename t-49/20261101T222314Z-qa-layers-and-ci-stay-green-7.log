@@ -1,0 +1,5 @@
+$ sh -c 'scripts/ci/check-design-tokens.sh; echo "exit $?"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+exit 0

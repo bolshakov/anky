@@ -1,0 +1,11 @@
+$ sh -c 'swiftformat --lint .; echo "exit $?"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+Running SwiftFormat...
+(lint mode - no files will be changed.)
+Reading config file at /Users/bolshakov/Projects/personal/anky.wt/qa-t49-05-2/checkout/.swiftformat
+Ignoring swift-version file at /Users/bolshakov/Projects/personal/anky.wt/qa-t49-05-2/checkout/.swift-version
+SwiftFormat completed in 0.43s.
+0/207 files require formatting, 2 files skipped.
+exit 0

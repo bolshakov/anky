@@ -1,0 +1,14 @@
+$ sh -c 'git grep -n -E "FileEntryStore|entries\.json|EntriesFile|StoredEntry|newerVersion|JSONEncoder|JSONDecoder|Codable|init\(from decoder" -- Sources App; ls Sources/AnkyDomain/FileEntryStore.swift'
+exit: 1
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+Sources/AnkyDomain/PlaceID.swift:10:extension PlaceID: Codable {
+Sources/AnkyDomain/PlaceID.swift:11:    public init(from decoder: any Decoder) throws {
+Sources/AnkyDomain/ShortcutsStore.swift:22:              let file = try? JSONDecoder().decode(ShortcutsFile.self, from: data),
+Sources/AnkyDomain/ShortcutsStore.swift:38:        let encoder = JSONEncoder()
+Sources/AnkyDomain/ShortcutsStore.swift:51:private struct ShortcutsFile: Codable {
+Sources/AnkyDomain/TipProgressStore.swift:23:            let header = try? JSONDecoder().decode(VersionHeader.self, from: data),
+Sources/AnkyDomain/TipProgressStore.swift:25:            let file = try? JSONDecoder().decode(ProgressFile.self, from: data)
+Sources/AnkyDomain/TipProgressStore.swift:36:        let encoder = JSONEncoder()
+Sources/AnkyDomain/TipProgressStore.swift:53:private struct ProgressFile: Codable {
+ls: Sources/AnkyDomain/FileEntryStore.swift: No such file or directory

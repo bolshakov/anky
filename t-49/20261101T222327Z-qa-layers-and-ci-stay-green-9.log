@@ -1,0 +1,10 @@
+$ sh -c 'git rev-parse HEAD; gh pr view bodyshop/t-49-05-entries-carry-no-json-format --json headRefOid,mergeCommit,statusCheckRollup --jq ".headRefOid, (.mergeCommit.oid // \"not merged\"), (.statusCheckRollup[] | \"\(.name) \(.status) \(.conclusion)\")"'
+exit: 0
+commit: 9cdf5dbbee29cedb915856645eb6f34bfaadec90
+
+9cdf5dbbee29cedb915856645eb6f34bfaadec90
+9cdf5dbbee29cedb915856645eb6f34bfaadec90
+not merged
+Review Price Tag COMPLETED SUCCESS
+checks COMPLETED SUCCESS
+ios COMPLETED SUCCESS
