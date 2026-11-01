@@ -66,10 +66,14 @@ struct MedicationFormView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                Button(editing == nil ? "Save medication" : "Save changes") {
+                Button {
                     save()
+                } label: {
+                    Text(editing == nil ? "Save medication" : "Save changes")
+                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(PinnedButtonStyle())
+                .buttonStyle(.glassProminent)
+                .controlSize(.large)
                 .disabled(!draft.isSavable)
                 .accessibilityIdentifier("medication-save")
                 .padding()
