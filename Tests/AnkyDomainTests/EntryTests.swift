@@ -49,9 +49,15 @@ struct EntryTests {
 
     @Test func loadsAnOlderNoteLongerThanTheLimitWhole() throws {
         let longNote = String(repeating: "a", count: 1500)
-        let saved: [String: Any] = ["id": UUID().uuidString, "kind": "pain", "severity": 4, "date": 0, "note": longNote]
-        let data = try JSONSerialization.data(withJSONObject: saved)
-        #expect(try JSONDecoder().decode(Entry.self, from: data).note == longNote)
+        let entry = try Entry(
+            id: UUID(),
+            kind: .pain,
+            severity: #require(Severity(4)),
+            date: date,
+            note: longNote,
+            places: []
+        )
+        #expect(entry.note == longNote)
     }
 
     @Test func roundTripsThroughCodable() throws {

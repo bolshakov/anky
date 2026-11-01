@@ -28,8 +28,14 @@ struct EntryDraftFromEntryTests {
 
     @Test func draftFromAnEntryCutsANoteOverTheLimit() throws {
         let note = String(repeating: "a", count: EntryDraft.noteLimit + 1)
-        let json = #"{"id":"\#(UUID())","kind":"pain","severity":4,"date":0,"note":"\#(note)"}"#
-        let stored = try JSONDecoder().decode(Entry.self, from: Data(json.utf8))
+        let stored = try Entry(
+            id: UUID(),
+            kind: .pain,
+            severity: #require(Severity(4)),
+            date: date,
+            note: note,
+            places: []
+        )
         #expect(try EntryDraft(entry: stored).note == String(repeating: "a", count: EntryDraft.noteLimit))
     }
 

@@ -22,7 +22,15 @@ struct PlaceSummaryTests {
     }
 
     @Test func aFatigueEntryStoredWithPlacesStillReadsAsWholeBody() throws {
-        #expect(try entry(.fatigue, places: ["lower", "si_l"]).placeSummary == .wholeBody)
+        let stored = try Entry(
+            id: UUID(),
+            kind: .fatigue,
+            severity: #require(Severity(4)),
+            date: date,
+            note: nil,
+            places: ["lower", "si_l"].map { place($0) }
+        )
+        #expect(stored.placeSummary == .wholeBody)
     }
 
     @Test func aPainEntryWithNoPlacesReadsAsNoPlace() throws {
