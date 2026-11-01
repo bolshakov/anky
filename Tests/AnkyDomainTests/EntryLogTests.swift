@@ -3,6 +3,7 @@ import AnkyDomain
 import Foundation
 import Testing
 
+@MainActor
 struct EntryLogTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
@@ -10,79 +11,84 @@ struct EntryLogTests {
         try Entry(id: id, draft: EntryDraft(severity: #require(Severity(severity)), date: date))
     }
 
-    @Test func loadsTheStoredEntriesInSaveOrder() throws {
+    @Test(arguments: StoreKind.allCases) func loadsTheStoredEntriesInSaveOrder(_ kind: StoreKind) throws {
         let first = try entry()
         let second = try entry()
-        let log = EntryLog(store: FakeEntryStore(entries: [first, second]))
+        let fixture = try kind.fixture(holding: [first, second])
+        let log = EntryLog(store: fixture.store)
         #expect(log.entries == [first, second])
     }
 
-    @Test func startsEmptyWhenTheStoreCannotBeRead() throws {
-        let log = try EntryLog(store: FakeEntryStore(entries: [entry()], loadError: .unreadable))
+    @Test(arguments: StoreKind.allCases) func startsEmptyWhenTheStoreCannotBeRead(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry()])
+        fixture.refuseLoads(.unreadable)
+        let log = EntryLog(store: fixture.store)
         #expect(log.entries.isEmpty)
     }
 
-    @Test func addSavesTheWholeListWithTheEntryAppended() throws {
+    @Test(arguments: StoreKind.allCases) func addSavesTheWholeListWithTheEntryAppended(_ kind: StoreKind) throws {
         let first = try entry()
         let second = try entry()
-        let store = FakeEntryStore(entries: [first])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [first])
+        var log = EntryLog(store: fixture.store)
 
         try log.add(second)
 
         #expect(log.entries == [first, second])
-        #expect(store.saveCalls == [[first, second]])
+        #expect(try fixture.store.load() == [first, second])
     }
 
-    @Test func failedSaveLeavesTheListAsItWasAndThrowsTheStoreError() throws {
+    @Test(arguments: StoreKind.allCases) func failedSaveLeavesTheListAsItWasAndThrowsTheStoreError(
+        _ kind: StoreKind
+    ) throws {
         let earlier = try entry()
-        let store = FakeEntryStore(entries: [earlier])
-        store.saveFailure = SaveFailure()
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [earlier])
+        fixture.refuseWrites(true)
+        var log = EntryLog(store: fixture.store)
 
-        #expect(throws: SaveFailure()) { try log.add(entry()) }
+        #expect(throws: EntryStoreError.notSaved) { try log.add(entry()) }
 
         #expect(log.entries == [earlier])
-        #expect(store.saved == [earlier])
+        #expect(try fixture.store.load() == [earlier])
     }
 
-    @Test func retryingAfterAFailedSaveAddsTheSameEntry() throws {
-        let store = FakeEntryStore()
-        var log = EntryLog(store: store)
+    @Test(arguments: StoreKind.allCases) func retryingAfterAFailedSaveAddsTheSameEntry(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [])
+        var log = EntryLog(store: fixture.store)
         let tapped = try entry()
-        store.saveFailure = SaveFailure()
-        #expect(throws: SaveFailure()) { try log.add(tapped) }
+        fixture.refuseWrites(true)
+        #expect(throws: EntryStoreError.notSaved) { try log.add(tapped) }
 
-        store.saveFailure = nil
+        fixture.refuseWrites(false)
         try log.add(tapped)
 
         #expect(log.entries == [tapped])
-        #expect(store.saveCalls.count == 2)
+        #expect(fixture.writeCount() == 2)
     }
 
-    @Test func addingTheSameEntryTwiceKeepsOneAndSavesOnce() throws {
-        let store = FakeEntryStore()
-        var log = EntryLog(store: store)
+    @Test(arguments: StoreKind.allCases) func addingTheSameEntryTwiceKeepsOneAndSavesOnce(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [])
+        var log = EntryLog(store: fixture.store)
         let tapped = try entry()
 
         try log.add(tapped)
         try log.add(tapped)
 
         #expect(log.entries == [tapped])
-        #expect(store.saveCalls.count == 1)
+        #expect(fixture.writeCount() == 1)
     }
 
-    @Test func anotherEntryWithAKnownIDChangesNothing() throws {
+    @Test(arguments: StoreKind.allCases) func anotherEntryWithAKnownIDChangesNothing(_ kind: StoreKind) throws {
         let id = UUID()
         let original = try entry(id: id, severity: 4)
         let impostor = try entry(id: id, severity: 9)
-        let store = FakeEntryStore()
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [])
+        var log = EntryLog(store: fixture.store)
 
         try log.add(original)
         try log.add(impostor)
 
         #expect(log.entries == [original])
-        #expect(store.saveCalls.count == 1)
+        #expect(fixture.writeCount() == 1)
     }
 }

@@ -3,6 +3,7 @@ import AnkyDomain
 import Foundation
 import Testing
 
+@MainActor
 struct EntryLogEditTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
     private let calendar: Calendar
@@ -21,11 +22,13 @@ struct EntryLogEditTests {
         try #require(calendar.date(from: DateComponents(year: 2026, month: 10, day: day, hour: hour, minute: minute)))
     }
 
-    @Test func replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace() throws {
+    @Test(arguments: StoreKind.allCases) func replaceSwapsTheEntryWithTheSameIdAndKeepsItsPlace(
+        _ kind: StoreKind
+    ) throws {
         let first = try entry()
         let middle = try entry(severity: 4)
         let last = try entry()
-        var log = EntryLog(store: FakeEntryStore(entries: [first, middle, last]))
+        var log = try EntryLog(store: kind.fixture(holding: [first, middle, last]).store)
         let changed = try entry(id: middle.id, severity: 8)
 
         try log.replace(changed)
@@ -33,78 +36,86 @@ struct EntryLogEditTests {
         #expect(log.entries == [first, changed, last])
     }
 
-    @Test func replaceSavesTheWholeListOnce() throws {
+    @Test(arguments: StoreKind.allCases) func replaceSavesTheWholeListOnce(_ kind: StoreKind) throws {
         let first = try entry()
         let middle = try entry()
-        let store = FakeEntryStore(entries: [first, middle])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [first, middle])
+        var log = EntryLog(store: fixture.store)
         let changed = try entry(id: middle.id, severity: 8)
 
         try log.replace(changed)
 
-        #expect(store.saveCalls == [[first, changed]])
+        #expect(try fixture.store.load() == [first, changed])
+        #expect(fixture.writeCount() == 1)
     }
 
-    @Test func replaceThrowsMissingWhenNoEntryHasThatId() throws {
+    @Test(arguments: StoreKind.allCases) func replaceThrowsMissingWhenNoEntryHasThatId(_ kind: StoreKind) throws {
         let earlier = try entry()
-        let store = FakeEntryStore(entries: [earlier])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [earlier])
+        var log = EntryLog(store: fixture.store)
 
         #expect(throws: EntryLogError.missing) { try log.replace(entry()) }
 
         #expect(log.entries == [earlier])
-        #expect(store.saveCalls.isEmpty)
+        #expect(fixture.writeCount() == 0)
     }
 
-    @Test func failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError() throws {
+    @Test(arguments: StoreKind.allCases) func failedReplaceLeavesTheListAsItWasAndThrowsTheStoreError(
+        _ kind: StoreKind
+    ) throws {
         let earlier = try entry()
-        let store = FakeEntryStore(entries: [earlier])
-        store.saveFailure = SaveFailure()
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [earlier])
+        fixture.refuseWrites(true)
+        var log = EntryLog(store: fixture.store)
 
-        #expect(throws: SaveFailure()) { try log.replace(entry(id: earlier.id, severity: 9)) }
+        #expect(throws: EntryStoreError.notSaved) { try log.replace(entry(id: earlier.id, severity: 9)) }
 
         #expect(log.entries == [earlier])
     }
 
-    @Test func removeDropsTheEntryAndSavesTheList() throws {
+    @Test(arguments: StoreKind.allCases) func removeDropsTheEntryAndSavesTheList(_ kind: StoreKind) throws {
         let first = try entry()
         let second = try entry()
-        let store = FakeEntryStore(entries: [first, second])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [first, second])
+        var log = EntryLog(store: fixture.store)
 
         try log.remove(id: first.id)
 
         #expect(log.entries == [second])
-        #expect(store.saveCalls == [[second]])
+        #expect(try fixture.store.load() == [second])
+        #expect(fixture.writeCount() == 1)
     }
 
-    @Test func removeOfAnUnknownIdSavesNothing() throws {
+    @Test(arguments: StoreKind.allCases) func removeOfAnUnknownIdSavesNothing(_ kind: StoreKind) throws {
         let earlier = try entry()
-        let store = FakeEntryStore(entries: [earlier])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [earlier])
+        var log = EntryLog(store: fixture.store)
 
         try log.remove(id: UUID())
 
         #expect(log.entries == [earlier])
-        #expect(store.saveCalls.isEmpty)
+        #expect(fixture.writeCount() == 0)
     }
 
-    @Test func failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError() throws {
+    @Test(arguments: StoreKind.allCases) func failedRemoveLeavesTheListAsItWasAndThrowsTheStoreError(
+        _ kind: StoreKind
+    ) throws {
         let earlier = try entry()
-        let store = FakeEntryStore(entries: [earlier])
-        store.saveFailure = SaveFailure()
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [earlier])
+        fixture.refuseWrites(true)
+        var log = EntryLog(store: fixture.store)
 
-        #expect(throws: SaveFailure()) { try log.remove(id: earlier.id) }
+        #expect(throws: EntryStoreError.notSaved) { try log.remove(id: earlier.id) }
 
         #expect(log.entries == [earlier])
     }
 
-    @Test func anEntryMovedToYesterdayLeavesTodayAndStaysStored() throws {
+    @Test(arguments: StoreKind.allCases) func anEntryMovedToYesterdayLeavesTodayAndStaysStored(
+        _ kind: StoreKind
+    ) throws {
         let original = try entry(at: moment(day: 26, hour: 9))
-        let store = FakeEntryStore(entries: [original])
-        var log = EntryLog(store: store)
+        let fixture = try kind.fixture(holding: [original])
+        var log = EntryLog(store: fixture.store)
         let today = try moment(day: 26, hour: 12)
         #expect(try TodayList.entries(log.entries, on: today, calendar: calendar).map(\.id) == [original.id])
 

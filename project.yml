@@ -2,7 +2,7 @@ name: Anky
 options:
   bundleIdPrefix: dev.bolshakov
   deploymentTarget:
-    iOS: "17.0"
+    iOS: "26.0"
 packages:
   Anky:
     path: .

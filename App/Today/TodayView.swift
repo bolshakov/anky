@@ -17,8 +17,8 @@ struct TodayView: View {
     @State private var undoTicks = 0
     @State private var saveTicks = 0
 
-    private var todayEntries: [Entry] {
-        TodayList.entries(model.entries, on: .now, calendar: .current)
+    private var todayItems: [LoggedItem] {
+        TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
     }
 
     private var recent: RecentEntry? {
@@ -45,13 +45,13 @@ struct TodayView: View {
 
                     repeatBlock
 
-                    if todayEntries.isEmpty {
+                    if todayItems.isEmpty {
                         EmptyTodayView()
                             .frame(maxWidth: .infinity)
                             .padding(.top, recent == nil ? 48 : 64)
                             .padding(.bottom, 48)
                     } else {
-                        TodayEntryList(entries: todayEntries, onSelect: open)
+                        TodayEntryList(items: todayItems, medications: medications.medications, onSelect: open)
                             .padding(.top, 16)
                     }
 

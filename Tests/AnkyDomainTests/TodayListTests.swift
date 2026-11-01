@@ -60,4 +60,54 @@ struct TodayListTests {
         let result = try listedOnDay26([firstSaved, secondSaved])
         #expect(result.map(\.id) == [secondSaved.id, firstSaved.id])
     }
+
+    private func dose(at date: Date) throws -> Dose {
+        try Dose(id: UUID(), medicationID: UUID(), takenAt: date, painBefore: #require(Severity(6)))
+    }
+
+    private func itemsOnDay26(entries: [Entry] = [], doses: [Dose] = []) throws -> [LoggedItem] {
+        try TodayList.items(entries: entries, doses: doses, on: moment(12), calendar: calendar)
+    }
+
+    @Test func aDoseSecondsAfterAnEntryInTheSameMinuteListsFirst() throws {
+        let saved = try entry(at: moment(9, 30, 10))
+        let taken = try dose(at: moment(9, 30, 40))
+        #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [taken.id, saved.id])
+    }
+
+    @Test func anEntrySecondsAfterADoseInTheSameMinuteListsFirst() throws {
+        let taken = try dose(at: moment(9, 30, 10))
+        let saved = try entry(at: moment(9, 30, 40))
+        #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [saved.id, taken.id])
+    }
+
+    @Test func aDoseAtTheSameTimeAsAnEntryListsFirst() throws {
+        let date = try moment(9, 30)
+        let saved = try entry(at: date)
+        let taken = try dose(at: date)
+        #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [taken.id, saved.id])
+    }
+
+    @Test func doseAndEntriesOfTheDayListNewestFirst() throws {
+        let morning = try entry(at: moment(8))
+        let lunch = try dose(at: moment(13))
+        let evening = try entry(at: moment(20))
+        let result = try itemsOnDay26(entries: [morning, evening], doses: [lunch])
+        #expect(result.map(\.id) == [evening.id, lunch.id, morning.id])
+    }
+
+    @Test func listsTheLaterStoredDoseFirstWhenTimesMatch() throws {
+        let date = try moment(9)
+        let firstStored = try dose(at: date)
+        let secondStored = try dose(at: date)
+        let result = try itemsOnDay26(doses: [firstStored, secondStored])
+        #expect(result.map(\.id) == [secondStored.id, firstStored.id])
+    }
+
+    @Test func leavesOutDosesOfOtherDays() throws {
+        let yesterday = try dose(at: moment(9, day: 25))
+        let today = try dose(at: moment(9))
+        let tomorrow = try dose(at: moment(9, day: 27))
+        #expect(try itemsOnDay26(doses: [yesterday, today, tomorrow]).map(\.id) == [today.id])
+    }
 }

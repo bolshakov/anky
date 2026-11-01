@@ -13,7 +13,7 @@ func scrollToNoteField(in app: XCUIApplication) {
     XCTAssertTrue(note.isHittable)
 }
 
-/// At the largest size the Kind buttons push the severity slider below the first screen. The pinned "Save entry"
+/// At the largest size the severity slider sits below the first screen. The pinned "Save entry"
 /// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
 @MainActor
 func scrollToSeveritySlider(in app: XCUIApplication) {

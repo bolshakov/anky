@@ -3,6 +3,7 @@ import AnkyDomain
 import Foundation
 import Testing
 
+@MainActor
 struct EditedPlacesTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
     private let lower = PlaceID(rawValue: "lower")

@@ -3,6 +3,7 @@ import AnkyDomain
 import Foundation
 import Testing
 
+@MainActor
 struct EditedEntryReloadTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 

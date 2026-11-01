@@ -26,4 +26,9 @@ public struct Medication: Equatable, Identifiable, Sendable {
         self.createdAt = createdAt
         updatedAt = createdAt
     }
+
+    /// A String, not a localized key, so a name with a percent sign or a strength is shown as typed.
+    public var listTitle: String {
+        strength.map { "\(name) \($0)" } ?? name
+    }
 }
