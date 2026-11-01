@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t69-06-1/tmp/sim-up.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t69-06-1/checkout /Users/bolshakov/Projects/personal/anky.wt/qa-t69-06-1/tmp/walk-t69.ikps
+exit: 0
+commit: a9f7f4e8246e9789fdcd616d04385ac1b6a2ef31
+
+simulator 98C11637-57A8-463D-A067-2F5632748BC9
+sim-up exit 0

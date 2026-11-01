@@ -1,0 +1,6 @@
+$ sh -c 'git grep -n PinnedButtonStyle; echo "grep exit $?"; ls App/Today/PinnedButtonStyle.swift'
+exit: 1
+commit: a9f7f4e8246e9789fdcd616d04385ac1b6a2ef31
+
+grep exit 1
+ls: App/Today/PinnedButtonStyle.swift: No such file or directory

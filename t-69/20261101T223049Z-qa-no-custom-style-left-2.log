@@ -1,0 +1,10 @@
+$ git grep -l glassProminent -- App
+exit: 0
+commit: a9f7f4e8246e9789fdcd616d04385ac1b6a2ef31
+
+App/LogDose/LogDoseView.swift
+App/LogDose/MedicationFormView.swift
+App/Medications/MedicationsView.swift
+App/NewEntry/DonePlacesButton.swift
+App/NewEntry/NewEntryView.swift
+App/Today/TodayView.swift
