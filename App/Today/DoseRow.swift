@@ -7,9 +7,7 @@ struct DoseRow: View {
     let title: String
 
     private var time: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "jmm", options: 0, locale: .current)
-        return formatter.string(from: dose.takenAt)
+        ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
     }
 
     var body: some View {
