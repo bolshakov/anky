@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t45-02-1/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t45-02-1/tmp/walk-t45.wC8e; udid=FD7D7802-275F-49FD-AD5E-696DCE88D281; ui | grep '\''id=dose-medication-row '\'''
+exit: 0
+commit: 35fcf154cd5c8478571c8ffa43999185aa637370
+
+Button id=dose-medication-row label='Zorblex 500 mg, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+Button id=dose-medication-row label='Quibbanol, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669
