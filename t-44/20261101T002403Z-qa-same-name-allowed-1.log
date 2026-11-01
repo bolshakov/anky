@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "id=dose-medication-row |label=.Alert|id=medication-name"'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+Button id=dose-medication-row label='Zorblex 25 mg, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+Button id=dose-medication-row label='Zorblex 25 mg, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669

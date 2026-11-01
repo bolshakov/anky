@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -c "label=.return."'
+exit: 1
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+0

@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "label=.Medication.|id=dose-(no-medications|add-medication) "'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+Heading id=None label='Medication' value=None enabled=True actions= traits= @16,132 370x40.33333333333334
+StaticText id=dose-no-medications label='No medications yet' value=None enabled=True actions= traits= @16,172.33333333333334 370x52
+Button id=dose-add-medication label='Add medication' value=None enabled=True actions= traits= @16,224.33333333333331 370x52

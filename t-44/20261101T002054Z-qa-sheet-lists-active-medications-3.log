@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; meds'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+Zorblex|25 mg|0
+Quibbanol|-|0

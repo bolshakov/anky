@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "id=medication-(name|save) "'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+TextField id=medication-name label=None value='   ' enabled=True actions= traits= @32,192 338x22
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,768 370x56

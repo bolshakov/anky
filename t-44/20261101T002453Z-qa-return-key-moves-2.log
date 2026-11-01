@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "id=medication-(name|strength) "'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+TextField id=medication-name label=None value='Zorblex' enabled=True actions= traits= @32,192 338x22
+TextField id=medication-strength label=None value='5 mg' enabled=True actions= traits= @32,244 338x22

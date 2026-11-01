@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep "id=medication-save "'
+exit: 0
+commit: 3660d3aaa861d91547f0bf9f0ac3dc1f43455651
+
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,768 370x56
