@@ -11,6 +11,8 @@ struct ArchivedCard: View {
             Text("\(count)")
                 .foregroundStyle(.secondary)
         }
+        .padding(.vertical, 8)
+        .frame(minHeight: 60)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("Archived"))
         .accessibilityValue("\(count)")

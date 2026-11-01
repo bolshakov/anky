@@ -92,6 +92,7 @@ struct MedicationsView: View {
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }
+                .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
             } footer: {
                 if !active.isEmpty {
                     archiveFootnote
