@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep "id=medication-row "'
+exit: 0
+commit: 468b30379db053d8fbee7715a93edc67e16ddf0a
+
+Button id=medication-row label='Zorblex, Scheduled' value=None enabled=True actions=Archive traits= @16,167 370x60

@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=taken-as |label=.(As needed|Scheduled)."'
+exit: 0
+commit: 468b30379db053d8fbee7715a93edc67e16ddf0a
+
+TabGroup id=taken-as label=None value=None enabled=True actions= traits= @32,393.33333333333337 338x31
+RadioButton id=None label='As needed' value=1 enabled=True actions= traits= @32,393.33333333333337 169x32
+RadioButton id=None label='Scheduled' value=0 enabled=True actions= traits= @201,393.33333333333337 169x32
