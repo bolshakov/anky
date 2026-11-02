@@ -41,13 +41,13 @@ final class LogDoseReadingTests: XCTestCase {
 
     private func openHowYouFeel(_ app: XCUIApplication) {
         app.buttons["log-how-you-feel-row"].tap()
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
     }
 
     private func saveFourOfTenFromNewEntry(_ app: XCUIApplication) {
         setSeverity(4, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
     }
 
     private func expectBeforeReadingShowsFourOfTen(_ app: XCUIApplication) {
