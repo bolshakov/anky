@@ -41,26 +41,36 @@ struct NewEntryView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    recentChips
+            Form {
+                recentChips
+                Section {
                     KindSection(draft: $draft)
+                }
+                Section {
                     DateSection(date: $draft.date)
-                    whereSection
+                }
+                whereSection
+                Section {
                     SeveritySection(
                         caption: "Severity",
                         spokenLabel: "Severity",
                         idPrefix: "severity",
                         severity: $draft.severity
                     )
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+                }
+                Section {
                     NoteSection(draft: $draft)
-                    if case .edit = mode {
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets())
+                }
+                if case .edit = mode {
+                    Section {
                         DeleteEntrySection(onDelete: removeEntry)
                     }
                 }
-                .padding()
             }
-            .background(Color("PageBackground"))
             .accessibilityIdentifier(screenID)
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
@@ -129,14 +139,22 @@ struct NewEntryView: View {
     @ViewBuilder
     private var recentChips: some View {
         if !recents.isEmpty {
-            RecentChipsRow(recents: recents) { draft.apply($0) }
+            Section {
+                RecentChipsRow(recents: recents) { draft.apply($0) }
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+            }
         }
     }
 
     @ViewBuilder
     private var whereSection: some View {
         if draft.kind.asksWhere {
-            WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, chips: chips)
+            Section {
+                WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, chips: chips)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+            }
         }
     }
 

@@ -19,7 +19,6 @@ struct DateSection: View {
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
                 }
-                .padding()
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -38,7 +37,6 @@ struct DateSection: View {
                 .accessibilityIdentifier("date-picker")
             }
         }
-        .background(Color("CardBackground"), in: .card)
     }
 
     private var day: String {
