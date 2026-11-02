@@ -52,8 +52,8 @@ struct LogDoseView: View {
                 }
                 Section {
                     DateSection(date: $takenAt)
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                        .listRowBackground(Color("CardBackground").clipShape(.card))
                         .listRowSeparator(.hidden)
                     SeveritySection(
                         caption: "Pain before",
