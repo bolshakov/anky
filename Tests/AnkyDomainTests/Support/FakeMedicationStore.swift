@@ -79,4 +79,16 @@ import Foundation
         doseContents.append(dose)
         contents[index].checkInAfter = dose.checkInAfter
     }
+
+    func replaceDose(_ dose: Dose) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = doseContents.firstIndex(where: { $0.id == dose.id }),
+              contents.contains(where: { $0.id == dose.medicationID })
+        else {
+            throw MedicationStoreError.notSaved
+        }
+        doseContents[index] = dose
+    }
 }

@@ -11,6 +11,9 @@ import Foundation
     /// Stores the dose and sets its medication's saved delay to the dose's, in one save. Throws `notSaved` for a
     /// medication id the store does not hold.
     func logDose(_ dose: Dose) throws
+    /// Replaces the stored dose with the same id, every field included. Changes no medication's saved delay. Throws
+    /// `notSaved` for a dose id the store does not hold, or a medication id it does not hold.
+    func replaceDose(_ dose: Dose) throws
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

@@ -20,6 +20,14 @@ import SwiftData
         afterReadingID = dose.afterReadingID
     }
 
+    func assign(_ dose: Dose) {
+        medicationID = dose.medicationID
+        takenAt = dose.takenAt
+        checkInAfterMinutes = dose.checkInAfter?.rawValue
+        beforeReadingID = dose.beforeReadingID
+        afterReadingID = dose.afterReadingID
+    }
+
     func dose() throws -> Dose {
         var checkIn: CheckInDelay?
         if let minutes = checkInAfterMinutes {

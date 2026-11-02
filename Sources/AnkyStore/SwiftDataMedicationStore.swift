@@ -87,6 +87,21 @@ import SwiftData
         try commit()
     }
 
+    public func replaceDose(_ dose: Dose) throws {
+        let stored = try doseRecord(id: dose.id)
+        _ = try record(id: dose.medicationID)
+        stored.assign(dose)
+        try commit()
+    }
+
+    private func doseRecord(id: UUID) throws -> DoseRecord {
+        let descriptor = FetchDescriptor<DoseRecord>(predicate: #Predicate { $0.id == id })
+        guard let record = try? context.fetch(descriptor).first else {
+            throw MedicationStoreError.notSaved
+        }
+        return record
+    }
+
     /// A failed commit discards every change made since the last one, so a retry starts from the stored state.
     private func commit() throws {
         do {

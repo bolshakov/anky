@@ -117,6 +117,96 @@ struct SwiftDataDoseTests {
         }
     }
 
+    @Test func replaceDoseStoresEveryFieldAndKeepsBothReadings() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let zorblex = medication()
+            let fennimax = medication(name: "Fennimax")
+            let original = fullDose(for: zorblex)
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.add(fennimax)
+            try store.logDose(original)
+
+            var edited = original
+            edited.medicationID = fennimax.id
+            edited.takenAt = date.addingTimeInterval(600)
+            edited.checkInAfter = .threeHours
+            try store.replaceDose(edited)
+
+            #expect(try SwiftDataMedicationStore(url: url).doses() == [edited])
+        }
+    }
+
+    @Test func replaceDoseLeavesEveryMedicationsSavedDelayAsItWas() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var zorblex = medication()
+            zorblex.checkInAfter = .thirtyMinutes
+            var fennimax = medication(name: "Fennimax")
+            fennimax.checkInAfter = .fourHours
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.add(fennimax)
+            let original = fullDose(for: zorblex)
+            try store.logDose(original)
+            try store.update(zorblex)
+
+            var moved = original
+            moved.medicationID = fennimax.id
+            try store.replaceDose(moved)
+
+            let reopened = try SwiftDataMedicationStore(url: url)
+            #expect(try reopened.doses() == [moved])
+            let saved = try reopened.all()
+            #expect(saved.first { $0.id == zorblex.id }?.checkInAfter == .thirtyMinutes)
+            #expect(saved.first { $0.id == fennimax.id }?.checkInAfter == .fourHours)
+        }
+    }
+
+    @Test func failedReplaceLeavesTheStoredDoseAsItWas() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var writesRefused = false
+            let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+                if writesRefused {
+                    throw WriteRefused()
+                }
+            })
+            let zorblex = medication()
+            try store.add(zorblex)
+            let original = fullDose(for: zorblex)
+            try store.logDose(original)
+
+            var edited = original
+            edited.takenAt = date.addingTimeInterval(900)
+            writesRefused = true
+            #expect(throws: MedicationStoreError.notSaved) { try store.replaceDose(edited) }
+            #expect(try store.doses() == [original])
+            #expect(try SwiftDataMedicationStore(url: url).doses() == [original])
+        }
+    }
+
+    @Test func replacingAnUnknownDoseOrOntoAnUnknownMedicationThrowsAndInsertsNothing() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let store = try SwiftDataMedicationStore(url: url)
+            let zorblex = medication()
+            try store.add(zorblex)
+            let stored = fullDose(for: zorblex)
+            try store.logDose(stored)
+
+            let stranger = fullDose(for: zorblex)
+            #expect(throws: MedicationStoreError.notSaved) { try store.replaceDose(stranger) }
+
+            var onUnknown = stored
+            onUnknown.medicationID = UUID()
+            #expect(throws: MedicationStoreError.notSaved) { try store.replaceDose(onUnknown) }
+
+            #expect(try SwiftDataMedicationStore(url: url).doses() == [stored])
+        }
+    }
+
     @Test func storeFileWrittenWithOnlyMedicationsOpensWithThemAndNoDoses() throws {
         try withFolder { folder in
             let url = folder.appending(path: "medications.store")
