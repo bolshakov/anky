@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(before-reading-row|log-how-you-feel-row) "; echo end'
+exit: 0
+commit: 00557713611920a6fccba7c2eb8d6bbac8468bd2
+
+Button id=log-how-you-feel-row label='Log how you feel' value=None enabled=True actions= traits= @16,415.3333333333333 370x52
+end

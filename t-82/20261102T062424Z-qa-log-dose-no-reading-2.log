@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; doses; date "+now %Y-%m-%d %H:%M"; echo "save-dose on screen: $(ui | grep -c "id=save-dose ")"'
+exit: 0
+commit: 00557713611920a6fccba7c2eb8d6bbac8468bd2
+
+Zorblex|2026-11-02 07:24|-|-|-
+now 2026-11-02 07:24
+save-dose on screen: 0

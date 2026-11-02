@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(before-reading-row|log-how-you-feel-row|new-entry-screen) "; echo end'
+exit: 0
+commit: 00557713611920a6fccba7c2eb8d6bbac8468bd2
+
+Button id=before-reading-row label='Before this dose, 07:25, Pain, No place, 4 of 10' value=None enabled=True actions= traits= @16,415.3333333333333 370x85.66666666666669
+end

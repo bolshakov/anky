@@ -1,0 +1,9 @@
+$ bash -c '. "$TMPDIR/walk.sh"; doses; echo ---; entries'
+exit: 0
+commit: 00557713611920a6fccba7c2eb8d6bbac8468bd2
+
+Zorblex|2026-11-02 07:25|-|-|-
+Zorblex|2026-11-02 07:25|-|pain 4|-
+---
+pain|6|-|2026-11-02 04:55
+pain|4|-|2026-11-02 07:25

@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(before-reading-row|before-reading-footer|pain-before-slider|pain-before-footnote) "'
+exit: 0
+commit: 00557713611920a6fccba7c2eb8d6bbac8468bd2
+
+Button id=before-reading-row label='Before this dose, 06:49, Pain, No place, 6 of 10' value=None enabled=True actions= traits= @16,415.3333333333333 370x85.66666666666669
+StaticText id=before-reading-footer label='Your latest entry before this dose. Tap to choose another.' value=None enabled=True actions= traits= @16,501 370x45.66666666666663
