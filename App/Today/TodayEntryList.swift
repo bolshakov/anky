@@ -54,7 +54,6 @@ struct EntryRow: View {
             // A concrete primary keeps the List button's tint off the hierarchical secondary texts below it.
             layout
                 .foregroundStyle(Color.primary)
-                .contentShape(Rectangle())
         }
         // The row's visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
