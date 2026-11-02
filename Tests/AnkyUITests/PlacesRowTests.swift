@@ -11,9 +11,9 @@ final class PlacesRowTests: XCTestCase {
         openPlaces(in: app)
 
         for raw in spineAndSacroiliacRaw {
-            let row = placeRow(raw, in: app)
-            XCTAssertTrue(row.waitForExistence(timeout: 10), "place-row-\(raw) is on screen")
-            XCTAssertGreaterThanOrEqual(row.frame.height, 44, "place-row-\(raw) is at least 44 pt tall")
+            let place = app.buttons["place-\(raw)"]
+            XCTAssertTrue(place.waitForExistence(timeout: 10), "place-\(raw) is on screen")
+            XCTAssertGreaterThanOrEqual(place.frame.height, 44, "place-\(raw) is at least 44 pt tall")
         }
     }
 
@@ -26,10 +26,10 @@ final class PlacesRowTests: XCTestCase {
         XCTAssertTrue(place.waitForExistence(timeout: 10))
         XCTAssertFalse(place.isSelected)
 
-        place.tap()
+        tapName(of: "neck", in: app)
         XCTAssertTrue(place.isSelected)
 
-        place.tap()
+        tapName(of: "neck", in: app)
         XCTAssertFalse(place.isSelected)
     }
 
@@ -60,5 +60,16 @@ final class PlacesRowTests: XCTestCase {
 
     private func placeRow(_ raw: String, in app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any)["place-row-\(raw)"]
+    }
+
+    /// The name's frame is the row container's frame, so it follows the text in every presentation. The tap goes by
+    /// coordinate, because a plain tap on the button fails its hittability check.
+    private func tapName(of raw: String, in app: XCUIApplication) {
+        let place = app.buttons["place-\(raw)"]
+        let name = placeRow(raw, in: app).frame
+        place.coordinate(withNormalizedOffset: CGVector(
+            dx: (name.midX - place.frame.minX) / place.frame.width,
+            dy: (name.midY - place.frame.minY) / place.frame.height
+        )).tap()
     }
 }
