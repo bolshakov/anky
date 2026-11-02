@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t74-01-8/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t74-01-8/tmp/walk-t74-01.KAjL; udid=C3075B2E-96A1-4624-9D32-48A00956A2E4; order'
+exit: 0
+commit: 21d62c3e9e9ab2cb5915bffa7386a0672e85039d
+
+kind-picker date-row where-section severity-caption note-field save-entry 
