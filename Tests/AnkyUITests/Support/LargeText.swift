@@ -15,12 +15,14 @@ func scrollToNoteField(in app: XCUIApplication) {
 
 /// At the largest size the severity slider sits below the first screen. The pinned "Save entry"
 /// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
+/// A form leaves rows that are off screen out of the accessibility tree, so the slider may not exist yet.
 @MainActor
 func scrollToSeveritySlider(in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     let save = app.buttons["save-entry"]
-    for _ in 0 ..< 5 where slider.frame.maxY > save.frame.minY {
+    for _ in 0 ..< 5 where !slider.exists || slider.frame.maxY > save.frame.minY {
         app.swipeUp()
     }
+    XCTAssertTrue(slider.exists)
     XCTAssertLessThanOrEqual(slider.frame.maxY, save.frame.minY)
 }
