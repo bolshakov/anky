@@ -10,21 +10,14 @@ struct TodayEntryList: View {
     let onSelectDose: (Dose) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            VStack(spacing: 0) {
-                ForEach(items) { item in
-                    row(for: item)
-                    if item.id != items.last?.id {
-                        Divider()
-                    }
-                }
+        Section {
+            ForEach(items) { item in
+                row(for: item)
             }
-            .background(Color("CardBackground"), in: .card)
-
+        } footer: {
             Text("Stored on this iPhone only.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
-                .cardCaption()
         }
     }
 
@@ -74,12 +67,10 @@ struct EntryRow: View {
                 Spacer()
                 value
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .frame(minHeight: 60)
+            // A concrete primary keeps the List button's tint off the hierarchical secondary texts below it.
+            .foregroundStyle(Color.primary)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
         // The row's visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
             Button(action: onSelect) { Color.clear }

@@ -7,11 +7,11 @@ final class EmptyStateTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
 
-        XCTAssertTrue(app.scrollViews["today-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["today-screen"].waitForExistence(timeout: 10))
         XCTAssertTrue(app.staticTexts["today-date"].exists)
         XCTAssertTrue(app.staticTexts["empty-today"].exists)
-        XCTAssertEqual(app.cells.count, 0)
-        XCTAssertEqual(app.tables.count, 0)
+        XCTAssertEqual(entryRows(in: app).count, 0)
+        XCTAssertFalse(app.staticTexts["Stored on this iPhone only."].exists)
 
         let logButton = app.buttons["log-entry"]
         XCTAssertTrue(logButton.waitForExistence(timeout: 10))

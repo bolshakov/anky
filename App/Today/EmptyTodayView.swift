@@ -22,5 +22,6 @@ struct EmptyTodayView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(.horizontal, 32)
+        .fixedSize(horizontal: false, vertical: true)
     }
 }

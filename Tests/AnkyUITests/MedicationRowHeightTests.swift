@@ -33,7 +33,7 @@ final class MedicationRowHeightTests: XCTestCase {
     }
 
     private func addZorblex(in app: XCUIApplication) {
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
 
         let name = app.textFields["medication-name"]

@@ -4,6 +4,14 @@ import AnkyMedicationModel
 import SwiftUI
 import UIKit
 
+private extension View {
+    func bareRow() -> some View {
+        listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+    }
+}
+
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
@@ -32,44 +40,21 @@ struct TodayView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(verbatim: DayDateText.text(
-                        for: .now,
-                        includesYear: false,
-                        calendar: .current,
-                        locale: .current
-                    ))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .accessibilityIdentifier("today-date")
-
+            List {
+                Section {
+                    dateLine
                     repeatBlock
-
-                    if todayItems.isEmpty {
-                        EmptyTodayView()
-                            .frame(maxWidth: .infinity)
-                            .padding(.top, recent == nil ? 48 : 64)
-                            .padding(.bottom, 48)
-                    } else {
-                        TodayEntryList(
-                            items: todayItems,
-                            medications: medications.medications,
-                            entries: model.entries,
-                            onSelect: open,
-                            onSelectDose: { editingDose = $0 }
-                        )
-                        .padding(.top, 16)
-                    }
-
-                    if dynamicTypeSize.isAccessibilitySize {
+                }
+                entriesOrEmptyState
+                if dynamicTypeSize.isAccessibilitySize {
+                    Section {
                         logMedicationButton
+                            .bareRow()
                     }
                 }
-                .padding(.horizontal)
             }
+            .listStyle(.insetGrouped)
             .onDisappear { loggedID = nil }
-            .background(Color("PageBackground"))
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
@@ -111,6 +96,40 @@ struct TodayView: View {
         }
     }
 
+    private var dateLine: some View {
+        Text(verbatim: DayDateText.text(
+            for: .now,
+            includesYear: false,
+            calendar: .current,
+            locale: .current
+        ))
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+        .accessibilityIdentifier("today-date")
+        .bareRow()
+    }
+
+    @ViewBuilder
+    private var entriesOrEmptyState: some View {
+        if todayItems.isEmpty {
+            Section {
+                EmptyTodayView()
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, recent == nil ? 48 : 64)
+                    .padding(.bottom, 48)
+                    .bareRow()
+            }
+        } else {
+            TodayEntryList(
+                items: todayItems,
+                medications: medications.medications,
+                entries: model.entries,
+                onSelect: open,
+                onSelectDose: { editingDose = $0 }
+            )
+        }
+    }
+
     private var logMedicationButton: some View {
         Button("Log medication") {
             isShowingLogDose = true
@@ -125,9 +144,11 @@ struct TodayView: View {
         if let loggedEntry {
             RepeatLoggedCard(recent: RecentEntry(loggedEntry), onUndo: undoLogged)
                 .padding(.top, 16)
+                .bareRow()
         } else if let recent {
             RepeatChip(recent: recent) { logRecent(recent) }
                 .padding(.top, 16)
+                .bareRow()
         }
     }
 
