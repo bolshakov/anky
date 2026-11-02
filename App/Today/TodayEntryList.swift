@@ -55,9 +55,12 @@ struct EntryRow: View {
             layout
                 .foregroundStyle(Color.primary)
         }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(spokenLabel)
-        .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+        // The row's visible texts stay out of the accessibility tree, so the row is one element.
+        .accessibilityRepresentation {
+            Button(action: onSelect) { Color.clear }
+                .accessibilityLabel(spokenLabel)
+                .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+        }
     }
 
     /// At accessibility sizes the time, the places with the kind, and the level stack in one column, so no word is
