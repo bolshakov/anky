@@ -16,6 +16,15 @@ struct HistoryView: View {
         HistoryList.sections(model.entries, doses: medications.doses, now: now, calendar: .current)
     }
 
+    private var waiting: [Dose] {
+        CheckInDue.waiting(
+            doses: medications.doses,
+            medications: medications.medications,
+            entries: model.entries,
+            now: now
+        )
+    }
+
     private var isConfirmingDelete: Binding<Bool> {
         Binding(
             get: { pendingDelete != nil },
@@ -41,6 +50,7 @@ struct HistoryView: View {
                                 section: section,
                                 medications: medications.medications,
                                 entries: model.entries,
+                                waiting: Set(waiting.map(\.id)),
                                 onSelect: { editing = $0 },
                                 onSelectDose: { editingDose = $0 },
                                 onDelete: { pendingDelete = $0 }

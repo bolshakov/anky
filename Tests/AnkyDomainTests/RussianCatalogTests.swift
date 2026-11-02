@@ -192,7 +192,7 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Log pain", "Log stiffness", "Log fatigue"]
     + ["After your %@ at %@", "After your %@ yesterday at %@", "After your %@ on %@ at %@"]
     + ["After %@", "Taken at %@.", "Taken yesterday at %@.", "Taken on %@ at %@."]
-    + ["%@ was %lld of 10 then.", "Check in", "Check In", "Opens Check In"]
+    + ["%@ was %lld of 10 then.", "Check in", "Check In", "Check in pending", "Opens Check In"]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
