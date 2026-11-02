@@ -479,6 +479,9 @@
         }
       }
     },
+    "Fatigue now" : {
+
+    },
     "How is your fatigue now?" : {
 
     },
@@ -498,6 +501,15 @@
 
     },
     "Opens Check In" : {
+
+    },
+    "Pain now" : {
+
+    },
+    "Save check-in" : {
+
+    },
+    "Stiffness now" : {
 
     },
     "Taken at %@." : {
@@ -1352,6 +1364,9 @@
           }
         }
       }
+    },
+    "This check-in could not be saved." : {
+
     },
     "This entry could not be deleted." : {
       "localizations" : {

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
 import Foundation
+import SwiftUI
 
 extension CheckInRowWords {
     static var app: CheckInRowWords {
@@ -30,6 +31,14 @@ enum CheckInText {
         case .pain: String(localized: "How is your pain now?")
         case .stiffness: String(localized: "How is your stiffness now?")
         case .fatigue: String(localized: "How is your fatigue now?")
+        }
+    }
+
+    static func severityCaption(for kind: EntryKind) -> LocalizedStringKey {
+        switch kind {
+        case .pain: "Pain now"
+        case .stiffness: "Stiffness now"
+        case .fatigue: "Fatigue now"
         }
     }
 

@@ -37,7 +37,7 @@ struct CheckInRow: View {
     let onSelect: () -> Void
 
     private var kind: EntryKind {
-        readings.before?.kind ?? .pain
+        readings.checkInKind
     }
 
     private var subtitle: String {

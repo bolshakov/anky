@@ -110,12 +110,7 @@ struct TodayView: View {
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $checkingIn) { dose in
-                CheckInView(
-                    dose: dose,
-                    title: DoseRowText.title(for: dose, in: medications.medications),
-                    readings: DoseReadings(dose, in: model.entries),
-                    now: checkInNow
-                )
+                CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
