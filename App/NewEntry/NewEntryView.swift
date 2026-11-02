@@ -57,7 +57,7 @@ struct NewEntryView: View {
                     DateSection(date: $draft.date)
                 }
                 whereSection
-                SeveritySection(
+                SystemSeveritySection(
                     caption: "Severity",
                     spokenLabel: "Severity",
                     idPrefix: "severity",
