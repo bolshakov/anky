@@ -36,6 +36,9 @@
     "%@ was %lld of 10" : {
 
     },
+    "%@ was %lld of 10 then." : {
+
+    },
     "%@, %@" : {
       "localizations" : {
         "en" : {
@@ -214,6 +217,18 @@
         }
       }
     },
+    "After %@" : {
+
+    },
+    "After your %@ at %@" : {
+
+    },
+    "After your %@ on %@ at %@" : {
+
+    },
+    "After your %@ yesterday at %@" : {
+
+    },
     "Ankle" : {
       "localizations" : {
         "ru" : {
@@ -256,6 +271,12 @@
           }
         }
       }
+    },
+    "Check In" : {
+
+    },
+    "Check in" : {
+
     },
     "Chest wall" : {
       "localizations" : {
@@ -454,6 +475,36 @@
           }
         }
       }
+    },
+    "How is your fatigue now?" : {
+
+    },
+    "How is your pain now?" : {
+
+    },
+    "How is your stiffness now?" : {
+
+    },
+    "Log fatigue" : {
+
+    },
+    "Log pain" : {
+
+    },
+    "Log stiffness" : {
+
+    },
+    "Opens Check In" : {
+
+    },
+    "Taken at %@." : {
+
+    },
+    "Taken on %@ at %@." : {
+
+    },
+    "Taken yesterday at %@." : {
+
     },
     "fatigue" : {
 
