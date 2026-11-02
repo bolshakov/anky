@@ -12,7 +12,7 @@ struct ReadingRow: View {
         ClockText.text(for: entry.date, calendar: .current, locale: .current)
     }
 
-    private var kind: String {
+    var kind: String {
         String(localized: entry.kind.displayName)
     }
 
@@ -24,6 +24,11 @@ struct ReadingRow: View {
     private var places: String? {
         guard entry.kind.asksWhere else { return nil }
         return RecentEntry(entry).spokenPlaces
+    }
+
+    /// The time, places and level, for a control whose label is the kind word alone.
+    var details: String {
+        [time, places, level].compactMap(\.self).joined(separator: ", ")
     }
 
     private var spokenText: String {

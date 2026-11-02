@@ -49,12 +49,13 @@ struct ReadingChoiceView: View {
 
     private func choiceRow(_ entry: Entry) -> some View {
         let isChecked = entry.id == chosenID
+        let row = ReadingRow(caption: nil, entry: entry)
         return Button {
             onPick(entry)
             dismiss()
         } label: {
             HStack {
-                ReadingRow(caption: nil, entry: entry)
+                row
                 if isChecked {
                     Image(systemName: "checkmark")
                         .accessibilityHidden(true)
@@ -62,6 +63,8 @@ struct ReadingChoiceView: View {
             }
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(row.kind)
+        .accessibilityValue(row.details)
         .accessibilityIdentifier("reading-option")
         .accessibilityAddTraits(isChecked ? .isSelected : [])
     }
