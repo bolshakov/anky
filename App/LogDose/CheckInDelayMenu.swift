@@ -24,6 +24,7 @@ struct CheckInDelayMenu: View {
                     Text("After").foregroundStyle(.primary)
                     valueAndChevron
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .contentShape(.rect)
         }
