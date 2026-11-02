@@ -7,14 +7,18 @@ struct EditDoseView: View {
     let dose: Dose
     let medications: MedicationsModel
     let model: EntryLogModel
+    let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var takenAt: Date
+    @State private var doseSave = DoseSave()
+    @State private var isShowingSaveFailure = false
 
-    init(dose: Dose, medications: MedicationsModel, model: EntryLogModel) {
+    init(dose: Dose, medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.dose = dose
         self.medications = medications
         self.model = model
+        self.onSaved = onSaved
         _selectedID = State(initialValue: dose.medicationID)
         _takenAt = State(initialValue: dose.takenAt)
     }
@@ -48,6 +52,42 @@ struct EditDoseView: View {
                         .accessibilityIdentifier("edit-dose-cancel")
                 }
             }
+            .safeAreaInset(edge: .bottom) {
+                saveButton
+            }
+            .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
+            }
+        }
+    }
+
+    private var saveButton: some View {
+        Button {
+            saveChanges()
+        } label: {
+            Text("Save changes")
+                .frame(maxWidth: .infinity)
+        }
+        .buttonStyle(.glassProminent)
+        .controlSize(.large)
+        .accessibilityIdentifier("save-dose-changes")
+        .padding()
+    }
+
+    /// The dose keeps its own check-in delay and its readings. Only the medication and the time come from the form.
+    private func saveChanges() {
+        guard let selectedID else { return }
+        var edited = dose
+        edited.medicationID = selectedID
+        edited.takenAt = takenAt
+        do {
+            let saved = try doseSave.save(edited, log: medications.replaceDose)
+            if saved {
+                onSaved()
+            }
+            dismiss()
+        } catch {
+            isShowingSaveFailure = true
         }
     }
 

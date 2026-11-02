@@ -100,7 +100,7 @@ struct TodayView: View {
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editingDose) { dose in
-                EditDoseView(dose: dose, medications: medications, model: model)
+                EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
