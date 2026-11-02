@@ -25,6 +25,13 @@ struct AnkyApp: App {
             tipProgress: TipProgressModel(store: tipStore)
         ))
         _medications = State(initialValue: MedicationsModel(store: Self.medicationStore()))
+        Self.colourSelectedSegments()
+    }
+
+    private static func colourSelectedSegments() {
+        let segments = UISegmentedControl.appearance()
+        segments.selectedSegmentTintColor = UIColor(named: "AccentColor")
+        segments.setTitleTextAttributes([.foregroundColor: UIColor(named: "OnAccent") as Any], for: .selected)
     }
 
     var body: some Scene {
