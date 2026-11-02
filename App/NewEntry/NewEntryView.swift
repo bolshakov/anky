@@ -157,11 +157,7 @@ struct NewEntryView: View {
     @ViewBuilder
     private var whereSection: some View {
         if draft.kind.asksWhere {
-            Section {
-                WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, chips: chips)
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
-            }
+            WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, chips: chips)
         }
     }
 

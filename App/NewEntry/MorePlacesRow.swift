@@ -13,8 +13,7 @@ struct MorePlacesRow: View {
         Button(action: action) {
             content
                 .font(.body)
-                .padding(.horizontal, 16)
-                .frame(maxWidth: .infinity, minHeight: 52)
+                .frame(maxWidth: .infinity)
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
