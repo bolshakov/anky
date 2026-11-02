@@ -52,6 +52,18 @@ final class CheckInDelayChoiceTests: XCTestCase {
         }
     }
 
+    func testWholeRowOpensTheMenuBesideAfterAtLargestSize() {
+        continueAfterFailure = false
+        let app = launchAnky(arguments: largestTextArguments)
+        openNewMedication(app)
+        choose("30 minutes", in: app)
+        scrollToCheckIn(in: app)
+        let row = checkInRow(in: app)
+        XCTAssertGreaterThan(row.frame.height, 120, "the value should stack under After at this size")
+        row.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.2)).tap()
+        XCTAssertTrue(app.buttons["Off"].waitForExistence(timeout: 10), "no menu beside After")
+    }
+
     func testChoosingTwoHoursShowsItAndSavesIt() {
         continueAfterFailure = false
         let app = launchAnky()
