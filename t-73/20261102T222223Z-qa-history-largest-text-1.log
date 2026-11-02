@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/walk2.sh; ui | grep -E '\''id=entry-row-[a-z]+ '\'' | frame'
+exit: 0
+commit: f5a044235cef28f842c11e9c87af92b2b8233c35
+
+16 267.6666666666667 370 272.00000000000006
+16 539.6666666666667 370 272

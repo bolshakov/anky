@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/walk2.sh; grep -rnE "#[0-9A-Fa-f]{6}|0x[0-9A-Fa-f]{6}|Color\(red|UIColor\(red|Color\(\.sRGB" "$CHECKOUT/App/History" "$CHECKOUT/App/Today/TodayEntryList.swift"; grep -rn "PageBackground" "$CHECKOUT/App/History"'
+exit: 0
+commit: f5a044235cef28f842c11e9c87af92b2b8233c35
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t73-01-4/checkout/App/History/HistoryView.swift:59:            .background(Color("PageBackground"))

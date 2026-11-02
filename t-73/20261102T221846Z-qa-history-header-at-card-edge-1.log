@@ -1,0 +1,7 @@
+$ zsh -c '. $TMPDIR/walk2.sh; ui | grep -E "id=day-header " | frame'
+exit: 0
+commit: f5a044235cef28f842c11e9c87af92b2b8233c35
+
+16 168 370 38
+16 359.66666666666663 370 38
+16 483 370 38

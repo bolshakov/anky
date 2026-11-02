@@ -1,0 +1,8 @@
+$ zsh -c '. $TMPDIR/walk2.sh; tap_row "10:20, Whole body"; ui | grep -E "id=(save-entry|date-row) "; axe tap --id cancel-entry --wait-timeout 5 --udid "$udid"'
+exit: 0
+commit: f5a044235cef28f842c11e9c87af92b2b8233c35
+
+✓ Tap at (200.0, 431.0) completed successfully
+Button id=date-row label='Date and time' value='Yesterday 10:20' enabled=True actions= traits= @16,263 370x52
+Button id=save-entry label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+✓ Tap at resolved tap point at (58.33333333333333, 100.0) completed successfully

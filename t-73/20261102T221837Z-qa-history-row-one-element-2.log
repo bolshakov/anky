@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/walk2.sh; ui | grep -cE "label='\''(10:40|10:30|10:20|10:15|Neck|Lower back|Whole body|Pain|Stiffness|Fatigue|[0-9] of 10)'\''"'
+exit: 1
+commit: f5a044235cef28f842c11e9c87af92b2b8233c35
+
+0
