@@ -44,6 +44,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         openNewMedication(app)
         scrollToCheckIn(in: app)
         let row = checkInRow(in: app)
+        XCTAssertGreaterThanOrEqual(row.frame.height, 44)
         for dx in [0.1, 0.5, 0.9] {
             row.coordinate(withNormalizedOffset: CGVector(dx: dx, dy: 0.5)).tap()
             XCTAssertTrue(app.buttons["30 minutes"].waitForExistence(timeout: 10), "no menu from dx \(dx)")
@@ -59,6 +60,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         choose("30 minutes", in: app)
         scrollToCheckIn(in: app)
         let row = checkInRow(in: app)
+        XCTAssertGreaterThanOrEqual(row.frame.height, 44)
         XCTAssertGreaterThan(row.frame.height, 120, "the value should stack under After at this size")
         row.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.2)).tap()
         XCTAssertTrue(app.buttons["Off"].waitForExistence(timeout: 10), "no menu beside After")
@@ -76,6 +78,21 @@ final class CheckInDelayChoiceTests: XCTestCase {
         openMedicationFromList(app)
         scrollToCheckIn(in: app)
         XCTAssertEqual(shownChoice(in: app), "2 hours")
+    }
+
+    func testChoosingOffAfterAnotherChoiceSavesOff() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        choose("1 hour", in: app)
+        choose("Off", in: app)
+        XCTAssertEqual(shownChoice(in: app), "Off")
+
+        saveNewMedication(named: "Zorblex", app)
+        openMedicationsFromLogDose(app)
+        openMedicationFromList(app)
+        scrollToCheckIn(in: app)
+        XCTAssertEqual(shownChoice(in: app), "Off")
     }
 
     func testMedicationSavedWithOneHourReopensOnOneHour() {
