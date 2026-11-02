@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t82-07-2/tmp/walk-t82.w6Wk/a2.sh
+exit: 0
+commit: 77adb5f27126f9a2cbdb89d6ba789ab39db2d5d3
+
+## today after restore
+Heading id=check-in-heading label='Check in' value=None enabled=True actions= traits= @16,297.66666666666663 370x40.333333333333314
+Button id=check-in-row label='How is your pain now? After your Zorblex at 20:40' value=None enabled=True actions= traits= @16,338 370x68
+## history after restore
+Button id=dose-row label='20:40. Zorblex. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions= traits= @32,221 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions= traits= @308,231 62x18

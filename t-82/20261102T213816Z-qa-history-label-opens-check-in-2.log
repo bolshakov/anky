@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t82-07-2/tmp/walk-t82.w6Wk/s2.sh
+exit: 0
+commit: 77adb5f27126f9a2cbdb89d6ba789ab39db2d5d3
+
+-- waiting row
+ScrollArea id=check-in-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+-- other row
+Group id=edit-dose-screen label=None value=None enabled=True actions= traits= @0,62 402x812

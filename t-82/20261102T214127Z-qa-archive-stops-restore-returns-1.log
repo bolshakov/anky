@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t82-07-2/tmp/walk-t82.w6Wk/a1.sh
+exit: 0
+commit: 77adb5f27126f9a2cbdb89d6ba789ab39db2d5d3
+
+## today after archive
+## history after archive
+Button id=dose-row label='20:40. Zorblex. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,206 370x68

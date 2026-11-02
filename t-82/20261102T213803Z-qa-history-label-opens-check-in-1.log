@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(dose-row|check-in-label) "'
+exit: 0
+commit: 77adb5f27126f9a2cbdb89d6ba789ab39db2d5d3
+
+Button id=dose-row label='20:37. Zorblex. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions= traits= @32,221 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions= traits= @308,231 62x18
+Button id=dose-row label='17:37. Zorblex. Dose.' value=None enabled=True actions= traits= @16,342 370x68
