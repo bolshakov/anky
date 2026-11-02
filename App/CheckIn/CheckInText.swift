@@ -2,22 +2,25 @@
 import AnkyDomain
 import Foundation
 
-enum CheckInDay {
-    case today
-    case yesterday
-    case on(String)
+extension CheckInRowWords {
+    static var app: CheckInRowWords {
+        CheckInRowWords(
+            today: { name, time in String(localized: "After your \(name) at \(time)") },
+            yesterday: { name, time in String(localized: "After your \(name) yesterday at \(time)") },
+            onDay: { name, day, time in String(localized: "After your \(name) on \(day) at \(time)") },
+            yearDay: { day, year in String(localized: "\(day) \(year)") }
+        )
+    }
+}
 
-    init(_ date: Date, now: Date) {
-        switch ShortDayText.day(for: date, now: now, calendar: .current, locale: .current) {
-        case .today:
-            self = .today
-        case .yesterday:
-            self = .yesterday
-        case let .sameYear(day):
-            self = .on(day)
-        case let .otherYear(day, year):
-            self = .on(String(localized: "\(day) \(year)"))
-        }
+extension CheckInInfoWords {
+    static var app: CheckInInfoWords {
+        CheckInInfoWords(
+            today: { time in String(localized: "Taken at \(time).") },
+            yesterday: { time in String(localized: "Taken yesterday at \(time).") },
+            onDay: { day, time in String(localized: "Taken on \(day) at \(time).") },
+            yearDay: { day, year in String(localized: "\(day) \(year)") }
+        )
     }
 }
 
@@ -38,24 +41,18 @@ enum CheckInText {
         }
     }
 
-    static func rowSubtitle(name: String, time: String, day: CheckInDay) -> String {
-        switch day {
-        case .today: String(localized: "After your \(name) at \(time)")
-        case .yesterday: String(localized: "After your \(name) yesterday at \(time)")
-        case let .on(date): String(localized: "After your \(name) on \(date) at \(time)")
-        }
+    static func rowSubtitle(name: String, time: String, takenAt: Date, now: Date) -> String {
+        let day = CheckInDayText.day(for: takenAt, now: now, calendar: .current, locale: .current)
+        return CheckInDayText.rowSubtitle(name: name, time: time, day: day, words: .app)
     }
 
     static func infoTitle(title: String) -> String {
         String(localized: "After \(title)")
     }
 
-    static func infoTaken(time: String, day: CheckInDay) -> String {
-        switch day {
-        case .today: String(localized: "Taken at \(time).")
-        case .yesterday: String(localized: "Taken yesterday at \(time).")
-        case let .on(date): String(localized: "Taken on \(date) at \(time).")
-        }
+    static func infoTaken(time: String, takenAt: Date, now: Date) -> String {
+        let day = CheckInDayText.day(for: takenAt, now: now, calendar: .current, locale: .current)
+        return CheckInDayText.infoTaken(time: time, day: day, words: .app)
     }
 
     static func infoPain(_ entry: Entry) -> String {

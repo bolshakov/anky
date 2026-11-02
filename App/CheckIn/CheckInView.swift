@@ -47,7 +47,7 @@ struct CheckInView: View {
 
     private var infoDetail: String {
         let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        let taken = CheckInText.infoTaken(time: time, day: CheckInDay(dose.takenAt, now: now))
+        let taken = CheckInText.infoTaken(time: time, takenAt: dose.takenAt, now: now)
         guard let before = readings.before else { return taken }
         return "\(taken) \(CheckInText.infoPain(before))"
     }
