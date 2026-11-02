@@ -43,6 +43,27 @@ struct DoseLoggedTests {
         #expect(dose.beforeReadingID == nil)
     }
 
+    @Test func aManualPickIsTheReadingEvenWhenANewerEntryIsInTheWindow() throws {
+        let picked = try entry(at: takenAt.addingTimeInterval(-3600))
+        let newer = try entry(at: takenAt.addingTimeInterval(-60))
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt,
+            entries: [picked, newer], manualReadingID: picked.id
+        )
+        #expect(dose.beforeReadingID == picked.id)
+    }
+
+    @Test func aFatigueEntryInTheWindowCanBeTheReading() throws {
+        let fatigue = try Entry(
+            id: UUID(), kind: .fatigue, severity: #require(Severity(6)),
+            date: takenAt.addingTimeInterval(-60), note: nil, places: []
+        )
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [fatigue]
+        )
+        #expect(dose.beforeReadingID == fatigue.id)
+    }
+
     @Test func aDoseKeepsItsIdTimeAndMedicationAndTakesTheMedicationsCheckInDelay() {
         let id = UUID()
         let zorblex = medication(checkInAfter: .oneHour)
