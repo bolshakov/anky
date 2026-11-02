@@ -57,16 +57,12 @@ struct NewEntryView: View {
                     DateSection(date: $draft.date)
                 }
                 whereSection
-                Section {
-                    SeveritySection(
-                        caption: "Severity",
-                        spokenLabel: "Severity",
-                        idPrefix: "severity",
-                        severity: $draft.severity
-                    )
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
-                }
+                SeveritySection(
+                    caption: "Severity",
+                    spokenLabel: "Severity",
+                    idPrefix: "severity",
+                    severity: $draft.severity
+                )
                 Section {
                     NoteSection(draft: $draft)
                         .listRowBackground(Color.clear)
