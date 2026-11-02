@@ -22,7 +22,7 @@ struct CheckInSection: View {
                 ForEach(doses) { dose in
                     CheckInRow(
                         dose: dose,
-                        title: DoseRowText.title(for: dose, in: medications),
+                        name: DoseRowText.name(for: dose, in: medications),
                         readings: DoseReadings(dose, in: entries),
                         now: now
                     ) {
@@ -40,7 +40,7 @@ struct CheckInSection: View {
 
 struct CheckInRow: View {
     let dose: Dose
-    let title: String
+    let name: String
     let readings: DoseReadings
     let now: Date
     let onSelect: () -> Void
@@ -51,7 +51,7 @@ struct CheckInRow: View {
 
     private var subtitle: String {
         let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        return CheckInText.rowSubtitle(name: title, time: time, day: CheckInDay(dose.takenAt, now: now))
+        return CheckInText.rowSubtitle(name: name, time: time, day: CheckInDay(dose.takenAt, now: now))
     }
 
     var body: some View {

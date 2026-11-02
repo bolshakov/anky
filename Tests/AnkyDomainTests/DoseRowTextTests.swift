@@ -138,4 +138,15 @@ struct DoseRowTextTests {
         let medications = [medication(id: UUID(), name: "Naproxen", strength: nil, archived: false)]
         #expect(DoseRowText.title(for: dose(for: UUID()), in: medications) == "")
     }
+
+    @Test func theNameLeavesOutTheStrength() {
+        let id = UUID()
+        let medications = [medication(id: id, name: "Naproxen", strength: "500 mg", archived: false)]
+        #expect(DoseRowText.name(for: dose(for: id), in: medications) == "Naproxen")
+    }
+
+    @Test func aDoseOfAMedicationNotInTheListReadsAnEmptyName() {
+        let medications = [medication(id: UUID(), name: "Naproxen", strength: nil, archived: false)]
+        #expect(DoseRowText.name(for: dose(for: UUID()), in: medications) == "")
+    }
 }
