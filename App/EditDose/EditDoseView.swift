@@ -59,7 +59,7 @@ struct EditDoseView: View {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(before))
                 } label: {
-                    ReadingRow(caption: String(localized: "Before this dose"), entry: before, showsChevron: false)
+                    ReadingRow(caption: String(localized: "Before this dose"), entry: before)
                 }
                 .accessibilityIdentifier("before-reading-row")
             } else {
@@ -72,7 +72,7 @@ struct EditDoseView: View {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(after))
                 } label: {
-                    ReadingRow(caption: afterCaption, entry: after, showsChevron: false)
+                    ReadingRow(caption: afterCaption, entry: after)
                 }
                 .accessibilityIdentifier("after-reading-row")
             }

@@ -92,4 +92,43 @@ struct ReadingWindowTests {
     @Test func pickIsNilWhenNothingIsInWindow() {
         #expect(ReadingWindow.pick(nil, in: [], before: doseTime) == nil)
     }
+
+    @Test func aManualPickStaysWhenTheDoseMovesEarlierAndIsStillInTheWindow() throws {
+        let manual = try entry(at: ago(4000))
+        let newerInBothWindows = try entry(at: ago(3700))
+        let moved = doseTime.addingTimeInterval(-3600)
+        let picked = ReadingWindow.pick(manual.id, in: [manual, newerInBothWindows], before: moved)
+        #expect(picked?.id == manual.id)
+    }
+
+    @Test func aManualPickFallsBackWhenTheDoseMovesLaterPastIt() throws {
+        let manual = try entry(at: ago(4000))
+        let newer = try entry(at: ago(600))
+        let moved = doseTime.addingTimeInterval(3600)
+        #expect(ReadingWindow.pick(manual.id, in: [manual, newer], before: moved)?.id == newer.id)
+        #expect(ReadingWindow.pick(manual.id, in: [manual, newer], before: doseTime)?.id == manual.id)
+    }
+
+    @Test func aManualPickLaterThanAnEarlierDoseFallsBackToTheNewestInWindow() throws {
+        let manual = try entry(at: ago(600))
+        let otherInWindow = try entry(at: ago(4000))
+        let moved = doseTime.addingTimeInterval(-3600)
+        let picked = ReadingWindow.pick(manual.id, in: [manual, otherInWindow], before: moved)
+        #expect(picked?.id == otherInWindow.id)
+    }
+
+    @Test func aManualPickThatLeavesTheWindowWithNoOtherReadingIsNil() throws {
+        let manual = try entry(at: ago(4000))
+        let moved = doseTime.addingTimeInterval(3600)
+        #expect(ReadingWindow.pick(manual.id, in: [manual], before: moved) == nil)
+    }
+
+    @Test func aManualPickOnTheWindowEdgeAfterAMoveStaysAndOneMinuteOlderFallsBack() throws {
+        let moved = doseTime.addingTimeInterval(-600)
+        let newer = try entry(at: moved.addingTimeInterval(-60))
+        let onEdge = try entry(at: moved.addingTimeInterval(-ReadingWindow.length))
+        let oneOlder = try entry(at: moved.addingTimeInterval(-ReadingWindow.length - 60))
+        #expect(ReadingWindow.pick(onEdge.id, in: [onEdge, newer], before: moved)?.id == onEdge.id)
+        #expect(ReadingWindow.pick(oneOlder.id, in: [oneOlder, newer], before: moved)?.id == newer.id)
+    }
 }
