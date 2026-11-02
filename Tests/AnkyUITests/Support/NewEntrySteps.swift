@@ -3,7 +3,7 @@ import XCTest
 
 /// The entry screen is a `Form` and no longer a scroll view, so lookups of it go through this one place.
 @MainActor
-func entryScreen(_ app: XCUIApplication, id: String) -> XCUIElement {
+func entryScreen(_ app: XCUIApplication, id: String = "new-entry-screen") -> XCUIElement {
     app.collectionViews[id]
 }
 
