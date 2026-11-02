@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'drag_row place-row-neck 100 >/dev/null; sleep 1; ui | grep "id=pin-action-neck "; shot swipe-unpin >/dev/null'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Button id=pin-action-neck label='Unpin shortcut' value=None enabled=True actions= traits= @26,329.33333333333337 84x44

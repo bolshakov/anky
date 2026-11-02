@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'drag_row place-row-upper 100 >/dev/null; sleep 1; ui | grep "id=pin-action-upper "; shot swipe-pin >/dev/null'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Button id=pin-action-upper label='Pin as shortcut' value=None enabled=True actions= traits= @26,228.33333333333331 67x44

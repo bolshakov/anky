@@ -1,0 +1,25 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'long_press place-row-upper; sleep 1; ui | grep "label=.Pin as shortcut."; axe tap --label "Pin as shortcut" --element-type Button --wait-timeout 5 --udid "$udid"; sleep 1; pins'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Error: No translation object returned for simulator. This means you have likely specified a point onscreen that is invalid or invisible due to a fullscreen dialog
+Traceback (most recent call last):
+  File "/Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/ui.py", line 24, in <module>
+    walk(json.load(sys.stdin))
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/Users/bolshakov/.asdf/installs/python/3.13.0/lib/python3.13/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+        cls=cls, object_hook=object_hook,
+        parse_float=parse_float, parse_int=parse_int,
+        parse_constant=parse_constant, object_pairs_hook=object_pairs_hook, **kw)
+  File "/Users/bolshakov/.asdf/installs/python/3.13.0/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Users/bolshakov/.asdf/installs/python/3.13.0/lib/python3.13/json/decoder.py", line 344, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bolshakov/.asdf/installs/python/3.13.0/lib/python3.13/json/decoder.py", line 362, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+✓ Tap at resolved tap point at (201.0, 476.3333333333333) completed successfully
+['neck', 'upper']

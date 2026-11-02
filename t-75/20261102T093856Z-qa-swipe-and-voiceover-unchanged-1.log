@@ -1,0 +1,14 @@
+$ bash -c 'echo base; /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh B '\''ui | grep -E "id=place-(row-)?(neck|upper) "'\''; echo head; /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H '\''ui | grep -E "id=place-(row-)?(neck|upper) "'\'''
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+base
+Group id=place-row-neck label=None value=None enabled=True actions=Unpin shortcut traits= @16,172.33333333333334 370x60
+Button id=place-neck label='Neck' value='Pinned' enabled=True actions=Unpin shortcut traits= @16,172.33333333333334 370x60
+Group id=place-row-upper label=None value=None enabled=True actions=Pin as shortcut traits= @16,232.33333333333331 370x60
+Button id=place-upper label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @16,232.33333333333331 370x60
+head
+Group id=place-row-neck label=None value=None enabled=True actions=Unpin shortcut traits= @34.66666793823242,188.1666717529297 65x20.333328247070312
+Button id=place-neck label='Neck' value='Pinned' enabled=True actions=Unpin shortcut traits= @16,172.33333333333334 370x52
+Group id=place-row-upper label=None value=None enabled=True actions=Pin as shortcut traits= @34.66666793823242,240.1666717529297 113.99998474121094x20.333328247070312
+Button id=place-upper label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @16,224.33333333333331 370x52

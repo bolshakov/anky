@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'long_press place-row-neck; sleep 1; ui | grep "label=.Pin as shortcut."; axe tap --label "Pin as shortcut" --element-type Button --wait-timeout 5 --udid "$udid"; sleep 1; pins'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Button id=pin.fill label='Pin as shortcut' value=None enabled=True actions= traits= @76,250.33333333333337 250x42
+✓ Tap at resolved tap point at (201.0, 271.33333333333337) completed successfully
+['upper', 'neck']

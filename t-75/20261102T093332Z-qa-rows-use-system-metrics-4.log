@@ -1,0 +1,4 @@
+$ grep -nE 'listRowInsets|minHeight: *60|listRowSeparatorLeading|\.heavy' App/NewEntry/PlaceListRow.swift
+exit: 1
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+

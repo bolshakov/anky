@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'ui | grep -E "id=(place-upper|pin\.fill) |label=.Pin. "; echo "grep exit done"'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Button id=place-upper label='Upper back' value='Pinned' enabled=True actions=Unpin shortcut traits= @16,224.33333333333331 370x52
+grep exit done

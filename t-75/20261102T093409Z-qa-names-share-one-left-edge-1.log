@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'ui | grep -E "id=place-(neck|upper) "'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+Button id=place-neck label='Neck' value='Pinned' enabled=True actions=Unpin shortcut traits= @16,172.33333333333334 370x52
+Button id=place-upper label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @16,224.33333333333331 370x52

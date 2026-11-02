@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H 'drag_row place-row-neck 300 >/dev/null; sleep 1; pins'
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+['upper']

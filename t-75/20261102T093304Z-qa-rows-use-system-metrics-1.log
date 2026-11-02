@@ -1,0 +1,18 @@
+$ bash -c 'echo base; /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh B '\''ui | grep -E "id=place-(neck|upper|lower|tail|si_l|si_r) " | frame'\''; echo head; /Users/bolshakov/Projects/personal/anky.wt/qa-t75-01-6/tmp/w.sh H '\''ui | grep -E "id=place-(neck|upper|lower|tail|si_l|si_r) " | frame'\'''
+exit: 0
+commit: d5e1d75fdf1917972408a5b65f6f9b386540599e
+
+base
+16 172.33333333333334 370 60
+16 232.33333333333331 370 60
+16 292.33333333333337 370 60
+16 352.33333333333337 370 60
+16 470 370 60
+16 530.3333333333333 370 60
+head
+16 172.33333333333334 370 52
+16 224.33333333333331 370 52
+16 276.33333333333337 370 52
+16 328.33333333333337 370 52
+16 438 370 52
+16 490.3333333333333 370 51.99999999999994
