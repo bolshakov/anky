@@ -1,0 +1,9 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(check-in-question|severity-caption|severity-value|severity-slider|date-row) "'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+Heading id=check-in-question label='How is your pain now?' value=None enabled=True actions= traits= @16,276.33333333333337 370x56.333333333333314
+Heading id=severity-caption label='Pain now' value=None enabled=True actions= traits= @16,350.33333333333337 370x40.333333333333314
+StaticText id=severity-value label='6 of 10' value=None enabled=True actions= traits= @317.3333333333333,406.5 52.666666666666686x20.33333333333337
+Slider id=severity-slider label='Pain now' value=0.6000000238418579 enabled=True actions= traits= @32,464.3333435058594 338x31
+Button id=date-row label='Date and time' value='Today 00:46' enabled=True actions= traits= @16,551.6666666666667 370x52

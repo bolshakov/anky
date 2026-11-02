@@ -1,0 +1,21 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(check-in-row|entry-row-pain|confirm-delete|keep-entry) |Sheet|Alert|StaticText"'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+StaticText id=today-date label='Tuesday 3 November' value=None enabled=True actions= traits= @16,168 370x52
+Button id=entry-row-pain label='0:52, No place, Pain, 3 of 10' value=None enabled=True actions= traits= @16,315 370x68
+StaticText id=None label='Stored on this iPhone only.' value=None enabled=True actions= traits= @16,451 370x29.666666666666686
+StaticText id=None label='Date and time' value=None enabled=True actions= traits= @32,278.8333333333333 106.33333333333331x20.33333333333337
+StaticText id=None label='Today, 00:52' value=None enabled=True actions= traits= @250.33333333333331,278.8333333333333 99x20.33333333333337
+StaticText id=None label='More places' value=None enabled=True actions= traits= @31.999999999999915,514.8333333333334 93.33333333333333x20.333333333333258
+StaticText id=None label='None' value=None enabled=True actions= traits= @315.33333333333337,514.8333333333334 40.666666666666686x20.333333333333258
+StaticText id=None label='How strong' value=None enabled=True actions= traits= @32,624.5000000000001 87.66666666666666x20.333333333333258
+StaticText id=severity-value label='3 of 10' value=None enabled=True actions= traits= @317.3333333333333,624.5000000000001 52.666666666666686x20.333333333333258
+StaticText id=severity-low-label label='0' value=None enabled=True actions= traits= @32,689.8333333333333 8.333333333333329x15.666666666666742
+StaticText id=severity-high-label label='10' value=None enabled=True actions= traits= @355.6666666666667,689.8333333333333 14.333333333333314x15.666666666666742
+Sheet id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48

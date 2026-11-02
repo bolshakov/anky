@@ -1,0 +1,9 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; entries; doses'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+stiffness|5|-|2026-11-02 23:34
+fatigue|5|-|2026-11-02 23:34
+fatigue|2|-|2026-11-03 00:49
+Zorblex|2026-11-03 00:04|30|stiffness 5|-
+Zorblex|2026-11-03 00:14|30|fatigue 5|fatigue 2

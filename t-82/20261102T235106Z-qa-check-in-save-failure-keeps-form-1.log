@@ -1,0 +1,10 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(check-in-screen|severity-value|date-row) |could not be saved|label=.OK."'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+Group id=check-in-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+StaticText id=severity-value label='2 of 10' value=None enabled=True actions= traits= @317.6666666666667,406.5 52.333333333333314x20.33333333333337
+Button id=date-row label='Date and time' value='Today 00:50' enabled=True actions= traits= @16,551.6666666666667 370x52
+Sheet id=None label='This check-in could not be saved.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This check-in could not be saved.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48

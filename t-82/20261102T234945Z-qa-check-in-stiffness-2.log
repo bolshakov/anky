@@ -1,0 +1,7 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(check-in-question|check-in-info|severity-caption) "'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+GenericElement id=check-in-info label='After Zorblex. Taken at 00:14. Fatigue was 5 of 10 then.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
+Heading id=check-in-question label='How is your fatigue now?' value=None enabled=True actions= traits= @16,276.33333333333337 370x56.333333333333314
+Heading id=severity-caption label='Fatigue now' value=None enabled=True actions= traits= @16,350.33333333333337 370x40.333333333333314

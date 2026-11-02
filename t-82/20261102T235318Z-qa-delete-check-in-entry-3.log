@@ -1,0 +1,7 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(check-in-heading|check-in-row|dose-row|entry-row-pain) "; entries; doses'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+Button id=dose-row label='00:06. Zorblex. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,315 370x68
+pain|6|-|2026-11-02 23:36
+Zorblex|2026-11-03 00:06|-|pain 6|-

@@ -1,0 +1,6 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-08-3/tmp/walk.sh; ui | grep -E "id=(after-reading-row|before-reading-row) "'
+exit: 0
+commit: 913a609fa5080aa31a070029e9d6893bc85b6a8e
+
+Button id=before-reading-row label='Before this dose, 23:35, Pain, No place, 6 of 10' value=None enabled=True actions= traits= @16,363 370x85.66666666666669
+Button id=after-reading-row label='After · checked in at, 00:50, Pain, No place, 6 of 10' value=None enabled=True actions= traits= @16,448.6666666666667 370x85.66666666666669
