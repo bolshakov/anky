@@ -5,22 +5,25 @@ import SwiftUI
 
 struct LogDoseView: View {
     let medications: MedicationsModel
-    let entries: [Entry]
+    let model: EntryLogModel
     let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var selectionTicks = 0
     @State private var saveTicks = 0
     @State private var isShowingNewMedication = false
+    @State private var isShowingNewEntry = false
+    /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
+    @State private var manualReadingID: UUID?
     // Made once per opening, so a second tap on "Save dose" logs the same dose again.
     @State private var doseID = UUID()
     @State private var takenAt = Date.now
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
 
-    init(medications: MedicationsModel, entries: [Entry], onSaved: @escaping () -> Void) {
+    init(medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.medications = medications
-        self.entries = entries
+        self.model = model
         self.onSaved = onSaved
     }
 
@@ -46,6 +49,7 @@ struct LogDoseView: View {
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
                 }
+                readingSection
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
@@ -91,6 +95,13 @@ struct LogDoseView: View {
             .sheet(isPresented: $isShowingNewMedication) {
                 MedicationFormView(medications: medications, onSaved: medicationSaved)
             }
+            .sheet(isPresented: $isShowingNewEntry) {
+                NewEntryView(
+                    model: model,
+                    onSaved: { saveTicks += 1 },
+                    onAdded: { manualReadingID = $0.id }
+                )
+            }
             .sensoryFeedback(.selection, trigger: selectionTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
             .onAppear { medications.reload() }
@@ -103,6 +114,32 @@ struct LogDoseView: View {
 
     private var checkedID: UUID? {
         MedicationSelection.kept(selectedID, in: active)
+    }
+
+    private var reading: Entry? {
+        ReadingWindow.pick(manualReadingID, in: model.entries, before: takenAt)
+    }
+
+    private var readingSection: some View {
+        Section {
+            if let reading {
+                Button {} label: {
+                    ReadingRow(caption: String(localized: "Before this dose"), entry: reading)
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("before-reading-row")
+            } else {
+                Button("Log how you feel") {
+                    isShowingNewEntry = true
+                }
+                .accessibilityIdentifier("log-how-you-feel-row")
+            }
+        } footer: {
+            if reading != nil {
+                Text("Your latest entry before this dose. Tap to choose another.")
+                    .accessibilityIdentifier("before-reading-footer")
+            }
+        }
     }
 
     private func medicationRow(_ medication: Medication) -> some View {
@@ -134,7 +171,13 @@ struct LogDoseView: View {
 
     private func saveDose() {
         guard let medication = active.first(where: { $0.id == checkedID }) else { return }
-        let dose = Dose.logged(id: doseID, medication: medication, takenAt: takenAt, entries: entries)
+        let dose = Dose.logged(
+            id: doseID,
+            medication: medication,
+            takenAt: takenAt,
+            entries: model.entries,
+            manualReadingID: manualReadingID
+        )
         do {
             let logged = try doseSave.save(dose, log: medications.logDose)
             if logged {
