@@ -194,6 +194,7 @@ final class NoteTests: XCTestCase {
         let app = launchAnky(arguments: largestTextArguments)
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         openNewEntry(app)
+        scrollToNoteField(in: app)
         XCTAssertTrue(card.waitForExistence(timeout: 10))
         let emptyHeight = card.frame.height
 
