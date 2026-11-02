@@ -12,12 +12,19 @@ struct CheckInView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                Text(infoText)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .background(Color("CardBackground"), in: .card)
-                    .accessibilityIdentifier("check-in-info")
-                    .padding()
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(infoTitle)
+                        .font(.headline)
+                    Text(infoDetail)
+                        .font(.subheadline)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+                .background(Color("CardBackground"), in: .card)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("\(infoTitle). \(infoDetail)")
+                .accessibilityIdentifier("check-in-info")
+                .padding()
             }
             .background(Color("PageBackground"))
             .accessibilityIdentifier("check-in-screen")
@@ -34,10 +41,14 @@ struct CheckInView: View {
         }
     }
 
-    private var infoText: String {
+    private var infoTitle: String {
+        CheckInText.infoTitle(title: title)
+    }
+
+    private var infoDetail: String {
         let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        let head = CheckInText.infoHead(name: title, time: time, day: CheckInDay(dose.takenAt, now: now))
-        guard let before = readings.before else { return head }
-        return "\(head) \(CheckInText.infoPain(before))"
+        let taken = CheckInText.infoTaken(time: time, day: CheckInDay(dose.takenAt, now: now))
+        guard let before = readings.before else { return taken }
+        return "\(taken) \(CheckInText.infoPain(before))"
     }
 }

@@ -217,13 +217,7 @@
         }
       }
     },
-    "After %@. Taken at %@." : {
-
-    },
-    "After %@. Taken on %@ at %@." : {
-
-    },
-    "After %@. Taken yesterday at %@." : {
+    "After %@" : {
 
     },
     "After your %@ at %@" : {
@@ -501,6 +495,15 @@
 
     },
     "Opens Check In" : {
+
+    },
+    "Taken at %@." : {
+
+    },
+    "Taken on %@ at %@." : {
+
+    },
+    "Taken yesterday at %@." : {
 
     },
     "fatigue" : {

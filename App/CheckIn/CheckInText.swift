@@ -46,11 +46,15 @@ enum CheckInText {
         }
     }
 
-    static func infoHead(name: String, time: String, day: CheckInDay) -> String {
+    static func infoTitle(title: String) -> String {
+        String(localized: "After \(title)")
+    }
+
+    static func infoTaken(time: String, day: CheckInDay) -> String {
         switch day {
-        case .today: String(localized: "After \(name). Taken at \(time).")
-        case .yesterday: String(localized: "After \(name). Taken yesterday at \(time).")
-        case let .on(date): String(localized: "After \(name). Taken on \(date) at \(time).")
+        case .today: String(localized: "Taken at \(time).")
+        case .yesterday: String(localized: "Taken yesterday at \(time).")
+        case let .on(date): String(localized: "Taken on \(date) at \(time).")
         }
     }
 
