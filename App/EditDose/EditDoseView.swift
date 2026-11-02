@@ -77,9 +77,7 @@ struct EditDoseView: View {
     /// The dose keeps its own check-in delay and its readings. Only the medication and the time come from the form.
     private func saveChanges() {
         guard let selectedID else { return }
-        var edited = dose
-        edited.medicationID = selectedID
-        edited.takenAt = takenAt
+        let edited = dose.moved(to: selectedID, at: takenAt)
         do {
             let saved = try doseSave.save(edited, log: medications.replaceDose)
             if saved {

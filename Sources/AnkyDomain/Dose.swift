@@ -29,4 +29,12 @@ public struct Dose: Identifiable, Equatable, Sendable {
         dose.checkInAfter = medication.checkInAfter
         return dose
     }
+
+    /// The check-in delay is the dose's own, so a move to another medication does not take that medication's delay.
+    public func moved(to medicationID: UUID, at takenAt: Date) -> Dose {
+        var dose = self
+        dose.medicationID = medicationID
+        dose.takenAt = takenAt
+        return dose
+    }
 }
