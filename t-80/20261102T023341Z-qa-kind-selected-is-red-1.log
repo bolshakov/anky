@@ -1,0 +1,8 @@
+$ sh -c 'git -C "$CHECKOUT" grep -n -E "UISegmentedControl|selectedSegmentTintColor|setTitleTextAttributes" -- App Sources; echo "grep exit $?"'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+App/AnkyApp.swift:32:        let segments = UISegmentedControl.appearance()
+App/AnkyApp.swift:33:        segments.selectedSegmentTintColor = UIColor(named: "AccentColor")
+App/AnkyApp.swift:34:        segments.setTitleTextAttributes([.foregroundColor: UIColor(named: "OnAccent") as Any], for: .selected)
+grep exit 0

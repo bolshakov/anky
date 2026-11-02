@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/pre.sh; tap taken-as; ui | grep -E "^Button id=None label=.(As needed|Scheduled)."; pick Scheduled Button; sleep 1; ui | grep "id=taken-as "'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+Button id=None label='As needed' value=None enabled=True actions= traits= @24,285.6666666666667 370x126
+Button id=None label='Scheduled' value=None enabled=True actions= traits= @24,411.6666666666667 370x126.00000000000006
+PopUpButton id=taken-as label='How you take it, Scheduled' value=None enabled=True actions= traits= @32,470.3333333333333 295.3333333333333x77.33333333333331

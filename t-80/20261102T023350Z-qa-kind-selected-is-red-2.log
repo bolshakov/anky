@@ -1,0 +1,5 @@
+$ sh -c 'git -C "$CHECKOUT" grep -n -E "tint|AccentColor|accentColor" -- App/NewEntry/KindSection.swift App/LogDose/MedicationTakingSections.swift; echo "grep exit $?"'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+grep exit 1

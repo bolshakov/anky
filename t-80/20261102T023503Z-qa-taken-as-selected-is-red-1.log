@@ -1,0 +1,11 @@
+$ sh -c '. $TMPDIR/pre.sh; look light; text_size large; fresh; new_medication; ui | grep -E "^(TabGroup id=taken-as |RadioButton id=None label=.(As needed|Scheduled).)"; segments taken-as taken-as-needed 2'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+New Medication open
+TabGroup id=taken-as label=None value=None enabled=True actions= traits= @32,393.33333333333337 338x31
+RadioButton id=None label='As needed' value=1 enabled=True actions= traits= @32,393.33333333333337 169x32
+RadioButton id=None label='Scheduled' value=0 enabled=True actions= traits= @201,393.33333333333337 169x32
+frame 32 393.33333333333337 338 31
+segment 1 fill #c23c14 text #ffffff contrast 5.32 red
+segment 2 fill #e3e3e8 text #000000 contrast 16.42 plain

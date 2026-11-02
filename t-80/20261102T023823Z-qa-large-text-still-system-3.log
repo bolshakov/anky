@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/pre.sh; text_size large; fresh; new_medication; text_size accessibility-extra-extra-extra-large; sleep 2; ui | grep -E "^(TabGroup id=taken-as |PopUpButton id=taken-as |RadioButton id=None label=.(As needed|Scheduled).)"; shot taken-ax5'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+New Medication open
+PopUpButton id=taken-as label='How you take it, As needed' value=None enabled=True actions= traits= @32,470.3333333333333 294.3333333333333x77.33333333333331
+/Users/bolshakov/Projects/personal/anky.wt/qa-t80-01-1/tmp/walk-t80.1Zhq/taken-ax5.png

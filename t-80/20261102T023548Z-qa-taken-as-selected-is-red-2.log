@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/pre.sh; pick Scheduled RadioButton; sleep 1; segments taken-as taken-scheduled 2'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+frame 32 393.33333333333337 338 31
+segment 1 fill #e3e3e8 text #000000 contrast 16.42 plain
+segment 2 fill #c23c14 text #ffffff contrast 5.32 red

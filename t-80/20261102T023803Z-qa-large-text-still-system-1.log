@@ -1,0 +1,11 @@
+$ sh -c '. $TMPDIR/pre.sh; look light; text_size accessibility-extra-extra-extra-large; fresh; tap log-entry; sleep 2; ui | grep -E "^RadioButton id=None label=.(Pain|Stiffness|Fatigue)."; segments kind-picker kind-ax5 3'
+exit: 0
+commit: 23bd27df3759f9eb37cb28c150db728f8558d9c3
+
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,148 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,148 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,148 124x32
+frame 16 148.00000000000006 370 31
+segment 1 fill #c23c14 text #ffffff contrast 5.32 red
+segment 2 fill #e3e3e8 text #000000 contrast 16.42 plain
+segment 3 fill #e3e3e8 text #000000 contrast 16.42 plain
