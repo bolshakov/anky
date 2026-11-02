@@ -17,9 +17,29 @@ struct TodayView: View {
     @State private var logTicks = 0
     @State private var undoTicks = 0
     @State private var saveTicks = 0
+    @State private var checkingIn: Dose?
+    @State private var checkInNow = Date.now
 
     private var todayItems: [LoggedItem] {
         TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
+    }
+
+    private var waitingDoses: [Dose] {
+        CheckInDue.waiting(
+            doses: medications.doses,
+            medications: medications.medications,
+            entries: model.entries,
+            now: checkInNow
+        )
+    }
+
+    private var nextCheckInDue: Date? {
+        CheckInDue.nextDue(
+            doses: medications.doses,
+            medications: medications.medications,
+            entries: model.entries,
+            after: checkInNow
+        )
     }
 
     private var recent: RecentEntry? {
@@ -46,6 +66,8 @@ struct TodayView: View {
 
                     repeatBlock
 
+                    checkInBlock
+
                     if todayItems.isEmpty {
                         EmptyTodayView()
                             .frame(maxWidth: .infinity)
@@ -68,6 +90,7 @@ struct TodayView: View {
                 }
                 .padding(.horizontal)
             }
+            .checkInClock(now: $checkInNow, nextDue: nextCheckInDue)
             .onDisappear { loggedID = nil }
             .background(Color("PageBackground"))
             .accessibilityIdentifier("today-screen")
@@ -102,6 +125,14 @@ struct TodayView: View {
             .sheet(item: $editingDose) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
+            .sheet(item: $checkingIn) { dose in
+                CheckInView(
+                    dose: dose,
+                    title: DoseRowText.title(for: dose, in: medications.medications),
+                    readings: DoseReadings(dose, in: model.entries),
+                    now: checkInNow
+                )
+            }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -128,6 +159,20 @@ struct TodayView: View {
         } else if let recent {
             RepeatChip(recent: recent) { logRecent(recent) }
                 .padding(.top, 16)
+        }
+    }
+
+    @ViewBuilder
+    private var checkInBlock: some View {
+        if !waitingDoses.isEmpty {
+            CheckInSection(
+                doses: waitingDoses,
+                medications: medications.medications,
+                entries: model.entries,
+                now: checkInNow,
+                onSelect: { checkingIn = $0 }
+            )
+            .padding(.top, 16)
         }
     }
 
