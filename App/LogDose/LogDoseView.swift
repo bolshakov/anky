@@ -18,6 +18,8 @@ struct LogDoseView: View {
     // Made once per opening, so a second tap on "Save dose" logs the same dose again.
     @State private var doseID = UUID()
     @State private var takenAt = Date.now
+    /// Set once the person picks a time, so a reading added later does not move the dose.
+    @State private var isTimeChosen = false
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
 
@@ -44,7 +46,7 @@ struct LogDoseView: View {
                     .accessibilityIdentifier("dose-add-medication")
                 }
                 Section {
-                    DateSection(date: $takenAt)
+                    DateSection(date: dateBinding)
                         .listRowInsets(EdgeInsets())
                         .listRowBackground(Color.clear)
                         .listRowSeparator(.hidden)
@@ -99,7 +101,7 @@ struct LogDoseView: View {
                 NewEntryView(
                     model: model,
                     onSaved: { saveTicks += 1 },
-                    onAdded: { manualReadingID = $0.id }
+                    onAdded: readingAdded
                 )
             }
             .sensoryFeedback(.selection, trigger: selectionTicks)
@@ -116,8 +118,27 @@ struct LogDoseView: View {
         MedicationSelection.kept(selectedID, in: active)
     }
 
+    private var dateBinding: Binding<Date> {
+        Binding(
+            get: { takenAt },
+            set: {
+                takenAt = $0
+                isTimeChosen = true
+            }
+        )
+    }
+
     private var reading: Entry? {
         ReadingWindow.pick(manualReadingID, in: model.entries, before: takenAt)
+    }
+
+    /// New Entry starts its draft at the moment it opens, which is after the dose time, so a reading saved there
+    /// would fall outside the window. The dose time moves to it, unless the person chose the time by hand.
+    private func readingAdded(_ saved: Entry) {
+        manualReadingID = saved.id
+        if !isTimeChosen {
+            takenAt = max(takenAt, saved.date)
+        }
     }
 
     private var readingSection: some View {
