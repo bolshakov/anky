@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t82-03-3/tmp/w.sh 'ui | grep -E "id=(new-entry-screen|reading-option) "'
+exit: 0
+commit: 6f2ed17edf2123d6cb871add7b879fe3123e1881
+
+Button id=reading-option label='Pain' value='09:36, No place, 6 of 10' enabled=True actions= traits= @30.72636815920398,158.64179104477614 340.5472636815921x62.587064676616905
+ScrollArea id=new-entry-screen label=None value=None enabled=True actions= traits= @0,72 402x802

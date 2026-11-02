@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t82-03-3/tmp/w.sh 'ui | grep -E "id=(before-reading-row|reading-option|new-entry-screen) "; shot logged-new'
+exit: 0
+commit: 6f2ed17edf2123d6cb871add7b879fe3123e1881
+
+Button id=before-reading-row label='Before this dose, 10:06, Pain, No place, 3 of 10' value=None enabled=True actions= traits= @16,415.3333333333333 370x85.66666666666669
+/Users/bolshakov/Projects/personal/anky.wt/qa-t82-03-3/tmp/walk-t82.rRUs/logged-new.png
