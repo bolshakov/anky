@@ -130,6 +130,10 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let save = app.buttons["save-entry"]
+        for _ in 0 ..< 3 where card.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.95)).tap()
         app.typeText("Walk")
 
