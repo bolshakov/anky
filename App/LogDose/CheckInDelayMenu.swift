@@ -14,6 +14,7 @@ struct CheckInDelayMenu: View {
             Text("After").accessibilityLabel("Check in after")
         }
         .pickerStyle(.menu)
+        .tint(.secondary)
         .accessibilityIdentifier("check-in-after")
     }
 
