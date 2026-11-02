@@ -10,13 +10,13 @@ final class SeverityEditTests: XCTestCase {
         openNewEntry(app)
         setSeverity(2, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         app.buttons["kind-stiffness"].tap()
         setSeverity(7, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         let painRow = app.descendants(matching: .any)["entry-row-pain"]
         XCTAssertTrue(painRow.waitForExistence(timeout: 10))

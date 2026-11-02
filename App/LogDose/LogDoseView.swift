@@ -47,10 +47,13 @@ struct LogDoseView: View {
                     .accessibilityIdentifier("dose-add-medication")
                 }
                 Section {
-                    DateSection(date: dateBinding)
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
+                    DateSection(
+                        date: dateBinding,
+                        labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+                    )
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color("CardBackground").clipShape(.card))
+                    .listRowSeparator(.hidden)
                 }
                 readingSection
             }

@@ -1,12 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
+/// The entry screen is a `Form` and no longer a scroll view, so lookups of it go through this one place.
+@MainActor
+func entryScreen(_ app: XCUIApplication, id: String = "new-entry-screen") -> XCUIElement {
+    app.collectionViews[id]
+}
+
 @MainActor
 func openNewEntry(_ app: XCUIApplication) {
     let logButton = app.buttons["log-entry"]
     XCTAssertTrue(logButton.waitForExistence(timeout: 10))
     logButton.tap()
-    XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+    XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForExistence(timeout: 10))
 }
 
 /// XCUIElement has no increment or decrement, so each call drives the slider by position. A short drag from a
@@ -16,6 +22,7 @@ func openNewEntry(_ app: XCUIApplication) {
 func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     XCTAssertTrue(slider.waitForExistence(timeout: 10))
+    liftAboveSaveBar(slider, in: app)
     // Reads the direction from the level at the screen's left edge, which needs no end label.
     slider.adjust(toNormalizedSliderPosition: 0)
     let startOnRight = severityLevel(of: slider) == 10
@@ -33,6 +40,14 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
         slider.adjust(toNormalizedSliderPosition: screenPosition(level))
     }
     XCTFail("the severity slider did not reach \(level)")
+}
+
+/// The pinned Save bar covers the bottom of the form, and a drag that starts under it taps Save, which saves the entry.
+@MainActor
+private func liftAboveSaveBar(_ slider: XCUIElement, in app: XCUIApplication) {
+    for _ in 0 ..< 3 where slider.frame.midY > app.frame.midY {
+        app.swipeUp(velocity: .slow)
+    }
 }
 
 @MainActor

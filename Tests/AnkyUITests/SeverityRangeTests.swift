@@ -18,7 +18,7 @@ final class SeverityRangeTests: XCTestCase {
         openNewEntry(app)
 
         let slider = app.sliders["severity-slider"]
-        XCTAssertTrue(slider.waitForExistence(timeout: 10))
+        scrollToSeveritySlider(in: app)
         XCTAssertGreaterThanOrEqual(slider.frame.height, 44)
         attachScreenshot(named: "severity-large-text")
     }

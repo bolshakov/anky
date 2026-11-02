@@ -45,7 +45,7 @@ final class SaveEntryTests: XCTestCase {
         let shown = clockTime(inRowValue: dateRow.value as? String)
         saveEntry(app)
         let after = clockTime(at: .now)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         XCTAssertTrue([before, after].contains(shown ?? ""), "date row time is \(shown ?? "nil")")
     }
 

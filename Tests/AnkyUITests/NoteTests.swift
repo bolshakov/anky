@@ -10,11 +10,11 @@ final class NoteTests: XCTestCase {
         openNewEntry(app)
         typeNote("Walk note", in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         XCTAssertTrue(entryRows(in: app).firstMatch.waitForExistence(timeout: 10))
         XCTAssertEqual(entryRows(in: app).count, 2)
@@ -91,7 +91,7 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
 
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
     }
 
     func testNoteStopsAtTheLimit() {
@@ -130,6 +130,10 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let save = app.buttons["save-entry"]
+        for _ in 0 ..< 3 where card.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.95)).tap()
         app.typeText("Walk")
 
@@ -174,18 +178,18 @@ final class NoteTests: XCTestCase {
         openNewEntry(app)
         typeNote(note, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         entryRows(in: app).firstMatch.tap()
-        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForExistence(timeout: 10))
         XCTAssertEqual(noteField(in: app).value as? String, note)
         let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
         XCTAssertEqual(counter.label, "5 left")
 
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForNonExistence(timeout: 10))
         entryRows(in: app).firstMatch.tap()
-        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForExistence(timeout: 10))
         XCTAssertEqual(noteField(in: app).value as? String, note)
     }
 
@@ -194,6 +198,7 @@ final class NoteTests: XCTestCase {
         let app = launchAnky(arguments: largestTextArguments)
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         openNewEntry(app)
+        scrollToNoteField(in: app)
         XCTAssertTrue(card.waitForExistence(timeout: 10))
         let emptyHeight = card.frame.height
 
@@ -220,10 +225,10 @@ final class NoteTests: XCTestCase {
 
         typeNote("Walk note", in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         entryRows(in: app).firstMatch.tap()
-        XCTAssertTrue(app.scrollViews["edit-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForExistence(timeout: 10))
         XCTAssertEqual(noteField(in: app).value as? String, "Walk note")
     }
 }

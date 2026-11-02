@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DateSection: View {
     @Binding var date: Date
+    var labelPadding = EdgeInsets()
     @State private var isShowingPicker = false
 
     var body: some View {
@@ -19,7 +20,7 @@ struct DateSection: View {
                     Image(systemName: "chevron.right")
                         .foregroundStyle(.secondary)
                 }
-                .padding()
+                .padding(labelPadding)
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -38,7 +39,6 @@ struct DateSection: View {
                 .accessibilityIdentifier("date-picker")
             }
         }
-        .background(Color("CardBackground"), in: .card)
     }
 
     private var day: String {
