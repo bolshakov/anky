@@ -30,6 +30,8 @@ struct DoseRow: View {
                 }
                 Spacer()
             }
+            // A concrete primary keeps the List button's tint off the hierarchical secondary texts below it.
+            .foregroundStyle(Color.primary)
             .contentShape(Rectangle())
         }
         // The visible texts stay out of the accessibility tree, so the row is one element.
