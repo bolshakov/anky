@@ -3,8 +3,7 @@ import AnkyDomain
 import SwiftUI
 
 private enum PlaceListRowMetrics {
-    static let nameLeadingInset: CGFloat = 32
-    static let pinIconInset: CGFloat = 10
+    static let pinSlotWidth: CGFloat = 20
     static let pinIconSize: CGFloat = 13
 }
 
@@ -18,7 +17,6 @@ struct PlaceListRow: View {
         let isSelected = draft.places.contains(place)
         let isPinned = shortcuts.isPinned(place)
         rowButton(isSelected: isSelected, isPinned: isPinned)
-            .overlay(alignment: .leading) { pinIcon(isPinned: isPinned) }
             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                 Button {
                     togglePin(event: .pinChangedBySwipe)
@@ -30,8 +28,6 @@ struct PlaceListRow: View {
                 .accessibilityIdentifier("pin-action-\(place.rawValue)")
             }
             .sensoryFeedback(.selection, trigger: isSelected)
-            .listRowInsets(EdgeInsets())
-            .alignmentGuide(.listRowSeparatorLeading) { _ in PlaceListRowMetrics.nameLeadingInset }
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("place-row-\(place.rawValue)")
     }
@@ -41,22 +37,19 @@ struct PlaceListRow: View {
             togglePlace(isSelected: isSelected)
         } label: {
             HStack {
+                pinSlot(isPinned: isPinned)
                 Text(place.displayName)
                     .font(.body.weight(isSelected ? .semibold : .regular))
+                    .foregroundStyle(.primary)
                 Spacer(minLength: 8)
-                Image(systemName: "checkmark")
-                    .font(.body.weight(.heavy))
-                    .foregroundStyle(Color("AccentColor"))
-                    .opacity(isSelected ? 1 : 0)
-                    .accessibilityHidden(true)
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .foregroundStyle(Color("AccentColor"))
+                        .accessibilityHidden(true)
+                }
             }
-            .padding(.trailing, 16)
-            .foregroundStyle(.primary)
-            .padding(.leading, PlaceListRowMetrics.nameLeadingInset)
-            .frame(maxWidth: .infinity, minHeight: 60)
-            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
+        .tint(.primary)
         .accessibilityRepresentation {
             if isPinned {
                 accessibleButton(isSelected: isSelected)
@@ -93,15 +86,13 @@ struct PlaceListRow: View {
         }
     }
 
-    @ViewBuilder
-    private func pinIcon(isPinned: Bool) -> some View {
-        if isPinned {
-            Image(systemName: "pin.fill")
-                .font(.system(size: PlaceListRowMetrics.pinIconSize))
-                .foregroundStyle(.secondary)
-                .padding(.leading, PlaceListRowMetrics.pinIconInset)
-                .accessibilityHidden(true)
-        }
+    private func pinSlot(isPinned: Bool) -> some View {
+        Image(systemName: "pin.fill")
+            .font(.system(size: PlaceListRowMetrics.pinIconSize))
+            .foregroundStyle(.secondary)
+            .opacity(isPinned ? 1 : 0)
+            .frame(width: PlaceListRowMetrics.pinSlotWidth, alignment: .leading)
+            .accessibilityHidden(true)
     }
 
     private func togglePlace(isSelected: Bool) {
