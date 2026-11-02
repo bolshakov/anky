@@ -43,6 +43,7 @@ struct TodayEntryList: View {
 struct EntryRow: View {
     let entry: Entry
     let onSelect: () -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var time: Text {
         Text(entry.date, format: Date.FormatStyle(date: .omitted, time: .shortened))
@@ -50,32 +51,55 @@ struct EntryRow: View {
 
     var body: some View {
         Button(action: onSelect) {
-            HStack(spacing: 12) {
-                time
-                    .font(.footnote)
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-                    .fixedSize()
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(entry.placeSummary.text)
-                        .font(.body)
-                        .foregroundStyle(.primary)
-                    Text(entry.kind.displayName)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                value
-            }
             // A concrete primary keeps the List button's tint off the hierarchical secondary texts below it.
-            .foregroundStyle(Color.primary)
-            .contentShape(Rectangle())
+            layout
+                .foregroundStyle(Color.primary)
+                .contentShape(Rectangle())
         }
         // The row's visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
             Button(action: onSelect) { Color.clear }
                 .accessibilityLabel(spokenLabel)
                 .accessibilityIdentifier("entry-row-\(entry.kind.rawValue)")
+        }
+    }
+
+    /// At accessibility sizes the time, the places with the kind, and the level stack in one column, so no word is
+    /// squeezed into a narrow column.
+    @ViewBuilder
+    private var layout: some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 4) {
+                timeText
+                placeAndKind
+                value
+            }
+        } else {
+            HStack(spacing: 12) {
+                timeText
+                    .fixedSize()
+                placeAndKind
+                Spacer()
+                value
+            }
+        }
+    }
+
+    private var timeText: some View {
+        time
+            .font(.footnote)
+            .monospacedDigit()
+            .foregroundStyle(.secondary)
+    }
+
+    private var placeAndKind: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(entry.placeSummary.text)
+                .font(.body)
+                .foregroundStyle(.primary)
+            Text(entry.kind.displayName)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
         }
     }
 
