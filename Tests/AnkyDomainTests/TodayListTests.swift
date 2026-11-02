@@ -75,10 +75,10 @@ struct TodayListTests {
         #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [taken.id, saved.id])
     }
 
-    @Test func anEntrySecondsAfterADoseInTheSameMinuteListsFirst() throws {
-        let taken = try dose(at: moment(9, 30, 10))
-        let saved = try entry(at: moment(9, 30, 40))
-        #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [saved.id, taken.id])
+    @Test func aDoseInTheSameMinuteAsAnEntryListsFirstWhateverTheSeconds() throws {
+        let saved = try entry(at: moment(9, 30, 50))
+        let taken = try dose(at: moment(9, 30, 5))
+        #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [taken.id, saved.id])
     }
 
     @Test func aDoseAtTheSameTimeAsAnEntryListsFirst() throws {
