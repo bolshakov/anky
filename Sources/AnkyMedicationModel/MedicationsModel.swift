@@ -72,6 +72,13 @@ import Observation
         medications[index].checkInAfter = dose.checkInAfter
     }
 
+    public func replaceDose(_ dose: Dose) throws {
+        try loadIfNeeded()
+        try store.replaceDose(dose)
+        guard let index = doses.firstIndex(where: { $0.id == dose.id }) else { return }
+        doses[index] = dose
+    }
+
     /// Reads both lists before it changes either, so a failed read of doses leaves the medications as they were.
     private func readAll() throws {
         let medications = try store.all()

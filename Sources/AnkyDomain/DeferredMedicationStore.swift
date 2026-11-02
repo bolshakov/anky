@@ -39,6 +39,10 @@ import Foundation
         try current().logDose(dose)
     }
 
+    public func replaceDose(_ dose: Dose) throws {
+        try current().replaceDose(dose)
+    }
+
     private func current() throws -> MedicationStore {
         if let opened {
             return opened

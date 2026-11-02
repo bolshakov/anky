@@ -134,4 +134,57 @@ import Testing
         try model.logDose(dose(for: zorblex))
         #expect(model.doses.count == 1)
     }
+
+    private func dose(for medication: Medication, at takenAt: Date) -> Dose {
+        Dose(id: UUID(), medicationID: medication.id, takenAt: takenAt)
+    }
+
+    @Test func replaceDoseUpdatesTheDoseInTheModel() throws {
+        let zorblex = medication("Zorblex")
+        let original = dose(for: zorblex, at: .now)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        let model = MedicationsModel(store: inner)
+        var edited = original
+        edited.takenAt = original.takenAt.addingTimeInterval(3600)
+        try model.replaceDose(edited)
+        #expect(model.doses == [edited])
+        #expect(try inner.doses() == [edited])
+    }
+
+    @Test func aReplacedDoseListsAtItsNewTime() throws {
+        let zorblex = medication("Zorblex")
+        let calendar = Calendar.current
+        let nine = try #require(calendar.date(bySettingHour: 9, minute: 0, second: 0, of: .now))
+        let ten = try #require(calendar.date(bySettingHour: 10, minute: 0, second: 0, of: .now))
+        let eleven = try #require(calendar.date(bySettingHour: 11, minute: 0, second: 0, of: .now))
+        let moved = dose(for: zorblex, at: nine)
+        let other = dose(for: zorblex, at: ten)
+        let inner = FakeMedicationStore([zorblex], doses: [moved, other])
+        let model = MedicationsModel(store: inner)
+        #expect(listed(model, on: nine, calendar: calendar) == [other.id, moved.id])
+
+        var edited = moved
+        edited.takenAt = eleven
+        try model.replaceDose(edited)
+        #expect(listed(model, on: nine, calendar: calendar) == [edited.id, other.id])
+    }
+
+    @Test func aRefusedReplaceLeavesTheModelAsItWas() throws {
+        let zorblex = medication("Zorblex")
+        let original = dose(for: zorblex, at: .now)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        let model = MedicationsModel(store: inner)
+        inner.writeFailure = true
+        var edited = original
+        edited.takenAt = original.takenAt.addingTimeInterval(60)
+        #expect(throws: MedicationStoreError.notSaved) {
+            try model.replaceDose(edited)
+        }
+        #expect(model.doses == [original])
+        #expect(inner.doseContents == [original])
+    }
+
+    private func listed(_ model: MedicationsModel, on day: Date, calendar: Calendar) -> [UUID] {
+        TodayList.items(entries: [], doses: model.doses, on: day, calendar: calendar).map(\.id)
+    }
 }
