@@ -47,6 +47,7 @@ struct RepeatLoggedCard: View {
                     .frame(minHeight: 44)
                     .contentShape(Rectangle())
             }
+            .buttonStyle(.borderless)
             .foregroundStyle(Color("AccentColor"))
             .accessibilityIdentifier("repeat-undo")
         }
