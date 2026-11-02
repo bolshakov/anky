@@ -8,31 +8,21 @@ struct WhereSection: View {
     let chips: [PlaceID]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Where")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .cardCaption()
-                .accessibilityAddTraits(.isHeader)
-
-            VStack(spacing: 0) {
-                ChipFlowLayout {
-                    ForEach(chips, id: \.self) { place in
-                        PlaceChip(place: place, isSelected: draft.places.contains(place)) {
-                            draft.togglePlace(place)
-                        }
+        Section {
+            ChipFlowLayout {
+                ForEach(chips, id: \.self) { place in
+                    PlaceChip(place: place, isSelected: draft.places.contains(place)) {
+                        draft.togglePlace(place)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(12)
-                Divider()
-                MorePlacesRow(value: MorePlacesValue(selected: draft.places, chips: chips)) {
-                    isShowingPlaces = true
-                }
             }
-            .background(Color("CardBackground"), in: .card)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            MorePlacesRow(value: MorePlacesValue(selected: draft.places, chips: chips)) {
+                isShowingPlaces = true
+            }
+        } header: {
+            Text("Where")
+                .accessibilityIdentifier("where-section")
         }
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("where-section")
     }
 }

@@ -30,12 +30,10 @@ struct DoseRow: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .frame(minHeight: 60)
+            // A concrete primary keeps the List button's tint off the hierarchical secondary texts below it.
+            .foregroundStyle(Color.primary)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
         // The visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
             Button(action: onSelect) { Color.clear }
