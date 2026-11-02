@@ -26,6 +26,7 @@ struct CheckInDelayMenu: View {
         }
         .buttonStyle(.plain)
         .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
         .accessibilityLabel(String(localized: "Check in after") + ", " + String(localized: title(for: checkInAfter)))
         .accessibilityIdentifier("check-in-after")
     }
