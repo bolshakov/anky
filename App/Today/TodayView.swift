@@ -64,8 +64,8 @@ struct TodayView: View {
                 Section {
                     dateLine
                     repeatBlock
-                    checkInBlock
                 }
+                checkInBlock
                 entriesOrEmptyState
                 if dynamicTypeSize.isAccessibilitySize {
                     Section {
@@ -192,8 +192,6 @@ struct TodayView: View {
                 now: checkInNow,
                 onSelect: { checkingIn = $0 }
             )
-            .padding(.top, 16)
-            .bareRow()
         }
     }
 

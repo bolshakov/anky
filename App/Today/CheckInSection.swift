@@ -10,30 +10,21 @@ struct CheckInSection: View {
     let onSelect: (Dose) -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Check in")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .cardCaption()
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityIdentifier("check-in-heading")
-
-            VStack(spacing: 0) {
-                ForEach(doses) { dose in
-                    CheckInRow(
-                        dose: dose,
-                        name: DoseRowText.name(for: dose, in: medications),
-                        readings: DoseReadings(dose, in: entries),
-                        now: now
-                    ) {
-                        onSelect(dose)
-                    }
-                    if dose.id != doses.last?.id {
-                        Divider()
-                    }
+        Section {
+            ForEach(doses) { dose in
+                CheckInRow(
+                    dose: dose,
+                    name: DoseRowText.name(for: dose, in: medications),
+                    readings: DoseReadings(dose, in: entries),
+                    now: now
+                ) {
+                    onSelect(dose)
                 }
             }
-            .background(Color("CardBackground"), in: .card)
+        } header: {
+            Text("Check in")
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityIdentifier("check-in-heading")
         }
     }
 }
@@ -71,9 +62,6 @@ struct CheckInRow: View {
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.secondary)
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .frame(minHeight: 60)
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
         }
