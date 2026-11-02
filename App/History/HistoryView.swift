@@ -9,6 +9,7 @@ struct HistoryView: View {
     @State private var now = Date.now
     @State private var editing: Entry?
     @State private var editingDose: Dose?
+    @State private var checkingIn: Dose?
     @State private var pendingDelete: Entry?
     @State private var saveTicks = 0
 
@@ -23,6 +24,23 @@ struct HistoryView: View {
             entries: model.entries,
             now: now
         )
+    }
+
+    private var nextCheckInDue: Date? {
+        CheckInDue.nextDue(
+            doses: medications.doses,
+            medications: medications.medications,
+            entries: model.entries,
+            after: now
+        )
+    }
+
+    private func open(_ dose: Dose) {
+        if waiting.contains(where: { $0.id == dose.id }) {
+            checkingIn = dose
+        } else {
+            editingDose = dose
+        }
     }
 
     private var isConfirmingDelete: Binding<Bool> {
@@ -52,7 +70,7 @@ struct HistoryView: View {
                                 entries: model.entries,
                                 waiting: Set(waiting.map(\.id)),
                                 onSelect: { editing = $0 },
-                                onSelectDose: { editingDose = $0 },
+                                onSelectDose: open,
                                 onDelete: { pendingDelete = $0 }
                             )
                         }
@@ -70,14 +88,20 @@ struct HistoryView: View {
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")
-            .onAppear {
-                now = .now
-            }
+            .checkInClock(now: $now, nextDue: nextCheckInDue)
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editingDose) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
+            }
+            .sheet(item: $checkingIn) { dose in
+                CheckInView(
+                    dose: dose,
+                    title: DoseRowText.title(for: dose, in: medications.medications),
+                    readings: DoseReadings(dose, in: model.entries),
+                    now: now
+                )
             }
             .sensoryFeedback(.success, trigger: saveTicks)
         }
