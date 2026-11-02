@@ -5,6 +5,7 @@ import SwiftUI
 struct TodayEntryList: View {
     let items: [LoggedItem]
     let medications: [Medication]
+    let entries: [Entry]
     let onSelect: (Entry) -> Void
 
     var body: some View {
@@ -34,7 +35,11 @@ struct TodayEntryList: View {
                 onSelect(entry)
             }
         case let .dose(dose):
-            DoseRow(dose: dose, title: DoseRowText.title(for: dose, in: medications))
+            DoseRow(
+                dose: dose,
+                readings: DoseReadings(dose, in: entries),
+                title: DoseRowText.title(for: dose, in: medications)
+            )
         }
     }
 }

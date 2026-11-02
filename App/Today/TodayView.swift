@@ -51,8 +51,13 @@ struct TodayView: View {
                             .padding(.top, recent == nil ? 48 : 64)
                             .padding(.bottom, 48)
                     } else {
-                        TodayEntryList(items: todayItems, medications: medications.medications, onSelect: open)
-                            .padding(.top, 16)
+                        TodayEntryList(
+                            items: todayItems,
+                            medications: medications.medications,
+                            entries: model.entries,
+                            onSelect: open
+                        )
+                        .padding(.top, 16)
                     }
 
                     if dynamicTypeSize.isAccessibilitySize {
