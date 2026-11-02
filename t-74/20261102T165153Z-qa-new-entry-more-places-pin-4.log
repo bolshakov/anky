@@ -1,0 +1,7 @@
+$ sh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk-t74-02.pX8s; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk.sh; axe tap --id more-places --wait-timeout 5 --udid "$udid"; ui | grep -E '\''id=(done-places|place-row-tail) '\'''
+exit: 0
+commit: 809061ff8bebfc0fc428df7d8f03d6d260692e14
+
+✓ Tap at resolved tap point at (201.0, 525.0) completed successfully
+Group id=place-row-tail label=None value=None enabled=True actions=Unpin shortcut traits= @34.66666793823242,344.1666564941406 333.3333435058594x20.333343505859375
+Button id=done-places label='Done, 1 place' value=None enabled=True actions= traits= @16,721.6666666666666 370x50.33333333333337

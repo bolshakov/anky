@@ -1,0 +1,6 @@
+$ sh -c 'out=/Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk-t74-02.pX8s; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk.sh; axe tap --label '\''Pin as shortcut'\'' --element-type Button --wait-timeout 5 --udid "$udid"; sleep 1; pins'
+exit: 0
+commit: 809061ff8bebfc0fc428df7d8f03d6d260692e14
+
+✓ Tap at resolved tap point at (201.0, 452.0) completed successfully
+['tail']

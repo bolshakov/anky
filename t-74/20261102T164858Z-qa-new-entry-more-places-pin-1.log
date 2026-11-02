@@ -1,0 +1,8 @@
+$ sh -c 'echo base:; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk-t74-02.ejE7; udid=$(cat $out/udid); . /Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk.sh; ui | grep '\''id=more-places '\''; echo head:; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t74-02-5/tmp/walk-t74-02.pX8s; udid=$(cat $out/udid); ui | grep '\''id=more-places '\'''
+exit: 0
+commit: 809061ff8bebfc0fc428df7d8f03d6d260692e14
+
+base:
+Button id=more-places label='More places' value='Tailbone' enabled=True actions=Pin as shortcut traits= @16,494 370x52
+head:
+Button id=more-places label='More places' value='Tailbone' enabled=True actions=Pin as shortcut traits= @16,499 370x52
