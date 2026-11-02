@@ -5,7 +5,9 @@ import SwiftUI
 struct DaySectionView: View {
     let section: DaySection
     let medications: [Medication]
+    let entries: [Entry]
     let onSelect: (Entry) -> Void
+    let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
 
     var body: some View {
@@ -36,7 +38,13 @@ struct DaySectionView: View {
                 .accessibilityIdentifier("history-delete")
             }
         case let .dose(dose):
-            DoseRow(dose: dose, title: DoseRowText.title(for: dose, in: medications))
+            DoseRow(
+                dose: dose,
+                readings: DoseReadings(dose, in: entries),
+                title: DoseRowText.title(for: dose, in: medications)
+            ) {
+                onSelectDose(dose)
+            }
         }
     }
 

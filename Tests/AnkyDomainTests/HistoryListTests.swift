@@ -67,8 +67,8 @@ struct HistoryListTests {
         #expect(section.items.map(\.id) == [secondSaved.id, firstSaved.id])
     }
 
-    private func dose(at moment: Date) throws -> Dose {
-        try Dose(id: UUID(), medicationID: UUID(), takenAt: moment, painBefore: #require(Severity(6)))
+    private func dose(at moment: Date) -> Dose {
+        Dose(id: UUID(), medicationID: UUID(), takenAt: moment)
     }
 
     @Test func aDoseInTheSameMinuteAsAnEntryListsFirstWhateverTheSeconds() throws {

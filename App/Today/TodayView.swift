@@ -19,6 +19,7 @@ struct TodayView: View {
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
+    @State private var editingDose: Dose?
     @State private var loggedID: UUID?
     @State private var isShowingSaveFailure = false
     @State private var logTicks = 0
@@ -78,10 +79,13 @@ struct TodayView: View {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(isPresented: $isShowingLogDose) {
-                LogDoseView(medications: medications, entries: model.entries, onSaved: { saveTicks += 1 })
+                LogDoseView(medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
+            }
+            .sheet(item: $editingDose) { dose in
+                EditDoseView(dose: dose, medications: medications, model: model)
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
@@ -116,7 +120,13 @@ struct TodayView: View {
                     .bareRow()
             }
         } else {
-            TodayEntryList(items: todayItems, medications: medications.medications, onSelect: open)
+            TodayEntryList(
+                items: todayItems,
+                medications: medications.medications,
+                entries: model.entries,
+                onSelect: open,
+                onSelectDose: { editingDose = $0 }
+            )
         }
     }
 

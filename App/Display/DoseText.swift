@@ -8,20 +8,38 @@ extension DoseWords {
             kind: String(localized: "Dose"),
             subtitlePain: { pain in
                 switch pain {
-                case let .before(level):
-                    String(localized: "pain was \(level.value) of 10")
-                case let .beforeAndAfter(before, after):
-                    String(localized: "pain \(before.value) before, \(after.value) after")
+                case let .before(kind, level):
+                    String(localized: "\(kind.subtitleWord) was \(level.value) of 10")
+                case let .after(kind, level):
+                    String(localized: "\(kind.subtitleWord) \(level.value) after")
+                case let .beforeAndAfter(kind, before, after):
+                    String(localized: "\(kind.subtitleWord) \(before.value) before, \(after.value) after")
                 }
             },
             spokenPain: { pain in
                 switch pain {
-                case let .before(level):
-                    String(localized: "Pain was \(level.value) of 10")
-                case let .beforeAndAfter(before, after):
-                    String(localized: "Pain \(before.value) before, \(after.value) after")
+                case let .before(kind, level):
+                    String(localized: "\(kind.spokenName) was \(level.value) of 10")
+                case let .after(kind, level):
+                    String(localized: "\(kind.spokenName) \(level.value) after")
+                case let .beforeAndAfter(kind, before, after):
+                    String(localized: "\(kind.spokenName) \(before.value) before, \(after.value) after")
                 }
             }
         )
+    }
+}
+
+private extension EntryKind {
+    var subtitleWord: String {
+        switch self {
+        case .pain: String(localized: "pain")
+        case .stiffness: String(localized: "stiffness")
+        case .fatigue: String(localized: "fatigue")
+        }
+    }
+
+    var spokenName: String {
+        String(localized: displayName)
     }
 }

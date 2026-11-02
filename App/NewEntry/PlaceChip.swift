@@ -42,7 +42,7 @@ struct PlaceChip: View {
         if isSelected {
             button.buttonStyle(.borderedProminent)
         } else {
-            button.buttonStyle(.bordered)
+            button.buttonStyle(.bordered).tint(.primary)
         }
     }
 

@@ -4,14 +4,16 @@ import SwiftUI
 
 struct DoseRow: View {
     let dose: Dose
+    let readings: DoseReadings
     let title: String
+    let onSelect: () -> Void
 
     private var time: String {
         ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
     }
 
     var body: some View {
-        Button {} label: {
+        Button(action: onSelect) {
             HStack(spacing: 12) {
                 Text(time)
                     .font(.footnote)
@@ -22,7 +24,7 @@ struct DoseRow: View {
                     Text(title)
                         .font(.body)
                         .foregroundStyle(.primary)
-                    Text(DoseRowText.subtitle(for: dose, words: .app))
+                    Text(DoseRowText.subtitle(for: readings, words: .app))
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -32,8 +34,8 @@ struct DoseRow: View {
         }
         // The visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
-            Button {} label: { Color.clear }
-                .accessibilityLabel(DoseRowText.spokenLabel(time: time, title: title, dose: dose, words: .app))
+            Button(action: onSelect) { Color.clear }
+                .accessibilityLabel(DoseRowText.spokenLabel(time: time, title: title, readings: readings, words: .app))
                 .accessibilityIdentifier("dose-row")
         }
     }
