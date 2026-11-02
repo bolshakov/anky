@@ -67,6 +67,10 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
+        let save = app.buttons["save-entry"]
+        for _ in 0 ..< 3 where card.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1)).tap()
         let typed = "Walk"
         app.typeText(typed)
@@ -184,6 +188,10 @@ final class NoteTests: XCTestCase {
         XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForExistence(timeout: 10))
         XCTAssertEqual(noteField(in: app).value as? String, note)
         let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        for _ in 0 ..< 3 where !counter.exists {
+            app.swipeUp()
+        }
+        XCTAssertTrue(counter.waitForExistence(timeout: 10))
         XCTAssertEqual(counter.label, "5 left")
 
         saveEntry(app)
