@@ -38,6 +38,7 @@ final class NewEntryOrderTests: XCTestCase {
             entryScreen(app).swipeDown()
         }
         XCTAssertTrue(chip.waitForExistence(timeout: 10))
+        chooseKind(.fatigue, in: app)
         chip.tap()
         XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 4)
@@ -62,7 +63,7 @@ final class NewEntryOrderTests: XCTestCase {
         for _ in 0 ..< 3 where !delete.exists {
             screen.swipeUp()
         }
-        assertInOrder(["kind-picker", "date-row", "severity-caption", "delete-entry"], in: app)
+        assertInOrder(["kind-picker", "date-row", "severity-caption", "note-field", "delete-entry"], in: app)
     }
 
     /// Left knee is not a default chip, so it shows in the More places value, where the test can read it.
