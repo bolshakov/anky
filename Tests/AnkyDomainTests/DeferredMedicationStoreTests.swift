@@ -80,6 +80,25 @@ import Testing
         #expect(inner.doseContents == [edited])
     }
 
+    @Test func aDoseReplaceWhileLockedNeverReachesTheStore() throws {
+        let zorblex = medication("Zorblex")
+        let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        var locked = true
+        let store = DeferredMedicationStore {
+            if locked {
+                throw Locked()
+            }
+            return inner
+        }
+        var edited = original
+        edited.takenAt = date.addingTimeInterval(60)
+        #expect(throws: MedicationStoreError.unavailable) {
+            try store.replaceDose(edited)
+        }
+        #expect(inner.doseContents == [original])
+    }
+
     @Test func aDoseWriteWhileLockedNeverReachesTheStore() throws {
         let zorblex = medication("Zorblex")
         let inner = FakeMedicationStore([zorblex])
