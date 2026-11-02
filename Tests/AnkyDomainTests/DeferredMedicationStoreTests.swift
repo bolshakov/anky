@@ -63,7 +63,7 @@ import Testing
         let zorblex = medication("Zorblex")
         let inner = FakeMedicationStore([zorblex])
         let store = DeferredMedicationStore { inner }
-        let dose = try Dose(id: UUID(), medicationID: zorblex.id, takenAt: date, painBefore: #require(Severity(4)))
+        let dose = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
         try store.logDose(dose)
         #expect(try store.doses() == [dose])
         #expect(inner.doseContents == [dose])
@@ -75,7 +75,7 @@ import Testing
         let store = DeferredMedicationStore {
             throw Locked()
         }
-        let dose = try Dose(id: UUID(), medicationID: zorblex.id, takenAt: date, painBefore: #require(Severity(4)))
+        let dose = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
         #expect(throws: MedicationStoreError.unavailable) {
             try store.logDose(dose)
         }

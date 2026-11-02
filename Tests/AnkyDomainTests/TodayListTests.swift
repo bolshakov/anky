@@ -61,8 +61,8 @@ struct TodayListTests {
         #expect(result.map(\.id) == [secondSaved.id, firstSaved.id])
     }
 
-    private func dose(at date: Date) throws -> Dose {
-        try Dose(id: UUID(), medicationID: UUID(), takenAt: date, painBefore: #require(Severity(6)))
+    private func dose(at date: Date) -> Dose {
+        Dose(id: UUID(), medicationID: UUID(), takenAt: date)
     }
 
     private func itemsOnDay26(entries: [Entry] = [], doses: [Dose] = []) throws -> [LoggedItem] {
@@ -84,7 +84,7 @@ struct TodayListTests {
     @Test func aDoseAtTheSameTimeAsAnEntryListsFirst() throws {
         let date = try moment(9, 30)
         let saved = try entry(at: date)
-        let taken = try dose(at: date)
+        let taken = dose(at: date)
         #expect(try itemsOnDay26(entries: [saved], doses: [taken]).map(\.id) == [taken.id, saved.id])
     }
 
@@ -98,8 +98,8 @@ struct TodayListTests {
 
     @Test func listsTheLaterStoredDoseFirstWhenTimesMatch() throws {
         let date = try moment(9)
-        let firstStored = try dose(at: date)
-        let secondStored = try dose(at: date)
+        let firstStored = dose(at: date)
+        let secondStored = dose(at: date)
         let result = try itemsOnDay26(doses: [firstStored, secondStored])
         #expect(result.map(\.id) == [secondStored.id, firstStored.id])
     }

@@ -84,13 +84,8 @@ import Testing
         #expect(model.medications == [zorblex])
     }
 
-    private func dose(for medication: Medication, checkInAfter: CheckInDelay? = nil) throws -> Dose {
-        var dose = try Dose(
-            id: UUID(),
-            medicationID: medication.id,
-            takenAt: .now,
-            painBefore: #require(Severity(4))
-        )
+    private func dose(for medication: Medication, checkInAfter: CheckInDelay? = nil) -> Dose {
+        var dose = Dose(id: UUID(), medicationID: medication.id, takenAt: .now)
         dose.checkInAfter = checkInAfter
         return dose
     }
@@ -99,11 +94,11 @@ import Testing
         let zorblex = medication("Zorblex")
         let inner = FakeMedicationStore([zorblex])
         let model = MedicationsModel(store: inner)
-        let dose = try dose(for: zorblex, checkInAfter: .twoHours)
-        try model.logDose(dose)
-        #expect(model.doses == [dose])
+        let taken = dose(for: zorblex, checkInAfter: .twoHours)
+        try model.logDose(taken)
+        #expect(model.doses == [taken])
         #expect(model.medications.first?.checkInAfter == .twoHours)
-        #expect(try inner.doses() == [dose])
+        #expect(try inner.doses() == [taken])
     }
 
     @Test func aFailedLogLeavesTheModelAsItWas() throws {
@@ -119,9 +114,9 @@ import Testing
         #expect(inner.doseContents.isEmpty)
     }
 
-    @Test func reloadReadsTheDosesWithTheMedications() throws {
+    @Test func reloadReadsTheDosesWithTheMedications() {
         let zorblex = medication("Zorblex")
-        let stored = try dose(for: zorblex)
+        let stored = dose(for: zorblex)
         let inner = FakeMedicationStore([zorblex], doses: [stored])
         let model = MedicationsModel(store: inner)
         #expect(model.doses == [stored])
