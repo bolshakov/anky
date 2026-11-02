@@ -16,6 +16,7 @@ final class HistorySwipeTests: XCTestCase {
         XCTAssertTrue(keep.waitForExistence(timeout: 10))
         keep.tap()
         XCTAssertTrue(app.buttons["keep-entry"].firstMatch.waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["history-delete"].firstMatch.waitForNonExistence(timeout: 10))
 
         XCTAssertEqual(entryRows(in: app).count, 1)
         row.swipeLeft()
