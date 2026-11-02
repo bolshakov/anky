@@ -38,7 +38,8 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
         XCTAssertEqual(app.buttons.matching(identifier: "reading-option").count, 1)
         XCTAssertTrue(app.buttons["reading-log-new"].exists)
-        XCTAssertFalse(app.buttons["None"].exists)
+        let list = app.collectionViews.containing(.button, identifier: "reading-log-new")
+        XCTAssertEqual(list.cells.count, 2)
     }
 
     func testLogHowYouFeelNowFromTheChooserSelectsTheSavedEntry() {
