@@ -19,6 +19,7 @@ public struct Dose: Identifiable, Equatable, Sendable {
     public static func logged(
         id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil
     ) -> Dose {
+        // #lizard forgives
         var dose = Dose(
             id: id,
             medicationID: medication.id,
