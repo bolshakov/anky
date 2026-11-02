@@ -8,6 +8,7 @@ struct HistoryView: View {
     let medications: MedicationsModel
     @State private var now = Date.now
     @State private var editing: Entry?
+    @State private var editingDose: Dose?
     @State private var pendingDelete: Entry?
     @State private var saveTicks = 0
 
@@ -41,6 +42,7 @@ struct HistoryView: View {
                                 medications: medications.medications,
                                 entries: model.entries,
                                 onSelect: { editing = $0 },
+                                onSelectDose: { editingDose = $0 },
                                 onDelete: { pendingDelete = $0 }
                             )
                         }
@@ -63,6 +65,9 @@ struct HistoryView: View {
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
+            }
+            .sheet(item: $editingDose) { dose in
+                EditDoseView(dose: dose, medications: medications, model: model)
             }
             .sensoryFeedback(.success, trigger: saveTicks)
         }
