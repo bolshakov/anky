@@ -49,6 +49,7 @@ struct PlaceListRow: View {
                 }
             }
         }
+        .tint(.primary)
         .accessibilityRepresentation {
             if isPinned {
                 accessibleButton(isSelected: isSelected)
