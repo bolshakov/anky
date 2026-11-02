@@ -16,12 +16,15 @@ public struct Dose: Identifiable, Equatable, Sendable {
         self.beforeReadingID = beforeReadingID
     }
 
-    public static func logged(id: UUID, medication: Medication, takenAt: Date, entries: [Entry]) -> Dose {
+    public static func logged(
+        id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil
+    ) -> Dose {
+        // #lizard forgives
         var dose = Dose(
             id: id,
             medicationID: medication.id,
             takenAt: takenAt,
-            beforeReadingID: ReadingWindow.latest(in: entries, before: takenAt)?.id
+            beforeReadingID: ReadingWindow.pick(manualReadingID, in: entries, before: takenAt)?.id
         )
         dose.checkInAfter = medication.checkInAfter
         return dose

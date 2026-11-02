@@ -244,6 +244,9 @@
         }
       }
     },
+    "Before this dose" : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -1451,6 +1454,9 @@
           }
         }
       }
+    },
+    "Your latest entry before this dose. Tap to choose another." : {
+
     },
     "Manage" : {
 
