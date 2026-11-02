@@ -30,8 +30,18 @@ final class EditDoseTests: XCTestCase {
         let app = launchAnky()
         addZorblex(app)
         logFourOfTenBeforeTheDose(app)
+        let logged = app.buttons["before-reading-row"]
+        XCTAssertTrue(logged.waitForExistence(timeout: 10))
+        XCTAssertTrue(logged.label.contains("4 of 10"), logged.label)
         app.buttons["save-dose"].tap()
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+
+        doseRow(in: app).tap()
+        let linked = app.buttons["before-reading-row"]
+        XCTAssertTrue(linked.waitForExistence(timeout: 10))
+        XCTAssertTrue(linked.label.contains("4 of 10"), linked.label)
+        app.buttons["edit-dose-cancel"].tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
 
         deleteTodaysPainEntry(in: app)
         doseRow(in: app).tap()
