@@ -27,6 +27,40 @@ final class LogDoseReadingTests: XCTestCase {
         expectBeforeReadingShowsFourOfTen(app)
     }
 
+    func testChooserListsTheReadingsAndOffersNoNoneChoice() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        openHowYouFeel(app)
+        saveFourOfTenFromNewEntry(app)
+
+        app.buttons["before-reading-row"].tap()
+        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertEqual(app.buttons.matching(identifier: "reading-option").count, 1)
+        XCTAssertTrue(app.buttons["reading-log-new"].exists)
+        XCTAssertFalse(app.buttons["None"].exists)
+    }
+
+    func testLogHowYouFeelNowFromTheChooserSelectsTheSavedEntry() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        openHowYouFeel(app)
+        saveFourOfTenFromNewEntry(app)
+
+        app.buttons["before-reading-row"].tap()
+        XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
+        app.buttons["reading-log-new"].tap()
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+        setSeverity(3, in: app)
+        saveEntry(app)
+
+        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        let before = app.buttons["before-reading-row"]
+        XCTAssertTrue(before.label.contains("3 of 10"), before.label)
+    }
+
     /// Leaves Log Dose showing its "Log how you feel" row.
     private func addZorblex(_ app: XCUIApplication) {
         app.buttons["log-medication"].tap()

@@ -267,6 +267,9 @@
         }
       }
     },
+    "Choose a reading" : {
+
+    },
     "Date and time" : {
       "localizations" : {
         "ru" : {
@@ -813,6 +816,9 @@
           }
         }
       }
+    },
+    "Log how you feel now" : {
+
     },
     "Log how you feel, or a medication you took. Everything stays on this iPhone." : {
       "localizations" : {
