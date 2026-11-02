@@ -1,0 +1,8 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-04-3/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t82-04-3/tmp/walk-t82.b8Jb; udid=0E2AE021-40B0-474C-8391-24E62CEDA097; ui | grep -E '\''id=(edit-dose-screen|before-reading-row|save-dose-changes) '\''; entries'
+exit: 0
+commit: 26534a48228e0fee91cd66378c1c6965ce4c4046
+
+Group id=edit-dose-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+Button id=before-reading-row label='Before this dose, 11:21, Pain, No place, 2 of 10' value=None enabled=True actions= traits= @16,363.33333333333337 370x85.66666666666669
+pain|2|-|2026-11-02 11:21
+pain|3|-|2026-11-02 12:11

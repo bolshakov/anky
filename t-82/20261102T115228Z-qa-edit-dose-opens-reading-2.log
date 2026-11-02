@@ -1,0 +1,8 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t82-04-3/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t82-04-3/tmp/walk-t82.b8Jb; udid=0E2AE021-40B0-474C-8391-24E62CEDA097; ui | grep -E '\''id=(edit-entry-screen|save-entry|delete-entry|severity-slider) '\'''
+exit: 0
+commit: 26534a48228e0fee91cd66378c1c6965ce4c4046
+
+ScrollArea id=edit-entry-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+Slider id=severity-slider label='Severity' value=0.6000000238418579 enabled=True actions= traits= @32,590 338x31
+Button id=delete-entry label='Delete entry' value=None enabled=True actions= traits= @16.000000000000057,743.6666666666666 370x44
+Button id=save-entry label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
