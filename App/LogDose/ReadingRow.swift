@@ -7,6 +7,8 @@ import SwiftUI
 struct ReadingRow: View {
     let caption: String
     let entry: Entry
+    /// A row inside a NavigationLink gets the system chevron from the link, so it draws none of its own.
+    var showsChevron = true
 
     private var time: String {
         ClockText.text(for: entry.date, calendar: .current, locale: .current)
@@ -48,10 +50,12 @@ struct ReadingRow: View {
                 .monospacedDigit()
                 .foregroundStyle(.secondary)
                 .fixedSize()
-            Image(systemName: "chevron.right")
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.tertiary)
-                .accessibilityHidden(true)
+            if showsChevron {
+                Image(systemName: "chevron.right")
+                    .font(.footnote.weight(.semibold))
+                    .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
