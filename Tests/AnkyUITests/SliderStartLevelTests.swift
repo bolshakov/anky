@@ -13,7 +13,7 @@ final class SliderStartLevelTests: XCTestCase {
 
         setSeverity(6, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 6)

@@ -30,7 +30,7 @@ final class AccessibilityAuditTests: XCTestCase {
         try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])
 
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         try app.performAccessibilityAudit(for: [.hitRegion, .textClipped])

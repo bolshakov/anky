@@ -23,7 +23,7 @@ final class LooksRightTests: XCTestCase {
         setSeverity(6, in: app)
         saveEntry(app)
 
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         let rows = entryRows(in: app)
         XCTAssertEqual(rows.count, 2)
         attachScreenshot(named: "looks-today")

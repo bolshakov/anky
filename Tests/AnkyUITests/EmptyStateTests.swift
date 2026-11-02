@@ -20,13 +20,13 @@ final class EmptyStateTests: XCTestCase {
         attachScreenshot(named: "empty-state")
 
         logButton.tap()
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForExistence(timeout: 10))
         let cancel = app.buttons["cancel-entry"]
         XCTAssertTrue(cancel.exists)
         attachScreenshot(named: "new-entry")
 
         cancel.tap()
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["log-entry"].exists)
     }
 }

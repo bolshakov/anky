@@ -40,7 +40,7 @@ final class KindChoiceTests: XCTestCase {
         chooseKind(.pain, in: app)
         swipeSheetDown(app)
 
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
