@@ -13,6 +13,7 @@ struct LogDoseView: View {
     @State private var saveTicks = 0
     @State private var isShowingNewMedication = false
     @State private var isShowingNewEntry = false
+    @State private var isShowingReadingChoice = false
     /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
     @State private var manualReadingID: UUID?
     // Made once per opening, so a second tap on "Save dose" logs the same dose again.
@@ -104,6 +105,16 @@ struct LogDoseView: View {
                     onAdded: readingAdded
                 )
             }
+            .sheet(isPresented: $isShowingReadingChoice) {
+                ReadingChoiceView(
+                    entries: ReadingWindow.entries(in: model.entries, before: takenAt),
+                    model: model,
+                    chosenID: reading?.id,
+                    onPick: { manualReadingID = $0.id },
+                    onAdded: readingAdded,
+                    onSaved: { saveTicks += 1 }
+                )
+            }
             .sensoryFeedback(.selection, trigger: selectionTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
             .onAppear { medications.reload() }
@@ -144,8 +155,16 @@ struct LogDoseView: View {
     private var readingSection: some View {
         Section {
             if let reading {
-                Button {} label: {
-                    ReadingRow(caption: String(localized: "Before this dose"), entry: reading)
+                Button {
+                    isShowingReadingChoice = true
+                } label: {
+                    HStack(spacing: 12) {
+                        ReadingRow(caption: String(localized: "Before this dose"), entry: reading)
+                        Image(systemName: "chevron.right")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(.tertiary)
+                            .accessibilityHidden(true)
+                    }
                 }
                 .buttonStyle(.plain)
                 .accessibilityIdentifier("before-reading-row")
