@@ -16,7 +16,7 @@ struct NoteSection: View {
     }
 
     var body: some View {
-        VStack(alignment: .trailing, spacing: 6) {
+        Section {
             TextField("Add a note", text: $note, axis: .vertical)
                 .font(.body)
                 .focused($isFocused)
@@ -26,11 +26,13 @@ struct NoteSection: View {
                 .padding(.vertical, 15)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background {
-                    RoundedRectangle.card
-                        .fill(Color("CardBackground"))
-                        .accessibilityIdentifier("note-card")
+                    Color.clear
+                        .contentShape(Rectangle())
                         .onTapGesture { isFocused = true }
                 }
+                .accessibilityElement(children: .contain)
+                .accessibilityIdentifier("note-card")
+                .listRowInsets(EdgeInsets())
                 .onChange(of: note) { _, typed in
                     draft.note = String(typed.prefix(EntryDraft.noteLimit))
                 }
@@ -42,12 +44,9 @@ struct NoteSection: View {
                     textView.text = kept
                     note = kept
                 }
-
+        } footer: {
             if let counter = draft.noteCounter {
                 Text(counterText(counter))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 16)
                     .accessibilityIdentifier("note-counter")
             }
         }

@@ -63,11 +63,7 @@ struct NewEntryView: View {
                     idPrefix: "severity",
                     severity: $draft.severity
                 )
-                Section {
-                    NoteSection(draft: $draft)
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(EdgeInsets())
-                }
+                NoteSection(draft: $draft)
                 if case .edit = mode {
                     Section {
                         DeleteEntrySection(onDelete: removeEntry)
