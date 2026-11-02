@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DoseRow: View {
     let dose: Dose
+    let readings: DoseReadings
     let title: String
 
     private var time: String {
@@ -22,7 +23,7 @@ struct DoseRow: View {
                     Text(title)
                         .font(.body)
                         .foregroundStyle(.primary)
-                    Text(DoseRowText.subtitle(for: dose, words: .app))
+                    Text(DoseRowText.subtitle(for: readings, words: .app))
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }
@@ -37,7 +38,7 @@ struct DoseRow: View {
         // The visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
             Button {} label: { Color.clear }
-                .accessibilityLabel(DoseRowText.spokenLabel(time: time, title: title, dose: dose, words: .app))
+                .accessibilityLabel(DoseRowText.spokenLabel(time: time, title: title, readings: readings, words: .app))
                 .accessibilityIdentifier("dose-row")
         }
     }

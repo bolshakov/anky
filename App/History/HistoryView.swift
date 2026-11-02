@@ -39,6 +39,7 @@ struct HistoryView: View {
                             DaySectionView(
                                 section: section,
                                 medications: medications.medications,
+                                entries: model.entries,
                                 onSelect: { editing = $0 },
                                 onDelete: { pendingDelete = $0 }
                             )

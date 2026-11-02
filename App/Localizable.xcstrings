@@ -11,6 +11,12 @@
         }
       }
     },
+    "%@ %lld after" : {
+
+    },
+    "%@ %lld before, %lld after" : {
+
+    },
     "%@ of %lld" : {
       "localizations" : {
         "en" : {
@@ -26,6 +32,9 @@
           }
         }
       }
+    },
+    "%@ was %lld of 10" : {
+
     },
     "%@, %@" : {
       "localizations" : {
@@ -439,6 +448,9 @@
           }
         }
       }
+    },
+    "fatigue" : {
+
     },
     "Feet and toes" : {
       "localizations" : {
@@ -958,19 +970,10 @@
         }
       }
     },
+    "pain" : {
+
+    },
     "Pain before" : {
-
-    },
-    "Pain %lld before, %lld after" : {
-
-    },
-    "Pain was %lld of 10" : {
-
-    },
-    "pain %lld before, %lld after" : {
-
-    },
-    "pain was %lld of 10" : {
 
     },
     "Pelvis and chest" : {
@@ -1265,6 +1268,9 @@
           }
         }
       }
+    },
+    "stiffness" : {
+
     },
     "Stored on this iPhone only." : {
       "localizations" : {

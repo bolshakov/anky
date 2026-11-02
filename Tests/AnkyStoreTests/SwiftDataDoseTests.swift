@@ -30,11 +30,10 @@ struct SwiftDataDoseTests {
             id: UUID(),
             medicationID: medication.id,
             takenAt: date.addingTimeInterval(120),
-            painBefore: Severity(6)!
+            beforeReadingID: UUID()
         )
         dose.checkInAfter = .oneHour
-        dose.painAfter = Severity(3)!
-        dose.checkedInAt = date.addingTimeInterval(3720)
+        dose.afterReadingID = UUID()
         return dose
     }
 
@@ -43,6 +42,20 @@ struct SwiftDataDoseTests {
             let url = folder.appending(path: "medications.store")
             let zorblex = medication()
             let dose = fullDose(for: zorblex)
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.logDose(dose)
+
+            let reopened = try SwiftDataMedicationStore(url: url)
+            #expect(try reopened.doses() == [dose])
+        }
+    }
+
+    @Test func aDoseWithNoReadingsReadsBackWithNoReadings() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let zorblex = medication()
+            let dose = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
             let store = try SwiftDataMedicationStore(url: url)
             try store.add(zorblex)
             try store.logDose(dose)

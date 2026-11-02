@@ -1,16 +1,22 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-/// The pain a dose row shows: the pain before the dose, and the pain after too once the dose is checked in.
+/// The pain a dose row shows. When there is a before-reading, its kind is the one shown.
 public enum DosePain: Equatable, Sendable {
-    case before(Severity)
-    case beforeAndAfter(before: Severity, after: Severity)
+    case before(EntryKind, Severity)
+    case after(EntryKind, Severity)
+    case beforeAndAfter(EntryKind, before: Severity, after: Severity)
 
-    public init(_ dose: Dose) {
-        if let after = dose.painAfter {
-            self = .beforeAndAfter(before: dose.painBefore, after: after)
-        } else {
-            self = .before(dose.painBefore)
+    public init?(_ readings: DoseReadings) {
+        switch (readings.before, readings.after) {
+        case let (before?, after?):
+            self = .beforeAndAfter(before.kind, before: before.severity, after: after.severity)
+        case let (before?, nil):
+            self = .before(before.kind, before.severity)
+        case let (nil, after?):
+            self = .after(after.kind, after.severity)
+        case (nil, nil):
+            return nil
         }
     }
 }
@@ -33,12 +39,15 @@ public struct DoseWords {
 }
 
 public enum DoseRowText {
-    public static func subtitle(for dose: Dose, words: DoseWords) -> String {
-        [words.kind, words.subtitlePain(DosePain(dose))].joined(separator: " · ")
+    public static func subtitle(for readings: DoseReadings, words: DoseWords) -> String {
+        guard let pain = DosePain(readings) else { return words.kind }
+        return [words.kind, words.subtitlePain(pain)].joined(separator: " · ")
     }
 
-    public static func spokenLabel(time: String, title: String, dose: Dose, words: DoseWords) -> String {
-        "\(time). \(title). \(words.kind). \(words.spokenPain(DosePain(dose)))."
+    public static func spokenLabel(time: String, title: String, readings: DoseReadings, words: DoseWords) -> String {
+        let head = "\(time). \(title). \(words.kind)."
+        guard let pain = DosePain(readings) else { return head }
+        return "\(head) \(words.spokenPain(pain))."
     }
 
     /// The medication's current name and strength, archived or not. Empty when the store holds no such medication.
