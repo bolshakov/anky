@@ -10,7 +10,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         scrollToCheckIn(in: app)
         XCTAssertEqual(shownChoice(in: app), "Off")
 
-        app.buttons["check-in-after"].tap()
+        checkInRow(in: app).tap()
 
         let titles = ["Off", "30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
         let tops = titles.map { title -> CGFloat in
@@ -27,7 +27,21 @@ final class CheckInDelayChoiceTests: XCTestCase {
         let app = launchAnky()
         openNewMedication(app)
         scrollToCheckIn(in: app)
-        XCTAssertEqual(app.buttons["check-in-after"].label, "Check in after, Off")
+        XCTAssertEqual(checkInRow(in: app).label, "Check in after, Off")
+    }
+
+    func testWholeRowOpensTheMenu() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        scrollToCheckIn(in: app)
+        let row = checkInRow(in: app)
+        for dx in [0.1, 0.5, 0.9] {
+            row.coordinate(withNormalizedOffset: CGVector(dx: dx, dy: 0.5)).tap()
+            XCTAssertTrue(app.buttons["30 minutes"].waitForExistence(timeout: 10), "no menu from dx \(dx)")
+            app.buttons["Off"].tap()
+            XCTAssertTrue(app.buttons["30 minutes"].waitForNonExistence(timeout: 10))
+        }
     }
 
     func testChoosingTwoHoursShowsItAndSavesIt() {
@@ -126,25 +140,29 @@ final class CheckInDelayChoiceTests: XCTestCase {
 
     private func choose(_ option: String, in app: XCUIApplication) {
         scrollToCheckIn(in: app)
-        app.buttons["check-in-after"].tap()
+        checkInRow(in: app).tap()
         let item = app.buttons[option]
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(option)")
         item.tap()
-        XCTAssertTrue(app.buttons["check-in-after"].waitForExistence(timeout: 10))
+        XCTAssertTrue(checkInRow(in: app).waitForExistence(timeout: 10))
     }
 
-    /// The system draws the chosen title as its own text inside the row, so the row's value is empty.
+    /// The row speaks as "Check in after, <choice>", and its label is the only place the chosen value is exposed.
     private func shownChoice(in app: XCUIApplication) -> String? {
-        let row = app.buttons["check-in-after"]
+        let row = checkInRow(in: app)
         guard row.exists else { return nil }
-        let texts = app.staticTexts.allElementsBoundByIndex.filter { $0.frame.intersects(row.frame) }
-        let titles = ["Off", "30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
-        return titles.first { title in texts.contains { $0.label == title } }
+        let prefix = "Check in after, "
+        guard row.label.hasPrefix(prefix) else { return nil }
+        return String(row.label.dropFirst(prefix.count))
+    }
+
+    private func checkInRow(in app: XCUIApplication) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: "check-in-after").firstMatch
     }
 
     /// The pinned Save button covers the bottom of the form, so the row must scroll above it, not merely be on screen.
     private func scrollToCheckIn(in app: XCUIApplication) {
-        let row = app.buttons["check-in-after"]
+        let row = checkInRow(in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let save = app.buttons["medication-save"]
         for _ in 0 ..< 5 where row.frame.maxY > save.frame.minY {

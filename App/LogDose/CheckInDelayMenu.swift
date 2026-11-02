@@ -6,15 +6,27 @@ struct CheckInDelayMenu: View {
     @Binding var checkInAfter: CheckInDelay?
 
     var body: some View {
-        Picker(selection: $checkInAfter) {
-            ForEach(CheckInChoices.all, id: \.self) { choice in
-                Text(title(for: choice)).tag(choice)
+        Menu {
+            Picker("After", selection: $checkInAfter) {
+                ForEach(CheckInChoices.all, id: \.self) { choice in
+                    Text(title(for: choice)).tag(choice)
+                }
             }
+            .labelsHidden()
         } label: {
-            Text("After").accessibilityLabel("Check in after")
+            HStack {
+                Text("After").foregroundStyle(.primary)
+                Spacer()
+                Text(title(for: checkInAfter)).foregroundStyle(.secondary)
+                Image(systemName: "chevron.up.chevron.down")
+                    .foregroundStyle(.secondary)
+                    .imageScale(.small)
+            }
+            .contentShape(.rect)
         }
-        .pickerStyle(.menu)
-        .tint(.secondary)
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(String(localized: "Check in after") + ", " + String(localized: title(for: checkInAfter)))
         .accessibilityIdentifier("check-in-after")
     }
 
