@@ -7,6 +7,7 @@ struct TodayEntryList: View {
     let medications: [Medication]
     let entries: [Entry]
     let onSelect: (Entry) -> Void
+    let onSelectDose: (Dose) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -39,7 +40,9 @@ struct TodayEntryList: View {
                 dose: dose,
                 readings: DoseReadings(dose, in: entries),
                 title: DoseRowText.title(for: dose, in: medications)
-            )
+            ) {
+                onSelectDose(dose)
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ struct DaySectionView: View {
     let medications: [Medication]
     let entries: [Entry]
     let onSelect: (Entry) -> Void
+    let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
 
     var body: some View {
@@ -42,7 +43,9 @@ struct DaySectionView: View {
                 dose: dose,
                 readings: DoseReadings(dose, in: entries),
                 title: DoseRowText.title(for: dose, in: medications)
-            )
+            ) {
+                onSelectDose(dose)
+            }
         }
     }
 
