@@ -42,7 +42,7 @@ struct CheckInRow: View {
 
     private var subtitle: String {
         let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        return CheckInText.rowSubtitle(name: name, time: time, day: CheckInDay(dose.takenAt, now: now))
+        return CheckInText.rowSubtitle(name: name, time: time, takenAt: dose.takenAt, now: now)
     }
 
     var body: some View {
