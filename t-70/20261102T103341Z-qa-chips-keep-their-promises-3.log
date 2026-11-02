@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'ui | grep "id=place-chip-lower "'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+Button id=place-chip-lower label='Lower back' value=None enabled=True actions=Pin as shortcut traits= @28.000000000000057,383 102.33333333333331x44

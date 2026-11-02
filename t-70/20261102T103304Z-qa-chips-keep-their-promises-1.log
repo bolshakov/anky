@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'ui | grep "id=repeat-chip "; ui | grep "id=repeat-chip " | frame'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+Button id=repeat-chip label='Same as last time, Hips, 0 of 10' value=None enabled=True actions= traits= @16.00000000000003,202 370x44
+16.00000000000003 202 370 44

@@ -1,0 +1,15 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'ui | grep -E "id=place-chip-"; measure place-chip-neck chip-neck; measure place-chip-lower chip-lower; measure place-chip-si_l chip-si_l'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+Button id=place-chip-neck label='Neck' value=None enabled=True actions=Pin as shortcut traits= @28.000000000000057,315 59.33333333333333x44
+Button id=place-chip-upper label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @95.33333333333339,315 103.66666666666667x44
+Button id=place-chip-lower label='Lower back' value=None enabled=True actions=Unpin shortcut traits= @207.00000000000006,315 102.33333333333331x44
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True actions=Pin as shortcut traits= @28.000000000000057,367 101.33333333333331x44
+Button id=place-chip-si_r label='Right SI joint' value=None enabled=True actions=Pin as shortcut traits= @137.33333333333337,367 110.33333333333331x44
+frame 28.000000000000057 315 59.33333333333333 44
+fill #d1d1d1 text #000000 contrast 13.75 drawn 28 to 309 text from 41
+frame 207.00000000000006 315 102.33333333333331 44
+fill #d1d1d1 text #000000 contrast 13.75 drawn 28 to 309 text from 220
+frame 28.000000000000057 367 101.33333333333331 44
+fill #d1d1d1 text #000000 contrast 13.75 drawn 28 to 247 text from 41

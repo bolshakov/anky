@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'measure place-chip-neck dark-neck; measure place-chip-lower dark-lower; axe tap --id place-chip-neck --wait-timeout 5 --udid "$udid" >/dev/null; measure place-chip-neck dark-neck-selected; look light'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+frame 28.000000000000057 315 59.33333333333333 44
+fill #555556 text #ffffff contrast 7.45 drawn 28 to 309 text from 41
+frame 207.00000000000006 315 102.33333333333331 44
+fill #555556 text #ffffff contrast 7.45 drawn 28 to 309 text from 220
+frame 28.000000000000057 315 82 44
+fill #ff7a50 text #1c1c1e contrast 6.60 drawn 28 to 320 text from 106

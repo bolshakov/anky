@@ -1,0 +1,8 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'measure place-chip-neck neck-selected; measure place-chip-lower lower-after'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+frame 28.000000000000057 315 82 44
+fill #c23c14 text #ffffff contrast 5.32 drawn 28 to 319 text from 41
+frame 229.6666666666667 315 102.33333333333334 44
+fill #d1d1d1 text #000000 contrast 13.75 drawn 28 to 332 text from 243

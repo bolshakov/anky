@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'seek more-places; ui | grep "id=place-chip-" | frame; echo ---; ui | grep "id=place-chip-" | frame | awk "\$1 < 0 || \$1 + \$3 > 402.5"; echo ---; ui | grep "id=place-chip-" | frame | awk "{ print \$2 }" | sort -u | wc -l; shot places-wrapped'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+28 835 284 72.66666666666674
+28 915.6666666666667 275 72.66666666666652
+28 996.3333333333333 303.3333333333333 72.66666666666674
+28 1077 200 72.66666666666674
+28 1157.6666666666665 228.33333333333331 72.66666666666652
+---
+---
+       5
+/Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/walk-t70.lfoe/places-wrapped.png

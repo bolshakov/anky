@@ -1,0 +1,8 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t70-03-2/tmp/W 'axe tap --id place-chip-si_l --wait-timeout 5 --udid "$udid"; ui | grep "id=place-chip-si_l "; axe tap --id place-chip-si_l --wait-timeout 5 --udid "$udid"; ui | grep "id=place-chip-si_l "'
+exit: 0
+commit: 29ba8a0e9e919821eff2a7af82f50de4a9798662
+
+✓ Tap at resolved tap point at (189.00000000000003, 405.0) completed successfully
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True actions=Pin as shortcut traits= @138.33333333333337,383 124x44
+✓ Tap at resolved tap point at (200.33333333333337, 405.0) completed successfully
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True actions=Pin as shortcut traits= @138.33333333333337,383 101.33333333333331x44
