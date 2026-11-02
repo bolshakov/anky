@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t74-04-2/tmp/w.sh 'ui | grep -E "id=(note-field|note-counter) "'
+exit: 0
+commit: e5880b9a2610330b9fec09d4a740f18941ffc378
+
+TextField id=note-field label='Note' value='Walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk note walk xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' enabled=True actions= traits= @32,692.6666666666666 338x132
+StaticText id=note-counter label='Limit reached' value=None enabled=True actions= traits= @16,839.6666666666666 370x29.66666666666663

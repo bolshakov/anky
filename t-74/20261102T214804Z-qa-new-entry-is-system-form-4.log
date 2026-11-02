@@ -1,0 +1,4 @@
+$ sh -c 'grep -nE "cardCaption|CardBackground|PageBackground|Divider\(" App/NewEntry/NewEntryView.swift App/NewEntry/WhereSection.swift App/NewEntry/NoteSection.swift App/NewEntry/DateSection.swift'
+exit: 1
+commit: e5880b9a2610330b9fec09d4a740f18941ffc378
+

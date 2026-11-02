@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t74-04-2/tmp/w.sh 'ui | grep -E "id=(edit-entry-screen|note-field) "'
+exit: 0
+commit: e5880b9a2610330b9fec09d4a740f18941ffc378
+
+Group id=edit-entry-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+TextField id=note-field label='Note' value='Walk note' enabled=True actions= traits= @32,784.6666666666666 338x22
