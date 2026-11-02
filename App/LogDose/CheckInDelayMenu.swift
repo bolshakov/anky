@@ -14,13 +14,16 @@ struct CheckInDelayMenu: View {
             }
             .labelsHidden()
         } label: {
-            HStack {
-                Text("After").foregroundStyle(.primary)
-                Spacer()
-                Text(title(for: checkInAfter)).foregroundStyle(.secondary)
-                Image(systemName: "chevron.up.chevron.down")
-                    .foregroundStyle(.secondary)
-                    .imageScale(.small)
+            ViewThatFits(in: .horizontal) {
+                HStack {
+                    Text("After").foregroundStyle(.primary)
+                    Spacer()
+                    valueAndChevron
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("After").foregroundStyle(.primary)
+                    valueAndChevron
+                }
             }
             .contentShape(.rect)
         }
@@ -29,6 +32,17 @@ struct CheckInDelayMenu: View {
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(String(localized: "Check in after") + ", " + String(localized: title(for: checkInAfter)))
         .accessibilityIdentifier("check-in-after")
+    }
+
+    private var valueAndChevron: some View {
+        HStack {
+            Text(title(for: checkInAfter))
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Image(systemName: "chevron.up.chevron.down")
+                .foregroundStyle(.secondary)
+                .imageScale(.small)
+        }
     }
 
     private func title(for choice: CheckInDelay?) -> LocalizedStringResource {
