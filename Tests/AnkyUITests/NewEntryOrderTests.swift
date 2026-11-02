@@ -10,7 +10,10 @@ final class NewEntryOrderTests: XCTestCase {
         saveFatigueEntry(in: app)
 
         openNewEntry(app)
-        assertInOrder(["recent-chips", "kind-picker", "date-row", "severity-caption", "note-field"], in: app)
+        assertInOrder(
+            ["recent-chips", "kind-picker", "date-row", "where-section", "severity-caption", "note-field"],
+            in: app
+        )
     }
 
     func testNewEntryWithoutRecentStartsWithKind() {
@@ -19,20 +22,28 @@ final class NewEntryOrderTests: XCTestCase {
 
         openNewEntry(app)
         XCTAssertFalse(element("recent-chips", in: app).exists)
-        assertInOrder(["kind-picker", "date-row", "severity-caption", "note-field"], in: app)
+        assertInOrder(["kind-picker", "date-row", "where-section", "severity-caption", "note-field"], in: app)
     }
 
-    func testRecentChipFillsKindAndSeverity() {
+    func testRecentChipFillsKindPlacesAndSeverity() {
         continueAfterFailure = false
         let app = launchAnky()
-        saveFatigueEntry(in: app)
+        savePainInLeftKnee(in: app)
 
         openNewEntry(app)
+        setSeverity(9, in: app)
+        // Lifting the slider scrolls the form, which takes the chips row, its first section, out of the tree.
         let chip = app.buttons["recent-chip-0"]
+        for _ in 0 ..< 3 where !chip.exists {
+            entryScreen(app).swipeDown()
+        }
         XCTAssertTrue(chip.waitForExistence(timeout: 10))
         chip.tap()
-        XCTAssertTrue(kindSegment(.fatigue, in: app).isSelected)
+        XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 4)
+        let more = app.buttons["more-places"]
+        XCTAssertTrue(more.waitForExistence(timeout: 10))
+        XCTAssertTrue((more.value as? String ?? "").contains("Left knee"), "more-places is \(more.value ?? "")")
     }
 
     func testEditFatigueHasNoWhereAndDeleteLast() {
@@ -52,6 +63,24 @@ final class NewEntryOrderTests: XCTestCase {
             screen.swipeUp()
         }
         assertInOrder(["kind-picker", "date-row", "severity-caption", "delete-entry"], in: app)
+    }
+
+    /// Left knee is not a default chip, so it shows in the More places value, where the test can read it.
+    private func savePainInLeftKnee(in app: XCUIApplication) {
+        openNewEntry(app)
+        chooseKind(.pain, in: app)
+        setSeverity(4, in: app)
+        app.buttons["more-places"].tap()
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 10))
+        search.tap()
+        search.typeText("Knee")
+        let leftKnee = app.buttons["place-knee_l"]
+        XCTAssertTrue(leftKnee.waitForExistence(timeout: 10))
+        leftKnee.tap()
+        app.buttons["done-places"].tap()
+        saveEntry(app)
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
     }
 
     private func saveFatigueEntry(in app: XCUIApplication) {
