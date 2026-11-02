@@ -13,6 +13,18 @@ func scrollToNoteField(in app: XCUIApplication) {
     XCTAssertTrue(note.isHittable)
 }
 
+/// At the largest size, Today's "Log medication" is the List's last row, below the empty state,
+/// so it is swiped into view before the tap.
+@MainActor
+func tapLogMedication(in app: XCUIApplication) {
+    let button = app.buttons["log-medication"]
+    for _ in 0 ..< 5 where !button.isHittable {
+        app.swipeUp()
+    }
+    XCTAssertTrue(button.isHittable)
+    button.tap()
+}
+
 /// At the largest size the severity slider sits below the first screen. The pinned "Save entry"
 /// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
 @MainActor
