@@ -1,0 +1,8 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(entry-row-stiffness|log-medication|log-entry) |label=.Stored on this iPhone only.."'
+exit: 0
+commit: 7470e09fd8bf9c6bb0498ee759b4bcdbc7a60ba9
+
+Button id=entry-row-stiffness label='10:15, Lower back, Stiffness, 4 of 10' value=None enabled=True actions= traits= @16,88.66666666666669 370x272
+StaticText id=None label='Stored on this iPhone only.' value=None enabled=True actions= traits= @16,360.6666666666667 370x118.66666666666669
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @16,496.99999999999994 370x79.33333333333331
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,619.6666666666666 370x155.33333333333337

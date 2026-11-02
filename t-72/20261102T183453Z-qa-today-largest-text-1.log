@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/walk.sh"; rows'
+exit: 0
+commit: 7470e09fd8bf9c6bb0498ee759b4bcdbc7a60ba9
+
+Button id=entry-row-pain label='10:40, Neck, Pain, 6 of 10' value=None enabled=True actions= traits= @16,487.3333333333333 370x271.99999999999994
+Button id=entry-row-stiffness label='10:15, Lower back, Stiffness, 4 of 10' value=None enabled=True actions= traits= @16,759.3333333333334 370x272.0000000000001
