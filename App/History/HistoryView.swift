@@ -96,12 +96,7 @@ struct HistoryView: View {
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $checkingIn) { dose in
-                CheckInView(
-                    dose: dose,
-                    title: DoseRowText.title(for: dose, in: medications.medications),
-                    readings: DoseReadings(dose, in: model.entries),
-                    now: now
-                )
+                CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sensoryFeedback(.success, trigger: saveTicks)
         }
