@@ -6,6 +6,7 @@ struct NewEntryView: View {
     let model: EntryLogModel
     let mode: EntryMode
     let onSaved: () -> Void
+    let onAdded: (Entry) -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var startDraft: EntryDraft
@@ -19,10 +20,16 @@ struct NewEntryView: View {
     @State private var isShowingSaveFailure = false
     @State private var hasReportedSave = false
 
-    init(model: EntryLogModel, mode: EntryMode = .new, onSaved: @escaping () -> Void = {}) {
+    init(
+        model: EntryLogModel,
+        mode: EntryMode = .new,
+        onSaved: @escaping () -> Void = {},
+        onAdded: @escaping (Entry) -> Void = { _ in }
+    ) {
         self.model = model
         self.mode = mode
         self.onSaved = onSaved
+        self.onAdded = onAdded
         let opening = switch mode {
         case .new: openingDraft(after: model.entries, now: .now)
         case let .edit(entry): EntryDraft(entry: entry)
@@ -181,21 +188,33 @@ struct NewEntryView: View {
 
     private func save() {
         do {
-            try store()
-            if !hasReportedSave {
-                hasReportedSave = true
-                onSaved()
-            }
+            let saved = try store()
+            reportSave(saved)
             dismiss()
         } catch {
             isShowingSaveFailure = true
         }
     }
 
-    private func store() throws {
+    private func reportSave(_ saved: Entry) {
+        guard !hasReportedSave else { return }
+        hasReportedSave = true
+        onSaved()
+        if case .new = mode {
+            onAdded(saved)
+        }
+    }
+
+    private func store() throws -> Entry {
         switch mode {
-        case .new: try model.add(Entry(id: entryID, draft: draft))
-        case let .edit(entry): try model.replace(Entry(id: entry.id, draft: draft))
+        case .new:
+            let entry = Entry(id: entryID, draft: draft)
+            try model.add(entry)
+            return entry
+        case let .edit(entry):
+            let replaced = Entry(id: entry.id, draft: draft)
+            try model.replace(replaced)
+            return replaced
         }
     }
 

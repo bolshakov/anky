@@ -51,8 +51,13 @@ struct TodayView: View {
                             .padding(.top, recent == nil ? 48 : 64)
                             .padding(.bottom, 48)
                     } else {
-                        TodayEntryList(items: todayItems, medications: medications.medications, onSelect: open)
-                            .padding(.top, 16)
+                        TodayEntryList(
+                            items: todayItems,
+                            medications: medications.medications,
+                            entries: model.entries,
+                            onSelect: open
+                        )
+                        .padding(.top, 16)
                     }
 
                     if dynamicTypeSize.isAccessibilitySize {
@@ -87,7 +92,7 @@ struct TodayView: View {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(isPresented: $isShowingLogDose) {
-                LogDoseView(medications: medications, entries: model.entries, onSaved: { saveTicks += 1 })
+                LogDoseView(medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })

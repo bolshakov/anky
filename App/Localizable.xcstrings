@@ -11,6 +11,12 @@
         }
       }
     },
+    "%@ %lld after" : {
+
+    },
+    "%@ %lld before, %lld after" : {
+
+    },
     "%@ of %lld" : {
       "localizations" : {
         "en" : {
@@ -26,6 +32,9 @@
           }
         }
       }
+    },
+    "%@ was %lld of 10" : {
+
     },
     "%@, %@" : {
       "localizations" : {
@@ -235,6 +244,9 @@
         }
       }
     },
+    "Before this dose" : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -440,6 +452,9 @@
         }
       }
     },
+    "fatigue" : {
+
+    },
     "Feet and toes" : {
       "localizations" : {
         "ru" : {
@@ -449,15 +464,6 @@
           }
         }
       }
-    },
-    "Filled in from your %@ entry. Change it if it is different." : {
-
-    },
-    "Filled in from your entry on %@ at %@. Change it if it is different." : {
-
-    },
-    "Filled in from your entry yesterday at %@. Change it if it is different." : {
-
     },
     "Foot and toes" : {
       "localizations" : {
@@ -958,19 +964,7 @@
         }
       }
     },
-    "Pain before" : {
-
-    },
-    "Pain %lld before, %lld after" : {
-
-    },
-    "Pain was %lld of 10" : {
-
-    },
-    "pain %lld before, %lld after" : {
-
-    },
-    "pain was %lld of 10" : {
+    "pain" : {
 
     },
     "Pelvis and chest" : {
@@ -1266,6 +1260,9 @@
         }
       }
     },
+    "stiffness" : {
+
+    },
     "Stored on this iPhone only." : {
       "localizations" : {
         "ru" : {
@@ -1457,6 +1454,9 @@
           }
         }
       }
+    },
+    "Your latest entry before this dose. Tap to choose another." : {
+
     },
     "Manage" : {
 

@@ -6,14 +6,14 @@ import Testing
 @MainActor struct DoseSaveTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
-    private func dose(id: UUID) throws -> Dose {
-        try Dose(id: id, medicationID: UUID(), takenAt: date, painBefore: #require(Severity(4)))
+    private func dose(id: UUID) -> Dose {
+        Dose(id: id, medicationID: UUID(), takenAt: date)
     }
 
     @Test func aSecondSaveAfterASuccessLogsNothing() throws {
         var logged: [Dose] = []
         var save = DoseSave()
-        let first = try dose(id: UUID())
+        let first = dose(id: UUID())
         #expect(try save.save(first, log: { logged.append($0) }))
         #expect(try !save.save(dose(id: UUID()), log: { logged.append($0) }))
         #expect(logged == [first])
@@ -24,7 +24,7 @@ import Testing
         var logged: [Dose] = []
         var refused = true
         var save = DoseSave()
-        let pending = try dose(id: UUID())
+        let pending = dose(id: UUID())
         #expect(throws: MedicationStoreError.notSaved) {
             try save.save(pending, log: { _ in
                 if refused {
