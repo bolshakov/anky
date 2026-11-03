@@ -34,13 +34,19 @@ final class HistoryCheckInTests: XCTestCase {
         XCTAssertTrue(name.waitForExistence(timeout: 10))
         name.tap()
         name.typeText("Zorblex")
-        let checkIn = app.descendants(matching: .any).matching(identifier: "check-in-after").firstMatch
-        XCTAssertTrue(checkIn.waitForExistence(timeout: 10))
+        let toggle = app.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
         let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where checkIn.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 5 where toggle.frame.maxY > save.frame.minY {
             app.swipeUp()
         }
-        checkIn.tap()
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
+        let menu = app.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10))
+        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
+        menu.tap()
         let thirtyMinutes = app.buttons["30 minutes"]
         XCTAssertTrue(thirtyMinutes.waitForExistence(timeout: 10))
         thirtyMinutes.tap()
