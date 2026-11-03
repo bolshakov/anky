@@ -45,8 +45,8 @@ struct EntryRow: View {
     let onSelect: () -> Void
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    private var time: Text {
-        Text(entry.date, format: Date.FormatStyle(date: .omitted, time: .shortened))
+    private var time: String {
+        ClockText.text(for: entry.date, calendar: .current, locale: .current)
     }
 
     var body: some View {
@@ -85,7 +85,7 @@ struct EntryRow: View {
     }
 
     private var timeText: some View {
-        time
+        Text(time)
             .font(.footnote)
             .monospacedDigit()
             .foregroundStyle(.secondary)

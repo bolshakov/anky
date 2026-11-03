@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import XCTest
 
 @MainActor
@@ -29,7 +30,6 @@ final class EarlierTimeTests: XCTestCase {
     }
 
     private func twoHoursEarlierTime(from date: Date) -> String {
-        let style = Date.FormatStyle(date: .omitted, time: .shortened).locale(Locale(identifier: "en_GB"))
-        return date.addingTimeInterval(-7200).formatted(style)
+        ClockText.text(for: date.addingTimeInterval(-7200), calendar: .current, locale: Locale(identifier: "en_GB"))
     }
 }
