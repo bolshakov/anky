@@ -49,5 +49,6 @@ final class LogDoseDiscardTests: XCTestCase {
         failing.buttons["save-dose"].tap()
 
         XCTAssertTrue(doseRow(in: failing).waitForExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: failing).label.contains("Quibbanol"), doseRow(in: failing).label)
     }
 }

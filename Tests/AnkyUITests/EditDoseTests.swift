@@ -19,9 +19,13 @@ final class EditDoseTests: XCTestCase {
         logZorblexDose(app)
 
         app.tabBars.buttons["History"].tap()
+        let rowLabel = doseRow(in: app).label
         doseRow(in: app).tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        XCTAssertEqual(selectedMedication(in: app), "Zorblex")
+        let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
+        XCTAssertEqual(clockTime(inRowValue: app.buttons["date-row"].value as? String), rowTime, rowLabel)
     }
 
     /// The dose keeps the id of its before-entry after that entry is deleted, so Edit Dose reads it as None.
