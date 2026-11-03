@@ -1,0 +1,20 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t95-02-1/tmp/steps.sh e1s3
+exit: 0
+commit: 7a144357807bad5366cda389d9e33d344eaf9443
+
+== upper selected
+diff rc=0
+== upper deselected
+diff rc=0
+== lower selected
+diff rc=0
+== lower deselected
+diff rc=0
+== si_l selected
+diff rc=0
+== si_l deselected
+diff rc=0
+== si_r selected
+diff rc=0
+== si_r deselected
+diff rc=0

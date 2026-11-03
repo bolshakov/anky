@@ -1,0 +1,14 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t95-02-1/tmp/steps.sh e2s2a
+exit: 0
+commit: 7a144357807bad5366cda389d9e33d344eaf9443
+
+== neck selected
+diff rc=0
+== neck deselected
+diff rc=0
+== after one scroll
+place-chip-neck 32 -96.66666666666663 197.66666666666666 72.66666666666666
+place-chip-upper 32 -15.999999999999972 330 72.66666666666666
+place-chip-lower 32 64.66666666666669 328.3333333333333 72.66666666666666
+place-chip-si_l 32 145.33333333333337 319.3333333333333 72.66666666666663
+place-chip-si_r 32 226 228 130.66666666666663
