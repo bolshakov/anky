@@ -52,6 +52,8 @@ struct NewEntryView: View {
                 recentChips
                 Section {
                     KindSection(draft: $draft)
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets())
                 }
                 Section {
                     DateSection(date: $draft.date)
