@@ -16,7 +16,6 @@ final class EmptyStateTests: XCTestCase {
         let logButton = app.buttons["log-entry"]
         XCTAssertTrue(logButton.waitForExistence(timeout: 10))
         XCTAssertGreaterThanOrEqual(logButton.frame.height, 44)
-        XCTAssertGreaterThan(logButton.frame.width, app.windows.firstMatch.frame.width * 0.8)
         attachScreenshot(named: "empty-state")
 
         logButton.tap()

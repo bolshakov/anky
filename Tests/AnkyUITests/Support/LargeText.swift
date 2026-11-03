@@ -13,8 +13,8 @@ func scrollToNoteField(in app: XCUIApplication) {
     XCTAssertTrue(note.isHittable)
 }
 
-/// At the largest size, Today's "Log medication" is the List's last row, below the empty state,
-/// so it is swiped into view before the tap.
+/// Today's "Log medication" sits in the bottom pair at every text size, so the swipe loop
+/// normally exits at once.
 @MainActor
 func tapLogMedication(in app: XCUIApplication) {
     let button = app.buttons["log-medication"]

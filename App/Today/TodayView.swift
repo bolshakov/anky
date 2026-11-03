@@ -15,7 +15,6 @@ private extension View {
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
@@ -27,6 +26,13 @@ struct TodayView: View {
     @State private var saveTicks = 0
     @State private var checkingIn: Dose?
     @State private var checkInNow = Date.now
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var pairLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 12))
+    }
 
     private var todayItems: [LoggedItem] {
         TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
@@ -67,12 +73,6 @@ struct TodayView: View {
                 }
                 checkInBlock
                 entriesOrEmptyState
-                if dynamicTypeSize.isAccessibilitySize {
-                    Section {
-                        logMedicationButton
-                            .bareRow()
-                    }
-                }
             }
             .listStyle(.insetGrouped)
             .checkInClock(now: $checkInNow, nextDue: nextCheckInDue)
@@ -80,22 +80,28 @@ struct TodayView: View {
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
-                VStack(spacing: 0) {
-                    if !dynamicTypeSize.isAccessibilitySize {
-                        logMedicationButton
-                            .padding(.horizontal)
+                pairLayout {
+                    Button {
+                        isShowingLogDose = true
+                    } label: {
+                        Text("Log medication")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
+                    .buttonStyle(.glass)
+                    .buttonBorderShape(.capsule)
+                    .accessibilityIdentifier("log-medication")
                     Button {
                         isShowingNewEntry = true
                     } label: {
                         Text("Log how you feel")
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .buttonStyle(.glassProminent)
-                    .controlSize(.large)
                     .accessibilityIdentifier("log-entry")
-                    .padding()
                 }
+                .controlSize(.large)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding()
             }
             .sheet(isPresented: $isShowingNewEntry) {
                 NewEntryView(model: model, onSaved: { saveTicks += 1 })
@@ -153,15 +159,6 @@ struct TodayView: View {
                 onSelectDose: { editingDose = $0 }
             )
         }
-    }
-
-    private var logMedicationButton: some View {
-        Button("Log medication") {
-            isShowingLogDose = true
-        }
-        .frame(maxWidth: .infinity, minHeight: 44)
-        .accessibilityIdentifier("log-medication")
-        .padding(.vertical, 8)
     }
 
     @ViewBuilder
