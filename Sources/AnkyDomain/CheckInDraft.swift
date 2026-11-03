@@ -7,10 +7,11 @@ public extension DoseReadings {
         before?.kind ?? .pain
     }
 
-    /// A Check In opens at the before-reading's kind and level, or Pain at 0 when the dose has none.
+    /// A Check In opens at the before-reading's kind, level and places, or Pain at 0 with none when the dose has none.
     func checkInDraft(now: Date) -> EntryDraft {
         var draft = EntryDraft(severity: before?.severity ?? Severity(0)!, date: now)
         draft.kind = checkInKind
+        draft.places = before?.places ?? []
         return draft
     }
 }
