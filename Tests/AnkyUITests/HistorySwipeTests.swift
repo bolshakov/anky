@@ -57,6 +57,38 @@ final class HistorySwipeTests: XCTestCase {
         XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
+    func testAFullSwipeOnAnEntryRowAsksToDeleteAndKeepKeepsTheEntry() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logEntry(4, in: app)
+        showHistory(in: app)
+
+        let row = entryRows(in: app).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        fullSwipeRow(row)
+        XCTAssertTrue(app.buttons["confirm-delete"].firstMatch.waitForExistence(timeout: 10))
+        app.buttons["keep-entry"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["keep-entry"].firstMatch.waitForNonExistence(timeout: 10))
+
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: app).count, 1)
+    }
+
+    func testAFullSwipeOnAnEntryRowThenConfirmRemovesTheEntry() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logEntry(4, in: app)
+        showHistory(in: app)
+
+        let row = entryRows(in: app).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        fullSwipeRow(row)
+        app.buttons["confirm-delete"].firstMatch.tap()
+
+        XCTAssertTrue(row.waitForNonExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: app).count, 0)
+    }
+
     func testTheEntryDeleteAlertFromHistoryAsksInTheEntryWords() {
         continueAfterFailure = false
         let app = launchAnky()

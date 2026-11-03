@@ -35,6 +35,13 @@ func partSwipeRow(_ row: XCUIElement) {
     start.press(forDuration: 0.05, thenDragTo: row.coordinate(withNormalizedOffset: CGVector(dx: 0.55, dy: 0.5)))
 }
 
+/// Drags the row from its right edge to its left edge, a full swipe that runs its trailing action.
+@MainActor
+func fullSwipeRow(_ row: XCUIElement) {
+    let start = row.coordinate(withNormalizedOffset: CGVector(dx: 0.98, dy: 0.5))
+    start.press(forDuration: 0.05, thenDragTo: row.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.5)))
+}
+
 /// Swipes the row from right to left until its Delete action shows, then taps Delete.
 @MainActor
 func tapDeleteOnRow(_ row: XCUIElement, in app: XCUIApplication) {

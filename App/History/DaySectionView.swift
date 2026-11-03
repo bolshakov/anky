@@ -33,7 +33,7 @@ struct DaySectionView: View {
             EntryRow(entry: entry) {
                 onSelect(entry)
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button("Delete", role: .destructive) {
                     onDelete(entry)
                 }
