@@ -1,0 +1,11 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk-t114.gpTu'\''; udid='\''DB5C467B-AF71-449F-BE2C-0C2D43B97C72'\''; ui | grep -E "before-reading-row|label='\''Pain'\''|Lower back|of 10"'
+exit: 0
+commit: 2b39cd180ba032821e02b4bb80b7b27c6d681e3c
+
+Button id=repeat-chip label='Same as last time, Neck, Lower back, 6 of 10' value=None enabled=True actions= traits= @16,220 370x60
+Button id=entry-row-pain label='18:37, Neck and Lower back, Pain, 6 of 10' value=None enabled=True actions= traits= @16,315 370x68
+Button id=before-reading-row label='18:37, Pain, Neck and Lower back, 6 of 10' value=None enabled=True actions= traits= @16,438.3333333333333 370x68
+GenericElement id=None label='18:37, Pain, Neck and Lower back, 6 of 10' value=None enabled=True actions= traits= @32,453.3333333333333 316.3333333333333x38
+StaticText id=None label='Pain' value=None enabled=True actions= traits= @32,453.3333333333333 32.33333333333333x20.333333333333314
+StaticText id=None label='Neck and Lower back · 18:37' value=None enabled=True actions= traits= @32,475.66666666666663 177.33333333333331x15.666666666666686
+StaticText id=None label='6 of 10' value=None enabled=True actions= traits= @306.66666666666663,464.5 41.666666666666686x15.666666666666629

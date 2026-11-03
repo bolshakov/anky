@@ -1,0 +1,6 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk-t114.gpTu'\''; udid='\''DB5C467B-AF71-449F-BE2C-0C2D43B97C72'\''; ui | grep -E "Heading id=None label='\''(Medication|Before this dose)'\''" | while read -r l; do echo "$l" | frame > /tmp/.f 2>/dev/null; set -- $(echo "$l" | frame); echo "y=$2 h=$4 ink_left=$(ink_left '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk-t114.gpTu/rd.png'\'' $2 $4)"; done'
+exit: 0
+commit: 2b39cd180ba032821e02b4bb80b7b27c6d681e3c
+
+y=132 h=40.33333333333334 ink_left=53
+y=398 h=40.333333333333314 ink_left=53

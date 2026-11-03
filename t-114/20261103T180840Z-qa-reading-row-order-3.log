@@ -1,0 +1,10 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk-t114.gpTu'\''; udid='\''DB5C467B-AF71-449F-BE2C-0C2D43B97C72'\''; ui | grep -E '\''Fatigue|·'\''; echo done'
+exit: 0
+commit: 2b39cd180ba032821e02b4bb80b7b27c6d681e3c
+
+Button id=repeat-chip label='Same as last time, Fatigue, 4 of 10' value=None enabled=True actions= traits= @16,220 370x60
+Button id=entry-row-fatigue label='18:58, Whole body, Fatigue, 4 of 10' value=None enabled=True actions= traits= @16,315 370x68
+Button id=before-reading-row label='18:58, Fatigue, 4 of 10' value=None enabled=True actions= traits= @16,438.3333333333333 370x68
+GenericElement id=None label='18:58, Fatigue, 4 of 10' value=None enabled=True actions= traits= @32,453.3333333333333 316.3333333333333x38
+StaticText id=None label='Fatigue' value=None enabled=True actions= traits= @32,453.3333333333333 56x20.333333333333314
+done

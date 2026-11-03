@@ -1,0 +1,9 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t114-01-1/tmp/walk-t114.gpTu'\''; udid='\''DB5C467B-AF71-449F-BE2C-0C2D43B97C72'\''; ui | grep -E '\''Heading|log-how-you-feel-row|Before this dose'\'''
+exit: 0
+commit: 2b39cd180ba032821e02b4bb80b7b27c6d681e3c
+
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+Heading id=None label='Medication' value=None enabled=True actions= traits= @16,132 370x40.33333333333334
+Heading id=None label='Log how you feel now' value=None enabled=True actions= traits= @16,398 370x40.333333333333314
+Button id=log-how-you-feel-row label='Log how you feel' value=None enabled=True actions= traits= @16,438.3333333333333 370x52
