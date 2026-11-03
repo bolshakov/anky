@@ -68,16 +68,6 @@ func saveDoseAnHourBack(in app: XCUIApplication) {
     app.buttons["save-dose"].tap()
 }
 
-/// At the largest size the date row scrolls off the top of a form once a lower row is set, and a form leaves off
-/// screen rows out of the accessibility tree, so the row is scrolled back into view before it is tapped.
-@MainActor
-func scrollToDateRow(in app: XCUIApplication) {
-    let row = app.buttons["date-row"]
-    for _ in 0 ..< 5 where !row.exists || !row.isHittable {
-        app.swipeDown()
-    }
-}
-
 /// A dose that is waiting opens Check In from its History row.
 @MainActor
 func openCheckIn(_ app: XCUIApplication) {
