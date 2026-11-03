@@ -1,0 +1,5 @@
+$ zsh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh";ink history-24h dose-row 300 386'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+308.7-369.0

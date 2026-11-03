@@ -1,0 +1,8 @@
+$ sh -c 'echo "ink largest-text entry-row-stiffness 28 386: 33.3-228.7"; echo "ink ls-dose dose-row 28 386: 33.3-235.7 248.0-320.3 333.7-356.3"; echo "ink ls-fat entry-row-pain 28 386: 34.0-228.7"; echo "ink ls-fat entry-row-fatigue 28 386: 33.0-301.3"'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+ink largest-text entry-row-stiffness 28 386: 33.3-228.7
+ink ls-dose dose-row 28 386: 33.3-235.7 248.0-320.3 333.7-356.3
+ink ls-fat entry-row-pain 28 386: 34.0-228.7
+ink ls-fat entry-row-fatigue 28 386: 33.0-301.3

@@ -1,0 +1,9 @@
+$ zsh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh";shot history-24h; for r in entry-row-stiffness dose-row entry-row-pain entry-row-fatigue; do echo "$r: $(ink history-24h $r)"; done'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t91-02-1/tmp/walk-t91.7nIZ/history-24h.png
+entry-row-stiffness: 33.7-67.3 81.0-147.0
+dose-row: 40.7-67.3 81.3-219.3
+entry-row-pain: 40.7-67.3 81.3-147.0
+entry-row-fatigue: 33.3-67.3 81.0-171.3

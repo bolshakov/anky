@@ -1,0 +1,7 @@
+$ zsh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; export LOCALE=en_US;ui | grep -E "id=(day-header|entry-row|dose-row)"'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,189 370x78.66666666666669
+Button id=entry-row-stiffness label='10:05\u202fAM, No place, Stiffness, 4 of 10' value=None enabled=True actions=Delete traits= @16,267.6666666666667 370x272.00000000000006
+Button id=dose-row label='9:34\u202fAM. Zorblex 500 mg. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,554.6666666666666 336.66666666666663x351.66666666666663

@@ -1,0 +1,9 @@
+$ zsh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh";ui | grep -E "id=(entry-row|dose-row|check-in-label)"'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+Button id=entry-row-stiffness label='10:05, No place, Stiffness, 4 of 10' value=None enabled=True actions=Delete traits= @16,206 370x68
+Button id=dose-row label='9:34. Zorblex 500 mg. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,289 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions=Delete traits= @308,299 62x18
+Button id=entry-row-pain label='9:26, No place, Pain, 6 of 10' value=None enabled=True actions=Delete traits= @16,342 370x68
+Button id=entry-row-fatigue label='21:05, Whole body, Fatigue, 3 of 10' value=None enabled=True actions=Delete traits= @16,465.6666666666667 370x68.00000000000006

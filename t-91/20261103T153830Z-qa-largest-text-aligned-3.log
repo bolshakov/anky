@@ -1,0 +1,6 @@
+$ zsh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "id=check-in-row"; ink largest-check-in check-in-row 28 386'
+exit: 0
+commit: e846c3536bce4cc2dbf78e23bfffdde0d382c766
+
+Button id=check-in-row label='How is your pain now? After your Zorblex at 9:34\u202fAM' value=None enabled=True actions= traits= @16,55.99999999999994 370x594
+32.7-367.0
