@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t91-01-2/tmp/w.sh 'axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; ui | grep -E "id=(entry-row|dose-row)"'
+exit: 0
+commit: 5ecbbb862409633a45b529fc0689a4f6e9962211
+
+Button id=entry-row-stiffness label='10:05\u202fAM, No place, Stiffness, 4 of 10' value=None enabled=True actions=Delete traits= @16,206 370x68
+Button id=dose-row label='9:34\u202fAM. Zorblex 500 mg. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,289 338x38
+Button id=entry-row-pain label='9:26\u202fAM, No place, Pain, 6 of 10' value=None enabled=True actions=Delete traits= @16,342 370x68
+Button id=entry-row-fatigue label='9:05\u202fPM, Whole body, Fatigue, 3 of 10' value=None enabled=True actions=Delete traits= @16,465.6666666666667 370x68.00000000000006
+Button id=entry-row-stiffness label='1:05\u202fPM, No place, Stiffness, 5 of 10' value=None enabled=True actions=Delete traits= @16,533.6666666666667 370x68
+Button id=entry-row-pain label='12:59\u202fPM, No place, Pain, 3 of 10' value=None enabled=True actions=Delete traits= @16,601.6666666666667 370x68
