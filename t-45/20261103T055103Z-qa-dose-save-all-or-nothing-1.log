@@ -1,0 +1,60 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Group id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Tuesday 3 November' value=None enabled=True actions= traits= @16,168 370x52
+Image id=None label='AnkyMark' value=None enabled=True actions= traits= @141,303 120x58.66666666666663
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,373.64367816091954 221x26.33333333333337
+StaticText id=None label='Log how you feel, or a medication you took. Everything stays on this iPhone.' value=None enabled=True actions= traits= @55.5,411.9770114942529 291x42.333333333333314
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x524.6666666666666
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x524.6666666666666
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,668.6666666666666 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,724.6666666666666 370x50.33333333333337
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Group id=Log Dose label=None value=None enabled=True actions= traits= @0,78 402x54
+Group id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,82 76.66666666666667x36
+Button id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,78 76.66666666666666x44
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+Group id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,82 73.33333333333331x36
+Button id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,78 73.33333333333331x44
+Heading id=None label='Medication' value=None enabled=True actions= traits= @16,132 370x40.33333333333334
+Button id=dose-medication-row label='Zorblex, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+StaticText id=None label='Zorblex' value=None enabled=True actions= traits= @32,187.33333333333334 60.66666666666666x20.333333333333343
+StaticText id=None label='As needed' value=None enabled=True actions= traits= @32,210.33333333333334 64.33333333333333x15.666666666666657
+Image id=checkmark label='Selected' value=None enabled=True actions= traits= @353.66666666666663,199.66666666666669 14.333333969116211x14.333333969116211
+Button id=dose-add-medication label='Add medication' value=None enabled=True actions= traits= @16,241 370x52
+Button id=date-row label='Date and time' value='Today 06:50' enabled=True actions= traits= @16,328 370x52.333333333333314
+StaticText id=None label='Date and time' value=None enabled=True actions= traits= @32,344 106.33333333333331x20.333333333333314
+StaticText id=None label='Today, 06:50' value=None enabled=True actions= traits= @249.66666666666666,344 99.66666666666666x20.333333333333314
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @360.66666666666663,347 8.333333969116211x14.666666984558105
+Button id=log-how-you-feel-row label='Log how you feel' value=None enabled=True actions= traits= @16,415.3333333333333 370x52
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,502.3333333333333 370x51.99999999999994
+StaticText id=None label='Check in later' value=None enabled=True actions= traits= @32,518.1666666666666 104.33333333333331x20.33333333333337
+CheckBox id=None label=None value='1' enabled=True actions= traits= @309,514.3333333333333 63x28
+PopUpButton id=dose-check-in-after label='Check in after' value='2 hours' enabled=True actions= traits= @16,554.3333333333333 370x52
+StaticText id=None label='After' value=None enabled=True actions= traits= @32,570.1666666666666 37.66666666666666x20.333333333333258
+StaticText id=None label='2 hours' value=None enabled=True actions= traits= @289.3333333333333,570.1666666666666 57.333333333333314x20.333333333333258
+Image id=chevron.up.chevron.down label='Up And Down Chevrons' value=None enabled=True actions= traits= @356.66666666666663,572.3333333333333 11.333333969116211x16
+StaticText id=check-in-footnote label='Saved for Zorblex. Next time it starts the same.' value=None enabled=True actions= traits= @16,606.3333333333333 370x29.66666666666663
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,132 30x617.6666666666666
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,132 30x617.6666666666666
+Button id=save-dose label='Save dose' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Sheet id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @328,388 30x46
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,408 320x23
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @328,388 30x46
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,408 320x23
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @328,434 30x80
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,481 320x30
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @328,434 30x80
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,481 320x30

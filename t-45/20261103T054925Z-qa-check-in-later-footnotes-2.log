@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -E "id=(check-in-later|check-in-footnote) "; shot footnote-on'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,502.3333333333333 370x51.99999999999994
+StaticText id=check-in-footnote label='Saved for Zorblex. Next time it starts the same.' value=None enabled=True actions= traits= @16,606.3333333333333 370x29.66666666666663
+/Users/bolshakov/Projects/personal/anky.wt/qa-t45-13-2/tmp/walk-t45.Cm3H/footnote-on.png

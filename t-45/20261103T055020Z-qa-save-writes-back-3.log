@@ -1,0 +1,8 @@
+$ sh -c '. "$TMPDIR/p.sh"; doses; delays'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+Zorblex|2026-11-03 06:49|120|pain 6|-
+Quibbanol|2026-11-03 06:50|-|pain 6|-
+Zorblex|120
+Quibbanol|-

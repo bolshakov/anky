@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -E "id=(check-in-later|check-in-footnote) "'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,502.3333333333333 370x51.99999999999994
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,554.3333333333333 370x47.66666666666663

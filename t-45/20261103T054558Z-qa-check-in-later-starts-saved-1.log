@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -E "id=(check-in-later|dose-check-in-after) "'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,571 370x52

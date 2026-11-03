@@ -1,0 +1,8 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -c "label='\''Log Dose'\''"; doses; delays'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+0
+Zorblex|2026-11-03 06:49|120|pain 6|-
+Zorblex|120
+Quibbanol|60

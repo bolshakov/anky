@@ -1,0 +1,11 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -E "label='\''(Off|30 minutes|1 hour|2 hours|3 hours|4 hours)'\''"; shot menu'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+StaticText id=None label='2 hours' value=None enabled=True actions= traits= @289.3333333333333,570.1666666666666 57.333333333333314x20.333333333333258
+Button id=None label='30 minutes' value=None enabled=True actions= traits= @76,370.6666666666667 250x42
+Button id=None label='1 hour' value=None enabled=True actions= traits= @76,412.6666666666667 250x42
+Button id=None label='2 hours' value=None enabled=True actions= traits= @76,454.6666666666667 250x42
+Button id=None label='3 hours' value=None enabled=True actions= traits= @76,496.6666666666667 250x42.00000000000006
+Button id=None label='4 hours' value=None enabled=True actions= traits= @76,538.6666666666667 250x42
+/Users/bolshakov/Projects/personal/anky.wt/qa-t45-13-2/tmp/walk-t45.Cm3H/menu.png

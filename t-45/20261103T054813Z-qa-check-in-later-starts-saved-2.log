@@ -1,0 +1,8 @@
+$ sh -c '. "$TMPDIR/p.sh"; tap_row Quibbanol; ui | grep -E "id=(check-in-later|dose-check-in-after) "; shot quibbanol-on'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+✓ Tap at (200.0, 275.0) completed successfully
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,571 370x52
+PopUpButton id=dose-check-in-after label='Check in after' value='1 hour' enabled=True actions= traits= @16,623 370x52
+/Users/bolshakov/Projects/personal/anky.wt/qa-t45-13-2/tmp/walk-t45.Cm3H/quibbanol-on.png

@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/p.sh"; ui | grep -E "id=(check-in-later|dose-check-in-after) "'
+exit: 0
+commit: 9629479a8db3fe65ca950e4199eec3e376690b0f
+
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,502.3333333333333 370x51.99999999999994
+PopUpButton id=dose-check-in-after label='Check in after' value='2 hours' enabled=True actions= traits= @16,554.3333333333333 370x52
