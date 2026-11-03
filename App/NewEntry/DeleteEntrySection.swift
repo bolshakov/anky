@@ -21,14 +21,41 @@ struct DeleteEntrySection: View {
     }
 }
 
+struct DeleteWords {
+    let message: LocalizedStringKey
+    let button: LocalizedStringKey
+    let failure: LocalizedStringKey
+
+    static var entry: DeleteWords {
+        DeleteWords(
+            message: "Delete this entry? This can't be undone.",
+            button: "Delete entry",
+            failure: "This entry could not be deleted."
+        )
+    }
+
+    static var dose: DeleteWords {
+        DeleteWords(
+            message: "Delete this dose? This can't be undone.",
+            button: "Delete dose",
+            failure: "This dose could not be deleted."
+        )
+    }
+}
+
 extension View {
-    func entryDeleteConfirmation(isPresented: Binding<Bool>, onDelete: @escaping () throws -> Void) -> some View {
-        modifier(EntryDeleteConfirmation(isPresented: isPresented, onDelete: onDelete))
+    func entryDeleteConfirmation(
+        isPresented: Binding<Bool>,
+        words: DeleteWords = .entry,
+        onDelete: @escaping () throws -> Void
+    ) -> some View {
+        modifier(EntryDeleteConfirmation(isPresented: isPresented, words: words, onDelete: onDelete))
     }
 }
 
 private struct EntryDeleteConfirmation: ViewModifier {
     @Binding var isPresented: Bool
+    let words: DeleteWords
     let onDelete: () throws -> Void
     @State private var isShowingDeleteFailure = false
 
@@ -38,8 +65,8 @@ private struct EntryDeleteConfirmation: ViewModifier {
                 Color.clear
                     .frame(width: 0, height: 0)
                     // An alert keeps a Cancel button. A confirmation dialog drew without one on iOS 26.5.
-                    .alert("Delete this entry? This can't be undone.", isPresented: $isPresented) {
-                        Button("Delete entry", role: .destructive) {
+                    .alert(words.message, isPresented: $isPresented) {
+                        Button(words.button, role: .destructive) {
                             delete()
                         }
                         .accessibilityIdentifier("confirm-delete")
@@ -49,7 +76,7 @@ private struct EntryDeleteConfirmation: ViewModifier {
                     .tint(.primary)
             }
             .sensoryFeedback(trigger: isPresented) { _, isNow in isNow ? .warning : nil }
-            .alert("This entry could not be deleted.", isPresented: $isShowingDeleteFailure) {
+            .alert(words.failure, isPresented: $isShowingDeleteFailure) {
                 Button("OK") {}
             }
     }

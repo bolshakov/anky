@@ -314,6 +314,9 @@
         }
       }
     },
+    "Delete dose" : {
+
+    },
     "Delete entry" : {
       "localizations" : {
         "ru" : {
@@ -323,6 +326,9 @@
           }
         }
       }
+    },
+    "Delete this dose? This can't be undone." : {
+
     },
     "Delete this entry? This can't be undone." : {
       "localizations" : {
@@ -1387,6 +1393,9 @@
       }
     },
     "This check-in could not be saved." : {
+
+    },
+    "This dose could not be deleted." : {
 
     },
     "This entry could not be deleted." : {
