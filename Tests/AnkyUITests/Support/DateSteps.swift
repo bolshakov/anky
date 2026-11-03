@@ -2,10 +2,10 @@
 import Foundation
 import XCTest
 
-/// The clock time for a moment, such as "08:15". The hour is zero-padded on a 24 hour clock.
+/// The 24 hour clock time for a moment, such as "8:15". The hour has no zero.
 func clockTime(at date: Date) -> String {
     let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
-    return String(format: "%02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
+    return String(format: "%d:%02d", parts.hour ?? 0, parts.minute ?? 0)
 }
 
 /// The clock time at the end of the date row's value, which reads "<day> <time>". The day word changes with the

@@ -18,13 +18,25 @@ struct ClockTextTests {
         return ClockText.text(for: date, calendar: calendar, locale: Locale(identifier: identifier))
     }
 
-    @Test func theBritishClockReadsTwoDigitsOnA24HourClockInTheCalendarsZone() throws {
+    @Test func theBritishClockWritesTheHourWithoutAZeroOnA24HourClock() throws {
+        #expect(try clock("en_GB", hour: 9, minute: 5) == "9:05")
+        #expect(try clock("en_GB", hour: 12, minute: 59) == "12:59")
+        #expect(try clock("en_GB", hour: 21, minute: 5) == "21:05")
         // 00:30 in Auckland is 12:30 in Berlin, so a formatter that ignored the calendar's zone would fail here.
-        #expect(try clock("en_GB", hour: 0, minute: 30) == "00:30")
+        #expect(try clock("en_GB", hour: 0, minute: 30) == "0:30")
     }
 
-    @Test func theUnitedStatesClockReadsTheHourWithoutAZeroAndAnAmPmSuffix() throws {
-        #expect(try clock("en_US", hour: 8, minute: 15) == "8:15\u{202F}AM")
-        #expect(try clock("en_US", hour: 13, minute: 5) == "1:05\u{202F}PM")
+    @Test func theUnitedStatesClockWritesTheHourWithoutAZeroAndAnAmPmSuffix() throws {
+        #expect(try clock("en_US", hour: 9, minute: 5) == "9:05\u{202F}AM")
+        #expect(try clock("en_US", hour: 12, minute: 59) == "12:59\u{202F}PM")
+        #expect(try clock("en_US", hour: 21, minute: 5) == "9:05\u{202F}PM")
+        #expect(try clock("en_US", hour: 0, minute: 30) == "12:30\u{202F}AM")
+    }
+
+    @Test func theRussianClockWritesTheHourWithoutAZeroOnA24HourClock() throws {
+        #expect(try clock("ru_RU", hour: 9, minute: 5) == "9:05")
+        #expect(try clock("ru_RU", hour: 12, minute: 59) == "12:59")
+        #expect(try clock("ru_RU", hour: 21, minute: 5) == "21:05")
+        #expect(try clock("ru_RU", hour: 0, minute: 30) == "0:30")
     }
 }
