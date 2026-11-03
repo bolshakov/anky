@@ -101,6 +101,17 @@ import Testing
         #expect(try inner.doses() == [taken])
     }
 
+    @Test(arguments: [CheckInDelay?.none, .fourHours])
+    func logDoseWritesTheDosesDelayOverTheSavedOne(_ delay: CheckInDelay?) throws {
+        var zorblex = medication("Zorblex")
+        zorblex.checkInAfter = .oneHour
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        try model.logDose(dose(for: zorblex, checkInAfter: delay))
+        #expect(model.medications.first?.checkInAfter == delay)
+        #expect(try inner.all().first?.checkInAfter == delay)
+    }
+
     @Test func aFailedLogLeavesTheModelAsItWas() throws {
         let zorblex = medication("Zorblex")
         let inner = FakeMedicationStore([zorblex])

@@ -80,6 +80,24 @@ struct SwiftDataDoseTests {
         }
     }
 
+    @Test(arguments: [CheckInDelay?.none, .fourHours])
+    func logDoseWritesTheDosesDelayOverTheSavedOne(_ delay: CheckInDelay?) throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            var zorblex = medication()
+            zorblex.checkInAfter = .oneHour
+            var dose = fullDose(for: zorblex)
+            dose.checkInAfter = delay
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.logDose(dose)
+
+            var expected = zorblex
+            expected.checkInAfter = delay
+            #expect(try SwiftDataMedicationStore(url: url).all() == [expected])
+        }
+    }
+
     @Test func failedDoseWriteLeavesDosesAndSavedDelayAsTheyWere() throws {
         try withFolder { folder in
             let url = folder.appending(path: "medications.store")
