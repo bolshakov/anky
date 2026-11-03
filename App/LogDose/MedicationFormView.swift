@@ -55,6 +55,7 @@ struct MedicationFormView: View {
                     lifecycleSection(for: editing)
                 }
             }
+            .accessibilityIdentifier("medication-form")
             .navigationTitle(editing == nil ? "New Medication" : "Edit Medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
