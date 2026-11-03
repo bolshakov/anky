@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -E "label='\''(Edit Dose|OK|Discard Changes)'\''|id=(log-medication|dose-row) "'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Button id=dose-row label='08:55. Zorblex. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,315 370x68
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,668.6666666666666 116.99999999999997x20.33333333333337

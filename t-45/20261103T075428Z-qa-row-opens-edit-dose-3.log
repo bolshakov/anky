@@ -1,0 +1,8 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep "id=dose-medication-row "; meds'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Button id=dose-medication-row label='Zorblex 500 mg, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+Button id=dose-medication-row label='Quibbanol, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669
+Zorblex|500 mg|1
+Quibbanol|-|0

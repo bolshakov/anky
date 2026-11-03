@@ -1,0 +1,8 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -E "label='\''Log Dose'\''|id=save-dose "; echo "doses:"; doses; echo end'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+Button id=save-dose label='Save dose' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+doses:
+end

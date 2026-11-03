@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -E "label='\''Edit Dose'\''|id=(dose-medication-row|save-dose-changes) "; doses'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Heading id=None label='Edit Dose' value=None enabled=True actions= traits= @163,89.66666666666666 75.66666666666669x20.66666666666667
+Button id=dose-medication-row label='Zorblex, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+Button id=dose-medication-row label='Quibbanol, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669
+Button id=save-dose-changes label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Quibbanol|2026-11-03 08:57|-|pain 6|-

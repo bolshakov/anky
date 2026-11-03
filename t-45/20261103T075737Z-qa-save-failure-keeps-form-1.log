@@ -1,0 +1,50 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -v "scroll bar"'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Group id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Tuesday 3 November' value=None enabled=True actions= traits= @16,168 370x52
+Button id=repeat-chip label='Same as last time, No place, 6 of 10' value=None enabled=True actions= traits= @16,220 370x60
+Button id=entry-row-pain label='7:57, No place, Pain, 6 of 10' value=None enabled=True actions= traits= @16,315 370x68
+StaticText id=None label='Stored on this iPhone only.' value=None enabled=True actions= traits= @16,383 370x29.666666666666686
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @142.66666666666666,668.6666666666666 116.99999999999997x20.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @16,724.6666666666666 370x50.33333333333337
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Group id=Log Dose label=None value=None enabled=True actions= traits= @0,78 402x54
+Group id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,82 76.66666666666667x36
+Button id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,78 76.66666666666666x44
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+Group id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,82 73.33333333333331x36
+Button id=log-dose-manage label='Manage' value=None enabled=True actions= traits= @308.6666666666667,78 73.33333333333331x44
+Heading id=None label='Medication' value=None enabled=True actions= traits= @16,132 370x40.33333333333334
+Button id=dose-medication-row label='Zorblex, As needed' value=None enabled=True actions= traits= @16,172.33333333333334 370x68.66666666666666
+StaticText id=None label='Zorblex' value=None enabled=True actions= traits= @32,187.33333333333334 57.66666666666666x20.333333333333343
+StaticText id=None label='As needed' value=None enabled=True actions= traits= @32,210.33333333333334 64.33333333333333x15.666666666666657
+Button id=dose-medication-row label='Quibbanol, As needed' value=None enabled=True actions= traits= @16,241 370x68.66666666666669
+StaticText id=None label='Quibbanol' value=None enabled=True actions= traits= @32,256 81.66666666666666x20.33333333333337
+StaticText id=None label='As needed' value=None enabled=True actions= traits= @32,279 64.33333333333333x15.666666666666686
+Image id=checkmark label='Selected' value=None enabled=True actions= traits= @353.66666666666663,268.3333333333333 14.333333969116211x14.333333969116211
+Button id=dose-add-medication label='Add medication' value=None enabled=True actions= traits= @16,309.66666666666663 370x52
+Button id=date-row label='Date and time' value='Today 08:57' enabled=True actions= traits= @16,396.6666666666667 370x52.333333333333314
+StaticText id=None label='Date and time' value=None enabled=True actions= traits= @32,412.6666666666667 106.33333333333331x20.333333333333314
+StaticText id=None label='Today, 08:57' value=None enabled=True actions= traits= @250.66666666666666,412.6666666666667 98.66666666666666x20.333333333333314
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @360.66666666666663,415.6666666666667 8.333333969116211x14.666666984558105
+Button id=before-reading-row label='Before this dose, 07:57, Pain, No place, 6 of 10' value=None enabled=True actions= traits= @16,484 370x85.66666666666663
+GenericElement id=None label='Before this dose, 07:57, Pain, No place, 6 of 10' value=None enabled=True actions= traits= @32,499 316.3333333333333x55.66666666666663
+StaticText id=None label='Before this dose' value=None enabled=True actions= traits= @32,499 98.66666666666666x15.666666666666629
+StaticText id=None label='Pain' value=None enabled=True actions= traits= @32,516.6666666666666 32.33333333333333x20.33333333333337
+StaticText id=None label='No place · 6 of 10' value=None enabled=True actions= traits= @32,539 106.33333333333331x15.666666666666629
+StaticText id=None label='07:57' value=None enabled=True actions= traits= @312,519 36.333333333333314x15.666666666666629
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @362.66666666666663,521 6.6666669845581055x11.666666984558105
+StaticText id=before-reading-footer label='Your latest entry before this dose. Tap to choose another.' value=None enabled=True actions= traits= @16,569.6666666666667 370x45.66666666666663
+Button id=save-dose label='Save dose' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Sheet id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48

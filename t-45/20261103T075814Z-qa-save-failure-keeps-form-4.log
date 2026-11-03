@@ -1,0 +1,21 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -v "scroll bar" | grep -E "Sheet|OK|could not|Edit Dose|Static" '
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+StaticText id=today-date label='Tuesday 3 November' value=None enabled=True actions= traits= @16,168 370x52
+StaticText id=None label='Stored on this iPhone only.' value=None enabled=True actions= traits= @16,451 370x29.666666666666686
+Group id=Edit Dose label=None value=None enabled=True actions= traits= @0,78 402x54
+Heading id=None label='Edit Dose' value=None enabled=True actions= traits= @163,89.66666666666666 75.66666666666669x20.66666666666667
+StaticText id=None label='Zorblex' value=None enabled=True actions= traits= @32,187.33333333333334 60.66666666666666x20.333333333333343
+StaticText id=None label='As needed' value=None enabled=True actions= traits= @32,210.33333333333334 64.33333333333333x15.666666666666657
+StaticText id=None label='Quibbanol' value=None enabled=True actions= traits= @32,256 78x20.33333333333337
+StaticText id=None label='As needed' value=None enabled=True actions= traits= @32,279 64.33333333333333x15.666666666666686
+StaticText id=None label='Date and time' value=None enabled=True actions= traits= @16,360.49999999999994 106.33333333333333x20.33333333333337
+StaticText id=None label='Today, 08:57' value=None enabled=True actions= traits= @266.66666666666663,360.49999999999994 98.66666666666663x20.33333333333337
+StaticText id=None label='Before this dose' value=None enabled=True actions= traits= @32,446.6666666666667 98.66666666666666x15.666666666666686
+StaticText id=None label='Pain' value=None enabled=True actions= traits= @32,464.33333333333337 32.33333333333333x20.333333333333314
+StaticText id=None label='No place · 6 of 10' value=None enabled=True actions= traits= @32,486.6666666666667 106.33333333333331x15.666666666666686
+StaticText id=None label='07:57' value=None enabled=True actions= traits= @311.6666666666667,466.6666666666667 36.333333333333314x15.666666666666686
+Sheet id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This dose could not be saved.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48

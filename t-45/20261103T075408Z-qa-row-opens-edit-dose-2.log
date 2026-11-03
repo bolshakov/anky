@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'echo t=$t; ui | grep -E "label='\''Edit Dose'\''|id=date-row "'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+t=08:51
+Heading id=None label='Edit Dose' value=None enabled=True actions= traits= @163,89.66666666666666 75.66666666666669x20.66666666666667
+Button id=date-row label='Date and time' value='Today 08:51' enabled=True actions= traits= @16,344.66666666666663 370x52

@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'ui | grep -E "id=(day-header|dose-row) "'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,168 370x38
+Heading id=day-header label='Yesterday' value=None enabled=True actions= traits= @16,291.6666666666667 370x38
+Button id=dose-row label='08:56. Quibbanol. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,329.66666666666663 370x68

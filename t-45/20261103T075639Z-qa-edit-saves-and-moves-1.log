@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t45-14-6/tmp/w.sh 'echo t=$t; ui | grep "id=dose-row "; doses'
+exit: 0
+commit: b4017a65a8e856defcf76ebc5a52855e3a003edb
+
+t=08:56
+Button id=dose-row label='08:56. Quibbanol. Dose. Pain was 6 of 10.' value=None enabled=True actions= traits= @16,315 370x68
+Quibbanol|2026-11-03 08:56|-|pain 6|-
