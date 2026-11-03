@@ -17,14 +17,43 @@ final class PlaceChipSpacingTests: XCTestCase {
         continueAfterFailure = false
         let frames = placeChipFrames()
         let firstTop = frames.map(\.minY).min() ?? 0
-        let firstRow = frames.filter { $0.minY < firstTop + 1 }
+        let firstRow = frames.filter { $0.minY < firstTop + 1 }.sorted { $0.minX < $1.minX }
         let secondRow = frames.filter { $0.minY >= firstTop + 1 }
 
         XCTAssertFalse(secondRow.isEmpty, "the place chips sit on two rows")
+        XCTAssertGreaterThanOrEqual(firstRow.count, 2, "the first row holds two chips to compare")
+        for (previous, next) in zip(firstRow, firstRow.dropFirst()) {
+            let across = next.minX - previous.maxX
+            XCTAssertTrue((7.0 ... 9.0).contains(across), "the chips in a row are \(across) pt apart")
+        }
         let firstRowBottom = firstRow.map(\.maxY).max() ?? firstTop
         let secondRowTop = secondRow.map(\.minY).min() ?? firstRowBottom
         let gap = secondRowTop - firstRowBottom
         XCTAssertTrue((7.0 ... 9.0).contains(gap), "the rows are \(gap) pt apart")
+    }
+
+    func testRepeatChipIsAtLeastFortyFourPointsTall() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+        saveEntry(app)
+
+        let chip = app.buttons["repeat-chip"]
+        XCTAssertTrue(chip.waitForExistence(timeout: 10))
+        XCTAssertGreaterThanOrEqual(chip.frame.height, 44)
+    }
+
+    func testRecentChipIsAtLeastFortyFourPointsTall() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+        saveEntry(app)
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
+
+        openNewEntry(app)
+        let chip = app.buttons["recent-chip-0"]
+        XCTAssertTrue(chip.waitForExistence(timeout: 10))
+        XCTAssertGreaterThanOrEqual(chip.frame.height, 44)
     }
 
     /// No entry and no pin, so the Where chips are the spine and sacroiliac ones, with no recent-chips row above them.
