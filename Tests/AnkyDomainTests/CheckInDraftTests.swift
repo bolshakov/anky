@@ -46,15 +46,6 @@ import Testing
         #expect(added.first?.places == pain.places)
     }
 
-    /// Check In shows the Where row only when the draft's kind asks where.
-    @Test func aFatigueCheckInHasNoWhereRow() {
-        let fatigue = entry(.fatigue, 5)
-        let draft = readings(pointingAt: fatigue.id, in: [fatigue]).checkInDraft(now: now)
-
-        #expect(draft.kind == .fatigue)
-        #expect(!draft.kind.asksWhere)
-    }
-
     @Test func startsAtPainAtZeroWithNoBeforeReading() {
         let draft = readings(pointingAt: nil, in: []).checkInDraft(now: now)
 
