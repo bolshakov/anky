@@ -1,0 +1,13 @@
+$ sh -c '. "$TMPDIR/walk.sh"; set -- $(chips | grep neck); python3 -I "$TMPDIR/px.py" vspans "$out/gaps.png" $(echo "$2 + $4 / 2" | bc) $(echo "$3 - 4" | bc) $(echo "$3 + 130" | bc)'
+exit: 0
+commit: 750d314d522917d01ad974ef3774fd964c295bec
+
+gap 384.0-388.0 4.0 pt
+pill 388.0-420.0 32.0 pt
+gap 420.0-428.0 8.0 pt
+pill 428.0-460.0 32.0 pt
+gap 460.0-474.0 14.0 pt
+pill 474.0-475.0 1.0 pt
+gap 475.0-498.0 23.0 pt
+pill 498.0-499.7 1.7 pt
+gap 499.7-518.0 18.3 pt

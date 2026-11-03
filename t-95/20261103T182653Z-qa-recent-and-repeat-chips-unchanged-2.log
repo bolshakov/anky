@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=recent-chip-[0-9] " | frame'
+exit: 0
+commit: 750d314d522917d01ad974ef3774fd964c295bec
+
+16 171 124 44
+148 171 153.33333333333331 44

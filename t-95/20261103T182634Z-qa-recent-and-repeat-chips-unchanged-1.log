@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=repeat-chip " | frame'
+exit: 0
+commit: 750d314d522917d01ad974ef3774fd964c295bec
+
+16 220 370 60
