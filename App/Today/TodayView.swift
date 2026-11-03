@@ -26,6 +26,13 @@ struct TodayView: View {
     @State private var saveTicks = 0
     @State private var checkingIn: Dose?
     @State private var checkInNow = Date.now
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var pairLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 12))
+    }
 
     private var todayItems: [LoggedItem] {
         TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
@@ -73,7 +80,7 @@ struct TodayView: View {
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .safeAreaInset(edge: .bottom) {
-                HStack(spacing: 12) {
+                pairLayout {
                     Button {
                         isShowingLogDose = true
                     } label: {
