@@ -12,7 +12,6 @@ struct PlaceChip: View {
 
     var body: some View {
         chipButton
-            .frame(minHeight: 44)
             .contentShape(Capsule())
             .accessibilityLabel(place.displayName)
             .accessibilityAddTraits(isSelected ? .isSelected : [])
