@@ -60,8 +60,8 @@ struct LogDoseView: View {
                     .listRowSeparator(.hidden)
                 }
                 readingSection
-                if let medication = checkedMedication {
-                    DoseCheckInSection(checkIn: $checkIn, medicationName: medication.name)
+                if checkedMedication != nil {
+                    DoseCheckInSection(checkIn: $checkIn)
                 }
             }
             .scrollContentBackground(.hidden)

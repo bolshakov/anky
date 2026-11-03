@@ -18,6 +18,19 @@ final class LogDoseCheckInTests: XCTestCase {
         expectCheckIn(on: true, delay: "1 hour", app)
     }
 
+    func testFootnoteAsksToTurnItOnWhileOffAndReadsOneSentenceWhenOn() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        addMedication(named: "Zorblex", app)
+        XCTAssertEqual(footnote(app).label, "Anky asks how your pain is after this long. Turn it on to choose a time.")
+
+        toggleCheckIn(app)
+        XCTAssertEqual(footnote(app).label, "Anky asks how your pain is after this long.")
+        let saved = app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Saved for'"))
+        XCTAssertEqual(saved.count, 0)
+    }
+
     func testSavingTheDoseWritesTheSwitchAndMenuBackToTheMedication() {
         continueAfterFailure = false
         let app = launchAnky()
@@ -41,6 +54,12 @@ final class LogDoseCheckInTests: XCTestCase {
 
     private func checkInToggle(_ app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+    }
+
+    private func footnote(_ app: XCUIApplication) -> XCUIElement {
+        let text = app.descendants(matching: .any).matching(identifier: "check-in-footnote").firstMatch
+        XCTAssertTrue(text.waitForExistence(timeout: 10))
+        return text
     }
 
     /// A tap at the centre of the row misses the switch, so this taps where the switch sits.

@@ -4,7 +4,6 @@ import SwiftUI
 
 struct DoseCheckInSection: View {
     @Binding var checkIn: DoseCheckIn
-    let medicationName: String
 
     var body: some View {
         Section {
@@ -22,7 +21,7 @@ struct DoseCheckInSection: View {
 
     @ViewBuilder private var footnote: some View {
         if checkIn.isOn {
-            Text("Saved for \(medicationName). Next time it starts the same.")
+            Text("Anky asks how your pain is after this long.")
         } else {
             Text("Anky asks how your pain is after this long. Turn it on to choose a time.")
         }
