@@ -107,7 +107,8 @@ struct EntryRow: View {
     }
 
     private var value: some View {
-        Text("\(Text(entry.severity.value, format: .number).bold().foregroundStyle(.primary)) of \(10)")
-            .foregroundStyle(.secondary)
+        Text(entry.severity.value, format: .number)
+            .font(.body.weight(.semibold))
+            .monospacedDigit()
     }
 }
