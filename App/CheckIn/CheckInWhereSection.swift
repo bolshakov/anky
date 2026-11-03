@@ -20,6 +20,7 @@ struct CheckInWhereSection: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("Where")
             .accessibilityValue(value)
+            .accessibilityAddTraits(.isButton)
             .accessibilityIdentifier("where-row")
         } footer: {
             Text(footer)
