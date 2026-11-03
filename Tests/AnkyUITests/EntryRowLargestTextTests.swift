@@ -33,9 +33,10 @@ final class EntryRowLargestTextTests: XCTestCase {
         attachScreenshot(named: "entry-row-largest-text")
 
         let words = try recognizedWords(in: rowImage(of: row, in: relaunched))
-        for word in ["Stiffness", "Lower", "back", "of", "10"] {
+        for word in ["Stiffness", "Lower", "back", "4"] {
             XCTAssertTrue(words.contains(word), "\(word) is not read whole in \(words)")
         }
+        XCTAssertFalse(words.contains("of"), "the row shows the number alone in \(words)")
         XCTAssertFalse(words.contains { $0.hasSuffix("-") }, "a word is split across lines in \(words)")
     }
 
