@@ -26,10 +26,13 @@ struct EditDoseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Medication") {
+                Section {
                     ForEach(EditDoseMedications.choices(for: dose, in: medications.medications)) { medication in
                         medicationRow(medication)
                     }
+                } header: {
+                    Text("Medication")
+                        .cardCaption()
                 }
                 Section {
                     DateSection(date: $takenAt)

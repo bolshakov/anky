@@ -34,7 +34,7 @@ struct LogDoseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Medication") {
+                Section {
                     if active.isEmpty {
                         Text("No medications yet")
                             .accessibilityIdentifier("dose-no-medications")
@@ -46,6 +46,9 @@ struct LogDoseView: View {
                         isShowingNewMedication = true
                     }
                     .accessibilityIdentifier("dose-add-medication")
+                } header: {
+                    Text("Medication")
+                        .cardCaption()
                 }
                 Section {
                     DateSection(
