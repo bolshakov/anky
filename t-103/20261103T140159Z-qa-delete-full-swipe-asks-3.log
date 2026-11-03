@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t103-01-1/tmp/walk.sh; udid=0AD3DED6-A9E0-4AEF-B3B6-386E1EBB68A7; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t103-01-1/tmp/walk-t103.Hv5Q; full_swipe_id entry-row-pain; sleep 1; tap_first confirm-delete; sleep 1; ui | grep entry-row-; entries | wc -l'
+exit: 0
+commit: 947c752ce248217b0f4a1a0e477eb5fb2e6d2b93
+
+       0

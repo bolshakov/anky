@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t103-01-1/tmp/walk.sh; udid=0AD3DED6-A9E0-4AEF-B3B6-386E1EBB68A7; ui | grep history-delete'
+exit: 0
+commit: 947c752ce248217b0f4a1a0e477eb5fb2e6d2b93
+
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,210.16666666666666 60x40.33333333333334

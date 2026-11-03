@@ -1,0 +1,9 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t103-01-1/tmp/walk.sh; udid=0AD3DED6-A9E0-4AEF-B3B6-386E1EBB68A7; axe tap --id history-delete --wait-timeout 5 --udid 0AD3DED6-A9E0-4AEF-B3B6-386E1EBB68A7; ui | grep -E '\''confirm-delete|keep-entry'\'''
+exit: 0
+commit: 947c752ce248217b0f4a1a0e477eb5fb2e6d2b93
+
+✓ Tap at resolved tap point at (346.0, 230.33333333333331) completed successfully
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
