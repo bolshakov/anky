@@ -85,6 +85,8 @@ struct TodayView: View {
                         isShowingLogDose = true
                     } label: {
                         Text("Log medication")
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .buttonStyle(.glass)
@@ -94,6 +96,8 @@ struct TodayView: View {
                         isShowingNewEntry = true
                     } label: {
                         Text("Log how you feel")
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .buttonStyle(.glassProminent)
