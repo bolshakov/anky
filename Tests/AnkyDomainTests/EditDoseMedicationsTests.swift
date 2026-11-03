@@ -30,9 +30,16 @@ struct EditDoseMedicationsTests {
         #expect(choices.map(\.id) == [zorblex.id, quibbanol.id, restored.id])
     }
 
-    @Test func anArchivedDoseMedicationIsListedOnceAfterTheActiveOnes() {
+    @Test func anArchivedDoseMedicationIsListedOnceInCreatedOrder() {
         let zorblex = make("Zorblex", created: 100)
         let archived = make("Archived", created: 50, archived: 150)
+        let choices = EditDoseMedications.choices(for: dose(of: archived), in: [archived, zorblex])
+        #expect(choices.map(\.id) == [archived.id, zorblex.id])
+    }
+
+    @Test func aNewerArchivedDoseMedicationIsListedInCreatedOrderToo() {
+        let zorblex = make("Zorblex", created: 100)
+        let archived = make("Archived", created: 200, archived: 250)
         let choices = EditDoseMedications.choices(for: dose(of: archived), in: [archived, zorblex])
         #expect(choices.map(\.id) == [zorblex.id, archived.id])
     }
