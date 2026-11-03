@@ -1,0 +1,8 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E '\''id=(entry-row|dose-row)'\''; ui | grep -E "label='\''(6|10|4)'\''"'
+exit: 1
+commit: 43de9bb0ca202e0acaf091b5998600923261d1e3
+
+Button id=entry-row-fatigue label='10:05, Whole body, Fatigue, 10 of 10' value=None enabled=True actions=Delete traits= @16,206 370x68
+Button id=dose-row label='9:34. Zorblex 500 mg. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,289 338x38
+Button id=entry-row-pain label='9:26, No place, Pain, 6 of 10' value=None enabled=True actions=Delete traits= @16,342 370x68
+Button id=entry-row-stiffness label='14:20, No place, Stiffness, 8 of 10' value=None enabled=True actions=Delete traits= @16,465.6666666666667 370x68.00000000000006

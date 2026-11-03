@@ -1,0 +1,7 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E '\''id=severity-(value|low-label|high-label)'\'''
+exit: 0
+commit: 43de9bb0ca202e0acaf091b5998600923261d1e3
+
+StaticText id=severity-value label='8 of 10' value=None enabled=True actions= traits= @317,746.5 53x20.333333333333258
+StaticText id=severity-low-label label='0' value=None enabled=True actions= traits= @32,811.8333333333333 8.333333333333329x15.666666666666742
+StaticText id=severity-high-label label='10' value=None enabled=True actions= traits= @355.6666666666667,811.8333333333333 14.333333333333314x15.666666666666742

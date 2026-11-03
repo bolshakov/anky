@@ -1,0 +1,6 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ink levels-today entry-row-pain 300 386; ink levels-today entry-row-fatigue 300 386'
+exit: 0
+commit: 43de9bb0ca202e0acaf091b5998600923261d1e3
+
+360.0-369.3
+350.7-369.3

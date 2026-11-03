@@ -1,0 +1,6 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E '\''id=entry-row'\'''
+exit: 0
+commit: 43de9bb0ca202e0acaf091b5998600923261d1e3
+
+Button id=entry-row-fatigue label='10:05, Whole body, Fatigue, 10 of 10' value=None enabled=True actions= traits= @16,315 370x68
+Button id=entry-row-pain label='9:26, No place, Pain, 6 of 10' value=None enabled=True actions= traits= @16,383 370x68
