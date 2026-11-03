@@ -1,0 +1,11 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'setup >/dev/null 2>&1; echo Today; ui | grep -iE "overdue|forgot|missed|streak"; echo "exit $?"; axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; echo History; ui | grep -iE "overdue|forgot|missed|streak"; echo "exit $?"; axe tap --label Today --element-type RadioButton --udid "$udid" >/dev/null; axe tap --id check-in-row --wait-timeout 5 --udid "$udid" >/dev/null; echo CheckIn; ui | grep -E "check-in-question" | cut -c1-60; ui | grep -iE "overdue|forgot|missed|streak"; echo "exit $?"'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+Today
+exit 1
+History
+exit 1
+CheckIn
+Heading id=check-in-question label='How is your pain now?' v
+exit 1

@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'text_size accessibility-extra-extra-extra-large; sleep 2; shot check-large; axe swipe --start-x 200 --start-y 600 --end-x 200 --end-y 150 --udid "$udid" >/dev/null; axe swipe --start-x 200 --start-y 600 --end-x 200 --end-y 150 --udid "$udid" >/dev/null; ui | grep -E "id=(save-check-in|where-row|date-row|severity-slider) "; shot check-large-scrolled; text_size large'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/walk-t82.U9bb/check-large.png
+Button id=date-row label='Date and time' value='Today 04:43' enabled=True actions= traits= @16,-134.9999999999999 370x217.33333333333334
+Button id=where-row label='Where' value='None' enabled=True actions= traits= @16,117.33333333333348 370x160.66666666666663
+Button id=save-check-in label='Save check-in' value=None enabled=True actions= traits= @16,668.6666666666666 370x155.33333333333337
+/Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/walk-t82.U9bb/check-large-scrolled.png

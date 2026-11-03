@@ -1,0 +1,13 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'ui | grep -E "id=(check-in-row|check-in-heading) "; axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; ui | grep -E "id=(dose-row|check-in-label) "; axe describe-ui --udid "$udid" | grep -B2 -A2 "Opens Check In"'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+Heading id=check-in-heading label='Check in' value=None enabled=True actions= traits= @16,297.66666666666663 370x40.333333333333314
+Button id=check-in-row label='How is your pain now? After your Zorblex at 03:55' value=None enabled=True actions= traits= @16,338 370x68
+Button id=dose-row label='03:55. Zorblex. Dose. Pain was 6 of 10. Check in pending.' value=None enabled=True actions= traits= @32,221 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions= traits= @308,231 62x18
+                                                                                        "role" : "AXButton",
+                                                                                        "enabled" : true,
+                                                                                        "help" : "Opens Check In"
+                                                                                      },
+                                                                                      {

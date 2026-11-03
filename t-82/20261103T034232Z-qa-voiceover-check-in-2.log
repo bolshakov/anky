@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'axe tap --label Today --element-type RadioButton --udid "$udid" >/dev/null; axe tap --id check-in-row --wait-timeout 5 --udid "$udid" >/dev/null; ui | grep -E "id=(severity-slider|where-row|check-in-info|check-in-question) "; shot vo-check'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+GenericElement id=check-in-info label='After Zorblex. Taken at 03:55. Pain was 6 of 10 then.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
+Heading id=check-in-question label='How is your pain now?' value=None enabled=True actions= traits= @16,276.33333333333337 370x56.333333333333314
+Slider id=severity-slider label='Pain now' value=0.6000000238418579 enabled=True actions= traits= @32,464.3333435058594 338x31
+Button id=where-row label='Where' value='None' enabled=True actions= traits= @16,638.6666666666667 370x52
+/Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/walk-t82.U9bb/vo-check.png

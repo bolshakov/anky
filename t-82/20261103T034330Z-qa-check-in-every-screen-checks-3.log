@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'ui | grep -E "(Button id=(where-row|date-row|save-check-in|check-in-cancel)|id=where-footer) " | frame'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+20 78 76.66666666666666 44
+16 551.6666666666667 370 52
+16 638.6666666666667 370 52
+16 690.6666666666666 370 45.66666666666663
+16 773.6666666666666 370 50.33333333333337

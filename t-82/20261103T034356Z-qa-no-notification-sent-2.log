@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'grep -rnE "UNUserNotificationCenter|UNNotification" "$CHECKOUT/App" "$CHECKOUT/Sources"; echo "exit $?"'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+exit 1

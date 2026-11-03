@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t82-10-1/tmp/w.sh 'xcrun simctl privacy "$udid" reset all dev.bolshakov.Anky; setup >/dev/null 2>&1; ui | grep -E "id=check-in-row "; echo ---; ui | grep -E "Allow|Notifications|label=.Don.t Allow."; echo "grep exit $?"'
+exit: 0
+commit: 16b1a3248116a303c9f8c317a9bdf4be8eaa2f7a
+
+Button id=check-in-row label='How is your pain now? After your Zorblex at 03:58' value=None enabled=True actions= traits= @16,338 370x68
+---
+grep exit 1
