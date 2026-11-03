@@ -33,8 +33,8 @@ struct DaySectionView: View {
             EntryRow(entry: entry) {
                 onSelect(entry)
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                Button("Delete", role: .destructive) {
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button("Delete", systemImage: "trash", role: .destructive) {
                     onDelete(entry)
                 }
                 .accessibilityIdentifier("history-delete")
