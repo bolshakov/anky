@@ -25,7 +25,7 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
         let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
-        XCTAssertEqual(clockTime(inRowValue: app.buttons["date-row"].value as? String), rowTime, rowLabel)
+        XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
     }
 
     /// The dose keeps the id of its before-entry after that entry is deleted, so Edit Dose reads it as None.
@@ -71,10 +71,10 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(medicationRows(in: app).count, 2)
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
-        let date = app.buttons["date-row"]
-        XCTAssertTrue((date.value as? String ?? "").hasPrefix("Today"), "date-row is \(date.value ?? "")")
+        let date = dateRow(in: app)
+        XCTAssertTrue((date.value as? String ?? "").hasPrefix("Today"), "date row is \(date.value ?? "")")
         let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
-        XCTAssertEqual(clockTime(inRowValue: date.value as? String), rowTime, rowLabel)
+        XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.waitForExistence(timeout: 10))
         XCTAssertTrue(before.label.hasPrefix("Before this dose"), before.label)
@@ -96,7 +96,7 @@ final class EditDoseTests: XCTestCase {
 
         doseRow(in: app).tap()
         chooseMedication("Quibbanol", in: app)
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         app.buttons["edit-dose-cancel"].tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
@@ -104,7 +104,7 @@ final class EditDoseTests: XCTestCase {
 
         doseRow(in: app).tap()
         chooseMedication("Quibbanol", in: app)
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         swipeSheetDown(app)
 
         XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
@@ -133,7 +133,7 @@ final class EditDoseTests: XCTestCase {
         try logZorblexDoseCheckingInLater(app)
 
         doseRow(in: app).tap()
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         app.buttons["save-dose-changes"].tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))

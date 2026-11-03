@@ -16,7 +16,7 @@ final class CheckInWhereRowTests: XCTestCase {
         let question = identified("check-in-question", in: app)
         XCTAssertTrue(question.label.lowercased().contains("fatigue"), question.label)
         scrollToBottom(of: app)
-        XCTAssertTrue(identified("date-row", in: app).exists)
+        XCTAssertTrue(dateRow(in: app).exists)
         XCTAssertFalse(identified("where-row", in: app).exists)
     }
 

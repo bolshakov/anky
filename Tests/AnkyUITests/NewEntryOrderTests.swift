@@ -11,7 +11,7 @@ final class NewEntryOrderTests: XCTestCase {
 
         openNewEntry(app)
         assertInOrder(
-            ["recent-chips", "kind-picker", "date-row", "where-section", "severity-caption", "note-field"],
+            ["recent-chips", "kind-picker", "date row", "where-section", "severity-caption", "note-field"],
             in: app
         )
     }
@@ -22,7 +22,7 @@ final class NewEntryOrderTests: XCTestCase {
 
         openNewEntry(app)
         XCTAssertFalse(element("recent-chips", in: app).exists)
-        assertInOrder(["kind-picker", "date-row", "where-section", "severity-caption", "note-field"], in: app)
+        assertInOrder(["kind-picker", "date row", "where-section", "severity-caption", "note-field"], in: app)
     }
 
     func testRecentChipFillsKindPlacesAndSeverity() {
@@ -63,7 +63,7 @@ final class NewEntryOrderTests: XCTestCase {
         for _ in 0 ..< 3 where !delete.exists {
             screen.swipeUp()
         }
-        assertInOrder(["kind-picker", "date-row", "severity-caption", "note-field", "delete-entry"], in: app)
+        assertInOrder(["kind-picker", "date row", "severity-caption", "note-field", "delete-entry"], in: app)
     }
 
     /// Left knee is not a default chip, so it shows in the More places value, where the test can read it.
@@ -104,10 +104,15 @@ final class NewEntryOrderTests: XCTestCase {
         line: UInt = #line
     ) {
         let tops = ids.map { id -> (id: String, top: CGFloat) in
-            let marker = element(id, in: app)
-            XCTAssertTrue(marker.waitForExistence(timeout: 10), "\(id) is not on screen", file: file, line: line)
-            return (id, marker.frame.minY)
+            let found = marker(id, in: app)
+            XCTAssertTrue(found.waitForExistence(timeout: 10), "\(id) is not on screen", file: file, line: line)
+            return (id, found.frame.minY)
         }
         XCTAssertEqual(tops.sorted { $0.top < $1.top }.map(\.id), ids, file: file, line: line)
+    }
+
+    /// The date row is reached through its helper, so its name here is not an id.
+    private func marker(_ name: String, in app: XCUIApplication) -> XCUIElement {
+        name == "date row" ? dateRow(in: app) : element(name, in: app)
     }
 }

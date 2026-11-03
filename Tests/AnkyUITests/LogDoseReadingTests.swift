@@ -19,7 +19,7 @@ final class LogDoseReadingTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
-        let opened = clockTime(inRowValue: app.buttons["date-row"].value as? String)
+        let opened = dateRowTime(in: app)
         waitForMinuteToChange(from: opened)
 
         openHowYouFeel(app)

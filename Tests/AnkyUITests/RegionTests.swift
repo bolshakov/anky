@@ -33,12 +33,12 @@ final class RegionTests: XCTestCase {
         // The saved time is the moment New Entry opens, so the row time is read before it opens.
         let rowTimeBefore = clockText(at: .now, in: locale)
         openNewEntry(app)
-        let row = app.buttons["date-row"]
+        let row = dateRow(in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let shownRow = row.value as? String
         XCTAssertTrue(
-            [clockBefore, clockText(at: .now, in: locale)].contains(clockTime(inRowValue: shownRow)),
-            "date-row is \(shownRow ?? "nil")"
+            [clockBefore, clockText(at: .now, in: locale)].contains(dateRowTime(in: app)),
+            "date row is \(shownRow ?? "nil")"
         )
 
         setSeverity(4, in: app)
