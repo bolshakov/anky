@@ -18,6 +18,41 @@ final class LogDoseCheckInTests: XCTestCase {
         expectCheckIn(on: true, delay: "1 hour", app)
     }
 
+    func testSavingTheDoseWritesTheSwitchAndMenuBackToTheMedication() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        addMedication(named: "Quibbanol", delay: "1 hour", app)
+
+        toggleCheckIn(app)
+        saveDose(app)
+        app.buttons["log-medication"].tap()
+        expectCheckIn(on: false, delay: nil, app)
+
+        toggleCheckIn(app)
+        app.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch.tap()
+        let item = app.buttons["4 hours"]
+        XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item 4 hours")
+        item.tap()
+        saveDose(app)
+        app.buttons["log-medication"].tap()
+        expectCheckIn(on: true, delay: "4 hours", app)
+    }
+
+    private func checkInToggle(_ app: XCUIApplication) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+    }
+
+    /// A tap at the centre of the row misses the switch, so this taps where the switch sits.
+    private func toggleCheckIn(_ app: XCUIApplication) {
+        checkInToggle(app).coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
+    }
+
+    private func saveDose(_ app: XCUIApplication) {
+        app.buttons["save-dose"].tap()
+        XCTAssertTrue(app.buttons["log-medication"].waitForExistence(timeout: 10))
+    }
+
     /// Adds from the Add medication row of the open Log Dose sheet, which stays open after each save.
     private func addMedication(named name: String, delay: String? = nil, _ app: XCUIApplication) {
         app.buttons["dose-add-medication"].tap()
