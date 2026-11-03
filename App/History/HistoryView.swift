@@ -70,13 +70,14 @@ struct HistoryView: View {
         // Captured here, so the alert's button deletes the entry it was asked about even after the binding clears.
         let target = pendingDelete
         let doseTarget = pendingDoseDelete
+        let days = sections
         NavigationStack {
             Group {
-                if sections.isEmpty {
+                if days.isEmpty {
                     EmptyHistoryView()
                 } else {
                     List {
-                        ForEach(sections) { section in
+                        ForEach(days) { section in
                             DaySectionView(
                                 section: section,
                                 medications: medications.medications,
@@ -85,7 +86,8 @@ struct HistoryView: View {
                                 onSelect: { editing = $0 },
                                 onSelectDose: open,
                                 onDelete: { pendingDelete = $0 },
-                                onDeleteDose: { pendingDoseDelete = $0 }
+                                onDeleteDose: { pendingDoseDelete = $0 },
+                                isLastDay: section.id == days.last?.id
                             )
                         }
                     }
