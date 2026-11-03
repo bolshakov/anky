@@ -1,0 +1,8 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "id=(check-in-info|severity-value|severity-slider|where-row) "'
+exit: 0
+commit: 23e1ecfb3cacf2a1f7e6f6a8cfcdcb35fe185e97
+
+GenericElement id=check-in-info label='After Zorblex. Taken at 02:22.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
+StaticText id=severity-value label='0 of 10' value=None enabled=True actions= traits= @317.3333333333333,406.5 52.666666666666686x20.33333333333337
+Slider id=severity-slider label='Pain now' value=0 enabled=True actions= traits= @32,464.3333435058594 338x31
+Button id=where-row label='Where' value='None' enabled=True actions= traits= @16,638.6666666666667 370x52

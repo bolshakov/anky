@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep "id=where-row "'
+exit: 0
+commit: 23e1ecfb3cacf2a1f7e6f6a8cfcdcb35fe185e97
+
+Button id=where-row label='Where' value='Lower back' enabled=True actions= traits= @16,638.6666666666667 370x52
