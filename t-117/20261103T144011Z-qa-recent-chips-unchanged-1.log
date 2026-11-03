@@ -1,0 +1,8 @@
+$ zsh -c '. $TMPDIR/pre.sh; shot chips-light; ui | grep -E "id=(recent-chips|recent-chip-0|kind-picker) " | cut -c1-200'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t117-01-4/tmp/walk-t117.JvSk/chips-light.png
+Group id=recent-chips label=None value=None enabled=True actions= traits= @16,171 285.33331298828125x44
+Button id=recent-chip-0 label='Same as last time, Lower back, 4 of 10' value=None enabled=True actions= traits= @16,171 124x44
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16,264.6666666666667 370x31

@@ -1,0 +1,8 @@
+$ zsh -c '. $TMPDIR/pre.sh; look dark; sleep 1; shot nocard-dark; y=$(ui | grep "id=kind-picker " | frame | awk "{ print int(\$2) - 4 }"); python3 -I "$TMPDIR/px.py" samebg "$out/nocard-dark.png" 200 6 $y; y=$(ui | grep "id=kind-picker " | frame | awk "{ print int(\$2 + \$4) + 4 }"); python3 -I "$TMPDIR/px.py" samebg "$out/nocard-dark.png" 200 6 $y; y=$(ui | grep "id=date-row " | frame | awk "{ print int(\$2 + \$4 / 2) }"); python3 -I "$TMPDIR/px.py" samebg "$out/nocard-dark.png" 200 6 $y; look light'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t117-01-4/tmp/walk-t117.JvSk/nocard-dark.png
+SAME (28, 28, 30) (28, 28, 30)
+SAME (28, 28, 30) (28, 28, 30)
+DIFFERENT (44, 44, 46) (28, 28, 30)

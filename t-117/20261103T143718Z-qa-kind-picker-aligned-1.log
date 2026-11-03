@@ -1,0 +1,7 @@
+$ zsh -c '. $TMPDIR/pre.sh; ui | grep -E "id=(kind-picker|date-row) "; order'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16,177.66666666666666 370x31
+Button id=date-row label='Date and time' value='Today 15:37' enabled=True actions= traits= @16,254 370x52
+kind-picker date-row where-section severity-caption save-entry note-field 

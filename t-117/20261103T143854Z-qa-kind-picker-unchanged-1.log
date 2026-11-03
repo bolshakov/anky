@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/pre.sh; ui | grep "id=kind-picker " | frame; shot kind-pain'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+16 177.66666666666666 370 31
+/Users/bolshakov/Projects/personal/anky.wt/qa-t117-01-4/tmp/walk-t117.JvSk/kind-pain.png

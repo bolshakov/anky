@@ -1,0 +1,12 @@
+$ zsh -c '. $TMPDIR/pre.sh; axe tap --id recent-chip-0 --element-type Button --wait-timeout 5 --udid "$udid"; ui | grep -E "label='\''(Pain|Stiffness|Fatigue)'\'' "; ui | grep -E "id=(place-chip-lower|more-places|severity-value) "; shot chips-filled'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+✓ Tap at resolved tap point at (78.0, 193.0) completed successfully
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,264.66666666666663 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,264.66666666666663 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,264.66666666666663 124x32
+Button id=place-chip-lower label='Lower back' value=None enabled=True actions=Pin as shortcut traits= @211,466 125x44
+Button id=more-places label='More places' value='None' enabled=True actions= traits= @16,577 370x52
+StaticText id=severity-value label='4 of 10' value=None enabled=True actions= traits= @317,702.5 53x20.333333333333258
+/Users/bolshakov/Projects/personal/anky.wt/qa-t117-01-4/tmp/walk-t117.JvSk/chips-filled.png

@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/pre.sh; y=$(ui | grep "id=date-row " | frame | awk "{ print int(\$2 + \$4 / 2) }"); python3 -I "$TMPDIR/px.py" samebg "$out/nocard-light.png" 200 6 $y'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+DIFFERENT (255, 255, 255) (242, 242, 247)

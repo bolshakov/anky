@@ -1,0 +1,9 @@
+$ zsh -c '. $TMPDIR/pre.sh; kind Fatigue; ui | grep -E "label='\''(Pain|Stiffness|Fatigue)'\'' "; order'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+✓ Tap at resolved tap point at (324.0, 193.66666666666666) completed successfully
+RadioButton id=None label='Pain' value=0 enabled=True actions= traits= @16,177.66666666666666 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,177.66666666666666 123x32
+RadioButton id=None label='Fatigue' value=1 enabled=True actions= traits= @262,177.66666666666666 124x32
+kind-picker date-row severity-caption note-field save-entry 

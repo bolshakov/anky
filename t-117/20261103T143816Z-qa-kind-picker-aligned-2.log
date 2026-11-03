@@ -1,0 +1,7 @@
+$ zsh -c '. $TMPDIR/pre.sh; ui | grep -E "id=(recent-chips|kind-picker|date-row) "'
+exit: 0
+commit: ec0643f654ce297a3d8c388e23f9844edbffb4c7
+
+Group id=recent-chips label=None value=None enabled=True actions= traits= @16,171 124x44
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16,264.6666666666667 370x31
+Button id=date-row label='Date and time' value='Today 15:38' enabled=True actions= traits= @16,341 370x52
