@@ -56,6 +56,117 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(editDoseScreen(in: app).exists)
     }
 
+    func testADoseRowOpensEditDoseWithItsMedicationTimeAndReading() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        try logZorblexDoseCheckingInLater(app)
+
+        doseRow(in: app).tap()
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        XCTAssertEqual(medicationRows(in: app).count, 2)
+        XCTAssertEqual(selectedMedication(in: app), "Zorblex")
+        let date = app.buttons["date-row"]
+        XCTAssertTrue((date.value as? String ?? "").hasPrefix("Today"), "date-row is \(date.value ?? "")")
+        XCTAssertEqual(clockTime(inRowValue: date.value as? String), clockTime(at: .now.addingTimeInterval(-3600)))
+        let before = app.buttons["before-reading-row"]
+        XCTAssertTrue(before.waitForExistence(timeout: 10))
+        XCTAssertTrue(before.label.hasPrefix("Before this dose"), before.label)
+        XCTAssertTrue(before.label.contains("4 of 10"), before.label)
+        XCTAssertTrue(app.buttons["save-dose-changes"].exists)
+        XCTAssertTrue(app.buttons["edit-dose-cancel"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["log-dose-manage"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["dose-add-medication"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["check-in-later"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["dose-check-in-after"].exists)
+        attachScreenshot(named: "edit-dose")
+    }
+
+    func testCancelAndSwipeDownLeaveTheDoseAsItWas() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        try logZorblexDoseCheckingInLater(app)
+        let label = doseRow(in: app).label
+
+        doseRow(in: app).tap()
+        chooseMedication("Quibbanol", in: app)
+        moveToYesterday(in: app)
+        app.buttons["edit-dose-cancel"].tap()
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        assertDoseUnchanged(label, in: app)
+
+        doseRow(in: app).tap()
+        chooseMedication("Quibbanol", in: app)
+        moveToYesterday(in: app)
+        swipeSheetDown(app)
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        assertDoseUnchanged(label, in: app)
+    }
+
+    func testSaveChangesWithAnotherMedicationKeepsTheReadingAndTheDelay() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        try logZorblexDoseCheckingInLater(app)
+
+        doseRow(in: app).tap()
+        chooseMedication("Quibbanol", in: app)
+        app.buttons["save-dose-changes"].tap()
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: app).label.contains("Quibbanol"), doseRow(in: app).label)
+        XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
+        XCTAssertTrue(checkInRow(in: app).waitForExistence(timeout: 10), "the dose lost its check-in delay")
+    }
+
+    func testAMovedDoseShowsUnderYesterdayInHistory() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        try logZorblexDoseCheckingInLater(app)
+
+        doseRow(in: app).tap()
+        moveToYesterday(in: app)
+        app.buttons["save-dose-changes"].tap()
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: app).waitForNonExistence(timeout: 10))
+        app.tabBars.buttons["History"].tap()
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+        let yesterday = try XCTUnwrap(
+            app.descendants(matching: .any).matching(identifier: "day-header")
+                .allElementsBoundByIndex.first { $0.label == "Yesterday" },
+            "headers are \(dayHeaderLabels(in: app))"
+        )
+        XCTAssertGreaterThan(doseRow(in: app).frame.minY, yesterday.frame.minY)
+    }
+
+    func testAFailedSaveKeepsEditDoseOpenOnTheChosenMedication() throws {
+        continueAfterFailure = false
+        let folder = UUID().uuidString
+        let app = launchAnky(folder: folder)
+        try logZorblexDoseCheckingInLater(app)
+        app.terminate()
+
+        let failing = launchAnky(folder: folder, arguments: ["-ANKY_FAIL_MEDICATION_WRITES", "1"])
+        XCTAssertTrue(doseRow(in: failing).waitForExistence(timeout: 10))
+        doseRow(in: failing).tap()
+        chooseMedication("Quibbanol", in: failing)
+        failing.buttons["save-dose-changes"].tap()
+
+        XCTAssertTrue(failing.alerts.firstMatch.waitForExistence(timeout: 10))
+        failing.alerts.buttons["OK"].tap()
+        XCTAssertTrue(editDoseScreen(in: failing).waitForExistence(timeout: 10))
+        XCTAssertEqual(selectedMedication(in: failing), "Quibbanol")
+        XCTAssertTrue(failing.buttons["save-dose-changes"].isEnabled)
+
+        failing.buttons["save-dose-changes"].tap()
+
+        XCTAssertTrue(editDoseScreen(in: failing).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: failing).label.contains("Quibbanol"), doseRow(in: failing).label)
+    }
+
     private func logZorblexDose(_ app: XCUIApplication) {
         addZorblex(app)
         app.buttons["save-dose"].tap()
@@ -65,13 +176,67 @@ final class EditDoseTests: XCTestCase {
     /// Leaves Log Dose open with its medication chosen.
     private func addZorblex(_ app: XCUIApplication) {
         app.buttons["log-medication"].tap()
+        addMedication("Zorblex", in: app)
+        XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
+    }
+
+    /// Adds a medication from Log Dose, which is left open with it chosen.
+    private func addMedication(_ medication: String, in app: XCUIApplication) {
         app.buttons["dose-add-medication"].tap()
         let name = app.textFields["medication-name"]
         XCTAssertTrue(name.waitForExistence(timeout: 10))
         name.tap()
-        name.typeText("Zorblex")
-        app.buttons["medication-save"].tap()
-        XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
+        name.typeText(medication)
+        let save = app.buttons["medication-save"]
+        save.tap()
+        XCTAssertTrue(save.waitForNonExistence(timeout: 10))
+    }
+
+    /// Makes Quibbanol, then a Zorblex with a 30 minute check-in, and saves a Zorblex dose an hour back that takes
+    /// the 4 of 10 reading an hour back. The dose is then waiting for its check-in.
+    private func logZorblexDoseCheckingInLater(_ app: XCUIApplication) throws {
+        try skipUnlessAnHourBackStaysToday()
+        saveEntryAnHourBack(.pain, in: app)
+        tapLogMedication(in: app)
+        addMedication("Quibbanol", in: app)
+        app.buttons["log-dose-cancel"].tap()
+        addZorblexCheckingInAfterThirtyMinutes(app)
+        saveDoseAnHourBack(in: app)
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+    }
+
+    private func chooseMedication(_ medication: String, in app: XCUIApplication) {
+        let row = medicationRows(in: app).allElementsBoundByIndex.first { $0.label.contains(medication) }
+        XCTAssertNotNil(row, "no medication row for \(medication)")
+        row?.tap()
+    }
+
+    private func medicationRows(in app: XCUIApplication) -> XCUIElementQuery {
+        app.descendants(matching: .any).matching(identifier: "dose-medication-row")
+    }
+
+    /// The name in the one medication row that is checked, read from the row's selected state.
+    private func selectedMedication(in app: XCUIApplication) -> String? {
+        let checked = medicationRows(in: app).allElementsBoundByIndex.filter(\.isSelected)
+        XCTAssertEqual(checked.count, 1)
+        return checked.first.flatMap { row in ["Zorblex", "Quibbanol"].first { row.label.contains($0) } }
+    }
+
+    private func checkInRow(in app: XCUIApplication) -> XCUIElement {
+        identified("check-in-row", in: app)
+    }
+
+    /// The dose row keeps its label, so the time, medication and reading read the same as before.
+    private func assertDoseUnchanged(_ label: String, in app: XCUIApplication) {
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+        XCTAssertEqual(doseRow(in: app).label, label)
+        XCTAssertEqual(app.alerts.count, 0)
+    }
+
+    private func swipeSheetDown(_ app: XCUIApplication) {
+        let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08))
+        let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
+        start.press(forDuration: 0.1, thenDragTo: end)
     }
 
     private func logFourOfTenBeforeTheDose(_ app: XCUIApplication) {
