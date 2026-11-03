@@ -1,0 +1,6 @@
+$ bash -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "check-in-later|check-in-footnote|Saved for"'
+exit: 0
+commit: 4d8d78333a50e3b61db2b96f6677b8a89c03e31f
+
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,525.3333333333333 370x52
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long.' value=None enabled=True actions= traits= @16,629.3333333333333 370x29.66666666666663
