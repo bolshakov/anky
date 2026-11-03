@@ -10,6 +10,7 @@ struct DaySectionView: View {
     let onSelect: (Entry) -> Void
     let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
+    let onDeleteDose: (Dose) -> Void
 
     var body: some View {
         Section {
@@ -46,6 +47,12 @@ struct DaySectionView: View {
                 isWaiting: waiting.contains(dose.id)
             ) {
                 onSelectDose(dose)
+            }
+            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                Button("Delete", role: .destructive) {
+                    onDeleteDose(dose)
+                }
+                .accessibilityIdentifier("history-delete")
             }
         }
     }
