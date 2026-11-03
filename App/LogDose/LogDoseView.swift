@@ -176,7 +176,7 @@ struct LogDoseView: View {
                     isShowingReadingChoice = true
                 } label: {
                     HStack(spacing: 12) {
-                        ReadingRow(caption: String(localized: "Before this dose"), entry: reading)
+                        ReadingRow(caption: nil, entry: reading)
                         Image(systemName: "chevron.right")
                             .font(.footnote.weight(.semibold))
                             .foregroundStyle(.tertiary)
@@ -190,6 +190,14 @@ struct LogDoseView: View {
                     isShowingNewEntry = true
                 }
                 .accessibilityIdentifier("log-how-you-feel-row")
+            }
+        } header: {
+            if reading != nil {
+                Text("Before this dose")
+                    .cardCaption()
+            } else {
+                Text("Log how you feel now")
+                    .cardCaption()
             }
         } footer: {
             if reading != nil {

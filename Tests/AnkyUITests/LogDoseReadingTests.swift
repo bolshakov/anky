@@ -88,6 +88,38 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(app.buttons["before-reading-row"].label.contains("4 of 10"))
     }
 
+    func testBeforeThisDoseIsASectionTitleAboveItsCardUnderMedication() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        openHowYouFeel(app)
+        saveFourOfTenFromNewEntry(app)
+
+        let row = app.buttons["before-reading-row"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let titles = elementsLabelled("Before this dose", in: app)
+        XCTAssertFalse(titles.contains { row.frame.contains($0.frame) }, "the title is inside the card")
+        let title = try XCTUnwrap(titles.first { $0.frame.maxY <= row.frame.minY }, "no title above the card")
+        let medication = try XCTUnwrap(elementsLabelled("Medication", in: app).first)
+        XCTAssertGreaterThanOrEqual(title.frame.minY, medication.frame.maxY)
+    }
+
+    func testWithoutAReadingTheSectionTitleIsLogHowYouFeelNow() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+
+        let row = app.buttons["log-how-you-feel-row"]
+        let titles = elementsLabelled("Log how you feel now", in: app)
+        XCTAssertTrue(titles.contains { $0.frame.maxY <= row.frame.minY }, "no title above the row")
+        XCTAssertTrue(elementsLabelled("Before this dose", in: app).isEmpty)
+    }
+
+    /// Section titles have no id, so they are found by their text.
+    private func elementsLabelled(_ text: String, in app: XCUIApplication) -> [XCUIElement] {
+        app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", text)).allElementsBoundByIndex
+    }
+
     private func logThreeOfTenFromChooser(_ app: XCUIApplication) {
         app.buttons["before-reading-row"].tap()
         XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
