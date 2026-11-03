@@ -59,10 +59,10 @@ struct CheckInView: View {
             .alert("This check-in could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
-            .pinLimitAlert(model.shortcuts)
-            .environment(model.shortcuts)
-            .environment(model.tipProgress)
         }
+        .pinLimitAlert(model.shortcuts)
+        .environment(model.shortcuts)
+        .environment(model.tipProgress)
     }
 
     private var infoSection: some View {
