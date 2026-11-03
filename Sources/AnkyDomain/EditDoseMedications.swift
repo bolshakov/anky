@@ -2,10 +2,10 @@
 import Foundation
 
 public enum EditDoseMedications {
-    /// The active medications, then the dose's own medication when it is archived. An active one is already in the
-    /// first part, so it is never listed twice.
+    /// The active medications and the dose's own medication, even when it is archived, in created order.
     public static func choices(for dose: Dose, in medications: [Medication]) -> [Medication] {
-        let ownArchived = medications.filter { $0.id == dose.medicationID && $0.archivedAt != nil }
-        return MedicationOrder.active(medications) + ownArchived
+        medications
+            .filter { $0.archivedAt == nil || $0.id == dose.medicationID }
+            .sorted { $0.createdAt < $1.createdAt }
     }
 }
