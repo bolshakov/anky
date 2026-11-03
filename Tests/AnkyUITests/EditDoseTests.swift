@@ -186,6 +186,24 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: failing).label.contains("Quibbanol"), doseRow(in: failing).label)
     }
 
+    func testTheEntryDeleteAlertFromEditEntryAsksInTheEntryWords() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logEntry(4, in: app)
+        let painRow = app.descendants(matching: .any)["entry-row-pain"]
+        XCTAssertTrue(painRow.waitForExistence(timeout: 10))
+        painRow.tap()
+        let delete = app.buttons["delete-entry"]
+        XCTAssertTrue(delete.waitForExistence(timeout: 10))
+        delete.tap()
+
+        let alert = app.alerts["Delete this entry? This can't be undone."].firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        XCTAssertEqual(alert.buttons["confirm-delete"].firstMatch.label, "Delete entry")
+        alert.buttons["keep-entry"].firstMatch.tap()
+        XCTAssertTrue(alert.waitForNonExistence(timeout: 10))
+    }
+
     private func logZorblexDose(_ app: XCUIApplication) {
         addZorblex(app)
         app.buttons["save-dose"].tap()

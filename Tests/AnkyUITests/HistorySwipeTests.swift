@@ -56,4 +56,21 @@ final class HistorySwipeTests: XCTestCase {
             .waitForExistence(timeout: 10))
         XCTAssertEqual(entryRows(in: app).count, 0)
     }
+
+    func testTheEntryDeleteAlertFromHistoryAsksInTheEntryWords() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logEntry(4, in: app)
+        showHistory(in: app)
+
+        let row = entryRows(in: app).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        tapDeleteOnRow(row, in: app)
+
+        let alert = app.alerts["Delete this entry? This can't be undone."].firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        XCTAssertEqual(alert.buttons["confirm-delete"].firstMatch.label, "Delete entry")
+        alert.buttons["keep-entry"].firstMatch.tap()
+        XCTAssertTrue(alert.waitForNonExistence(timeout: 10))
+    }
 }
