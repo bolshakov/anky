@@ -19,7 +19,7 @@ final class HistorySwipeTests: XCTestCase {
         XCTAssertTrue(app.buttons["history-delete"].firstMatch.waitForNonExistence(timeout: 10))
 
         XCTAssertEqual(entryRows(in: app).count, 1)
-        row.swipeLeft()
+        partSwipeRow(row)
         XCTAssertTrue(app.buttons["history-delete"].firstMatch.waitForExistence(timeout: 10))
     }
 
