@@ -9,7 +9,7 @@ extension DoseWords {
             subtitlePain: { pain in
                 switch pain {
                 case let .before(kind, level):
-                    String(localized: "\(kind.subtitleWord) was \(level.value) of 10")
+                    String(localized: "\(kind.subtitleWord) was \(level.value)")
                 case let .after(kind, level):
                     String(localized: "\(kind.subtitleWord) \(level.value) after")
                 case let .beforeAndAfter(kind, before, after):

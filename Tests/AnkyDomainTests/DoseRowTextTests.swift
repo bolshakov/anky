@@ -11,7 +11,7 @@ struct DoseRowTextTests {
             kind: "Dose",
             subtitlePain: { pain in
                 switch pain {
-                case let .before(kind, level): "\(Self.word(kind)) was \(level.value) of 10"
+                case let .before(kind, level): "\(Self.word(kind)) was \(level.value)"
                 case let .after(kind, level): "\(Self.word(kind)) \(level.value) after"
                 case let .beforeAndAfter(kind, before, after):
                     "\(Self.word(kind)) \(before.value) before, \(after.value) after"
@@ -76,7 +76,7 @@ struct DoseRowTextTests {
 
     @Test func aBeforeReadingAloneReadsThePainWas() throws {
         let before = try entry(.pain, severity: 6)
-        #expect(DoseRowText.subtitle(for: readings(before: before), words: words) == "Dose · pain was 6 of 10")
+        #expect(DoseRowText.subtitle(for: readings(before: before), words: words) == "Dose · pain was 6")
     }
 
     @Test func anAfterReadingAloneReadsThePainAfter() throws {
