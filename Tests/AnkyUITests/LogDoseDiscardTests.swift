@@ -12,7 +12,7 @@ final class LogDoseDiscardTests: XCTestCase {
 
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
-        XCTAssertFalse(doseRow(in: app).exists)
+        assertHistoryIsEmpty(in: app)
 
         tapLogMedication(in: app)
         moveToYesterday(in: app)
@@ -20,7 +20,15 @@ final class LogDoseDiscardTests: XCTestCase {
 
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
-        XCTAssertFalse(doseRow(in: app).exists)
+        assertHistoryIsEmpty(in: app)
+    }
+
+    /// Today lists only the current day, so a dose saved for yesterday shows only in History. The empty state is
+    /// the one History shows when nothing is logged.
+    private func assertHistoryIsEmpty(in app: XCUIApplication) {
+        app.tabBars.buttons["History"].tap()
+        XCTAssertTrue(app.descendants(matching: .any)["empty-history"].waitForExistence(timeout: 10))
+        app.tabBars.buttons["Today"].tap()
     }
 
     func testAFailedDoseSaveKeepsLogDoseOpenWithTheChosenMedication() {
