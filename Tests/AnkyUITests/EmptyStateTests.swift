@@ -11,7 +11,7 @@ final class EmptyStateTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["today-date"].exists)
         XCTAssertTrue(app.staticTexts["empty-today"].exists)
         XCTAssertEqual(entryRows(in: app).count, 0)
-        XCTAssertFalse(app.staticTexts["Stored on this iPhone only."].exists)
+        XCTAssertFalse(app.staticTexts["Levels are 0 to 10. Stored on this iPhone only."].exists)
 
         let logButton = app.buttons["log-entry"]
         XCTAssertTrue(logButton.waitForExistence(timeout: 10))
