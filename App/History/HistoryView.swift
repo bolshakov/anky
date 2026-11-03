@@ -11,6 +11,7 @@ struct HistoryView: View {
     @State private var editingDose: Dose?
     @State private var checkingIn: Dose?
     @State private var pendingDelete: Entry?
+    @State private var pendingDoseDelete: Dose?
     @State private var saveTicks = 0
 
     private var sections: [DaySection] {
@@ -54,9 +55,21 @@ struct HistoryView: View {
         )
     }
 
+    private var isConfirmingDoseDelete: Binding<Bool> {
+        Binding(
+            get: { pendingDoseDelete != nil },
+            set: { isShowing in
+                if !isShowing {
+                    pendingDoseDelete = nil
+                }
+            }
+        )
+    }
+
     var body: some View {
         // Captured here, so the alert's button deletes the entry it was asked about even after the binding clears.
         let target = pendingDelete
+        let doseTarget = pendingDoseDelete
         NavigationStack {
             Group {
                 if sections.isEmpty {
@@ -71,7 +84,8 @@ struct HistoryView: View {
                                 waiting: Set(waiting.map(\.id)),
                                 onSelect: { editing = $0 },
                                 onSelectDose: open,
-                                onDelete: { pendingDelete = $0 }
+                                onDelete: { pendingDelete = $0 },
+                                onDeleteDose: { pendingDoseDelete = $0 }
                             )
                         }
                     }
@@ -83,6 +97,10 @@ struct HistoryView: View {
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
+            }
+            .entryDeleteConfirmation(isPresented: isConfirmingDoseDelete, words: .dose) {
+                guard let doseTarget else { return }
+                try medications.removeDose(id: doseTarget.id)
             }
             .background(Color("PageBackground"))
             .accessibilityElement(children: .contain)

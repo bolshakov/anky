@@ -91,4 +91,14 @@ import Foundation
         }
         doseContents[index] = dose
     }
+
+    func removeDose(id: UUID) throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        guard let index = doseContents.firstIndex(where: { $0.id == id }) else {
+            throw MedicationStoreError.notSaved
+        }
+        doseContents.remove(at: index)
+    }
 }

@@ -94,6 +94,12 @@ import SwiftData
         try commit()
     }
 
+    public func removeDose(id: UUID) throws {
+        let stored = try doseRecord(id: id)
+        context.delete(stored)
+        try commit()
+    }
+
     private func doseRecord(id: UUID) throws -> DoseRecord {
         let descriptor = FetchDescriptor<DoseRecord>(predicate: #Predicate { $0.id == id })
         guard let record = try? context.fetch(descriptor).first else {

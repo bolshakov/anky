@@ -79,6 +79,12 @@ import Observation
         doses[index] = dose
     }
 
+    public func removeDose(id: UUID) throws {
+        try loadIfNeeded()
+        try store.removeDose(id: id)
+        doses.removeAll { $0.id == id }
+    }
+
     /// Reads both lists before it changes either, so a failed read of doses leaves the medications as they were.
     private func readAll() throws {
         let medications = try store.all()

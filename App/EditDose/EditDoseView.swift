@@ -38,6 +38,9 @@ struct EditDoseView: View {
                         .listRowSeparator(.hidden)
                 }
                 readingSection
+                Section {
+                    DeleteDoseSection(onDelete: removeDose)
+                }
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
@@ -87,6 +90,12 @@ struct EditDoseView: View {
         } catch {
             isShowingSaveFailure = true
         }
+    }
+
+    /// Dismisses only after the store removed the dose, and does not call `onSaved`, so no save haptic fires.
+    private func removeDose() throws {
+        try medications.removeDose(id: dose.id)
+        dismiss()
     }
 
     /// A reading that was deleted leaves the dose with no before-reading, which shows as None and opens nothing.
