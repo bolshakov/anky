@@ -67,4 +67,20 @@ enum CheckInText {
     static func infoPain(_ entry: Entry) -> String {
         String(localized: "\(String(localized: entry.kind.displayName)) was \(entry.severity.value) of 10 then.")
     }
+
+    static func whereFooter(for kind: EntryKind, startsAtEarlierReading: Bool) -> String {
+        guard startsAtEarlierReading else { return savedAs(kind) }
+        let start = String(
+            localized: "Starts at your earlier reading, with the same places. Change either if it is different."
+        )
+        return "\(start) \(savedAs(kind))"
+    }
+
+    private static func savedAs(_ kind: EntryKind) -> String {
+        switch kind {
+        case .pain: String(localized: "Saved as a Pain entry.")
+        case .stiffness: String(localized: "Saved as a Stiffness entry.")
+        case .fatigue: String(localized: "Saved as a Fatigue entry.")
+        }
+    }
 }

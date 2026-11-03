@@ -35,9 +35,13 @@ struct CheckInView: View {
                 Section {
                     DateSection(date: $draft.date)
                 }
+                if draft.kind.asksWhere {
+                    CheckInWhereSection(draft: $draft, footer: whereFooter)
+                }
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
+            .shortcutFeedback(model.shortcuts)
             .accessibilityIdentifier("check-in-screen")
             .navigationTitle("Check In")
             .navigationBarTitleDisplayMode(.inline)
@@ -55,6 +59,9 @@ struct CheckInView: View {
             .alert("This check-in could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
+            .pinLimitAlert(model.shortcuts)
+            .environment(model.shortcuts)
+            .environment(model.tipProgress)
         }
     }
 
@@ -123,6 +130,10 @@ struct CheckInView: View {
 
     private var readings: DoseReadings {
         DoseReadings(dose, in: model.entries)
+    }
+
+    private var whereFooter: String {
+        CheckInText.whereFooter(for: draft.kind, startsAtEarlierReading: readings.before != nil)
     }
 
     private var infoTitle: String {
