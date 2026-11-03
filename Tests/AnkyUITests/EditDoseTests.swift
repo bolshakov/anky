@@ -188,25 +188,6 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
     }
 
-    /// Leaves Log Dose open with its medication chosen.
-    private func addZorblex(_ app: XCUIApplication) {
-        app.buttons["log-medication"].tap()
-        addMedication("Zorblex", in: app)
-        XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
-    }
-
-    /// Adds a medication from Log Dose, which is left open with it chosen.
-    private func addMedication(_ medication: String, in app: XCUIApplication) {
-        app.buttons["dose-add-medication"].tap()
-        let name = app.textFields["medication-name"]
-        XCTAssertTrue(name.waitForExistence(timeout: 10))
-        name.tap()
-        name.typeText(medication)
-        let save = app.buttons["medication-save"]
-        save.tap()
-        XCTAssertTrue(save.waitForNonExistence(timeout: 10))
-    }
-
     /// Makes Quibbanol, then a Zorblex with a 30 minute check-in, and saves a Zorblex dose an hour back that takes
     /// the 4 of 10 reading an hour back. The dose is then waiting for its check-in.
     private func logZorblexDoseCheckingInLater(_ app: XCUIApplication) throws {
@@ -220,23 +201,6 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
     }
 
-    private func chooseMedication(_ medication: String, in app: XCUIApplication) {
-        let row = medicationRows(in: app).allElementsBoundByIndex.first { $0.label.contains(medication) }
-        XCTAssertNotNil(row, "no medication row for \(medication)")
-        row?.tap()
-    }
-
-    private func medicationRows(in app: XCUIApplication) -> XCUIElementQuery {
-        app.descendants(matching: .any).matching(identifier: "dose-medication-row")
-    }
-
-    /// The name in the one medication row that is checked, read from the row's selected state.
-    private func selectedMedication(in app: XCUIApplication) -> String? {
-        let checked = medicationRows(in: app).allElementsBoundByIndex.filter(\.isSelected)
-        XCTAssertEqual(checked.count, 1)
-        return checked.first.flatMap { row in ["Zorblex", "Quibbanol"].first { row.label.contains($0) } }
-    }
-
     private func checkInRow(in app: XCUIApplication) -> XCUIElement {
         identified("check-in-row", in: app)
     }
@@ -246,12 +210,6 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(doseRow(in: app).label, label)
         XCTAssertEqual(app.alerts.count, 0)
-    }
-
-    private func swipeSheetDown(_ app: XCUIApplication) {
-        let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08))
-        let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
-        start.press(forDuration: 0.1, thenDragTo: end)
     }
 
     private func logFourOfTenBeforeTheDose(_ app: XCUIApplication) {
@@ -271,13 +229,5 @@ final class EditDoseTests: XCTestCase {
         delete.tap()
         app.buttons["confirm-delete"].firstMatch.tap()
         XCTAssertTrue(app.descendants(matching: .any)["edit-entry-screen"].waitForNonExistence(timeout: 10))
-    }
-
-    private func doseRow(in app: XCUIApplication) -> XCUIElement {
-        app.descendants(matching: .any)["dose-row"]
-    }
-
-    private func editDoseScreen(in app: XCUIApplication) -> XCUIElement {
-        app.descendants(matching: .any)["edit-dose-screen"]
     }
 }
