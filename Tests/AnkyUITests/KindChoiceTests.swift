@@ -68,4 +68,37 @@ final class KindChoiceTests: XCTestCase {
         XCTAssertEqual(rowSeverity(of: row), 4)
         attachScreenshot(named: "kind-choice-saved")
     }
+
+    func testPickerEdgesLineUpWithTheDateRow() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+
+        let picker = app.segmentedControls["kind-picker"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 10))
+        let dateRow = app.buttons["date-row"]
+        XCTAssertTrue(dateRow.waitForExistence(timeout: 10))
+        XCTAssertEqual(picker.frame.minX, dateRow.frame.minX, accuracy: 1)
+        XCTAssertEqual(picker.frame.maxX, dateRow.frame.maxX, accuracy: 1)
+    }
+
+    func testRecentChipsLineUpWithThePicker() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        saveFatigueEntry(in: app)
+
+        openNewEntry(app)
+        let chips = app.descendants(matching: .any).matching(identifier: "recent-chips").firstMatch
+        XCTAssertTrue(chips.waitForExistence(timeout: 10))
+        let picker = app.segmentedControls["kind-picker"]
+        XCTAssertTrue(picker.waitForExistence(timeout: 10))
+        XCTAssertEqual(chips.frame.minX, picker.frame.minX, accuracy: 1)
+    }
+
+    private func saveFatigueEntry(in app: XCUIApplication) {
+        openNewEntry(app)
+        chooseKind(.fatigue, in: app)
+        saveEntry(app)
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
+    }
 }
