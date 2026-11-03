@@ -195,6 +195,31 @@ import Testing
         #expect(inner.doseContents == [original])
     }
 
+    @Test func removeDoseDropsOnlyThatDoseFromTheModel() throws {
+        let zorblex = medication("Zorblex")
+        let removed = dose(for: zorblex, at: .now)
+        let kept = dose(for: zorblex, at: .now.addingTimeInterval(3600))
+        let inner = FakeMedicationStore([zorblex], doses: [removed, kept])
+        let model = MedicationsModel(store: inner)
+        try model.removeDose(id: removed.id)
+        #expect(model.doses == [kept])
+        #expect(try inner.doses() == [kept])
+        #expect(model.medications == [zorblex])
+    }
+
+    @Test func aRefusedRemoveLeavesTheModelAsItWas() throws {
+        let zorblex = medication("Zorblex")
+        let original = dose(for: zorblex, at: .now)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        let model = MedicationsModel(store: inner)
+        inner.writeFailure = true
+        #expect(throws: MedicationStoreError.notSaved) {
+            try model.removeDose(id: original.id)
+        }
+        #expect(model.doses == [original])
+        #expect(inner.doseContents == [original])
+    }
+
     private func listed(_ model: MedicationsModel, on day: Date, calendar: Calendar) -> [UUID] {
         TodayList.items(entries: [], doses: model.doses, on: day, calendar: calendar).map(\.id)
     }

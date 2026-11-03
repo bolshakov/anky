@@ -80,6 +80,15 @@ import Testing
         #expect(inner.doseContents == [edited])
     }
 
+    @Test func aDoseRemoveForwardsThroughTheOpenedStore() throws {
+        let zorblex = medication("Zorblex")
+        let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        let store = DeferredMedicationStore { inner }
+        try store.removeDose(id: original.id)
+        #expect(inner.doseContents.isEmpty)
+    }
+
     @Test func aDoseReplaceWhileLockedNeverReachesTheStore() throws {
         let zorblex = medication("Zorblex")
         let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)

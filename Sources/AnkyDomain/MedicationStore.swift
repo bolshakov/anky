@@ -14,6 +14,8 @@ import Foundation
     /// Replaces the stored dose with the same id, every field included. Changes no medication's saved delay. Throws
     /// `notSaved` for a dose id the store does not hold, or a medication id it does not hold.
     func replaceDose(_ dose: Dose) throws
+    /// Deletes the stored dose with that id and nothing else. Throws `notSaved` for a dose id the store does not hold.
+    func removeDose(id: UUID) throws
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

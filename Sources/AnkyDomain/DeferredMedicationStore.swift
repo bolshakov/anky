@@ -43,6 +43,10 @@ import Foundation
         try current().replaceDose(dose)
     }
 
+    public func removeDose(id: UUID) throws {
+        try current().removeDose(id: id)
+    }
+
     private func current() throws -> MedicationStore {
         if let opened {
             return opened
