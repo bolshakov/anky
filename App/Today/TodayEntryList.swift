@@ -75,8 +75,7 @@ struct EntryRow: View {
             }
         } else {
             HStack(spacing: 12) {
-                timeText
-                    .fixedSize()
+                TimeColumn(time: time)
                 placeAndKind
                 Spacer()
                 value

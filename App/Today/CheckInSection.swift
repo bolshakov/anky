@@ -35,6 +35,7 @@ struct CheckInRow: View {
     let readings: DoseReadings
     let now: Date
     let onSelect: () -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var kind: EntryKind {
         readings.checkInKind
@@ -48,6 +49,9 @@ struct CheckInRow: View {
     var body: some View {
         Button(action: onSelect) {
             HStack(spacing: 12) {
+                if !dynamicTypeSize.isAccessibilitySize {
+                    TimeColumn(time: nil)
+                }
                 VStack(alignment: .leading, spacing: 2) {
                     Text(CheckInText.question(for: kind))
                         .font(.body)

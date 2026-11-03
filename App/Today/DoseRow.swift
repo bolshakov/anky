@@ -59,7 +59,7 @@ struct DoseRow: View {
             }
         } else {
             HStack(spacing: 12) {
-                timeText
+                TimeColumn(time: time)
                 VStack(alignment: .leading, spacing: 2) {
                     titleText
                     subtitleText
