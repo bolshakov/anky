@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "label=.Edit Dose.|id=dose-row "; echo "--doses--"; doses'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+--doses--

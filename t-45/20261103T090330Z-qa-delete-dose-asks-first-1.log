@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep "id=delete-dose "'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+Button id=delete-dose label='Delete dose' value=None enabled=True actions= traits= @16,450 370x74

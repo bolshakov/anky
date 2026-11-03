@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep "id=dose-row "; doses'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+Button id=dose-row label='10:07. Zorblex. Dose.' value=None enabled=True actions=Delete traits= @16,206 370x68
+Zorblex|2026-11-03 10:07|-|-|-

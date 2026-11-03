@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "id=(dose-row|entry-row-pain) "; echo "--doses--"; doses'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+Button id=entry-row-pain label='10:06, No place, Pain, 0 of 10' value=None enabled=True actions=Delete traits= @16,206 370x68
+--doses--

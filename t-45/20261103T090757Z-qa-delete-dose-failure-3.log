@@ -1,0 +1,28 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=History label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='History' value=None enabled=True actions= traits= @16,119.66666666666667 116x40.66666666666667
+Group id=history-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,168 370x38
+Button id=dose-row label='10:07. Zorblex. Dose.' value=None enabled=True actions=Delete traits= @16,206 370x68
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x675
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x675
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=0 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=1 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Sheet id=None label='This dose could not be deleted.' value=None enabled=True actions= traits= @41,388 320x126
+StaticText id=None label='This dose could not be deleted.' value=None enabled=True actions= traits= @71,409.6666666666667 260x20.333333333333314
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @328,388 30x46
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,408 320x23
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @328,388 30x46
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,408 320x23
+Button id=None label='OK' value=None enabled=True actions= traits= @57,450 288x48
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @328,434 30x80
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,481 320x30
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @328,434 30x80
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @41,481 320x30

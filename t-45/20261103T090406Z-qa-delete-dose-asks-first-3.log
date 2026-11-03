@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "label=.Edit Dose.|This can.t be undone"; doses'
+exit: 0
+commit: c03bd47791e63230a61fa947d191fdb728852965
+
+Heading id=None label='Edit Dose' value=None enabled=True actions= traits= @163,89.66666666666666 75.66666666666669x20.66666666666667
+Zorblex|2026-11-03 10:03|-|-|-
