@@ -61,6 +61,7 @@ final class EditDoseTests: XCTestCase {
         let app = launchAnky()
         try logZorblexDoseCheckingInLater(app)
 
+        let rowLabel = doseRow(in: app).label
         doseRow(in: app).tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
@@ -68,7 +69,8 @@ final class EditDoseTests: XCTestCase {
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
         let date = app.buttons["date-row"]
         XCTAssertTrue((date.value as? String ?? "").hasPrefix("Today"), "date-row is \(date.value ?? "")")
-        XCTAssertEqual(clockTime(inRowValue: date.value as? String), clockTime(at: .now.addingTimeInterval(-3600)))
+        let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
+        XCTAssertEqual(clockTime(inRowValue: date.value as? String), rowTime, rowLabel)
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.waitForExistence(timeout: 10))
         XCTAssertTrue(before.label.hasPrefix("Before this dose"), before.label)
@@ -140,6 +142,9 @@ final class EditDoseTests: XCTestCase {
             "headers are \(dayHeaderLabels(in: app))"
         )
         XCTAssertGreaterThan(doseRow(in: app).frame.minY, yesterday.frame.minY)
+        XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
+        app.tabBars.buttons["Today"].tap()
+        XCTAssertTrue(checkInRow(in: app).waitForExistence(timeout: 10), "the dose lost its check-in delay")
     }
 
     func testAFailedSaveKeepsEditDoseOpenOnTheChosenMedication() throws {
@@ -151,16 +156,26 @@ final class EditDoseTests: XCTestCase {
 
         let failing = launchAnky(folder: folder, arguments: ["-ANKY_FAIL_MEDICATION_WRITES", "1"])
         XCTAssertTrue(doseRow(in: failing).waitForExistence(timeout: 10))
+        let original = doseRow(in: failing).label
         doseRow(in: failing).tap()
         chooseMedication("Quibbanol", in: failing)
         failing.buttons["save-dose-changes"].tap()
 
-        XCTAssertTrue(failing.alerts.firstMatch.waitForExistence(timeout: 10))
-        failing.alerts.buttons["OK"].tap()
+        let alert = failing.alerts.firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        XCTAssertEqual(alert.label, "This dose could not be saved.")
+        XCTAssertEqual(alert.buttons.count, 1)
+        alert.buttons["OK"].tap()
         XCTAssertTrue(editDoseScreen(in: failing).waitForExistence(timeout: 10))
         XCTAssertEqual(selectedMedication(in: failing), "Quibbanol")
         XCTAssertTrue(failing.buttons["save-dose-changes"].isEnabled)
 
+        failing.buttons["edit-dose-cancel"].tap()
+        XCTAssertTrue(editDoseScreen(in: failing).waitForNonExistence(timeout: 10))
+        assertDoseUnchanged(original, in: failing)
+
+        doseRow(in: failing).tap()
+        chooseMedication("Quibbanol", in: failing)
         failing.buttons["save-dose-changes"].tap()
 
         XCTAssertTrue(editDoseScreen(in: failing).waitForNonExistence(timeout: 10))
