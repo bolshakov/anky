@@ -115,9 +115,57 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(elementsLabelled("Before this dose", in: app).isEmpty)
     }
 
+    func testReadingRowPutsThePlacesWithTheTimeAndTheLevelAtTheRight() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        openHowYouFeel(app)
+        app.buttons["place-chip-lower"].tap()
+        app.buttons["place-chip-neck"].tap()
+        setSeverity(6, in: app)
+        saveEntry(app)
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
+
+        let row = app.buttons["before-reading-row"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let time = rowTime(of: row)
+        let places = try XCTUnwrap(textInRow("Neck and Lower back · \(time)", in: row, app))
+        let level = try XCTUnwrap(textInRow("6 of 10", in: row, app))
+        XCTAssertNotNil(textInRow("Pain", in: row, app))
+        XCTAssertGreaterThan(level.frame.minX, places.frame.maxX)
+        XCTAssertGreaterThan(level.frame.midX, row.frame.midX)
+        XCTAssertEqual(row.label, "\(time), Pain, Neck and Lower back, 6 of 10")
+    }
+
+    func testAFatigueReadingShowsOnlyItsTimeUnderTheKind() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        openHowYouFeel(app)
+        chooseKind(.fatigue, in: app)
+        setSeverity(4, in: app)
+        saveEntry(app)
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
+
+        let row = app.buttons["before-reading-row"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let time = try XCTUnwrap(textInRow(rowTime(of: row), in: row, app))
+        let kind = try XCTUnwrap(textInRow("Fatigue", in: row, app))
+        let level = try XCTUnwrap(textInRow("4 of 10", in: row, app))
+        XCTAssertGreaterThan(time.frame.minY, kind.frame.minY)
+        XCTAssertLessThan(time.frame.minX, level.frame.minX)
+        let texts = app.staticTexts.allElementsBoundByIndex.filter { row.frame.contains($0.frame) }
+        XCTAssertFalse(texts.contains { $0.label.contains("·") })
+    }
+
     /// Section titles have no id, so they are found by their text.
     private func elementsLabelled(_ text: String, in app: XCUIApplication) -> [XCUIElement] {
         app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", text)).allElementsBoundByIndex
+    }
+
+    /// Only the texts inside the row's frame count, since a list under the sheet can show the same words.
+    private func textInRow(_ text: String, in row: XCUIElement, _ app: XCUIApplication) -> XCUIElement? {
+        app.staticTexts.allElementsBoundByIndex.first { $0.label == text && row.frame.contains($0.frame) }
     }
 
     private func logThreeOfTenFromChooser(_ app: XCUIApplication) {

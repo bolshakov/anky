@@ -45,14 +45,14 @@ struct ReadingRow: View {
                 }
                 Text(kind)
                     .font(.body)
-                Text([places, level].compactMap(\.self).joined(separator: " · "))
+                Text([places, time].compactMap(\.self).joined(separator: " · "))
                     .font(.footnote)
+                    .monospacedDigit()
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Text(time)
+            Text(level)
                 .font(.footnote)
-                .monospacedDigit()
                 .foregroundStyle(.secondary)
                 .fixedSize()
         }
