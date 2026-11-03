@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; pair_gap'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+pair top 623.6666666666666, last row bottom 553.333, gap 70.3337

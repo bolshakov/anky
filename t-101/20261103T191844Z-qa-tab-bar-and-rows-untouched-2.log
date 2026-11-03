@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; ui | grep edit-entry-screen'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+Group id=edit-entry-screen label=None value=None enabled=True actions= traits= @0,62 402x812

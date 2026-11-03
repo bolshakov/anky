@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; ui | grep day-header'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,168 370x38

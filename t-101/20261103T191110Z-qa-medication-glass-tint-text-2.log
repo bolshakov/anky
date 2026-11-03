@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; axe tap --id log-medication --wait-timeout 5 --udid 95D8748A-E16C-441D-A8DB-81BCC70304A7 && ui | grep log-dose-cancel'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+Group id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,82 76.66666666666667x36
+Button id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,78 76.66666666666666x44

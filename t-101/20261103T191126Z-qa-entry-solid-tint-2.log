@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; axe tap --id log-entry --wait-timeout 5 --udid 95D8748A-E16C-441D-A8DB-81BCC70304A7 && ui | grep new-entry-screen'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+Group id=new-entry-screen label=None value=None enabled=True actions= traits= @0,62 402x812

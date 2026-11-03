@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; ui | grep -E '\''id=log-(medication|entry) '\'' | frame'
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+16 724.6666666666666 179 50.33333333333337
+207 724.6666666666666 179 50.33333333333337

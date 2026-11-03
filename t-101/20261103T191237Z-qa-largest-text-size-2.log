@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t101-01-4/tmp/walk.sh; ui | grep -E '\''id=log-(medication|entry) '\'''
+exit: 0
+commit: 7ac7170288f64dc6692efc28adba9808de986369
+
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @16,390.3333333333333 370x155.33333333333331
+Button id=log-entry label='Отметь самочувствие' value=None enabled=True actions= traits= @16,557.6666666666666 370x217.33333333333337
