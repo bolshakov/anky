@@ -87,13 +87,20 @@ final class LogDoseCheckInTests: XCTestCase {
     }
 
     private func chooseCheckInAfter(_ delay: String, in app: XCUIApplication) {
-        let row = app.descendants(matching: .any).matching(identifier: "check-in-after").firstMatch
-        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let form = app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
+        let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
         let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where row.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 5 where toggle.frame.maxY > save.frame.minY {
             app.swipeUp()
         }
-        row.tap()
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
+        let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10))
+        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
+        menu.tap()
         let item = app.buttons[delay]
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
         item.tap()

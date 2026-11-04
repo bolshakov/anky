@@ -815,6 +815,12 @@
         }
       }
     },
+    "Levels are 0 to 10." : {
+
+    },
+    "Levels are 0 to 10. Stored on this iPhone only." : {
+
+    },
     "Limit reached" : {
       "localizations" : {
         "ru" : {
@@ -864,16 +870,10 @@
     "How you take it" : {
 
     },
-    "Check in after a dose" : {
-
-    },
     "Check in after" : {
 
     },
     "After" : {
-
-    },
-    "Off" : {
 
     },
     "30 minutes" : {
@@ -889,9 +889,6 @@
 
     },
     "4 hours" : {
-
-    },
-    "Anky asks how your pain is after this long. Off until you choose a time." : {
 
     },
     "Check in later" : {
@@ -1364,16 +1361,6 @@
     },
     "stiffness" : {
 
-    },
-    "Stored on this iPhone only." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хранится только на этом iPhone."
-          }
-        }
-      }
     },
     "Swipe a place right to pin it as a shortcut on New Entry." : {
       "localizations" : {

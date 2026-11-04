@@ -15,7 +15,7 @@ struct TodayEntryList: View {
                 row(for: item)
             }
         } footer: {
-            Text("Stored on this iPhone only.")
+            Text("Levels are 0 to 10. Stored on this iPhone only.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }
