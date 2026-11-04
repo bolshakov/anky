@@ -85,7 +85,7 @@ func openCheckIn(_ app: XCUIApplication) {
     XCTAssertTrue(identified("check-in-screen", in: app).waitForExistence(timeout: 10))
 }
 
-/// The form's rows load as they scroll into view, so the Where row shows only after the form is scrolled down.
+/// The form's rows load as they scroll into view, so the Where section shows only after the form is scrolled down.
 @MainActor
 func scrollToBottom(of app: XCUIApplication) {
     let screen = identified("check-in-screen", in: app)
