@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t134-01-1/tmp/walk.sh; label_colour log-entry'
+exit: 0
+commit: 8f8e6344c179570e5d52369938ddd79e92f8dff6
+
+background (255, 118, 75) label (40, 17, 8) luminance 0.08 dark

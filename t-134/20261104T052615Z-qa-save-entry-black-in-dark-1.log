@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t134-01-1/tmp/walk.sh; axe tap --id log-entry --wait-timeout 5 --udid "$udid"; ui | grep id=save-entry; label_colour save-entry'
+exit: 0
+commit: 8f8e6344c179570e5d52369938ddd79e92f8dff6
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+Button id=save-entry label='Save entry' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+background (255, 121, 79) label (39, 16, 8) luminance 0.08 dark
