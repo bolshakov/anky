@@ -11,4 +11,10 @@ if [ -n "$radii" ]; then
   violation "writes a corner radius as a number, use Corner.card from App/Design"
 fi
 
+glass=$(grep -rEn --include="*.swift" "\.glassProminent" "$root/App" | grep -v "^$root/App/Design/PrimaryButton.swift:")
+if [ -n "$glass" ]; then
+  echo "$glass"
+  violation "writes .glassProminent outside primaryButton(), use .primaryButton() from App/Design"
+fi
+
 exit $fail
