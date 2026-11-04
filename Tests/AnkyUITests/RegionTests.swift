@@ -35,10 +35,10 @@ final class RegionTests: XCTestCase {
         openNewEntry(app)
         let row = dateRow(in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let shownRow = row.value as? String
+        let shown = dateRowTime(in: app)
         XCTAssertTrue(
-            [clockBefore, clockText(at: .now, in: locale)].contains(dateRowTime(in: app)),
-            "date row is \(shownRow ?? "nil")"
+            [clockBefore, clockText(at: .now, in: locale)].contains(shown),
+            "date row time is \(shown ?? "nil")"
         )
 
         setSeverity(4, in: app)
