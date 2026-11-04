@@ -15,6 +15,7 @@ final class TodayDeleteSwipeTests: XCTestCase {
         XCTAssertTrue(app.buttons["history-delete"].firstMatch.waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["confirm-delete"].firstMatch.exists)
         XCTAssertFalse(identified("edit-entry-screen", in: app).exists)
+        XCTAssertEqual(entryRows(in: app).count, 1)
     }
 
     func testAPartSwipeOnATodayDoseShowsDeleteAndOpensNoEditor() {
@@ -29,6 +30,7 @@ final class TodayDeleteSwipeTests: XCTestCase {
         XCTAssertTrue(app.buttons["history-delete"].firstMatch.waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["confirm-delete"].firstMatch.exists)
         XCTAssertFalse(editDoseScreen(in: app).exists)
+        XCTAssertTrue(row.exists)
     }
 
     func testTheEntryDeleteAlertFromTodayAsksInTheEntryWords() {
