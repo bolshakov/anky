@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t131-01-3/tmp/qa131.CWFY/walk.sh; ui | grep -E "id=history-delete |id=dose-row "'
+exit: 0
+commit: 77a6cbb0254ca5fea68487d1ab2f4b42ad0c6abe
+
+Button id=dose-row label='12:00. Zorblex. Dose.' value=None enabled=True actions=Delete traits= @-64,329.66666666666663 370x68
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,333.8333333333333 60x40.333333333333314

@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t131-01-3/tmp/qa131.CWFY/walk.sh; ui | grep -E "id=history-delete |id=entry-row-pain "'
+exit: 0
+commit: 77a6cbb0254ca5fea68487d1ab2f4b42ad0c6abe
+
+Button id=entry-row-pain label='10:27, No place, Pain, 0 of 10' value=None enabled=True actions=Delete traits= @-64,206 370x68
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,210.16666666666666 60x40.33333333333334

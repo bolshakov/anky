@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t131-01-3/tmp/qa131.CWFY/walk.sh; entries | wc -l'
+exit: 0
+commit: 77a6cbb0254ca5fea68487d1ab2f4b42ad0c6abe
+
+       1

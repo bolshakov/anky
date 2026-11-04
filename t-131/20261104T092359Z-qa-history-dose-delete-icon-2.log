@@ -1,0 +1,10 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t131-01-3/tmp/qa131.CWFY/walk.sh; ui | grep -E '\''Delete this dose|confirm-delete|keep-entry'\'''
+exit: 0
+commit: 77a6cbb0254ca5fea68487d1ab2f4b42ad0c6abe
+
+Sheet id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
