@@ -51,13 +51,10 @@ struct LogDoseView: View {
                         .cardCaption()
                 }
                 Section {
-                    DateSection(
-                        date: dateBinding,
-                        labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-                    )
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color("CardBackground").clipShape(.card))
-                    .listRowSeparator(.hidden)
+                    DateSection(date: dateBinding)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color("CardBackground").clipShape(.card))
+                        .listRowSeparator(.hidden)
                 }
                 readingSection
                 if checkedMedication != nil {
