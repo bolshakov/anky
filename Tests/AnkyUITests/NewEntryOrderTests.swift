@@ -10,10 +10,10 @@ final class NewEntryOrderTests: XCTestCase {
         saveFatigueEntry(in: app)
 
         openNewEntry(app)
-        assertInOrder(
-            ["recent-chips", "kind-picker", "date row", "where-section", "severity-caption", "note-field"],
-            in: app
-        )
+        assertInOrder(["recent-chips", "kind-picker", "date row", "where-section", "severity-caption"], in: app)
+        // The note field sits under the save bar until the form scrolls.
+        entryScreen(app).swipeUp()
+        assertInOrder(["severity-caption", "note-field"], in: app)
     }
 
     func testNewEntryWithoutRecentStartsWithKind() {

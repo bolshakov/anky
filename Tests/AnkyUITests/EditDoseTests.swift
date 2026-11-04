@@ -71,8 +71,7 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(medicationRows(in: app).count, 2)
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
-        let day = dateRowDay(in: app) ?? ""
-        XCTAssertTrue(day.hasPrefix("Today"), "date row day is \(day)")
+        XCTAssertEqual(dateRowDay(in: app), dateRowDate(for: .now))
         let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
         XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
         let before = app.buttons["before-reading-row"]
@@ -193,8 +192,7 @@ final class EditDoseTests: XCTestCase {
         let painRow = app.descendants(matching: .any)["entry-row-pain"]
         XCTAssertTrue(painRow.waitForExistence(timeout: 10))
         painRow.tap()
-        let delete = app.buttons["delete-entry"]
-        XCTAssertTrue(delete.waitForExistence(timeout: 10))
+        let delete = scrollToDeleteEntry(in: app)
         delete.tap()
 
         let alert = app.alerts["Delete this entry? This can't be undone."].firstMatch
@@ -246,10 +244,19 @@ final class EditDoseTests: XCTestCase {
         let painRow = app.descendants(matching: .any)["entry-row-pain"]
         XCTAssertTrue(painRow.waitForExistence(timeout: 10))
         painRow.tap()
-        let delete = app.buttons["delete-entry"]
-        XCTAssertTrue(delete.waitForExistence(timeout: 10))
-        delete.tap()
+        scrollToDeleteEntry(in: app).tap()
         app.buttons["confirm-delete"].firstMatch.tap()
         XCTAssertTrue(app.descendants(matching: .any)["edit-entry-screen"].waitForNonExistence(timeout: 10))
+    }
+
+    /// The delete button sits below the fold of the Edit Entry form, and a lazy form leaves it out of the tree until
+    /// the form scrolls to it.
+    private func scrollToDeleteEntry(in app: XCUIApplication) -> XCUIElement {
+        let delete = app.buttons["delete-entry"]
+        for _ in 0 ..< 3 where !delete.exists {
+            app.descendants(matching: .any)["edit-entry-screen"].swipeUp()
+        }
+        XCTAssertTrue(delete.waitForExistence(timeout: 10))
+        return delete
     }
 }
