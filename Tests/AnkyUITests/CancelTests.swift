@@ -80,8 +80,8 @@ final class CancelTests: XCTestCase {
         try XCTSkipIf(hour < 1, "Moving the hour one back wraps past midnight at 00:xx. Run after 01:00.")
         let app = launchAnky()
         openNewEntry(app)
-        showDatePicker(in: app)
-        moveHour(by: -1, in: app)
+        openDateWheel(in: app)
+        moveDateHour(by: -1, in: app)
         swipeSheetDown(app)
 
         assertStillOpen(app)

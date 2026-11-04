@@ -7,7 +7,7 @@ final class LogDoseDiscardTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         app.buttons["log-dose-cancel"].tap()
 
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))
@@ -15,7 +15,7 @@ final class LogDoseDiscardTests: XCTestCase {
         assertHistoryIsEmpty(in: app)
 
         tapLogMedication(in: app)
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         swipeSheetDown(app)
 
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))

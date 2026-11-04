@@ -76,10 +76,10 @@ final class KindChoiceTests: XCTestCase {
 
         let picker = app.segmentedControls["kind-picker"]
         XCTAssertTrue(picker.waitForExistence(timeout: 10))
-        let dateRow = app.buttons["date-row"]
-        XCTAssertTrue(dateRow.waitForExistence(timeout: 10))
-        XCTAssertEqual(picker.frame.minX, dateRow.frame.minX, accuracy: 1)
-        XCTAssertEqual(picker.frame.maxX, dateRow.frame.maxX, accuracy: 1)
+        let row = dateRow(in: app)
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        XCTAssertEqual(picker.frame.minX, row.frame.minX, accuracy: 1)
+        XCTAssertEqual(picker.frame.maxX, row.frame.maxX, accuracy: 1)
     }
 
     func testRecentChipsLineUpWithThePicker() {

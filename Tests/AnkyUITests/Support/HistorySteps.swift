@@ -16,7 +16,7 @@ func logEntry(_ level: Int, yesterday: Bool = false, in app: XCUIApplication) {
     openNewEntry(app)
     setSeverity(level, in: app)
     if yesterday {
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
     }
     saveEntry(app)
     XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))

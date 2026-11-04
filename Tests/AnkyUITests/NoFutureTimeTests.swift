@@ -10,13 +10,12 @@ final class NoFutureTimeTests: XCTestCase {
         let app = launchAnky()
         let openedAt = Date.now
         openNewEntry(app)
-        showDatePicker(in: app)
+        openDateWheel(in: app)
 
-        moveHour(by: 1, in: app)
+        moveDateHour(by: 1, in: app)
 
         // The picker clamps to the moment it was last drawn, so the row shows the opening minute or the current one.
-        let dateRow = app.buttons["date-row"]
-        let shown = clockTime(inRowValue: dateRow.value as? String)
+        let shown = dateRowTime(in: app)
         XCTAssertTrue([clockTime(at: openedAt), clockTime(at: .now)].contains(shown))
         attachScreenshot(named: "no-future-time")
     }

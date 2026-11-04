@@ -21,9 +21,7 @@ func saveEntryAnHourBack(_ kind: EntryKind, in app: XCUIApplication) {
     scrollToSeveritySlider(in: app)
     setSeverity(4, in: app)
     scrollToDateRow(in: app)
-    showDatePicker(in: app)
-    moveHour(by: -1, in: app)
-    app.buttons["date-row"].tap()
+    setDateTimeHoursBack(1, in: app)
     saveEntry(app)
     XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
 }
@@ -60,22 +58,10 @@ func addZorblexCheckingInAfterThirtyMinutes(_ app: XCUIApplication) {
 @MainActor
 func saveDoseAnHourBack(in app: XCUIApplication) {
     scrollToDateRow(in: app)
-    showDatePicker(in: app)
-    moveHour(by: -1, in: app)
-    app.buttons["date-row"].tap()
+    setDateTimeHoursBack(1, in: app)
     let before = app.buttons["before-reading-row"]
     XCTAssertTrue(before.label.contains("4 of 10"), before.label)
     app.buttons["save-dose"].tap()
-}
-
-/// At the largest size the date row scrolls off the top of a form once a lower row is set, and a form leaves off
-/// screen rows out of the accessibility tree, so the row is scrolled back into view before it is tapped.
-@MainActor
-func scrollToDateRow(in app: XCUIApplication) {
-    let row = app.buttons["date-row"]
-    for _ in 0 ..< 5 where !row.exists || !row.isHittable {
-        app.swipeDown()
-    }
 }
 
 /// A dose that is waiting opens Check In from its History row.
