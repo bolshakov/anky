@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep id=done-places; label_colour done-places'
+exit: 0
+commit: c13bfac25a346ca146e9b8d079781ae7c6ca7ead
+
+Button id=done-places label='Done' value=None enabled=True actions= traits= @16,721.6666666666666 370x50.33333333333337
+background (255, 121, 79) label (37, 15, 8) luminance 0.08 dark

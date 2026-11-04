@@ -1,0 +1,7 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "edit-dose-screen|id=save-dose-changes"; label_colour save-dose-changes'
+exit: 0
+commit: c13bfac25a346ca146e9b8d079781ae7c6ca7ead
+
+Group id=edit-dose-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+Button id=save-dose-changes label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+background (255, 118, 75) label (39, 16, 8) luminance 0.08 dark
