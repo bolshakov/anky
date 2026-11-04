@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t137-01-1/tmp/run.sh 'shot levels-big; level_ink_big levels-big entry-row-pain; ui | grep "id=entry-row-pain " | frame | awk '\''{ print "bottom", $2 + $4 }'\'''
+exit: 0
+commit: 8384ff941861374e244aed77d864f7fced9af047
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t137-01-1/tmp/walk-t137.3pEe/levels-big.png
+ink=433.6 width=25.3 height=38.7
+bottom 539.667

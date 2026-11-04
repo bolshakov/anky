@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t137-01-1/tmp/run.sh 'shot levels-history; level_ink levels-history entry-row-pain; level_ink levels-history entry-row-stiffness'
+exit: 0
+commit: 8384ff941861374e244aed77d864f7fced9af047
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t137-01-1/tmp/walk-t137.3pEe/levels-history.png
+ink=47.1 width=8.7 height=12.7
+ink=48.0 width=8.7 height=12.7
