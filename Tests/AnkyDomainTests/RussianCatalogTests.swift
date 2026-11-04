@@ -40,6 +40,8 @@ Pelvis and chest => Таз и грудная клетка
 Arms => Руки
 Legs => Ноги
 Head => Голова
+One severity covers every place you pick. Log separate entries if they differ. => \
+Сила симптома относится ко всем выбранным местам. Если они отличаются, запишите их отдельными записями.
 Neck => Шея
 Upper back => Верхняя часть спины
 Lower back => Поясница

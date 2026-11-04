@@ -17,6 +17,9 @@ struct PlacesListView: View {
                 groupName: { String(localized: $0.displayName) }
             )
         )
+        let lastGroup = PlaceGroup.allCases.last { group in
+            !PlaceCatalog.joints(in: group).filter(found.contains).isEmpty
+        }
         List {
             Section {
                 TipView(PinShortcutTip())
@@ -35,6 +38,13 @@ struct PlacesListView: View {
                     } header: {
                         Text(group.displayName)
                             .cardCaption()
+                    } footer: {
+                        if group == lastGroup {
+                            Text("One severity covers every place you pick. Log separate entries if they differ.")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                                .cardCaption()
+                        }
                     }
                 }
             }

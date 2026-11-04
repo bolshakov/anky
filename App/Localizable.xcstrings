@@ -1053,6 +1053,16 @@
         }
       }
     },
+    "One severity covers every place you pick. Log separate entries if they differ." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сила симптома относится ко всем выбранным местам. Если они отличаются, запишите их отдельными записями."
+          }
+        }
+      }
+    },
     "Pain" : {
       "localizations" : {
         "ru" : {
