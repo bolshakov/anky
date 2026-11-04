@@ -22,16 +22,7 @@ struct MedicationTakingSections: View {
                 .accessibilityAddTraits(.isHeader)
         }
 
-        Section {
-            CheckInDelayMenu(checkInAfter: $draft.checkInAfter)
-        } header: {
-            Text("Check in after a dose")
-                .font(.footnote)
-                .accessibilityAddTraits(.isHeader)
-        } footer: {
-            Text("Anky asks how your pain is after this long. Off until you choose a time.")
-                .font(.footnote)
-        }
+        DoseCheckInSection(checkIn: $draft.checkIn)
     }
 
     private var takenAsPicker: some View {

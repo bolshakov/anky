@@ -69,10 +69,37 @@ struct MedicationDraftTests {
     @Test func aSavedMedicationKeepsHowItIsTakenAndItsCheckIn() {
         var draft = draft(name: "Zorblex")
         draft.takenAs = .scheduled
-        draft.checkInAfter = .twoHours
+        draft.checkIn = DoseCheckIn(savedDelay: .twoHours)
         let saved = draft.medication(id: UUID(), at: date)
         #expect(saved.takenAs == .scheduled)
         #expect(saved.checkInAfter == .twoHours)
+    }
+
+    @Test func aDraftWithTheCheckInSwitchedOffSavesNoDelay() {
+        var draft = draft(name: "Zorblex")
+        draft.checkIn = DoseCheckIn(savedDelay: .threeHours)
+        draft.checkIn.isOn = false
+        #expect(draft.medication(id: UUID(), at: date).checkInAfter == nil)
+    }
+
+    @Test(arguments: CheckInDelay.allCases)
+    func aMedicationWithASavedDelayOpensWithTheCheckInOnAtThatDelay(_ delay: CheckInDelay) {
+        var medication = existing()
+        medication.checkInAfter = delay
+        let draft = MedicationDraft(medication)
+        #expect(draft.checkIn.isOn)
+        #expect(draft.checkIn.delay == delay)
+        #expect(draft.applied(to: medication, at: date).checkInAfter == delay)
+    }
+
+    @Test func switchingOnAtFourHoursThenOffThenOnKeepsFourHours() {
+        var draft = draft(name: "Zorblex")
+        draft.checkIn.isOn = true
+        draft.checkIn.delay = .fourHours
+        draft.checkIn.isOn = false
+        draft.checkIn.isOn = true
+        #expect(draft.checkIn.delay == .fourHours)
+        #expect(draft.medication(id: UUID(), at: date).checkInAfter == .fourHours)
     }
 
     private func existing(strength: String? = "25 mg") -> Medication {
@@ -94,7 +121,7 @@ struct MedicationDraftTests {
         #expect(draft.name == "Zorblex")
         #expect(draft.strength == "25 mg")
         #expect(draft.takenAs == .asNeeded)
-        #expect(draft.checkInAfter == .oneHour)
+        #expect(draft.checkIn == DoseCheckIn(savedDelay: .oneHour))
     }
 
     @Test func aDraftOfAMedicationWithNoStrengthHasAnEmptyStrength() {
@@ -107,7 +134,7 @@ struct MedicationDraftTests {
         draft.name = "  Quibbanol "
         draft.strength = " 50 mg "
         draft.takenAs = .scheduled
-        draft.checkInAfter = .fourHours
+        draft.checkIn = DoseCheckIn(savedDelay: .fourHours)
         let applied = draft.applied(to: medication, at: date)
         #expect(applied.name == "Quibbanol")
         #expect(applied.strength == "50 mg")
@@ -129,5 +156,14 @@ struct MedicationDraftTests {
         var draft = MedicationDraft(medication)
         draft.strength = "   "
         #expect(draft.applied(to: medication, at: date).strength == nil)
+    }
+
+    @Test(arguments: CheckInDelay.allCases)
+    func switchingOffAnExistingMedicationClearsItsSavedDelay(_ delay: CheckInDelay) {
+        var medication = existing()
+        medication.checkInAfter = delay
+        var draft = MedicationDraft(medication)
+        draft.checkIn.isOn = false
+        #expect(draft.applied(to: medication, at: date).checkInAfter == nil)
     }
 }
