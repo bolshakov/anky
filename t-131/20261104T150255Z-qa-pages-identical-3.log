@@ -1,0 +1,36 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/r.sh 'for p in History Today; do axe tap --label $p --element-type RadioButton --udid "$udid" >/dev/null; sleep 2; echo PAGE-$p; for r in entry-row-stiffness dose-row; do echo ROW-$r; full_swipe_id $r; sleep 1; ui | grep -E "Delete this|id=confirm-delete |id=keep-entry "; tap_first keep-entry; sleep 1; done; done; entries | wc -l; doses | wc -l'
+exit: 0
+commit: 032ddd43edfa41b32fe8dd0fd8930db239f732d5
+
+PAGE-History
+ROW-entry-row-stiffness
+Sheet id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+ROW-dose-row
+Sheet id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
+PAGE-Today
+ROW-entry-row-stiffness
+Sheet id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+ROW-dose-row
+Sheet id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete dose' value=None enabled=True actions= traits= @205,461 140x48
+       2
+       1

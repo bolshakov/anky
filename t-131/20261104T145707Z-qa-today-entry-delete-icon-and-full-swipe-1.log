@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/r.sh 'ui | grep history-delete'
+exit: 0
+commit: 032ddd43edfa41b32fe8dd0fd8930db239f732d5
+
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,455.1666666666667 60x40.333333333333314

@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/r.sh 'tap_first keep-entry; sleep 1; entries | wc -l; full_swipe_id entry-row-stiffness; sleep 1; tap_first confirm-delete; sleep 1; ui | grep "id=entry-row-stiffness "; echo grep-exit-done; entries | wc -l'
+exit: 0
+commit: 032ddd43edfa41b32fe8dd0fd8930db239f732d5
+
+       2
+grep-exit-done
+       1

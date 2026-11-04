@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/r.sh 'swipe_id entry-row-stiffness; shot h-entry; echo H-ENTRY; ui | grep history-delete; axe tap -x 200 -y 120 --udid "$udid" >/dev/null; swipe_id dose-row; shot h-dose; echo H-DOSE; ui | grep history-delete'
+exit: 0
+commit: 032ddd43edfa41b32fe8dd0fd8930db239f732d5
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/walk-t103.D6qe/h-entry.png
+H-ENTRY
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,346.16666666666663 60x40.333333333333314
+/Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/walk-t103.D6qe/h-dose.png
+H-DOSE
+Button id=history-delete label='Delete' value=None enabled=True actions= traits= @316,278.16666666666663 60x40.333333333333314

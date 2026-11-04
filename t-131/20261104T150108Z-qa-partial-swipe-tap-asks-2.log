@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t131-02-1/tmp/w/r.sh 'swipe_id dose-row; axe tap --id history-delete --wait-timeout 5 --udid "$udid"; ui | grep -E "Delete this dose|id=confirm-delete |id=keep-entry " | head -3; tap_first keep-entry; sleep 1; doses | wc -l'
+exit: 0
+commit: 032ddd43edfa41b32fe8dd0fd8930db239f732d5
+
+✓ Tap at resolved tap point at (346.0, 407.33333333333326) completed successfully
+Sheet id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this dose? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+       1
