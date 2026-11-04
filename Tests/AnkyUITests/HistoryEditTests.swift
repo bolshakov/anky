@@ -11,7 +11,7 @@ final class HistoryEditTests: XCTestCase {
 
         entryRows(in: app).firstMatch.tap()
         XCTAssertTrue(app.buttons["save-entry"].waitForExistence(timeout: 10))
-        moveToYesterday(in: app)
+        setDateToYesterday(in: app)
         saveEntry(app)
         XCTAssertTrue(app.buttons["save-entry"].waitForNonExistence(timeout: 10))
 

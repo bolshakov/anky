@@ -12,13 +12,10 @@ final class EarlierTimeTests: XCTestCase {
         let openedAt = Date.now
         openNewEntry(app)
         setSeverity(4, in: app)
-        showDatePicker(in: app)
-        moveHour(by: -2, in: app)
-        app.buttons["date-row"].tap()
+        setDateTimeHoursBack(2, in: app)
         // The row's label reads its time in double-length text, so the time is checked on the date row before saving.
         let expected = [openedAt, Date.now].map { twoHoursEarlierTime(from: $0) }
-        let dateRow = app.buttons["date-row"]
-        let shown = clockTime(inRowValue: dateRow.value as? String)
+        let shown = dateRowTime(in: app)
         XCTAssertTrue(expected.contains(shown ?? ""), "date row time is \(shown ?? "nil")")
         saveEntry(app)
 

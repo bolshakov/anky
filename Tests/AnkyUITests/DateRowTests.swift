@@ -9,19 +9,19 @@ final class DateRowTests: XCTestCase {
         let shownBefore = clockTime(at: .now)
         openNewEntry(app)
 
-        let row = app.buttons["date-row"]
+        let row = dateRow(in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         XCTAssertEqual(row.label, "Date and time")
         let spoken = row.value as? String ?? ""
         XCTAssertTrue(
             ["Today \(shownBefore)", "Today \(clockTime(at: .now))"].contains(spoken),
-            "date-row is \(spoken)"
+            "date row is \(spoken)"
         )
-        XCTAssertFalse(app.datePickers["date-picker"].exists)
+        XCTAssertFalse(dateWheel(in: app).exists)
 
-        showDatePicker(in: app)
+        openDateWheel(in: app)
         row.tap()
-        XCTAssertTrue(app.datePickers["date-picker"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(dateWheel(in: app).waitForNonExistence(timeout: 10))
     }
 
     func testNewEntryRowOpensThePickerFromItsTopAndLeadingEdges() {
@@ -30,7 +30,7 @@ final class DateRowTests: XCTestCase {
         openNewEntry(app)
 
         tapDateRowEdge(in: app, dx: 0.03, dy: 0.5)
-        XCTAssertTrue(app.datePickers["date-picker"].waitForExistence(timeout: 10))
+        XCTAssertTrue(dateWheel(in: app).waitForExistence(timeout: 10))
     }
 
     func testNewEntryRowOpensThePickerFromItsTopEdge() {
@@ -39,7 +39,7 @@ final class DateRowTests: XCTestCase {
         openNewEntry(app)
 
         tapDateRowEdge(in: app, dx: 0.5, dy: 0.1)
-        XCTAssertTrue(app.datePickers["date-picker"].waitForExistence(timeout: 10))
+        XCTAssertTrue(dateWheel(in: app).waitForExistence(timeout: 10))
     }
 
     func testLogDoseRowOpensThePickerFromItsEdges() {
@@ -48,22 +48,22 @@ final class DateRowTests: XCTestCase {
         app.buttons["log-medication"].tap()
 
         tapDateRowEdge(in: app, dx: 0.03, dy: 0.5)
-        XCTAssertTrue(app.datePickers["date-picker"].waitForExistence(timeout: 10))
+        XCTAssertTrue(dateWheel(in: app).waitForExistence(timeout: 10))
     }
 
     func testLogDoseWheelOpensSixteenPointsBelowTheDateText() {
         continueAfterFailure = false
         let app = launchAnky()
         app.buttons["log-medication"].tap()
-        showDatePicker(in: app)
+        openDateWheel(in: app)
 
         let text = app.staticTexts["Date and time"].firstMatch
-        let wheel = app.datePickers["date-picker"]
+        let wheel = dateWheel(in: app)
         XCTAssertEqual(wheel.frame.minY - text.frame.maxY, 16, accuracy: 1)
     }
 
     private func tapDateRowEdge(in app: XCUIApplication, dx: CGFloat, dy: CGFloat) {
-        let cell = app.cells.containing(.button, identifier: "date-row").firstMatch
+        let cell = dateRowCell(in: app)
         XCTAssertTrue(cell.waitForExistence(timeout: 10))
         cell.coordinate(withNormalizedOffset: CGVector(dx: dx, dy: dy)).tap()
     }

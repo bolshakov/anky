@@ -41,8 +41,7 @@ final class SaveEntryTests: XCTestCase {
         let before = clockTime(at: .now)
         openNewEntry(app)
         setSeverity(4, in: app)
-        let dateRow = app.buttons["date-row"]
-        let shown = clockTime(inRowValue: dateRow.value as? String)
+        let shown = dateRowTime(in: app)
         saveEntry(app)
         let after = clockTime(at: .now)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))

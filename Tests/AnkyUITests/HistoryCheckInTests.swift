@@ -49,9 +49,7 @@ final class HistoryCheckInTests: XCTestCase {
     }
 
     private func logZorblexTwoHoursBack(_ app: XCUIApplication) {
-        showDatePicker(in: app)
-        moveHour(by: -2, in: app)
-        app.buttons["date-row"].tap()
+        setDateTimeHoursBack(2, in: app)
         app.buttons["save-dose"].tap()
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
     }
