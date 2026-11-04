@@ -101,3 +101,109 @@ func scrollToBottom(of app: XCUIApplication) {
 func identified(_ id: String, in app: XCUIApplication) -> XCUIElement {
     app.descendants(matching: .any).matching(identifier: id).firstMatch
 }
+
+@MainActor
+func openLogDose(_ app: XCUIApplication) {
+    tapLogMedication(in: app)
+    XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+}
+
+/// Opens New Medication from Log Dose, the way a person adds a medication while logging a dose.
+@MainActor
+func openNewMedication(_ app: XCUIApplication) {
+    openLogDose(app)
+    app.buttons["dose-add-medication"].tap()
+    XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
+}
+
+/// Opens the Medications list from Log Dose, where New Medication and every Edit Medication start.
+@MainActor
+func openMedicationsFromLogDose(_ app: XCUIApplication) {
+    app.buttons["log-dose-manage"].tap()
+    XCTAssertTrue(app.buttons["medications-add"].waitForExistence(timeout: 10))
+}
+
+/// Opens New Medication from the Medications list, the second way into the form.
+@MainActor
+func openNewMedicationFromList(_ app: XCUIApplication) {
+    app.buttons["medications-add"].tap()
+    XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
+}
+
+@MainActor
+func openMedicationFromList(_ app: XCUIApplication) {
+    app.buttons["medication-row"].firstMatch.tap()
+    XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
+}
+
+@MainActor
+func saveNewMedication(named name: String, _ app: XCUIApplication) {
+    let field = app.textFields["medication-name"]
+    XCTAssertTrue(field.waitForExistence(timeout: 10))
+    field.tap()
+    field.typeText(name)
+    app.buttons["medication-save"].tap()
+    XCTAssertTrue(field.waitForNonExistence(timeout: 10))
+}
+
+/// Types the name and dismisses the keyboard, so the card below the name can be scrolled to and tapped.
+@MainActor
+func nameNewMedication(_ name: String, in app: XCUIApplication) {
+    let field = app.textFields["medication-name"]
+    XCTAssertTrue(field.waitForExistence(timeout: 10))
+    field.tap()
+    field.typeText(name)
+    app.typeText("\n")
+    app.typeText("\n")
+    XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 10))
+}
+
+/// Makes the switch on when it is off, then picks the option from the menu.
+@MainActor
+func choose(_ option: String, in app: XCUIApplication) {
+    if checkInSwitch(in: app).value as? String == "0" {
+        turnOn(in: app)
+    } else {
+        scrollToCheckIn(in: app)
+    }
+    checkInMenu(in: app).tap()
+    let item = app.buttons[option]
+    XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(option)")
+    item.tap()
+    XCTAssertTrue(checkInMenu(in: app).waitForExistence(timeout: 10))
+}
+
+@MainActor
+func turnOn(in app: XCUIApplication) {
+    scrollToCheckIn(in: app)
+    checkInSwitch(in: app).coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
+    XCTAssertTrue(checkInMenu(in: app).waitForExistence(timeout: 10), "no menu after the switch went on")
+}
+
+@MainActor
+func medicationForm(in app: XCUIApplication) -> XCUIElement {
+    app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
+}
+
+@MainActor
+func checkInSwitch(in app: XCUIApplication) -> XCUIElement {
+    medicationForm(in: app).descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+}
+
+@MainActor
+func checkInMenu(in app: XCUIApplication) -> XCUIElement {
+    medicationForm(in: app).descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+}
+
+/// The pinned Save button covers the bottom of the form, so the card must scroll above it, not merely be on screen.
+/// The last row of the card is the menu when it shows, and the switch when it does not.
+@MainActor
+func scrollToCheckIn(in app: XCUIApplication) {
+    let anchor = checkInMenu(in: app).exists ? checkInMenu(in: app) : checkInSwitch(in: app)
+    XCTAssertTrue(anchor.waitForExistence(timeout: 10))
+    let save = app.buttons["medication-save"]
+    for _ in 0 ..< 5 where anchor.frame.maxY > save.frame.minY {
+        app.swipeUp()
+    }
+    XCTAssertLessThanOrEqual(anchor.frame.maxY, save.frame.minY)
+}

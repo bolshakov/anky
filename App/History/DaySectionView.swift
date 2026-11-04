@@ -40,11 +40,8 @@ struct DaySectionView: View {
             EntryRow(entry: entry) {
                 onSelect(entry)
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                Button("Delete", systemImage: "trash", role: .destructive) {
-                    onDelete(entry)
-                }
-                .accessibilityIdentifier("history-delete")
+            .deleteSwipe {
+                onDelete(entry)
             }
         case let .dose(dose):
             DoseRow(
@@ -55,11 +52,8 @@ struct DaySectionView: View {
             ) {
                 onSelectDose(dose)
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                Button("Delete", role: .destructive) {
-                    onDeleteDose(dose)
-                }
-                .accessibilityIdentifier("history-delete")
+            .deleteSwipe {
+                onDeleteDose(dose)
             }
         }
     }
