@@ -74,7 +74,7 @@ struct EditDoseView: View {
             Text("Save changes")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.glassProminent)
+        .primaryButton()
         .controlSize(.large)
         .accessibilityIdentifier("save-dose-changes")
         .padding()

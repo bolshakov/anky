@@ -10,7 +10,7 @@ struct DonePlacesButton: View {
             Text(title)
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.glassProminent)
+        .primaryButton()
         .controlSize(.large)
         .accessibilityLabel(spokenTitle)
         .accessibilityIdentifier("done-places")
