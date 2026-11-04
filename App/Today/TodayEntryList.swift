@@ -108,7 +108,7 @@ struct EntryRow: View {
 
     private var value: some View {
         Text(entry.severity.value, format: .number)
-            .font(.body.weight(.semibold))
+            .font(.body)
             .monospacedDigit()
     }
 }
