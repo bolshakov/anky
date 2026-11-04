@@ -73,7 +73,7 @@ struct MedicationFormView: View {
                     Text(editing == nil ? "Save medication" : "Save changes")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.glassProminent)
+                .primaryButton()
                 .controlSize(.large)
                 .disabled(!draft.isSavable)
                 .accessibilityIdentifier("medication-save")

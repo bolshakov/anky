@@ -104,6 +104,76 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
+    func testCheckInSaveButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        try skipUnlessAnHourBackStaysToday()
+        let app = launchAnky()
+        saveEntryAnHourBack(.pain, in: app)
+        addZorblexCheckingInAfterThirtyMinutes(app)
+        saveDoseAnHourBack(in: app)
+        identified("check-in-row", in: app).tap()
+        let button = app.buttons["save-check-in"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "check-in-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testMedicationFormSaveButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        app.textFields["medication-name"].tap()
+        app.textFields["medication-name"].typeText("Quuxal")
+        let button = app.buttons["medication-save"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "medication-form-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testEditMedicationSaveButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        saveNewMedication(named: "Quuxal", app)
+        openMedicationsFromLogDose(app)
+        openMedicationFromList(app)
+        let button = app.buttons["medication-save"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "edit-medication-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testSaveMedicationLabelIsDimmerWhenDisabled() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        let button = app.buttons["medication-save"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+        XCTAssertFalse(button.isEnabled)
+        let disabled = try labelColour(of: button, threshold: dimmedLabelThreshold)
+        attachScreenshot(named: "save-medication-disabled")
+
+        app.textFields["medication-name"].tap()
+        app.textFields["medication-name"].typeText("Quuxal")
+        XCTAssertTrue(waitUntilEnabled(button))
+        let enabled = try settledLabelColour(of: button, dark: runIsDark)
+        attachScreenshot(named: "save-medication-enabled")
+        XCTAssertLessThan(
+            disabled.contrast, enabled.contrast / 2,
+            "disabled label \(disabled.label) on \(disabled.background) is not dimmer than "
+                + "enabled \(enabled.label) on \(enabled.background)"
+        )
+    }
+
     func testTodayLogButtonFollowsAppearanceChangeWithoutRelaunch() throws {
         continueAfterFailure = false
         let original = XCUIDevice.shared.appearance
