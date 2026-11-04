@@ -10,7 +10,6 @@ Nothing logged today => Сегодня записей нет
 Log how you feel => Отметь самочувствие
 Log how you feel, or a medication you took. Everything stays on this iPhone. => \
 Отмечай самочувствие и записывай принятые лекарства. Все данные хранятся только на этом iPhone
-Stored on this iPhone only. => Хранится только на этом iPhone.
 New Entry => Новая запись
 Cancel => Отмена
 Kind => Тип
@@ -198,6 +197,7 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["After %@", "Taken at %@.", "Taken yesterday at %@.", "Taken on %@ at %@."]
     + ["%@ was %lld of 10 then.", "Check in", "Check In", "Check in pending", "Opens Check In"]
     + ["Delete dose", "Delete this dose? This can't be undone.", "This dose could not be deleted."]
+    + ["Levels are 0 to 10. Stored on this iPhone only.", "Levels are 0 to 10."]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")

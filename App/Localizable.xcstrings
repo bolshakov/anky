@@ -815,6 +815,12 @@
         }
       }
     },
+    "Levels are 0 to 10." : {
+
+    },
+    "Levels are 0 to 10. Stored on this iPhone only." : {
+
+    },
     "Limit reached" : {
       "localizations" : {
         "ru" : {
@@ -1355,16 +1361,6 @@
     },
     "stiffness" : {
 
-    },
-    "Stored on this iPhone only." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Хранится только на этом iPhone."
-          }
-        }
-      }
     },
     "Swipe a place right to pin it as a shortcut on New Entry." : {
       "localizations" : {
