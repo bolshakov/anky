@@ -8,6 +8,8 @@ struct TodayEntryList: View {
     let entries: [Entry]
     let onSelect: (Entry) -> Void
     let onSelectDose: (Dose) -> Void
+    let onDelete: (Entry) -> Void
+    let onDeleteDose: (Dose) -> Void
 
     var body: some View {
         Section {
@@ -28,6 +30,9 @@ struct TodayEntryList: View {
             EntryRow(entry: entry) {
                 onSelect(entry)
             }
+            .deleteSwipe {
+                onDelete(entry)
+            }
         case let .dose(dose):
             DoseRow(
                 dose: dose,
@@ -35,6 +40,9 @@ struct TodayEntryList: View {
                 title: DoseRowText.title(for: dose, in: medications)
             ) {
                 onSelectDose(dose)
+            }
+            .deleteSwipe {
+                onDeleteDose(dose)
             }
         }
     }
