@@ -11,6 +11,7 @@ struct CheckInView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
     @State private var checkIn = CheckInSave()
+    @State private var isShowingPlaces = false
     @State private var isShowingSaveFailure = false
 
     init(dose: Dose, medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
@@ -25,24 +26,26 @@ struct CheckInView: View {
         NavigationStack {
             Form {
                 infoSection
-                questionSection
+                kindSection
+                Section {
+                    DateSection(date: $draft.date)
+                }
+                whereSection
                 SystemSeveritySection(
                     caption: severityCaption,
                     spokenLabel: severityCaption,
                     idPrefix: "severity",
                     severity: $draft.severity
                 )
-                Section {
-                    DateSection(date: $draft.date)
-                }
-                if draft.kind.asksWhere {
-                    CheckInWhereSection(draft: $draft, footer: whereFooter)
-                }
+                NoteSection(draft: $draft)
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
             .shortcutFeedback(model.shortcuts)
             .accessibilityIdentifier("check-in-screen")
+            .navigationDestination(isPresented: $isShowingPlaces) {
+                PlacesListView(draft: $draft)
+            }
             .navigationTitle("Check In")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -84,14 +87,27 @@ struct CheckInView: View {
         .listRowInsets(EdgeInsets())
     }
 
-    private var questionSection: some View {
+    private var kindSection: some View {
         Section {
-            Text(CheckInText.question(for: draft.kind))
-                .font(.title2.weight(.semibold))
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityIdentifier("check-in-question")
+            KindSection(draft: $draft)
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
         }
-        .listRowBackground(Color.clear)
+    }
+
+    @ViewBuilder
+    private var whereSection: some View {
+        if draft.kind.asksWhere {
+            WhereSection(draft: $draft, isShowingPlaces: $isShowingPlaces, chips: chips)
+        }
+    }
+
+    private var chips: [PlaceID] {
+        PlaceChips.chips(
+            from: model.entries,
+            pinned: model.shortcuts.pinned,
+            lastChips: model.shortcuts.lastChips
+        )
     }
 
     private var saveButton: some View {
@@ -130,10 +146,6 @@ struct CheckInView: View {
 
     private var readings: DoseReadings {
         DoseReadings(dose, in: model.entries)
-    }
-
-    private var whereFooter: String {
-        CheckInText.whereFooter(for: draft.kind, startsAtEarlierReading: readings.before != nil)
     }
 
     private var infoTitle: String {
