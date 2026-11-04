@@ -52,7 +52,6 @@ struct LogDoseView: View {
                 }
                 Section {
                     DateSection(date: dateBinding)
-                        .listRowInsets(EdgeInsets())
                         .listRowBackground(Color("CardBackground").clipShape(.card))
                         .listRowSeparator(.hidden)
                 }
