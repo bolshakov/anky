@@ -22,3 +22,20 @@ no test notices. So before you report, compare your screen with the design pictu
 4. If your brief names no design picture, say so in one line and describe what you checked by eye instead.
 
 The reviewers read this table. A missing table or a no with no reason is sent back.
+
+# Waiting on the wall clock
+
+A worker never waits for the wall clock. Do not start a `sleep`, an `until` or `while` loop, or a monitor that waits
+for an hour, and do not end your turn to ask whether to wait.
+The rule to wait in steps that each end within 10 minutes is for a running command, not for the clock.
+
+A skipped test whose skip message names an hour, as in "Run after 03:00." or "Run before 23:00.", is expected
+outside that hour. `scripts/ci/run-ui-tests.sh` exits 1 on such a skip by design, and that exit is not a red.
+
+A walk window in your brief limits the walk, not you. Do the checks that need no window now, and name the rest in the
+`## Pull request` section.
+
+List each hour-gated skipped test, or check left for its hour, by name with its hour in the `## Pull request` section.
+With that list written, finish and report done in this same session, as usual.
+
+A test skipped for any other reason, a failed test, or a named test that did not run is still a red and still blocks.
