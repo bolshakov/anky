@@ -13,7 +13,7 @@ enum MadeUpLog {
 
     /// The tail, from the end of save order, is what the tests pin. The last entry is saved late with a date 70 hours
     /// back. The two before it share a date, so the later saved one comes first. The fourth from the end repeats the
-    /// group of the third from the end.
+    /// group of the second from the end.
     static func entries(endingAt newest: Date) -> [Entry] {
         (0 ..< size).map { index in
             let group = group(at: index)
