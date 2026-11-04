@@ -157,4 +157,13 @@ struct MedicationDraftTests {
         draft.strength = "   "
         #expect(draft.applied(to: medication, at: date).strength == nil)
     }
+
+    @Test(arguments: CheckInDelay.allCases)
+    func switchingOffAnExistingMedicationClearsItsSavedDelay(_ delay: CheckInDelay) {
+        var medication = existing()
+        medication.checkInAfter = delay
+        var draft = MedicationDraft(medication)
+        draft.checkIn.isOn = false
+        #expect(draft.applied(to: medication, at: date).checkInAfter == nil)
+    }
 }
