@@ -31,13 +31,17 @@ func saveEntryAnHourBack(_ kind: EntryKind, places: [String] = [], in app: XCUIA
 
 /// Adds Zorblex with a 30 minute check-in, which leaves Log Dose open on the reading the dose now takes.
 @MainActor
-func addZorblexCheckingInAfterThirtyMinutes(_ app: XCUIApplication, readingRow: String = "before-reading-row") {
+func addZorblexCheckingInAfterThirtyMinutes(
+    _ app: XCUIApplication,
+    medication: String = "Zorblex",
+    readingRow: String = "before-reading-row"
+) {
     tapLogMedication(in: app)
     app.buttons["dose-add-medication"].tap()
     let name = app.textFields["medication-name"]
     XCTAssertTrue(name.waitForExistence(timeout: 10))
     name.tap()
-    name.typeText("Zorblex")
+    name.typeText(medication)
     app.typeText("\n")
     app.typeText("\n")
     XCTAssertTrue(app.keyboards.firstMatch.waitForNonExistence(timeout: 10))
