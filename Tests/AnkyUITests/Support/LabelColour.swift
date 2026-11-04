@@ -21,6 +21,13 @@ struct LabelColour {
     var isDark: Bool {
         luminance < 0.35
     }
+
+    /// The WCAG contrast ratio between the label and its fill, from 1 to 21.
+    var contrast: Double {
+        let lighter = max(relativeLuminance(label), relativeLuminance(background))
+        let darker = min(relativeLuminance(label), relativeLuminance(background))
+        return (lighter + 0.05) / (darker + 0.05)
+    }
 }
 
 enum LabelColourError: Error {
@@ -30,6 +37,15 @@ enum LabelColourError: Error {
 /// The inset keeps the button's rounded corners and edges out of the sample.
 private let insetHorizontalPoints = 22.0
 private let insetVerticalPoints = 12.0
+
+/// WCAG relative luminance, which the contrast ratio is built from.
+private func relativeLuminance(_ colour: LabelColour.RGB) -> Double {
+    func linear(_ channel: Double) -> Double {
+        let scaled = channel / 255
+        return scaled <= 0.03928 ? scaled / 12.92 : pow((scaled + 0.055) / 1.055, 2.4)
+    }
+    return 0.2126 * linear(colour.red) + 0.7152 * linear(colour.green) + 0.0722 * linear(colour.blue)
+}
 
 /// Pixels whose summed channel difference from the fill exceeds this count as label.
 private let labelThreshold = 200
@@ -45,7 +61,7 @@ private struct Pixel: Hashable {
 }
 
 @MainActor
-func labelColour(of element: XCUIElement) throws -> LabelColour {
+func labelColour(of element: XCUIElement, threshold: Int = labelThreshold) throws -> LabelColour {
     let image = try XCTUnwrap(element.screenshot().image.cgImage)
     let scale = Double(image.width) / Double(element.frame.width)
     let dx = (insetHorizontalPoints * scale).rounded()
@@ -55,7 +71,7 @@ func labelColour(of element: XCUIElement) throws -> LabelColour {
 
     let counts = Dictionary(samples.map { ($0, 1) }, uniquingKeysWith: +)
     let fill = try XCTUnwrap(counts.max { $0.value < $1.value }?.key)
-    let label = samples.filter { $0.distance(to: fill) > labelThreshold }
+    let label = samples.filter { $0.distance(to: fill) > threshold }
     guard !label.isEmpty else { throw LabelColourError.noLabelPixels(element.identifier) }
     return LabelColour(background: rgb(of: fill), label: mean(of: label))
 }

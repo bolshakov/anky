@@ -46,6 +46,64 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
+    func testLogDoseSaveButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        let button = app.buttons["save-dose"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "log-dose-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testEditDoseSaveButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        app.buttons["save-dose"].tap()
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
+        doseRow(in: app).tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        let button = app.buttons["save-dose-changes"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "edit-dose-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testMedicationsAddButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+        app.buttons["log-dose-manage"].tap()
+        let button = app.buttons["medications-add"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "medications-add-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
+    func testDonePlacesButtonLabelMatchesAppearance() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+        app.buttons["more-places"].tap()
+        let button = app.buttons["done-places"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+
+        let dark = runIsDark
+        let colour = try settledLabelColour(of: button, dark: dark)
+        attachScreenshot(named: "done-places-label")
+        expectPrimaryLabel(colour, dark: dark)
+    }
+
     func testTodayLogButtonFollowsAppearanceChangeWithoutRelaunch() throws {
         continueAfterFailure = false
         let original = XCUIDevice.shared.appearance
@@ -63,6 +121,35 @@ final class PrimaryButtonColourTests: XCTestCase {
 
         XCUIDevice.shared.appearance = .light
         try expectPrimaryLabel(settledLabelColour(of: button, dark: false), dark: false)
+    }
+
+    func testSaveDoseLabelIsDimmerWhenDisabled() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        let button = app.buttons["save-dose"]
+        XCTAssertTrue(button.waitForExistence(timeout: 10))
+        XCTAssertFalse(button.isEnabled)
+        let disabled = try labelColour(of: button, threshold: dimmedLabelThreshold)
+        attachScreenshot(named: "save-dose-disabled")
+
+        addMedication("Zorblex", in: app)
+        XCTAssertTrue(waitUntilEnabled(button))
+        let enabled = try settledLabelColour(of: button, dark: runIsDark)
+        attachScreenshot(named: "save-dose-enabled")
+        XCTAssertLessThan(
+            disabled.contrast, enabled.contrast / 2,
+            "disabled label \(disabled.label) on \(disabled.background) is not dimmer than "
+                + "enabled \(enabled.label) on \(enabled.background)"
+        )
+    }
+
+    /// A disabled label sits close to its fill, so the test samples at a threshold that finds it.
+    private let dimmedLabelThreshold = 20
+
+    private func waitUntilEnabled(_ element: XCUIElement) -> Bool {
+        let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isEnabled == true"), object: element)
+        return XCTWaiter().wait(for: [enabled], timeout: 10) == .completed
     }
 
     private var runIsDark: Bool {
