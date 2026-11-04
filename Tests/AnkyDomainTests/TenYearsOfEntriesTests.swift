@@ -17,6 +17,7 @@ struct TenYearsOfEntriesTests {
 
     private let newest = Date(timeIntervalSince1970: 1_800_000_000)
     private let ceiling = Duration.seconds(1)
+    private let recentCeiling = Duration.milliseconds(50)
 
     /// The ceiling is on the median of three opens, so one slow run on a busy runner does not fail the suite.
     private let opens = 3
@@ -32,6 +33,14 @@ struct TenYearsOfEntriesTests {
             try fill(url)
             checkLaunch((0 ..< opens).map { _ in timedLaunch(url) })
         }
+    }
+
+    @Test func distinctOfTenYearsStaysUnderTheCeiling() {
+        let entries = MadeUpLog.entries(endingAt: newest)
+        let timings = (0 ..< opens).map { _ in
+            ContinuousClock().measure { _ = RecentEntries.distinct(from: entries, limit: 3) }
+        }
+        #expect(timings.sorted()[opens / 2] < recentCeiling)
     }
 
     @Test func aLaunchThatHoldsTooFewEntriesFailsEvenWhenFast() {
