@@ -24,6 +24,7 @@ struct LogDoseView: View {
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
     @State private var checkIn = DoseCheckIn(savedDelay: nil)
+    @State private var checkInBuiltFor: UUID?
 
     init(medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.medications = medications
@@ -106,7 +107,12 @@ struct LogDoseView: View {
                 selectedID = MedicationSelection.kept(selectedID, in: active)
             }
             .onChange(of: checkedID, initial: true) {
+                guard checkedID != checkInBuiltFor else { return }
+                checkInBuiltFor = checkedID
                 checkIn = DoseCheckIn(savedDelay: checkedMedication?.checkInAfter)
+            }
+            .onChange(of: checkedMedication?.checkInAfter) { old, new in
+                checkIn = checkIn.following(savedDelay: new, from: old)
             }
             .sheet(isPresented: $isShowingNewMedication) {
                 MedicationFormView(medications: medications, onSaved: medicationSaved)

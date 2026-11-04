@@ -34,4 +34,30 @@ struct DoseCheckInTests {
         checkIn.delay = .fourHours
         #expect(checkIn.checkInAfter == .fourHours)
     }
+
+    @Test(arguments: savedDelays, savedDelays)
+    func anUntouchedCheckInFollowsTheNewSavedDelay(from oldDelay: CheckInDelay?, to newDelay: CheckInDelay?) {
+        let checkIn = DoseCheckIn(savedDelay: oldDelay)
+        #expect(checkIn.following(savedDelay: newDelay, from: oldDelay) == DoseCheckIn(savedDelay: newDelay))
+    }
+
+    @Test func aCheckInChangedOnTheScreenIsReturnedUnchanged() {
+        var checkIn = DoseCheckIn(savedDelay: .oneHour)
+        checkIn.delay = .fourHours
+        #expect(checkIn.following(savedDelay: .threeHours, from: .oneHour) == checkIn)
+    }
+
+    @Test func aSwitchTurnedOffOnTheScreenStaysOffWhenTheSavedDelayChanges() {
+        var checkIn = DoseCheckIn(savedDelay: .twoHours)
+        checkIn.isOn = false
+        #expect(!checkIn.following(savedDelay: .fourHours, from: .twoHours).isOn)
+    }
+
+    @Test(arguments: savedDelays, savedDelays)
+    func aCheckInRebuiltForAnotherMedicationKeepsItsOwnDelay(from oldDelay: CheckInDelay?, to newDelay: CheckInDelay?) {
+        let rebuilt = DoseCheckIn(savedDelay: newDelay)
+        #expect(rebuilt.following(savedDelay: newDelay, from: oldDelay) == rebuilt)
+    }
+
+    private static let savedDelays: [CheckInDelay?] = [nil] + CheckInDelay.allCases.map { Optional($0) }
 }

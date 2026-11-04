@@ -16,3 +16,11 @@ public struct DoseCheckIn: Equatable, Sendable {
         isOn ? delay : nil
     }
 }
+
+public extension DoseCheckIn {
+    /// A value still equal to what the old saved delay produced has not been touched on this screen, so it takes the
+    /// new saved delay. Comparing the value avoids a flag that would have to stay in step with the switch and menu.
+    func following(savedDelay: CheckInDelay?, from oldDelay: CheckInDelay?) -> DoseCheckIn {
+        self == DoseCheckIn(savedDelay: oldDelay) ? DoseCheckIn(savedDelay: savedDelay) : self
+    }
+}
