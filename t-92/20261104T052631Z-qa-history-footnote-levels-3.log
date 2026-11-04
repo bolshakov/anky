@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; fresh; sleep 2; axe tap --label History --element-type RadioButton --udid "$udid" >/dev/null; ui | grep -c "Levels are 0 to 10"'
+exit: 1
+commit: 95594d0b9d633cd6a189d36cd82ecb0de4adf4b9
+
+0

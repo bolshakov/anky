@@ -1,0 +1,5 @@
+$ bash -c '. "$TMPDIR/walk.sh"; fresh; sleep 2; ui | grep -E "Levels are|Stored on this|id=empty-today"'
+exit: 0
+commit: 95594d0b9d633cd6a189d36cd82ecb0de4adf4b9
+
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,373.64367816091954 221x26.33333333333337

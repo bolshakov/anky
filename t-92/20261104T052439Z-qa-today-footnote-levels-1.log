@@ -1,0 +1,6 @@
+$ bash -c '. "$TMPDIR/walk.sh"; ui | grep -E "Levels are|Stored on this"; ui | grep id=check-in-heading'
+exit: 0
+commit: 95594d0b9d633cd6a189d36cd82ecb0de4adf4b9
+
+StaticText id=None label='Levels are 0 to 10. Stored on this iPhone only.' value=None enabled=True actions= traits= @16,667 370x29.66666666666663
+Heading id=check-in-heading label='Check in' value=None enabled=True actions= traits= @16,297.66666666666663 370x40.333333333333314
