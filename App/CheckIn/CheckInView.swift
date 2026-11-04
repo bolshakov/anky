@@ -117,7 +117,7 @@ struct CheckInView: View {
             Text("Save check-in")
                 .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.glassProminent)
+        .primaryButton()
         .controlSize(.large)
         .accessibilityIdentifier("save-check-in")
         .padding()
