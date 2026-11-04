@@ -45,11 +45,8 @@ struct DaySectionView: View {
             ) {
                 onSelectDose(dose)
             }
-            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                Button("Delete", role: .destructive) {
-                    onDeleteDose(dose)
-                }
-                .accessibilityIdentifier("history-delete")
+            .deleteSwipe {
+                onDeleteDose(dose)
             }
         }
     }
