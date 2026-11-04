@@ -41,6 +41,7 @@ struct MedicationFormView: View {
                         .accessibilityLabel("Name")
                         .accessibilityIdentifier("medication-name")
                     TextField("Strength, for example 500 mg", text: $draft.strength)
+                        .autocorrectionDisabled()
                         .focused($focus, equals: .strength)
                         .submitLabel(.done)
                         .onSubmit { focus = nil }
