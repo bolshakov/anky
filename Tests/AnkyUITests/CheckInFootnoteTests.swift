@@ -66,6 +66,38 @@ final class CheckInFootnoteTests: XCTestCase {
         assertInOrder(["severity-slider", "check-in-saved-footnote", "note-field", "save-check-in"], in: app)
     }
 
+    /// Changing the kind keeps the level and the date, and the severity caption follows the kind.
+    func testKindChangeKeepsTheLevelAndDateAndRenamesTheCaption() throws {
+        continueAfterFailure = false
+        try skipUnlessAnHourBackStaysToday()
+        let app = launchAnky()
+        saveEntryAnHourBack(.pain, places: ["neck", "lower"], in: app)
+        addZorblexCheckingInAfterThirtyMinutes(app)
+        saveDoseAnHourBack(in: app)
+        openCheckIn(app)
+        let pickerTop = identified("kind-picker", in: app).frame.minY
+        setSeverity(7, in: app)
+        let dateBefore = identified("date-row", in: app).value as? String
+        XCTAssertNotNil(dateBefore)
+
+        scrollToTop(in: app, pickerTop: pickerTop)
+        chooseKind(.fatigue, in: app)
+        XCTAssertTrue(kindSegment(.fatigue, in: app).isSelected)
+        scrolledToFootnote(in: app)
+        let slider = app.sliders["severity-slider"]
+        XCTAssertEqual(slider.label, "Fatigue now")
+        XCTAssertEqual(severityLevel(of: slider), 7)
+        XCTAssertEqual(identified("date-row", in: app).value as? String, dateBefore)
+
+        scrollToTop(in: app, pickerTop: pickerTop)
+        chooseKind(.stiffness, in: app)
+        XCTAssertTrue(kindSegment(.stiffness, in: app).isSelected)
+        scrolledToFootnote(in: app)
+        XCTAssertEqual(slider.label, "Stiffness now")
+        XCTAssertEqual(severityLevel(of: slider), 7)
+        XCTAssertEqual(identified("date-row", in: app).value as? String, dateBefore)
+    }
+
     private func footnoteText(in app: XCUIApplication) -> String {
         scrolledToFootnote(in: app).label
     }
