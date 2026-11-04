@@ -52,6 +52,54 @@ final class LogDoseCheckInTests: XCTestCase {
         expectCheckIn(on: true, delay: "4 hours", app)
     }
 
+    func testManageEditFollowsOnLogDoseUntilThePersonChangesTheCheckIn() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        addMedication(named: "Zorblex", delay: "2 hours", app)
+
+        editDelayInManage("4 hours", app)
+        expectCheckIn(on: true, delay: "4 hours", app)
+
+        pickDelayOnLogDose("1 hour", app)
+        expectCheckIn(on: true, delay: "1 hour", app)
+        editDelayInManage("30 minutes", app)
+        expectCheckIn(on: true, delay: "1 hour", app)
+    }
+
+    /// Opens the medication from Manage, picks the delay in its form, and goes back to Log Dose.
+    private func editDelayInManage(_ delay: String, _ app: XCUIApplication) {
+        app.buttons["log-dose-manage"].tap()
+        let row = app.buttons["medication-row"].firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        row.tap()
+        let form = app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
+        let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10))
+        let save = app.buttons["medication-save"]
+        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
+        menu.tap()
+        let item = app.buttons[delay]
+        XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
+        item.tap()
+        save.tap()
+        let back = app.navigationBars.buttons["Log Dose"]
+        XCTAssertTrue(back.waitForExistence(timeout: 10))
+        back.tap()
+        XCTAssertTrue(app.buttons["save-dose"].waitForExistence(timeout: 10))
+    }
+
+    private func pickDelayOnLogDose(_ delay: String, _ app: XCUIApplication) {
+        let menu = app.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10))
+        menu.tap()
+        let item = app.buttons[delay]
+        XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
+        item.tap()
+    }
+
     private func checkInToggle(_ app: XCUIApplication) -> XCUIElement {
         app.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
     }
