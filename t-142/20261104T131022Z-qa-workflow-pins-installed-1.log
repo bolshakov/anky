@@ -1,0 +1,5 @@
+$ git grep -h -o 'bolshakov/proquo@v[0-9.]*' -- '.github/workflows/*.yml' '.github/workflows/*.yaml'
+exit: 0
+commit: c9480a7de018bf4f77ff3f1224b0f1002678438e
+
+bolshakov/proquo@v2.2.1

@@ -1,0 +1,6 @@
+$ sh -c 'proquo --version </dev/null | sed -n 1p; git grep -h -o '\''bolshakov/proquo@v[0-9.]*'\'' -- '\''.github/workflows/*.yml'\'' '\''.github/workflows/*.yaml'\'''
+exit: 0
+commit: c9480a7de018bf4f77ff3f1224b0f1002678438e
+
+2.2.1
+bolshakov/proquo@v2.2.1
