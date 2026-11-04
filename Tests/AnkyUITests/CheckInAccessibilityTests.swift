@@ -21,14 +21,14 @@ final class CheckInAccessibilityTests: XCTestCase {
         historyRow.tap()
 
         XCTAssertTrue(identified("check-in-screen", in: app).waitForExistence(timeout: 10))
-        XCTAssertEqual(identified("check-in-question", in: app).label, "How is your pain now?")
         XCTAssertTrue(identified("check-in-info", in: app).label.hasSuffix("Pain was 4 of 10 then."))
+        XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
         let slider = app.sliders["severity-slider"]
         XCTAssertTrue(slider.waitForExistence(timeout: 10))
         XCTAssertEqual(slider.label, "Pain now")
         XCTAssertEqual(severityLevel(of: slider), 4)
         scrollToBottom(of: app)
-        XCTAssertEqual(identified("where-row", in: app).value as? String, "None")
+        XCTAssertEqual(identified("more-places", in: app).value as? String, "None")
     }
 
     func testDefaultSizeScreensPassTheAudit() throws {

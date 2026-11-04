@@ -15,9 +15,12 @@ func skipUnlessAnHourBackStaysToday() throws {
 
 /// Saves a Pain reading at 4 of 10 an hour back on Today, so a dose an hour back can take it as its before-reading.
 @MainActor
-func saveEntryAnHourBack(_ kind: EntryKind, in app: XCUIApplication) {
+func saveEntryAnHourBack(_ kind: EntryKind, places: [String] = [], in app: XCUIApplication) {
     openNewEntry(app)
     chooseKind(kind, in: app)
+    for place in places {
+        app.buttons["place-chip-\(place)"].tap()
+    }
     scrollToSeveritySlider(in: app)
     setSeverity(4, in: app)
     scrollToDateRow(in: app)
@@ -85,7 +88,7 @@ func openCheckIn(_ app: XCUIApplication) {
     XCTAssertTrue(identified("check-in-screen", in: app).waitForExistence(timeout: 10))
 }
 
-/// The form's rows load as they scroll into view, so the Where row shows only after the form is scrolled down.
+/// The form's rows load as they scroll into view, so the Where section shows only after the form is scrolled down.
 @MainActor
 func scrollToBottom(of app: XCUIApplication) {
     let screen = identified("check-in-screen", in: app)

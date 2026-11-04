@@ -123,6 +123,31 @@ import Testing
         #expect(try !save.save(pending, for: dose(), addEntry: { _ in writes += 1 }, replaceDose: { _ in writes += 1 }))
         #expect(writes == 2)
     }
+
+    /// Switching to Fatigue keeps the places the draft holds, since Check In shows them again on switching back. Only a
+    /// kind that asks where saves them.
+    @Test func aStiffnessCheckInSavesItsPlacesAndAFatigueOneSavesNone() throws {
+        let neck = PlaceID(rawValue: "neck")
+        var pending = try EntryDraft(severity: #require(Severity(3)), date: takenAt)
+        pending.kind = .stiffness
+        pending.places = [neck]
+
+        pending.kind = .fatigue
+        #expect(pending.places == [neck])
+        let fatigue = try savedEntry(for: pending)
+        #expect(fatigue.places.isEmpty)
+
+        pending.kind = .stiffness
+        let stiffness = try savedEntry(for: pending)
+        #expect(stiffness.places == [neck])
+    }
+
+    private func savedEntry(for pending: EntryDraft) throws -> Entry {
+        var added: [Entry] = []
+        var save = CheckInSave()
+        _ = try save.save(pending, for: dose(), addEntry: { added.append($0) }, replaceDose: { _ in })
+        return try #require(added.first)
+    }
 }
 
 private enum Refused: Error {
