@@ -17,6 +17,6 @@ jobs:
     steps:
       # Leave ref unset: it checks out the base branch, so no fork code runs with the write token.
       - uses: actions/checkout@v5
-      - uses: bolshakov/proquo@v2.1.0
+      - uses: bolshakov/proquo@v2.2.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

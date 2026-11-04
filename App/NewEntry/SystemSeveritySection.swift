@@ -63,7 +63,7 @@ private struct SeverityValue: View {
     let idPrefix: String
 
     var body: some View {
-        Text("\(Text(severity.value, format: .number).bold()) of \(10)")
+        Text("\(Text(severity.value, format: .number)) of \(10)")
             .accessibilityIdentifier("\(idPrefix)-value")
     }
 }
