@@ -31,7 +31,7 @@ func saveEntryAnHourBack(_ kind: EntryKind, places: [String] = [], in app: XCUIA
 
 /// Adds Zorblex with a 30 minute check-in, which leaves Log Dose open on the reading the dose now takes.
 @MainActor
-func addZorblexCheckingInAfterThirtyMinutes(_ app: XCUIApplication) {
+func addZorblexCheckingInAfterThirtyMinutes(_ app: XCUIApplication, readingRow: String = "before-reading-row") {
     tapLogMedication(in: app)
     app.buttons["dose-add-medication"].tap()
     let name = app.textFields["medication-name"]
@@ -60,11 +60,11 @@ func addZorblexCheckingInAfterThirtyMinutes(_ app: XCUIApplication) {
     thirtyMinutes.tap()
     save.tap()
     XCTAssertTrue(save.waitForNonExistence(timeout: 10))
-    let before = app.buttons["before-reading-row"]
-    for _ in 0 ..< 5 where !before.exists || !before.isHittable {
+    let row = app.buttons[readingRow]
+    for _ in 0 ..< 5 where !row.exists || !row.isHittable {
         app.swipeUp()
     }
-    XCTAssertTrue(before.waitForExistence(timeout: 10))
+    XCTAssertTrue(row.waitForExistence(timeout: 10))
 }
 
 /// Moves the dose an hour back, which keeps the reading saved an hour back in its window, then saves it.

@@ -7,6 +7,8 @@ struct SystemSeveritySection: View {
     let spokenLabel: LocalizedStringKey
     let idPrefix: String
     @Binding var severity: Severity
+    var footer: LocalizedStringKey?
+    var footerID = ""
 
     var body: some View {
         Section {
@@ -47,6 +49,11 @@ struct SystemSeveritySection: View {
             Text(caption)
                 .accessibilityIdentifier("\(idPrefix)-caption")
                 .accessibilityAddTraits(.isHeader)
+        } footer: {
+            if let footer {
+                Text(footer)
+                    .accessibilityIdentifier(footerID)
+            }
         }
     }
 
