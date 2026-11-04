@@ -1,0 +1,6 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t116-03-1/tmp/w.sh ui | grep -E '\''check-in-later|dose-check-in-after'\'''
+exit: 0
+commit: 353674df1edc52ab2dab0b3a7c269ec5f6c5daad
+
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,474 370x52
+PopUpButton id=dose-check-in-after label='Check in after' value='3 hours' enabled=True actions= traits= @16,526.3333333333333 370x52
