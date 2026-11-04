@@ -26,6 +26,13 @@ expect pass "the shared card shape" "echo 'let v = Text(\"a\").background(Color(
 expect pass "the named card radius outside App/Design" "echo 'let s = RoundedRectangle(cornerRadius: Corner.card)' > App/Card.swift"
 expect pass "a number inside App/Design" "mkdir -p App/Design && echo 'let s = RoundedRectangle(cornerRadius: 22)' > App/Design/Corner.swift"
 expect pass "a number outside App" "mkdir -p Sources/AnkyDomain && echo 'let s = RoundedRectangle(cornerRadius: 16)' > Sources/AnkyDomain/Shape.swift"
+expect fail "a raw prominent glass button in a screen" "echo 'let b = Button(\"a\") {}.buttonStyle(.glassProminent)' > App/TodayView.swift"
+expect fail "a raw prominent glass button in a nested folder" "mkdir -p App/Today && echo 'let b = Button(\"a\") {}.buttonStyle(.glassProminent)' > App/Today/Row.swift"
+expect fail "a raw prominent glass button beside the one place" "mkdir -p App/Design && echo 'let b = Button(\"a\") {}.buttonStyle(.glassProminent)' > App/Design/Corner.swift"
+expect pass "the one place for a prominent glass button" "mkdir -p App/Design && echo 'let b = Button(\"a\") {}.buttonStyle(.glassProminent)' > App/Design/PrimaryButton.swift"
+expect pass "a glass button that is not prominent" "echo 'let b = Button(\"a\") {}.buttonStyle(.glass)' > App/TodayView.swift"
+expect pass "a bordered prominent button" "echo 'let b = Button(\"a\") {}.buttonStyle(.borderedProminent)' > App/TodayView.swift"
+expect pass "a prominent glass button outside App" "mkdir -p Sources/AnkyDomain && echo 'let b = Button(\"a\") {}.buttonStyle(.glassProminent)' > Sources/AnkyDomain/Shape.swift"
 
 [ "$failures" = 0 ] && echo "check-design-tokens tests: all passed"
 exit "$failures"
