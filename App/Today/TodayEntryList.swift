@@ -20,6 +20,7 @@ struct TodayEntryList: View {
             Text("Levels are 0 to 10. Stored on this iPhone only.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
+                .cardCaption()
         }
     }
 
