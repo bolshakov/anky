@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; axe tap --id log-entry --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1; label_colour save-entry; axe tap --id more-places --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1; label_colour done-places; axe tap --id done-places --wait-timeout 5 --udid "$udid" >/dev/null; axe tap --id cancel-entry --element-type Button --wait-timeout 5 --udid "$udid" >/dev/null'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+background (193, 60, 20) label (251, 241, 238) luminance 0.95 light
+background (193, 60, 20) label (251, 241, 239) luminance 0.95 light

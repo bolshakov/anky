@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/walk.sh; tap_first dose-row; sleep 1; label_colour save-dose-changes; axe tap --id edit-dose-cancel --element-type Button --wait-timeout 5 --udid "$udid" >/dev/null'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+background (193, 59, 20) label (250, 241, 238) luminance 0.95 light

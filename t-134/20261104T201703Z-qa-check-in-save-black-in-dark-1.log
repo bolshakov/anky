@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "check-in-screen|id=save-check-in"; label_colour save-check-in'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+Group id=check-in-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+Button id=save-check-in label='Save check-in' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+background (255, 118, 75) label (41, 17, 9) luminance 0.08 dark

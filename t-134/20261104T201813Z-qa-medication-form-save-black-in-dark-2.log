@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep id=medication-save; label_colour medication-save'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+Button id=medication-save label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+background (255, 120, 77) label (40, 17, 8) luminance 0.08 dark

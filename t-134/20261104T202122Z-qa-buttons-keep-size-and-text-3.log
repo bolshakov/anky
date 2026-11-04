@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep id=log-entry; axe tap --id log-entry --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1; ui | grep id=save-entry'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+Button id=log-entry label='Отметь самочувствие' value=None enabled=True actions= traits= @207,702.6666666666666 179x72.33333333333337
+Button id=save-entry label='Сохранить запись' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337

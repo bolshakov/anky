@@ -1,0 +1,12 @@
+$ bash -c '. $TMPDIR/walk.sh; ui | grep -E "id=log-entry "; tap_first check-in-row; sleep 1; ui | grep -E "id=save-check-in "; axe tap --wait-timeout 5 --udid "$udid" --id check-in-cancel --element-type Button >/dev/null; tap_first dose-row; sleep 1; ui | grep -E "id=save-dose-changes "; axe tap --wait-timeout 5 --udid "$udid" --id edit-dose-cancel --element-type Button >/dev/null; axe tap --wait-timeout 5 --udid "$udid" --id log-entry >/dev/null; sleep 1; ui | grep -E "id=save-entry "; axe tap --wait-timeout 5 --udid "$udid" --id more-places >/dev/null; sleep 1; ui | grep -E "id=done-places "; axe tap --wait-timeout 5 --udid "$udid" --id done-places >/dev/null; axe tap --wait-timeout 5 --udid "$udid" --id cancel-entry --element-type Button >/dev/null; axe tap --wait-timeout 5 --udid "$udid" --id log-medication >/dev/null; sleep 1; ui | grep -E "id=save-dose "; axe tap --wait-timeout 5 --udid "$udid" --id log-dose-manage --element-type Button >/dev/null; sleep 1; ui | grep -E "id=medications-add "; axe tap --wait-timeout 5 --udid "$udid" --id medications-add >/dev/null; sleep 1; ui | grep -E "id=medication-save "'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @207,724.6666666666666 179x50.33333333333337
+Button id=save-check-in label='Save check-in' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=save-dose-changes label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=save-entry label='Save entry' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=done-places label='Done' value=None enabled=True actions= traits= @16,721.6666666666666 370x50.33333333333337
+Button id=save-dose label='Save dose' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=medications-add label='Add medication' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=medication-save label='Save medication' value=None enabled=False actions= traits= @16,773.6666666666666 370x50.33333333333337

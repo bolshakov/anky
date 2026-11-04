@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/walk.sh; label_colour log-entry; tap_first check-in-row; sleep 1; label_colour save-check-in; axe tap --id check-in-cancel --element-type Button --wait-timeout 5 --udid "$udid" >/dev/null'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+background (193, 59, 20) label (250, 240, 237) luminance 0.95 light
+background (193, 59, 20) label (250, 239, 235) luminance 0.95 light

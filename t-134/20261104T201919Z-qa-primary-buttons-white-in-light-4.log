@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/walk.sh; axe tap --id log-medication --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1; label_colour save-dose; axe tap --id log-dose-manage --element-type Button --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1; label_colour medications-add; axe tap --id medications-add --wait-timeout 5 --udid "$udid" >/dev/null; axe tap --id medication-name --wait-timeout 5 --udid "$udid" >/dev/null; axe type Quuxal --udid "$udid" >/dev/null; label_colour medication-save'
+exit: 0
+commit: c7d47c6bfe73e79cd781b444d1299a448a58a160
+
+background (193, 59, 20) label (250, 241, 238) luminance 0.95 light
+background (193, 59, 20) label (251, 242, 239) luminance 0.96 light
+background (193, 59, 20) label (250, 240, 238) luminance 0.95 light
