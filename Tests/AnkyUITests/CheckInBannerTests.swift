@@ -8,6 +8,7 @@ final class CheckInBannerTests: XCTestCase {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let app = launchAnky()
+        saveEntryAnHourBack(.pain, in: app)
         addZorblexCheckingInAfterThirtyMinutes(app, medication: "Zorblex 100% {x} %@")
         saveDoseAnHourBack(in: app)
         openCheckIn(app)
