@@ -106,7 +106,7 @@ struct NewEntryView: View {
                     Text(saveTitle)
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.glassProminent)
+                .primaryButton()
                 .controlSize(.large)
                 .accessibilityIdentifier("save-entry")
                 .padding()

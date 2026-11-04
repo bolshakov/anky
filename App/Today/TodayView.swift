@@ -96,7 +96,7 @@ struct TodayView: View {
                         Text("Log how you feel")
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .buttonStyle(.glassProminent)
+                    .primaryButton()
                     .accessibilityIdentifier("log-entry")
                 }
                 .controlSize(.large)
