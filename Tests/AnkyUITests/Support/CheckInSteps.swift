@@ -15,9 +15,12 @@ func skipUnlessAnHourBackStaysToday() throws {
 
 /// Saves a Pain reading at 4 of 10 an hour back on Today, so a dose an hour back can take it as its before-reading.
 @MainActor
-func saveEntryAnHourBack(_ kind: EntryKind, in app: XCUIApplication) {
+func saveEntryAnHourBack(_ kind: EntryKind, places: [String] = [], in app: XCUIApplication) {
     openNewEntry(app)
     chooseKind(kind, in: app)
+    for place in places {
+        app.buttons["place-chip-\(place)"].tap()
+    }
     scrollToSeveritySlider(in: app)
     setSeverity(4, in: app)
     scrollToDateRow(in: app)

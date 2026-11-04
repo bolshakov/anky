@@ -24,12 +24,13 @@ final class CheckInSavesChosenKindTests: XCTestCase {
         XCTAssertEqual(rowSeverity(of: row), 6)
     }
 
-    /// A Pain check-in saves the places its chips show as selected, and the entry's row names them.
+    /// A Pain check-in saves the places its chips show as selected: the earlier reading's places plus the one tapped
+    /// here. The entry's row names all three.
     func testPainCheckInSavesThePlacesItShowsAsSelected() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let app = launchAnky()
-        saveEntryAnHourBack(.pain, in: app)
+        saveEntryAnHourBack(.pain, places: ["neck", "lower"], in: app)
         addZorblexCheckingInAfterThirtyMinutes(app)
         saveDoseAnHourBack(in: app)
         openCheckIn(app)
@@ -38,9 +39,12 @@ final class CheckInSavesChosenKindTests: XCTestCase {
         app.buttons["save-check-in"].tap()
 
         XCTAssertTrue(identified("check-in-screen", in: app).waitForNonExistence(timeout: 10))
-        // The before-reading is a Pain entry too, so the row is found by the place it saved.
+        // The before-reading is a Pain entry too, so the row is found by the places it saved.
         let row = app.descendants(matching: .any).matching(identifier: "entry-row-pain")
-            .matching(NSPredicate(format: "label CONTAINS %@", "Upper back")).firstMatch
+            .matching(NSPredicate(
+                format: "label CONTAINS %@ AND label CONTAINS %@ AND label CONTAINS %@",
+                "Neck", "Lower back", "Upper back"
+            )).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
     }
 }
