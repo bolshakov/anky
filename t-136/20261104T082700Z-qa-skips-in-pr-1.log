@@ -1,0 +1,14 @@
+$ grep -n -i -E 'wall clock|sleep|until|while|monitor|10 minutes|Run after|Run before|## Pull request|skipped' .bodyshop/prompts/worker.md
+exit: 0
+commit: 8ec0e3fab0484bdc139d0fdf3370aec0a0b08e33
+
+10:2. Write one row per control in the `## Pull request` section. Name the control, the design value, your value, and
+26:# Waiting on the wall clock
+28:A worker never waits for the wall clock. Do not start a `sleep`, an `until` or `while` loop, or a monitor that waits
+30:The rule to wait in steps that each end within 10 minutes is for a running command, not for the clock.
+32:A skipped test whose skip message names an hour, as in "Run after 03:00." or "Run before 23:00.", is expected
+33:outside that hour. A test skipped this way makes `scripts/ci/run-ui-tests.sh` exit 1 by design, which is not a red.
+36:`## Pull request` section.
+38:List each hour-gated skipped test, or check left for its hour, by name with its hour in the `## Pull request` section.
+39:With the skipped tests listed, finish and report done in this same session, as usual.
+41:A test skipped for any other reason, a failed test, or a named test that did not run is still a red and still blocks.
