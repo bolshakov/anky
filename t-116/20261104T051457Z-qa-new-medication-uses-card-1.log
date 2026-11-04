@@ -1,0 +1,13 @@
+$ sh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "Heading|check-in|taken-as"'
+exit: 0
+commit: 12c2e475dc44aff4e6e110ac3f8c52dd5c2f3b9e
+
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Heading id=None label='Log Dose' value=None enabled=True actions= traits= @166.63847429519072,87.46434494195688 68.41625207296849x19.02155887230515
+Heading id=None label='Medication' value=None enabled=True actions= traits= @30.72636815920398,126.42786069651741 340.5472636815921x37.12271973466004
+Heading id=None label='Log how you feel now' value=None enabled=True actions= traits= @30.72636815920398,355.91376451077946 340.5472636815921x37.12271973466005
+Heading id=None label='New Medication' value=None enabled=True actions= traits= @137,99.66666666666666 127.66666666666669x20.66666666666667
+Heading id=None label='How you take it' value=None enabled=True actions= traits= @16,342.66666666666663 370x35.666666666666686
+TabGroup id=taken-as label=None value=None enabled=True actions= traits= @32,393.33333333333337 338x31
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,474 370x52
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,526.3333333333333 370x47.66666666666663

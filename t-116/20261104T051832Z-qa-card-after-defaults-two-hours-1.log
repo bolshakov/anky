@@ -1,0 +1,7 @@
+$ sh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "check-in-later|dose-check-in-after|check-in-footnote"'
+exit: 0
+commit: 12c2e475dc44aff4e6e110ac3f8c52dd5c2f3b9e
+
+CheckBox id=check-in-later label='Check in later' value='1' enabled=True actions= traits= @16,474 370x52
+PopUpButton id=dose-check-in-after label='Check in after' value='2 hours' enabled=True actions= traits= @16,526.3333333333333 370x52
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long.' value=None enabled=True actions= traits= @16,578.3333333333333 370x29.66666666666663

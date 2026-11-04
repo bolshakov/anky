@@ -1,0 +1,5 @@
+$ sh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "check-in-later|dose-check-in-after|label=.After"'
+exit: 0
+commit: 12c2e475dc44aff4e6e110ac3f8c52dd5c2f3b9e
+
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,474 370x52

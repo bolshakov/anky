@@ -1,0 +1,5 @@
+$ sh -c 'out=$(cat $TMPDIR/outpath); udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep "id=check-in-footnote "'
+exit: 0
+commit: 12c2e475dc44aff4e6e110ac3f8c52dd5c2f3b9e
+
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,526.3333333333333 370x47.66666666666663
