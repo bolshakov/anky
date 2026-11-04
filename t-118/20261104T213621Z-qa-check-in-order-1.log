@@ -1,0 +1,13 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t118-02-2/tmp/u.sh 'id=(check-in-info|kind-picker|date-row|where-section|place-chip-neck|more-places|severity-slider|check-in-saved-footnote|note-field|save-check-in|check-in-question)'
+exit: 0
+commit: 406c1896447531b7364ad62cbb87b0b624e3dce7
+
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16,34.33333333333335 370x30.999999999999993
+Button id=date-row label='Date and time' value='Today 22:35' enabled=True actions= traits= @16,110.66666666666671 370x52
+Heading id=where-section label='Where' value=None enabled=True actions= traits= @16,180.33333333333334 370x40.33333333333334
+Button id=place-chip-neck label='Neck' value=None enabled=True actions=Pin as shortcut traits= @32,235.33333333333334 82x32.00000000000003
+Button id=more-places label='More places' value='None' enabled=True actions= traits= @16,362.66666666666663 370x52
+Slider id=severity-slider label='Stiffness now' value=0.5 enabled=True actions= traits= @32,546 338x31
+StaticText id=check-in-saved-footnote label='Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry.' value=None enabled=True actions= traits= @16,598.3333333333334 370x61.66666666666663
+TextField id=note-field label='Note' value='Add a note' enabled=True actions= traits= @32,692.6666666666667 338x22
+Button id=save-check-in label='Save check-in' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337

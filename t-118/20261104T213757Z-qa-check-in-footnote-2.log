@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t118-02-2/tmp/u.sh 'label='\''Pain'\''|id=(severity-caption|check-in-saved-footnote)'
+exit: 0
+commit: 406c1896447531b7364ad62cbb87b0b624e3dce7
+
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,287 123x32
+Heading id=severity-caption label='Pain now' value=None enabled=True actions= traits= @16,684.6666666666666 370x40.33333333333337
+StaticText id=check-in-saved-footnote label='Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Pain entry.' value=None enabled=True actions= traits= @16,851 370x45.66666666666663

@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t118-02-2/tmp/u.sh 'id=(severity-slider|check-in-saved-footnote)'
+exit: 0
+commit: 406c1896447531b7364ad62cbb87b0b624e3dce7
+
+Slider id=severity-slider label='Stiffness now' value=0.699999988079071 enabled=True actions= traits= @32,798.6666870117188 338x31
+StaticText id=check-in-saved-footnote label='Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry.' value=None enabled=True actions= traits= @16,851 370x61.66666666666663

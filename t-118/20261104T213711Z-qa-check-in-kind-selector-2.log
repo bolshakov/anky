@@ -1,0 +1,14 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t118-02-2/tmp/u.sh 'label='\''(Pain|Stiffness|Fatigue)'\''|id=(severity|check-in-saved|date-row|where|place-chip)'
+exit: 0
+commit: 406c1896447531b7364ad62cbb87b0b624e3dce7
+
+RadioButton id=None label='Pain' value=0 enabled=True actions= traits= @16,287 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,287 123x32
+RadioButton id=None label='Fatigue' value=1 enabled=True actions= traits= @262,287 124x32
+Button id=date-row label='Date and time' value='Today 22:35' enabled=True actions= traits= @16,363.33333333333337 370x52
+Heading id=severity-caption label='Fatigue now' value=None enabled=True actions= traits= @16,433 370x40.333333333333314
+StaticText id=severity-value label='7 of 10' value=None enabled=True actions= traits= @318.6666666666667,488.8333333333333 51.333333333333314x20.33333333333337
+StaticText id=severity-low-label label='0' value=None enabled=True actions= traits= @32,554.4999999999999 8.333333333333329x15.666666666666742
+Slider id=severity-slider label='Fatigue now' value=0.699999988079071 enabled=True actions= traits= @32,547 338x31
+StaticText id=severity-high-label label='10' value=None enabled=True actions= traits= @355.6666666666667,554.4999999999999 14.333333333333314x15.666666666666742
+StaticText id=check-in-saved-footnote label='Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Fatigue entry.' value=None enabled=True actions= traits= @16,599.3333333333333 370x45.66666666666663

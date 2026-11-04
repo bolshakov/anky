@@ -1,0 +1,13 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t118-02-2/tmp/u.sh 'Pain|Stiffness|Fatigue'
+exit: 0
+commit: 406c1896447531b7364ad62cbb87b0b624e3dce7
+
+Button id=repeat-chip label='Same as last time, Stiffness, Neck, Lower back, 5 of 10' value=None enabled=True actions= traits= @16,220 370x68
+Button id=dose-row label='21:50. Naproxen 500 mg. Dose. Stiffness was 5 of 10.' value=None enabled=True actions=Delete traits= @16,489 370x68
+Button id=entry-row-stiffness label='21:20, Neck and Lower back, Stiffness, 5 of 10' value=None enabled=True actions=Delete traits= @16,557 370x68
+RadioButton id=None label='Pain' value=0 enabled=True actions= traits= @16,34.33333333333334 123x32
+RadioButton id=None label='Stiffness' value=1 enabled=True actions= traits= @139,34.33333333333334 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,34.33333333333334 124x32
+Heading id=severity-caption label='Stiffness now' value=None enabled=True actions= traits= @16,432 370x40.333333333333314
+Slider id=severity-slider label='Stiffness now' value=0.5 enabled=True actions= traits= @32,546 338x31
+StaticText id=check-in-saved-footnote label='Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry.' value=None enabled=True actions= traits= @16,598.3333333333334 370x61.66666666666663
