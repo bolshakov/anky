@@ -29,7 +29,7 @@ struct MedicationsView: View {
                 Text("Add medication")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.glassProminent)
+            .primaryButton()
             .controlSize(.large)
             .accessibilityIdentifier("medications-add")
             .padding()

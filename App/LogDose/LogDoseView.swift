@@ -93,7 +93,7 @@ struct LogDoseView: View {
                     Text("Save dose")
                         .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.glassProminent)
+                .primaryButton()
                 .controlSize(.large)
                 .disabled(checkedID == nil)
                 .accessibilityIdentifier("save-dose")
