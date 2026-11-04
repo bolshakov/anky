@@ -527,7 +527,13 @@
     "Saved as a Stiffness entry." : {
 
     },
-    "Starts at your earlier reading, with the same places. Change either if it is different." : {
+    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Fatigue entry." : {
+
+    },
+    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Pain entry." : {
+
+    },
+    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry." : {
 
     },
     "Stiffness now" : {

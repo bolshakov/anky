@@ -35,7 +35,9 @@ struct CheckInView: View {
                     caption: severityCaption,
                     spokenLabel: severityCaption,
                     idPrefix: "severity",
-                    severity: $draft.severity
+                    severity: $draft.severity,
+                    footer: footnote,
+                    footerID: "check-in-saved-footnote"
                 )
                 NoteSection(draft: $draft)
             }
@@ -142,6 +144,10 @@ struct CheckInView: View {
 
     private var severityCaption: LocalizedStringKey {
         CheckInText.severityCaption(for: draft.kind)
+    }
+
+    private var footnote: LocalizedStringKey {
+        CheckInText.footnote(for: draft.kind, startsAtEarlierReading: readings.before != nil)
     }
 
     private var readings: DoseReadings {

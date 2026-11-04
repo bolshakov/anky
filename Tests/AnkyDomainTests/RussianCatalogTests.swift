@@ -166,6 +166,9 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
+private let startsAtEarlierReading = "Starts at your earlier reading, with the same places. "
+    + "Change either if it is different."
+
 /// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
 private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
@@ -190,7 +193,9 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["%@ %@"]
     + ["How is your pain now?", "How is your stiffness now?", "How is your fatigue now?"]
     + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "This check-in could not be saved."]
-    + ["Starts at your earlier reading, with the same places. Change either if it is different."]
+    + ["\(startsAtEarlierReading) Saved as a Pain entry."]
+    + ["\(startsAtEarlierReading) Saved as a Stiffness entry."]
+    + ["\(startsAtEarlierReading) Saved as a Fatigue entry."]
     + ["Saved as a Pain entry.", "Saved as a Stiffness entry.", "Saved as a Fatigue entry."]
     + ["Log pain", "Log stiffness", "Log fatigue"]
     + ["After your %@ at %@", "After your %@ yesterday at %@", "After your %@ on %@ at %@"]
