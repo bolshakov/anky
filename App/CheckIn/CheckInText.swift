@@ -17,9 +17,33 @@ extension CheckInRowWords {
 extension CheckInInfoWords {
     static var app: CheckInInfoWords {
         CheckInInfoWords(
-            today: { time in String(localized: "Taken at \(time).") },
-            yesterday: { time in String(localized: "Taken yesterday at \(time).") },
-            onDay: { day, time in String(localized: "Taken on \(day) at \(time).") },
+            today: { time, before in
+                guard let before else { return String(localized: "Taken at \(time).") }
+                let level = before.severity.value
+                switch before.kind {
+                case .pain: return String(localized: "Taken at \(time). Before: Pain \(level).")
+                case .stiffness: return String(localized: "Taken at \(time). Before: Stiffness \(level).")
+                case .fatigue: return String(localized: "Taken at \(time). Before: Fatigue \(level).")
+                }
+            },
+            yesterday: { time, before in
+                guard let before else { return String(localized: "Taken yesterday at \(time).") }
+                let level = before.severity.value
+                switch before.kind {
+                case .pain: return String(localized: "Taken yesterday at \(time). Before: Pain \(level).")
+                case .stiffness: return String(localized: "Taken yesterday at \(time). Before: Stiffness \(level).")
+                case .fatigue: return String(localized: "Taken yesterday at \(time). Before: Fatigue \(level).")
+                }
+            },
+            onDay: { day, time, before in
+                guard let before else { return String(localized: "Taken on \(day) at \(time).") }
+                let level = before.severity.value
+                switch before.kind {
+                case .pain: return String(localized: "Taken on \(day) at \(time). Before: Pain \(level).")
+                case .stiffness: return String(localized: "Taken on \(day) at \(time). Before: Stiffness \(level).")
+                case .fatigue: return String(localized: "Taken on \(day) at \(time). Before: Fatigue \(level).")
+                }
+            },
             yearDay: { day, year in String(localized: "\(day) \(year)") }
         )
     }
@@ -55,17 +79,9 @@ enum CheckInText {
         return CheckInDayText.rowSubtitle(name: name, time: time, day: day, words: .app)
     }
 
-    static func infoTitle(title: String) -> String {
-        String(localized: "After \(title)")
-    }
-
-    static func infoTaken(time: String, takenAt: Date, now: Date) -> String {
+    static func infoTaken(time: String, takenAt: Date, before: Entry?, now: Date) -> String {
         let day = CheckInDayText.day(for: takenAt, now: now, calendar: .current, locale: .current)
-        return CheckInDayText.infoTaken(time: time, day: day, words: .app)
-    }
-
-    static func infoPain(_ entry: Entry) -> String {
-        String(localized: "\(String(localized: entry.kind.displayName)) was \(entry.severity.value) of 10 then.")
+        return CheckInDayText.infoTaken(time: time, day: day, before: before, words: .app)
     }
 
     static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> LocalizedStringKey {

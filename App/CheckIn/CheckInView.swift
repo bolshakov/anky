@@ -78,9 +78,10 @@ struct CheckInView: View {
                 Text(infoDetail)
                     .font(.subheadline)
             }
+            .foregroundStyle(Color("OnSoftAccent"))
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .background(Color("CardBackground"), in: .card)
+            .background(Color("SoftAccent"), in: .card)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(infoTitle). \(infoDetail)")
             .accessibilityIdentifier("check-in-info")
@@ -155,13 +156,11 @@ struct CheckInView: View {
     }
 
     private var infoTitle: String {
-        CheckInText.infoTitle(title: DoseRowText.title(for: dose, in: medications.medications))
+        DoseRowText.title(for: dose, in: medications.medications)
     }
 
     private var infoDetail: String {
         let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        let taken = CheckInText.infoTaken(time: time, takenAt: dose.takenAt, now: .now)
-        guard let before = readings.before else { return taken }
-        return "\(taken) \(CheckInText.infoPain(before))"
+        return CheckInText.infoTaken(time: time, takenAt: dose.takenAt, before: readings.before, now: .now)
     }
 }

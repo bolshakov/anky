@@ -39,9 +39,6 @@
     "%@ was %lld of 10" : {
 
     },
-    "%@ was %lld of 10 then." : {
-
-    },
     "%@, %@" : {
       "localizations" : {
         "en" : {
@@ -219,9 +216,6 @@
           }
         }
       }
-    },
-    "After %@" : {
-
     },
     "After your %@ at %@" : {
 
@@ -537,6 +531,33 @@
 
     },
     "Stiffness now" : {
+
+    },
+    "Taken at %@. Before: Fatigue %lld." : {
+
+    },
+    "Taken at %@. Before: Pain %lld." : {
+
+    },
+    "Taken at %@. Before: Stiffness %lld." : {
+
+    },
+    "Taken on %@ at %@. Before: Fatigue %lld." : {
+
+    },
+    "Taken on %@ at %@. Before: Pain %lld." : {
+
+    },
+    "Taken on %@ at %@. Before: Stiffness %lld." : {
+
+    },
+    "Taken yesterday at %@. Before: Fatigue %lld." : {
+
+    },
+    "Taken yesterday at %@. Before: Pain %lld." : {
+
+    },
+    "Taken yesterday at %@. Before: Stiffness %lld." : {
 
     },
     "Taken at %@." : {
