@@ -150,12 +150,13 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let (row, save, measured) = gapAboveSave(id, in: app, file: file, line: line)
+        let (row, save) = gapAboveSave(id, in: app, file: file, line: line)
+        let measured = save.minY - row.maxY
         XCTAssertEqual(
             measured,
             gap,
             accuracy: 1,
-            "\(id) at \(row.frame) leaves \(measured) pt above save at \(save.frame)",
+            "\(id) at \(row) leaves \(measured) pt above save at \(save)",
             file: file,
             line: line
         )
@@ -168,11 +169,12 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let (row, save, measured) = gapAboveSave(id, in: app, file: file, line: line)
+        let (row, save) = gapAboveSave(id, in: app, file: file, line: line)
+        let measured = save.minY - row.maxY
         XCTAssertGreaterThanOrEqual(
             measured,
             gap,
-            "\(id) at \(row.frame) is only \(measured) pt above save at \(save.frame)",
+            "\(id) at \(row) is only \(measured) pt above save at \(save)",
             file: file,
             line: line
         )
@@ -183,12 +185,12 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         in app: XCUIApplication,
         file: StaticString,
         line: UInt
-    ) -> (row: XCUIElement, save: XCUIElement, measured: CGFloat) {
+    ) -> (row: CGRect, save: CGRect) {
         let save = app.buttons["medication-save"]
         let row = identifiedInForm(id, in: app)
         XCTAssertTrue(row.exists, "\(id) is not on screen", file: file, line: line)
         XCTAssertTrue(save.exists, "medication-save is not on screen", file: file, line: line)
-        return (row, save, save.frame.minY - row.frame.maxY)
+        return (row.frame, save.frame)
     }
 
     private func assertSaveAboveKeyboard(
