@@ -5,7 +5,7 @@ profiles:
 agents:
   refine: sonnet
   specify: sonnet-high
-  worker: haiku-high
+  worker: sonnet-high
   diagnose: sonnet-high
   answer: sonnet
   five-whys: sonnet
