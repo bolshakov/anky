@@ -22,4 +22,13 @@ struct DoseMovedTests {
         #expect(moved.beforeReadingID == original.beforeReadingID)
         #expect(moved.afterReadingID == original.afterReadingID)
     }
+
+    @Test func aMoveKeepsTheMomentItWasLogged() {
+        var original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
+        original.loggedAt = date.addingTimeInterval(5)
+
+        let moved = original.moved(to: UUID(), at: date.addingTimeInterval(600))
+
+        #expect(moved.loggedAt == original.loggedAt)
+    }
 }

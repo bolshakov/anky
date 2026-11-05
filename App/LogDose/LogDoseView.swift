@@ -247,7 +247,8 @@ struct LogDoseView: View {
             medication: medication,
             takenAt: takenAt,
             entries: model.entries,
-            manualReadingID: manualReadingID
+            manualReadingID: manualReadingID,
+            loggedAt: .now
         )
         dose.checkInAfter = checkIn.checkInAfter
         do {

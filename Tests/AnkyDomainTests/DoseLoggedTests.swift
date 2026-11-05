@@ -22,7 +22,8 @@ struct DoseLoggedTests {
         let earlier = try entry(at: takenAt.addingTimeInterval(-3600))
         let latest = try entry(at: takenAt.addingTimeInterval(-60))
         let dose = Dose.logged(
-            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [earlier, latest]
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [earlier, latest],
+            loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == latest.id)
     }
@@ -30,7 +31,8 @@ struct DoseLoggedTests {
     @Test func anEntryAMinuteOlderThanTheWindowIsNotPointedAt() throws {
         let tooOld = try entry(at: takenAt.addingTimeInterval(-ReadingWindow.length - 60))
         let dose = Dose.logged(
-            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [tooOld]
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [tooOld],
+            loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == nil)
     }
@@ -38,7 +40,7 @@ struct DoseLoggedTests {
     @Test func anEntryLoggedAfterTheDoseIsNotPointedAt() throws {
         let later = try entry(at: takenAt.addingTimeInterval(60))
         let dose = Dose.logged(
-            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [later]
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [later], loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == nil)
     }
@@ -48,7 +50,7 @@ struct DoseLoggedTests {
         let newer = try entry(at: takenAt.addingTimeInterval(-60))
         let dose = Dose.logged(
             id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt,
-            entries: [picked, newer], manualReadingID: picked.id
+            entries: [picked, newer], manualReadingID: picked.id, loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == picked.id)
     }
@@ -59,7 +61,8 @@ struct DoseLoggedTests {
             date: takenAt.addingTimeInterval(-60), note: nil, places: []
         )
         let dose = Dose.logged(
-            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [fatigue]
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [fatigue],
+            loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == fatigue.id)
     }
@@ -67,12 +70,20 @@ struct DoseLoggedTests {
     @Test func aDoseKeepsItsIdTimeAndMedicationAndTakesTheMedicationsCheckInDelay() {
         let id = UUID()
         let zorblex = medication(checkInAfter: .oneHour)
-        let dose = Dose.logged(id: id, medication: zorblex, takenAt: takenAt, entries: [])
+        let dose = Dose.logged(id: id, medication: zorblex, takenAt: takenAt, entries: [], loggedAt: takenAt)
         #expect(dose.id == id)
         #expect(dose.medicationID == zorblex.id)
         #expect(dose.takenAt == takenAt)
         #expect(dose.checkInAfter == .oneHour)
         #expect(dose.beforeReadingID == nil)
         #expect(dose.afterReadingID == nil)
+    }
+
+    @Test func aDoseKeepsTheMomentItWasLogged() {
+        let loggedAt = takenAt.addingTimeInterval(90)
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [], loggedAt: loggedAt
+        )
+        #expect(dose.loggedAt == loggedAt)
     }
 }
