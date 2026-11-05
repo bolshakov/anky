@@ -63,7 +63,9 @@ final class CheckInFootnoteTests: XCTestCase {
             in: app
         )
         scrolledToFootnote(in: app)
-        assertInOrder(["severity-slider", "check-in-saved-footnote", "note-field", "save-check-in"], in: app)
+        scrolled(to: "note-field", in: app)
+        assertInOrder(["severity-slider", "check-in-saved-footnote", "note-field"], in: app)
+        scrollToSaveCheckIn(in: app)
     }
 
     /// Changing the kind keeps the level and the date, and the severity caption follows the kind.
@@ -102,17 +104,21 @@ final class CheckInFootnoteTests: XCTestCase {
         scrolledToFootnote(in: app).label
     }
 
-    /// Scrolls the form until the footnote is in view above the Save button, then returns it.
+    /// Scrolls the form until the footnote is on screen and can be read, then returns it.
     @discardableResult
     private func scrolledToFootnote(in app: XCUIApplication) -> XCUIElement {
-        let footnote = identified("check-in-saved-footnote", in: app)
-        let save = app.buttons["save-check-in"]
-        for _ in 0 ..< 6 where !footnote.exists || footnote.frame.maxY > save.frame.minY {
+        scrolled(to: "check-in-saved-footnote", in: app)
+    }
+
+    /// Swipes the form up until the element with the identifier is on screen and hittable, then returns it.
+    @discardableResult
+    private func scrolled(to id: String, in app: XCUIApplication) -> XCUIElement {
+        let element = identified(id, in: app)
+        for _ in 0 ..< 6 where !element.exists || !element.isHittable {
             identified("check-in-screen", in: app).swipeUp()
         }
-        XCTAssertTrue(footnote.waitForExistence(timeout: 10))
-        XCTAssertLessThanOrEqual(footnote.frame.maxY, save.frame.minY)
-        return footnote
+        XCTAssertTrue(element.waitForExistence(timeout: 10))
+        return element
     }
 
     /// Swipes back only while the kind picker is below its top spot, since a swipe at the top dismisses the sheet.

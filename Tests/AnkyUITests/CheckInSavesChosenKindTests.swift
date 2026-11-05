@@ -16,6 +16,7 @@ final class CheckInSavesChosenKindTests: XCTestCase {
 
         chooseKind(.fatigue, in: app)
         setSeverity(6, in: app)
+        scrollToSaveCheckIn(in: app)
         app.buttons["save-check-in"].tap()
 
         XCTAssertTrue(identified("check-in-screen", in: app).waitForNonExistence(timeout: 10))
@@ -36,6 +37,7 @@ final class CheckInSavesChosenKindTests: XCTestCase {
         openCheckIn(app)
 
         app.buttons["place-chip-upper"].tap()
+        scrollToSaveCheckIn(in: app)
         app.buttons["save-check-in"].tap()
 
         XCTAssertTrue(identified("check-in-screen", in: app).waitForNonExistence(timeout: 10))
