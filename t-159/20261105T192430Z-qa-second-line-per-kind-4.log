@@ -1,0 +1,5 @@
+$ grep -c -F -e '"Taken at %@. Before: Pain %lld." :' -e '"Taken at %@. Before: Stiffness %lld." :' -e '"Taken at %@. Before: Fatigue %lld." :' App/Localizable.xcstrings
+exit: 0
+commit: 00c08dc754b555b8cf7f2ec45cd18848f6b7de5b
+
+3

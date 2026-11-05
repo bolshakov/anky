@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep id=check-in-info'
+exit: 0
+commit: 00c08dc754b555b8cf7f2ec45cd18848f6b7de5b
+
+GenericElement id=check-in-info label='Naproxen 500 mg. Taken at 19:44. Before: Pain 4.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331

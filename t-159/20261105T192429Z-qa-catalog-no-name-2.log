@@ -1,0 +1,16 @@
+$ sh -c 'grep -o -E '\''"Taken[^"]*" :'\'' App/Localizable.xcstrings | sort -u'
+exit: 0
+commit: 00c08dc754b555b8cf7f2ec45cd18848f6b7de5b
+
+"Taken %@. Before: Fatigue %lld." :
+"Taken %@. Before: Pain %lld." :
+"Taken %@. Before: Stiffness %lld." :
+"Taken %@." :
+"Taken at %@. Before: Fatigue %lld." :
+"Taken at %@. Before: Pain %lld." :
+"Taken at %@. Before: Stiffness %lld." :
+"Taken at %@." :
+"Taken yesterday at %@. Before: Fatigue %lld." :
+"Taken yesterday at %@. Before: Pain %lld." :
+"Taken yesterday at %@. Before: Stiffness %lld." :
+"Taken yesterday at %@." :

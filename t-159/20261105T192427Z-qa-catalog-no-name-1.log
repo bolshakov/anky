@@ -1,0 +1,6 @@
+$ sh -c 'grep -c -i naproxen App/Localizable.xcstrings; grep -c -i zorblex App/Localizable.xcstrings'
+exit: 1
+commit: 00c08dc754b555b8cf7f2ec45cd18848f6b7de5b
+
+0
+0
