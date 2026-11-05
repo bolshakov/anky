@@ -75,7 +75,7 @@ struct CheckInView: View {
     private var infoSection: some View {
         Section {
             VStack(alignment: .leading, spacing: 4) {
-                Text(infoTitle)
+                Text(verbatim: infoTitle)
                     .font(.headline)
                 Text(infoDetail)
                     .font(.subheadline)
