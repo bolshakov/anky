@@ -156,7 +156,7 @@ other => %lld места
 
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
-    + [counterKey, donePlacesKey, morePlacesKey]
+    + [counterKey, donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
@@ -174,7 +174,6 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
     + ["Save medication", "As needed", "Scheduled"]
     + ["How you take it", "Check in after", "After"]
-    + ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
     + ["Check in later", "Anky asks how your pain is after this long. Turn it on to choose a time."]
     + ["Anky asks how your pain is after this long."]
     + ["Manage", "Medications", "Archive", "Archived"]
