@@ -1,0 +1,8 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t118-04-1/tmp/walk.sh; udid=5AC58106-6109-4938-854D-EAFD6ECE8B30; axe describe-ui --udid 5AC58106-6109-4938-854D-EAFD6ECE8B30 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t118-04-1/tmp/ui.py | grep -E '\''8:24.u202fAM'\'''
+exit: 0
+commit: a99a9224ddec06d2d00ab0840321019dd6052941
+
+Button id=check-in-row label='How is your pain now? After your Naproxen on Oct 26 at 8:24\u202fAM' value=None enabled=True actions= traits= @16,346 370x108
+Button id=check-in-row label='How is your pain now? After your Naproxen yesterday at 8:24\u202fAM' value=None enabled=True actions= traits= @16,454 370x108
+GenericElement id=check-in-info label='Naproxen 500 mg. Taken yesterday at 8:24\u202fAM.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
+StaticText id=None label='Taken yesterday at 8:24\u202fAM.' value=None enabled=True actions= traits= @32,207.33333333333331 193x18

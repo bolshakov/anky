@@ -1,0 +1,5 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t118-04-1/tmp/walk.sh; udid=5AC58106-6109-4938-854D-EAFD6ECE8B30; axe describe-ui --udid 5AC58106-6109-4938-854D-EAFD6ECE8B30 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t118-04-1/tmp/ui.py | grep check-in-info'
+exit: 0
+commit: a99a9224ddec06d2d00ab0840321019dd6052941
+
+GenericElement id=check-in-info label='Naproxen 500 mg. Taken 5 Nov 2025 at 08:24.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
