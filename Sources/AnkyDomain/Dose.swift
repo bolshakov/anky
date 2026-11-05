@@ -8,6 +8,8 @@ public struct Dose: Identifiable, Equatable, Sendable {
     public var checkInAfter: CheckInDelay?
     public var beforeReadingID: UUID?
     public var afterReadingID: UUID?
+    /// Nil for a dose logged before the moment of logging was stored.
+    public var loggedAt: Date?
 
     public init(id: UUID, medicationID: UUID, takenAt: Date, beforeReadingID: UUID? = nil) {
         self.id = id
@@ -16,8 +18,9 @@ public struct Dose: Identifiable, Equatable, Sendable {
         self.beforeReadingID = beforeReadingID
     }
 
+    // swiftlint:disable:next function_parameter_count
     public static func logged(
-        id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil
+        id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil, loggedAt: Date
     ) -> Dose {
         // #lizard forgives
         var dose = Dose(
@@ -27,6 +30,7 @@ public struct Dose: Identifiable, Equatable, Sendable {
             beforeReadingID: ReadingWindow.pick(manualReadingID, in: entries, before: takenAt)?.id
         )
         dose.checkInAfter = medication.checkInAfter
+        dose.loggedAt = loggedAt
         return dose
     }
 
