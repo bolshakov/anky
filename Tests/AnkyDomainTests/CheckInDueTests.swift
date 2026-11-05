@@ -14,11 +14,22 @@ struct CheckInDueTests {
     }
 
     private func dose(
-        at time: Date? = nil, delay: CheckInDelay? = .thirtyMinutes, before: UUID? = nil, after: UUID? = nil
+        at time: Date? = nil,
+        delay: CheckInDelay? = .thirtyMinutes,
+        before: UUID? = nil,
+        after: UUID? = nil,
+        medicationID: UUID? = nil,
+        loggedAt: Date? = nil
     ) -> Dose {
-        var dose = Dose(id: UUID(), medicationID: medicationID, takenAt: time ?? takenAt, beforeReadingID: before)
+        var dose = Dose(
+            id: UUID(),
+            medicationID: medicationID ?? self.medicationID,
+            takenAt: time ?? takenAt,
+            beforeReadingID: before
+        )
         dose.checkInAfter = delay
         dose.afterReadingID = after
+        dose.loggedAt = loggedAt
         return dose
     }
 
@@ -26,74 +37,169 @@ struct CheckInDueTests {
         try Entry(id: id, kind: .pain, severity: #require(Severity(6)), date: date, note: nil, places: [])
     }
 
-    private func waits(_ dose: Dose, medication: Medication? = nil, now: Date, entries: [Entry] = []) -> Bool {
-        CheckInDue.isWaiting(
-            dose,
-            medication: medication ?? self.medication(),
-            readings: DoseReadings(dose, in: entries),
+    /// Whether `target` is in the offer at `now`, given the other doses in the store.
+    private func offered(
+        _ target: Dose,
+        alongside others: [Dose] = [],
+        medications: [Medication]? = nil,
+        entries: [Entry] = [],
+        now: Date
+    ) -> Bool {
+        CheckInDue.waiting(
+            doses: [target] + others,
+            medications: medications ?? [medication()],
+            entries: entries,
             now: now
-        )
+        ).contains { $0.id == target.id }
     }
 
-    @Test func aDoseWaitsFromTheMomentItsDelayHasPassed() {
+    @Test func aDoseIsOfferedFromTheMomentItsDelayHasPassed() {
         let due = takenAt.addingTimeInterval(30 * 60)
-        #expect(waits(dose(), now: due))
-        #expect(!waits(dose(), now: due.addingTimeInterval(-1)))
+        #expect(offered(dose(), now: due))
+        #expect(!offered(dose(), now: due.addingTimeInterval(-1)))
     }
 
-    @Test func aDoseWithCheckInOffNeverWaits() {
-        #expect(!waits(dose(delay: nil), now: takenAt.addingTimeInterval(24 * 60 * 60)))
+    @Test func aDoseWithCheckInOffIsNeverOffered() {
+        #expect(!offered(dose(delay: nil), now: takenAt.addingTimeInterval(24 * 60 * 60)))
     }
 
-    @Test func aDoseWithNoMedicationNeverWaits() {
-        #expect(!CheckInDue.isWaiting(dose(), medication: nil, readings: DoseReadings(dose(), in: []),
-                                      now: takenAt.addingTimeInterval(3600)))
+    @Test func aDoseWithNoMedicationIsNeverOffered() {
+        #expect(!offered(dose(), medications: [], now: takenAt.addingTimeInterval(3600)))
     }
 
-    @Test func anArchivedMedicationsDoseNeverWaits() {
-        #expect(!waits(dose(), medication: medication(archived: true), now: takenAt.addingTimeInterval(3600)))
+    @Test func aDoseOfAnArchivedMedicationIsOfferedInsideItsTwelveHours() {
+        #expect(offered(dose(), medications: [medication(archived: true)], now: takenAt.addingTimeInterval(3600)))
     }
 
-    @Test func aDoseWithItsAfterReadingIsNotWaiting() throws {
+    @Test func aDoseWithItsAfterReadingIsNotOffered() throws {
         let reading = try entry(at: takenAt)
-        let checkedIn = dose(after: reading.id)
-        #expect(!waits(checkedIn, now: takenAt.addingTimeInterval(3600), entries: [reading]))
+        #expect(!offered(dose(after: reading.id), entries: [reading], now: takenAt.addingTimeInterval(3600)))
     }
 
-    /// The after-reading id points at an entry that was deleted, so the dose reads no after-reading and waits again.
-    @Test func aDoseWhoseAfterEntryWasDeletedWaitsAgain() {
-        let checkedIn = dose(after: UUID())
-        #expect(waits(checkedIn, now: takenAt.addingTimeInterval(3600)))
+    /// The after-reading id points at an entry that was deleted, so the dose reads no after-reading and is offered
+    /// again.
+    @Test func aDoseWhoseAfterEntryWasDeletedIsOfferedAgain() {
+        #expect(offered(dose(after: UUID()), now: takenAt.addingTimeInterval(3600)))
     }
 
     @Test func theDelayIsTheDosesOwnNotTheMedicationsSavedDelay() {
         var saved = medication()
         saved.checkInAfter = .fourHours
-        let shortDelay = dose(delay: .thirtyMinutes)
-        #expect(waits(shortDelay, medication: saved, now: takenAt.addingTimeInterval(30 * 60)))
+        #expect(offered(dose(delay: .thirtyMinutes), medications: [saved], now: takenAt.addingTimeInterval(30 * 60)))
     }
 
-    @Test func theWaitingListIsOldestFirstAndHoldsOnlyTheWaitingDoses() {
-        let later = dose(at: takenAt.addingTimeInterval(600))
-        let earlier = dose(at: takenAt)
-        let notDue = dose(at: takenAt.addingTimeInterval(3600), delay: .fourHours)
-        let now = takenAt.addingTimeInterval(3600)
+    @Test func theOfferListIsOldestFirst() {
+        let later = dose(at: takenAt.addingTimeInterval(20))
+        let earlier = dose(at: takenAt.addingTimeInterval(5))
         let result = CheckInDue.waiting(
-            doses: [later, notDue, earlier],
+            doses: [later, earlier],
             medications: [medication()],
             entries: [],
-            now: now
+            now: takenAt.addingTimeInterval(3600)
         )
         #expect(result.map(\.id) == [earlier.id, later.id])
     }
 
-    @Test func theWaitingListIsEmptyWithNoMedicationForTheDose() {
+    @Test func theOfferListIsEmptyWithNoMedicationForTheDose() {
         let result = CheckInDue.waiting(doses: [dose()], medications: [], entries: [],
                                         now: takenAt.addingTimeInterval(3600))
         #expect(result.isEmpty)
     }
 
-    /// The Today and History screens use this to wake at the next moment a row changes, without a tap.
+    @Test func theWindowCloses12HoursAfterTheDoseTimeToTheSecond() {
+        let closing = takenAt.addingTimeInterval(CheckInDue.windowLength)
+        #expect(offered(dose(), now: closing.addingTimeInterval(-1)))
+        #expect(!offered(dose(), now: closing))
+    }
+
+    @Test func aNewerDoseOfAnotherMedicationClosesTheDose() {
+        let rival = Medication(id: UUID(), name: "Quellan", takenAs: .asNeeded, createdAt: takenAt)
+        let newer = dose(at: takenAt.addingTimeInterval(600), medicationID: rival.id)
+        #expect(!offered(
+            dose(), alongside: [newer], medications: [medication(), rival], now: takenAt.addingTimeInterval(3600)
+        ))
+    }
+
+    @Test func aNewerDoseWithCheckInOffClosesTheDose() {
+        let newer = dose(at: takenAt.addingTimeInterval(600), delay: nil)
+        #expect(!offered(dose(), alongside: [newer], now: takenAt.addingTimeInterval(3600)))
+    }
+
+    @Test func anOlderDoseDoesNotCloseTheDose() {
+        let older = dose(at: takenAt.addingTimeInterval(-600))
+        #expect(offered(dose(), alongside: [older], now: takenAt.addingTimeInterval(3600)))
+    }
+
+    /// Dose times compare by minute, so the dose logged last wins a tie whatever the seconds of each dose time.
+    @Test func ofTwoDosesInOneMinuteTheOneLoggedLastIsTheNewer() {
+        let takenLate = dose(at: takenAt.addingTimeInterval(50), loggedAt: takenAt.addingTimeInterval(1000))
+        let takenEarly = dose(at: takenAt.addingTimeInterval(10), loggedAt: takenAt.addingTimeInterval(2000))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(offered(takenEarly, alongside: [takenLate], now: now))
+        #expect(!offered(takenLate, alongside: [takenEarly], now: now))
+    }
+
+    @Test func ofTwoDosesInOneMinuteWithNoLoggedOrderNeitherIsNewer() {
+        let first = dose(at: takenAt.addingTimeInterval(10))
+        let second = dose(at: takenAt.addingTimeInterval(50))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(offered(first, alongside: [second], now: now))
+        #expect(offered(second, alongside: [first], now: now))
+    }
+
+    @Test func aDoseLoggedWithAnOrderIsNewerThanALegacyDoseInTheSameMinute() {
+        let legacy = dose(at: takenAt.addingTimeInterval(10))
+        let logged = dose(at: takenAt.addingTimeInterval(50), loggedAt: takenAt.addingTimeInterval(1000))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(!offered(legacy, alongside: [logged], now: now))
+        #expect(offered(logged, alongside: [legacy], now: now))
+    }
+
+    @Test func deletingTheNewerDoseReopensTheEarlierOne() {
+        let newer = dose(at: takenAt.addingTimeInterval(600))
+        let earlier = dose()
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(!offered(earlier, alongside: [newer], now: now))
+        #expect(offered(earlier, now: now))
+    }
+
+    @Test func movingTheNewerDoseBackReopensTheEarlierOne() {
+        let earlier = dose()
+        let moved = dose(at: takenAt.addingTimeInterval(600)).moved(
+            to: medicationID, at: takenAt.addingTimeInterval(-600)
+        )
+        #expect(offered(earlier, alongside: [moved], now: takenAt.addingTimeInterval(3600)))
+    }
+
+    @Test func aDoseMovedPastTheNewerOneTakesItsPlaceAsTheNewer() {
+        let earlier = dose()
+        let newer = dose(at: takenAt.addingTimeInterval(600))
+        let moved = earlier.moved(to: medicationID, at: takenAt.addingTimeInterval(1200))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(offered(moved, alongside: [newer], now: now))
+        #expect(!offered(newer, alongside: [moved], now: now))
+    }
+
+    @Test func aPainStiffnessOrFatigueEntryAtTheDueMomentClosesTheDose() throws {
+        let due = takenAt.addingTimeInterval(30 * 60)
+        let closing = try entry(at: due)
+        #expect(!offered(dose(), entries: [closing], now: due.addingTimeInterval(600)))
+    }
+
+    /// The due moment is 30 minutes and 20 seconds, so an entry at 30 minutes and 5 seconds shares its minute.
+    @Test func anEntryInTheDueMinuteBeforeTheDueSecondClosesTheDose() throws {
+        let due = takenAt.addingTimeInterval(20 + 30 * 60)
+        let closing = try entry(at: takenAt.addingTimeInterval(5 + 30 * 60))
+        let taken = dose(at: takenAt.addingTimeInterval(20))
+        #expect(!offered(taken, entries: [closing], now: due.addingTimeInterval(600)))
+    }
+
+    @Test func anEntryInTheMinuteBeforeTheDueMinuteChangesNothing() throws {
+        let due = takenAt.addingTimeInterval(30 * 60)
+        let before = try entry(at: due.addingTimeInterval(-60))
+        #expect(offered(dose(), entries: [before], now: due.addingTimeInterval(600)))
+    }
+
     @Test func theNextDueIsTheEarliestDueMomentStillAhead() {
         let soon = dose(at: takenAt, delay: .thirtyMinutes)
         let later = dose(at: takenAt.addingTimeInterval(600), delay: .oneHour)
