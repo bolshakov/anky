@@ -79,6 +79,7 @@ struct MedicationFormView: View {
                 .disabled(!draft.isSavable)
                 .accessibilityIdentifier("medication-save")
                 .padding()
+                .background(Color(.systemGroupedBackground))
             }
             .medicationFailureAlert($failure)
         }
