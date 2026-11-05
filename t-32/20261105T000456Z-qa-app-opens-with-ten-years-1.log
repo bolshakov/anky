@@ -1,0 +1,5 @@
+$ grep -o '[^"]*repeat-chip[^}]*' /Users/bolshakov/Projects/personal/anky.wt/qa-t32-02-1/tmp/walk-t32.kcPP/today.json
+exit: 0
+commit: 49adc15ca35322fc355a9c532cf3eb2f42ec0971
+
+repeat-chip",

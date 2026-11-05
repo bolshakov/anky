@@ -1,0 +1,5 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t32-02-1/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t32-02-1/tmp/walk-t32.kcPP'\''; udid='\''71DB0A96-56B9-4272-AA91-9532B262214A'\''; stop; rows'
+exit: 0
+commit: 49adc15ca35322fc355a9c532cf3eb2f42ec0971
+
+11000
