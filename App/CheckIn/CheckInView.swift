@@ -40,6 +40,11 @@ struct CheckInView: View {
                     footerID: "check-in-saved-footnote"
                 )
                 NoteSection(draft: $draft)
+                Section {
+                    saveButton
+                }
+                .listRowBackground(Color.clear)
+                .listRowInsets(EdgeInsets())
             }
             .scrollContentBackground(.hidden)
             .background(Color("PageBackground"))
@@ -57,9 +62,6 @@ struct CheckInView: View {
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("check-in-cancel")
                 }
-            }
-            .safeAreaInset(edge: .bottom) {
-                saveButton
             }
             .alert("This check-in could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
