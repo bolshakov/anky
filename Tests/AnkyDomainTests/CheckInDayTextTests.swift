@@ -33,11 +33,12 @@ struct CheckInDayTextTests {
         )
     }
 
+    /// The row's words take the time or the day phrase only. The name is never passed in, so no translation sees it.
     private var rowWords: CheckInRowWords {
         CheckInRowWords(
-            today: { name, time in "After your \(name) at \(time)" },
-            yesterday: { name, time in "After your \(name) yesterday at \(time)" },
-            onDay: { name, day in "After your \(name) on \(day)" }
+            today: { time in time },
+            yesterday: { time in "yesterday at \(time)" },
+            onDay: { day in day }
         )
     }
 
@@ -69,14 +70,23 @@ struct CheckInDayTextTests {
 
     @Test func aDoseEarlierTodayReadsAsToday() throws {
         let taken = try moment(2027, 1, 1)
-        #expect(row(taken, now: newYear) == "After your Zorblex at 12:00")
+        #expect(row(taken, now: newYear) == "Zorblex · 12:00")
         #expect(info(taken, now: newYear) == "Taken at 12:00.")
     }
 
     @Test func aDoseFromYesterdayReadsAsYesterday() throws {
         let taken = try moment(2026, 12, 31)
-        #expect(row(taken, now: newYear) == "After your Zorblex yesterday at 12:00")
+        #expect(row(taken, now: newYear) == "Zorblex · yesterday at 12:00")
         #expect(info(taken, now: newYear) == "Taken yesterday at 12:00.")
+    }
+
+    @Test func aMedicationNameWithFormatCharactersReadsAsTyped() {
+        let subtitle = CheckInDayText.rowSubtitle(
+            name: "50% {x} %@ \\(y)",
+            wording: .today(time: "12:00"),
+            words: rowWords
+        )
+        #expect(subtitle == "50% {x} %@ \\(y) · 12:00")
     }
 
     @Test func aDoseLateYesterdayReadsAsYesterdayJustAfterMidnight() throws {
@@ -87,13 +97,13 @@ struct CheckInDayTextTests {
     @Test func aDoseEarlierInTheSameYearReadsItsDayAndTime() throws {
         let now = try moment(2026, 11, 1)
         let taken = try moment(2026, 10, 24)
-        #expect(row(taken, now: now) == "After your Zorblex on 24 Oct at 12:00")
+        #expect(row(taken, now: now) == "Zorblex · 24 Oct at 12:00")
         #expect(info(taken, now: now) == "Taken 24 Oct at 12:00.")
     }
 
     @Test func aDoseFromAnotherYearReadsItsDayYearAndTime() throws {
         let taken = try moment(2026, 12, 30)
-        #expect(row(taken, now: newYear) == "After your Zorblex on 30 Dec 2026 at 12:00")
+        #expect(row(taken, now: newYear) == "Zorblex · 30 Dec 2026 at 12:00")
         #expect(info(taken, now: newYear) == "Taken 30 Dec 2026 at 12:00.")
     }
 

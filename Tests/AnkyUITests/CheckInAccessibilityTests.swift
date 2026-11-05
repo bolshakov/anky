@@ -12,7 +12,7 @@ final class CheckInAccessibilityTests: XCTestCase {
 
         let todayRow = identified("check-in-row", in: app)
         XCTAssertTrue(todayRow.waitForExistence(timeout: 10))
-        XCTAssertTrue(todayRow.label.hasPrefix("How is your pain now? After your Zorblex at "), todayRow.label)
+        XCTAssertTrue(todayRow.label.hasPrefix("How is your pain now? Zorblex · "), todayRow.label)
 
         app.tabBars.buttons["History"].tap()
         let historyRow = identified("dose-row", in: app)

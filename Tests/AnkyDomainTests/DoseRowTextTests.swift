@@ -6,29 +6,29 @@ import Testing
 struct DoseRowTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
+    /// Each kind has its own closures, and they take numbers only. A test that reads "stiffness" therefore came from
+    /// the stiffness closures, not from a kind word joined to a shared phrase.
     private var words: DoseWords {
         DoseWords(
             kind: "Dose",
-            subtitlePain: { pain in
-                switch pain {
-                case let .before(kind, level): "\(Self.word(kind)) was \(level.value)"
-                case let .after(kind, level): "\(Self.word(kind)) \(level.value) after"
-                case let .beforeAndAfter(kind, before, after):
-                    "\(Self.word(kind)) \(before.value) before, \(after.value) after"
-                }
+            subtitle: { kind in
+                DosePainWords(
+                    before: { "\(Self.subtitleKind(kind)) was \($0)" },
+                    after: { "\(Self.subtitleKind(kind)) \($0) after" },
+                    beforeAndAfter: { "\(Self.subtitleKind(kind)) \($0) before, \($1) after" }
+                )
             },
-            spokenPain: { pain in
-                switch pain {
-                case let .before(kind, level): "\(Self.name(kind)) was \(level.value) of 10"
-                case let .after(kind, level): "\(Self.name(kind)) \(level.value) after"
-                case let .beforeAndAfter(kind, before, after):
-                    "\(Self.name(kind)) \(before.value) before, \(after.value) after"
-                }
+            spoken: { kind in
+                DosePainWords(
+                    before: { "\(Self.spokenKind(kind)) was \($0) of 10" },
+                    after: { "\(Self.spokenKind(kind)) \($0) after" },
+                    beforeAndAfter: { "\(Self.spokenKind(kind)) \($0) before, \($1) after" }
+                )
             }
         )
     }
 
-    private static func word(_ kind: EntryKind) -> String {
+    private static func subtitleKind(_ kind: EntryKind) -> String {
         switch kind {
         case .pain: "pain"
         case .stiffness: "stiffness"
@@ -36,7 +36,7 @@ struct DoseRowTextTests {
         }
     }
 
-    private static func name(_ kind: EntryKind) -> String {
+    private static func spokenKind(_ kind: EntryKind) -> String {
         switch kind {
         case .pain: "Pain"
         case .stiffness: "Stiffness"
@@ -104,6 +104,15 @@ struct DoseRowTextTests {
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before), words: words
         )
         #expect(label == "8:30. Naproxen 500 mg. Dose. Pain was 6 of 10.")
+    }
+
+    @Test func theSpokenLabelFollowsTheKindOfTheBeforeReading() throws {
+        let before = try entry(.stiffness, severity: 6)
+        let after = try entry(.pain, severity: 3)
+        let label = DoseRowText.spokenLabel(
+            time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before, after: after), words: words
+        )
+        #expect(label == "8:30. Naproxen 500 mg. Dose. Stiffness 6 before, 3 after.")
     }
 
     @Test func theSpokenLabelOfBothReadingsReadsBeforeAndAfter() throws {

@@ -6,9 +6,9 @@ import SwiftUI
 extension CheckInRowWords {
     static var app: CheckInRowWords {
         CheckInRowWords(
-            today: { name, time in String(localized: "After your \(name) at \(time)") },
-            yesterday: { name, time in String(localized: "After your \(name) yesterday at \(time)") },
-            onDay: { name, dayAndTime in String(localized: "After your \(name) on \(dayAndTime)") }
+            today: { time in time },
+            yesterday: { time in String(localized: "yesterday at \(time)") },
+            onDay: { dayAndTime in dayAndTime }
         )
     }
 }
