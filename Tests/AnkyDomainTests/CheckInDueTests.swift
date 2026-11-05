@@ -33,8 +33,8 @@ struct CheckInDueTests {
         return dose
     }
 
-    private func entry(id: UUID = UUID(), at date: Date) throws -> Entry {
-        try Entry(id: id, kind: .pain, severity: #require(Severity(6)), date: date, note: nil, places: [])
+    private func entry(id: UUID = UUID(), kind: EntryKind = .pain, at date: Date) throws -> Entry {
+        try Entry(id: id, kind: kind, severity: #require(Severity(6)), date: date, note: nil, places: [])
     }
 
     /// Whether `target` is in the offer at `now`, given the other doses in the store.
@@ -184,6 +184,14 @@ struct CheckInDueTests {
         let due = takenAt.addingTimeInterval(30 * 60)
         let closing = try entry(at: due)
         #expect(!offered(dose(), entries: [closing], now: due.addingTimeInterval(600)))
+    }
+
+    @Test func anEntryOfAnyKindAfterTheDueMomentClosesTheDose() throws {
+        let due = takenAt.addingTimeInterval(30 * 60)
+        for kind in EntryKind.allCases {
+            let closing = try entry(kind: kind, at: due.addingTimeInterval(10 * 60))
+            #expect(!offered(dose(), entries: [closing], now: due.addingTimeInterval(20 * 60)), "\(kind)")
+        }
     }
 
     /// The due moment is 30 minutes and 20 seconds, so an entry at 30 minutes and 5 seconds shares its minute.
