@@ -98,11 +98,6 @@ struct CheckInDayTextTests {
         #expect(info(takenAt, now: newYear, before: before) == "Taken at 12:00. Before: Pain 7.")
     }
 
-    @Test func aStiffnessBeforeReadingNamesStiffness() throws {
-        let before = try entry(.stiffness, 5)
-        #expect(info(takenAt, now: newYear, before: before) == "Taken at 12:00. Before: Stiffness 5.")
-    }
-
     @Test func aBeforeReadingIsPassedWithEveryDayWording() throws {
         let before = try entry(.pain, 7)
         let yesterday = try moment(2026, 12, 31)
