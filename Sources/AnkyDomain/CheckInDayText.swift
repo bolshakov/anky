@@ -45,7 +45,7 @@ public enum DayWording: Equatable, Sendable {
 
 public enum CheckInDayText {
     public static func wording(for takenAt: Date, now: Date, calendar: Calendar, locale: Locale) -> DayWording {
-        let time = ClockText.text(for: takenAt, calendar: calendar, locale: locale)
+        let time = DateTemplateText.text(for: takenAt, template: "jmm", calendar: calendar, locale: locale)
         if calendar.isDate(takenAt, inSameDayAs: now) {
             return .today(time: time)
         }

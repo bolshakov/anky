@@ -133,6 +133,20 @@ struct CheckInDayTextTests {
     @Test func theDayIsReadInTheCalendarsTimeZone() throws {
         // Both moments are 1 November in Auckland but fall on different days in UTC and Berlin.
         let now = try moment(2026, 11, 1, 23)
-        #expect(try wording(moment(2026, 11, 1, 0, 30), now: now) == .today(time: "0:30"))
+        #expect(try wording(moment(2026, 11, 1, 0, 30), now: now) == .today(time: "00:30"))
+    }
+
+    @Test func anHourBeforeTenReadsWithTwoDigitsAsTheSystemWritesIt() throws {
+        let early = try moment(2026, 12, 31, 8, 24)
+        #expect(info(early, now: newYear) == "Taken yesterday at 08:24.")
+        let today = try moment(2027, 1, 1, 8, 24)
+        #expect(info(today, now: newYear) == "Taken at 08:24.")
+        let us = Locale(identifier: "en_US")
+        let text = CheckInDayText.infoTaken(
+            wording: wording(early, now: newYear, locale: us),
+            before: nil,
+            words: infoWords
+        )
+        #expect(text == "Taken yesterday at 8:24\u{202F}AM.")
     }
 }
