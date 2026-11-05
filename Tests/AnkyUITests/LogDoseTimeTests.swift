@@ -61,6 +61,7 @@ final class LogDoseTimeTests: XCTestCase {
         XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons["before-reading-row"].exists)
         XCTAssertEqual(saveDose(in: app), chosen)
+        XCTAssertFalse(doseRow(in: app).label.contains("of 10"), doseRow(in: app).label)
     }
 
     /// The reading is the entry the chooser logs, saved a minute after Log Dose opened, and the dose is saved after it.
@@ -74,11 +75,25 @@ final class LogDoseTimeTests: XCTestCase {
         saveFourOfTenFromNewEntry(app)
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        let fourOfTen = app.buttons.matching(identifier: "reading-option")
+        XCTAssertEqual(fourOfTen.count, 1)
+        XCTAssertTrue(readingValue(fourOfTen.element(boundBy: 0)).contains("4 of 10"))
+        XCTAssertTrue(fourOfTen.element(boundBy: 0).isSelected)
         app.buttons["reading-log-new"].tap()
         XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
         setSeverity(3, in: app)
         saveEntry(app)
+        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+
+        app.buttons["before-reading-row"].tap()
+        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        let both = app.buttons.matching(identifier: "reading-option")
+        XCTAssertEqual(both.count, 2)
+        XCTAssertTrue(readingValue(both.element(boundBy: 0)).contains("3 of 10"))
+        XCTAssertTrue(both.element(boundBy: 0).isSelected)
+        XCTAssertTrue(readingValue(both.element(boundBy: 1)).contains("4 of 10"))
+        app.buttons["reading-cancel"].tap()
         XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
         let entered = clockTime(at: .now)
 
@@ -87,7 +102,13 @@ final class LogDoseTimeTests: XCTestCase {
         XCTAssertTrue(before.waitForExistence(timeout: 10))
         XCTAssertTrue(before.label.contains("3 of 10"), before.label)
         expectDateRowShowsTheClock(in: app)
-        XCTAssertNotEqual(saveDoseTimedNow(in: app), entered)
+        let time = saveDoseTimedNow(in: app)
+        XCTAssertNotEqual(time, entered)
+        XCTAssertTrue(doseRow(in: app).label.contains("Pain was 3 of 10"), doseRow(in: app).label)
+    }
+
+    private func readingValue(_ option: XCUIElement) -> String {
+        option.value as? String ?? ""
     }
 
     /// The time the dose row on Today shows, which its spoken label starts with.
