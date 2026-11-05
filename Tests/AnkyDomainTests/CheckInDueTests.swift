@@ -107,7 +107,7 @@ struct CheckInDueTests {
     }
 
     @Test func theWindowCloses12HoursAfterTheDoseTimeToTheSecond() {
-        let closing = takenAt.addingTimeInterval(CheckInDue.windowLength)
+        let closing = takenAt.addingTimeInterval(12 * 60 * 60)
         #expect(offered(dose(), now: closing.addingTimeInterval(-1)))
         #expect(!offered(dose(), now: closing))
     }
