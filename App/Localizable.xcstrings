@@ -11,12 +11,6 @@
         }
       }
     },
-    "%@ %lld after" : {
-
-    },
-    "%@ %lld before, %lld after" : {
-
-    },
     "%@ of %lld" : {
       "localizations" : {
         "en" : {
@@ -32,12 +26,6 @@
           }
         }
       }
-    },
-    "%@ was %lld" : {
-
-    },
-    "%@ was %lld of 10" : {
-
     },
     "%@, %@" : {
       "localizations" : {
@@ -482,7 +470,25 @@
         }
       }
     },
+    "fatigue %lld after" : {
+
+    },
+    "Fatigue %lld after" : {
+
+    },
+    "fatigue %lld before, %lld after" : {
+
+    },
+    "Fatigue %lld before, %lld after" : {
+
+    },
     "Fatigue now" : {
+
+    },
+    "fatigue was %lld" : {
+
+    },
+    "Fatigue was %lld of 10" : {
 
     },
     "How is your fatigue now?" : {
@@ -506,7 +512,25 @@
     "Opens Check In" : {
 
     },
+    "pain %lld after" : {
+
+    },
+    "Pain %lld after" : {
+
+    },
+    "pain %lld before, %lld after" : {
+
+    },
+    "Pain %lld before, %lld after" : {
+
+    },
     "Pain now" : {
+
+    },
+    "pain was %lld" : {
+
+    },
+    "Pain was %lld of 10" : {
 
     },
     "Save check-in" : {
@@ -530,7 +554,25 @@
     "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry." : {
 
     },
+    "stiffness %lld after" : {
+
+    },
+    "Stiffness %lld after" : {
+
+    },
+    "stiffness %lld before, %lld after" : {
+
+    },
+    "Stiffness %lld before, %lld after" : {
+
+    },
     "Stiffness now" : {
+
+    },
+    "stiffness was %lld" : {
+
+    },
+    "Stiffness was %lld of 10" : {
 
     },
     "Taken at %@. Before: Fatigue %lld." : {
@@ -567,9 +609,6 @@
 
     },
     "Taken yesterday at %@." : {
-
-    },
-    "fatigue" : {
 
     },
     "Feet and toes" : {
@@ -1090,9 +1129,6 @@
         }
       }
     },
-    "pain" : {
-
-    },
     "Pelvis and chest" : {
       "localizations" : {
         "ru" : {
@@ -1385,9 +1421,6 @@
           }
         }
       }
-    },
-    "stiffness" : {
-
     },
     "Swipe a place right to pin it as a shortcut on New Entry." : {
       "localizations" : {
