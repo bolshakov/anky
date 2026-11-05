@@ -174,7 +174,7 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
     + ["Save medication", "As needed", "Scheduled"]
     + ["How you take it", "Check in after", "After"]
-    + ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
+    + ["%lld minutes", "%lld hours"]
     + ["Check in later", "Anky asks how your pain is after this long. Turn it on to choose a time."]
     + ["Anky asks how your pain is after this long."]
     + ["Manage", "Medications", "Archive", "Archived"]
@@ -389,6 +389,10 @@ struct RussianCatalogTests {
             }
             for (count, expected) in [(1, "1 place"), (6, "6 places")] {
                 #expect(String(localized: "\(count) places", bundle: en, locale: english) == expected)
+            }
+            #expect(String(localized: "\(30) minutes", bundle: en, locale: english) == "30 minutes")
+            for (count, expected) in [(1, "1 hour"), (2, "2 hours"), (4, "4 hours")] {
+                #expect(String(localized: "\(count) hours", bundle: en, locale: english) == expected)
             }
         }
     }

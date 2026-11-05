@@ -933,20 +933,49 @@
     "After" : {
 
     },
-    "30 minutes" : {
-
+    "%lld minutes" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "1 hour" : {
-
-    },
-    "2 hours" : {
-
-    },
-    "3 hours" : {
-
-    },
-    "4 hours" : {
-
+    "%lld hours" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld hour"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld hours"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "Check in later" : {
 
