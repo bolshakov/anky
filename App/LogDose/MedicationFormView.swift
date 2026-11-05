@@ -67,7 +67,7 @@ struct MedicationFormView: View {
                         .accessibilityIdentifier("medication-cancel")
                 }
             }
-            .safeAreaInset(edge: .bottom) {
+            .safeAreaBar(edge: .bottom) {
                 Button {
                     save()
                 } label: {
