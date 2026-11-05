@@ -28,6 +28,20 @@ enum MadeUpLog {
         }
     }
 
+    /// The same groups in the same save order, every entry dated `newest`, as a run of quick repeats would leave them.
+    static func sharingOneDate(endingAt newest: Date) -> [Entry] {
+        entries(endingAt: newest).map { entry in
+            Entry(
+                id: entry.id,
+                kind: entry.kind,
+                severity: entry.severity,
+                date: newest,
+                note: nil,
+                places: entry.places
+            )
+        }
+    }
+
     private struct Group {
         let kind: EntryKind
         let severity: Severity
