@@ -87,7 +87,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         assertClearOfSave("medication-archive", in: app)
     }
 
-    func testEditMedicationArchiveSitsSixteenPointsAboveSaveWhenTheKeyboardOpens() {
+    func testEditMedicationArchiveClearsSaveByTheGapWhenTheKeyboardOpens() {
         continueAfterFailure = false
         let app = launchAnky()
         openEditMedication(app)
@@ -96,7 +96,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertSixteenAboveSave("medication-archive", in: app)
+        assertClearOfSave("medication-archive", in: app)
     }
 
     private func openEditMedication(_ app: XCUIApplication) {
