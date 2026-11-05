@@ -8,8 +8,7 @@ extension CheckInRowWords {
         CheckInRowWords(
             today: { name, time in String(localized: "After your \(name) at \(time)") },
             yesterday: { name, time in String(localized: "After your \(name) yesterday at \(time)") },
-            onDay: { name, day, time in String(localized: "After your \(name) on \(day) at \(time)") },
-            yearDay: { day, year in String(localized: "\(day) \(year)") }
+            onDay: { name, dayAndTime in String(localized: "After your \(name) on \(dayAndTime)") }
         )
     }
 }
@@ -35,16 +34,15 @@ extension CheckInInfoWords {
                 case .fatigue: return String(localized: "Taken yesterday at \(time). Before: Fatigue \(level).")
                 }
             },
-            onDay: { day, time, before in
-                guard let before else { return String(localized: "Taken on \(day) at \(time).") }
+            onDay: { dayAndTime, before in
+                guard let before else { return String(localized: "Taken \(dayAndTime).") }
                 let level = before.severity.value
                 switch before.kind {
-                case .pain: return String(localized: "Taken on \(day) at \(time). Before: Pain \(level).")
-                case .stiffness: return String(localized: "Taken on \(day) at \(time). Before: Stiffness \(level).")
-                case .fatigue: return String(localized: "Taken on \(day) at \(time). Before: Fatigue \(level).")
+                case .pain: return String(localized: "Taken \(dayAndTime). Before: Pain \(level).")
+                case .stiffness: return String(localized: "Taken \(dayAndTime). Before: Stiffness \(level).")
+                case .fatigue: return String(localized: "Taken \(dayAndTime). Before: Fatigue \(level).")
                 }
-            },
-            yearDay: { day, year in String(localized: "\(day) \(year)") }
+            }
         )
     }
 }
@@ -74,14 +72,14 @@ enum CheckInText {
         }
     }
 
-    static func rowSubtitle(name: String, time: String, takenAt: Date, now: Date) -> String {
-        let day = CheckInDayText.day(for: takenAt, now: now, calendar: .current, locale: .current)
-        return CheckInDayText.rowSubtitle(name: name, time: time, day: day, words: .app)
+    static func rowSubtitle(name: String, takenAt: Date, now: Date) -> String {
+        let wording = CheckInDayText.wording(for: takenAt, now: now, calendar: .current, locale: .current)
+        return CheckInDayText.rowSubtitle(name: name, wording: wording, words: .app)
     }
 
-    static func infoTaken(time: String, takenAt: Date, before: Entry?, now: Date) -> String {
-        let day = CheckInDayText.day(for: takenAt, now: now, calendar: .current, locale: .current)
-        return CheckInDayText.infoTaken(time: time, day: day, before: before, words: .app)
+    static func infoTaken(takenAt: Date, before: Entry?, now: Date) -> String {
+        let wording = CheckInDayText.wording(for: takenAt, now: now, calendar: .current, locale: .current)
+        return CheckInDayText.infoTaken(wording: wording, before: before, words: .app)
     }
 
     static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> LocalizedStringKey {
