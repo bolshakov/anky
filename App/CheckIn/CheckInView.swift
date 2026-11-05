@@ -160,7 +160,6 @@ struct CheckInView: View {
     }
 
     private var infoDetail: String {
-        let time = ClockText.text(for: dose.takenAt, calendar: .current, locale: .current)
-        return CheckInText.infoTaken(time: time, takenAt: dose.takenAt, before: readings.before, now: .now)
+        CheckInText.infoTaken(takenAt: dose.takenAt, before: readings.before, now: .now)
     }
 }
