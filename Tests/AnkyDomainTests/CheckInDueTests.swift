@@ -106,10 +106,24 @@ struct CheckInDueTests {
         #expect(result.isEmpty)
     }
 
-    @Test func theWindowCloses12HoursAfterTheDoseTimeToTheSecond() {
+    @Test func theWindowCloses12HoursAfterTheDoseTime() {
         let closing = takenAt.addingTimeInterval(12 * 60 * 60)
         #expect(offered(dose(), now: closing.addingTimeInterval(-1)))
         #expect(!offered(dose(), now: closing))
+    }
+
+    @Test func anOfferOpensToTheSecondWhenTheDoseTimeHasSeconds() {
+        let taken = dose(at: takenAt.addingTimeInterval(20))
+        let due = takenAt.addingTimeInterval(20 + 30 * 60)
+        #expect(!offered(taken, now: due.addingTimeInterval(-1)))
+        #expect(offered(taken, now: due))
+    }
+
+    @Test func anOfferClosesToTheSecondWhenTheDoseTimeHasSeconds() {
+        let taken = dose(at: takenAt.addingTimeInterval(20))
+        let closing = takenAt.addingTimeInterval(20 + 12 * 60 * 60)
+        #expect(offered(taken, now: closing.addingTimeInterval(-1)))
+        #expect(!offered(taken, now: closing))
     }
 
     @Test func aNewerDoseOfAnotherMedicationClosesTheDose() {
