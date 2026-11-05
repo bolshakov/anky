@@ -199,8 +199,13 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Saved as a Pain entry.", "Saved as a Stiffness entry.", "Saved as a Fatigue entry."]
     + ["Log pain", "Log stiffness", "Log fatigue"]
     + ["After your %@ at %@", "After your %@ yesterday at %@", "After your %@ on %@ at %@"]
-    + ["After %@", "Taken at %@.", "Taken yesterday at %@.", "Taken on %@ at %@."]
-    + ["%@ was %lld of 10 then.", "Check in", "Check In", "Check in pending", "Opens Check In"]
+    + ["Taken at %@.", "Taken yesterday at %@.", "Taken on %@ at %@."]
+    + ["Taken at %@. Before: Pain %lld.", "Taken at %@. Before: Stiffness %lld.", "Taken at %@. Before: Fatigue %lld."]
+    + ["Taken yesterday at %@. Before: Pain %lld.", "Taken yesterday at %@. Before: Stiffness %lld.",
+       "Taken yesterday at %@. Before: Fatigue %lld."]
+    + ["Taken on %@ at %@. Before: Pain %lld.", "Taken on %@ at %@. Before: Stiffness %lld.",
+       "Taken on %@ at %@. Before: Fatigue %lld."]
+    + ["Check in", "Check In", "Check in pending", "Opens Check In"]
     + ["Delete dose", "Delete this dose? This can't be undone.", "This dose could not be deleted."]
     + ["Levels are 0 to 10. Stored on this iPhone only.", "Levels are 0 to 10."]
 

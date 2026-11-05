@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-public typealias TimeWords = (String) -> String
 public typealias PairWords = (String, String) -> String
 public typealias TripleWords = (String, String, String) -> String
+public typealias TimeBeforeWords = (String, Entry?) -> String
+public typealias DayTimeBeforeWords = (String, String, Entry?) -> String
 
 /// The words of a Check In row's subtitle. The app supplies the localized ones. The closures take the name, then the
 /// day, then the time, in that order.
@@ -27,17 +28,17 @@ public struct CheckInRowWords {
 }
 
 /// The words of a Check In info card's taken line. The app supplies the localized ones. The closures take the day,
-/// then the time, in that order.
+/// then the time, then the before reading. Each one is a whole string, so a translation keeps the before reading in it.
 public struct CheckInInfoWords {
-    public let today: TimeWords
-    public let yesterday: TimeWords
-    public let onDay: PairWords
+    public let today: TimeBeforeWords
+    public let yesterday: TimeBeforeWords
+    public let onDay: DayTimeBeforeWords
     public let yearDay: PairWords
 
     public init(
-        today: @escaping TimeWords,
-        yesterday: @escaping TimeWords,
-        onDay: @escaping PairWords,
+        today: @escaping TimeBeforeWords,
+        yesterday: @escaping TimeBeforeWords,
+        onDay: @escaping DayTimeBeforeWords,
         yearDay: @escaping PairWords
     ) {
         self.today = today
@@ -66,16 +67,16 @@ public enum CheckInDayText {
         }
     }
 
-    public static func infoTaken(time: String, day: ShortDay, words: CheckInInfoWords) -> String {
+    public static func infoTaken(time: String, day: ShortDay, before: Entry?, words: CheckInInfoWords) -> String {
         switch day {
         case .today:
-            words.today(time)
+            words.today(time, before)
         case .yesterday:
-            words.yesterday(time)
+            words.yesterday(time, before)
         case let .sameYear(text):
-            words.onDay(text, time)
+            words.onDay(text, time, before)
         case let .otherYear(text, year):
-            words.onDay(words.yearDay(text, year), time)
+            words.onDay(words.yearDay(text, year), time, before)
         }
     }
 }
