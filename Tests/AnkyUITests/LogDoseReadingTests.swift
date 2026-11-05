@@ -52,7 +52,7 @@ final class LogDoseReadingTests: XCTestCase {
         logThreeOfTenFromChooser(app)
 
         XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.label.contains("3 of 10"), before.label)
     }
@@ -117,6 +117,7 @@ final class LogDoseReadingTests: XCTestCase {
         )
         let medication = try XCTUnwrap(elementsLabelled("Medication", in: app).first)
         XCTAssertGreaterThanOrEqual(title.frame.minY, medication.frame.maxY)
+        XCTAssertEqual(title.frame.minX, medication.frame.minX, accuracy: 1, "the title is not a section header")
         let labelled = elementsLabelled("Log how you feel now", in: app)
         XCTAssertFalse(labelled.isEmpty)
         XCTAssertTrue(labelled.allSatisfy { row.frame.contains($0.frame) }, "a title reads Log how you feel now")
@@ -179,7 +180,7 @@ final class LogDoseReadingTests: XCTestCase {
         app.buttons["before-reading-row"].tap()
         XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
         app.buttons["reading-log-new"].tap()
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
         setSeverity(3, in: app)
         saveEntry(app)
     }
