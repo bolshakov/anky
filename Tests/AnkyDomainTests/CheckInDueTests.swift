@@ -180,6 +180,23 @@ struct CheckInDueTests {
         #expect(!offered(newer, alongside: [moved], now: now))
     }
 
+    @Test func aDoseTakenLaterIsNewerThanAnEarlierOneLoggedAfterIt() {
+        let earlierTaken = dose(at: takenAt.addingTimeInterval(60), loggedAt: takenAt.addingTimeInterval(2000))
+        let laterTaken = dose(at: takenAt.addingTimeInterval(5 * 60), loggedAt: takenAt.addingTimeInterval(1000))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(offered(laterTaken, alongside: [earlierTaken], now: now))
+        #expect(!offered(earlierTaken, alongside: [laterTaken], now: now))
+    }
+
+    @Test func aDoseMovedEarlierIsNotNewerThanALaterOneLoggedBeforeIt() {
+        let moved = dose(at: takenAt.addingTimeInterval(10 * 60), loggedAt: takenAt.addingTimeInterval(2000))
+            .moved(to: medicationID, at: takenAt.addingTimeInterval(60))
+        let laterTaken = dose(at: takenAt.addingTimeInterval(5 * 60), loggedAt: takenAt.addingTimeInterval(1000))
+        let now = takenAt.addingTimeInterval(3600)
+        #expect(offered(laterTaken, alongside: [moved], now: now))
+        #expect(!offered(moved, alongside: [laterTaken], now: now))
+    }
+
     @Test func aPainStiffnessOrFatigueEntryAtTheDueMomentClosesTheDose() throws {
         let due = takenAt.addingTimeInterval(30 * 60)
         let closing = try entry(at: due)
