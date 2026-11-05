@@ -13,8 +13,8 @@ final class LogDoseReadingTests: XCTestCase {
         expectBeforeReadingShowsFourOfTen(app)
     }
 
-    /// The New Entry draft starts when it opens, which can be a minute after the dose time Log Dose fixed on opening.
-    /// The test above can finish inside that minute, so this one waits for the minute to roll over first.
+    /// The New Entry draft starts when it opens, which can be a minute after Log Dose opened. The test above can finish
+    /// inside that minute, so this one waits for the minute to roll over first.
     func testEntrySavedInALaterMinuteStillBecomesTheBeforeReading() {
         continueAfterFailure = false
         let app = launchAnky()
@@ -104,15 +104,22 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(title.frame.minY, medication.frame.maxY)
     }
 
-    func testWithoutAReadingTheSectionTitleIsLogHowYouFeelNow() {
+    func testWithoutAReadingTheSectionTitleIsBeforeThisDoseAboveTheRow() throws {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
 
         let row = app.buttons["log-how-you-feel-row"]
-        let titles = elementsLabelled("Log how you feel now", in: app)
-        XCTAssertTrue(titles.contains { $0.frame.maxY <= row.frame.minY }, "no title above the row")
-        XCTAssertTrue(elementsLabelled("Before this dose", in: app).isEmpty)
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        let title = try XCTUnwrap(
+            elementsLabelled("Before this dose", in: app).first { $0.frame.maxY <= row.frame.minY },
+            "no title above the row"
+        )
+        let medication = try XCTUnwrap(elementsLabelled("Medication", in: app).first)
+        XCTAssertGreaterThanOrEqual(title.frame.minY, medication.frame.maxY)
+        let labelled = elementsLabelled("Log how you feel now", in: app)
+        XCTAssertFalse(labelled.isEmpty)
+        XCTAssertTrue(labelled.allSatisfy { row.frame.contains($0.frame) }, "a title reads Log how you feel now")
     }
 
     func testReadingRowPutsThePlacesWithTheTimeAndTheLevelAtTheRight() throws {
@@ -210,13 +217,5 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(before.label.contains("Pain"), before.label)
         XCTAssertTrue(before.label.contains("4 of 10"), before.label)
         XCTAssertFalse(app.buttons["log-how-you-feel-row"].exists)
-    }
-
-    private func waitForMinuteToChange(from minute: String?) {
-        let deadline = Date.now.addingTimeInterval(90)
-        while clockTime(at: .now) == minute, Date.now < deadline {
-            Thread.sleep(forTimeInterval: 1)
-        }
-        XCTAssertNotEqual(clockTime(at: .now), minute)
     }
 }

@@ -3,7 +3,7 @@ import AnkyDomain
 import SwiftUI
 
 /// The readings a dose can point at, newest first, with a check mark on the one in use. It has no choice of no
-/// reading: a dose without one is logged from the "Log how you feel" row on Log Dose.
+/// reading: a dose without one is logged from the "Log how you feel now" row on Log Dose.
 struct ReadingChoiceView: View {
     let entries: [Entry]
     let model: EntryLogModel
