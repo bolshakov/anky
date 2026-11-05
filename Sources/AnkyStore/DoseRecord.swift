@@ -10,6 +10,8 @@ import SwiftData
     var checkInAfterMinutes: Int?
     var beforeReadingID: UUID?
     var afterReadingID: UUID?
+    /// Optional so a store written before it existed opens as it is, with no logged moment.
+    var loggedAt: Date?
 
     init(_ dose: Dose) {
         id = dose.id
@@ -18,6 +20,7 @@ import SwiftData
         checkInAfterMinutes = dose.checkInAfter?.rawValue
         beforeReadingID = dose.beforeReadingID
         afterReadingID = dose.afterReadingID
+        loggedAt = dose.loggedAt
     }
 
     func assign(_ dose: Dose) {
@@ -37,6 +40,7 @@ import SwiftData
         var dose = Dose(id: id, medicationID: medicationID, takenAt: takenAt, beforeReadingID: beforeReadingID)
         dose.afterReadingID = afterReadingID
         dose.checkInAfter = checkIn
+        dose.loggedAt = loggedAt
         return dose
     }
 }

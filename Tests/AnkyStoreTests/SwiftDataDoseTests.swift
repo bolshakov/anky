@@ -34,6 +34,7 @@ struct SwiftDataDoseTests {
         )
         dose.checkInAfter = .oneHour
         dose.afterReadingID = UUID()
+        dose.loggedAt = date.addingTimeInterval(300)
         return dose
     }
 
@@ -242,6 +243,46 @@ struct SwiftDataDoseTests {
             let store = try SwiftDataMedicationStore(url: url)
             #expect(try store.all() == [zorblex])
             #expect(try store.doses().isEmpty)
+        }
+    }
+
+    @Test func sameTimeDosesKeepTheOrderTheyWereLoggedIn() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let zorblex = medication()
+            var first = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
+            first.loggedAt = date.addingTimeInterval(10)
+            var second = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
+            second.loggedAt = date.addingTimeInterval(20)
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.logDose(first)
+            try store.logDose(second)
+
+            let reopened = try SwiftDataMedicationStore(url: url).doses()
+            #expect(reopened.first { $0.id == first.id }?.loggedAt == first.loggedAt)
+            #expect(reopened.first { $0.id == second.id }?.loggedAt == second.loggedAt)
+        }
+    }
+
+    @Test func movingADoseKeepsTheMomentItWasLogged() throws {
+        try withFolder { folder in
+            let url = folder.appending(path: "medications.store")
+            let zorblex = medication()
+            let fennimax = medication(name: "Fennimax")
+            let original = fullDose(for: zorblex)
+            let store = try SwiftDataMedicationStore(url: url)
+            try store.add(zorblex)
+            try store.add(fennimax)
+            try store.logDose(original)
+
+            var moved = original.moved(to: fennimax.id, at: date.addingTimeInterval(600))
+            moved.loggedAt = nil
+            try store.replaceDose(moved)
+
+            let reopened = try SwiftDataMedicationStore(url: url).doses()
+            #expect(reopened.first?.loggedAt == original.loggedAt)
+            #expect(reopened.first?.takenAt == moved.takenAt)
         }
     }
 }
