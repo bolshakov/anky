@@ -205,15 +205,6 @@
         }
       }
     },
-    "After your %@ at %@" : {
-
-    },
-    "After your %@ on %@" : {
-
-    },
-    "After your %@ yesterday at %@" : {
-
-    },
     "Ankle" : {
       "localizations" : {
         "ru" : {
@@ -1599,6 +1590,9 @@
           }
         }
       }
+    },
+    "yesterday at %@" : {
+
     },
     "You can pin up to 5. Unpin one to add another." : {
       "localizations" : {

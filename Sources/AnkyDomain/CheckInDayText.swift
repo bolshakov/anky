@@ -1,17 +1,20 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-public typealias PairWords = (String, String) -> String
 public typealias TextBeforeWords = (String, Entry?) -> String
 
-/// The words of a Check In row's subtitle. The app supplies the localized ones, one whole string per case. The
-/// closures take the name, then the time, or the name then the day with its time.
+/// The words of a Check In row's when-part, the text after the medication's name. Each closure takes the time or the
+/// day phrase and returns the part to show, so the name never reaches a translated string.
 public struct CheckInRowWords {
-    public let today: PairWords
-    public let yesterday: PairWords
-    public let onDay: PairWords
+    public let today: (String) -> String
+    public let yesterday: (String) -> String
+    public let onDay: (String) -> String
 
-    public init(today: @escaping PairWords, yesterday: @escaping PairWords, onDay: @escaping PairWords) {
+    public init(
+        today: @escaping (String) -> String,
+        yesterday: @escaping (String) -> String,
+        onDay: @escaping (String) -> String
+    ) {
         self.today = today
         self.yesterday = yesterday
         self.onDay = onDay
@@ -58,15 +61,14 @@ public enum CheckInDayText {
         return .onDay(DateTemplateText.text(for: takenAt, template: template, calendar: calendar, locale: locale))
     }
 
+    /// The medication's name, a middle dot, then the when-part, as one plain string.
     public static func rowSubtitle(name: String, wording: DayWording, words: CheckInRowWords) -> String {
-        switch wording {
-        case let .today(time):
-            words.today(name, time)
-        case let .yesterday(time):
-            words.yesterday(name, time)
-        case let .onDay(dayAndTime):
-            words.onDay(name, dayAndTime)
+        let when = switch wording {
+        case let .today(time): words.today(time)
+        case let .yesterday(time): words.yesterday(time)
+        case let .onDay(dayAndTime): words.onDay(dayAndTime)
         }
+        return "\(name) · \(when)"
     }
 
     public static func infoTaken(wording: DayWording, before: Entry?, words: CheckInInfoWords) -> String {
