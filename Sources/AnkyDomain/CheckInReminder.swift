@@ -26,3 +26,14 @@ public extension CheckInDue {
         }
     }
 }
+
+public extension CheckInReminder {
+    /// The wanted reminders that no pending request covers. A request covers one when it has the dose's id and fires
+    /// within a second of it, so a request at another moment is replaced.
+    static func toSchedule(_ wanted: [CheckInReminder], pending: [UUID: Date]) -> [CheckInReminder] {
+        wanted.filter { reminder in
+            guard let firing = pending[reminder.doseID] else { return true }
+            return abs(firing.timeIntervalSince(reminder.fireAt)) >= 1
+        }
+    }
+}
