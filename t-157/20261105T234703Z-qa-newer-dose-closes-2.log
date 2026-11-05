@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t157-02-1/tmp/s2.sh
+exit: 0
+commit: 025ead7f04465cb782fb4e9730ae5e52b0cc5a55
+
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,594 370x52
+0
+zorblex|2026-11-05 23:16|60|-|-
+zorblex|2026-11-06 00:47|-|-|-

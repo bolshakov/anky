@@ -1,0 +1,9 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t157-02-1/tmp/s3.sh
+exit: 0
+commit: 025ead7f04465cb782fb4e9730ae5e52b0cc5a55
+
+✓ Tap at resolved tap point at (201.0, 214.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+0
+Zorblex|2026-11-05 23:20|60|-|-
+Quellan|2026-11-05 23:30|-|-|-
