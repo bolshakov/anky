@@ -1,0 +1,6 @@
+$ sh -c '. "$TMPDIR/walk.sh"; begin >/dev/null 2>&1; seed_dose "$(date -v-13H "+%Y-%m-%d %H:%M")" 60 - - >/dev/null 2>&1; history; tap_first dose-row; count edit-dose-screen; count after-reading-row'
+exit: 1
+commit: 9fc5b2f3b76b4a6ba60c90e01ba84dd664e49645
+
+1
+0

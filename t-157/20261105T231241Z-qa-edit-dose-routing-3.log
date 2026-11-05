@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; begin >/dev/null 2>&1; seed_dose "$(date -v-13H "+%Y-%m-%d %H:%M")" 60 - - >/dev/null 2>&1; seed_checkin pain 4 90 >/dev/null 2>&1; history; tap_first dose-row; count edit-dose-screen; count after-reading-row; doses'
+exit: 0
+commit: 9fc5b2f3b76b4a6ba60c90e01ba84dd664e49645
+
+1
+1
+Zorblex|2026-11-05 11:12|60|-|pain 4

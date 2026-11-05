@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; count check-in-label'
+exit: 1
+commit: 9fc5b2f3b76b4a6ba60c90e01ba84dd664e49645
+
+0
