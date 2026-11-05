@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t160-01-2/tmp/w 'ui | grep -E "id=(check-in-later|check-in-footnote|medication-save) "; echo "gap check-in-later medication-save: $(gap check-in-later medication-save)"; echo "gap check-in-footnote medication-save: $(gap check-in-footnote medication-save)"; axe describe-ui --udid "$udid" | grep "AXFrame.*{402, 233}" | head -1'
+exit: 0
+commit: 921b834d62d46d7eccac7f7421b154f3bdec5d6e
+
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True @16,357 370x52
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long. Turn it on to choose a time.' value=None enabled=True @16,409.3333333333333 370x47.666666666666686
+Button id=medication-save label='Save medication' value=None enabled=True @16,472.66666666666663 370x50.33333333333337
+gap check-in-later medication-save: 63.7
+gap check-in-footnote medication-save: 15.7
+                            "AXFrame" : "{{0, 583}, {402, 233}}",

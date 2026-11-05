@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t160-01-2/tmp/w 'new_med; axe tap --id medication-name --wait-timeout 5 --udid "$udid" >/dev/null; sleep 1.5; bottom; echo "gap check-in-footnote medication-save: $(gap check-in-footnote medication-save)"; ui | grep "id=medication-save "; axe describe-ui --udid "$udid" | grep "AXFrame.*{402, 233}" | head -1'
+exit: 0
+commit: 921b834d62d46d7eccac7f7421b154f3bdec5d6e
+
+gap check-in-footnote medication-save: 15.7
+Button id=medication-save label='Save medication' value=None enabled=False @16,472.66666666666663 370x50.33333333333337
+                    "AXFrame" : "{{0, 583}, {402, 233}}",

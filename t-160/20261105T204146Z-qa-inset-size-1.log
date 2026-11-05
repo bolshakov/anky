@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t160-01-2/tmp/w 'new_med; echo default:; ui | grep "id=medication-save "; text_size accessibility-extra-extra-extra-large; sleep 2; new_med; bottom; echo "gap check-in-footnote medication-save: $(gap check-in-footnote medication-save)"; echo xxxl:; ui | grep "id=medication-save "; axe describe-ui --udid "$udid" | grep "AXFrame.*{402, 233}" | head -1; shot inset-xxxl >/dev/null; text_size large'
+exit: 0
+commit: 921b834d62d46d7eccac7f7421b154f3bdec5d6e
+
+default:
+Button id=medication-save label='Save medication' value=None enabled=False @16,773.6666666666666 370x50.33333333333337
+gap check-in-footnote medication-save: 16.0
+xxxl:
+Button id=medication-save label='Save medication' value=None enabled=False @16,668.6666666666666 370x155.33333333333337
