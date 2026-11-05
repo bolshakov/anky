@@ -51,14 +51,11 @@ struct LogDoseView: View {
                         .cardCaption()
                 }
                 dateSection
-                TimelineView(.everyMinute) { context in
-                    let time = chosenTakenAt ?? context.date
-                    BeforeThisDoseSection(
-                        reading: reading(at: time),
-                        onChoose: { isShowingReadingChoice = true },
-                        onLog: { isShowingNewEntry = true }
-                    )
-                }
+                BeforeThisDoseSection(
+                    reading: { reading(at: takenAtNow) },
+                    onChoose: { isShowingReadingChoice = true },
+                    onLog: { isShowingNewEntry = true }
+                )
                 if checkedMedication != nil {
                     DoseCheckInSection(checkIn: $checkIn)
                 }
@@ -158,9 +155,9 @@ struct LogDoseView: View {
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
     private var dateSection: some View {
         Section {
-            TimelineView(.everyMinute) { context in
+            TimelineView(.everyMinute) { _ in
                 DateSection(
-                    date: dateBinding(unedited: context.date),
+                    date: dateBinding,
                     labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
                 )
             }
@@ -170,9 +167,9 @@ struct LogDoseView: View {
         }
     }
 
-    private func dateBinding(unedited now: Date) -> Binding<Date> {
+    private var dateBinding: Binding<Date> {
         Binding(
-            get: { chosenTakenAt ?? now },
+            get: { takenAtNow },
             set: { chosenTakenAt = $0 }
         )
     }
