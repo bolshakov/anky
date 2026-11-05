@@ -1,0 +1,7 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep -E "dose-row|check-in-label|day-header"'
+exit: 0
+commit: d7520820504ec0de119cdb391bf5f9652a6c1d57
+
+Heading id=day-header label='Today' value=None enabled=True actions= traits= @16,168 370x38
+Button id=dose-row label='3:53. Naproxen 500 mg. Dose. Stiffness was 5 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,221 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions=Delete traits= @308,231 62x18

@@ -1,0 +1,5 @@
+$ sh -c '. "$TMPDIR/walk.sh"; ui | grep check-in-row'
+exit: 0
+commit: d7520820504ec0de119cdb391bf5f9652a6c1d57
+
+Button id=check-in-row label='How is your stiffness now? Naproxen · 03:53' value=None enabled=True actions= traits= @16,346 370x90
