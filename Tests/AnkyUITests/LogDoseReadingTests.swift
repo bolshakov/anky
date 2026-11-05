@@ -123,6 +123,18 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(labelled.allSatisfy { row.frame.contains($0.frame) }, "a title reads Log how you feel now")
     }
 
+    /// The text ends about halfway across the row and the chevron is at its far edge, so this point is blank row.
+    func testTheBlankPartOfTheNoReadingRowOpensNewEntry() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        addZorblex(app)
+
+        let row = app.buttons["log-how-you-feel-row"]
+        XCTAssertTrue(row.waitForExistence(timeout: 10))
+        row.coordinate(withNormalizedOffset: CGVector(dx: 0.7, dy: 0.5)).tap()
+        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
+    }
+
     func testReadingRowPutsThePlacesWithTheTimeAndTheLevelAtTheRight() throws {
         continueAfterFailure = false
         let app = launchAnky()

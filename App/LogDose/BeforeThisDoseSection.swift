@@ -43,6 +43,7 @@ struct BeforeThisDoseSection: View {
                     Spacer()
                     chevron
                 }
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
             .accessibilityIdentifier("log-how-you-feel-row")
