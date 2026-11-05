@@ -17,11 +17,9 @@ struct BeforeThisDoseSection: View {
             Text("Before this dose")
                 .cardCaption()
         } footer: {
-            TimelineView(.everyMinute) { _ in
-                if reading() != nil {
-                    Text("Your latest entry before this dose. Tap to choose another.")
-                        .accessibilityIdentifier("before-reading-footer")
-                }
+            if reading() != nil {
+                Text("Your latest entry before this dose. Tap to choose another.")
+                    .accessibilityIdentifier("before-reading-footer")
             }
         }
     }
