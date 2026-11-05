@@ -52,7 +52,7 @@ public enum CheckInDue {
         entry.date.wholeMinute >= due.wholeMinute
     }
 
-    private static func dueMoment(of dose: Dose, medications: [Medication], entries: [Entry]) -> Date? {
+    static func dueMoment(of dose: Dose, medications: [Medication], entries: [Entry]) -> Date? {
         dueMoment(
             for: dose,
             medication: medications.first { $0.id == dose.medicationID },
