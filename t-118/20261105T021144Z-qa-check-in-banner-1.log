@@ -1,0 +1,5 @@
+$ sh -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep check-in-info'
+exit: 0
+commit: 00bd8add39f17bd04772c0afe20560a043435d70
+
+GenericElement id=check-in-info label='Naproxen 500 mg. Taken at 2:26. Before: Stiffness 5.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331

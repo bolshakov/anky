@@ -1,0 +1,10 @@
+$ sh -c 'udid=$(cat "$out/udid"); . "$TMPDIR/walk.sh"; ui | grep -E "check-in-info|severity-slider|check-in-saved-footnote|RadioButton id=None"'
+exit: 0
+commit: 00bd8add39f17bd04772c0afe20560a043435d70
+
+GenericElement id=check-in-info label='Naproxen 500 mg. Taken at 2:27.' value=None enabled=True actions= traits= @16,167 370x74.33333333333331
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,287 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,287 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,287 124x32
+Slider id=severity-slider label='Pain now' value=0 enabled=True actions= traits= @32,798.6666870117188 338x31
+StaticText id=check-in-saved-footnote label='Saved as a Pain entry.' value=None enabled=True actions= traits= @16,851 370x29.66666666666663
