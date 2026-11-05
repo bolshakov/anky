@@ -101,6 +101,17 @@ func scrollToBottom(of app: XCUIApplication) {
     }
 }
 
+/// Save check-in is the form's last row, so the form is swiped until it is on screen and can be tapped.
+@MainActor
+func scrollToSaveCheckIn(in app: XCUIApplication) {
+    let save = app.buttons["save-check-in"]
+    let screen = identified("check-in-screen", in: app)
+    for _ in 0 ..< 8 where !save.exists || !save.isHittable {
+        screen.swipeUp()
+    }
+    XCTAssertTrue(save.waitForExistence(timeout: 10))
+}
+
 @MainActor
 func identified(_ id: String, in app: XCUIApplication) -> XCUIElement {
     app.descendants(matching: .any).matching(identifier: id).firstMatch
