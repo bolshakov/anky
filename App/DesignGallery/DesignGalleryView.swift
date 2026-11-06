@@ -15,8 +15,8 @@
                 }
             }
             .screenSpacing()
-            .galleryBottomBar()
             .accessibilityIdentifier("design-gallery")
+            .galleryBottomBar()
             .navigationTitle(Text(verbatim: "Pieces"))
             .navigationBarTitleDisplayMode(.inline)
         }
