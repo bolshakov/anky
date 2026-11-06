@@ -2,8 +2,8 @@
 import AnkyDomain
 import UserNotifications
 
-/// Keeps one local notification pending per dose that `CheckInDue.reminders` lists. It adds and refreshes requests;
-/// it never removes one, and never touches a delivered notification.
+/// Keeps one local notification pending per dose that `CheckInDue.reminders` lists. It adds and refreshes requests,
+/// and removes the pending ones that list no longer holds. It never touches a delivered notification.
 @MainActor final class CheckInReminderScheduler {
     private let center: UNUserNotificationCenter
     private var lastRun: Task<Void, Never>?
@@ -15,7 +15,6 @@ import UserNotifications
     /// Runs one after another, so two reconciles never ask for permission or add the same request at once.
     func reconcile(doses: [Dose], medications: [Medication], entries: [Entry]) {
         let wanted = CheckInDue.reminders(doses: doses, medications: medications, entries: entries, now: .now)
-        guard !wanted.isEmpty else { return }
         let previous = lastRun
         lastRun = Task { [center] in
             await previous?.value
@@ -24,9 +23,12 @@ import UserNotifications
     }
 
     private static func schedule(_ wanted: [CheckInReminder], in center: UNUserNotificationCenter) async {
-        guard await isAllowed(by: center) else { return }
         let pending = await pendingFireDates(in: center)
-        for reminder in CheckInReminder.toSchedule(wanted, pending: pending) where reminder.fireAt > .now {
+        let closed = CheckInReminder.toCancel(pending: Array(pending.keys), wanted: wanted)
+        center.removePendingNotificationRequests(withIdentifiers: closed.map(\.uuidString))
+        let missing = CheckInReminder.toSchedule(wanted, pending: pending)
+        guard !missing.isEmpty, await isAllowed(by: center) else { return }
+        for reminder in missing where reminder.fireAt > .now {
             try? await center.add(request(for: reminder))
         }
     }
@@ -47,8 +49,8 @@ import UserNotifications
         var dates: [UUID: Date] = [:]
         for request in await center.pendingNotificationRequests() {
             let trigger = request.trigger as? UNCalendarNotificationTrigger
-            if let id = UUID(uuidString: request.identifier), let date = trigger?.nextTriggerDate() {
-                dates[id] = date
+            if let id = UUID(uuidString: request.identifier) {
+                dates[id] = trigger?.nextTriggerDate() ?? .distantPast
             }
         }
         return dates

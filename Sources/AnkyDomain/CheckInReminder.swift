@@ -36,4 +36,10 @@ public extension CheckInReminder {
             return abs(firing.timeIntervalSince(reminder.fireAt)) >= 1
         }
     }
+
+    /// The pending requests whose dose is no longer wanted, because its window closed or its check-in was taken.
+    static func toCancel(pending: [UUID], wanted: [CheckInReminder]) -> [UUID] {
+        let wantedIDs = Set(wanted.map(\.doseID))
+        return pending.filter { !wantedIDs.contains($0) }
+    }
 }

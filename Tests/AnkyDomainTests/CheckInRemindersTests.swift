@@ -101,6 +101,30 @@ struct CheckInRemindersTests {
         #expect(try reminders([dose()], entries: [entry(at: due.addingTimeInterval(-60))]).count == 1)
     }
 
+    @Test func aSavedAfterReadingTakesTheReminder() throws {
+        let reading = try entry(at: takenAt.addingTimeInterval(5 * 60))
+        #expect(reminders([dose()], entries: [reading]).count == 1)
+        #expect(reminders([dose(after: reading.id)], entries: [reading]).isEmpty)
+    }
+
+    @Test func aNewerDoseOfAnotherMedicationWithCheckInOffTakesTheReminder() {
+        let quellan = Medication(id: UUID(), name: "Quellan", takenAs: .asNeeded, createdAt: takenAt)
+        var newer = dose(at: takenAt.addingTimeInterval(60), delay: nil)
+        newer.medicationID = quellan.id
+        #expect(reminders([dose()]).count == 1)
+        #expect(reminders([dose(), newer], medications: [medication(), quellan]).isEmpty)
+    }
+
+    @Test func deletingTheNewerDoseBringsBackTheReminderOfTheEarlierOne() {
+        let earlier = dose(at: takenAt.addingTimeInterval(-60 * 60), delay: .twoHours)
+        let newer = dose()
+        #expect(reminders([earlier, newer]).map(\.doseID) == [newer.id])
+        #expect(reminders([earlier]) == [CheckInReminder(
+            doseID: earlier.id,
+            fireAt: takenAt.addingTimeInterval(60 * 60)
+        )])
+    }
+
     @Test func noDosesGiveNoReminders() {
         #expect(reminders([]).isEmpty)
     }

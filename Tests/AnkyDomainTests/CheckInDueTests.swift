@@ -239,24 +239,36 @@ struct CheckInDueTests {
         #expect(offered(dose(), entries: [before], now: due.addingTimeInterval(600)))
     }
 
-    @Test func theNextDueIsTheEarliestDueMomentStillAhead() {
+    @Test func theNextChangeIsTheEarliestDueMomentStillAhead() {
         let soon = dose(at: takenAt, delay: .thirtyMinutes)
         let later = dose(at: takenAt.addingTimeInterval(600), delay: .oneHour)
         let now = takenAt.addingTimeInterval(10 * 60)
-        let next = CheckInDue.nextDue(doses: [later, soon], medications: [medication()], entries: [], after: now)
+        let next = CheckInDue.nextChange(doses: [later, soon], medications: [medication()], entries: [], after: now)
         #expect(next == takenAt.addingTimeInterval(30 * 60))
     }
 
-    @Test func theNextDueSkipsMomentsThatHavePassed() {
+    @Test func theNextChangeSkipsMomentsThatHavePassed() {
         let passed = dose(at: takenAt, delay: .thirtyMinutes)
         let ahead = dose(at: takenAt, delay: .fourHours)
         let now = takenAt.addingTimeInterval(60 * 60)
-        let next = CheckInDue.nextDue(doses: [passed, ahead], medications: [medication()], entries: [], after: now)
+        let next = CheckInDue.nextChange(doses: [passed, ahead], medications: [medication()], entries: [], after: now)
         #expect(next == takenAt.addingTimeInterval(4 * 60 * 60))
     }
 
-    @Test func theNextDueIsNilWhenNoDoseWillWait() {
-        let next = CheckInDue.nextDue(
+    @Test func theNextChangeIsTheEndOfTheWindowOnceTheDueMomentHasPassed() {
+        let now = takenAt.addingTimeInterval(60 * 60)
+        let next = CheckInDue.nextChange(doses: [dose()], medications: [medication()], entries: [], after: now)
+        #expect(next == takenAt.addingTimeInterval(CheckInDue.windowLength))
+    }
+
+    @Test func theNextChangeIsNilOnceTheWindowHasClosed() {
+        let now = takenAt.addingTimeInterval(CheckInDue.windowLength)
+        let next = CheckInDue.nextChange(doses: [dose()], medications: [medication()], entries: [], after: now)
+        #expect(next == nil)
+    }
+
+    @Test func theNextChangeIsNilWhenNoDoseWillWait() {
+        let next = CheckInDue.nextChange(
             doses: [dose(delay: nil)],
             medications: [medication()],
             entries: [],

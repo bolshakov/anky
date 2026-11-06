@@ -27,8 +27,8 @@ struct HistoryView: View {
         )
     }
 
-    private var nextCheckInDue: Date? {
-        CheckInDue.nextDue(
+    private var nextCheckInChange: Date? {
+        CheckInDue.nextChange(
             doses: medications.doses,
             medications: medications.medications,
             entries: model.entries,
@@ -108,7 +108,7 @@ struct HistoryView: View {
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")
-            .checkInClock(now: $now, nextDue: nextCheckInDue)
+            .checkInClock(now: $now, nextChange: nextCheckInChange)
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }

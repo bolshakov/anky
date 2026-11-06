@@ -50,8 +50,8 @@ struct TodayView: View {
         )
     }
 
-    private var nextCheckInDue: Date? {
-        CheckInDue.nextDue(
+    private var nextCheckInChange: Date? {
+        CheckInDue.nextChange(
             doses: medications.doses,
             medications: medications.medications,
             entries: model.entries,
@@ -111,7 +111,7 @@ struct TodayView: View {
                 guard let doseTarget else { return }
                 try medications.removeDose(id: doseTarget.id)
             }
-            .checkInClock(now: $checkInNow, nextDue: nextCheckInDue)
+            .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onChange(of: reminderCheckIn, initial: true) { _, dose in
                 guard let dose else { return }
                 reminderCheckIn = nil
