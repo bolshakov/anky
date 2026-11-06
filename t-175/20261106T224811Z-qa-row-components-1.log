@@ -1,0 +1,10 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t175-03-2/tmp/s1b.sh
+exit: 0
+commit: 6f6df0aa34a43966f2c27dfeb08d76a935131e8c
+
+gallery-value-row 52
+gallery-menu-row 52
+gallery-switch-row 52
+gallery-tint-row 52
+gallery-tint-row-other 51.99999999999994
+gallery-two-line-row 52
