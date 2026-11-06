@@ -22,6 +22,5 @@ struct MenuRow<Value: Hashable, Options: View>: View {
         .tint(Color.ink2)
         .rowHeight()
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(title)
     }
 }
