@@ -43,9 +43,24 @@ struct AnkyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(model: model, medications: medications, reminderTaps: reminderTaps)
-                .tint(Color("AccentColor"))
+            content.tint(Color("AccentColor"))
         }
+    }
+
+    @ViewBuilder private var content: some View {
+        #if DEBUG
+            if DesignGallerySwitch.isOn {
+                NavigationStack { DesignGalleryView() }
+            } else {
+                root
+            }
+        #else
+            root
+        #endif
+    }
+
+    private var root: some View {
+        RootView(model: model, medications: medications, reminderTaps: reminderTaps)
     }
 
     private static func entryStore() -> EntryStore {

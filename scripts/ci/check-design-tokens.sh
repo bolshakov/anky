@@ -17,4 +17,45 @@ if [ -n "$glass" ]; then
   violation "writes .glassProminent outside primaryButton(), use .primaryButton() from App/Design"
 fi
 
+# The pieces are App/Design and the gallery that shows them. A line's trailing // comment is not code, so it is cut
+# before the match.
+design="$root/App/Design"
+gallery="$root/App/DesignGallery"
+
+# usage: scan <regex> <exempt file> <exempt file> <folder>...
+scan() {
+  regex=$1 exemptA=$2 exemptB=$3
+  shift 3
+  find "$@" -name "*.swift" 2> /dev/null | sort | while read -r file; do
+    [ "$file" = "$exemptA" ] || [ "$file" = "$exemptB" ] && continue
+    sed 's://.*$::' "$file" | grep -En -e "$regex" | sed "s|^|$file:|"
+  done
+}
+
+numbers=$(scan "(^|[^A-Za-z0-9_.])[1-9]" "$design/Spacing.swift" "$design/Corner.swift" "$design" "$gallery")
+if [ -n "$numbers" ]; then
+  echo "$numbers"
+  violation "writes a number of 1 or more in a piece, name it in Spacing.swift or Corner.swift"
+fi
+
+named="red|orange|yellow|green|mint|teal|cyan|blue|indigo|purple|pink|brown|white|black|gray|grey"
+colours=$(scan "(^|[^A-Za-z0-9_])(Color\\(|UIColor)|#[0-9A-Fa-f]{6}([^0-9A-Fa-f]|$)|\\.($named)([^A-Za-z0-9_]|$)" \
+  "$design/ColorTokens.swift" "-" "$design" "$gallery")
+if [ -n "$colours" ]; then
+  echo "$colours"
+  violation "writes a colour in a piece, add a name to ColorTokens.swift"
+fi
+
+fonts=$(scan "\\.system\\(size|Font\\.custom|\\.font\\(\\.custom|UIFont" "-" "-" "$design" "$gallery")
+if [ -n "$fonts" ]; then
+  echo "$fonts"
+  violation "writes a fixed or custom font size in a piece, use a text style"
+fi
+
+headers=$(scan "\\.textCase\\(|\\.listRowInsets\\(|\\.font\\(" "-" "-" "$gallery")
+if [ -n "$headers" ]; then
+  echo "$headers"
+  violation "styles a header font, case or inset in the gallery, the pieces own that"
+fi
+
 exit $fail
