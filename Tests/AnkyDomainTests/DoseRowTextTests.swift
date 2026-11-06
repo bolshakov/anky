@@ -7,13 +7,14 @@ struct DoseRowTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
     /// Each kind has its own closures, and they take numbers only. A test that reads "stiffness" therefore came from
-    /// the stiffness closures, not from a kind word joined to a shared phrase.
+    /// the stiffness closures, not from a kind word joined to a shared phrase. The before closure is the whole line,
+    /// as the app's is, so a "Dose · " in front of it twice would show.
     private var words: DoseWords {
         DoseWords(
             kind: "Dose",
             subtitle: { kind in
                 DosePainWords(
-                    before: { "\(Self.subtitleKind(kind)) was \($0)" },
+                    before: { "Dose · \(Self.subtitleKind(kind)) was \($0)" },
                     after: { "\(Self.subtitleKind(kind)) \($0) after" },
                     beforeAndAfter: { "\(Self.subtitleKind(kind)) \($0) before, \($1) after" }
                 )
@@ -74,9 +75,23 @@ struct DoseRowTextTests {
         #expect(label == "8:30. Naproxen 500 mg. Dose.")
     }
 
-    @Test func aBeforeReadingAloneReadsThePainWas() throws {
+    @Test(arguments: [EntryKind.pain, .stiffness, .fatigue])
+    func aBeforeReadingAloneReadsTheWholeLineOfItsKind(kind: EntryKind) throws {
+        let before = try entry(kind, severity: 6)
+        let line = "Dose · \(Self.subtitleKind(kind)) was 6"
+        #expect(DoseRowText.subtitle(for: readings(before: before), words: words) == line)
+    }
+
+    @Test func aBeforeReadingAloneIsNotJoinedToTheDoseWord() throws {
         let before = try entry(.pain, severity: 6)
-        #expect(DoseRowText.subtitle(for: readings(before: before), words: words) == "Dose · pain was 6")
+        let loneWords = DoseWords(
+            kind: "Dose",
+            subtitle: { _ in
+                DosePainWords(before: { "line \($0)" }, after: { _ in "" }, beforeAndAfter: { _, _ in "" })
+            },
+            spoken: words.spoken
+        )
+        #expect(DoseRowText.subtitle(for: readings(before: before), words: loneWords) == "line 6")
     }
 
     @Test func anAfterReadingAloneReadsThePainAfter() throws {
