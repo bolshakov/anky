@@ -111,7 +111,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         saveEntryAnHourBack(.pain, in: app)
         addZorblexCheckingInAfterThirtyMinutes(app)
         saveDoseAnHourBack(in: app)
-        identified("check-in-row", in: app).tap()
+        identified("dose-row", in: app).tap()
         scrollToSaveCheckIn(in: app)
         let button = app.buttons["save-check-in"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))

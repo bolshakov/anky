@@ -156,12 +156,12 @@ final class TodayDeleteSwipeTests: XCTestCase {
 
         let row = doseRow(in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertTrue(identified("check-in-row", in: app).waitForExistence(timeout: 10))
+        XCTAssertTrue(identified("check-in-label", in: app).waitForExistence(timeout: 10))
         fullSwipeRow(row)
         app.buttons["confirm-delete"].firstMatch.tap()
 
         XCTAssertTrue(row.waitForNonExistence(timeout: 10))
-        XCTAssertTrue(identified("check-in-row", in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(identified("check-in-label", in: app).waitForNonExistence(timeout: 10))
     }
 
     private func logZorblexDose(in app: XCUIApplication) {

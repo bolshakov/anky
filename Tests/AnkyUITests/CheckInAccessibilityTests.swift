@@ -10,9 +10,9 @@ final class CheckInAccessibilityTests: XCTestCase {
         let app = launchAnky()
         setUpWaitingPainDose(in: app)
 
-        let todayRow = identified("check-in-row", in: app)
+        let todayRow = identified("dose-row", in: app)
         XCTAssertTrue(todayRow.waitForExistence(timeout: 10))
-        XCTAssertTrue(todayRow.label.hasPrefix("How is your pain now? Zorblex · "), todayRow.label)
+        XCTAssertTrue(todayRow.label.hasSuffix("Pain was 4 of 10. Check in pending."), todayRow.label)
 
         app.tabBars.buttons["History"].tap()
         let historyRow = identified("dose-row", in: app)

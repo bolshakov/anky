@@ -482,24 +482,6 @@
     "Fatigue was %lld of 10" : {
 
     },
-    "How is your fatigue now?" : {
-
-    },
-    "How is your pain now?" : {
-
-    },
-    "How is your stiffness now?" : {
-
-    },
-    "Log fatigue" : {
-
-    },
-    "Log pain" : {
-
-    },
-    "Log stiffness" : {
-
-    },
     "Opens Check In" : {
 
     },
@@ -1649,9 +1631,6 @@
           }
         }
       }
-    },
-    "yesterday at %@" : {
-
     },
     "You can pin up to 5. Unpin one to add another." : {
       "localizations" : {

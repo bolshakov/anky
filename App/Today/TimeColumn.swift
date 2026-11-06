@@ -3,9 +3,9 @@ import AnkyDomain
 import SwiftUI
 
 /// A row's time in a column as wide as the widest time the region writes, so the title after it starts at one x on
-/// every row. A nil time leaves the column empty.
+/// every row.
 struct TimeColumn: View {
-    let time: String?
+    let time: String
 
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -13,9 +13,7 @@ struct TimeColumn: View {
             ForEach(sampleTimes, id: \.self) { sample in
                 Text(sample).hidden()
             }
-            if let time {
-                Text(time).foregroundStyle(.secondary)
-            }
+            Text(time).foregroundStyle(.secondary)
         }
         .font(.footnote)
         .monospacedDigit()

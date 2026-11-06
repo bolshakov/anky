@@ -99,7 +99,6 @@ struct TodayView: View {
                     dateLine
                     repeatBlock
                 }
-                checkInBlock
                 entriesOrEmptyState
             }
             .listStyle(.insetGrouped)
@@ -215,19 +214,6 @@ struct TodayView: View {
             RepeatChip(recent: recent) { logRecent(recent) }
                 .padding(.top, 16)
                 .bareRow()
-        }
-    }
-
-    @ViewBuilder
-    private var checkInBlock: some View {
-        if !waitingDoses.isEmpty {
-            CheckInSection(
-                doses: waitingDoses,
-                medications: medications.medications,
-                entries: model.entries,
-                now: checkInNow,
-                onSelect: { checkingIn = $0 }
-            )
         }
     }
 
