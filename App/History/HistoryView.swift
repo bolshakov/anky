@@ -28,8 +28,16 @@ struct HistoryView: View {
         )
     }
 
+    private var currentDerived: HistoryDerived {
+        if let derived, derived.inputs == inputs {
+            derived
+        } else {
+            HistoryDerived(inputs)
+        }
+    }
+
     private func open(_ dose: Dose) {
-        if (derived ?? HistoryDerived(inputs)).waiting.contains(dose.id) {
+        if currentDerived.waiting.contains(dose.id) {
             checkingIn = dose
         } else {
             editingDose = dose
@@ -63,7 +71,7 @@ struct HistoryView: View {
         let target = pendingDelete
         let doseTarget = pendingDoseDelete
         let days = sections
-        let current = derived ?? HistoryDerived(inputs)
+        let current = currentDerived
         NavigationStack {
             Group {
                 if days.isEmpty {

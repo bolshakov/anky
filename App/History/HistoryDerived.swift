@@ -10,11 +10,13 @@ struct HistoryInputs: Equatable {
 }
 
 struct HistoryDerived {
+    let inputs: HistoryInputs
     let waiting: Set<UUID>
     let nextCheckInChange: Date?
     let entriesByID: EntriesByID
 
     init(_ inputs: HistoryInputs) {
+        self.inputs = inputs
         waiting = Set(CheckInDue.waiting(
             doses: inputs.doses,
             medications: inputs.medications,
