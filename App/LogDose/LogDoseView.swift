@@ -16,11 +16,10 @@ struct LogDoseView: View {
     @State private var isShowingReadingChoice = false
     /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
     @State private var manualReadingID: UUID?
-    // Made once per opening, so a second tap on "Save dose" logs the same dose again.
+    /// Made once per opening, so a second tap on "Save dose" logs the same dose again.
     @State private var doseID = UUID()
-    @State private var takenAt = Date.now
-    /// Set once the person picks a time, so a reading added later does not move the dose.
-    @State private var isTimeChosen = false
+    /// The time the person set by hand. Nil while unedited, so the dose follows the clock until it is saved.
+    @State private var chosenTakenAt: Date?
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
     @State private var checkIn = DoseCheckIn(savedDelay: nil)
@@ -51,16 +50,12 @@ struct LogDoseView: View {
                     Text("Medication")
                         .cardCaption()
                 }
-                Section {
-                    DateSection(
-                        date: dateBinding,
-                        labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-                    )
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color("CardBackground").clipShape(.card))
-                    .listRowSeparator(.hidden)
-                }
-                readingSection
+                dateSection
+                BeforeThisDoseSection(
+                    reading: { reading(at: takenAtNow) },
+                    onChoose: { isShowingReadingChoice = true },
+                    onLog: { isShowingNewEntry = true }
+                )
                 if checkedMedication != nil {
                     DoseCheckInSection(checkIn: $checkIn)
                 }
@@ -126,9 +121,9 @@ struct LogDoseView: View {
             }
             .sheet(isPresented: $isShowingReadingChoice) {
                 ReadingChoiceView(
-                    entries: ReadingWindow.entries(in: model.entries, before: takenAt),
+                    entries: ReadingWindow.entries(in: model.entries, before: takenAtNow),
                     model: model,
-                    chosenID: reading?.id,
+                    chosenID: reading(at: takenAtNow)?.id,
                     onPick: { manualReadingID = $0.id },
                     onAdded: readingAdded,
                     onSaved: { saveTicks += 1 }
@@ -152,65 +147,39 @@ struct LogDoseView: View {
         active.first { $0.id == checkedID }
     }
 
+    /// The dose time as the clock has it now while the person has not set one.
+    private var takenAtNow: Date {
+        chosenTakenAt ?? .now
+    }
+
+    /// The date row redraws each minute while unedited, so the time it shows is the clock's.
+    private var dateSection: some View {
+        Section {
+            TimelineView(.everyMinute) { _ in
+                DateSection(
+                    date: dateBinding,
+                    labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+                )
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color("CardBackground").clipShape(.card))
+            .listRowSeparator(.hidden)
+        }
+    }
+
     private var dateBinding: Binding<Date> {
         Binding(
-            get: { takenAt },
-            set: {
-                takenAt = $0
-                isTimeChosen = true
-            }
+            get: { takenAtNow },
+            set: { chosenTakenAt = $0 }
         )
     }
 
-    private var reading: Entry? {
-        ReadingWindow.pick(manualReadingID, in: model.entries, before: takenAt)
+    private func reading(at time: Date) -> Entry? {
+        ReadingWindow.pick(manualReadingID, in: model.entries, before: time)
     }
 
-    /// New Entry starts its draft at the moment it opens, which is after the dose time, so a reading saved there
-    /// would fall outside the window. The dose time moves to it, unless the person chose the time by hand.
     private func readingAdded(_ saved: Entry) {
         manualReadingID = saved.id
-        if !isTimeChosen {
-            takenAt = max(takenAt, saved.date)
-        }
-    }
-
-    private var readingSection: some View {
-        Section {
-            if let reading {
-                Button {
-                    isShowingReadingChoice = true
-                } label: {
-                    HStack(spacing: 12) {
-                        ReadingRow(caption: nil, entry: reading)
-                        Image(systemName: "chevron.right")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.tertiary)
-                            .accessibilityHidden(true)
-                    }
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("before-reading-row")
-            } else {
-                Button("Log how you feel") {
-                    isShowingNewEntry = true
-                }
-                .accessibilityIdentifier("log-how-you-feel-row")
-            }
-        } header: {
-            if reading != nil {
-                Text("Before this dose")
-                    .cardCaption()
-            } else {
-                Text("Log how you feel now")
-                    .cardCaption()
-            }
-        } footer: {
-            if reading != nil {
-                Text("Your latest entry before this dose. Tap to choose another.")
-                    .accessibilityIdentifier("before-reading-footer")
-            }
-        }
     }
 
     private func medicationRow(_ medication: Medication) -> some View {
@@ -245,7 +214,7 @@ struct LogDoseView: View {
         var dose = Dose.logged(
             id: doseID,
             medication: medication,
-            takenAt: takenAt,
+            takenAt: takenAtNow,
             entries: model.entries,
             manualReadingID: manualReadingID,
             loggedAt: .now

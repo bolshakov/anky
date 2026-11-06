@@ -8,6 +8,16 @@ func clockTime(at date: Date) -> String {
     return String(format: "%d:%02d", parts.hour ?? 0, parts.minute ?? 0)
 }
 
+/// Waits up to 90 seconds for the clock to pass out of the minute that `minute` names.
+@MainActor
+func waitForMinuteToChange(from minute: String?) {
+    let deadline = Date.now.addingTimeInterval(90)
+    while clockTime(at: .now) == minute, Date.now < deadline {
+        Thread.sleep(forTimeInterval: 1)
+    }
+    XCTAssertNotEqual(clockTime(at: .now), minute)
+}
+
 /// The clock time at the end of the date row's value, which reads "<day> <time>". The day word changes with the
 /// language. A 12 hour time's space before AM or PM is U+202F, so it does not split here.
 private func clockTime(inRowValue value: String?) -> String? {
