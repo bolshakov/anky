@@ -47,7 +47,7 @@ final class NewEntryOrderTests: XCTestCase {
         XCTAssertTrue((more.value as? String ?? "").contains("Left knee"), "more-places is \(more.value ?? "")")
     }
 
-    func testEditFatigueHasNoWhereAndDeleteLast() {
+    func testEditFatigueHasNoWhereAndNoteLast() {
         continueAfterFailure = false
         let app = launchAnky()
         saveFatigueEntry(in: app)
@@ -59,11 +59,12 @@ final class NewEntryOrderTests: XCTestCase {
         XCTAssertTrue(screen.waitForExistence(timeout: 10))
         XCTAssertFalse(element("where-section", in: app).exists)
 
-        let delete = element("delete-entry", in: app)
-        for _ in 0 ..< 3 where !delete.exists {
+        let note = element("note-field", in: app)
+        for _ in 0 ..< 3 where !note.exists {
             screen.swipeUp()
         }
-        assertInOrder(["kind-picker", "date row", "severity-caption", "note-field", "delete-entry"], in: app)
+        assertInOrder(["kind-picker", "date row", "severity-caption", "note-field"], in: app)
+        XCTAssertFalse(element("delete-entry", in: app).exists)
     }
 
     /// Left knee is not a default chip, so it shows in the More places value, where the test can read it.
