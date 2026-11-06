@@ -28,10 +28,19 @@ public enum CheckInDue {
             .sorted { $0.takenAt < $1.takenAt }
     }
 
-    /// The first due moment after `now` among the doses that can wait, or nil. A screen wakes at it to refresh.
-    public static func nextDue(doses: [Dose], medications: [Medication], entries: [Entry], after now: Date) -> Date? {
+    /// The earliest moment after `now` among each dose's due moment and its `takenAt + windowLength`, over the doses
+    /// that can wait, or nil. A screen wakes at it to refresh.
+    public static func nextChange(
+        doses: [Dose],
+        medications: [Medication],
+        entries: [Entry],
+        after now: Date
+    ) -> Date? {
         doses
-            .compactMap { dueMoment(of: $0, medications: medications, entries: entries) }
+            .flatMap { dose -> [Date] in
+                guard let due = dueMoment(of: dose, medications: medications, entries: entries) else { return [] }
+                return [due, dose.takenAt.addingTimeInterval(windowLength)]
+            }
             .filter { $0 > now }
             .min()
     }
