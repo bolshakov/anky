@@ -57,7 +57,7 @@ struct LogDoseView: View {
                     onLog: { isShowingNewEntry = true }
                 )
                 if checkedMedication != nil {
-                    DoseCheckInSection(checkIn: $checkIn)
+                    DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind)
                 }
             }
             .scrollContentBackground(.hidden)

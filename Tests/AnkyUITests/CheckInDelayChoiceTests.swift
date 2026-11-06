@@ -12,7 +12,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         XCTAssertFalse(checkInMenu(in: app).exists)
         XCTAssertEqual(
             footnote(in: app).label,
-            "Anky asks how your pain is after this long. Turn it on to choose a time."
+            "Anky asks how you feel after this long. Turn it on to choose a time."
         )
     }
 
@@ -22,7 +22,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         openNewMedication(app)
         turnOn(in: app)
         XCTAssertEqual(checkInMenu(in: app).value as? String, "2 hours")
-        XCTAssertEqual(footnote(in: app).label, "Anky asks how your pain is after this long.")
+        XCTAssertEqual(footnote(in: app).label, "Anky asks how you feel after this long.")
 
         checkInMenu(in: app).tap()
         let titles = ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
@@ -124,6 +124,23 @@ final class CheckInDelayChoiceTests: XCTestCase {
 
         XCTAssertTrue(app.buttons["30 minutes"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(checkInMenu(in: app).value as? String, "1 hour")
+    }
+
+    func testEditMedicationReadsTheSameNeutralFootnoteAsNewMedication() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        saveNewMedication(named: "Zorblex", app)
+        openMedicationsFromLogDose(app)
+        openMedicationFromList(app)
+        scrollToCheckIn(in: app)
+        XCTAssertEqual(
+            footnote(in: app).label,
+            "Anky asks how you feel after this long. Turn it on to choose a time."
+        )
+
+        turnOn(in: app)
+        XCTAssertEqual(footnote(in: app).label, "Anky asks how you feel after this long.")
     }
 
     func testCancelAfterChangingKeepsTheSavedDelay() {

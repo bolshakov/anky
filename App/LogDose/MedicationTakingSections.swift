@@ -22,7 +22,7 @@ struct MedicationTakingSections: View {
                 .accessibilityAddTraits(.isHeader)
         }
 
-        DoseCheckInSection(checkIn: $draft.checkIn)
+        DoseCheckInSection(checkIn: $draft.checkIn, readingKind: nil)
     }
 
     private var takenAsPicker: some View {
