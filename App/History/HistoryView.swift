@@ -14,9 +14,14 @@ struct HistoryView: View {
     @State private var pendingDoseDelete: Dose?
     @State private var saveTicks = 0
     @State private var derived: HistoryDerived?
+    @State private var shownDays = HistoryList.pageDays
 
-    private var sections: [DaySection] {
-        HistoryList.sections(model.entries, doses: medications.doses, now: now, calendar: .current)
+    private var page: HistoryPage {
+        HistoryList.page(
+            model.entries,
+            doses: medications.doses,
+            window: HistoryWindow(days: shownDays, now: now, calendar: .current)
+        )
     }
 
     private var inputs: HistoryInputs {
@@ -70,15 +75,15 @@ struct HistoryView: View {
         // Captured here, so the alert's button deletes the entry it was asked about even after the binding clears.
         let target = pendingDelete
         let doseTarget = pendingDoseDelete
-        let days = sections
+        let page = page
         let current = currentDerived
         NavigationStack {
             Group {
-                if days.isEmpty {
+                if page.sections.isEmpty {
                     EmptyHistoryView()
                 } else {
                     List {
-                        ForEach(days) { section in
+                        ForEach(page.sections) { section in
                             DaySectionView(
                                 section: section,
                                 medications: medications.medications,
@@ -88,8 +93,16 @@ struct HistoryView: View {
                                 onSelectDose: open,
                                 onDelete: { pendingDelete = $0 },
                                 onDeleteDose: { pendingDoseDelete = $0 },
-                                isLastDay: section.id == days.last?.id
+                                isLastDay: section.id == page.sections.last?.id,
+                                hasOlderDays: page.hasOlderDays,
+                                onLastDayAppear: { shownDays += HistoryList.pageDays }
                             )
+                        }
+                        if page.hasOlderDays {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .listRowBackground(Color.clear)
+                                .accessibilityIdentifier("history-loading-more")
                         }
                     }
                     .listStyle(.insetGrouped)
