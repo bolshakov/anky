@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/pre.sh; edge gallery-kind left; edge gallery-kind right; edge gallery-pill-left left'
+exit: 0
+commit: dbd5226cfd392525c341ce2e9a6eee56c8ded96c
+
+16
+386
+16

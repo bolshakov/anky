@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/pre.sh; ui | grep "id=gallery-kind "'
+exit: 0
+commit: dbd5226cfd392525c341ce2e9a6eee56c8ded96c
+
+TabGroup id=gallery-kind label=None value=None enabled=True @16,132 370x31
