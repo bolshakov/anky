@@ -106,6 +106,5 @@ struct DoseRow: View {
         Text("Check in")
             .font(.subheadline.weight(.semibold))
             .foregroundStyle(.tint)
-            .accessibilityIdentifier("check-in-label")
     }
 }
