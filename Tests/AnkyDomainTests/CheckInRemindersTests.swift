@@ -107,6 +107,14 @@ struct CheckInRemindersTests {
         #expect(reminders([dose(after: reading.id)], entries: [reading]).isEmpty)
     }
 
+    @Test func aNewerDoseOfAnotherMedicationWithCheckInOffTakesTheReminder() {
+        let quellan = Medication(id: UUID(), name: "Quellan", takenAs: .asNeeded, createdAt: takenAt)
+        var newer = dose(at: takenAt.addingTimeInterval(60), delay: nil)
+        newer.medicationID = quellan.id
+        #expect(reminders([dose()]).count == 1)
+        #expect(reminders([dose(), newer], medications: [medication(), quellan]).isEmpty)
+    }
+
     @Test func aDeletedDoseTakesItsReminder() {
         let kept = dose(at: takenAt.addingTimeInterval(-60 * 60))
         let deleted = dose()
