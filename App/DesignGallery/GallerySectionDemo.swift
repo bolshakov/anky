@@ -23,7 +23,7 @@
 
     extension View {
         func galleryBottomBar() -> some View {
-            self
+            bottomPrimaryButton(Text(verbatim: "Primary action"), id: "gallery-primary") {}
         }
     }
 #endif

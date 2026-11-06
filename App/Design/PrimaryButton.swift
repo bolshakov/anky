@@ -8,3 +8,19 @@ extension View {
             .foregroundStyle(Color.onTint)
     }
 }
+
+extension View {
+    func bottomPrimaryButton(_ title: Text, id: String, action: @escaping () -> Void) -> some View {
+        safeAreaBar(edge: .bottom) {
+            Button(action: action) {
+                title.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            }
+            .primaryButton()
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .padding(.horizontal, Spacing.screenMargin)
+            .padding(.bottom, Spacing.bottomClearance)
+            .accessibilityIdentifier(id)
+        }
+    }
+}
