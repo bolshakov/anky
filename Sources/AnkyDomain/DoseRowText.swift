@@ -29,6 +29,8 @@ public enum DosePain: Equatable, Sendable {
 }
 
 /// One whole phrase per reading case of a kind. Each takes only the numbers, so no kind word is joined into a phrase.
+/// In a row's subtitle words `before` is the whole line, since it has no after reading to join to, while `after` and
+/// `beforeAndAfter` are phrases that the row puts the dose word in front of.
 public struct DosePainWords {
     public let before: (Int) -> String
     public let after: (Int) -> String
@@ -66,7 +68,11 @@ public struct DoseWords {
 public enum DoseRowText {
     public static func subtitle(for readings: DoseReadings, words: DoseWords) -> String {
         guard let pain = DosePain(readings) else { return words.kind }
-        return [words.kind, phrase(pain, words.subtitle(pain.kind))].joined(separator: " · ")
+        let subtitle = words.subtitle(pain.kind)
+        if case let .before(_, level) = pain {
+            return subtitle.before(level.value)
+        }
+        return [words.kind, phrase(pain, subtitle)].joined(separator: " · ")
     }
 
     public static func spokenLabel(time: String, title: String, readings: DoseReadings, words: DoseWords) -> String {

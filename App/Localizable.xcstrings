@@ -391,6 +391,15 @@
     "Dose" : {
 
     },
+    "Dose · fatigue was %lld" : {
+
+    },
+    "Dose · pain was %lld" : {
+
+    },
+    "Dose · stiffness was %lld" : {
+
+    },
     "Edit Entry" : {
       "localizations" : {
         "ru" : {
@@ -476,9 +485,6 @@
     "Fatigue now" : {
 
     },
-    "fatigue was %lld" : {
-
-    },
     "Fatigue was %lld of 10" : {
 
     },
@@ -498,9 +504,6 @@
 
     },
     "Pain now" : {
-
-    },
-    "pain was %lld" : {
 
     },
     "Pain was %lld of 10" : {
@@ -540,9 +543,6 @@
 
     },
     "Stiffness now" : {
-
-    },
-    "stiffness was %lld" : {
 
     },
     "Stiffness was %lld of 10" : {
