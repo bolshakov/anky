@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/s.sh; axe tap --id log-how-you-feel-row --wait-timeout 5 --udid $udid >/dev/null; pain 5; axe tap --id save-entry --wait-timeout 5 --udid $udid >/dev/null; ui | grep "id=before-reading-row "'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+Button id=before-reading-row label='1:24, Pain, No place, 5 of 10' value=None enabled=True actions= traits= @16,438.3333333333333 370x68

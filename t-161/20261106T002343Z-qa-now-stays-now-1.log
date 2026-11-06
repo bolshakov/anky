@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/s.sh; next_minute; date "+%H:%M:%S"; ui | grep "id=date-row "'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+01:24:03
+Button id=date-row label='Date and time' value='Today 1:24' enabled=True actions= traits= @16,328 370x52.333333333333314

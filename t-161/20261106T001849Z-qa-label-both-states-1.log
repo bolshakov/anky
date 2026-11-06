@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/pre.sh; ui | grep -E "Before this dose|Log how you feel now|id=log-how-you-feel-row "'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+Heading id=None label='Before this dose' value=None enabled=True actions= traits= @16,398 370x40.333333333333314
+Button id=log-how-you-feel-row label='Log how you feel now' value=None enabled=True actions= traits= @16,438.3333333333333 370x52
+StaticText id=None label='Log how you feel now' value=None enabled=True actions= traits= @32,454.3333333333333 338x20.333333333333314

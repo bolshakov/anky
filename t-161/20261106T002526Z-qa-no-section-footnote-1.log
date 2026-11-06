@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/s.sh; gap log-how-you-feel-row check-in-later; ui | grep -E "id=(before-reading-footer|check-in-footnote) "'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+35.0003
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,577.3333333333333 370x47.66666666666663

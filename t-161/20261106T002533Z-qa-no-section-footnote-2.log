@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/s.sh; axe tap --id log-how-you-feel-row --wait-timeout 5 --udid $udid >/dev/null; pain 4; axe tap --id save-entry --wait-timeout 5 --udid $udid >/dev/null; gap before-reading-row check-in-later; ui | grep "id=before-reading-footer "'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+63.0003
+StaticText id=before-reading-footer label='Your latest entry before this dose. Tap to choose another.' value=None enabled=True actions= traits= @16,506.3333333333333 370x45.666666666666686

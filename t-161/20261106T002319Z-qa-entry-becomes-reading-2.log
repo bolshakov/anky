@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/s.sh; axe tap --id save-dose --wait-timeout 5 --udid $udid >/dev/null; sleep 2; doses'
+exit: 0
+commit: 61f9a73a13a2db145339d29723de85780a945152
+
+Zorblex|2026-11-06 01:23:21|pain 4
