@@ -1,0 +1,8 @@
+$ bash -c '. $TMPDIR/w.sh; doses'
+exit: 0
+commit: 5ce58e0806f40df302569a533fa934de5c76f6e0
+
+Zorblex|2026-11-06 13:37|-|pain 4|-
+Zorblex|2026-11-06 14:37|-|stiffness 4|-
+Zorblex|2026-11-06 15:37|-|fatigue 4|-
+Zorblex|2026-11-06 16:38|-|-|-

@@ -1,0 +1,5 @@
+$ python3 -I -c 'import json, sys; keys = json.load(open(sys.argv[1]))["strings"]; print([k for k in sys.argv[2:] if k in keys])' /Users/bolshakov/Projects/personal/anky.wt/qa-t158-03-1/checkout/App/Localizable.xcstrings 'Dose · pain was %lld' 'Dose · stiffness was %lld' 'Dose · fatigue was %lld' 'pain was %lld' 'stiffness was %lld' 'fatigue was %lld'
+exit: 0
+commit: 5ce58e0806f40df302569a533fa934de5c76f6e0
+
+['Dose · pain was %lld', 'Dose · stiffness was %lld', 'Dose · fatigue was %lld']
