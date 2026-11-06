@@ -17,6 +17,12 @@
 
         @State private var kind = Kind.first
 
+        private func pill(_ title: String, id: String) -> some View {
+            Text(verbatim: title)
+                .rowHeight()
+                .background(Color.clear.accessibilityElement().accessibilityLabel(title).accessibilityIdentifier(id))
+        }
+
         var body: some View {
             Section {
                 VStack(spacing: Spacing.inlineGap) {
@@ -28,8 +34,8 @@
                     .pickerStyle(.segmented)
                     .accessibilityIdentifier("gallery-kind")
                     HStack(spacing: Spacing.inlineGap) {
-                        Text(verbatim: "Left pill").accessibilityIdentifier("gallery-pill-left")
-                        Text(verbatim: "Right pill").accessibilityIdentifier("gallery-pill-right")
+                        pill("Left pill", id: "gallery-pill-left")
+                        pill("Right pill", id: "gallery-pill-right")
                         Spacer(minLength: .zero)
                     }
                 }
