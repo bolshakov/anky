@@ -63,7 +63,7 @@ final class EditDoseTests: XCTestCase {
     func testADoseRowOpensEditDoseWithItsMedicationTimeAndReading() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        try logZorblexDoseCheckingInLater(app)
+        try logZorblexDoseAnHourBack(app)
 
         let rowLabel = doseRow(in: app).label
         doseRow(in: app).tap()
@@ -91,7 +91,7 @@ final class EditDoseTests: XCTestCase {
     func testCancelAndSwipeDownLeaveTheDoseAsItWas() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        try logZorblexDoseCheckingInLater(app)
+        try logZorblexDoseAnHourBack(app)
         let label = doseRow(in: app).label
 
         doseRow(in: app).tap()
@@ -111,10 +111,10 @@ final class EditDoseTests: XCTestCase {
         assertDoseUnchanged(label, in: app)
     }
 
-    func testSaveChangesWithAnotherMedicationKeepsTheReadingAndTheDelay() throws {
+    func testSaveChangesWithAnotherMedicationKeepsTheReading() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        try logZorblexDoseCheckingInLater(app)
+        try logZorblexDoseAnHourBack(app)
 
         doseRow(in: app).tap()
         chooseMedication("Quibbanol", in: app)
@@ -124,13 +124,12 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
         XCTAssertTrue(doseRow(in: app).label.contains("Quibbanol"), doseRow(in: app).label)
         XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
-        XCTAssertTrue(checkInRow(in: app).waitForExistence(timeout: 10), "the dose lost its check-in delay")
     }
 
     func testAMovedDoseShowsUnderYesterdayInHistory() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        try logZorblexDoseCheckingInLater(app)
+        try logZorblexDoseAnHourBack(app)
 
         doseRow(in: app).tap()
         setDateToYesterday(in: app)
@@ -148,14 +147,13 @@ final class EditDoseTests: XCTestCase {
         XCTAssertGreaterThan(doseRow(in: app).frame.minY, yesterday.frame.minY)
         XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
         app.tabBars.buttons["Today"].tap()
-        XCTAssertTrue(checkInRow(in: app).waitForExistence(timeout: 10), "the dose lost its check-in delay")
     }
 
     func testAFailedSaveKeepsEditDoseOpenOnTheChosenMedication() throws {
         continueAfterFailure = false
         let folder = UUID().uuidString
         let app = launchAnky(folder: folder)
-        try logZorblexDoseCheckingInLater(app)
+        try logZorblexDoseAnHourBack(app)
         app.terminate()
 
         let failing = launchAnky(folder: folder, arguments: ["-ANKY_FAIL_MEDICATION_WRITES", "1"])
@@ -210,21 +208,18 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
     }
 
-    /// Makes Quibbanol, then a Zorblex with a 30 minute check-in, and saves a Zorblex dose an hour back that takes
-    /// the 4 of 10 reading an hour back. The dose is then waiting for its check-in.
-    private func logZorblexDoseCheckingInLater(_ app: XCUIApplication) throws {
+    /// Makes Quibbanol, then a Zorblex with no check-in delay, and saves a Zorblex dose an hour back that takes the
+    /// 4 of 10 reading an hour back. The dose is not waiting, so its row opens Edit Dose.
+    private func logZorblexDoseAnHourBack(_ app: XCUIApplication) throws {
         try skipUnlessAnHourBackStaysToday()
         saveEntryAnHourBack(.pain, in: app)
         tapLogMedication(in: app)
         addMedication("Quibbanol", in: app)
         app.buttons["log-dose-cancel"].tap()
-        addZorblexCheckingInAfterThirtyMinutes(app)
+        tapLogMedication(in: app)
+        addMedication("Zorblex", in: app)
         saveDoseAnHourBack(in: app)
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
-    }
-
-    private func checkInRow(in app: XCUIApplication) -> XCUIElement {
-        identified("check-in-row", in: app)
     }
 
     /// The dose row keeps its label, so the time, medication and reading read the same as before.
