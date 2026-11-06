@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t175-02-4/tmp/run.sh 'edge gallery-section-label left; edge gallery-section-footnote left'
+exit: 0
+commit: 4ebede83e199c66356fdb4778645a8fb3f55f6a0
+
+16
+16

@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t175-02-4/tmp/run.sh 'height gallery-primary; edge gallery-primary left; width gallery-primary'
+exit: 0
+commit: 4ebede83e199c66356fdb4778645a8fb3f55f6a0
+
+56
+16
+370

@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t175-02-4/tmp/run.sh 'ui | grep -E "id=gallery-bare-row "; gap gallery-section-footnote gallery-bare-row'
+exit: 0
+commit: 4ebede83e199c66356fdb4778645a8fb3f55f6a0
+
+StaticText id=gallery-bare-row label='A bare row' value=None enabled=True @16,411 370x52
+32.0
