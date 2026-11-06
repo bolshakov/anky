@@ -35,19 +35,16 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertEqual(saved.count, 0)
     }
 
-    func testFootnoteNamesTheKindOfAStiffnessReadingInBothStates() {
-        continueAfterFailure = false
-        let app = launchAnky()
-        app.buttons["log-medication"].tap()
-        addMedication(named: "Zorblex", app)
-        logReading(.stiffness, level: 4, app)
-        XCTAssertEqual(
-            footnote(app).label,
-            "Anky asks how stiff you are after this long. Turn it on to choose a time."
-        )
+    func testFootnoteNamesTheKindOfAPainReadingInBothStates() {
+        expectFootnotes(of: .pain, "Anky asks how your pain is after this long.")
+    }
 
-        toggleCheckIn(app)
-        XCTAssertEqual(footnote(app).label, "Anky asks how stiff you are after this long.")
+    func testFootnoteNamesTheKindOfAStiffnessReadingInBothStates() {
+        expectFootnotes(of: .stiffness, "Anky asks how stiff you are after this long.")
+    }
+
+    func testFootnoteNamesTheKindOfAFatigueReadingInBothStates() {
+        expectFootnotes(of: .fatigue, "Anky asks how tired you are after this long.")
     }
 
     func testFootnoteFollowsTheReadingPickedOnChooseAReading() {
@@ -146,6 +143,19 @@ final class LogDoseCheckInTests: XCTestCase {
         let item = app.buttons[delay]
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
         item.tap()
+    }
+
+    /// With the switch off the footnote is the sentence and the ask to turn it on, and with it on only the sentence.
+    private func expectFootnotes(of kind: EntryKind, _ sentence: String) {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        addMedication(named: "Zorblex", app)
+        logReading(kind, level: 4, app)
+        XCTAssertEqual(footnote(app).label, "\(sentence) Turn it on to choose a time.")
+
+        toggleCheckIn(app)
+        XCTAssertEqual(footnote(app).label, sentence)
     }
 
     private func logReading(_ kind: EntryKind, level: Int, _ app: XCUIApplication) {
