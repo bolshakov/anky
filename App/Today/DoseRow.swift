@@ -37,6 +37,12 @@ struct DoseRow: View {
         .overlay(alignment: checkInAlignment) {
             if isWaiting {
                 checkInLabel
+                    .frame(minWidth: 44, minHeight: 44, alignment: checkInAlignment)
+                    .contentShape(Rectangle())
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel(Text("Check in"))
+                    .accessibilityAddTraits(.isStaticText)
+                    .accessibilityIdentifier("check-in-label")
                     .allowsHitTesting(false)
             }
         }
