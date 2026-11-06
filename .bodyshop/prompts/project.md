@@ -50,6 +50,14 @@ that reads a frame, a height or a gap, or one that takes a screenshot. An agent 
 looks. The stakeholder said on 2026-11-06: "I'd like to avoid writing slow tests as they slow down development
 significantly and app changes a lot". A UI test that already exists stays until a ticket removes it.
 
+## Speed examples
+
+An example about speed or size checks what a person does: the newest days open without delay, and the first few pages
+load while the log holds thousands of records. Do not walk, scroll or render a whole large log, since nobody reads that
+far back. Reaching every old record is a report's job. The stakeholder said on 2026-11-06: "trying to scroll 11k of
+records was kinda stupid - people can have that much but they don't want to go that far back to check individual
+records".
+
 ## Project files
 
 Never edit `Anky.xcodeproj`. It is generated. A new Swift file under `Sources/` or `App/` needs no other change.
