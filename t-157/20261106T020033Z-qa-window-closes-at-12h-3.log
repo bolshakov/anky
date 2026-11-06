@@ -1,0 +1,13 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t157-04-2/tmp/s3.sh
+exit: 0
+commit: a0f6ae3f460d9082488fb2d1391f6d2e599900b5
+
+Fri Nov  6 03:00:33 CET 2026
+✓ Tap at resolved tap point at (201.0, 214.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+Warning: No accessibility element matched --label 'Today'. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available. No tap performed.
+Error: No accessibility element matched --label 'Today'. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available.
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True actions= traits= @16,525.3333333333333 370x52
+log-dose-cancel count: 0
+Zorblex|2026-11-06 02:02|60|-|-
+Zorblex|2026-11-06 03:00|-|-|-
