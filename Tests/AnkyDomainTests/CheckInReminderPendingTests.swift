@@ -42,4 +42,22 @@ struct CheckInReminderPendingTests {
     @Test func nothingWantedSchedulesNothing() {
         #expect(CheckInReminder.toSchedule([], pending: [doseID: fireAt]).isEmpty)
     }
+
+    @Test func aPendingRequestWhoseDoseIsNoLongerWantedIsToBeCancelled() {
+        #expect(CheckInReminder.toCancel(pending: [doseID], wanted: []) == [doseID])
+    }
+
+    @Test func aPendingRequestWhoseDoseIsStillWantedIsKept() {
+        #expect(CheckInReminder.toCancel(pending: [doseID], wanted: [wanted]).isEmpty)
+    }
+
+    @Test func onlyTheRequestsOfDosesNoLongerWantedAreCancelled() {
+        let closed = UUID()
+        #expect(CheckInReminder.toCancel(pending: [closed, doseID], wanted: [wanted]) == [closed])
+    }
+
+    /// A delivered reminder is no longer pending, so the closing window finds nothing to cancel and leaves it alone.
+    @Test func nothingPendingCancelsNothing() {
+        #expect(CheckInReminder.toCancel(pending: [], wanted: []).isEmpty)
+    }
 }
