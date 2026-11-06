@@ -12,8 +12,26 @@ public struct DoseReadings: Equatable, Sendable {
         after = Self.entry(dose.afterReadingID, in: entries)
     }
 
+    public init(_ dose: Dose, in entries: EntriesByID) {
+        before = dose.beforeReadingID.flatMap { entries[$0] }
+        after = dose.afterReadingID.flatMap { entries[$0] }
+    }
+
     private static func entry(_ id: UUID?, in entries: [Entry]) -> Entry? {
         guard let id else { return nil }
         return entries.first { $0.id == id }
+    }
+}
+
+/// The log's entries keyed by id. On a repeated id the first entry in save order wins, as `first(where:)` does.
+public struct EntriesByID: Sendable {
+    private let entries: [UUID: Entry]
+
+    public init(_ entries: [Entry]) {
+        self.entries = Dictionary(entries.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+    }
+
+    public subscript(id: UUID) -> Entry? {
+        entries[id]
     }
 }
