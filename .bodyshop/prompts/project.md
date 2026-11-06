@@ -43,6 +43,13 @@ axe screenshot --udid $U --output step.png
 - A chip's selected state is not in the tree. Check it in a screenshot or through the row that was saved.
 - `axe slider` takes about 5 s and does not run inside `axe batch`. `axe type` capitalises the first letter.
 
+## Tests
+
+Keep the test pyramid: many fast tests of pure logic in the packages, few UI tests. Add no slow test, such as a UI test
+that reads a frame, a height or a gap, or one that takes a screenshot. An agent walk with `axe` proves how a screen
+looks. The stakeholder said on 2026-11-06: "I'd like to avoid writing slow tests as they slow down development
+significantly and app changes a lot". A UI test that already exists stays until a ticket removes it.
+
 ## Project files
 
 Never edit `Anky.xcodeproj`. It is generated. A new Swift file under `Sources/` or `App/` needs no other change.
