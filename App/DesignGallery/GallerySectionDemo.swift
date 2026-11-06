@@ -4,7 +4,20 @@
 
     struct GallerySectionDemo: View {
         var body: some View {
-            EmptyView()
+            CardSection(
+                Text(verbatim: "Section label"),
+                footnote: Text(verbatim: "A footnote under the card."),
+                id: "gallery-section"
+            ) {
+                Text(verbatim: "A row in a card")
+                    .rowHeight()
+                    .accessibilityIdentifier("gallery-section-row")
+            }
+            CardSection(id: "gallery-bare") {
+                Text(verbatim: "A bare row")
+                    .rowHeight()
+                    .accessibilityIdentifier("gallery-bare-row")
+            }
         }
     }
 
