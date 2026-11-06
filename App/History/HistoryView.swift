@@ -13,31 +13,23 @@ struct HistoryView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @State private var saveTicks = 0
+    @State private var derived: HistoryDerived?
 
     private var sections: [DaySection] {
         HistoryList.sections(model.entries, doses: medications.doses, now: now, calendar: .current)
     }
 
-    private var waiting: [Dose] {
-        CheckInDue.waiting(
+    private var inputs: HistoryInputs {
+        HistoryInputs(
+            entries: model.entries,
             doses: medications.doses,
             medications: medications.medications,
-            entries: model.entries,
             now: now
         )
     }
 
-    private var nextCheckInChange: Date? {
-        CheckInDue.nextChange(
-            doses: medications.doses,
-            medications: medications.medications,
-            entries: model.entries,
-            after: now
-        )
-    }
-
     private func open(_ dose: Dose) {
-        if waiting.contains(where: { $0.id == dose.id }) {
+        if (derived ?? HistoryDerived(inputs)).waiting.contains(dose.id) {
             checkingIn = dose
         } else {
             editingDose = dose
@@ -71,6 +63,7 @@ struct HistoryView: View {
         let target = pendingDelete
         let doseTarget = pendingDoseDelete
         let days = sections
+        let current = derived ?? HistoryDerived(inputs)
         NavigationStack {
             Group {
                 if days.isEmpty {
@@ -81,8 +74,8 @@ struct HistoryView: View {
                             DaySectionView(
                                 section: section,
                                 medications: medications.medications,
-                                entries: model.entries,
-                                waiting: Set(waiting.map(\.id)),
+                                entriesByID: current.entriesByID,
+                                waiting: current.waiting,
                                 onSelect: { editing = $0 },
                                 onSelectDose: open,
                                 onDelete: { pendingDelete = $0 },
@@ -108,7 +101,10 @@ struct HistoryView: View {
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")
-            .checkInClock(now: $now, nextChange: nextCheckInChange)
+            .onChange(of: inputs, initial: true) { _, inputs in
+                derived = HistoryDerived(inputs)
+            }
+            .checkInClock(now: $now, nextChange: current.nextCheckInChange)
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }

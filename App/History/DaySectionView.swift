@@ -5,7 +5,7 @@ import SwiftUI
 struct DaySectionView: View {
     let section: DaySection
     let medications: [Medication]
-    let entries: [Entry]
+    let entriesByID: EntriesByID
     let waiting: Set<UUID>
     let onSelect: (Entry) -> Void
     let onSelectDose: (Dose) -> Void
@@ -46,7 +46,7 @@ struct DaySectionView: View {
         case let .dose(dose):
             DoseRow(
                 dose: dose,
-                readings: DoseReadings(dose, in: entries),
+                readings: DoseReadings(dose, in: entriesByID),
                 title: DoseRowText.title(for: dose, in: medications),
                 isWaiting: waiting.contains(dose.id)
             ) {
