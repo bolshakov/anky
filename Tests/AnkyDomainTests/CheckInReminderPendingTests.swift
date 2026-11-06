@@ -42,4 +42,21 @@ struct CheckInReminderPendingTests {
     @Test func nothingWantedSchedulesNothing() {
         #expect(CheckInReminder.toSchedule([], pending: [doseID: fireAt]).isEmpty)
     }
+
+    @Test func aPendingRequestWhoseDoseIsNoLongerWantedIsToBeCancelled() {
+        #expect(CheckInReminder.toCancel(pending: [doseID], wanted: []) == [doseID])
+    }
+
+    @Test func aPendingRequestWhoseDoseIsStillWantedIsKept() {
+        #expect(CheckInReminder.toCancel(pending: [doseID], wanted: [wanted]).isEmpty)
+    }
+
+    @Test func onlyTheRequestsOfDosesNoLongerWantedAreCancelled() {
+        let closed = UUID()
+        #expect(CheckInReminder.toCancel(pending: [closed, doseID], wanted: [wanted]) == [closed])
+    }
+
+    @Test func nothingPendingCancelsNothing() {
+        #expect(CheckInReminder.toCancel(pending: [], wanted: []).isEmpty)
+    }
 }

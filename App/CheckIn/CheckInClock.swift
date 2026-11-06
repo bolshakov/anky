@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CheckInClock: ViewModifier {
     @Binding var now: Date
-    let nextDue: Date?
+    let nextChange: Date?
     @Environment(\.scenePhase) private var scenePhase
 
     func body(content: Content) -> some View {
@@ -14,17 +14,17 @@ struct CheckInClock: ViewModifier {
                     now = .now
                 }
             }
-            .task(id: nextDue) {
-                guard let nextDue else { return }
-                try? await Task.sleep(for: .seconds(max(0, nextDue.timeIntervalSinceNow)))
+            .task(id: nextChange) {
+                guard let nextChange else { return }
+                try? await Task.sleep(for: .seconds(max(0, nextChange.timeIntervalSinceNow)))
                 guard !Task.isCancelled else { return }
-                now = max(Date.now, nextDue)
+                now = max(Date.now, nextChange)
             }
     }
 }
 
 extension View {
-    func checkInClock(now: Binding<Date>, nextDue: Date?) -> some View {
-        modifier(CheckInClock(now: now, nextDue: nextDue))
+    func checkInClock(now: Binding<Date>, nextChange: Date?) -> some View {
+        modifier(CheckInClock(now: now, nextChange: nextChange))
     }
 }
