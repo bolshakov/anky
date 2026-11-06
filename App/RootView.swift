@@ -32,8 +32,8 @@ struct RootView: View {
             guard inputs.phase == .active else { return }
             reminders.reconcile(doses: inputs.doses, medications: inputs.medications, entries: inputs.entries)
         }
-        .onChange(of: reminderTaps.pending, initial: true) { _, tap in
-            guard let tap else { return }
+        .onChange(of: tapInputs, initial: true) { _, inputs in
+            guard inputs.phase == .active, let tap = inputs.tap else { return }
             reminderTaps.pending = nil
             open(tap)
         }
@@ -60,6 +60,15 @@ struct RootView: View {
             entries: model.entries,
             phase: scenePhase
         )
+    }
+
+    private var tapInputs: TapInputs {
+        TapInputs(tap: reminderTaps.pending, phase: scenePhase)
+    }
+
+    private struct TapInputs: Equatable {
+        let tap: ReminderTapModel.Tap?
+        let phase: ScenePhase
     }
 
     private struct ReminderInputs: Equatable {
