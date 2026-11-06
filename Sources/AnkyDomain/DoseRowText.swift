@@ -87,9 +87,4 @@ public enum DoseRowText {
     public static func title(for dose: Dose, in medications: [Medication]) -> String {
         medications.first { $0.id == dose.medicationID }?.listTitle ?? ""
     }
-
-    /// The medication's current name without its strength. Empty when the store holds no such medication.
-    public static func name(for dose: Dose, in medications: [Medication]) -> String {
-        medications.first { $0.id == dose.medicationID }?.name ?? ""
-    }
 }
