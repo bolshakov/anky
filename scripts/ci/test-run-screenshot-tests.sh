@@ -70,10 +70,14 @@ report "--list prints every test of every screenshot file and starts no run" $?
 name="--list does not show a test outside the Screenshots folder or in a file not named ...ScreenshotTests"
 new_tree
 cat > "$tree/Tests/AnkyUITests/ElsewhereScreenshotTests.swift" <<'SWIFT'
-final class ElsewhereScreenshotTests: XCTestCase { func testElsewhere() {} }
+final class ElsewhereScreenshotTests: XCTestCase {
+    func testElsewhere() {}
+}
 SWIFT
 cat > "$shots/Misnamed.swift" <<'SWIFT'
-final class MisnamedScreenshotTests: XCTestCase { func testMisnamed() {} }
+final class MisnamedScreenshotTests: XCTestCase {
+    func testMisnamed() {}
+}
 SWIFT
 cat > "$shots/NotesScreenshotSteps.swift" <<'SWIFT'
 func testNotATest() {}
@@ -96,14 +100,9 @@ report "named tests are the only ones that run" $?
 
 new_tree
 run_script sh "$script" .derived
-grep -qx 'runtime=com.apple.CoreSimulator.SimRuntime.iOS-26-5' "$tree/env.txt"
-report "the simulator runtime is the pinned iOS 26.5" $?
-
-new_tree
-run_script sh "$script" .derived
-grep -qx 'look=english' "$tree/env.txt" && grep -qx 'seconds=2400' "$tree/env.txt" \
-  && grep -qx 'record=unset' "$tree/env.txt"
-report "by default the look is english, a try lasts 2400 s and nothing is recorded" $?
+grep -qx 'runtime=com.apple.CoreSimulator.SimRuntime.iOS-26-5' "$tree/env.txt" && grep -qx 'look=english' "$tree/env.txt" \
+  && grep -qx 'seconds=2400' "$tree/env.txt" && grep -qx 'record=unset' "$tree/env.txt"
+report "by default the runtime is iOS 26.5, the look english, a try 2400 s, and nothing is recorded" $?
 
 new_tree
 (cd "$tree" && ANKY_PRESENTATION=rightToLeft TEST_RUNNER_ANKY_PRESENTATION=doubleLength sh "$script" .derived) \
@@ -133,19 +132,14 @@ code=$?
 report "the exit status is the runner's" $?
 
 new_tree
-run_script sh "$script"
-[ "$code" -eq 2 ] && grep -q '^usage:' "$tree/out.txt" && [ ! -e "$tree/args.txt" ]
-report "no arguments exit 2 with the usage" $?
-
-new_tree
-run_script sh "$script" --list .derived
-[ "$code" -eq 2 ] && grep -q '^usage:' "$tree/out.txt" && [ ! -e "$tree/args.txt" ]
-report "--list with another argument exits 2" $?
-
-new_tree
-run_script sh "$script" --lst
-[ "$code" -eq 2 ] && grep -q '^usage:' "$tree/out.txt" && [ ! -e "$tree/args.txt" ]
-report "an option that is not known exits 2" $?
+bad=0
+for args in "" "--list .derived" "--lst"; do
+  # shellcheck disable=SC2086
+  run_script sh "$script" $args
+  { [ "$code" -eq 2 ] && grep -q '^usage:' "$tree/out.txt" && [ ! -e "$tree/args.txt" ]; } || bad=1
+done
+[ "$bad" = 0 ]
+report "no arguments, --list with another argument, and an unknown option exit 2 with the usage" $?
 
 name="no screenshot test found exits 2 and never runs the whole UI suite"
 new_tree
