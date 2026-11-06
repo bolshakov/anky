@@ -3,24 +3,6 @@ import Foundation
 
 public typealias TextBeforeWords = (String, Entry?) -> String
 
-/// The words of a Check In row's when-part, the text after the medication's name. Each closure takes the time or the
-/// day phrase and returns the part to show, so the name never reaches a translated string.
-public struct CheckInRowWords {
-    public let today: (String) -> String
-    public let yesterday: (String) -> String
-    public let onDay: (String) -> String
-
-    public init(
-        today: @escaping (String) -> String,
-        yesterday: @escaping (String) -> String,
-        onDay: @escaping (String) -> String
-    ) {
-        self.today = today
-        self.yesterday = yesterday
-        self.onDay = onDay
-    }
-}
-
 /// The words of a Check In info card's taken line. The app supplies the localized ones, one whole string per case.
 /// The closures take the time, or the day with its time, then the before reading.
 public struct CheckInInfoWords {
@@ -59,16 +41,6 @@ public enum CheckInDayText {
         let sameYear = calendar.component(.year, from: takenAt) == calendar.component(.year, from: now)
         let template = sameYear ? "dMMMjmm" : "dMMMyjmm"
         return .onDay(DateTemplateText.text(for: takenAt, template: template, calendar: calendar, locale: locale))
-    }
-
-    /// The medication's name, a middle dot, then the when-part, as one plain string.
-    public static func rowSubtitle(name: String, wording: DayWording, words: CheckInRowWords) -> String {
-        let when = switch wording {
-        case let .today(time): words.today(time)
-        case let .yesterday(time): words.yesterday(time)
-        case let .onDay(dayAndTime): words.onDay(dayAndTime)
-        }
-        return "\(name) · \(when)"
     }
 
     public static func infoTaken(wording: DayWording, before: Entry?, words: CheckInInfoWords) -> String {

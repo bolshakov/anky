@@ -3,16 +3,6 @@ import AnkyDomain
 import Foundation
 import SwiftUI
 
-extension CheckInRowWords {
-    static var app: CheckInRowWords {
-        CheckInRowWords(
-            today: { time in time },
-            yesterday: { time in String(localized: "yesterday at \(time)") },
-            onDay: { dayAndTime in dayAndTime }
-        )
-    }
-}
-
 extension CheckInInfoWords {
     static var app: CheckInInfoWords {
         CheckInInfoWords(
@@ -48,33 +38,12 @@ extension CheckInInfoWords {
 }
 
 enum CheckInText {
-    static func question(for kind: EntryKind) -> String {
-        switch kind {
-        case .pain: String(localized: "How is your pain now?")
-        case .stiffness: String(localized: "How is your stiffness now?")
-        case .fatigue: String(localized: "How is your fatigue now?")
-        }
-    }
-
     static func severityCaption(for kind: EntryKind) -> LocalizedStringKey {
         switch kind {
         case .pain: "Pain now"
         case .stiffness: "Stiffness now"
         case .fatigue: "Fatigue now"
         }
-    }
-
-    static func logAction(for kind: EntryKind) -> String {
-        switch kind {
-        case .pain: String(localized: "Log pain")
-        case .stiffness: String(localized: "Log stiffness")
-        case .fatigue: String(localized: "Log fatigue")
-        }
-    }
-
-    static func rowSubtitle(name: String, takenAt: Date, now: Date) -> String {
-        let wording = CheckInDayText.wording(for: takenAt, now: now, calendar: .current, locale: .current)
-        return CheckInDayText.rowSubtitle(name: name, wording: wording, words: .app)
     }
 
     static func infoTaken(takenAt: Date, before: Entry?, now: Date) -> String {
