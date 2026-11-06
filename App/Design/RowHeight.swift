@@ -5,7 +5,9 @@ private struct RowHeight: ViewModifier {
     @ScaledMetric(relativeTo: .body) private var height = Spacing.rowHeight
 
     func body(content: Content) -> some View {
-        content.frame(minHeight: max(height, Spacing.rowMinimumHeight))
+        content
+            .frame(minHeight: max(height, Spacing.rowMinimumHeight))
+            .listRowInsets(.vertical, 0)
     }
 }
 
