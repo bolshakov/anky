@@ -6,6 +6,7 @@ struct TodayEntryList: View {
     let items: [LoggedItem]
     let medications: [Medication]
     let entries: [Entry]
+    let waiting: Set<UUID>
     let onSelect: (Entry) -> Void
     let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
@@ -37,7 +38,8 @@ struct TodayEntryList: View {
             DoseRow(
                 dose: dose,
                 readings: DoseReadings(dose, in: entries),
-                title: DoseRowText.title(for: dose, in: medications)
+                title: DoseRowText.title(for: dose, in: medications),
+                isWaiting: waiting.contains(dose.id)
             ) {
                 onSelectDose(dose)
             }

@@ -196,8 +196,9 @@ struct TodayView: View {
                 items: todayItems,
                 medications: medications.medications,
                 entries: model.entries,
+                waiting: Set(waitingDoses.map(\.id)),
                 onSelect: open,
-                onSelectDose: { editingDose = $0 },
+                onSelectDose: openDose,
                 onDelete: { pendingDelete = $0 },
                 onDeleteDose: { pendingDoseDelete = $0 }
             )
@@ -243,6 +244,14 @@ struct TodayView: View {
             loggedID = nil
         }
         editing = entry
+    }
+
+    private func openDose(_ dose: Dose) {
+        if waitingDoses.contains(where: { $0.id == dose.id }) {
+            checkingIn = dose
+        } else {
+            editingDose = dose
+        }
     }
 
     private func logRecent(_ recent: RecentEntry) {
