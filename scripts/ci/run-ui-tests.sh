@@ -110,7 +110,8 @@ judge() {
   return "$result"
 }
 
-udid=$(xcrun simctl create "anky-ui-$$" com.apple.CoreSimulator.SimDeviceType.iPhone-17) || exit 1
+udid=$(xcrun simctl create "anky-ui-$$" com.apple.CoreSimulator.SimDeviceType.iPhone-17 \
+  ${ANKY_SIM_RUNTIME:+"$ANKY_SIM_RUNTIME"}) || exit 1
 echo "simulator $udid"
 xcrun simctl boot "$udid" || exit 1
 xcrun simctl ui "$udid" appearance "$appearance" || exit 1

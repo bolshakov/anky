@@ -232,5 +232,21 @@ unset ANKY_PRESENTATION
   && ! grep -q '^xcrun simctl create' "$calls" 2>/dev/null
 report "$name" $?
 
+unset ANKY_SIM_RUNTIME
+
+new_tree
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -eq 0 ] \
+  && grep -q '^xcrun simctl create anky-ui-[0-9]* com.apple.CoreSimulator.SimDeviceType.iPhone-17$' "$calls"
+report "the simulator takes the default runtime when none is set" $?
+
+runtime=com.apple.CoreSimulator.SimRuntime.iOS-26-5
+new_tree
+export ANKY_SIM_RUNTIME=$runtime
+run_runner pass light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+unset ANKY_SIM_RUNTIME
+[ "$code" -eq 0 ] && grep -q "^xcrun simctl create anky-ui-[0-9]* com.apple.CoreSimulator.SimDeviceType.iPhone-17 $runtime\$" "$calls"
+report "the simulator is created on the runtime named by ANKY_SIM_RUNTIME" $?
+
 [ "$failures" = 0 ] && echo "run-ui-tests tests: all passed"
 exit "$failures"
