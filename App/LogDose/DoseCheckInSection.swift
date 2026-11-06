@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DoseCheckInSection: View {
     @Binding var checkIn: DoseCheckIn
+    let readingKind: EntryKind?
 
     var body: some View {
         Section {
@@ -20,10 +21,23 @@ struct DoseCheckInSection: View {
     }
 
     @ViewBuilder private var footnote: some View {
-        if checkIn.isOn {
+        switch (readingKind, checkIn.isOn) {
+        case (nil, true):
+            Text("Anky asks how you feel after this long.")
+        case (nil, false):
+            Text("Anky asks how you feel after this long. Turn it on to choose a time.")
+        case (.pain, true):
             Text("Anky asks how your pain is after this long.")
-        } else {
+        case (.pain, false):
             Text("Anky asks how your pain is after this long. Turn it on to choose a time.")
+        case (.stiffness, true):
+            Text("Anky asks how stiff you are after this long.")
+        case (.stiffness, false):
+            Text("Anky asks how stiff you are after this long. Turn it on to choose a time.")
+        case (.fatigue, true):
+            Text("Anky asks how tired you are after this long.")
+        case (.fatigue, false):
+            Text("Anky asks how tired you are after this long. Turn it on to choose a time.")
         }
     }
 }
