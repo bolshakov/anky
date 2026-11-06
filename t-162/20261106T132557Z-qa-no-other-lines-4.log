@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk.sh; . /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/k.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl; udid=939E3DC1-E6FD-4F8E-B481-23BA13A80E66; axe tap --id dose-add-medication --wait-timeout 5 --udid $udid; said'
+exit: 0
+commit: b9981c780565ff471282c5714ea710a5a7aceff7
+
+✓ Tap at resolved tap point at (201.0, 267.0) completed successfully
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long.' value=None enabled=True actions= traits= @30.72636815920398,624.6699834162521 340.5472636815921x27.305140961857433
+StaticText id=check-in-footnote label='Anky asks how you feel after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,526.3333333333333 370x47.66666666666663

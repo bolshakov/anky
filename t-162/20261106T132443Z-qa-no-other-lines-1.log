@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk.sh; . /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/k.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl; udid=939E3DC1-E6FD-4F8E-B481-23BA13A80E66; said; shot no-other-lines-off'
+exit: 0
+commit: b9981c780565ff471282c5714ea710a5a7aceff7
+
+StaticText id=check-in-footnote label='Anky asks how you feel after this long. Turn it on to choose a time.' value=None enabled=True actions= traits= @16,577.3333333333333 370x47.66666666666663
+/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl/no-other-lines-off.png

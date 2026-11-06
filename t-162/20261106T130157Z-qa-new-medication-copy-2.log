@@ -1,0 +1,7 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl; udid=939E3DC1-E6FD-4F8E-B481-23BA13A80E66; toggle_check_in; switch_value; footnote'
+exit: 0
+commit: b9981c780565ff471282c5714ea710a5a7aceff7
+
+✓ Tap at (341.0, 500.0) completed successfully
+1
+StaticText id=check-in-footnote label='Anky asks how you feel after this long.' value=None enabled=True actions= traits= @16,578.3333333333333 370x29.66666666666663

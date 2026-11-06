@@ -1,0 +1,9 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk.sh; . /Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/k.sh; out=/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl; udid=939E3DC1-E6FD-4F8E-B481-23BA13A80E66; axe tap --id log-how-you-feel-row --wait-timeout 5 --udid $udid; kind Pain; set_pain severity 4; axe tap --id save-entry --wait-timeout 5 --udid $udid; said; shot no-other-lines-reading'
+exit: 0
+commit: b9981c780565ff471282c5714ea710a5a7aceff7
+
+✓ Tap at resolved tap point at (201.0, 464.3333333333333) completed successfully
+✓ Tap at resolved tap point at (77.5, 203.66666666666666) completed successfully
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+StaticText id=check-in-footnote label='Anky asks how your pain is after this long.' value=None enabled=True actions= traits= @16,673.3333333333334 370x29.66666666666663
+/Users/bolshakov/Projects/personal/anky.wt/qa-t162-01-4/tmp/walk-t162.NuIl/no-other-lines-reading.png
