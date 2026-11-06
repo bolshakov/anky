@@ -33,13 +33,11 @@ private func lookForRun(_ presentation: Presentation) -> Presentation {
 func launchAnky(
     folder: String = UUID().uuidString,
     presentation: Presentation = .english,
-    arguments: [String] = [],
-    environment: [String: String] = [:]
+    arguments: [String] = []
 ) -> XCUIApplication {
     let app = XCUIApplication()
     app.launchArguments = lookForRun(presentation).launchArguments + arguments
     app.launchEnvironment["ANKY_ENTRIES_FOLDER"] = folder
-    app.launchEnvironment.merge(environment) { _, new in new }
     app.launch()
     XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
     return app
