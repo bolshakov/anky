@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/pre.sh; ui | grep "id=dose-row \|id=check-in-label "'
+exit: 0
+commit: 604c3d72fef4b8ad269b352e23c21fd9224d4b9c
+
+Button id=dose-row label='10:58. Zorblex. Dose. Pain was 4 of 10. Check in pending.' value=None enabled=True actions=Delete traits= @32,478 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True actions=Delete traits= @308,488 62x18

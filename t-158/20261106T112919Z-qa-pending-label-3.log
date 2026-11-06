@@ -1,0 +1,4 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t158-01-1/checkout diff --exit-code origin/main -- App/Today/DoseRow.swift
+exit: 0
+commit: 604c3d72fef4b8ad269b352e23c21fd9224d4b9c
+

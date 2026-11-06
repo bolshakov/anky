@@ -1,0 +1,8 @@
+$ bash -c '. $TMPDIR/pre.sh; begin >/dev/null; seed_dose "$(date -v-11H -v-58M "+%Y-%m-%d %H:%M")" 60 - -; doses; date; today; count check-in-label; history; count check-in-label; today'
+exit: 0
+commit: 604c3d72fef4b8ad269b352e23c21fd9224d4b9c
+
+Zorblex|2026-11-06 00:35|60|-|-
+Fri Nov  6 12:33:33 CET 2026
+1
+1

@@ -1,0 +1,5 @@
+$ bash -c '. $TMPDIR/pre.sh; seed_dose "$(date -v-2M "+%Y-%m-%d %H:%M")" - - -; today; tap_first dose-row; count edit-dose-screen'
+exit: 0
+commit: 604c3d72fef4b8ad269b352e23c21fd9224d4b9c
+
+1

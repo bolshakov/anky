@@ -1,0 +1,6 @@
+$ bash -c '. $TMPDIR/pre.sh; today; count check-in-label; history; count check-in-label'
+exit: 0
+commit: 604c3d72fef4b8ad269b352e23c21fd9224d4b9c
+
+1
+1
