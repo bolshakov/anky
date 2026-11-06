@@ -56,7 +56,6 @@ struct CheckInReminderPendingTests {
         #expect(CheckInReminder.toCancel(pending: [closed, doseID], wanted: [wanted]) == [closed])
     }
 
-    /// A delivered reminder is no longer pending, so the closing window finds nothing to cancel and leaves it alone.
     @Test func nothingPendingCancelsNothing() {
         #expect(CheckInReminder.toCancel(pending: [], wanted: []).isEmpty)
     }
