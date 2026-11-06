@@ -15,6 +15,7 @@ private extension View {
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    @Binding var reminderCheckIn: Dose?
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
@@ -111,6 +112,11 @@ struct TodayView: View {
                 try medications.removeDose(id: doseTarget.id)
             }
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
+            .onChange(of: reminderCheckIn, initial: true) { _, dose in
+                guard let dose else { return }
+                reminderCheckIn = nil
+                showCheckIn(dose)
+            }
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
@@ -222,6 +228,14 @@ struct TodayView: View {
                 onSelect: { checkingIn = $0 }
             )
         }
+    }
+
+    private func showCheckIn(_ dose: Dose) {
+        isShowingNewEntry = false
+        isShowingLogDose = false
+        editing = nil
+        editingDose = nil
+        checkingIn = dose
     }
 
     private func open(_ entry: Entry) {

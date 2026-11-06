@@ -4,11 +4,14 @@ import AnkyMedicationModel
 import AnkyStore
 import SwiftUI
 import TipKit
+import UserNotifications
 
 @main
 struct AnkyApp: App {
     @State private var model: EntryLogModel
     @State private var medications: MedicationsModel
+    @State private var reminderTaps: ReminderTapModel
+    private let reminderTapDelegate: ReminderTapDelegate
 
     init() {
         let folder = ShortcutsLocation.fileURL().deletingLastPathComponent()
@@ -25,6 +28,10 @@ struct AnkyApp: App {
             tipProgress: TipProgressModel(store: tipStore)
         ))
         _medications = State(initialValue: MedicationsModel(store: Self.medicationStore()))
+        let taps = ReminderTapModel()
+        _reminderTaps = State(initialValue: taps)
+        reminderTapDelegate = ReminderTapDelegate(taps: taps)
+        UNUserNotificationCenter.current().delegate = reminderTapDelegate
         Self.colourSelectedSegments()
     }
 
@@ -36,7 +43,7 @@ struct AnkyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(model: model, medications: medications)
+            RootView(model: model, medications: medications, reminderTaps: reminderTaps)
                 .tint(Color("AccentColor"))
         }
     }

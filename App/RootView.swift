@@ -6,13 +6,15 @@ import SwiftUI
 struct RootView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let reminderTaps: ReminderTapModel
     @State private var selection = Tab.today
+    @State private var reminderCheckIn: Dose?
     @State private var reminders = CheckInReminderScheduler()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView(selection: $selection) {
-            TodayView(model: model, medications: medications)
+            TodayView(model: model, medications: medications, reminderCheckIn: $reminderCheckIn)
                 .tabItem {
                     Label("Today", systemImage: "calendar")
                         .fontWeight(selection == .today ? .bold : .regular)
@@ -30,6 +32,25 @@ struct RootView: View {
             guard inputs.phase == .active else { return }
             reminders.reconcile(doses: inputs.doses, medications: inputs.medications, entries: inputs.entries)
         }
+        .onChange(of: tapInputs, initial: true) { _, inputs in
+            guard inputs.phase == .active, let tap = inputs.tap else { return }
+            reminderTaps.pending = nil
+            open(tap)
+        }
+    }
+
+    private func open(_ tap: ReminderTapModel.Tap) {
+        selection = .today
+        let destination = CheckInDue.destination(
+            forReminderOf: tap.doseID,
+            doses: medications.doses,
+            medications: medications.medications,
+            entries: model.entries,
+            now: tap.at
+        )
+        if case let .checkIn(dose) = destination {
+            reminderCheckIn = dose
+        }
     }
 
     private var reminderInputs: ReminderInputs {
@@ -39,6 +60,15 @@ struct RootView: View {
             entries: model.entries,
             phase: scenePhase
         )
+    }
+
+    private var tapInputs: TapInputs {
+        TapInputs(tap: reminderTaps.pending, phase: scenePhase)
+    }
+
+    private struct TapInputs: Equatable {
+        let tap: ReminderTapModel.Tap?
+        let phase: ScenePhase
     }
 
     private struct ReminderInputs: Equatable {
