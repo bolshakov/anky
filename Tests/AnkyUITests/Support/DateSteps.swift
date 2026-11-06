@@ -2,10 +2,10 @@
 import Foundation
 import XCTest
 
-/// The 24 hour clock time for a moment, such as "8:15". The hour has no zero.
+/// The 24 hour clock time for a moment, such as "08:15".
 func clockTime(at date: Date) -> String {
     let parts = Calendar.current.dateComponents([.hour, .minute], from: date)
-    return String(format: "%d:%02d", parts.hour ?? 0, parts.minute ?? 0)
+    return String(format: "%02d:%02d", parts.hour ?? 0, parts.minute ?? 0)
 }
 
 /// Waits up to 90 seconds for the clock to pass out of the minute that `minute` names.
