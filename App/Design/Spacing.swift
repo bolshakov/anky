@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+import SwiftUI
+
+/// Every spacing and size is written once, here.
+enum Spacing {
+    static let screenMargin: CGFloat = 16
+    static let firstBlockTop: CGFloat = 16
+    static let blockGap: CGFloat = 32
+    static let labelGap: CGFloat = 12
+    static let footnoteGap: CGFloat = 8
+    static let inlineGap: CGFloat = 8
+    static let rowHeight: CGFloat = 52
+    static let rowMinimumHeight: CGFloat = 44
+    static let bottomClearance: CGFloat = 16
+    static let primaryButtonHeight: CGFloat = 56
+}

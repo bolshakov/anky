@@ -5,6 +5,6 @@ extension View {
     /// The prominent style sets its label to white on the accent, so the label colour is set here with it.
     func primaryButton() -> some View {
         buttonStyle(.glassProminent)
-            .foregroundStyle(Color("OnAccent"))
+            .foregroundStyle(Color.onTint)
     }
 }
