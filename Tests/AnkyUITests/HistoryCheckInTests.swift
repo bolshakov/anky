@@ -5,11 +5,12 @@ import XCTest
 final class HistoryCheckInTests: XCTestCase {
     func testAWaitingDoseShowsCheckInLabelAndOpensCheckInOnTodayAndInHistory() throws {
         continueAfterFailure = false
-        let hour = Calendar.current.component(.hour, from: .now)
-        try XCTSkipIf(hour < 3, "Two hours back falls on hour 00 before 03:00. Run after 03:00.")
+        try skipUnlessAnHourBackStaysToday()
         let app = launchAnky()
+        saveEntryAnHourBack(.pain, in: app)
         addZorblexCheckingInAfterThirtyMinutes(app)
-        logZorblexTwoHoursBack(app)
+        saveDoseAnHourBack(in: app)
+        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
 
         assertWaitingDoseOpensCheckIn(in: app)
 
@@ -28,12 +29,6 @@ final class HistoryCheckInTests: XCTestCase {
         XCTAssertFalse(editDoseScreen(in: app).exists)
         app.buttons["check-in-cancel"].tap()
         XCTAssertTrue(app.descendants(matching: .any)["check-in-screen"].waitForNonExistence(timeout: 10))
-    }
-
-    private func logZorblexTwoHoursBack(_ app: XCUIApplication) {
-        setDateTimeHoursBack(2, in: app)
-        app.buttons["save-dose"].tap()
-        XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
     }
 
     private func doseRow(in app: XCUIApplication) -> XCUIElement {
