@@ -12,6 +12,8 @@ struct DaySectionView: View {
     let onDelete: (Entry) -> Void
     let onDeleteDose: (Dose) -> Void
     let isLastDay: Bool
+    let hasOlderDays: Bool
+    let onLastDayAppear: () -> Void
 
     var body: some View {
         Section {
@@ -24,8 +26,13 @@ struct DaySectionView: View {
                 .foregroundStyle(.secondary)
                 .cardCaption()
                 .accessibilityIdentifier("day-header")
+                .onAppear {
+                    if isLastDay, hasOlderDays {
+                        onLastDayAppear()
+                    }
+                }
         } footer: {
-            if isLastDay {
+            if isLastDay, !hasOlderDays {
                 Text("Levels are 0 to 10.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
