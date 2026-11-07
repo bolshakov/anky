@@ -47,7 +47,7 @@ final class CheckInFootnoteTests: XCTestCase {
         XCTAssertEqual(footnoteText(in: app), "Saved as a Fatigue entry.")
     }
 
-    /// The footnote sits under the severity card, between the card and the note, and the question row is gone.
+    /// Check In reads in New Entry's order, the footnote sits under the severity card, and the question row is gone.
     func testCheckInReadsInOrderWithTheFootnoteUnderTheSeverityCard() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
@@ -59,12 +59,11 @@ final class CheckInFootnoteTests: XCTestCase {
 
         XCTAssertFalse(identified("check-in-question", in: app).exists)
         assertInOrder(
-            ["check-in-info", "kind-picker", "date-row", "where-label", "severity-slider", "severity-footnote"],
+            ["check-in-info", "kind-picker", "severity-slider", "severity-footnote", "where-label"],
             in: app
         )
-        scrolledToFootnote(in: app)
         scrolled(to: "note-field", in: app)
-        assertInOrder(["severity-slider", "severity-footnote", "note-field"], in: app)
+        assertInOrder(["where-label", "date-row", "note-field"], in: app)
         scrollToSaveCheckIn(in: app)
     }
 

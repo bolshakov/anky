@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// Save check-in is pinned to the bottom, so at the end of the form the note and the slider sit above it.
+/// Save check-in is pinned to the bottom, so at the end of the form the note sits above it.
 @MainActor
 final class CheckInSaveClearOfControlsTests: XCTestCase {
     func testNoteAndSliderEndAboveSaveAtTheDefaultSize() throws {
@@ -16,10 +16,10 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         XCTAssertTrue(identified("check-in-screen", in: app).exists)
 
         scrollToBottom(of: app)
-        assertNoteAndSliderAboveSave(in: app)
+        assertAboveSave(["severity-slider", "note-field"], in: app)
     }
 
-    func testNoteAndSliderEndAboveSaveAtTheLargestSize() throws {
+    func testNoteEndsAboveSaveAtTheLargestSize() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let folder = UUID().uuidString
@@ -33,7 +33,7 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         for _ in 0 ..< 6 {
             screen.swipeUp()
         }
-        assertNoteAndSliderAboveSave(in: app)
+        assertAboveSave(["note-field"], in: app)
         swipeBackToSlider(in: app)
         setSeverity(6, in: app)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 6)
@@ -49,14 +49,15 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         }
     }
 
-    private func assertNoteAndSliderAboveSave(
+    private func assertAboveSave(
+        _ ids: [String],
         in app: XCUIApplication,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
         let save = app.buttons["save-check-in"]
         XCTAssertTrue(save.exists, "save-check-in is not on screen at the end of the form", file: file, line: line)
-        for id in ["severity-slider", "note-field"] {
+        for id in ids {
             let control = identified(id, in: app)
             XCTAssertTrue(control.exists, "\(id) is not on screen", file: file, line: line)
             XCTAssertLessThanOrEqual(control.frame.maxY, save.frame.minY, file: file, line: line)
