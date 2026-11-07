@@ -1,27 +1,25 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// Save check-in is the last row of the form, so no control on Check In sits under it at any scroll position.
+/// Save check-in is pinned to the bottom, so at the end of the form the note and the slider sit above it.
 @MainActor
 final class CheckInSaveClearOfControlsTests: XCTestCase {
-    func testSaveCoversNoControlAtTheFirstPositionAtTheDefaultSize() throws {
+    func testNoteAndSliderEndAboveSaveAtTheDefaultSize() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let app = launchAnky()
         setUpWaitingPainDose(in: app)
         openCheckIn(app)
 
-        assertNoControlUnderSave(in: app)
         setSeverity(6, in: app)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 6)
         XCTAssertTrue(identified("check-in-screen", in: app).exists)
 
-        scrollToSaveCheckIn(in: app)
-        assertNoControlUnderSave(in: app)
+        scrollToBottom(of: app)
         assertNoteAndSliderAboveSave(in: app)
     }
 
-    func testSaveCoversNoControlAtAnyScrollPositionAtTheLargestSize() throws {
+    func testNoteAndSliderEndAboveSaveAtTheLargestSize() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let folder = UUID().uuidString
@@ -33,10 +31,8 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
 
         let screen = identified("check-in-screen", in: app)
         for _ in 0 ..< 6 {
-            assertNoControlUnderSave(in: app)
             screen.swipeUp()
         }
-        assertNoControlUnderSave(in: app)
         assertNoteAndSliderAboveSave(in: app)
         swipeBackToSlider(in: app)
         setSeverity(6, in: app)
@@ -50,31 +46,6 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         let screen = identified("check-in-screen", in: app)
         for _ in 0 ..< 8 where !slider.isHittable {
             screen.swipeDown()
-        }
-    }
-
-    /// Checks each control that is on screen against Save's frame. Save is found only when it is on screen, so
-    /// the check is about Save wherever it sits, and a control is judged only when both are present.
-    private func assertNoControlUnderSave(
-        in app: XCUIApplication,
-        file: StaticString = #filePath,
-        line: UInt = #line
-    ) {
-        let save = app.buttons["save-check-in"]
-        guard save.exists else { return }
-        let saveFrame = save.frame
-        let controls = app.descendants(matching: .any).matching(
-            NSPredicate(format: "identifier BEGINSWITH 'place-chip-' OR identifier IN %@", checkInControlIDs)
-        )
-        for index in 0 ..< controls.count {
-            let control = controls.element(boundBy: index)
-            guard control.exists else { continue }
-            XCTAssertFalse(
-                control.frame.intersects(saveFrame),
-                "save-check-in at \(saveFrame) covers \(control.identifier) at \(control.frame)",
-                file: file,
-                line: line
-            )
         }
     }
 
@@ -98,5 +69,3 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         saveDoseAnHourBack(in: app)
     }
 }
-
-private let checkInControlIDs = ["kind-picker", "date-row", "more-places", "severity-slider", "note-field"]

@@ -101,7 +101,7 @@ func scrollToBottom(of app: XCUIApplication) {
     }
 }
 
-/// Save check-in is the form's last row, so the form is swiped until it is on screen and can be tapped.
+/// Save check-in is pinned to the bottom, so the form is swiped only if something still hides it.
 @MainActor
 func scrollToSaveCheckIn(in app: XCUIApplication) {
     let save = app.buttons["save-check-in"]

@@ -46,11 +46,11 @@ struct CheckInView: View {
                 NoteSection(draft: $draft)
             }
             .screenSpacing()
+            .accessibilityIdentifier("check-in-screen")
             .bottomPrimaryButton(Text("Save check-in"), id: "save-check-in") {
                 saveCheckIn()
             }
             .shortcutFeedback(model.shortcuts)
-            .accessibilityIdentifier("check-in-screen")
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
             }
