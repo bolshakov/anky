@@ -20,7 +20,7 @@
         @State private var chosenIsFirst = true
 
         var body: some View {
-            Section {
+            CardSection(Text(verbatim: "Rows"), id: "gallery-rows") {
                 ValueRow(Text(verbatim: "Value row"), value: Text(verbatim: "Some value")) {}
                     .accessibilityIdentifier("gallery-value-row")
                 MenuRow(Text(verbatim: "Menu row"), selection: $choice) {
@@ -39,9 +39,6 @@
                     value: Text(verbatim: "Value")
                 )
                 .accessibilityIdentifier("gallery-two-line-row")
-            } header: {
-                Text(verbatim: "Rows")
-                    .accessibilityIdentifier("gallery-rows-label")
             }
         }
     }
