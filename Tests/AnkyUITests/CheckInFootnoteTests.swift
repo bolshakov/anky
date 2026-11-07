@@ -59,7 +59,7 @@ final class CheckInFootnoteTests: XCTestCase {
 
         XCTAssertFalse(identified("check-in-question", in: app).exists)
         assertInOrder(
-            ["check-in-info", "kind-picker", "date-row", "where-section", "severity-slider", "check-in-saved-footnote"],
+            ["check-in-info", "kind-picker", "date-row", "where-label", "severity-slider", "check-in-saved-footnote"],
             in: app
         )
         scrolledToFootnote(in: app)

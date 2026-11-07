@@ -29,10 +29,11 @@ struct PlaceChip: View {
     private var chipButton: some View {
         let button = Button(action: action) {
             HStack(spacing: 6) {
-                Image(systemName: "checkmark")
-                    .font(.system(size: checkSize, weight: .heavy))
-                    .opacity(isSelected ? 1 : 0)
-                    .accessibilityHidden(!isSelected)
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: checkSize, weight: .heavy))
+                        .accessibilityHidden(true)
+                }
                 Text(place.displayName)
             }
             .font(.subheadline)

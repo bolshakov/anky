@@ -8,7 +8,7 @@ struct WhereSection: View {
     let chips: [PlaceID]
 
     var body: some View {
-        Section {
+        CardSection(Text("Where"), id: "where") {
             ChipFlowLayout {
                 ForEach(chips, id: \.self) { place in
                     PlaceChip(place: place, isSelected: draft.places.contains(place)) {
@@ -17,12 +17,11 @@ struct WhereSection: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
             MorePlacesRow(value: MorePlacesValue(selected: draft.places, chips: chips)) {
                 isShowingPlaces = true
             }
-        } header: {
-            Text("Where")
-                .accessibilityIdentifier("where-section")
+            .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
         }
     }
 }
