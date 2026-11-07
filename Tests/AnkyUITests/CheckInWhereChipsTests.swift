@@ -11,7 +11,7 @@ final class CheckInWhereChipsTests: XCTestCase {
         setUpWaitingPainDose(in: app)
         openCheckIn(app)
 
-        XCTAssertTrue(identified("where-section", in: app).waitForExistence(timeout: 10))
+        XCTAssertTrue(identified("where-label", in: app).waitForExistence(timeout: 10))
         let neck = app.buttons["place-chip-neck"]
         XCTAssertTrue(neck.waitForExistence(timeout: 10))
         XCTAssertFalse(neck.isSelected)
@@ -26,7 +26,7 @@ final class CheckInWhereChipsTests: XCTestCase {
         setUpWaitingPainDose(in: app, places: ["neck", "lower"])
         openCheckIn(app)
 
-        XCTAssertTrue(identified("where-section", in: app).waitForExistence(timeout: 10))
+        XCTAssertTrue(identified("where-label", in: app).waitForExistence(timeout: 10))
         XCTAssertTrue(isSelected(app.buttons["place-chip-neck"]))
         XCTAssertTrue(isSelected(app.buttons["place-chip-lower"]))
         XCTAssertFalse(app.buttons["place-chip-upper"].isSelected)
@@ -44,7 +44,7 @@ final class CheckInWhereChipsTests: XCTestCase {
         XCTAssertTrue(isSelected(app.buttons["place-chip-neck"]))
 
         chooseKind(.fatigue, in: app)
-        XCTAssertTrue(identified("where-section", in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(identified("where-label", in: app).waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["place-chip-neck"].waitForNonExistence(timeout: 10))
 
         chooseKind(.pain, in: app)
