@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct ChipFlowLayout: Layout {
-    private let spacing: CGFloat = 8
+    private let spacing = Spacing.inlineGap
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache _: inout ()) -> CGSize {
         let frames = frames(for: subviews, width: proposal.width ?? .infinity)
