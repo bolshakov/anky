@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/w.sh 'echo xs-row $(height gallery-value-row)'
+exit: 0
+commit: 12a113dc0d8cb51903bca3e66838f1eb7b4851b7
+
+xs-row 49

@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/w.sh 'for i in 1 2 3 4 5 6; do ui | grep "id=gallery-switch-row " | grep -q "value=.0." && break; tap_trailing gallery-switch-row; sleep 2; echo tap $i; done; ui | grep "id=gallery-switch-row "; shot tint-switch-off'
+exit: 0
+commit: 12a113dc0d8cb51903bca3e66838f1eb7b4851b7
+
+tap 1
+CheckBox id=gallery-switch-row label='Switch row' value='0' enabled=True @16,456.00000000000006 370x52
+/Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/walk-t175.BgcV/tint-switch-off.png

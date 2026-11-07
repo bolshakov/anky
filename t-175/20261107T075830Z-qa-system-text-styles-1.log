@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/w.sh 'gallery accessibility-extra-extra-extra-large; echo primary $(height gallery-primary); echo value-row-at-end $(height gallery-value-row 2>&1); top; axe swipe --start-x 200 --start-y 600 --end-x 200 --end-y 250 --duration 0.3 --udid "$udid" >/dev/null; sleep 1; echo value-row-after-one-swipe $(height gallery-value-row)'
+exit: 0
+commit: 12a113dc0d8cb51903bca3e66838f1eb7b4851b7
+
+primary 155.33333333333337
+value-row-at-end gallery-value-row matches 0 elements
+value-row-after-one-swipe 146.66666666666663

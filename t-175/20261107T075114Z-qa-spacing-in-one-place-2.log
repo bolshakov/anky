@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/w.sh 'sed -i "" -E "s/(blockGap[^=]*= *)32/\148/" "$CHECKOUT/App/Design/Spacing.swift"; git -C "$CHECKOUT" diff --stat; rebuild; gallery; echo gap1 $(gap gallery-pill-left gallery-section-label); echo gap2 $(gap gallery-section-footnote gallery-bare-row); git -C "$CHECKOUT" checkout -- App/Design/Spacing.swift; rebuild; git -C "$CHECKOUT" status --short'
+exit: 0
+commit: 12a113dc0d8cb51903bca3e66838f1eb7b4851b7
+
+ App/Design/Spacing.swift | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+rebuild exit 0
+gap1 48.0
+gap2 48.0
+rebuild exit 0

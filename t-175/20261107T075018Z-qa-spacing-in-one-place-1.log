@@ -1,0 +1,16 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t175-04-1/tmp/w.sh 'gallery; echo kind-left $(edge gallery-kind left); echo kind-top $(edge gallery-kind top); echo bar_bottom_helper $(bar_bottom); echo pieces-group $(ui | grep "id=Pieces " | frame | awk "{print \$2+\$4}"); echo gap-pill-label $(gap gallery-pill-left gallery-section-label); echo hgap-pills $(hgap gallery-pill-left gallery-pill-right); echo row-h $(height gallery-section-row); echo primary-h $(height gallery-primary); echo primary-bottom $(edge gallery-primary bottom); echo label-left $(edge gallery-section-label left); bottom; echo rows-label-left $(edge gallery-rows-label left); echo section-label-left-after $(edge gallery-section-label left)'
+exit: 0
+commit: 12a113dc0d8cb51903bca3e66838f1eb7b4851b7
+
+kind-left 16
+kind-top 132
+bar_bottom_helper 94.3333
+pieces-group 116
+gap-pill-label 32.0
+hgap-pills 8.0
+row-h 52
+primary-h 56
+primary-bottom 824
+label-left 16
+rows-label-left 16
+section-label-left-after 16
