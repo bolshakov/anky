@@ -6,6 +6,7 @@ extension View {
         contentMargins(.horizontal, Spacing.screenMargin, for: .scrollContent)
             .contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
             .listSectionSpacing(.custom(Spacing.blockGap))
+            .environment(\.defaultMinListRowHeight, 0)
             .scrollContentBackground(.hidden)
             .background(Color.surface)
     }
