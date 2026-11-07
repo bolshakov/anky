@@ -191,9 +191,7 @@ final class EditDoseTests: XCTestCase {
         let painRow = app.descendants(matching: .any)["entry-row-pain"]
         XCTAssertTrue(painRow.waitForExistence(timeout: 10))
         painRow.tap()
-        let delete = app.buttons["delete-entry"]
-        XCTAssertTrue(delete.waitForExistence(timeout: 10))
-        delete.tap()
+        chooseDeleteEntry(in: app)
 
         let alert = app.alerts["Delete this entry? This can't be undone."].firstMatch
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
@@ -241,9 +239,7 @@ final class EditDoseTests: XCTestCase {
         let painRow = app.descendants(matching: .any)["entry-row-pain"]
         XCTAssertTrue(painRow.waitForExistence(timeout: 10))
         painRow.tap()
-        let delete = app.buttons["delete-entry"]
-        XCTAssertTrue(delete.waitForExistence(timeout: 10))
-        delete.tap()
+        chooseDeleteEntry(in: app)
         app.buttons["confirm-delete"].firstMatch.tap()
         XCTAssertTrue(app.descendants(matching: .any)["edit-entry-screen"].waitForNonExistence(timeout: 10))
     }

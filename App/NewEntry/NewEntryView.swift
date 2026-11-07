@@ -18,6 +18,7 @@ struct NewEntryView: View {
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
+    @State private var isConfirmingDelete = false
     @State private var hasReportedSave = false
 
     init(
@@ -66,11 +67,6 @@ struct NewEntryView: View {
                     severity: $draft.severity
                 )
                 NoteSection(draft: $draft)
-                if case .edit = mode {
-                    Section {
-                        DeleteEntrySection(onDelete: removeEntry)
-                    }
-                }
             }
             .accessibilityIdentifier(screenID)
             .navigationDestination(isPresented: $isShowingPlaces) {
@@ -90,6 +86,11 @@ struct NewEntryView: View {
                     }
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("cancel-item")
+                }
+                if case .edit = mode {
+                    ToolbarItem(placement: .primaryAction) {
+                        EntryMoreMenu { isConfirmingDelete = true }
+                    }
                 }
                 ToolbarItem(placement: .principal) {
                     Text(title)
@@ -114,6 +115,7 @@ struct NewEntryView: View {
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
+            .entryDeleteConfirmation(isPresented: $isConfirmingDelete, onDelete: removeEntry)
             .shortcutFeedback(model.shortcuts)
             .onAppear(perform: recordChipsOnFirstAppear)
             .interactiveDismissDisabled(draft != startDraft)
