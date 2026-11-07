@@ -1,0 +1,13 @@
+$ sh -c '. $TMPDIR/m.sh; new_entry accessibility-extra-extra-extra-large >/dev/null 2>&1; shot large-new-light >/dev/null 2>&1; echo "gap kind-picker severity-label=$(gap kind-picker severity-label)"; echo "height severity-label=$(height severity-label)"; echo "edge severity-label left=$(edge severity-label left)"; ui | grep -E "id=(severity-label|where-label) |label=.How strong."; ink_label severity-label large-new-light; ink_row "How strong" large-new-light; ink_label where-label large-new-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+gap kind-picker severity-label=32.0
+height severity-label=75.33333333333331
+edge severity-label left=16
+Heading id=severity-label label='Severity' value=None enabled=True @16,333.33333333333337 370x75.33333333333331
+StaticText id=None label='How strong' value=None enabled=True @32,416.6666666666667 258x63.333333333333314
+Heading id=where-label label='Where' value=None enabled=True @16,670 370x75.33333333333337
+severity-label Y=333.33333333333337 h=75.33333333333331 strip=333/71 box=572x143+101+37 ink_offset=12.33 ink_left=33.67
+row 'How strong' frame=32 416.6666666666667 258 63.333333333333314 strip L-8=24 Y=416 H=63 box=754x141+34+41 ink_left=35.33
+where-label Y=670 h=75.33333333333337 strip=670/71 box=1007x174+99+39 ink_offset=13.00 ink_left=33.00

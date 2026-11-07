@@ -1,0 +1,9 @@
+$ sh -c '. $TMPDIR/m.sh; new_entry >/dev/null 2>&1; shot head-new-light >/dev/null 2>&1; echo "gap kind-picker severity-label=$(gap kind-picker severity-label)"; echo "gap more-places date-row=$(gap more-places date-row)"; echo "height severity-label=$(height severity-label)"; echo "height where-label=$(height where-label)"; ui > $out/head-ui.txt; echo "kind-picker bottom $(edge kind-picker bottom) severity-label top $(edge severity-label top); more-places bottom $(edge more-places bottom) date-row top $(edge date-row top)"'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+gap kind-picker severity-label=32.0
+gap more-places date-row=32.0
+height severity-label=32.333333333333314
+height where-label=32.333333333333314
+kind-picker bottom 243 severity-label top 275; more-places bottom 650 date-row top 682

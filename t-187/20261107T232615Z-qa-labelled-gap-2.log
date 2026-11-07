@@ -1,0 +1,6 @@
+$ sh -c '. $TMPDIR/m.sh; ink_label severity-label head-new-light; ink_label where-label head-new-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+severity-label Y=275 h=32.333333333333314 strip=275/28 box=192x49+99+10 ink_offset=3.33 ink_left=33.00
+where-label Y=465.3333333333333 h=32.333333333333314 strip=465/28 box=153x39+98+12 ink_offset=4.00 ink_left=32.67

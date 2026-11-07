@@ -1,0 +1,6 @@
+$ sh -c '. $TMPDIR/m.sh; edit_entry >/dev/null 2>&1; echo "gap kind-picker severity-label=$(gap kind-picker severity-label)"; echo "height severity-label=$(height severity-label)"'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+gap kind-picker severity-label=32.0
+height severity-label=32.33333333333334

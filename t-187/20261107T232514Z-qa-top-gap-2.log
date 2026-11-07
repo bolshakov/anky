@@ -1,0 +1,10 @@
+$ sh -c '. $TMPDIR/m.sh; cp $out/folder $out/folder-s; echo "walk-empty-$$" > $out/folder; . $TMPDIR/walk.sh; new_entry >/dev/null 2>&1; shot top-empty-light >/dev/null 2>&1; echo "chips=$(ui | grep -c "id=recent-chips")"; b=$(edge "New Entry" bottom); kt=$(edge kind-picker top); kb=$(edge kind-picker bottom); echo "bar bottom=$b kind-picker top=$kt bottom=$kb gap=$(awk -v a=$b -v c=$kt "BEGIN{print c-a}")"; H=$(( ${kb%.*} - ${b%.*} )); echo "strip Y=$b H=$H"; magick $out/top-empty-light.png -crop 1206x$((3*H))+0+$((3*${b%.*})) +repage -fuzz 12% -format "box fuzz12 %@\n" info:; magick $out/top-empty-light.png -crop 1206x$((3*H))+0+$((3*${b%.*})) +repage -fuzz 3% -format "box fuzz3 %@\n" info:; cp $out/folder-s $out/folder; . $TMPDIR/walk.sh; echo restored folder=$folder'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+chips=0
+bar bottom=132 kind-picker top=148 bottom=179 gap=16
+strip Y=132 H=47
+box fuzz12 983x84+54+54
+box fuzz3 1110x93+48+48
+restored folder=walk-48302

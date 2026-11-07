@@ -1,0 +1,9 @@
+$ sh -c '. $TMPDIR/m.sh; . $TMPDIR/base.sh; echo "BASE=$BASE TOP=$TOP"; echo "F=$F"; git -C "$CHECKOUT" diff --stat "$BASE" "$TOP"; git -C "$CHECKOUT" diff "$BASE" "$TOP" -- App/NewEntry App/DesignGallery App/Design/CardCaption.swift | wc -l'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+BASE=f673122c441416baebd634e14e1ec16d4b79c1f2 TOP=HEAD
+F=App/Design/CardSection.swift
+ App/Design/CardSection.swift | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
+       0

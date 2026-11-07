@@ -1,0 +1,13 @@
+$ sh -c '. $TMPDIR/m.sh; open_gallery large; shot gallery-light >/dev/null 2>&1; ui | grep -E "id=gallery-pill-left |id=gallery-section"; echo "gap gallery-pill-left gallery-section-label=$(gap gallery-pill-left gallery-section-label)"; echo "height gallery-section-label=$(height gallery-section-label)"; echo "edge gallery-section-footnote left=$(edge gallery-section-footnote left)"; ink_label gallery-section-label gallery-light; ink_rowbox gallery-section-row 32 gallery-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+GenericElement id=gallery-pill-left label='Left pill' value=None enabled=True @16,171 55.66666666666666x52
+Heading id=gallery-section-label label='Section label' value=None enabled=True @16,255 370x32.333333333333314
+StaticText id=gallery-section-row label='A row in a card' value=None enabled=True @16,287.33333333333337 370x52
+StaticText id=gallery-section-footnote label='A footnote under the card.' value=None enabled=True @16,339.33333333333337 370x29.666666666666686
+gap gallery-pill-left gallery-section-label=32.0
+height gallery-section-label=32.333333333333314
+edge gallery-section-footnote left=16
+gallery-section-label Y=255 h=32.333333333333314 strip=255/28 box=301x40+99+10 ink_offset=3.33 ink_left=33.00
+row gallery-section-row L=32 Y=287 H=52 box=331x39+26+60 ink_left=32.67

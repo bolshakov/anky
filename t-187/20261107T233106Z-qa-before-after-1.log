@@ -1,0 +1,12 @@
+$ sh -c '. $TMPDIR/m.sh; measure_new "" after-light-large; measure_new accessibility-extra-extra-extra-large after-light-xxxl; shot_new_dark "" after-dark-large; shot_new_dark accessibility-extra-extra-extra-large after-dark-xxxl'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+[after-light-large] size=large gap=32.0 height=32.333333333333314
+severity-label Y=275 h=32.333333333333314 strip=275/28 box=192x49+99+10 ink_offset=3.33 ink_left=33.00
+row 'How strong' frame=32 323.1666666666667 87.66666666666666 20.33333333333337 strip L-8=24 Y=323 H=20 box=972x48+28+12 ink_left=33.33
+[after-light-xxxl] size=accessibility-extra-extra-extra-large gap=32.0 height=75.33333333333331
+severity-label Y=333.33333333333337 h=75.33333333333331 strip=333/71 box=572x143+101+37 ink_offset=12.33 ink_left=33.67
+row 'How strong' frame=32 416.6666666666667 258 63.333333333333314 strip L-8=24 Y=416 H=63 box=754x141+34+41 ink_left=35.33
+[after-dark-large] saved; gap=32.0
+[after-dark-xxxl] saved; gap=32.0

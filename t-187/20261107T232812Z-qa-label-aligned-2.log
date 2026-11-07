@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/m.sh; ink_label where-label head-new-light; ui | grep "StaticText id=None label=.More places."; ink_row "More places" head-new-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+where-label Y=465.3333333333333 h=32.333333333333314 strip=465/28 box=153x39+98+12 ink_offset=4.00 ink_left=32.67
+StaticText id=None label='More places' value=None enabled=True @31.999999999999915,614.6666666666667 93.33333333333333x20.33333333333337
+row 'More places' frame=31.999999999999915 614.6666666666667 93.33333333333333 20.33333333333337 strip L-8=23 Y=614 H=20 box=966x47+31+13 ink_left=33.33

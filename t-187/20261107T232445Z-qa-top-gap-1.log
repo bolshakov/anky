@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/m.sh; new_entry >/dev/null 2>&1; shot top-new-light >/dev/null 2>&1; b=$(edge "New Entry" bottom); t=$(edge recent-chips top); cb=$(edge recent-chips bottom); echo "bar bottom=$b chips top=$t chips bottom=$cb diff=$(awk -v a=$b -v c=$t "BEGIN{print c-a}")"; H=$(( ${cb%.*} - ${b%.*} )); echo "strip Y=$b H=$H"; magick $out/top-new-light.png -crop 1206x$((3*H))+0+$((3*${b%.*})) +repage -fuzz 12% -format "box %@\n" info:'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+bar bottom=132 chips top=148 chips bottom=180 diff=16
+strip Y=132 H=48
+box 1102x96+56+48

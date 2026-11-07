@@ -1,0 +1,10 @@
+$ sh -c '. $TMPDIR/m.sh; . $TMPDIR/base.sh; git -C "$CHECKOUT" checkout HEAD -- $F; rebuild; echo "status:"; git -C "$CHECKOUT" status --short; echo "status end"; open_gallery large; shot gallery-after-light >/dev/null 2>&1; echo "gallery head gap=$(gap gallery-pill-left gallery-section-label) height=$(height gallery-section-label) footnote left=$(edge gallery-section-footnote left)"; ink_label gallery-section-label gallery-after-light; ink_rowbox gallery-section-row 32 gallery-after-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+rebuild exit 0
+status:
+status end
+gallery head gap=32.0 height=32.333333333333314 footnote left=16
+gallery-section-label Y=255 h=32.333333333333314 strip=255/28 box=301x40+99+10 ink_offset=3.33 ink_left=33.00
+row gallery-section-row L=32 Y=287 H=52 box=331x39+26+60 ink_left=32.67

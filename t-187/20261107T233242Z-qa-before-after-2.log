@@ -1,0 +1,17 @@
+$ sh -c '. $TMPDIR/m.sh; . $TMPDIR/base.sh; git -C "$CHECKOUT" checkout "$BASE" -- $F; echo "reverted $F to $BASE"; rebuild; measure_new "" before-light-large; measure_new accessibility-extra-extra-extra-large before-light-xxxl; shot_new_dark "" before-dark-large; shot_new_dark accessibility-extra-extra-extra-large before-dark-xxxl; open_gallery large; shot gallery-before-light >/dev/null 2>&1; echo "gallery base gap=$(gap gallery-pill-left gallery-section-label) height=$(height gallery-section-label) footnote left=$(edge gallery-section-footnote left)"; ink_label gallery-section-label gallery-before-light; ink_rowbox gallery-section-row 32 gallery-before-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+reverted App/Design/CardSection.swift to f673122c441416baebd634e14e1ec16d4b79c1f2
+rebuild exit 0
+[before-light-large] size=large gap=32.0 height=42.333333333333314
+severity-label Y=275 h=42.333333333333314 strip=275/38 box=192x49+51+40 ink_offset=13.33 ink_left=17.00
+row 'How strong' frame=32 333.1666666666667 87.66666666666666 20.33333333333337 strip L-8=24 Y=333 H=20 box=972x48+28+12 ink_left=33.33
+[before-light-xxxl] size=accessibility-extra-extra-extra-large gap=32.0 height=85.33333333333331
+severity-label Y=333.33333333333337 h=85.33333333333331 strip=333/81 box=572x143+53+67 ink_offset=22.33 ink_left=17.67
+row 'How strong' frame=32 426.6666666666667 258 63.333333333333314 strip L-8=24 Y=426 H=63 box=754x141+34+41 ink_left=35.33
+[before-dark-large] saved; gap=32.0
+[before-dark-xxxl] saved; gap=32.0
+gallery base gap=32.0 height=42.333333333333314 footnote left=16
+gallery-section-label Y=255 h=42.333333333333314 strip=255/38 box=301x40+51+40 ink_offset=13.33 ink_left=17.00
+row gallery-section-row L=32 Y=297 H=52 box=331x39+26+60 ink_left=32.67

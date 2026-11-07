@@ -1,0 +1,12 @@
+$ sh -c '. $TMPDIR/m.sh; open_gallery accessibility-extra-extra-extra-large; shot gallery-large-light >/dev/null 2>&1; ui | grep -E "id=gallery-(pill-left|section)"; echo "gap=$(gap gallery-pill-left gallery-section-label)"; echo "left=$(edge gallery-section-label left)"; echo "height=$(height gallery-section-label)"; ink_label gallery-section-label gallery-large-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+GenericElement id=gallery-pill-left label='Left pill' value=None enabled=True @16,171 161.66666666666666x146.66666666666663
+Heading id=gallery-section-label label='Section label' value=None enabled=True @16,349.66666666666663 370x75.33333333333331
+StaticText id=gallery-section-row label='A row in a card' value=None enabled=True @16,425 370x146.66666666666663
+StaticText id=gallery-section-footnote label='A footnote under the card.' value=None enabled=True @16,571.6666666666667 370x116.66666666666663
+gap=32.0
+left=16
+height=75.33333333333331
+gallery-section-label Y=349.66666666666663 h=75.33333333333331 strip=349/71 box=899x117+101+38 ink_offset=12.67 ink_left=33.67

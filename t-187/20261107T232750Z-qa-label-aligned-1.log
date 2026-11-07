@@ -1,0 +1,8 @@
+$ sh -c '. $TMPDIR/m.sh; new_entry >/dev/null 2>&1; echo "edge severity-label left=$(edge severity-label left)"; ui | grep "StaticText id=None label=.How strong."; ink_label severity-label head-new-light; ink_row "How strong" head-new-light'
+exit: 0
+commit: ea75f0b6bdddd5e72681f2567f750bb862d56279
+
+edge severity-label left=16
+StaticText id=None label='How strong' value=None enabled=True @32,323.1666666666667 87.66666666666666x20.33333333333337
+severity-label Y=275 h=32.333333333333314 strip=275/28 box=192x49+99+10 ink_offset=3.33 ink_left=33.00
+row 'How strong' frame=32 323.1666666666667 87.66666666666666 20.33333333333337 strip L-8=24 Y=323 H=20 box=972x48+28+12 ink_left=33.33
