@@ -1,0 +1,7 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/chip.sh; seed 2>&1 | tail -3'
+exit: 0
+commit: 66f4f2676049d6c6f45e7729f0e6aa6be08377d3
+
+✓ Tap at resolved tap point at (201.0, 748.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+1

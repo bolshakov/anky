@@ -1,0 +1,16 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/chip.sh; chipb 2>&1 | grep -v '\''^Detected\|^Note'\'''
+exit: 0
+commit: 66f4f2676049d6c6f45e7729f0e6aa6be08377d3
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+Button id=recent-chip-0 label='Same as last time, Left knee, 0 of 10' value=None enabled=True @16,148 109.33333333333333x32
+Slider id=severity-slider label='Severity' value=0 enabled=True @32,391 338x31
+Button id=more-places label='More places' value='None' enabled=True @16,619.6666666666667 370x50.33333333333337
+Slider id=severity-slider label='Severity' value=0 enabled=True @32,391 338x31
+0
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/chip-before.png
+✓ Tap at resolved tap point at (70.66666666666666, 164.0) completed successfully
+Button id=recent-chip-0 label='Same as last time, Left knee, 0 of 10' value=None enabled=True @16,148 109.33333333333333x32
+Slider id=severity-slider label='Severity' value=0 enabled=True @32,391 338x31
+Button id=more-places label='More places' value='Left knee' enabled=True @16,619.6666666666667 370x50.33333333333337
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/chip-after.png

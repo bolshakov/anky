@@ -1,0 +1,13 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/chip.sh; chipc 2>&1 | grep -v '\''^Detected\|^Note'\'''
+exit: 0
+commit: 66f4f2676049d6c6f45e7729f0e6aa6be08377d3
+
+✓ Tap at resolved tap point at (201.0, 644.8333333333335) completed successfully
+Button id=place-knee_l label='Left knee' value=None enabled=True @16,118.33333333333334 370x52
+Button id=done-places label='Done, 1 place' value=None enabled=True @16,721.6666666666666 370x50.33333333333337
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/chip-places.png
+✓ Tap at resolved tap point at (201.0, 144.33333333333334) completed successfully
+Button id=done-places label='Done' value=None enabled=True @16,721.6666666666666 370x50.33333333333337
+✓ Tap at resolved tap point at (201.0, 144.33333333333334) completed successfully
+Button id=done-places label='Done, 1 place' value=None enabled=True @16,721.6666666666666 370x50.33333333333337
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/chip-retapped.png

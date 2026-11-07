@@ -1,0 +1,17 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/round.sh; knee_round 2 2>&1 | grep -v '\''^Detected\|^Note'\'''
+exit: 0
+commit: 66f4f2676049d6c6f45e7729f0e6aa6be08377d3
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 580.8333333333335) completed successfully
+Group id=pin-tip label=None value=None enabled=True @16,128 370x70.33332824707031
+Button id=place-knee_l label='Left knee' value=None enabled=True @16,271.33333333333337 370x52
+Button id=done-places label='Done' value=None enabled=True @16,721.6666666666666 370x50.33333333333337
+TextField id=None label=None value='Knee' enabled=True @33.00000000000002,803 276x38
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/round-2-typed.png
+✓ Tap at resolved tap point at (201.0, 297.33333333333337) completed successfully
+Button id=place-knee_l label='Left knee' value=None enabled=True @16,271.33333333333337 370x52
+Button id=done-places label='Done, 1 place' value=None enabled=True @16,721.6666666666666 370x50.33333333333337
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t192-02-2/tmp/walk-t192.cVB9/round-2-tapped.png
+✓ Tap at resolved tap point at (201.0, 746.8333333333333) completed successfully
+Button id=more-places label='More places' value='Left knee' enabled=True @16,555.6666666666667 370x50.33333333333337
