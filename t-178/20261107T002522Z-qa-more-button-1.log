@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t178-01-7/tmp/w.sh 'ui | grep "id=entry-more "'
+exit: 0
+commit: 4da75b205ddcbbce76887dd790ac094f23de5a42
+
+Button id=entry-more label='More' value=None enabled=True actions= traits= @346,82 36x36

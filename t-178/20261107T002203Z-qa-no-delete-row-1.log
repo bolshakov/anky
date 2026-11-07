@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t178-01-7/tmp/w.sh 'to_bottom >/dev/null 2>&1; ui | grep -E "id=delete-entry |label=.Delete entry."; echo grep-exit=${PIPESTATUS[1]}'
+exit: 0
+commit: 4da75b205ddcbbce76887dd790ac094f23de5a42
+
+grep-exit=1

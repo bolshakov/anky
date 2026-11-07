@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t178-01-7/tmp/w.sh 'ui | grep -E "id=entry-row-|id=empty-today "'
+exit: 0
+commit: 4da75b205ddcbbce76887dd790ac094f23de5a42
+
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True actions= traits= @90.5,373.64367816091954 221x26.33333333333337

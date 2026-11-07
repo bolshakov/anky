@@ -1,0 +1,72 @@
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Group id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Saturday 7 November' value=None enabled=True actions= traits= @16,168 370x52
+Button id=repeat-chip label='Same as last time, No place, 0 of 10' value=None enabled=True actions= traits= @16,220 370x60
+Button id=entry-row-pain label='01:25, No place, Pain, 0 of 10' value=None enabled=True actions=Delete traits= @16,315 370x68
+StaticText id=None label='Levels are 0 to 10. Stored on this iPhone only.' value=None enabled=True actions= traits= @16,383 370x29.666666666666686
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x584.6666666666666
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x584.6666666666666
+Button id=log-medication label='Log medication' value=None enabled=True actions= traits= @16,724.6666666666666 179x50.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @207,724.6666666666666 179x50.33333333333337
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=calendar label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=clock label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
+Group id=Edit Entry label=None value=None enabled=True actions= traits= @0,78 402x54
+Group id=cancel-item label='Cancel' value=None enabled=True actions= traits= @20,82 76.66666666666667x36
+Group id=cancel-item label=None value=None enabled=True actions= traits= @20,78 76.66666666666666x44
+Button id=cancel-entry label='Cancel' value=None enabled=True actions= traits= @20,78 76.66666666666666x44
+Heading id=None label='Edit Entry' value=None enabled=True actions= traits= @162.33333333333334,89.66666666666666 77.33333333333334x20.66666666666667
+Heading id=None label='Edit Entry' value=None enabled=True actions= traits= @162.33333333333334,89.99999999999999 77.33333333333334x20.33333333333333
+Button id=entry-more label='More' value=None enabled=True actions= traits= @346,82 36x36
+Group id=edit-entry-screen label=None value=None enabled=True actions= traits= @0,62 402x812
+TabGroup id=kind-picker label='What are you logging' value=None enabled=True actions= traits= @16,177.66666666666666 370x31
+RadioButton id=None label='Pain' value=1 enabled=True actions= traits= @16,177.66666666666666 123x32
+RadioButton id=None label='Stiffness' value=0 enabled=True actions= traits= @139,177.66666666666666 123x32
+RadioButton id=None label='Fatigue' value=0 enabled=True actions= traits= @262,177.66666666666666 124x32
+Button id=date-row label='Date and time' value='Today 01:25' enabled=True actions= traits= @16,254 370x52
+StaticText id=None label='Date and time' value=None enabled=True actions= traits= @32,269.8333333333333 106.33333333333331x20.33333333333337
+StaticText id=None label='Today, 01:25' value=None enabled=True actions= traits= @253.33333333333331,269.8333333333333 96x20.33333333333337
+Image id=chevron.right label='Forward' value=None enabled=True actions= traits= @360.66666666666663,272.6666666666667 8.333333969116211x14.666666984558105
+Heading id=where-section label='Where' value=None enabled=True actions= traits= @16,323.66666666666663 370x40.333333333333314
+Button id=place-chip-neck label='Neck' value=None enabled=True actions=Pin as shortcut traits= @32,379 82x32
+Image id=checkmark label='Selected' value=None enabled=True actions=Pin as shortcut traits= @45.666666666666664,388.6666666666667 13.333333969116211x12.666666984558105
+StaticText id=None label='Neck' value=None enabled=True actions=Pin as shortcut traits= @32,379 82x32
+Button id=place-chip-upper label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @122,379 126.33333333333331x32
+Image id=checkmark label='Selected' value=None enabled=True actions=Pin as shortcut traits= @135.66666666666669,388.6666666666667 13.333333969116183x12.666666984558105
+StaticText id=None label='Upper back' value=None enabled=True actions=Pin as shortcut traits= @122,379 126.33333333333331x32
+Button id=place-chip-lower label='Lower back' value=None enabled=True actions=Pin as shortcut traits= @32,419 125x32
+Image id=checkmark label='Selected' value=None enabled=True actions=Pin as shortcut traits= @45.666666666666664,428.66666666666663 13.333333969116211x12.666666984558105
+StaticText id=None label='Lower back' value=None enabled=True actions=Pin as shortcut traits= @32,419 125x32
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True actions=Pin as shortcut traits= @165,419 124x32
+Image id=checkmark label='Selected' value=None enabled=True actions=Pin as shortcut traits= @178.66666666666666,428.66666666666663 13.333333969116211x12.666666984558105
+StaticText id=None label='Left SI joint' value=None enabled=True actions=Pin as shortcut traits= @165,419 124x32
+Button id=place-chip-si_r label='Right SI joint' value=None enabled=True actions=Pin as shortcut traits= @32,459 133x32
+Image id=checkmark label='Selected' value=None enabled=True actions=Pin as shortcut traits= @45.666666666666664,468.66666666666663 13.333333969116211x12.666666984558105
+StaticText id=None label='Right SI joint' value=None enabled=True actions=Pin as shortcut traits= @32,459 133x32
+Button id=more-places label='More places' value='None' enabled=True actions= traits= @16,506 370x52
+Button id=None label='More places, None' value=None enabled=True actions= traits= @32,522 338x20.33333333333337
+StaticText id=None label='More places' value=None enabled=True actions= traits= @31.999999999999915,521.8333333333334 93.33333333333333x20.333333333333258
+StaticText id=None label='None' value=None enabled=True actions= traits= @315.33333333333337,521.8333333333334 40.666666666666686x20.333333333333258
+Image id=chevron.forward label='Forward' value=None enabled=True actions= traits= @363,525 8.333333969116211x14.333333969116211
+Heading id=severity-caption label='Severity' value=None enabled=True actions= traits= @16,575.3333333333333 370x40.33333333333337
+StaticText id=None label='How strong' value=None enabled=True actions= traits= @32,631.5000000000001 87.66666666666666x20.333333333333258
+StaticText id=severity-value label='0 of 10' value=None enabled=True actions= traits= @317.6666666666667,631.5000000000001 52.333333333333314x20.333333333333258
+StaticText id=severity-low-label label='0' value=None enabled=True actions= traits= @32,696.8333333333333 8.333333333333329x15.666666666666742
+Slider id=severity-slider label='Severity' value=0 enabled=True actions= traits= @32,689.3333129882812 338x31
+StaticText id=severity-high-label label='10' value=None enabled=True actions= traits= @355.6666666666667,696.8333333333333 14.333333333333314x15.666666666666742
+Group id=note-card label=None value=None enabled=True actions= traits= @16,776.6666666666666 370x52
+TextField id=note-field label='Note' value='Add a note' enabled=True actions= traits= @32,791.6666666666666 338x22
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @42,799.6666666666666 318x11
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @369,132 30x617.6666666666666
+Slider id=None label='Vertical scroll bar, 2 pages' value='0%' enabled=True actions= traits= @369,132 30x617.6666666666666
+Button id=save-entry label='Save changes' value=None enabled=True actions= traits= @16,773.6666666666666 370x50.33333333333337
+Button id=delete-entry label='Delete entry' value=None enabled=True actions= traits= @136,88 250x42
+Image id=trash label='trash' value=None enabled=True actions= traits= @166.66666666666669,98.33333333333333 19x20.66666666666667
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @198,78 188x30
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @353,107 30x4
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @353,107 30x4
+Slider id=None label='Horizontal scroll bar, 1 page' value='0%' enabled=True actions= traits= @198,78 188x30

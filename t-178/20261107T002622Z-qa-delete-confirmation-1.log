@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t178-01-7/tmp/w.sh 'ui | grep -E "Delete this entry|id=confirm-delete |id=keep-entry "'
+exit: 0
+commit: 4da75b205ddcbbce76887dd790ac094f23de5a42
+
+Sheet id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @41,377 320x148
+StaticText id=None label="Delete this entry? This can't be undone." value=None enabled=True actions= traits= @71,398.6666666666667 260x42.333333333333314
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=keep-entry label='Cancel' value=None enabled=True actions= traits= @57,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
+Button id=confirm-delete label='Delete entry' value=None enabled=True actions= traits= @205,461 140x48
