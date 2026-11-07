@@ -1,0 +1,16 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; echo BEFORE; ui | grep "id=place-chip-"; axe tap --id place-chip-neck --udid "$udid" >/dev/null; echo AFTER; ui | grep "id=place-chip-"; shot chip-selected'
+exit: 0
+commit: 9de19482cda57cbea4d342daeac64cfa4efa2d1b
+
+BEFORE
+Button id=place-chip-neck label='Neck' value=None enabled=True @32,512 59.33333333333333x32
+Button id=place-chip-upper label='Upper back' value=None enabled=True @99.33333333333333,512 103.66666666666667x32
+Button id=place-chip-lower label='Lower back' value=None enabled=True @211,512 102.33333333333331x32
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True @32,552 101.33333333333331x32
+Button id=place-chip-si_r label='Right SI joint' value=None enabled=True @141.33333333333331,552 110.33333333333334x32
+AFTER
+Button id=place-chip-neck label='Neck' value=None enabled=True @32,512 82x32
+Button id=place-chip-upper label='Upper back' value=None enabled=True @122,512 103.66666666666666x32
+Button id=place-chip-lower label='Lower back' value=None enabled=True @233.66666666666666,512 102.33333333333334x32
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True @32,552 101.33333333333331x32
+Button id=place-chip-si_r label='Right SI joint' value=None enabled=True @141.33333333333331,552 110.33333333333334x32

@@ -1,0 +1,8 @@
+$ zsh -c '. "$TMPDIR/walk.sh"; echo "neck(selected)->upper"; hgap place-chip-neck place-chip-upper; echo "upper->lower"; hgap place-chip-upper place-chip-lower'
+exit: 0
+commit: 9de19482cda57cbea4d342daeac64cfa4efa2d1b
+
+neck(selected)->upper
+8.0
+upper->lower
+8.0
