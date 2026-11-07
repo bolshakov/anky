@@ -101,9 +101,7 @@ struct NewEntryView: View {
                         .accessibilityAddTraits(.isHeader)
                 }
             }
-            .bottomPrimaryButton(saveTitle, id: "save-entry") {
-                save()
-            }
+            .safeAreaInset(edge: .bottom) { saveButton }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -115,6 +113,29 @@ struct NewEntryView: View {
         .pinLimitAlert(model.shortcuts)
         .environment(model.shortcuts)
         .environment(model.tipProgress)
+    }
+
+    private var saveButton: some View {
+        Button(action: save) {
+            saveTitle.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+        }
+        .primaryButton()
+        .buttonBorderShape(.capsule)
+        .controlSize(.large)
+        .padding(.horizontal, Spacing.screenMargin)
+        .padding(.bottom, Spacing.bottomClearance)
+        .accessibilityIdentifier("save-entry")
+        .background { saveBacking }
+    }
+
+    /// Hides the form where it passes under the button, and reaches no higher than the button's top edge.
+    private var saveBacking: some View {
+        VStack(spacing: 0) {
+            LinearGradient(colors: [.clear, .surface], startPoint: .top, endPoint: .bottom)
+                .frame(height: Spacing.bottomClearance)
+            Color.surface
+        }
+        .ignoresSafeArea(edges: .bottom)
     }
 
     private var chips: [PlaceID] {
