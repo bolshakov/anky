@@ -11,7 +11,7 @@ struct SystemSeveritySection: View {
     var footerID = ""
 
     var body: some View {
-        Section {
+        CardSection(Text(caption), footnote: footer.map { Text($0) }, id: idPrefix) {
             // In double-length text the value is clipped beside the label, so it stacks under it instead.
             ViewThatFits(in: .horizontal) {
                 HStack {
@@ -19,41 +19,33 @@ struct SystemSeveritySection: View {
                     Spacer()
                     SeverityValue(severity: severity, idPrefix: idPrefix)
                 }
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: Spacing.tightGap) {
                     Text("How strong")
                     SeverityValue(severity: severity, idPrefix: idPrefix)
                 }
             }
+            .rowHeight()
             .accessibilityHidden(true)
             Slider(value: level, in: 0 ... 10, step: 1) {
                 EmptyView()
             } minimumValueLabel: {
                 Text(0, format: .number)
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.ink2)
                     .accessibilityIdentifier("\(idPrefix)-low-label")
                     .accessibilityHidden(true)
             } maximumValueLabel: {
                 Text(10, format: .number)
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.ink2)
                     .accessibilityIdentifier("\(idPrefix)-high-label")
                     .accessibilityHidden(true)
             }
-            .frame(minHeight: 44)
+            .frame(minHeight: Spacing.rowMinimumHeight)
             .accessibilityLabel(spokenLabel)
             .accessibilityValue(severity.spokenValue)
             .accessibilityIdentifier("\(idPrefix)-slider")
             .sensoryFeedback(.selection, trigger: severity)
-        } header: {
-            Text(caption)
-                .accessibilityIdentifier("\(idPrefix)-caption")
-                .accessibilityAddTraits(.isHeader)
-        } footer: {
-            if let footer {
-                Text(footer)
-                    .accessibilityIdentifier(footerID)
-            }
         }
     }
 

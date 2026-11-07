@@ -107,7 +107,7 @@ final class NoteTests: XCTestCase {
         typeNote(String(note.prefix(230)), in: app)
         let field = app.descendants(matching: .any).matching(identifier: "note-field").firstMatch
         XCTAssertEqual((field.value as? String)?.count, 230)
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        let counter = app.descendants(matching: .any).matching(identifier: "note-footnote").firstMatch
         XCTAssertTrue(counter.waitForExistence(timeout: 10))
         let counterAtTen = counter.label
 
@@ -156,7 +156,7 @@ final class NoteTests: XCTestCase {
         app.typeText("x")
 
         XCTAssertEqual(noteField(in: app).value as? String, typed + emoji)
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        let counter = app.descendants(matching: .any).matching(identifier: "note-footnote").firstMatch
         XCTAssertEqual(counter.label, "Limit reached")
     }
 
@@ -187,7 +187,7 @@ final class NoteTests: XCTestCase {
         entryRows(in: app).firstMatch.tap()
         XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForExistence(timeout: 10))
         XCTAssertEqual(noteField(in: app).value as? String, note)
-        let counter = app.descendants(matching: .any).matching(identifier: "note-counter").firstMatch
+        let counter = app.descendants(matching: .any).matching(identifier: "note-footnote").firstMatch
         for _ in 0 ..< 3 where !counter.exists {
             app.swipeUp()
         }

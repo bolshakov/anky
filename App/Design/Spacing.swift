@@ -9,6 +9,7 @@ enum Spacing {
     static let labelGap: CGFloat = 12
     static let footnoteGap: CGFloat = 8
     static let inlineGap: CGFloat = 8
+    static let tightGap: CGFloat = 4
     static let rowHeight: CGFloat = 52
     static let rowMinimumHeight: CGFloat = 44
     static let bottomClearance: CGFloat = 16

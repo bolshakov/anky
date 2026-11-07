@@ -8,7 +8,7 @@ final class SectionCaptionTests: XCTestCase {
         let app = launchAnky()
         openNewEntry(app)
 
-        let caption = app.staticTexts.matching(identifier: "severity-caption").firstMatch
+        let caption = app.staticTexts.matching(identifier: "severity-label").firstMatch
         XCTAssertTrue(caption.waitForExistence(timeout: 10))
         XCTAssertFalse(caption.label.isEmpty)
         XCTAssertLessThanOrEqual(caption.frame.maxY, app.sliders["severity-slider"].frame.minY)

@@ -16,9 +16,8 @@ struct DateSection: View {
                     Text("Date and time")
                     Spacer()
                     Text("\(day), \(clock)")
-                        .foregroundStyle(.secondary)
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.ink2)
+                    RowChevron()
                 }
                 .padding(labelPadding)
                 .contentShape(Rectangle())
