@@ -16,15 +16,14 @@ struct NoteSection: View {
     }
 
     var body: some View {
-        Section {
+        CardSection(footnote: draft.noteCounter.map { Text(counterText($0)) }, id: "note") {
             TextField("Add a note", text: $note, axis: .vertical)
                 .font(.body)
                 .focused($isFocused)
                 .accessibilityLabel("Note")
                 .accessibilityIdentifier("note-field")
-                .padding(.horizontal, 16)
-                .padding(.vertical, 15)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .rowHeight()
                 .background {
                     Color.clear
                         .contentShape(Rectangle())
@@ -32,7 +31,6 @@ struct NoteSection: View {
                 }
                 .accessibilityElement(children: .contain)
                 .accessibilityIdentifier("note-card")
-                .listRowInsets(EdgeInsets())
                 .onChange(of: note) { _, typed in
                     draft.note = String(typed.prefix(EntryDraft.noteLimit))
                 }
@@ -44,11 +42,6 @@ struct NoteSection: View {
                     textView.text = kept
                     note = kept
                 }
-        } footer: {
-            if let counter = draft.noteCounter {
-                Text(counterText(counter))
-                    .accessibilityIdentifier("note-counter")
-            }
         }
     }
 

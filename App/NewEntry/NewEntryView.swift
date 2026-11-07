@@ -53,21 +53,22 @@ struct NewEntryView: View {
                 recentChips
                 Section {
                     KindSection(draft: $draft)
-                        .listRowBackground(Color.clear)
-                        .listRowInsets(EdgeInsets())
+                        .nonCardBlock()
                 }
-                Section {
-                    DateSection(date: $draft.date)
-                }
-                whereSection
                 SystemSeveritySection(
                     caption: "Severity",
                     spokenLabel: "Severity",
                     idPrefix: "severity",
                     severity: $draft.severity
                 )
+                whereSection
+                CardSection(id: "date") {
+                    DateSection(date: $draft.date)
+                        .rowHeight()
+                }
                 NoteSection(draft: $draft)
             }
+            .screenSpacing()
             .accessibilityIdentifier(screenID)
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
@@ -80,7 +81,7 @@ struct NewEntryView: View {
                         Button("Cancel") {
                             dismiss()
                         }
-                        .frame(minHeight: 44)
+                        .frame(minHeight: Spacing.rowMinimumHeight)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("cancel-entry")
                     }
@@ -100,17 +101,8 @@ struct NewEntryView: View {
                         .accessibilityAddTraits(.isHeader)
                 }
             }
-            .safeAreaInset(edge: .bottom) {
-                Button {
-                    save()
-                } label: {
-                    Text(saveTitle)
-                        .frame(maxWidth: .infinity)
-                }
-                .primaryButton()
-                .controlSize(.large)
-                .accessibilityIdentifier("save-entry")
-                .padding()
+            .bottomPrimaryButton(saveTitle, id: "save-entry") {
+                save()
             }
             .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
@@ -144,8 +136,7 @@ struct NewEntryView: View {
         if !recents.isEmpty {
             Section {
                 RecentChipsRow(recents: recents) { draft.apply($0) }
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
+                    .nonCardBlock()
             }
         }
     }
@@ -164,10 +155,10 @@ struct NewEntryView: View {
         }
     }
 
-    private var saveTitle: LocalizedStringKey {
+    private var saveTitle: Text {
         switch mode {
-        case .new: "Save entry"
-        case .edit: "Save changes"
+        case .new: Text("Save entry")
+        case .edit: Text("Save changes")
         }
     }
 

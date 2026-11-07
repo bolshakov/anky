@@ -59,12 +59,12 @@ final class CheckInFootnoteTests: XCTestCase {
 
         XCTAssertFalse(identified("check-in-question", in: app).exists)
         assertInOrder(
-            ["check-in-info", "kind-picker", "date-row", "where-label", "severity-slider", "check-in-saved-footnote"],
+            ["check-in-info", "kind-picker", "date-row", "where-label", "severity-slider", "severity-footnote"],
             in: app
         )
         scrolledToFootnote(in: app)
         scrolled(to: "note-field", in: app)
-        assertInOrder(["severity-slider", "check-in-saved-footnote", "note-field"], in: app)
+        assertInOrder(["severity-slider", "severity-footnote", "note-field"], in: app)
         scrollToSaveCheckIn(in: app)
     }
 
@@ -107,7 +107,7 @@ final class CheckInFootnoteTests: XCTestCase {
     /// Scrolls the form until the footnote is on screen and can be read, then returns it.
     @discardableResult
     private func scrolledToFootnote(in app: XCUIApplication) -> XCUIElement {
-        scrolled(to: "check-in-saved-footnote", in: app)
+        scrolled(to: "severity-footnote", in: app)
     }
 
     /// Swipes the form up until the element with the identifier is on screen and hittable, then returns it.
