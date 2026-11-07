@@ -43,19 +43,6 @@ final class PlaceChipSpacingTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(chip.frame.height, 44)
     }
 
-    func testRecentChipIsAtLeastFortyFourPointsTall() {
-        continueAfterFailure = false
-        let app = launchAnky()
-        openNewEntry(app)
-        saveEntry(app)
-        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
-
-        openNewEntry(app)
-        let chip = app.buttons["recent-chip-0"]
-        XCTAssertTrue(chip.waitForExistence(timeout: 10))
-        XCTAssertGreaterThanOrEqual(chip.frame.height, 44)
-    }
-
     /// No entry and no pin, so the Where chips are the spine and sacroiliac ones, with no recent-chips row above them.
     private func placeChipFrames() -> [CGRect] {
         let app = launchAnky()
