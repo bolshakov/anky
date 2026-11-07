@@ -1,0 +1,26 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t177-04-3/tmp/three.sh
+exit: 0
+commit: 5958e0be2e6b7db70b816a73a35bc33b6b903ec3
+
+== new
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+severity-label top=275
+where-label top=475.3333333333333
+date-row top=702
+note-field top=801
+ScrollArea id=recent-chips label=None value=None enabled=True @16,148 370x32
+== check_in
+✓ Tap at resolved tap point at (339.0, 553.0) completed successfully
+severity-label top=317.33333333333337
+where-label top=547.3333333333333
+date-row top=774
+note-field top=873
+GenericElement id=check-in-info label='Цфдл ьувшсшту. Taken at 14:11.' value=None enabled=True @16,148 370x74.33333333333331
+chips count: 0
+== edit pain
+✓ Tap at resolved tap point at (201.0, 485.0) completed successfully
+severity-label top=211
+where-label top=411.3333333333333
+date-row top=638
+note-field top=737
+no check-in-info/recent-chips

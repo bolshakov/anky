@@ -1,0 +1,16 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t177-04-3/tmp/gaps.sh
+exit: 0
+commit: 5958e0be2e6b7db70b816a73a35bc33b6b903ec3
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+nav bar bottom: 132
+nav bottom -> first block (recent-chips top): 148
+gap recent-chips -> kind-picker: 32.0
+gap kind-picker -> severity-label: 32.0
+label->card: severity-label bottom 317.333, card top 317.6 by screenshot (glyph-to-card ~14, frame 0)
+gap where-label -> place chips (label to card content): 15.0
+gap more-places -> date-row: 32.0
+hgap place-chip-neck -> upper: 8.0
+hgap upper -> lower: 8.0
+hgap recent-chip-0 -> 1: 8.0
+footnote ids in new mode: 0
