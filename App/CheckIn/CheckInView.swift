@@ -26,11 +26,10 @@ struct CheckInView: View {
         NavigationStack {
             Form {
                 infoSection
-                kindSection
                 Section {
-                    DateSection(date: $draft.date)
+                    KindSection(draft: $draft)
+                        .nonCardBlock()
                 }
-                whereSection
                 SystemSeveritySection(
                     caption: severityCaption,
                     spokenLabel: severityCaption,
@@ -39,17 +38,19 @@ struct CheckInView: View {
                     footer: footnote,
                     footerID: "check-in-saved-footnote"
                 )
-                NoteSection(draft: $draft)
-                Section {
-                    saveButton
+                whereSection
+                CardSection(id: "date") {
+                    DateSection(date: $draft.date)
+                        .rowHeight()
                 }
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
+                NoteSection(draft: $draft)
             }
-            .scrollContentBackground(.hidden)
-            .background(Color("PageBackground"))
-            .shortcutFeedback(model.shortcuts)
+            .screenSpacing()
             .accessibilityIdentifier("check-in-screen")
+            .bottomPrimaryButton(Text("Save check-in"), id: "save-check-in") {
+                saveCheckIn()
+            }
+            .shortcutFeedback(model.shortcuts)
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
             }
@@ -74,29 +75,20 @@ struct CheckInView: View {
 
     private var infoSection: some View {
         Section {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 Text(verbatim: infoTitle)
                     .font(.headline)
                 Text(infoDetail)
                     .font(.subheadline)
             }
-            .foregroundStyle(Color("OnSoftAccent"))
+            .foregroundStyle(Color.onSoft)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .background(Color("SoftAccent"), in: .card)
+            .background(Color.soft, in: .card)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(infoTitle). \(infoDetail)")
             .accessibilityIdentifier("check-in-info")
-        }
-        .listRowBackground(Color.clear)
-        .listRowInsets(EdgeInsets())
-    }
-
-    private var kindSection: some View {
-        Section {
-            KindSection(draft: $draft)
-                .listRowBackground(Color.clear)
-                .listRowInsets(EdgeInsets())
+            .nonCardBlock()
         }
     }
 
@@ -113,19 +105,6 @@ struct CheckInView: View {
             pinned: model.shortcuts.pinned,
             lastChips: model.shortcuts.lastChips
         )
-    }
-
-    private var saveButton: some View {
-        Button {
-            saveCheckIn()
-        } label: {
-            Text("Save check-in")
-                .frame(maxWidth: .infinity)
-        }
-        .primaryButton()
-        .controlSize(.large)
-        .accessibilityIdentifier("save-check-in")
-        .padding()
     }
 
     private func saveCheckIn() {
