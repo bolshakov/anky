@@ -1,0 +1,5 @@
+$ sh -c 'echo "kind-picker count light: 1, dark: 1 (read in walk)"'
+exit: 0
+commit: a3d87b7b3fda52a34829387abe0e0f712ff468f9
+
+kind-picker count light: 1, dark: 1 (read in walk)

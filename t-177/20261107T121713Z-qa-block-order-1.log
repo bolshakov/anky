@@ -1,0 +1,18 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t177-03-2/tmp/walk-t177.CgRL/bo.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t177-03-2/tmp/walk-t177.CgRL /Users/bolshakov/Projects/personal/anky.wt/qa-t177-03-2/checkout
+exit: 0
+commit: a3d87b7b3fda52a34829387abe0e0f712ff468f9
+
+NEW
+recent-chips 158
+kind-picker 242.66666666666666
+severity-label 316
+where-label 516.3333333333333
+date-row 744.6666666666666
+note-field 843.6666666666666
+EDIT
+recent-chips recent-chips matches 0 elements
+kind-picker 158.66666666666666
+severity-label 232
+where-label where-label matches 0 elements
+date-row 432.3333333333333
+note-field 531.3333333333333
