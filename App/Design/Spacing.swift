@@ -12,6 +12,7 @@ enum Spacing {
     static let tightGap: CGFloat = 4
     static let rowHeight: CGFloat = 52
     static let rowMinimumHeight: CGFloat = 44
+    static let recentRowHeight: CGFloat = 32
     static let bottomClearance: CGFloat = 16
     static let primaryButtonHeight: CGFloat = 56
     static let primaryButtonSystemPadding: CGFloat = 15

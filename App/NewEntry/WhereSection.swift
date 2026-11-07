@@ -17,9 +17,11 @@ struct WhereSection: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
             MorePlacesRow(value: MorePlacesValue(selected: draft.places, chips: chips)) {
                 isShowingPlaces = true
             }
+            .alignmentGuide(.listRowSeparatorLeading) { $0[.leading] }
         }
     }
 }
