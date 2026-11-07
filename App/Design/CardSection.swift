@@ -1,16 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import SwiftUI
 
-private struct SectionCaption: ViewModifier {
-    let edge: Edge.Set
-    let gap: CGFloat
-
+private struct SectionFooter: ViewModifier {
     func body(content: Content) -> some View {
         content
             .textCase(nil)
             .frame(maxWidth: .infinity, alignment: .leading)
             .listRowInsets(.leading, .zero)
-            .listRowInsets(edge, gap)
+            .listRowInsets(.top, Spacing.footnoteGap)
+    }
+}
+
+private struct SectionLabel: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .textCase(nil)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .listRowInsets(.top, .zero)
+            .listRowInsets(.bottom, Spacing.labelGap)
     }
 }
 
@@ -34,13 +41,13 @@ struct CardSection<Content: View>: View {
         } header: {
             if let label {
                 label
-                    .modifier(SectionCaption(edge: .bottom, gap: Spacing.labelGap))
+                    .modifier(SectionLabel())
                     .accessibilityIdentifier("\(id)-label")
             }
         } footer: {
             if let footnote {
                 footnote
-                    .modifier(SectionCaption(edge: .top, gap: Spacing.footnoteGap))
+                    .modifier(SectionFooter())
                     .accessibilityIdentifier("\(id)-footnote")
             }
         }
