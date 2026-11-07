@@ -79,8 +79,11 @@ final class NewEntryOrderTests: XCTestCase {
         search.typeText("Knee")
         let leftKnee = app.buttons["place-knee_l"]
         XCTAssertTrue(leftKnee.waitForExistence(timeout: 10))
-        leftKnee.tap()
-        app.buttons["done-places"].tap()
+        // The row's button is accessibility-only, so it never counts as hittable, while a finger reaches it.
+        leftKnee.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        let done = app.buttons["done-places"]
+        XCTAssertEqual(done.label, "Done, 1 place", "the tap did not choose the Left knee row")
+        done.tap()
         saveEntry(app)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
     }
