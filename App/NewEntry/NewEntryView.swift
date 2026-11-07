@@ -136,6 +136,7 @@ struct NewEntryView: View {
             Color.surface
         }
         .ignoresSafeArea(edges: .bottom)
+        .allowsHitTesting(false)
     }
 
     private var chips: [PlaceID] {
