@@ -1,0 +1,6 @@
+$ sh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t177-02-2/tmp/walk.sh; height recent-chips; ui | grep -c '\''id=recent-chip-'\'''
+exit: 0
+commit: 6c19016bcd4e93f920490f4ac23e3bf0fa54bf6f
+
+32
+3
