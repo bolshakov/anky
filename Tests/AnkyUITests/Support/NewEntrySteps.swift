@@ -45,8 +45,11 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
 /// The pinned Save bar covers the bottom of the form, and a drag that starts under it taps Save, which saves the entry.
 @MainActor
 private func liftAboveSaveBar(_ slider: XCUIElement, in app: XCUIApplication) {
-    for _ in 0 ..< 3 where slider.frame.midY > app.frame.midY {
-        app.swipeUp(velocity: .slow)
+    let margin = 0.02
+    let from = app.coordinate(withNormalizedOffset: CGVector(dx: margin, dy: 0.6))
+    let to = app.coordinate(withNormalizedOffset: CGVector(dx: margin, dy: 0.4))
+    for _ in 0 ..< 6 where slider.exists && slider.frame.midY > app.frame.midY {
+        from.press(forDuration: 0.1, thenDragTo: to)
     }
 }
 
