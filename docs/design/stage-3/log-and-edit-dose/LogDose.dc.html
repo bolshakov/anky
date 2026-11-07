@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Log dose</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+input::placeholder{color:var(--ph);opacity:1}
+.n-scroll{scrollbar-width:none}
+.n-range{width:100%;height:44px;margin:0;accent-color:var(--tint)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+button,.press{transition:transform 140ms cubic-bezier(.34,1.56,.64,1)}
+button:active,.press:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){button,.press{transition:none}button:active,.press:active{transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; padding: 54px 16px 34px; background: var(--surface); color: var(--ink); display: flex; flex-direction: column; gap: 12px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, system-ui, sans-serif; {{ vars }}">
+  <div style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+    <a href="Main.dc.html" style="min-width: 64px; min-height: 44px; display: flex; align-items: center; font-size: 17px; color: var(--tint)">Cancel</a>
+    <span style="font-size: 17px; font-weight: 600">{{ title }}</span>
+    <sc-if value="{{ showManage }}" hint-placeholder-val="{{ true }}">
+      <a href="Meds.dc.html" style="min-width: 64px; min-height: 44px; display: flex; align-items: center; justify-content: flex-end; font-size: 17px; color: var(--tint)">Manage</a>
+    </sc-if>
+    <sc-if value="{{ noManage }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ isEdit }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="More actions" aria-haspopup="menu" aria-expanded="{{ menuOpen }}" style="width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); border: 1px solid var(--glassline); border-radius: 22px; color: var(--tint)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle cx="18.5" cy="12" r="1.8"></circle></svg>
+        </button>
+      </sc-if>
+      <sc-if value="{{ notEdit }}" hint-placeholder-val="{{ true }}">
+        <span style="min-width: 64px"></span>
+      </sc-if>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ toggleMenu }}" style="position: absolute; inset: 0; z-index: 6"></div>
+    <div role="menu" style="position: absolute; top: 104px; right: 16px; z-index: 7; display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 20px; white-space: nowrap; background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); border: 1px solid var(--glassline); border-radius: 26px; box-shadow: var(--float); font-size: 17px">
+      <button role="menuitem" onClick="{{ askDelete }}" style="display: flex; align-items: center; gap: 10px; padding: 0; background: none; border: 0; font-size: 17px; color: var(--sysred)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg>
+        Delete dose
+      </button>
+    </div>
+  </sc-if>
+
+
+
+  <div class="n-scroll" style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 32px; padding-bottom: 16px">
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">Medication</span>
+    <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+      <sc-for list="{{ meds }}" as="m" hint-placeholder-count="3">
+        <sc-if value="{{ m.on }}" hint-placeholder-val="{{ false }}">
+          <button aria-pressed="true" onClick="{{ m.pick }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; background: none; border: 0; border-top: {{ m.border }}; font-size: 17px; font-weight: 600; text-align: left">
+            <span>{{ m.label }}</span>
+            <span style="display: flex; align-items: center; gap: 10px">
+              <span style="font-size: 15px; font-weight: 400; color: var(--ink2)">{{ m.how }}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="stroke: var(--tint)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ m.off }}" hint-placeholder-val="{{ true }}">
+          <button aria-pressed="false" onClick="{{ m.pick }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; background: none; border: 0; border-top: {{ m.border }}; font-size: 17px; text-align: left">
+            <span>{{ m.label }}</span>
+            <span style="display: flex; align-items: center; gap: 10px">
+              <span style="font-size: 15px; color: var(--ink2)">{{ m.how }}</span>
+              <span style="width: 18px"></span>
+            </span>
+          </button>
+        </sc-if>
+      </sc-for>
+      <sc-if value="{{ noMeds }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; align-items: center; min-height: 52px; padding: 0 16px; font-size: 17px; color: var(--ink2)">No medications yet</div>
+      </sc-if>
+      <sc-if value="{{ canAdd }}" hint-placeholder-val="{{ true }}">
+        <a href="MedForm.dc.html" style="display: flex; align-items: center; min-height: 52px; padding: 0 16px; border-top: {{ addBorder }}; font-size: 17px; color: var(--tint)">Add medication</a>
+      </sc-if>
+    </div>
+  </div>
+
+  <div style="background: var(--card); border-radius: 22px">
+    <button aria-label="Date and time, {{ timeLabel }}" style="display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; background: none; border: 0; font-size: 17px; text-align: left">
+      <span>Date and time</span>
+      <span style="display: flex; align-items: center; gap: 6px; color: var(--ink2)">
+        <span>{{ timeLabel }}</span>
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5"></path></svg>
+      </span>
+    </button>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">Before this dose</span>
+    <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+      <sc-if value="{{ haveReading }}" hint-placeholder-val="{{ true }}">
+        <a href="{{ beforeHref }}" aria-label="Before this dose, {{ beforeAria }}" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px">
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+            <span style="font-size: 17px; line-height: 22px">Lower back, SI joints</span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--ink2)">Pain · Today, 08:15</span>
+          </div>
+          <span aria-hidden="true" style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">4 <span style="font-weight: 400; color: var(--ink2)">of 10</span></span>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5"></path></svg>
+        </a>
+      </sc-if>
+      <sc-if value="{{ noReading }}" hint-placeholder-val="{{ false }}">
+        <a href="NewEntry.dc.html" style="display: flex; align-items: center; justify-content: space-between; min-height: 60px; padding: 8px 16px; font-size: 17px; color: var(--tint)">
+          <span>Log how you feel now</span>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5"></path></svg>
+        </a>
+      </sc-if>
+    </div>
+    <sc-if value="{{ haveReading }}" hint-placeholder-val="{{ true }}">
+      <span style="margin-top: -4px; padding: 0 16px; font-size: 13px; line-height: 18px; color: var(--ink2)">{{ beforeNote }}</span>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ hasAfter }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">After · checked in at 10:00</span>
+      <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+        <a href="EditEntry.dc.html" aria-label="After, Lower back, SI joints, pain, 3 of 10, at 10:00" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px">
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+            <span style="font-size: 17px; line-height: 22px">Lower back, SI joints</span>
+            <span style="font-size: 13px; line-height: 18px; color: var(--ink2)">Pain · Today, 10:00</span>
+          </div>
+          <span aria-hidden="true" style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">3 <span style="font-weight: 400; color: var(--ink2)">of 10</span></span>
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5"></path></svg>
+        </a>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showCheck }}" hint-placeholder-val="{{ true }}">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+      <div style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px">
+        <span style="font-size: 17px">Check in later</span>
+        <sc-if value="{{ checkOn }}" hint-placeholder-val="{{ true }}">
+          <button role="switch" aria-checked="true" aria-label="Check in later" onClick="{{ toggleCheck }}" style="position: relative; width: 51px; height: 31px; padding: 0; background: var(--tint); border: 0; border-radius: 16px">
+            <span style="position: absolute; top: 2px; left: 22px; width: 27px; height: 27px; background: #ffffff; border-radius: 14px"></span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ checkOff }}" hint-placeholder-val="{{ false }}">
+          <button role="switch" aria-checked="false" aria-label="Check in later" onClick="{{ toggleCheck }}" style="position: relative; width: 51px; height: 31px; padding: 0; background: var(--track); border: 0; border-radius: 16px">
+            <span style="position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; background: #ffffff; border-radius: 14px"></span>
+          </button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ checkOn }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ nextDelay }}" aria-label="Check in after {{ delayLabel }}, tap to change" style="display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; background: none; border: 0; border-top: 0.5px solid var(--sep); font-size: 17px; text-align: left">
+          <span>After</span>
+          <span style="display: flex; align-items: center; gap: 6px; color: var(--ink2)">
+            <span>{{ delayLabel }}</span>
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5"></path></svg>
+          </span>
+        </button>
+      </sc-if>
+    </div>
+    <span style="margin-top: -4px; padding: 0 16px; font-size: 13px; line-height: 18px; color: var(--ink2)">{{ checkNote }}</span>
+  </div>
+  </sc-if>
+
+  </div>
+
+  <a class="press" href="Main.dc.html" aria-disabled="{{ saveOff }}" style="display: flex; align-items: center; justify-content: center; height: 56px; width: 100%; background: var(--tint); color: var(--ontint); border-radius: 28px; font-size: 17px; font-weight: 600; opacity: {{ saveOp }}">{{ saveLabel }}</a>
+  <sc-if value="{{ confirm }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 0 8px 34px">
+      <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+        <div style="padding: 14px 16px; text-align: center; font-size: 13px; line-height: 18px; color: var(--ink2); border-bottom: 0.5px solid var(--sep)">Delete this dose? This can't be undone.</div>
+        <a href="History.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 56px; font-size: 17px; color: var(--sysred)">Delete dose</a>
+      </div>
+      <button onClick="{{ cancelDelete }}" style="min-height: 56px; background: var(--card); border: 0; border-radius: 22px; font-size: 17px; font-weight: 600; color: var(--ink)">Cancel</button>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"mode":{"editor":"enum","options":["new","edit"],"default":"new"},"state":{"editor":"enum","options":["full","empty"],"default":"full"},"reading":{"editor":"enum","options":["have","none"],"default":"have"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = { surface: '#f2f2f7', card: '#ffffff', ink: '#000000', ink2: '#636366', sep: '#d1d1d6', tint: '#c23c14', ontint: '#ffffff', soft: '#fbe5de', onsoft: '#a83316', dest: '#b3261e', sysred: '#ff3b30', ring: '#0a5cff', ph: '#c4c4c6', track: '#c7c7cc' };
+    const D = { surface: '#000000', card: '#1c1c1e', ink: '#ffffff', ink2: '#aeaeb2', sep: '#38383a', tint: '#ff7a50', ontint: '#1a0a04', soft: '#3a1f16', onsoft: '#ffb59e', dest: '#ff8a80', sysred: '#ff453a', ring: '#6ea0ff', ph: '#5a5a5e', track: '#636366' };
+    const t = this.props.theme === 'dark' ? D : L;
+    const vars = Object.keys(t).map((k) => '--' + k + ':' + t[k]).join(';');
+    const edit = this.props.mode === 'edit';
+    const noList = this.props.state === 'empty';
+    const st = this.state || {};
+    const have = this.props.reading !== 'none';
+    const med = st.med === undefined ? (edit ? 2 : 0) : st.med;
+    const checkOn = st.check === undefined ? false : st.check;
+    const delays = ['30 minutes', '1 hour', '2 hours', '3 hours', '4 hours'];
+    const di = st.delay === undefined ? 2 : st.delay;
+    const list = noList ? [] : [
+      { label: 'Naproxen 500 mg', how: 'As needed' },
+      { label: 'Ibuprofen 400 mg', how: 'As needed' },
+      { label: 'Adalimumab 40 mg', how: 'Scheduled' }
+    ];
+    const f = (v) => 'calc((100% - 28px) * ' + (v / 10) + ')';
+    return {
+      vars: vars,
+      title: edit ? 'Edit Dose' : 'Log Dose',
+      isEdit: edit,
+      notEdit: !edit,
+      menuOpen: !!st.menu,
+      toggleMenu: () => this.setState({ menu: !st.menu }),
+      noMeds: noList,
+      canAdd: !edit,
+      showManage: !edit && !noList,
+      noManage: edit || noList,
+      addBorder: noList ? '0.5px solid var(--sep)' : '0.5px solid var(--sep)',
+      timeLabel: edit ? 'Yesterday, 08:00' : 'Today, 08:30',
+      haveReading: have,
+      noReading: !have,
+      beforeHref: edit ? 'EditEntry.dc.html' : 'LogDosePick.dc.html',
+      beforeAria: 'Lower back, SI joints, pain, 4 of 10, at 08:15',
+      beforeNote: edit ? 'The entry used for this dose. Tap to open it.' : 'Your latest entry before this dose. Tap to choose another.',
+      hasAfter: edit,
+      showCheck: !edit,
+      meds: list.map((m, i) => ({ label: m.label, how: m.how, on: med === i, off: med !== i, border: i === 0 ? '0' : '0.5px solid var(--sep)', pick: () => this.setState({ med: i }) })),
+      checkOn: checkOn,
+      checkOff: !checkOn,
+      checkNote: 'Anky asks ' + (have ? 'how your pain is' : 'how you feel') + ' after this long.' + (checkOn ? '' : ' Turn it on to choose a time.'),
+      toggleCheck: () => this.setState({ check: !checkOn }),
+      delayLabel: delays[di],
+      nextDelay: () => this.setState({ delay: (di + 1) % delays.length }),
+      saveLabel: edit ? 'Save changes' : 'Save dose',
+      saveOp: noList ? 0.35 : 1,
+      saveOff: noList,
+      confirm: !!st.confirm,
+      askDelete: () => this.setState({ confirm: true, menu: false }),
+      cancelDelete: () => this.setState({ confirm: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

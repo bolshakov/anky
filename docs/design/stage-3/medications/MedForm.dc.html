@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Medication</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+input::placeholder{color:var(--ph);opacity:1}
+.n-scroll{scrollbar-width:none}
+.n-range{width:100%;height:44px;margin:0;accent-color:var(--tint)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+button,.press{transition:transform 140ms cubic-bezier(.34,1.56,.64,1)}
+button:active,.press:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){button,.press{transition:none}button:active,.press:active{transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; padding: 54px 16px 34px; background: var(--surface); color: var(--ink); display: flex; flex-direction: column; gap: 12px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, system-ui, sans-serif; {{ vars }}">
+  <div style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+    <a href="Meds.dc.html" style="min-width: 64px; min-height: 44px; display: flex; align-items: center; font-size: 17px; color: var(--tint)">Cancel</a>
+    <span style="font-size: 17px; font-weight: 600">{{ title }}</span>
+    <span style="min-width: 64px"></span>
+  </div>
+
+  <div class="n-scroll" style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 32px; padding-bottom: 16px">
+
+  <div style="background: var(--card); border-radius: 22px; padding: 0 16px">
+    <input type="text" value="{{ name }}" onInput="{{ onName }}" placeholder="Name" aria-label="Name" style="display: block; width: 100%; height: 52px; box-sizing: border-box; padding: 0; background: transparent; border: 0; border-bottom: 0.5px solid var(--sep); outline: none; font-family: inherit; font-size: 17px; color: var(--ink)">
+    <input type="text" value="{{ strength }}" onInput="{{ onStrength }}" placeholder="Strength, for example 500 mg" aria-label="Strength, optional" style="display: block; width: 100%; height: 52px; box-sizing: border-box; padding: 0; background: transparent; border: 0; outline: none; font-family: inherit; font-size: 17px; color: var(--ink)">
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">How you take it</span>
+    <div style="display: flex; gap: 0; padding: 2px; background: var(--fill); border-radius: 999px" role="group" aria-label="How you take it">
+      <sc-for list="{{ hows }}" as="k" hint-placeholder-count="2">
+        <sc-if value="{{ k.on }}" hint-placeholder-val="{{ false }}">
+          <button aria-pressed="true" onClick="{{ k.pick }}" style="flex: 1; min-height: 28px; padding: 0 4px; background: var(--tint); color: var(--ontint); border: 0; border-radius: 999px; font-size: 13px; font-weight: 600">{{ k.label }}</button>
+        </sc-if>
+        <sc-if value="{{ k.off }}" hint-placeholder-val="{{ true }}">
+          <button aria-pressed="false" onClick="{{ k.pick }}" style="flex: 1; min-height: 28px; padding: 0 4px; background: transparent; color: var(--ink); border: 0; border-radius: 999px; font-size: 13px">{{ k.label }}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+      <div style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px">
+        <span style="font-size: 17px">Check in later</span>
+        <sc-if value="{{ checkOn }}" hint-placeholder-val="{{ true }}">
+          <button role="switch" aria-checked="true" aria-label="Check in later" onClick="{{ toggleCheck }}" style="position: relative; width: 51px; height: 31px; padding: 0; background: var(--tint); border: 0; border-radius: 16px">
+            <span style="position: absolute; top: 2px; left: 22px; width: 27px; height: 27px; background: #ffffff; border-radius: 14px"></span>
+          </button>
+        </sc-if>
+        <sc-if value="{{ checkOff }}" hint-placeholder-val="{{ false }}">
+          <button role="switch" aria-checked="false" aria-label="Check in later" onClick="{{ toggleCheck }}" style="position: relative; width: 51px; height: 31px; padding: 0; background: var(--track); border: 0; border-radius: 16px">
+            <span style="position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; background: #ffffff; border-radius: 14px"></span>
+          </button>
+        </sc-if>
+      </div>
+      <sc-if value="{{ checkOn }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ nextDelay }}" aria-label="Check in after {{ delayLabel }}, tap to change" style="display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 52px; padding: 0 16px; background: none; border: 0; border-top: 0.5px solid var(--sep); font-size: 17px; text-align: left">
+          <span>After</span>
+          <span style="display: flex; align-items: center; gap: 6px; color: var(--ink2)">
+            <span>{{ delayLabel }}</span>
+            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5" /></svg>
+          </span>
+        </button>
+      </sc-if>
+    </div>
+    <span style="margin-top: -4px; padding: 0 16px; font-size: 13px; line-height: 18px; color: var(--ink2)">{{ checkNote }}</span>
+  </div>
+
+  <sc-if value="{{ isEdit }}" hint-placeholder-val="{{ false }}">
+    <a href="Meds.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; font-size: 17px; color: var(--tint)">Archive medication</a>
+  </sc-if>
+
+  </div>
+
+  <a class="press" href="Meds.dc.html" aria-disabled="{{ saveOff }}" style="display: flex; align-items: center; justify-content: center; height: 56px; width: 100%; background: var(--tint); color: var(--ontint); border-radius: 28px; font-size: 17px; font-weight: 600; opacity: {{ saveOp }}">{{ saveLabel }}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"mode":{"editor":"enum","options":["new","edit"],"default":"new"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = { surface: '#f2f2f7', card: '#ffffff', ink: '#000000', ink2: '#636366', sep: '#d1d1d6', tint: '#c23c14', ontint: '#ffffff', soft: '#fbe5de', onsoft: '#a83316', dest: '#b3261e', sysred: '#ff3b30', ring: '#0a5cff', fill: 'rgba(118,118,128,0.12)', ph: '#c4c4c6', track: '#c7c7cc' };
+    const D = { surface: '#000000', card: '#1c1c1e', ink: '#ffffff', ink2: '#aeaeb2', sep: '#38383a', tint: '#ff7a50', ontint: '#1a0a04', soft: '#3a1f16', onsoft: '#ffb59e', dest: '#ff8a80', sysred: '#ff453a', ring: '#6ea0ff', fill: 'rgba(118,118,128,0.24)', ph: '#5a5a5e', track: '#636366' };
+    const t = this.props.theme === 'dark' ? D : L;
+    const vars = Object.keys(t).map((k) => '--' + k + ':' + t[k]).join(';');
+    const edit = this.props.mode === 'edit';
+    const st = this.state || {};
+    const name = st.name === undefined ? (edit ? 'Naproxen' : '') : st.name;
+    const strength = st.strength === undefined ? (edit ? '500 mg' : '') : st.strength;
+    const how = st.how || 'needed';
+    const delays = ['30 minutes', '1 hour', '2 hours', '3 hours', '4 hours'];
+    const di = st.delay === undefined ? 2 : st.delay;
+    const checkOn = st.check === undefined ? false : st.check;
+    const can = name.trim().length > 0;
+    const opts = [['needed', 'As needed'], ['scheduled', 'Scheduled']];
+    return {
+      vars: vars,
+      title: edit ? 'Edit Medication' : 'New Medication',
+      isEdit: edit,
+      name: name,
+      strength: strength,
+      onName: (e) => this.setState({ name: e.target.value }),
+      onStrength: (e) => this.setState({ strength: e.target.value }),
+      hows: opts.map((o) => ({ label: o[1], on: how === o[0], off: how !== o[0], pick: () => this.setState({ how: o[0] }) })),
+      checkOn: checkOn,
+      checkOff: !checkOn,
+      checkNote: checkOn ? 'Anky asks how you feel after this long.' : 'Anky asks how you feel after this long. Turn it on to choose a time.',
+      toggleCheck: () => this.setState({ check: !checkOn }),
+      delayLabel: delays[di],
+      nextDelay: () => this.setState({ delay: (di + 1) % delays.length }),
+      saveLabel: edit ? 'Save changes' : 'Save medication',
+      saveOp: can ? 1 : 0.35,
+      saveOff: !can,
+      confirm: !!st.confirm,
+      askDelete: () => this.setState({ confirm: true }),
+      cancelDelete: () => this.setState({ confirm: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

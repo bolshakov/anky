@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Medications</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+input::placeholder{color:var(--ph);opacity:1}
+.n-scroll{scrollbar-width:none}
+.n-range{width:100%;height:44px;margin:0;accent-color:var(--tint)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+button,.press{transition:transform 140ms cubic-bezier(.34,1.56,.64,1)}
+button:active,.press:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){button,.press{transition:none}button:active,.press:active{transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; padding: 54px 16px 34px; background: var(--surface); color: var(--ink); display: flex; flex-direction: column; gap: 12px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, system-ui, sans-serif; {{ vars }}">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; height: 44px">
+    <a href="{{ backHref }}" aria-label="Back" style="min-width: 64px; min-height: 44px; display: flex; align-items: center; font-size: 17px; color: var(--tint)"><svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: block"><path d="M10 2L2 10l8 8"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 600">{{ title }}</span>
+    <span style="min-width: 64px"></span>
+  </div>
+
+  <div class="n-scroll" style="flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 6px; margin: 0 -16px; padding: 0 16px">
+    <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+      <div style="background: var(--card); border-radius: 22px; overflow: {{ cardOverflow }}">
+        <sc-for list="{{ meds }}" as="m" hint-placeholder-count="3">
+          <sc-if value="{{ m.plain }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ m.href }}" aria-label="{{ m.aria }}" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: {{ m.border }}">
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+                <span style="font-size: 17px; line-height: 22px">{{ m.name }}</span>
+                <span style="font-size: 13px; line-height: 18px; color: var(--ink2)">{{ m.how }}</span>
+              </div>
+              <sc-if value="{{ m.chev }}" hint-placeholder-val="{{ true }}">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5" /></svg>
+              </sc-if>
+            </a>
+          </sc-if>
+          <sc-if value="{{ m.swiped }}" hint-placeholder-val="{{ false }}">
+            <div style="position: relative; height: 60px; background: var(--surface)">
+              <div style="position: absolute; left: 0; top: 0; width: 100%; height: 60px; box-sizing: border-box; transform: translateX(-88px); display: flex; flex-direction: column; justify-content: center; padding: 0 16px; background: var(--lift); border-radius: 20px">
+                <span style="font-size: 17px; line-height: 22px">{{ m.name }}</span>
+                <span style="font-size: 13px; line-height: 18px; color: var(--ink2)">{{ m.how }}</span>
+              </div>
+              <button aria-label="{{ m.action }} {{ m.name }}" style="position: absolute; right: 0; top: 0; height: 60px; width: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; background: none; border: 0; padding: 0">
+                <span style="display: flex; align-items: center; justify-content: center; width: 56px; height: 30px; border-radius: 15px; background: var(--tint)">
+                  <sc-if value="{{ isActive }}" hint-placeholder-val="{{ true }}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="stroke: var(--ontint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1" /><path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M10 12h4" /></svg>
+                  </sc-if>
+                  <sc-if value="{{ isArchived }}" hint-placeholder-val="{{ false }}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="stroke: var(--ontint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5" /></svg>
+                  </sc-if>
+                </span>
+                <span style="font-size: 12px; line-height: 16px; color: var(--ink2)">{{ m.action }}</span>
+              </button>
+            </div>
+          </sc-if>
+        </sc-for>
+      </div>
+      <sc-if value="{{ showArchivedRow }}" hint-placeholder-val="{{ true }}">
+        <div style="background: var(--card); border-radius: 22px; margin-top: 6px">
+          <a href="MedsArchived.dc.html" aria-label="Archived, {{ archivedCount }}" style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px; font-size: 17px">
+            <span>Archived</span>
+            <span style="display: flex; align-items: center; gap: 8px; color: var(--ink2)">
+              <span>{{ archivedCount }}</span>
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5" /></svg>
+            </span>
+          </a>
+        </div>
+      </sc-if>
+      <span style="padding: 0; font-size: 13px; line-height: 18px; color: var(--ink2)">{{ footnote }}</span>
+    </sc-if>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ showArchivedRow }}" hint-placeholder-val="{{ false }}">
+        <div style="background: var(--card); border-radius: 22px">
+          <a href="MedsArchived.dc.html" aria-label="Archived, {{ archivedCount }}" style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; padding: 0 16px; font-size: 17px">
+            <span>Archived</span>
+            <span style="display: flex; align-items: center; gap: 8px; color: var(--ink2)">
+              <span>{{ archivedCount }}</span>
+              <svg width="8" height="14" viewBox="0 0 8 14" fill="none" style="stroke: var(--ink2); flex: none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1.5 1.5l5 5.5-5 5.5" /></svg>
+            </span>
+          </a>
+        </div>
+      </sc-if>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 96px 32px 0; text-align: center">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" style="stroke: var(--ink2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-35 12 12)" /><path d="M9 9.5l5.5 5" transform="rotate(0 12 12)" /></svg>
+        <h2 style="margin: 8px 0 0; font-size: 22px; line-height: 28px; font-weight: 600">No medications yet</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 21px; color: var(--ink2)">Add what you take, then log a dose in two taps. Everything stays on this iPhone.</p>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ showAdd }}" hint-placeholder-val="{{ true }}">
+    <a class="press" href="MedForm.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; width: 100%; background: var(--tint); color: var(--ontint); border-radius: 28px; font-size: 17px; font-weight: 600">Add medication</a>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"state":{"editor":"enum","options":["filled","empty"],"default":"filled"},"view":{"editor":"enum","options":["active","archived"],"default":"active"},"swipe":{"editor":"enum","options":["none","first","second"],"default":"none"},"archived":{"editor":"enum","options":["0","1","2"],"default":"2"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = { surface: '#f2f2f7', card: '#ffffff', ink: '#000000', ink2: '#636366', sep: '#d1d1d6', tint: '#c23c14', ontint: '#ffffff', soft: '#fbe5de', onsoft: '#a83316', dest: '#b3261e', sysred: '#ff3b30', ring: '#0a5cff', ph: '#c4c4c6', track: '#c7c7cc', lift: '#e8e8ed' };
+    const D = { surface: '#000000', card: '#1c1c1e', ink: '#ffffff', ink2: '#aeaeb2', sep: '#38383a', tint: '#ff7a50', ontint: '#1a0a04', soft: '#3a1f16', onsoft: '#ffb59e', dest: '#ff8a80', sysred: '#ff453a', ring: '#6ea0ff', ph: '#5a5a5e', track: '#636366', lift: '#2c2c2e' };
+    const t = this.props.theme === 'dark' ? D : L;
+    const vars = Object.keys(t).map((k) => '--' + k + ':' + t[k]).join(';');
+    const isArchived = this.props.view === 'archived';
+    const filled = isArchived || this.props.state !== 'empty';
+    const swipeAt = { first: 0, second: 1 }[this.props.swipe];
+    const archivedN = isArchived ? 2 : Number(this.props.archived === undefined ? 2 : this.props.archived);
+    const active = [
+      { name: 'Naproxen 500 mg', how: 'As needed' },
+      { name: 'Ibuprofen 400 mg', how: 'As needed' },
+      { name: 'Adalimumab 40 mg', how: 'Scheduled' }
+    ];
+    const gone = [
+      { name: 'Diclofenac 50 mg', how: 'As needed' },
+      { name: 'Etoricoxib 60 mg', how: 'As needed' }
+    ];
+    const list = isArchived ? gone : active;
+    const action = isArchived ? 'Restore' : 'Archive';
+    return {
+      vars: vars,
+      filled: filled,
+      empty: !filled,
+      isActive: !isArchived,
+      isArchived: isArchived,
+      title: isArchived ? 'Archived' : 'Medications',
+      backHref: isArchived ? 'Meds.dc.html' : 'LogDose.dc.html',
+      showAdd: !isArchived,
+      cardOverflow: swipeAt === undefined ? 'hidden' : 'visible',
+      showArchivedRow: !isArchived && archivedN > 0,
+      archivedCount: String(archivedN),
+      footnote: isArchived ? 'Swipe left to restore. Doses you logged stay in History.' : 'Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.',
+      meds: list.map((m, i) => ({
+        name: m.name,
+        how: m.how,
+        aria: m.name + ', ' + m.how,
+        action: action,
+        plain: swipeAt !== i,
+        swiped: swipeAt === i,
+        chev: !isArchived,
+        href: isArchived ? 'MedEdit.dc.html' : 'MedEdit.dc.html',
+        border: i === 0 ? '0' : '0.5px solid var(--sep)'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

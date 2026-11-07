@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Today, with icon tiles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+button,.press{transition:transform 140ms cubic-bezier(.34,1.56,.64,1)}
+button:active,.press:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){button,.press{transition:none}button:active,.press:active{transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: var(--surface); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, system-ui, sans-serif; {{ vars }}">
+
+  <div style="padding: 54px 16px 0; display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0 0; margin-bottom: -16px">
+      <h1 style="margin: 0; font-size: 34px; line-height: 41px; font-weight: 700">Today</h1>
+      <span style="font-size: 15px; line-height: 20px; color: var(--ink2)">Monday 26 October</span>
+    </div>
+
+    <sc-if value="{{ showChip }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px">
+        <sc-if value="{{ notLogged }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ logIt }}" style="display: flex; align-items: center; min-height: 32px; padding: 6px 16px; background: var(--soft); color: var(--onsoft); border: 0; border-radius: 999px; font-size: 15px; font-weight: 400; text-align: left; line-height: 20px; height: auto; overflow-wrap: anywhere; white-space: normal; box-sizing: border-box; width: fit-content; max-width: 100%">Same as last time · Lower back, SI joints · 4</button>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; "><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6L13 3z"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Pain</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:42</span> · Lower back · SI joints</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">4</span></div>
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.8" width="18" height="6.6" rx="3.3" transform="rotate(-45 12 12.1)"></rect><path d="M9.6 14.6l4.8-4.8"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Naproxen 500 mg</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:30</span> · pain was 4</span></div><span style="font-size: 15px; font-weight: 600; color: var(--tint)">Check in</span></div>
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.5"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Stiffness</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:15</span> · Lower back</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">6</span></div>
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="9" rx="2.5"></rect><path d="M21 11v2M6.5 12.5h3"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Fatigue</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">07:50</span></span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">5</span></div>
+        </div>
+        <span style="margin-top: -4px; padding: 0 16px; font-size: 13px; line-height: 18px; color: var(--ink2)">Levels are 0 to 10. Stored on this iPhone only.</span>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 16px; bottom: 95px; display: flex; align-items: stretch; gap: 8px">
+    <a class="press" href="LogDose.dc.html" style="flex: 1; min-width: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 56px; padding: 8px 12px; border-radius: 28px; background: var(--glass); -webkit-backdrop-filter: blur(24px) saturate(1.6); backdrop-filter: blur(24px) saturate(1.6); border: 1px solid var(--glassline); color: var(--tint); font-size: 17px; line-height: 22px; font-weight: 600; overflow-wrap: anywhere">Log medication</a>
+    <a class="press" href="NewEntry.dc.html" style="flex: 1; min-width: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; min-height: 56px; padding: 8px 12px; border-radius: 28px; background: var(--tint); color: var(--ontint); font-size: 17px; line-height: 22px; font-weight: 600; overflow-wrap: anywhere">Log how you feel</a>
+  </div>
+
+  <nav aria-label="Tabs" style="position: absolute; left: 0; right: 0; bottom: 0; height: 83px; box-sizing: border-box; padding: 6px 16px 0; display: flex; background: var(--card); border-top: 0.5px solid var(--sep)">
+    <a href="Main.dc.html" aria-current="page" style="flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--tint)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M4 10h16M8 3v4M16 3v4"></path></svg>
+      <span style="font-size: 12px; line-height: 16px; font-weight: 600">Today</span>
+    </a>
+    <a href="History.dc.html" style="flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--ink2)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg>
+      <span style="font-size: 12px; line-height: 16px">History</span>
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;filled&quot;,&quot;empty&quot;],&quot;default&quot;:&quot;filled&quot;},&quot;chip&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true},&quot;start&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;logged&quot;],&quot;default&quot;:&quot;&quot;},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  renderVals() {
+    const L = { surface: '#f2f2f7', card: '#ffffff', ink: '#000000', ink2: '#636366', sep: '#d1d1d6', tint: '#c23c14', ontint: '#ffffff', soft: '#fbe5de', onsoft: '#a83316', ring: '#0a5cff', fill: 'rgba(118,118,128,0.12)', glass: 'rgba(246,246,248,0.78)', glassline: 'rgba(0,0,0,0.14)' };
+    const D = { surface: '#000000', card: '#1c1c1e', ink: '#ffffff', ink2: '#aeaeb2', sep: '#38383a', tint: '#ff7a50', ontint: '#1a0a04', soft: '#3a1f16', onsoft: '#ffb59e', ring: '#6ea0ff', fill: 'rgba(118,118,128,0.24)', glass: 'rgba(58,58,60,0.78)', glassline: 'rgba(255,255,255,0.16)' };
+    const t = this.props.theme === 'dark' ? D : L;
+    const vars = Object.keys(t).map((k) => '--' + k + ':' + t[k]).join(';');
+    const filled = this.props.state !== 'empty';
+    const logged = (this.state && this.state.logged !== undefined) ? !!this.state.logged : (this.props.start === 'logged');
+    return {
+      vars: vars,
+      filled: filled,
+      showChip: this.props.chip !== false && this.props.chip !== 'false',
+      emptyPad: (this.props.chip !== false && this.props.chip !== 'false') ? '48px' : '80px',
+      empty: !filled,
+      logged: logged,
+      notLogged: !logged,
+      logIt: () => this.setState({ logged: true }),
+      undo: () => this.setState({ logged: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

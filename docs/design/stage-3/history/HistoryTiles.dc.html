@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>History, with icon tiles</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+button,.press{transition:transform 140ms cubic-bezier(.34,1.56,.64,1)}
+button:active,.press:active{transform:scale(.95)}
+@media (prefers-reduced-motion:reduce){button,.press{transition:none}button:active,.press:active{transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; position: relative; overflow: hidden; background: var(--surface); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, system-ui, sans-serif; {{ vars }}">
+
+  <div style="padding: 54px 16px 0; display: flex; flex-direction: column; gap: 32px">
+    <div style="padding: 8px 4px 0">
+      <h1 style="margin: 0; font-size: 34px; line-height: 41px; font-weight: 700">History</h1>
+    </div>
+
+    <sc-if value="{{ filled }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">Today</span>
+        <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+          <a href="AfterEntry.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px;"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.8" width="18" height="6.6" rx="3.3" transform="rotate(-45 12 12.1)"></rect><path d="M9.6 14.6l4.8-4.8"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Naproxen 500 mg</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:30</span> · pain was 4</span></div><span style="font-size: 15px; font-weight: 600; color: var(--tint)">Check in</span></a>
+          <a href="EditEntry.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6L13 3z"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Pain</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:15</span> · Lower back · SI joints</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">4</span></a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">Yesterday</span>
+        <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+          <a href="EditEntry.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px;"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.5"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Stiffness</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">22:40</span> · Lower back</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">5</span></a>
+          <a href="EditEntry.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="16" height="9" rx="2.5"></rect><path d="M21 11v2M6.5 12.5h3"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Fatigue</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">19:05</span> · Whole body</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">3</span></a>
+          <a href="EditDose.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px; border-top: 0.5px solid var(--sep);"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8.8" width="18" height="6.6" rx="3.3" transform="rotate(-45 12 12.1)"></rect><path d="M9.6 14.6l4.8-4.8"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Adalimumab 40 mg</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">08:00</span> · pain 4 before, 3 after</span></div></a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span style="padding: 0 16px; font-size: 15px; line-height: 20px; color: var(--ink2)">Saturday 24 October</span>
+        <div style="background: var(--card); border-radius: 22px; overflow: hidden">
+          <a href="EditEntry.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 16px;"><span aria-hidden="true" style="width: 32px; height: 32px; flex: none; border-radius: 9px; background: var(--fill); color: var(--ink2); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6L13 3z"></path></svg></span><div style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 17px; line-height: 22px">Pain</span><span style="font-size: 13px; line-height: 18px; color: var(--ink2)"><span style="font-variant-numeric: tabular-nums">14:20</span> · Neck</span></div><span style="font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums">3</span></a>
+        </div>
+      </div>
+      <span style="margin-top: -24px; padding: 0 16px; font-size: 13px; line-height: 18px; color: var(--ink2)">Levels are 0 to 10.</span>
+    </sc-if>
+
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 96px 32px 0; text-align: center">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="stroke: var(--ink2)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></svg>
+        <h2 style="margin: 8px 0 0; font-size: 22px; line-height: 28px; font-weight: 600">No entries yet</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 21px; color: var(--ink2)">Entries and doses you add appear here, newest first.</p>
+      </div>
+    </sc-if>
+  </div>
+
+  <nav aria-label="Tabs" style="position: absolute; left: 0; right: 0; bottom: 0; height: 83px; box-sizing: border-box; padding: 6px 16px 0; display: flex; background: var(--card); border-top: 0.5px solid var(--sep)">
+    <a href="Main.dc.html" style="flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--ink2)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3" /><path d="M4 10h16M8 3v4M16 3v4" /></svg>
+      <span style="font-size: 12px; line-height: 16px">Today</span>
+    </a>
+    <a href="History.dc.html" aria-current="page" style="flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--tint)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></svg>
+      <span style="font-size: 12px; line-height: 16px; font-weight: 600">History</span>
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;},&quot;state&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;filled&quot;,&quot;empty&quot;],&quot;default&quot;:&quot;filled&quot;},&quot;showSwipe&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false},&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  renderVals() {
+    const L = { surface: '#f2f2f7', card: '#ffffff', ink: '#000000', ink2: '#636366', sep: '#d1d1d6', tint: '#c23c14', dest: '#b3261e', ring: '#0a5cff', fill: 'rgba(118,118,128,0.12)' };
+    const D = { surface: '#000000', card: '#1c1c1e', ink: '#ffffff', ink2: '#aeaeb2', sep: '#38383a', tint: '#ff7a50', dest: '#ff8a80', ring: '#6ea0ff', fill: 'rgba(118,118,128,0.24)' };
+    const t = this.props.theme === 'dark' ? D : L;
+    const vars = Object.keys(t).map((k) => '--' + k + ':' + t[k]).join(';');
+    const filled = this.props.state !== 'empty';
+    const swipe = this.props.showSwipe === true;
+    return { vars: vars, filled: filled, empty: !filled, swipe: swipe, noSwipe: !swipe };
+  }
+}
+</script>
+</body>
+</html>
