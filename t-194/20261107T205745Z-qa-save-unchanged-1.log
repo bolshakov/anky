@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/w.sh 'new_entry; height save-entry; width save-entry; edge save-entry left; edge save-entry bottom'
+exit: 0
+commit: a5a3028ff6ba5271e9df355546cd9e7b012ba0a2
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+56
+370
+16
+824

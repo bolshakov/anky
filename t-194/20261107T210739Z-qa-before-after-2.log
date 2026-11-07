@@ -1,0 +1,4 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/checkout status --short
+exit: 0
+commit: a5a3028ff6ba5271e9df355546cd9e7b012ba0a2
+

@@ -1,0 +1,48 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/w.sh 'P=after; . $TMPDIR/ba.sh'
+exit: 0
+commit: a5a3028ff6ba5271e9df355546cd9e7b012ba0a2
+
+### after-light-large
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+Group id=note-card label=None value=None enabled=True @32,786 338x52
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 2E094479-CB09-4BAB-9F4F-C59665A4E032 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/walk-t194.yhGY/after-light-large.png
+shot+crop after-light-large
+### after-light-xxxl
+✓ Tap at resolved tap point at (201.0, 697.3333333333333) completed successfully
+Image id=AdditionalDimmingOverlay label=None value=None enabled=True @-120,731 642x286
+Button id=entry-row-stiffness label='21:58, No place, Stiffness, 0 of 10' value=None enabled=True @16,545.3333333333333 370x272
+Button id=entry-row-fatigue label='21:52, Whole body, Fatigue, 0 of 10' value=None enabled=True @16,817.3333333333334 370x272.0000000000001
+Heading id=where-label label='Where' value=None enabled=True @16,680 370x85.33333333333337
+Button id=place-chip-neck label='Neck' value=None enabled=True @32,780.3333333333334 153.33333333333331x72.66666666666663
+Button id=place-chip-upper label='Upper back' value=None enabled=True @32,861 285.66666666666663x72.66666666666674
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 2E094479-CB09-4BAB-9F4F-C59665A4E032 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/walk-t194.yhGY/after-light-xxxl.png
+shot+crop after-light-xxxl
+### after-dark-large
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+Group id=note-card label=None value=None enabled=True @32,786 338x52
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 2E094479-CB09-4BAB-9F4F-C59665A4E032 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/walk-t194.yhGY/after-dark-large.png
+shot+crop after-dark-large
+### after-dark-xxxl
+✓ Tap at resolved tap point at (201.0, 697.3333333333333) completed successfully
+Image id=AdditionalDimmingOverlay label=None value=None enabled=True @-120,731 642x286
+Button id=entry-row-stiffness label='21:58, No place, Stiffness, 0 of 10' value=None enabled=True @16,545.3333333333333 370x272
+Button id=entry-row-fatigue label='21:52, Whole body, Fatigue, 0 of 10' value=None enabled=True @16,817.3333333333334 370x272.0000000000001
+Heading id=where-label label='Where' value=None enabled=True @16,680 370x85.33333333333337
+Button id=place-chip-neck label='Neck' value=None enabled=True @32,780.3333333333334 153.33333333333331x72.66666666666663
+Button id=place-chip-upper label='Upper back' value=None enabled=True @32,861 285.66666666666663x72.66666666666674
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 2E094479-CB09-4BAB-9F4F-C59665A4E032 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/walk-t194.yhGY/after-dark-xxxl.png
+shot+crop after-dark-xxxl
+### after-edit-light-large
+✓ Tap at resolved tap point at (201.0, 417.0) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 2E094479-CB09-4BAB-9F4F-C59665A4E032 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t194-01-1/tmp/walk-t194.yhGY/after-edit-light-large.png
+shot+crop after-edit-light-large
