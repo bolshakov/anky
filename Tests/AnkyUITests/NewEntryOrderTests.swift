@@ -11,7 +11,7 @@ final class NewEntryOrderTests: XCTestCase {
 
         openNewEntry(app)
         assertInOrder(
-            ["recent-chips", "kind-picker", "date row", "where-section", "severity-caption", "note-field"],
+            ["recent-chips", "kind-picker", "severity-label", "where-section", "date row", "note-field"],
             in: app
         )
     }
@@ -22,7 +22,7 @@ final class NewEntryOrderTests: XCTestCase {
 
         openNewEntry(app)
         XCTAssertFalse(element("recent-chips", in: app).exists)
-        assertInOrder(["kind-picker", "date row", "where-section", "severity-caption", "note-field"], in: app)
+        assertInOrder(["kind-picker", "severity-label", "where-section", "date row", "note-field"], in: app)
     }
 
     func testRecentChipFillsKindPlacesAndSeverity() {
@@ -63,7 +63,7 @@ final class NewEntryOrderTests: XCTestCase {
         for _ in 0 ..< 3 where !note.exists {
             screen.swipeUp()
         }
-        assertInOrder(["kind-picker", "date row", "severity-caption", "note-field"], in: app)
+        assertInOrder(["kind-picker", "severity-label", "date row", "note-field"], in: app)
         XCTAssertFalse(element("delete-entry", in: app).exists)
     }
 
