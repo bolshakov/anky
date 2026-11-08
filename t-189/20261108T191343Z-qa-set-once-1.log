@@ -1,0 +1,23 @@
+$ zsh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/measure.sh 40 2>&1 | tee /Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/m40.txt'
+exit: 0
+commit: 5ae358cf12c9f35d91b5de2626074adfd50f3142
+
+== gallery @40
+gallery-section-footnote: y=347.33 h=29.67 bottom=377.00
+gallery-bare-row: y=417.00 h=52.00
+gap gallery-section-footnote->gallery-bare-row = 40.00
+== new entry @40
+date-row: y=642.00 h=52.00 bottom=694.00
+note-card: y=734.00 h=52.00
+gap date-row->note-card = 40.00
+== log dose @40
+check-in-footnote: y=512.33 h=45.67 bottom=558.00
+date-row: y=598.00 h=52.00
+gap check-in-footnote->date-row = 40.00
+== medications @40
+medication-row: y=148.00 h=60.00 bottom=208.00
+archived-card: y=248.00 h=52.00
+gap medication-row->archived-card = 40.00
+archived-card: y=248.00 h=52.00 bottom=300.00
+archived-link-footnote: y=300.00 h=45.67
+gap archived-card->archived-link-footnote = 0.00

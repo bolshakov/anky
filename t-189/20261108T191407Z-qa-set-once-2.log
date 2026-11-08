@@ -1,0 +1,18 @@
+$ zsh -c 'cd /Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/B && echo '\''--- 32'\''; grep gap /Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/m32.txt; echo '\''--- 40'\''; grep gap /Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/m40.txt; echo '\''--- git status'\''; git status --short'
+exit: 0
+commit: 5ae358cf12c9f35d91b5de2626074adfd50f3142
+
+--- 32
+gap gallery-section-footnote->gallery-bare-row = 32.00
+gap date-row->note-card = 32.00
+gap check-in-footnote->date-row = 32.00
+gap medication-row->archived-card = 32.00
+gap archived-card->archived-link-footnote = 0.00
+--- 40
+gap gallery-section-footnote->gallery-bare-row = 40.00
+gap date-row->note-card = 40.00
+gap check-in-footnote->date-row = 40.00
+gap medication-row->archived-card = 40.00
+gap archived-card->archived-link-footnote = 0.00
+--- git status
+ M App/Design/Spacing.swift

@@ -1,0 +1,7 @@
+$ zsh -c 'cd /Users/bolshakov/Projects/personal/anky.wt/qa-t189-01-2/tmp/B && grep -n '\''blockGap'\'' App/Design/Spacing.swift; echo '\''--- git status'\''; git status --short; echo '\''(end)'\'''
+exit: 0
+commit: 5ae358cf12c9f35d91b5de2626074adfd50f3142
+
+11:    static let blockGap: CGFloat = 32
+--- git status
+(end)
