@@ -112,6 +112,30 @@ final class LogDoseCheckInTests: XCTestCase {
         expectCheckIn(on: true, delay: "1 hour", app)
     }
 
+    func testFormDelayMenuOpensFromTheTopAndBottomOfItsRow() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        app.buttons["log-medication"].tap()
+        app.buttons["dose-add-medication"].tap()
+        let form = app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
+        let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
+        XCTAssertTrue(toggle.waitForExistence(timeout: 10))
+        toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
+        let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
+        XCTAssertTrue(menu.waitForExistence(timeout: 10))
+        let save = app.buttons["medication-save"]
+        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+            app.swipeUp()
+        }
+
+        for dy in [0.1, 0.9] {
+            menu.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: dy)).tap()
+            XCTAssertTrue(app.buttons["4 hours"].waitForExistence(timeout: 10), "no menu from dy \(dy)")
+            app.buttons["1 hour"].tap()
+            XCTAssertTrue(app.buttons["4 hours"].waitForNonExistence(timeout: 10))
+        }
+    }
+
     /// Opens the medication from Manage, picks the delay in its form, and goes back to Log Dose.
     private func editDelayInManage(_ delay: String, _ app: XCUIApplication) {
         app.buttons["log-dose-manage"].tap()
