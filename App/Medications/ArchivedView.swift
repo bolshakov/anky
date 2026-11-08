@@ -21,6 +21,7 @@ struct ArchivedView: View {
                         editing = medication
                     } label: {
                         TwoLineRow(Text(medication.listTitle), subtitle: Text(medication.takenAs.title))
+                            .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("archived-row")
