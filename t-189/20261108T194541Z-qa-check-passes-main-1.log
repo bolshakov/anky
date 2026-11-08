@@ -1,0 +1,8 @@
+$ sh -c 'sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/B/scripts/ci/check-design-tokens.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/B; echo exit=$?; grep -nE '\''exempt|ignore|skip'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/B/scripts/ci/check-design-tokens.sh'
+exit: 0
+commit: 739a95f0ebbadaceb7f5669541ef254924c5e94e
+
+exit=0
+25:# usage: scan <regex> <exempt file> <exempt file> <folder>...
+27:  regex=$1 exemptA=$2 exemptB=$3
+30:    [ "$file" = "$exemptA" ] || [ "$file" = "$exemptB" ] && continue

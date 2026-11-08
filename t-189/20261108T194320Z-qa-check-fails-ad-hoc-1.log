@@ -1,0 +1,24 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/s1.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T
+exit: 0
+commit: 739a95f0ebbadaceb7f5669541ef254924c5e94e
+
+== .listSectionSpacing(.custom(10))
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/TodayEntryList.swift:123:.listSectionSpacing(.custom(10))
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== .listRowSpacing(4)
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/TodayEntryList.swift:123:.listRowSpacing(4)
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== .contentMargins(.top, 4)
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/TodayEntryList.swift:123:.contentMargins(.top, 4)
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== .listRowInsets(EdgeInsets())
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/TodayEntryList.swift:123:.listRowInsets(EdgeInsets())
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== .textCase(nil)
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/TodayEntryList.swift:123:.textCase(nil)
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1

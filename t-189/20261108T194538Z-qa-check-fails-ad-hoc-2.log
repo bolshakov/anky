@@ -1,0 +1,16 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/s2.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T
+exit: 0
+commit: 739a95f0ebbadaceb7f5669541ef254924c5e94e
+
+== header-closure
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/Scratch.swift:1:Section { Text("a") } header: { Text("h") }
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== footer-closure
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/Scratch.swift:1:Section { Text("a") } footer: { Text("h") }
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
+== section-argument
+/Users/bolshakov/Projects/personal/anky.wt/qa-t189-03-1/tmp/T/App/Today/Scratch.swift:1:Section(header: Text("h")) { Text("a") }
+DESIGN TOKEN VIOLATION: sets section spacing, inset, case, header or footer in a screen, use App/Design
+exit=1
