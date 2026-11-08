@@ -1,0 +1,8 @@
+$ sh -c 'axe describe-ui --udid 53C195B6-633E-4CFA-A8CB-C4F9FDBE960D | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t202-01-1/tmp/ui.py | egrep '\''id=(date-row|dose-medication-row|log-how-you-feel-row|check-in-later) '\'''
+exit: 0
+commit: eb3c435cff743c44bed7775d25976a45abba97ad
+
+Button id=dose-medication-row label='Zorblex, As needed' value=None enabled=True @16,180.33333333333334 370x68.66666666666666
+Button id=log-how-you-feel-row label='Log how you feel now' value=None enabled=True @16,363.66666666666663 370x50.333333333333314
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True @16,446 370x50.333333333333314
+Button id=date-row label='Date and time' value='Today 11:52' enabled=True @16,574 370x52

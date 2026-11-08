@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 53C195B6-633E-4CFA-A8CB-C4F9FDBE960D | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t202-01-1/tmp/ui.py | egrep -c '\''id=date-picker '\''; echo '\''(Log Dose also closed on a tap at y=488, 4pt below card top 484: no date-picker after)'\'''
+exit: 0
+commit: eb3c435cff743c44bed7775d25976a45abba97ad
+
+0
+(Log Dose also closed on a tap at y=488, 4pt below card top 484: no date-picker after)

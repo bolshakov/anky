@@ -1,0 +1,6 @@
+$ sh -c 'axe tap -x 232 -y 613 --udid 53C195B6-633E-4CFA-A8CB-C4F9FDBE960D >/dev/null; sleep 1; axe describe-ui --udid 53C195B6-633E-4CFA-A8CB-C4F9FDBE960D | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t202-01-1/tmp/ui.py | egrep '\''id=(date-row|date-picker) '\'''
+exit: 0
+commit: eb3c435cff743c44bed7775d25976a45abba97ad
+
+Button id=date-row label='Date and time' value='Today 10:56' enabled=True @32,464 338x52
+Group id=date-picker label='Date and time' value=None enabled=True @41,516 320x216

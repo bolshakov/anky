@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 53C195B6-633E-4CFA-A8CB-C4F9FDBE960D | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t202-01-1/tmp/ui.py | egrep '\''id=(date-row|before-reading-row|log-how-you-feel-row|check-in-later) '\'''
+exit: 0
+commit: eb3c435cff743c44bed7775d25976a45abba97ad
+
+Button id=log-how-you-feel-row label='Log how you feel now' value=None enabled=True @16,345.33333333333337 370x50.333333333333314
+Button id=date-row label='Date and time' value='Today 11:51' enabled=True @16,427.6666666666667 370x52
