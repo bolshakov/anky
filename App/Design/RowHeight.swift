@@ -2,7 +2,11 @@
 import SwiftUI
 
 private struct RowHeight: ViewModifier {
-    @ScaledMetric(relativeTo: .body) private var height = Spacing.rowHeight
+    @ScaledMetric private var height: CGFloat
+
+    init(height: CGFloat) {
+        _height = ScaledMetric(wrappedValue: height, relativeTo: .body)
+    }
 
     func body(content: Content) -> some View {
         content
@@ -12,7 +16,7 @@ private struct RowHeight: ViewModifier {
 }
 
 extension View {
-    func rowHeight() -> some View {
-        modifier(RowHeight())
+    func rowHeight(_ height: CGFloat = Spacing.rowHeight) -> some View {
+        modifier(RowHeight(height: height))
     }
 }
