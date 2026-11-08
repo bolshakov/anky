@@ -77,6 +77,10 @@ func saveDoseAnHourBack(in app: XCUIApplication) {
     scrollToDateRow(in: app)
     setDateTimeHoursBack(1, in: app)
     let before = app.buttons["before-reading-row"]
+    for _ in 0 ..< 5 where !before.exists || !before.isHittable {
+        app.swipeUp()
+    }
+    XCTAssertTrue(before.waitForExistence(timeout: 10))
     XCTAssertTrue(before.label.contains("4 of 10"), before.label)
     app.buttons["save-dose"].tap()
 }
