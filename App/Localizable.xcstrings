@@ -192,6 +192,15 @@
     "Before this dose" : {
 
     },
+    "Before: fatigue %lld." : {
+
+    },
+    "Before: pain %lld." : {
+
+    },
+    "Before: stiffness %lld." : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "ru" : {
@@ -482,40 +491,7 @@
     "Stiffness was %lld of 10" : {
 
     },
-    "Taken at %@. Before: Fatigue %lld." : {
-
-    },
-    "Taken at %@. Before: Pain %lld." : {
-
-    },
-    "Taken at %@. Before: Stiffness %lld." : {
-
-    },
-    "Taken yesterday at %@. Before: Fatigue %lld." : {
-
-    },
-    "Taken yesterday at %@. Before: Pain %lld." : {
-
-    },
-    "Taken yesterday at %@. Before: Stiffness %lld." : {
-
-    },
     "Taken %@." : {
-
-    },
-    "Taken %@. Before: Fatigue %lld." : {
-
-    },
-    "Taken %@. Before: Pain %lld." : {
-
-    },
-    "Taken %@. Before: Stiffness %lld." : {
-
-    },
-    "Taken at %@." : {
-
-    },
-    "Taken yesterday at %@." : {
 
     },
     "Feet and toes" : {

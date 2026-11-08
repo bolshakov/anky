@@ -21,7 +21,7 @@ final class CheckInAccessibilityTests: XCTestCase {
         historyRow.tap()
 
         XCTAssertTrue(identified("check-in-screen", in: app).waitForExistence(timeout: 10))
-        XCTAssertTrue(identified("check-in-info", in: app).label.hasSuffix("Before: Pain 4."))
+        XCTAssertTrue(identified("check-in-info", in: app).label.hasSuffix("Before: pain 4."))
         XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
         let slider = app.sliders["severity-slider"]
         XCTAssertTrue(slider.waitForExistence(timeout: 10))

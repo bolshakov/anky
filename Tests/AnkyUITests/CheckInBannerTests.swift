@@ -13,7 +13,7 @@ final class CheckInBannerTests: XCTestCase {
         saveDoseAnHourBack(in: app)
         openCheckIn(app)
 
-        XCTAssertTrue(identified("check-in-info", in: app).label.hasPrefix("Zorblex 100% {x} %@. Taken at "))
+        XCTAssertTrue(identified("check-in-info", in: app).label.hasPrefix("Zorblex 100% {x} %@. Taken today at "))
     }
 
     func testBannerNamesAStiffnessBeforeReading() throws {
@@ -26,7 +26,7 @@ final class CheckInBannerTests: XCTestCase {
         openCheckIn(app)
 
         let label = identified("check-in-info", in: app).label
-        XCTAssertTrue(label.hasSuffix("Before: Stiffness 4."), label)
+        XCTAssertTrue(label.hasSuffix("Before: stiffness 4."), label)
     }
 
     func testBannerNamesAFatigueBeforeReading() throws {
@@ -39,7 +39,7 @@ final class CheckInBannerTests: XCTestCase {
         openCheckIn(app)
 
         let label = identified("check-in-info", in: app).label
-        XCTAssertTrue(label.hasSuffix("Before: Fatigue 4."), label)
+        XCTAssertTrue(label.hasSuffix("Before: fatigue 4."), label)
     }
 
     /// A dose with no earlier reading says only when it was taken, and names no before reading.
@@ -54,6 +54,9 @@ final class CheckInBannerTests: XCTestCase {
         openCheckIn(app)
 
         let label = identified("check-in-info", in: app).label
-        XCTAssertNotNil(label.range(of: #"^Zorblex\. Taken at \d{1,2}:\d\d\.$"#, options: .regularExpression), label)
+        XCTAssertNotNil(
+            label.range(of: #"^Zorblex\. Taken today at \d{1,2}:\d\d(\s[AP]M)?\.$"#, options: .regularExpression),
+            label
+        )
     }
 }
