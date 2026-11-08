@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/walk.sh; open_history; ui | grep -c "id=check-in-label "; width check-in-label; height check-in-label'
+exit: 0
+commit: 8a29e497ed0c13d6c2739296cec27332149e664a
+
+1
+62
+44

@@ -1,0 +1,6 @@
+$ sh -c '. $TMPDIR/walk.sh; tap_id check-in-label; ui | grep -c "id=check-in-screen "'
+exit: 0
+commit: 8a29e497ed0c13d6c2739296cec27332149e664a
+
+✓ Tap at resolved tap point at (339.0, 240.0) completed successfully
+1

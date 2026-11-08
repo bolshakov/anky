@@ -1,0 +1,7 @@
+$ sh -c '. $TMPDIR/walk.sh; log_dose accessibility-extra-extra-extra-large; tap_id date-row; sleep 1; ui | grep -c "id=date-picker "'
+exit: 0
+commit: 8a29e497ed0c13d6c2739296cec27332149e664a
+
+✓ Tap at resolved tap point at (201.0, 530.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 723.0) completed successfully
+1

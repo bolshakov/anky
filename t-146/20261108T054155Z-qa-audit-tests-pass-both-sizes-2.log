@@ -1,0 +1,10 @@
+$ sh -c '. $TMPDIR/walk.sh; open_history accessibility-extra-extra-extra-large; n=$(ui | grep -c "id=check-in-label "); echo count $n; if [ "$n" = 0 ]; then bottom; ui | grep -c "id=check-in-label "; fi; width check-in-label; height check-in-label; shot history-largest'
+exit: 0
+commit: 8a29e497ed0c13d6c2739296cec27332149e664a
+
+count 1
+191
+58.66666666666674
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 118ADF3F-4779-435B-9F72-2DC492372996 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t146-02-3/tmp/walk-t146.MnZd/history-largest.png
