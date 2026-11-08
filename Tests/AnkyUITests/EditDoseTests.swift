@@ -139,7 +139,7 @@ final class EditDoseTests: XCTestCase {
         app.tabBars.buttons["History"].tap()
         XCTAssertTrue(doseRow(in: app).waitForExistence(timeout: 10))
         let yesterday = try XCTUnwrap(
-            app.descendants(matching: .any).matching(identifier: "day-header")
+            app.descendants(matching: .any).matching(identifier: "day-label")
                 .allElementsBoundByIndex.first { $0.label == "Yesterday" },
             "headers are \(dayHeaderLabels(in: app))"
         )

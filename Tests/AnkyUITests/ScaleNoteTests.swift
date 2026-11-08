@@ -15,7 +15,7 @@ final class ScaleNoteTests: XCTestCase {
         XCTAssertEqual(app.staticTexts.matching(NSPredicate(format: "label == %@", "Levels are 0 to 10.")).count, 1)
 
         XCTAssertEqual(dayHeaderLabels(in: app), ["Today", "Yesterday"])
-        let yesterdayHeader = app.descendants(matching: .any).matching(identifier: "day-header").element(boundBy: 1)
+        let yesterdayHeader = app.descendants(matching: .any).matching(identifier: "day-label").element(boundBy: 1)
         let lowestRow = entryRows(in: app).allElementsBoundByIndex.map(\.frame.maxY).max() ?? 0
         XCTAssertGreaterThanOrEqual(note.frame.minY, lowestRow)
         XCTAssertEqual(note.frame.minX, yesterdayHeader.frame.minX, accuracy: 1)
