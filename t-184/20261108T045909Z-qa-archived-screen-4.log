@@ -1,0 +1,7 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t184-01-2/tmp/p.sh; r=$(ui | grep "id=medication-row " | tail -1 | frame); echo "row: $r"; t=$(edge1 archived-card top); echo "card top: $t"; echo "$r" | awk -v t=$t "{print \"gap\", t-(\$2+\$4)}"'
+exit: 0
+commit: 2147e5bf3315aacc0aa9644bf6e313594c0a3bc2
+
+row: 16 208 370 60
+card top: 300
+gap 32

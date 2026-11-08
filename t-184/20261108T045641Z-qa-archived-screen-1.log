@@ -1,0 +1,10 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t184-01-2/tmp/p.sh; ui | grep -c "id=medication-row "; edge1 medication-row left; width1 medication-row; height1 medication-row; height1 archived-card; edge1 archived-card left'
+exit: 0
+commit: 2147e5bf3315aacc0aa9644bf6e313594c0a3bc2
+
+2
+16
+370
+60
+52
+16

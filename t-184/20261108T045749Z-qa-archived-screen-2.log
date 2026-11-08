@@ -1,0 +1,9 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t184-01-2/tmp/p.sh; edge1 archived-row left; width1 archived-row; height1 archived-row; edge1 archived-footnote left; width1 archived-footnote'
+exit: 0
+commit: 2147e5bf3315aacc0aa9644bf6e313594c0a3bc2
+
+16
+370
+60
+16
+370
