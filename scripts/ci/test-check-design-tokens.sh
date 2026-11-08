@@ -43,7 +43,54 @@ expect pass "a number in Corner.swift" "mkdir -p App/Design && echo 'let card: C
 expect pass "zero and a fraction in a piece" "mkdir -p App/Design && echo 'let v = Text(\"a\").opacity(0.5).offset(x: 0)' > App/Design/Row.swift"
 expect pass "a digit inside a name in a piece" "mkdir -p App/Design && echo 'let v = Text(\"a\").foregroundStyle(Color.ink2).font(.title2)' > App/Design/Row.swift"
 expect pass "a number in a comment in a piece" "mkdir -p App/Design && echo 'let v = 0 // the row is 52 pt' > App/Design/Row.swift"
-expect pass "a number in a screen outside the pieces" "mkdir -p App/Today && echo 'let v = Text(\"a\").padding(16)' > App/Today/Row.swift"
+
+# Rule: a screen writes no padding, frame, stack spacing or offset as a number. A case is a line of a screen, written
+# into App/Today/Row.swift unless it says otherwise.
+# usage: expect_screen <pass|fail> <description> <line>
+expect_screen() {
+  expect "$1" "$2" "mkdir -p App/Today && cat > App/Today/Row.swift <<'EOF'
+$3
+EOF"
+}
+
+expect_screen fail "a padding with a number" 'let v = Text("a").padding(16)'
+expect_screen fail "a padding with an edge and a number" 'let v = Text("a").padding(.horizontal, 32)'
+expect_screen fail "a padding with a negative number" 'let v = Text("a").padding(.leading, -16)'
+expect_screen fail "a padding with a number in a conditional" 'let v = Text("a").padding(.top, flag ? 48 : 64)'
+expect_screen fail "a padding with a number in a call" 'let v = Text("a").padding(.top, max(4, inset))'
+expect_screen fail "a padding with a number after a named value" 'let v = Text("a").padding(Spacing.tightGap + 4)'
+expect_screen fail "a frame width with a number" 'let v = Text("a").frame(width: 120)'
+expect_screen fail "a frame height with a number" 'let v = Text("a").frame(height: 52)'
+expect_screen fail "a frame minWidth with a number" 'let v = Text("a").frame(minWidth: 44)'
+expect_screen fail "a frame maxWidth with a number" 'let v = Text("a").frame(maxWidth: 300)'
+expect_screen fail "a frame minHeight with a number" 'let v = Text("a").frame(minHeight: 44)'
+expect_screen fail "a frame maxHeight with a number" 'let v = Text("a").frame(maxHeight: 200)'
+expect_screen fail "a frame width with a negative number" 'let v = Text("a").frame(width: -8)'
+expect_screen fail "a frame label on its own line" '    width: 120,'
+expect_screen fail "a VStack spacing with a number" 'let v = VStack(spacing: 12) { }'
+expect_screen fail "an HStack spacing with a number" 'let v = HStack(alignment: .top, spacing: 8) { }'
+expect_screen fail "a LazyVStack spacing with a number" 'let v = LazyVStack(spacing: 4) { }'
+expect_screen fail "a layout spacing with a number" 'let v = HStackLayout(spacing: 4)'
+expect_screen fail "an offset x with a number" 'let v = Text("a").offset(x: 4)'
+expect_screen fail "an offset y with a negative number" 'let v = Text("a").offset(y: -6)'
+expect fail "a number in a screen beside the pieces" "mkdir -p App/Today App/Design && echo 'let v = 0' > App/Design/Row.swift && echo 'let v = Text(\"a\").padding(16)' > App/Today/Row.swift"
+expect_screen pass "a padding of zero" 'let v = Text("a").padding(0)'
+expect_screen pass "a padding with a named value" 'let v = Text("a").padding(.horizontal, Spacing.screenMargin)'
+expect_screen pass "a padding with a digit inside a name" 'let v = Text("a").padding(.top, Spacing.x2)'
+expect_screen pass "a padding followed by a call with a number" 'let v = Text("a").padding(Spacing.tightGap).lineLimit(2)'
+expect_screen pass "a frame that fills the width" 'let v = Text("a").frame(maxWidth: .infinity)'
+expect_screen pass "a frame height with a named value" 'let v = Text("a").frame(height: Spacing.rowHeight)'
+expect_screen pass "a frame height of zero" 'let v = Text("a").frame(height: 0)'
+expect_screen pass "a line width in a stroke" 'let v = Circle().stroke(lineWidth: 2)'
+expect_screen pass "a stack spacing of zero" 'let v = VStack(spacing: 0) { }'
+expect_screen pass "a stack spacing with a named value" 'let v = VStack(spacing: Spacing.labelGap) { }'
+expect_screen pass "a property named spacing" 'static let spacing: CGFloat = Spacing.labelGap'
+expect_screen pass "an offset of zero" 'let v = Text("a").offset(x: 0)'
+expect_screen pass "an offset with a named value" 'let v = Text("a").offset(y: Spacing.tightGap)'
+expect_screen pass "a text style with a digit inside" 'let v = Text("a").font(.title2)'
+expect_screen pass "a number in a trailing comment" 'let v = 0 // the gap is 12 pt'
+expect_screen pass "a padding in a trailing comment" 'let v = 0 // .padding(16) and .frame(width: 120)'
+expect pass "a padding with a number in the piece that names sizes" "mkdir -p App/Design && echo 'let v = Text(\"a\").padding(16)' > App/Design/Spacing.swift"
 
 # Rule: a colour written outside ColorTokens.swift.
 expect fail "Color( in a piece" "mkdir -p App/Design && echo 'let c = Color(\"CardBackground\")' > App/Design/Row.swift"
