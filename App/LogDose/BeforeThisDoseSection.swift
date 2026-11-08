@@ -24,7 +24,7 @@ struct BeforeThisDoseSection: View {
     private func row(_ entry: Entry?) -> some View {
         if let entry {
             Button(action: onChoose) {
-                HStack(spacing: 12) {
+                HStack(spacing: Spacing.rowContentGap) {
                     ReadingRow(entry: entry)
                     chevron
                 }
@@ -33,7 +33,7 @@ struct BeforeThisDoseSection: View {
             .accessibilityIdentifier("before-reading-row")
         } else {
             Button(action: onLog) {
-                HStack(spacing: 12) {
+                HStack(spacing: Spacing.rowContentGap) {
                     Text("Log how you feel now")
                         .foregroundStyle(.tint)
                     Spacer()

@@ -4,7 +4,7 @@ import SwiftUI
 struct EmptyHistoryView: View {
     var body: some View {
         ScrollView {
-            VStack(spacing: 12) {
+            VStack(spacing: Spacing.emptyStateGap) {
                 Image(systemName: "clock")
                     .font(.largeTitle)
                     .foregroundStyle(.secondary)
@@ -21,9 +21,9 @@ struct EmptyHistoryView: View {
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
-            .padding(.horizontal, 32)
+            .padding(.horizontal, Spacing.emptyStateInset)
             .frame(maxWidth: .infinity)
-            .padding(.top, 96)
+            .padding(.top, Spacing.emptyBlockGap)
         }
     }
 }

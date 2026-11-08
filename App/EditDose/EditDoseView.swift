@@ -48,7 +48,7 @@ struct EditDoseView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
-                        .frame(minHeight: 44)
+                        .frame(minHeight: Spacing.rowMinimumHeight)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("edit-dose-cancel")
                 }

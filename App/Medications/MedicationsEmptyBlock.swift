@@ -3,12 +3,12 @@ import SwiftUI
 
 struct MedicationsEmptyBlock: View {
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: Spacing.emptyStateIconGap) {
             Image(systemName: "pills")
                 .font(.system(size: 44))
                 .foregroundStyle(.secondary)
                 .accessibilityHidden(true)
-            VStack(spacing: 8) {
+            VStack(spacing: Spacing.emptyStateTextGap) {
                 Text("No medications yet")
                     .font(.title2.weight(.semibold))
                 Text("Add what you take, then log a dose in two taps. Everything stays on this iPhone.")
@@ -18,7 +18,7 @@ struct MedicationsEmptyBlock: View {
             .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
-        .padding(.horizontal, 32)
+        .padding(.horizontal, Spacing.emptyStateInset)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("medications-empty")
     }

@@ -39,7 +39,7 @@ struct MorePlacesRow: View {
     }
 
     private func inline(_ text: String) -> some View {
-        HStack(spacing: 6) {
+        HStack(spacing: Spacing.moreRowGap) {
             label.fixedSize(horizontal: true, vertical: false)
             Spacer(minLength: 2)
             Text(text)
@@ -51,8 +51,8 @@ struct MorePlacesRow: View {
     }
 
     private var stacked: some View {
-        HStack(spacing: 6) {
-            VStack(alignment: .leading, spacing: 4) {
+        HStack(spacing: Spacing.moreRowGap) {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 label
                 Text(value.listText)
                     .foregroundStyle(.secondary)
@@ -71,7 +71,7 @@ struct MorePlacesRow: View {
         Image(systemName: "chevron.forward")
             .font(.system(size: 16, weight: .semibold))
             .foregroundStyle(.secondary)
-            .frame(width: 8, height: 14)
+            .frame(width: Spacing.chevronSlotWidth, height: Spacing.chevronSlotHeight)
     }
 }
 

@@ -5,15 +5,14 @@ import TipKit
 struct PinTipStyle: TipViewStyle {
     private enum Metrics {
         static let dismissTarget: CGFloat = 44
-        static let spacing: CGFloat = 12
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        HStack(alignment: .top, spacing: Metrics.spacing) {
+        HStack(alignment: .top, spacing: Spacing.tipGap) {
             Image(systemName: "pin.fill")
                 .font(.body.weight(.semibold))
                 .accessibilityHidden(true)
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 configuration.title
                     .font(.headline)
                 configuration.message?
@@ -32,9 +31,9 @@ struct PinTipStyle: TipViewStyle {
             .accessibilityLabel("Dismiss tip")
         }
         .foregroundStyle(Color("OnSoftAccent"))
-        .padding(.leading, Metrics.spacing)
-        .padding(.vertical, 4)
-        .padding(.trailing, 4)
+        .padding(.leading, Spacing.tipGap)
+        .padding(.vertical, Spacing.tipInset)
+        .padding(.trailing, Spacing.tipInset)
         .background(Color("SoftAccent"), in: .card)
         .accessibilityElement(children: .contain)
     }

@@ -37,7 +37,7 @@ struct DoseRow: View {
         .overlay(alignment: checkInAlignment) {
             if isWaiting {
                 checkInLabel
-                    .frame(minWidth: 44, minHeight: 44, alignment: checkInAlignment)
+                    .frame(minWidth: Spacing.tapTarget, minHeight: Spacing.tapTarget, alignment: checkInAlignment)
                     .contentShape(Rectangle())
                     .accessibilityElement(children: .ignore)
                     .accessibilityLabel(Text("Check in"))
@@ -53,7 +53,7 @@ struct DoseRow: View {
     @ViewBuilder
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 IconTile(symbol: RowSymbol.dose)
                 lines
                 if isWaiting {
@@ -61,7 +61,7 @@ struct DoseRow: View {
                 }
             }
         } else {
-            HStack(spacing: 12) {
+            HStack(spacing: Spacing.rowContentGap) {
                 IconTile(symbol: RowSymbol.dose)
                 lines
                 Spacer()
@@ -77,7 +77,7 @@ struct DoseRow: View {
     }
 
     private var lines: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
             Text(title)
                 .font(.body)
                 .foregroundStyle(.primary)

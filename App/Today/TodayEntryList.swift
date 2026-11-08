@@ -73,13 +73,13 @@ struct EntryRow: View {
     @ViewBuilder
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 IconTile(symbol: RowSymbol.name(for: entry.kind))
                 lines
                 value
             }
         } else {
-            HStack(spacing: 12) {
+            HStack(spacing: Spacing.rowContentGap) {
                 IconTile(symbol: RowSymbol.name(for: entry.kind))
                 lines
                 Spacer()
@@ -89,7 +89,7 @@ struct EntryRow: View {
     }
 
     private var lines: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
             Text(entry.kind.displayName)
                 .font(.body)
                 .foregroundStyle(.primary)
