@@ -37,11 +37,11 @@ struct PlaceListRow: View {
             togglePlace(isSelected: isSelected)
         } label: {
             HStack {
-                pinSlot(isPinned: isPinned)
                 Text(place.displayName)
                     .font(.body.weight(isSelected ? .semibold : .regular))
                     .foregroundStyle(.primary)
                 Spacer(minLength: 8)
+                pinSlot(isPinned: isPinned)
                 if isSelected {
                     Image(systemName: "checkmark")
                         .foregroundStyle(Color("AccentColor"))
@@ -91,7 +91,7 @@ struct PlaceListRow: View {
             .font(.system(size: PlaceListRowMetrics.pinIconSize))
             .foregroundStyle(.secondary)
             .opacity(isPinned ? 1 : 0)
-            .frame(width: PlaceListRowMetrics.pinSlotWidth, alignment: .leading)
+            .frame(width: PlaceListRowMetrics.pinSlotWidth, alignment: .trailing)
             .accessibilityHidden(true)
     }
 
