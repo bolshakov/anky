@@ -1,0 +1,10 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/w.sh 'new_medication accessibility-extra-extra-extra-large >/dev/null; ui | grep "id=taken-as "; ui | grep "id=medication-name "; ui | grep "id=check-in-later "; shot segmented-xxxl >/dev/null'
+exit: 0
+commit: 746b0f960e67d0e50bd56a5323cb57e388d4df98
+
+PopUpButton id=taken-as label='How you take it' value='As needed' enabled=True @16,620.6666666666667 370x192.66666666666663
+TextField id=medication-name label='Name' value='Name' enabled=True @32,158 338x146.66666666666663
+CheckBox id=check-in-later label='Check in later' value='0' enabled=True @16,845.3333333333334 370x146.66666666666663
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 4AEB055C-64A8-4383-B95E-C774066A9E8E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/walk-t184.HKyG/segmented-xxxl.png

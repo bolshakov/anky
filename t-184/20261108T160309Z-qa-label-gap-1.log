@@ -1,0 +1,12 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/w.sh 'new_entry >/dev/null; echo severity-label $(height1 severity-label); new_medication >/dev/null; echo taking-label $(height1 taking-label); shot label-gap-medication; y=$(edge1 taking-label top); magick "$out/label-gap-medication.png" -crop "1206x300+0+$(awk -v y=$y "BEGIN { printf \"%d\", y * 3 - 30 }")" +repage "$out/label-gap-medication-crop.png"; echo y=$y; ls $out/*.png'
+exit: 0
+commit: 746b0f960e67d0e50bd56a5323cb57e388d4df98
+
+severity-label 32.33333333333334
+taking-label 32.333333333333314
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 4AEB055C-64A8-4383-B95E-C774066A9E8E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/walk-t184.HKyG/label-gap-medication.png
+y=294
+/Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/walk-t184.HKyG/label-gap-medication-crop.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/walk-t184.HKyG/label-gap-medication.png

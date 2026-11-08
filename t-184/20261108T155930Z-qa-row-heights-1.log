@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/w.sh 'new_medication >/dev/null; for i in medication-name medication-strength check-in-later; do echo $i $(height1 $i); done'
+exit: 0
+commit: 746b0f960e67d0e50bd56a5323cb57e388d4df98
+
+medication-name 52
+medication-strength 52
+check-in-later 52

@@ -1,0 +1,11 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/w.sh 'edit_medication >/dev/null; echo taken-as-left $(edge1 taken-as left); echo taken-as-width $(width1 taken-as); echo check-in-left $(edge1 check-in-later left); echo check-in-width $(width1 check-in-later); new_medication_dark >/dev/null; shot segmented-dark >/dev/null'
+exit: 0
+commit: 746b0f960e67d0e50bd56a5323cb57e388d4df98
+
+taken-as-left 16
+taken-as-width 370
+check-in-left 16
+check-in-width 370
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 4AEB055C-64A8-4383-B95E-C774066A9E8E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/walk-t184.HKyG/segmented-dark.png

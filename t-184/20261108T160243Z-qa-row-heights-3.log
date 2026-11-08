@@ -1,0 +1,5 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t184-02-11/tmp/w.sh 'new_medication accessibility-extra-extra-extra-large >/dev/null; height1 medication-name'
+exit: 0
+commit: 746b0f960e67d0e50bd56a5323cb57e388d4df98
+
+146.66666666666663
