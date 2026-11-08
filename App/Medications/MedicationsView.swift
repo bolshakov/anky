@@ -81,7 +81,7 @@ struct MedicationsView: View {
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }
-                .listRowInsets(.vertical, 0)
+                .fillsCardRow()
             }
         }
     }
@@ -93,7 +93,7 @@ struct MedicationsView: View {
                 MedicationsEmptyBlock()
                     .nonCardBlock()
             }
-            .listSectionSpacing(.custom(96))
+            .emptyBlockGap()
         }
     }
 }

@@ -9,6 +9,7 @@ enum Spacing {
     static let titleToDatePullPerTitlePoint: CGFloat = 0.25
     static let largeTitleSize: CGFloat = 34
     static let blockGap: CGFloat = 32
+    static let emptyBlockGap: CGFloat = 96
     static let labelGap: CGFloat = 12
     static let footnoteGap: CGFloat = 8
     static let inlineGap: CGFloat = 8

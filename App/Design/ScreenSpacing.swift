@@ -11,6 +11,10 @@ extension View {
             .background(Color.surface)
     }
 
+    func emptyBlockGap() -> some View {
+        listSectionSpacing(.custom(Spacing.emptyBlockGap))
+    }
+
     func nonCardBlock() -> some View {
         listRowBackground(Color.clear)
             .listRowInsets(EdgeInsets())

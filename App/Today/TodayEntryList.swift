@@ -13,14 +13,10 @@ struct TodayEntryList: View {
     let onDeleteDose: (Dose) -> Void
 
     var body: some View {
-        Section {
+        FootnotedSection(footnote: Text("Levels are 0 to 10. Stored on this iPhone only.")) {
             ForEach(items) { item in
                 row(for: item)
             }
-        } footer: {
-            Text("Levels are 0 to 10. Stored on this iPhone only.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
         }
     }
 

@@ -47,7 +47,7 @@ struct DateSection: View {
                 .accessibilityIdentifier("date-picker")
             }
         }
-        .listRowInsets(.vertical, 0)
+        .fillsCardRow()
     }
 
     private var day: String {

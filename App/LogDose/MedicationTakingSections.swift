@@ -52,7 +52,7 @@ private struct TakenAsMenuRow: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .listRowInsets(.vertical, 0)
+        .fillsCardRow()
         .accessibilityLabel("How you take it")
         .accessibilityValue(Text(takenAs.title))
         .accessibilityIdentifier("taken-as")

@@ -55,7 +55,7 @@ struct LogDoseView: View {
                         onLog: { isShowingNewEntry = true }
                     )
                     if checkedMedication != nil {
-                        DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind, isCard: true)
+                        DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind)
                     }
                     dateSection(scrolling: proxy)
                 }
@@ -159,7 +159,7 @@ struct LogDoseView: View {
             TimelineView(.everyMinute) { _ in
                 DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
             }
-            .listRowInsets(.vertical, 0)
+            .fillsCardRow()
             .id(Self.dateBlockID)
         }
     }
