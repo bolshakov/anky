@@ -149,25 +149,26 @@ final class TakenAsChoiceTests: XCTestCase {
         }
     }
 
-    /// The row's own button reads "As needed" while the menu is shut, and the open menu adds an item of that name.
+    /// Counted before and after opening, so an "As needed" label that is on screen while the menu is shut does not
+    /// count.
     private func asNeededCount(in app: XCUIApplication) -> Int {
         app.buttons.matching(NSPredicate(format: "label == 'As needed'")).count
     }
 
     /// A row scrolled off is missing from the lazy list, and one under the navigation bar takes no focus.
+    /// The drag runs down the page margin, since one that starts on the menu row does not always scroll.
     private func scrollBackToTop(until element: XCUIElement, in app: XCUIApplication) {
         let navigationBarBottom = app.navigationBars.firstMatch.frame.maxY
         let window = app.windows.firstMatch
-        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
-        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.2))
+        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.5))
         for _ in 0 ..< 5 where !element.exists || element.frame.minY < navigationBarBottom {
             from.press(forDuration: 0.1, thenDragTo: to)
         }
     }
 
-    /// At the largest size the row's title sits above the value, and only the value line opens the menu.
     private func openChoiceMenu(in app: XCUIApplication) {
-        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85)).tap()
+        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
     }
 
     private func segmentLabels(in app: XCUIApplication) -> [String] {
