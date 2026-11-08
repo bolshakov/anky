@@ -13,6 +13,7 @@ struct EditDoseView: View {
     @State private var takenAt: Date
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
+    @State private var isConfirmingDelete = false
 
     init(dose: Dose, medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.dose = dose
@@ -26,27 +27,18 @@ struct EditDoseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                CardSection(Text("Medication"), id: "medication") {
                     ForEach(EditDoseMedications.choices(for: dose, in: medications.medications)) { medication in
                         medicationRow(medication)
                     }
-                } header: {
-                    Text("Medication")
-                        .cardCaption()
                 }
-                Section {
+                CardSection(id: "date") {
                     DateSection(date: $takenAt)
-                        .listRowInsets(EdgeInsets())
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
+                        .rowHeight()
                 }
-                readingSection
-                Section {
-                    DeleteDoseSection(onDelete: removeDose)
-                }
+                readingSections
             }
-            .scrollContentBackground(.hidden)
-            .background(Color("PageBackground"))
+            .screenSpacing()
             .accessibilityIdentifier("edit-dose-screen")
             .navigationTitle("Edit Dose")
             .navigationBarTitleDisplayMode(.inline)
@@ -57,27 +49,16 @@ struct EditDoseView: View {
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("edit-dose-cancel")
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    DoseMoreMenu { isConfirmingDelete = true }
+                }
             }
-            .safeAreaInset(edge: .bottom) {
-                saveButton
-            }
+            .bottomPrimaryButton(Text("Save changes"), id: "save-dose-changes", action: saveChanges)
+            .entryDeleteConfirmation(isPresented: $isConfirmingDelete, words: .dose, onDelete: removeDose)
             .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
         }
-    }
-
-    private var saveButton: some View {
-        Button {
-            saveChanges()
-        } label: {
-            Text("Save changes")
-                .frame(maxWidth: .infinity)
-        }
-        .primaryButton()
-        .controlSize(.large)
-        .accessibilityIdentifier("save-dose-changes")
-        .padding()
     }
 
     /// The dose keeps its own check-in delay and its readings. Only the medication and the time come from the form.
@@ -102,35 +83,41 @@ struct EditDoseView: View {
     }
 
     /// A reading that was deleted leaves the dose with no before-reading, which shows as None and opens nothing.
-    private var readingSection: some View {
+    @ViewBuilder private var readingSections: some View {
         let readings = DoseReadings(dose, in: model.entries)
-        return Section {
+        CardSection(
+            Text("Before this dose"),
+            footnote: readings.before.map { _ in Text("The entry used for this dose. Tap to open it.") },
+            id: "before-reading"
+        ) {
             if let before = readings.before {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(before))
                 } label: {
-                    ReadingRow(caption: String(localized: "Before this dose"), entry: before)
+                    ReadingRow(entry: before)
                 }
                 .accessibilityIdentifier("before-reading-row")
             } else {
-                LabeledContent("Before this dose") {
-                    Text("None")
-                }
-                .accessibilityIdentifier("before-reading-row")
+                Text("None")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityIdentifier("before-reading-row")
             }
-            if let after = readings.after {
+        }
+        if let after = readings.after {
+            CardSection(Text(afterLabel(after)), id: "after-reading") {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(after))
                 } label: {
-                    ReadingRow(caption: afterCaption, entry: after)
+                    ReadingRow(entry: after)
                 }
                 .accessibilityIdentifier("after-reading-row")
             }
         }
     }
 
-    private var afterCaption: String {
-        "\(String(localized: "After")) · \(String(localized: "checked in at"))"
+    private func afterLabel(_ entry: Entry) -> String {
+        let time = ClockText.text(for: entry.date, calendar: .current, locale: .current)
+        return "\(String(localized: "After")) · \(String(localized: "checked in at")) \(time)"
     }
 
     private func medicationRow(_ medication: Medication) -> some View {

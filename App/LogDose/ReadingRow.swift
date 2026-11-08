@@ -5,7 +5,6 @@ import SwiftUI
 /// One reading as a dose shows it. The caller puts it in the control that opens the choice, and that control gives
 /// the row its tap target and its identifier.
 struct ReadingRow: View {
-    let caption: String?
     let entry: Entry
 
     private var time: String {
@@ -32,17 +31,12 @@ struct ReadingRow: View {
     }
 
     private var spokenText: String {
-        [caption, time, kind, places, level].compactMap(\.self).joined(separator: ", ")
+        [time, kind, places, level].compactMap(\.self).joined(separator: ", ")
     }
 
     var body: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                if let caption {
-                    Text(caption)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
                 Text(kind)
                     .font(.body)
                 Text([places, time].compactMap(\.self).joined(separator: " · "))

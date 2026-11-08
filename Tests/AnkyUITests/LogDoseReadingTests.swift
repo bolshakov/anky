@@ -102,7 +102,7 @@ final class LogDoseReadingTests: XCTestCase {
         let title = try XCTUnwrap(titles.first { $0.frame.maxY <= row.frame.minY }, "no title above the card")
         let medication = try XCTUnwrap(elementsLabelled("Medication", in: app).first)
         XCTAssertGreaterThanOrEqual(title.frame.minY, medication.frame.maxY)
-        XCTAssertTrue(app.descendants(matching: .any)["before-reading-footer"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["before-reading-footnote"].waitForExistence(timeout: 10))
     }
 
     func testWithoutAReadingTheSectionTitleIsBeforeThisDoseAboveTheRow() throws {
@@ -122,7 +122,7 @@ final class LogDoseReadingTests: XCTestCase {
         let labelled = elementsLabelled("Log how you feel now", in: app)
         XCTAssertFalse(labelled.isEmpty)
         XCTAssertTrue(labelled.allSatisfy { row.frame.contains($0.frame) }, "a title reads Log how you feel now")
-        XCTAssertFalse(app.descendants(matching: .any)["before-reading-footer"].exists)
+        XCTAssertFalse(app.descendants(matching: .any)["before-reading-footnote"].exists)
     }
 
     /// The text ends about halfway across the row and the chevron is at its far edge, so this point is blank row.

@@ -49,7 +49,7 @@ struct ReadingChoiceView: View {
 
     private func choiceRow(_ entry: Entry) -> some View {
         let isChecked = entry.id == chosenID
-        let row = ReadingRow(caption: nil, entry: entry)
+        let row = ReadingRow(entry: entry)
         return Button {
             onPick(entry)
             dismiss()

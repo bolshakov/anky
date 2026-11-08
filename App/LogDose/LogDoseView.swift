@@ -34,7 +34,7 @@ struct LogDoseView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                CardSection(Text("Medication"), id: "medication") {
                     if active.isEmpty {
                         Text("No medications yet")
                             .accessibilityIdentifier("dose-no-medications")
@@ -46,9 +46,6 @@ struct LogDoseView: View {
                         isShowingNewMedication = true
                     }
                     .accessibilityIdentifier("dose-add-medication")
-                } header: {
-                    Text("Medication")
-                        .cardCaption()
                 }
                 dateSection
                 BeforeThisDoseSection(
@@ -57,11 +54,10 @@ struct LogDoseView: View {
                     onLog: { isShowingNewEntry = true }
                 )
                 if checkedMedication != nil {
-                    DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind)
+                    DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind, isCard: true)
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color("PageBackground"))
+            .screenSpacing()
             .navigationTitle("Log Dose")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -82,19 +78,7 @@ struct LogDoseView: View {
                     }
                 }
             }
-            .safeAreaInset(edge: .bottom) {
-                Button {
-                    saveDose()
-                } label: {
-                    Text("Save dose")
-                        .frame(maxWidth: .infinity)
-                }
-                .primaryButton()
-                .controlSize(.large)
-                .disabled(checkedID == nil)
-                .accessibilityIdentifier("save-dose")
-                .padding()
-            }
+            .safeAreaInset(edge: .bottom) { saveButton }
             .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -135,6 +119,20 @@ struct LogDoseView: View {
         }
     }
 
+    /// Built here and not with `bottomPrimaryButton`, which cannot be disabled without disabling the form it sits on.
+    private var saveButton: some View {
+        Button(action: saveDose) {
+            Text("Save dose").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+        }
+        .primaryButton()
+        .buttonBorderShape(.capsule)
+        .controlSize(.large)
+        .disabled(checkedID == nil)
+        .padding(.horizontal, Spacing.screenMargin)
+        .padding(.bottom, Spacing.bottomClearance)
+        .accessibilityIdentifier("save-dose")
+    }
+
     private var active: [Medication] {
         medications.active
     }
@@ -154,16 +152,11 @@ struct LogDoseView: View {
 
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
     private var dateSection: some View {
-        Section {
+        CardSection(id: "date") {
             TimelineView(.everyMinute) { _ in
-                DateSection(
-                    date: dateBinding,
-                    labelPadding: EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-                )
+                DateSection(date: dateBinding)
             }
-            .listRowInsets(EdgeInsets())
-            .listRowBackground(Color("CardBackground").clipShape(.card))
-            .listRowSeparator(.hidden)
+            .rowHeight()
         }
     }
 
