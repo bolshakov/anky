@@ -4,6 +4,7 @@ import SwiftUI
 /// The only place under `App/` that writes a corner radius as a number.
 enum Corner {
     static let card: CGFloat = 22
+    static let iconTile: CGFloat = 9
 }
 
 extension Shape where Self == RoundedRectangle {

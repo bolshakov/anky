@@ -78,11 +78,13 @@ struct EntryRow: View {
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 4) {
+                IconTile(symbol: RowSymbol.name(for: entry.kind))
                 lines
                 value
             }
         } else {
             HStack(spacing: 12) {
+                IconTile(symbol: RowSymbol.name(for: entry.kind))
                 lines
                 Spacer()
                 value

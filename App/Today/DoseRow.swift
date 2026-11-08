@@ -54,6 +54,7 @@ struct DoseRow: View {
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 4) {
+                IconTile(symbol: RowSymbol.dose)
                 lines
                 if isWaiting {
                     checkInLabel.hidden()
@@ -61,6 +62,7 @@ struct DoseRow: View {
             }
         } else {
             HStack(spacing: 12) {
+                IconTile(symbol: RowSymbol.dose)
                 lines
                 Spacer()
                 if isWaiting {
