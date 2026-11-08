@@ -93,7 +93,7 @@ struct MedicationsView: View {
                 MedicationsEmptyBlock()
                     .nonCardBlock()
             }
-            .listSectionSpacing(.custom(96))
+            .emptyBlockGap()
         }
     }
 }
