@@ -59,6 +59,9 @@ jobs:
       - name: ui test runner proves itself
         run: scripts/ci/test-run-ui-tests.sh
 
+      - name: install script proves itself
+        run: scripts/ci/test-install-linux-tools.sh
+
   ios:
     needs: checks
     runs-on: macos-26
