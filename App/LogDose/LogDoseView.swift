@@ -4,6 +4,7 @@ import AnkyMedicationModel
 import SwiftUI
 
 struct LogDoseView: View {
+    private static let dateBlockID = "date-block"
     let medications: MedicationsModel
     let model: EntryLogModel
     let onSaved: () -> Void
@@ -33,31 +34,33 @@ struct LogDoseView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                CardSection(Text("Medication"), id: "medication") {
-                    if active.isEmpty {
-                        Text("No medications yet")
-                            .accessibilityIdentifier("dose-no-medications")
+            ScrollViewReader { proxy in
+                Form {
+                    CardSection(Text("Medication"), id: "medication") {
+                        if active.isEmpty {
+                            Text("No medications yet")
+                                .accessibilityIdentifier("dose-no-medications")
+                        }
+                        ForEach(active) { medication in
+                            medicationRow(medication)
+                        }
+                        Button("Add medication") {
+                            isShowingNewMedication = true
+                        }
+                        .accessibilityIdentifier("dose-add-medication")
                     }
-                    ForEach(active) { medication in
-                        medicationRow(medication)
+                    BeforeThisDoseSection(
+                        reading: { reading(at: takenAtNow) },
+                        onChoose: { isShowingReadingChoice = true },
+                        onLog: { isShowingNewEntry = true }
+                    )
+                    if checkedMedication != nil {
+                        DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind, isCard: true)
                     }
-                    Button("Add medication") {
-                        isShowingNewMedication = true
-                    }
-                    .accessibilityIdentifier("dose-add-medication")
+                    dateSection(scrolling: proxy)
                 }
-                dateSection
-                BeforeThisDoseSection(
-                    reading: { reading(at: takenAtNow) },
-                    onChoose: { isShowingReadingChoice = true },
-                    onLog: { isShowingNewEntry = true }
-                )
-                if checkedMedication != nil {
-                    DoseCheckInSection(checkIn: $checkIn, readingKind: reading(at: takenAtNow)?.kind, isCard: true)
-                }
+                .screenSpacing()
             }
-            .screenSpacing()
             .navigationTitle("Log Dose")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -151,12 +154,20 @@ struct LogDoseView: View {
     }
 
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
-    private var dateSection: some View {
+    private func dateSection(scrolling proxy: ScrollViewProxy) -> some View {
         CardSection(id: "date") {
             TimelineView(.everyMinute) { _ in
-                DateSection(date: dateBinding)
+                DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
             }
-            .rowHeight()
+            .listRowInsets(.vertical, 0)
+            .id(Self.dateBlockID)
+        }
+    }
+
+    private func scrollToDate(_ proxy: ScrollViewProxy) {
+        Task { @MainActor in
+            await Task.yield()
+            withAnimation { proxy.scrollTo(Self.dateBlockID, anchor: .bottom) }
         }
     }
 

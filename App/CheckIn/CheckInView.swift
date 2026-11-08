@@ -41,7 +41,6 @@ struct CheckInView: View {
                 whereSection
                 CardSection(id: "date") {
                     DateSection(date: $draft.date)
-                        .rowHeight()
                 }
                 NoteSection(draft: $draft)
                 saveSection
