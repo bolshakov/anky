@@ -4,13 +4,21 @@ import SwiftUI
 
 struct DateSection: View {
     @Binding var date: Date
-    var labelPadding = EdgeInsets()
+    private let onOpen: () -> Void
     @State private var isShowingPicker = false
+
+    init(date: Binding<Date>, onOpen: @escaping () -> Void = {}) {
+        _date = date
+        self.onOpen = onOpen
+    }
 
     var body: some View {
         VStack(spacing: 0) {
             Button {
                 isShowingPicker.toggle()
+                if isShowingPicker {
+                    onOpen()
+                }
             } label: {
                 HStack {
                     Text("Date and time")
@@ -19,7 +27,7 @@ struct DateSection: View {
                         .foregroundStyle(Color.ink2)
                     RowChevron()
                 }
-                .padding(labelPadding)
+                .rowHeight()
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
@@ -35,9 +43,11 @@ struct DateSection: View {
                 )
                 .datePickerStyle(.wheel)
                 .labelsHidden()
+                .padding(.bottom, Spacing.inlineGap)
                 .accessibilityIdentifier("date-picker")
             }
         }
+        .listRowInsets(.vertical, 0)
     }
 
     private var day: String {

@@ -4,6 +4,7 @@ import AnkyMedicationModel
 import SwiftUI
 
 struct EditDoseView: View {
+    private static let dateBlockID = "date-block"
     let dose: Dose
     let medications: MedicationsModel
     let model: EntryLogModel
@@ -26,20 +27,22 @@ struct EditDoseView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                CardSection(Text("Medication"), id: "medication") {
-                    ForEach(EditDoseMedications.choices(for: dose, in: medications.medications)) { medication in
-                        medicationRow(medication)
+            ScrollViewReader { proxy in
+                Form {
+                    CardSection(Text("Medication"), id: "medication") {
+                        ForEach(EditDoseMedications.choices(for: dose, in: medications.medications)) { medication in
+                            medicationRow(medication)
+                        }
+                    }
+                    readingSections
+                    CardSection(id: "date") {
+                        DateSection(date: $takenAt, onOpen: { scrollToDate(proxy) })
+                            .id(Self.dateBlockID)
                     }
                 }
-                CardSection(id: "date") {
-                    DateSection(date: $takenAt)
-                        .rowHeight()
-                }
-                readingSections
+                .screenSpacing()
+                .accessibilityIdentifier("edit-dose-screen")
             }
-            .screenSpacing()
-            .accessibilityIdentifier("edit-dose-screen")
             .navigationTitle("Edit Dose")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -58,6 +61,13 @@ struct EditDoseView: View {
             .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
+        }
+    }
+
+    private func scrollToDate(_ proxy: ScrollViewProxy) {
+        Task { @MainActor in
+            await Task.yield()
+            withAnimation { proxy.scrollTo(Self.dateBlockID, anchor: .bottom) }
         }
     }
 
