@@ -25,8 +25,8 @@ struct TodayView: View {
 
     private var pairLayout: AnyLayout {
         dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(spacing: 12))
-            : AnyLayout(HStackLayout(spacing: 12))
+            ? AnyLayout(VStackLayout(spacing: Spacing.pairGap))
+            : AnyLayout(HStackLayout(spacing: Spacing.pairGap))
     }
 
     private var todayItems: [LoggedItem] {
@@ -193,8 +193,8 @@ struct TodayView: View {
             Section {
                 EmptyTodayView()
                     .frame(maxWidth: .infinity)
-                    .padding(.top, recent == nil ? 48 : 64)
-                    .padding(.bottom, 48)
+                    .padding(.top, recent == nil ? Spacing.emptyTodayTop : Spacing.emptyTodayTopBelowChip)
+                    .padding(.bottom, Spacing.emptyTodayBottom)
                     .nonCardBlock()
             }
         } else {

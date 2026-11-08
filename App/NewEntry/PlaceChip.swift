@@ -28,7 +28,7 @@ struct PlaceChip: View {
     @ViewBuilder
     private var chipButton: some View {
         let button = Button(action: action) {
-            HStack(spacing: 6) {
+            HStack(spacing: Spacing.chipInnerGap) {
                 if isSelected {
                     Image(systemName: "checkmark")
                         .font(.system(size: checkSize, weight: .heavy))

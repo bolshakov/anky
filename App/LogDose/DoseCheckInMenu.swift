@@ -17,7 +17,7 @@ struct DoseCheckInMenu: View {
         } label: {
             Group {
                 if dynamicTypeSize.isAccessibilitySize {
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: Spacing.tightGap) {
                         Text("After")
                             .foregroundStyle(.primary)
                         value

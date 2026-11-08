@@ -66,7 +66,7 @@ struct LogDoseView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
-                        .frame(minHeight: 44)
+                        .frame(minHeight: Spacing.rowMinimumHeight)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("log-dose-cancel")
                 }
@@ -75,7 +75,7 @@ struct LogDoseView: View {
                         NavigationLink("Manage") {
                             MedicationsView(medications: medications)
                         }
-                        .frame(minWidth: 44, minHeight: 44)
+                        .frame(minWidth: Spacing.tapTarget, minHeight: Spacing.tapTarget)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("log-dose-manage")
                     }

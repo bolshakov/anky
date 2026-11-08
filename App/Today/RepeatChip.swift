@@ -19,7 +19,7 @@ struct RepeatChip: View {
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(borderShape)
-        .frame(minHeight: 44)
+        .frame(minHeight: Spacing.rowMinimumHeight)
         .contentShape(borderShape)
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
         .accessibilityIdentifier("repeat-chip")
@@ -33,10 +33,10 @@ struct RepeatLoggedCard: View {
 
     var body: some View {
         let layout = dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
-            : AnyLayout(HStackLayout(spacing: 12))
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.inlineGap))
+            : AnyLayout(HStackLayout(spacing: Spacing.rowContentGap))
         layout {
-            HStack(spacing: 12) {
+            HStack(spacing: Spacing.rowContentGap) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(Color("AccentColor"))
                     .accessibilityHidden(true)
@@ -48,15 +48,15 @@ struct RepeatLoggedCard: View {
             }
             Button(action: onUndo) {
                 Text("Undo")
-                    .frame(minHeight: 44)
+                    .frame(minHeight: Spacing.rowMinimumHeight)
                     .contentShape(Rectangle())
             }
             .buttonStyle(.borderless)
             .foregroundStyle(Color("AccentColor"))
             .accessibilityIdentifier("repeat-undo")
         }
-        .padding(.horizontal, 16)
-        .frame(minHeight: 44)
+        .padding(.horizontal, Spacing.cardInset)
+        .frame(minHeight: Spacing.rowMinimumHeight)
         .background(Color("CardBackground"), in: .card)
     }
 }

@@ -9,7 +9,7 @@ struct SeveritySection: View {
     @Binding var severity: Severity
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: Spacing.inlineGap) {
             Text(caption)
                 .font(.footnote)
                 .foregroundStyle(.secondary)
@@ -17,7 +17,7 @@ struct SeveritySection: View {
                 .accessibilityIdentifier("\(idPrefix)-caption")
                 .accessibilityAddTraits(.isHeader)
 
-            VStack(spacing: 12) {
+            VStack(spacing: Spacing.cardContentGap) {
                 // In double-length text the value is clipped beside the label, so it stacks under it instead.
                 ViewThatFits(in: .horizontal) {
                     HStack {
@@ -25,7 +25,7 @@ struct SeveritySection: View {
                         Spacer()
                         SeverityValue(severity: severity, idPrefix: idPrefix)
                     }
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: Spacing.tightGap) {
                         Text("How strong")
                         SeverityValue(severity: severity, idPrefix: idPrefix)
                     }
@@ -47,7 +47,7 @@ struct SeveritySection: View {
                         .accessibilityIdentifier("\(idPrefix)-high-label")
                         .accessibilityHidden(true)
                 }
-                .frame(minHeight: 44)
+                .frame(minHeight: Spacing.rowMinimumHeight)
                 .accessibilityLabel(spokenLabel)
                 .accessibilityValue(severity.spokenValue)
                 .accessibilityIdentifier("\(idPrefix)-slider")

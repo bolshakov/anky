@@ -3,11 +3,11 @@ import SwiftUI
 
 struct EmptyTodayView: View {
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: Spacing.emptyStateGap) {
             Image("AnkyMark")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 120)
+                .frame(width: Spacing.emptyMarkWidth)
                 .foregroundStyle(Color("AccentColor"))
                 .accessibilityHidden(true)
 
@@ -21,7 +21,7 @@ struct EmptyTodayView: View {
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
         }
-        .padding(.horizontal, 32)
+        .padding(.horizontal, Spacing.emptyStateInset)
         .fixedSize(horizontal: false, vertical: true)
     }
 }

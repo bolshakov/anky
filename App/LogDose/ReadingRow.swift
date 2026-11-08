@@ -35,8 +35,8 @@ struct ReadingRow: View {
     }
 
     var body: some View {
-        HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 2) {
+        HStack(spacing: Spacing.rowContentGap) {
+            VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
                 Text(kind)
                     .font(.body)
                 Text([places, time].compactMap(\.self).joined(separator: " · "))
