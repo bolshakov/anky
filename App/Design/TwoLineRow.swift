@@ -25,7 +25,7 @@ struct TwoLineRow: View {
                     .accessibilityElement(children: .combine)
             }
         }
-        .rowHeight()
+        .rowHeight(Spacing.twoLineRowHeight)
     }
 
     private func row(chevron: Bool) -> some View {
