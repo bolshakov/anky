@@ -106,8 +106,7 @@ struct HistoryView: View {
                         }
                     }
                     .listStyle(.insetGrouped)
-                    .scrollContentBackground(.hidden)
-                    .headerProminence(.increased)
+                    .screenSpacing()
                 }
             }
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {

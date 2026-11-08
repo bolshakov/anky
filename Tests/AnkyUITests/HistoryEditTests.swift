@@ -16,7 +16,7 @@ final class HistoryEditTests: XCTestCase {
         XCTAssertTrue(app.buttons["save-entry"].waitForNonExistence(timeout: 10))
 
         XCTAssertEqual(dayHeaderLabels(in: app), ["Yesterday"])
-        let header = app.descendants(matching: .any).matching(identifier: "day-header").firstMatch
+        let header = app.descendants(matching: .any).matching(identifier: "day-label").firstMatch
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         XCTAssertGreaterThan(row.frame.minY, header.frame.minY)

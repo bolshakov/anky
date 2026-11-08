@@ -16,28 +16,20 @@ struct DaySectionView: View {
     let onLastDayAppear: () -> Void
 
     var body: some View {
-        Section {
+        CardSection(title, footnote: footnote, id: "day") {
             ForEach(section.items) { item in
                 row(for: item)
-            }
-        } header: {
-            title
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .cardCaption()
-                .accessibilityIdentifier("day-header")
-                .onAppear {
-                    if isLastDay, hasOlderDays {
-                        onLastDayAppear()
+                    .onAppear {
+                        if isLastDay, hasOlderDays, item.id == section.items.first?.id {
+                            onLastDayAppear()
+                        }
                     }
-                }
-        } footer: {
-            if isLastDay, !hasOlderDays {
-                Text("Levels are 0 to 10.")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
             }
         }
+    }
+
+    private var footnote: Text? {
+        isLastDay && !hasOlderDays ? Text("Levels are 0 to 10.") : nil
     }
 
     @ViewBuilder

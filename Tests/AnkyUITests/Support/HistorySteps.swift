@@ -25,7 +25,7 @@ func logEntry(_ level: Int, yesterday: Bool = false, in app: XCUIApplication) {
 /// The day headers on screen, top to bottom, such as "Today" and "Yesterday".
 @MainActor
 func dayHeaderLabels(in app: XCUIApplication) -> [String] {
-    app.descendants(matching: .any).matching(identifier: "day-header").allElementsBoundByIndex.map(\.label)
+    app.descendants(matching: .any).matching(identifier: "day-label").allElementsBoundByIndex.map(\.label)
 }
 
 /// Drags the row left by about a third of its width. That reveals the trailing actions without a full swipe.
