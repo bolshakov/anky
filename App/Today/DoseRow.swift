@@ -54,22 +54,14 @@ struct DoseRow: View {
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 4) {
-                timeText
-                VStack(alignment: .leading, spacing: 2) {
-                    titleText
-                    subtitleText
-                }
+                lines
                 if isWaiting {
                     checkInLabel.hidden()
                 }
             }
         } else {
             HStack(spacing: 12) {
-                TimeColumn(time: time)
-                VStack(alignment: .leading, spacing: 2) {
-                    titleText
-                    subtitleText
-                }
+                lines
                 Spacer()
                 if isWaiting {
                     checkInLabel.hidden()
@@ -82,24 +74,16 @@ struct DoseRow: View {
         dynamicTypeSize.isAccessibilitySize ? .bottomLeading : .trailing
     }
 
-    private var timeText: some View {
-        Text(time)
-            .font(.footnote)
-            .monospacedDigit()
-            .foregroundStyle(.secondary)
-            .fixedSize()
-    }
-
-    private var titleText: some View {
-        Text(title)
-            .font(.body)
-            .foregroundStyle(.primary)
-    }
-
-    private var subtitleText: some View {
-        Text(DoseRowText.subtitle(for: readings, words: .app))
-            .font(.footnote)
-            .foregroundStyle(.secondary)
+    private var lines: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title)
+                .font(.body)
+                .foregroundStyle(.primary)
+            Text(RowSecondLine.text(time: time, detail: DoseRowText.painPhrase(for: readings, words: .app)))
+                .font(.footnote)
+                .monospacedDigit()
+                .foregroundStyle(.secondary)
+        }
     }
 
     private var checkInLabel: some View {

@@ -73,47 +73,47 @@ struct EntryRow: View {
         }
     }
 
-    /// At accessibility sizes the time, the places with the kind, and the level stack in one column, so no word is
-    /// squeezed into a narrow column.
+    /// At accessibility sizes the lines and the level stack in one column, so no word is squeezed into a narrow column.
     @ViewBuilder
     private var layout: some View {
         if dynamicTypeSize.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 4) {
-                timeText
-                placeAndKind
+                lines
                 value
             }
         } else {
             HStack(spacing: 12) {
-                TimeColumn(time: time)
-                placeAndKind
+                lines
                 Spacer()
                 value
             }
         }
     }
 
-    private var timeText: some View {
-        Text(time)
-            .font(.footnote)
-            .monospacedDigit()
-            .foregroundStyle(.secondary)
-    }
-
-    private var placeAndKind: some View {
+    private var lines: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(entry.placeSummary.text)
+            Text(entry.kind.displayName)
                 .font(.body)
                 .foregroundStyle(.primary)
-            Text(entry.kind.displayName)
+            Text(RowSecondLine.text(time: time, detail: detail))
                 .font(.footnote)
+                .monospacedDigit()
                 .foregroundStyle(.secondary)
         }
     }
 
-    private var spokenLabel: Text {
-        let places = RecentEntry(entry).spokenPlaces
-        return Text("\(time), \(places), \(Text(entry.kind.displayName)), \(Text(entry.severity.spokenValue))")
+    private var detail: String? {
+        entry.kind.asksWhere ? entry.placeSummary.text : nil
+    }
+
+    private var spokenLabel: String {
+        let places = entry.kind.asksWhere ? RecentEntry(entry).spokenPlaces : nil
+        return EntryRowText.spokenLabel(
+            kind: String(localized: entry.kind.displayName),
+            time: time,
+            places: places,
+            severity: String(localized: entry.severity.spokenValue)
+        )
     }
 
     private var value: some View {

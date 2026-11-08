@@ -7,9 +7,15 @@ func entryRows(in app: XCUIApplication) -> XCUIElementQuery {
     app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH %@", "entry-row"))
 }
 
-/// The kind's title is a word that changes with the language, so the row's time stands in for its label.
+/// The kind's title is a word that changes with the language, so the row's time stands in for its label. An entry
+/// row speaks its kind, then its time.
 func rowTime(of row: XCUIElement) -> String {
-    String(row.label.prefix { $0 != "," })
+    row.label.components(separatedBy: ", ")[1]
+}
+
+/// A dose row speaks its title, then its time, then the word Dose.
+func doseRowTime(of label: String) -> String {
+    label.components(separatedBy: ". ")[1]
 }
 
 func rowSeverity(of row: XCUIElement) -> Int? {

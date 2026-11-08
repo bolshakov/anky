@@ -24,7 +24,7 @@ final class EditDoseTests: XCTestCase {
 
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
-        let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
+        let rowTime = doseRowTime(of: rowLabel)
         XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
     }
 
@@ -73,7 +73,7 @@ final class EditDoseTests: XCTestCase {
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
         let day = dateRowDay(in: app) ?? ""
         XCTAssertTrue(day.hasPrefix("Today"), "date row day is \(day)")
-        let rowTime = String(rowLabel.prefix(while: { $0 != "." }))
+        let rowTime = doseRowTime(of: rowLabel)
         XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.waitForExistence(timeout: 10))

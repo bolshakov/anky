@@ -32,7 +32,7 @@ private extension DosePainWords {
 
     static var subtitlePain: DosePainWords {
         DosePainWords(
-            before: { String(localized: "Dose · pain was \($0)") },
+            before: { String(localized: "pain was \($0)") },
             after: { String(localized: "pain \($0) after") },
             beforeAndAfter: { String(localized: "pain \($0) before, \($1) after") }
         )
@@ -40,7 +40,7 @@ private extension DosePainWords {
 
     static var subtitleStiffness: DosePainWords {
         DosePainWords(
-            before: { String(localized: "Dose · stiffness was \($0)") },
+            before: { String(localized: "stiffness was \($0)") },
             after: { String(localized: "stiffness \($0) after") },
             beforeAndAfter: { String(localized: "stiffness \($0) before, \($1) after") }
         )
@@ -48,7 +48,7 @@ private extension DosePainWords {
 
     static var subtitleFatigue: DosePainWords {
         DosePainWords(
-            before: { String(localized: "Dose · fatigue was \($0)") },
+            before: { String(localized: "fatigue was \($0)") },
             after: { String(localized: "fatigue \($0) after") },
             beforeAndAfter: { String(localized: "fatigue \($0) before, \($1) after") }
         )
