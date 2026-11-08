@@ -1,0 +1,7 @@
+$ sh -c '. "/Users/bolshakov/Projects/personal/anky.wt/qa-t185-01-1/tmp/hdr.sh"; open_history >/dev/null; ui | grep -E "id=day-(header|label) |Levels are"'
+exit: 0
+commit: 6439ad9b5fa5c956603d49175a3bdbae9aee9859
+
+Heading id=day-label label='Today' value=None enabled=True @16,184 370x32.33333333333334
+Heading id=day-label label='Yesterday' value=None enabled=True @16,384.33333333333337 370x32.333333333333314
+StaticText id=day-footnote label='Levels are 0 to 10.' value=None enabled=True @16,484.6666666666667 370x29.666666666666686

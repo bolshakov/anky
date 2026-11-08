@@ -1,0 +1,7 @@
+$ sh -c '. "/Users/bolshakov/Projects/personal/anky.wt/qa-t185-01-1/tmp/hdr.sh"; for i in 1 2 3; do open_app light >/dev/null; history_timed; done'
+exit: 0
+commit: 6439ad9b5fa5c956603d49175a3bdbae9aee9859
+
+history ready after 1.69 s
+history ready after 1.60 s
+history ready after 1.65 s
