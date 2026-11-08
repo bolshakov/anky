@@ -55,8 +55,7 @@ final class TakenAsChoiceTests: XCTestCase {
 
         scrollToChoice(in: app)
         XCTAssertEqual(selectedChoice(in: app), "As needed")
-        app.buttons["taken-as"].tap()
-        XCTAssertTrue(app.buttons["As needed"].waitForExistence(timeout: 10))
+        openChoiceMenu(in: app)
         XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
         app.buttons["Scheduled"].tap()
         saveNewMedication(named: "Zorblex", app)
@@ -124,6 +123,7 @@ final class TakenAsChoiceTests: XCTestCase {
 
     private func saveNewMedication(named name: String, _ app: XCUIApplication) {
         let field = app.textFields["medication-name"]
+        scrollBackToTop(until: field, in: app)
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
         field.typeText(name)
@@ -142,9 +142,25 @@ final class TakenAsChoiceTests: XCTestCase {
         if segmented.exists {
             segmented.buttons[option].tap()
         } else {
-            app.buttons["taken-as"].tap()
+            openChoiceMenu(in: app)
             app.buttons[option].tap()
         }
+    }
+
+    /// A row scrolled off is missing from the lazy list, and one under the navigation bar takes no focus.
+    private func scrollBackToTop(until element: XCUIElement, in app: XCUIApplication) {
+        let navigationBarBottom = app.navigationBars.firstMatch.frame.maxY
+        let window = app.windows.firstMatch
+        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
+        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        for _ in 0 ..< 5 where !element.exists || element.frame.minY < navigationBarBottom {
+            from.press(forDuration: 0.1, thenDragTo: to)
+        }
+    }
+
+    /// At the largest size the row's title sits above the value, and only the value line opens the menu.
+    private func openChoiceMenu(in app: XCUIApplication) {
+        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85)).tap()
     }
 
     private func segmentLabels(in app: XCUIApplication) -> [String] {
