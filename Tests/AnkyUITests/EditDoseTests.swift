@@ -273,10 +273,10 @@ final class EditDoseTests: XCTestCase {
 
     private func logFourOfTenBeforeTheDose(_ app: XCUIApplication) {
         app.buttons["log-how-you-feel-row"].tap()
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
         setSeverity(4, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.scrollViews["new-entry-screen"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
     }
 
     private func deleteTodaysPainEntry(in app: XCUIApplication) {
