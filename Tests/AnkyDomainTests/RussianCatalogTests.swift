@@ -10,7 +10,6 @@ Nothing logged today => Сегодня записей нет
 Log how you feel => Отметь самочувствие
 New Entry => Новая запись
 Cancel => Отмена
-Kind => Тип
 Pain => Боль
 Stiffness => Скованность
 Fatigue => Усталость
