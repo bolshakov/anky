@@ -55,9 +55,16 @@ final class TakenAsChoiceTests: XCTestCase {
 
         scrollToChoice(in: app)
         XCTAssertEqual(selectedChoice(in: app), "As needed")
-        app.buttons["taken-as"].tap()
-        XCTAssertTrue(app.buttons["As needed"].waitForExistence(timeout: 10))
+        for dx in [0.1, 0.9] {
+            openChoiceMenu(in: app, atWidth: dx)
+            XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10), "no menu from dx \(dx)")
+            app.buttons["As needed"].tap()
+            XCTAssertTrue(app.buttons["Scheduled"].waitForNonExistence(timeout: 10))
+        }
+        let asNeededBeforeOpening = asNeededCount(in: app)
+        openChoiceMenu(in: app)
         XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
+        XCTAssertGreaterThan(asNeededCount(in: app), asNeededBeforeOpening)
         app.buttons["Scheduled"].tap()
         saveNewMedication(named: "Zorblex", app)
 
@@ -124,6 +131,7 @@ final class TakenAsChoiceTests: XCTestCase {
 
     private func saveNewMedication(named name: String, _ app: XCUIApplication) {
         let field = app.textFields["medication-name"]
+        scrollBackToTop(until: field, in: app)
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
         field.typeText(name)
@@ -142,9 +150,31 @@ final class TakenAsChoiceTests: XCTestCase {
         if segmented.exists {
             segmented.buttons[option].tap()
         } else {
-            app.buttons["taken-as"].tap()
+            openChoiceMenu(in: app)
             app.buttons[option].tap()
         }
+    }
+
+    /// Counted before and after opening, so an "As needed" label that is on screen while the menu is shut does not
+    /// count.
+    private func asNeededCount(in app: XCUIApplication) -> Int {
+        app.buttons.matching(NSPredicate(format: "label == 'As needed'")).count
+    }
+
+    /// A row scrolled off is missing from the lazy list, and one under the navigation bar takes no focus.
+    /// The drag runs down the page margin, since one that starts on the menu row does not always scroll.
+    private func scrollBackToTop(until element: XCUIElement, in app: XCUIApplication) {
+        let navigationBarBottom = app.navigationBars.firstMatch.frame.maxY
+        let window = app.windows.firstMatch
+        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.2))
+        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.5))
+        for _ in 0 ..< 5 where !element.exists || element.frame.minY < navigationBarBottom {
+            from.press(forDuration: 0.1, thenDragTo: to)
+        }
+    }
+
+    private func openChoiceMenu(in app: XCUIApplication, atWidth dx: Double = 0.5) {
+        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: dx, dy: 0.5)).tap()
     }
 
     private func segmentLabels(in app: XCUIApplication) -> [String] {
@@ -156,10 +186,7 @@ final class TakenAsChoiceTests: XCTestCase {
         if segmented.exists {
             return segmented.buttons.allElementsBoundByIndex.first(where: \.isSelected)?.label
         }
-        let prefix = "How you take it, "
-        let label = app.buttons["taken-as"].label
-        guard label.hasPrefix(prefix) else { return nil }
-        return String(label.dropFirst(prefix.count))
+        return app.buttons["taken-as"].value as? String
     }
 
     /// The pinned Save button covers the bottom of the form, so the choice must scroll above it,

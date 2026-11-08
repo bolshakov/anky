@@ -7,31 +7,54 @@ struct MedicationTakingSections: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        Section {
+        CardSection(Text("How you take it"), id: "taking") {
             if dynamicTypeSize.isAccessibilitySize {
-                takenAsPicker
-                    .pickerStyle(.menu)
+                TakenAsMenuRow(takenAs: $draft.takenAs)
             } else {
-                takenAsPicker
+                Picker("How you take it", selection: $draft.takenAs) { TakenAsOptions() }
                     .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
+                    .labelsHidden()
+                    .accessibilityIdentifier("taken-as")
+                    .nonCardBlock()
             }
-        } header: {
-            Text("How you take it")
-                .font(.footnote)
-                .accessibilityAddTraits(.isHeader)
         }
-
-        DoseCheckInSection(checkIn: $draft.checkIn, readingKind: nil)
+        MedicationCheckInSection(checkIn: $draft.checkIn)
     }
+}
 
-    private var takenAsPicker: some View {
-        Picker("How you take it", selection: $draft.takenAs) {
-            ForEach(TakenAs.allCases, id: \.self) { option in
-                Text(option.title).tag(option)
-            }
+private struct TakenAsOptions: View {
+    var body: some View {
+        ForEach(TakenAs.allCases, id: \.self) { option in
+            Text(option.title).tag(option)
         }
-        .labelsHidden()
+    }
+}
+
+private struct TakenAsMenuRow: View {
+    @Binding var takenAs: TakenAs
+
+    var body: some View {
+        Menu {
+            Picker("How you take it", selection: $takenAs) { TakenAsOptions() }
+                .labelsHidden()
+        } label: {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
+                Text("How you take it")
+                    .foregroundStyle(Color.ink)
+                HStack {
+                    Text(takenAs.title)
+                    Image(systemName: "chevron.up.chevron.down")
+                }
+                .foregroundStyle(Color.ink2)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .rowHeight()
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .listRowInsets(.vertical, 0)
+        .accessibilityLabel("How you take it")
+        .accessibilityValue(Text(takenAs.title))
         .accessibilityIdentifier("taken-as")
     }
 }
