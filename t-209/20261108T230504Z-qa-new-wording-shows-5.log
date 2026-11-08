@@ -1,0 +1,10 @@
+$ git grep -nE 'Entry deleted|Dose deleted|words.announcement' -- App
+exit: 0
+commit: 6d641280a5798dcc0bd6d7c2f3e5025f3acd1f7c
+
+App/Localizable.xcstrings:381:    "Entry deleted" : {
+App/Localizable.xcstrings:1603:    "Dose deleted" : {
+App/NewEntry/DeleteEntrySection.swift:16:            announcement: "Entry deleted"
+App/NewEntry/DeleteEntrySection.swift:25:            announcement: "Dose deleted"
+App/NewEntry/DeleteEntrySection.swift:71:            UIAccessibility.post(notification: .announcement, argument: String(localized: words.announcement))
+App/Today/TodayView.swift:265:            UIAccessibility.post(notification: .announcement, argument: String(localized: "Entry deleted"))

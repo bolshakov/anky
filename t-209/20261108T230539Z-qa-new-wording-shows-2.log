@@ -1,0 +1,6 @@
+$ /bin/zsh -c 'TMPDIR=/Users/bolshakov/Projects/personal/anky.wt/qa-t209-01-2/tmp /Users/bolshakov/Projects/personal/anky.wt/qa-t209-01-2/tmp/ui.sh | grep -E "kind-picker|note-footnote"'
+exit: 0
+commit: 6d641280a5798dcc0bd6d7c2f3e5025f3acd1f7c
+
+kind-picker | What are you logging? | None
+note-footnote | 1 character left | None
