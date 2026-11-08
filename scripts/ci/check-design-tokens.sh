@@ -76,4 +76,19 @@ if [ -n "$sections" ]; then
   violation "sets section spacing, inset, case, header or footer in a screen, use App/Design"
 fi
 
+# A screen writes no size as a number. A number is its own when no name or decimal point runs into it, so Spacing.x2,
+# .title2 and 0.5 pass. A call's arguments end at its closing parenthesis, with one level of nested call searched too.
+# usage: call_number <call>
+call_number() {
+  args="([^()]|\\([^()]*\\))*"
+  echo "\\.$1\\(($args[^A-Za-z0-9_.])?[1-9]|\\.$1\\($args\\(([^()]*[^A-Za-z0-9_.])?[1-9]"
+}
+frame_labels="(width|height|minWidth|maxWidth|minHeight|maxHeight)"
+size_labels="(^|[^A-Za-z0-9_])($frame_labels|spacing):[[:space:]]*-?[1-9]"
+sizes=$(scan_screens "$(call_number padding)|$(call_number offset)|$size_labels")
+if [ -n "$sizes" ]; then
+  echo "$sizes"
+  violation "writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift"
+fi
+
 exit $fail
