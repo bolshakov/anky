@@ -77,17 +77,17 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         assertSixteenAboveSave("check-in-footnote", in: app)
     }
 
-    func testEditMedicationArchiveClearsSaveByTheGapWithTheKeyboardDown() {
+    func testEditMedicationFootnoteClearsSaveByTheGapWithTheKeyboardDown() {
         continueAfterFailure = false
         let app = launchAnky()
         openEditMedication(app)
         dismissKeyboardIfShown(in: app)
 
         scrollFormToEnd(in: app)
-        assertClearOfSave("medication-archive", in: app)
+        assertClearOfSave("check-in-footnote", in: app)
     }
 
-    func testEditMedicationArchiveClearsSaveByTheGapWhenTheKeyboardOpens() {
+    func testEditMedicationFootnoteClearsSaveByTheGapWhenTheKeyboardOpens() {
         continueAfterFailure = false
         let app = launchAnky()
         openEditMedication(app)
@@ -96,7 +96,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertClearOfSave("medication-archive", in: app)
+        assertClearOfSave("check-in-footnote", in: app)
     }
 
     private func openEditMedication(_ app: XCUIApplication) {
