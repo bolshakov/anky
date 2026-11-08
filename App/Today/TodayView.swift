@@ -4,14 +4,6 @@ import AnkyMedicationModel
 import SwiftUI
 import UIKit
 
-private extension View {
-    func bareRow() -> some View {
-        listRowInsets(EdgeInsets())
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-    }
-}
-
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
@@ -30,13 +22,6 @@ struct TodayView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric(relativeTo: .largeTitle) private var titleSize = Spacing.largeTitleSize
-
-    /// The list starts a nearly fixed distance below the bar while the large title grows with its font, so the pull up
-    /// toward the title shrinks as the title grows.
-    private var dateTopMargin: CGFloat {
-        Spacing.titleToDatePullPerTitlePoint * (titleSize - Spacing.largeTitleSize) - Spacing.titleToDatePull
-    }
 
     private var pairLayout: AnyLayout {
         dynamicTypeSize.isAccessibilitySize
@@ -108,14 +93,14 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
-                    .bareRow()
+                    .nonCardBlock()
                     cornerGuard
                 }
                 entriesOrEmptyState
             }
             .listStyle(.insetGrouped)
             .environment(\.defaultMinListRowHeight, 0)
-            .contentMargins(.top, dateTopMargin, for: .scrollContent)
+            .todayTopMargin()
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -187,7 +172,7 @@ struct TodayView: View {
         Color.clear
             .frame(height: 0)
             .accessibilityHidden(true)
-            .bareRow()
+            .nonCardBlock()
     }
 
     private var dateLine: some View {
@@ -210,7 +195,7 @@ struct TodayView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.top, recent == nil ? 48 : 64)
                     .padding(.bottom, 48)
-                    .bareRow()
+                    .nonCardBlock()
             }
         } else {
             TodayEntryList(
