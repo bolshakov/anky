@@ -1,0 +1,28 @@
+$ sh -c 'scripts/ci/test-install-linux-tools.sh 2>&1'
+exit: 0
+commit: 4937d870d7a636db3f9741f9de79cac653582b21
+
+ok: retry-then-pass: fetch returns 0 after two failed tries
+ok: retry-then-pass: curl ran 3 times
+ok: retry-then-pass: the hash was checked once
+ok: retry-then-pass: the file in place is the passing try's
+ok: retry-gives-up: fetch returns non-zero
+ok: retry-gives-up: curl ran 4 times
+ok: retry-gives-up: stderr names the URL and the 4 tries
+ok: retry-gives-up: no hash check ran
+ok: bad-sha-still-fails: fetch returns non-zero
+ok: bad-sha-still-fails: curl ran once
+ok: bad-sha-still-fails: the hash was checked once
+ok: bad-sha-still-fails: it does not say it gave up
+ok: a first try that passes returns 0
+ok: a first try that passes makes one curl call and one hash check
+ok: a first try that passes does not pause
+ok: the pause is FETCH_PAUSE_SECONDS, between the 4 tries and not after the last
+ok: the pause defaults to 5 seconds
+ok: sourcing the script runs nothing and makes no temp dir
+ok: running the script succeeds
+ok: running the script installs swiftlint and swiftformat
+ok: running the script fetches both tools
+ok: running the script installs lizard
+ok: running the script puts the bin dir on the runner's PATH
+install-linux-tools tests: all passed
