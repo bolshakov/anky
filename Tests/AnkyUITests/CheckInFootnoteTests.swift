@@ -3,8 +3,7 @@ import XCTest
 
 @MainActor
 final class CheckInFootnoteTests: XCTestCase {
-    private let startsAtEarlierReading =
-        "Starts at your earlier reading, with the same places. Change either if it is different."
+    private let startsAtEarlierReading = "Starts from your earlier entry. Change the level or places if they differ."
 
     /// The footnote names the kind Save keeps, and says the draft starts at the earlier reading when there is one.
     func testFootnoteWithAnEarlierReadingNamesTheKindSaved() throws {
@@ -17,13 +16,13 @@ final class CheckInFootnoteTests: XCTestCase {
         openCheckIn(app)
         let pickerTop = identified("kind-picker", in: app).frame.minY
 
-        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a Pain entry.")
+        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a pain entry.")
         scrollToTop(in: app, pickerTop: pickerTop)
         chooseKind(.fatigue, in: app)
-        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a Fatigue entry.")
+        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a fatigue entry.")
         scrollToTop(in: app, pickerTop: pickerTop)
         chooseKind(.stiffness, in: app)
-        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a Stiffness entry.")
+        XCTAssertEqual(footnoteText(in: app), "\(startsAtEarlierReading) Saved as a stiffness entry.")
     }
 
     /// A dose with no earlier reading has no reading to start from, so the footnote names only the kind saved.
@@ -38,13 +37,13 @@ final class CheckInFootnoteTests: XCTestCase {
         openCheckIn(app)
         let pickerTop = identified("kind-picker", in: app).frame.minY
 
-        XCTAssertEqual(footnoteText(in: app), "Saved as a Pain entry.")
+        XCTAssertEqual(footnoteText(in: app), "Saved as a pain entry.")
         scrollToTop(in: app, pickerTop: pickerTop)
         chooseKind(.stiffness, in: app)
-        XCTAssertEqual(footnoteText(in: app), "Saved as a Stiffness entry.")
+        XCTAssertEqual(footnoteText(in: app), "Saved as a stiffness entry.")
         scrollToTop(in: app, pickerTop: pickerTop)
         chooseKind(.fatigue, in: app)
-        XCTAssertEqual(footnoteText(in: app), "Saved as a Fatigue entry.")
+        XCTAssertEqual(footnoteText(in: app), "Saved as a fatigue entry.")
     }
 
     /// Check In reads in New Entry's order, the footnote sits under the severity card, and the question row is gone.

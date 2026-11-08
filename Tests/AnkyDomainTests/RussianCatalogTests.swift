@@ -146,21 +146,12 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
-private let startsAtEarlierReading = "Starts at your earlier reading, with the same places. "
-    + "Change either if it is different."
-
 /// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
 private let awaitingRussian = ["Log Dose", "Log dose", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
     + ["Save medication", "As needed", "Scheduled"]
     + ["How you take it", "Check in after", "After"]
-    + ["Check in later", "Anky asks how your pain is after this long. Turn it on to choose a time."]
-    + ["Anky asks how your pain is after this long."]
-    + ["Anky asks how you feel after this long.", "Anky asks how stiff you are after this long."]
-    + ["Anky asks how tired you are after this long."]
-    + ["Anky asks how you feel after this long. Turn it on to choose a time."]
-    + ["Anky asks how stiff you are after this long. Turn it on to choose a time."]
-    + ["Anky asks how tired you are after this long. Turn it on to choose a time."]
+    + ["Check in later", "Anky will ask how you feel after this long.", "Turn it on to choose a time."]
     + ["Manage", "Medications", "Archive", "Archived"]
     + ["Edit Medication", "Archive medication", "Restore", "Restore medication"]
     + ["Swipe left to restore. Doses you logged stay in History."]
@@ -181,10 +172,8 @@ private let awaitingRussian = ["Log Dose", "Log dose", "Medication"]
     + ["Fatigue was %lld of 10", "Fatigue %lld after", "Fatigue %lld before, %lld after"]
     + ["%@ %@"]
     + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "Couldn't save this check-in. Try again."]
-    + ["\(startsAtEarlierReading) Saved as a Pain entry."]
-    + ["\(startsAtEarlierReading) Saved as a Stiffness entry."]
-    + ["\(startsAtEarlierReading) Saved as a Fatigue entry."]
-    + ["Saved as a Pain entry.", "Saved as a Stiffness entry.", "Saved as a Fatigue entry."]
+    + ["Starts from your earlier entry. Change the level or places if they differ."]
+    + ["Saved as a pain entry.", "Saved as a stiffness entry.", "Saved as a fatigue entry."]
     + ["Taken %@.", "Taken at %@.", "Taken yesterday at %@."]
     + ["Taken %@. Before: Pain %lld.", "Taken %@. Before: Stiffness %lld.", "Taken %@. Before: Fatigue %lld."]
     + ["Taken at %@. Before: Pain %lld.", "Taken at %@. Before: Stiffness %lld.", "Taken at %@. Before: Fatigue %lld."]

@@ -12,7 +12,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         XCTAssertFalse(checkInMenu(in: app).exists)
         XCTAssertEqual(
             footnote(in: app).label,
-            "Anky asks how you feel after this long. Turn it on to choose a time."
+            "Anky will ask how you feel after this long. Turn it on to choose a time."
         )
     }
 
@@ -22,7 +22,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
         openNewMedication(app)
         turnOn(in: app)
         XCTAssertEqual(checkInMenu(in: app).value as? String, "2 hours")
-        XCTAssertEqual(footnote(in: app).label, "Anky asks how you feel after this long.")
+        XCTAssertEqual(footnote(in: app).label, "Anky will ask how you feel after this long.")
 
         checkInMenu(in: app).tap()
         let titles = ["30 minutes", "1 hour", "2 hours", "3 hours", "4 hours"]
@@ -136,11 +136,11 @@ final class CheckInDelayChoiceTests: XCTestCase {
         scrollToCheckIn(in: app)
         XCTAssertEqual(
             footnote(in: app).label,
-            "Anky asks how you feel after this long. Turn it on to choose a time."
+            "Anky will ask how you feel after this long. Turn it on to choose a time."
         )
 
         turnOn(in: app)
-        XCTAssertEqual(footnote(in: app).label, "Anky asks how you feel after this long.")
+        XCTAssertEqual(footnote(in: app).label, "Anky will ask how you feel after this long.")
     }
 
     func testCancelAfterChangingKeepsTheSavedDelay() {

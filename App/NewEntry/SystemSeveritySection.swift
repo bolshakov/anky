@@ -7,11 +7,11 @@ struct SystemSeveritySection: View {
     let spokenLabel: LocalizedStringKey
     let idPrefix: String
     @Binding var severity: Severity
-    var footer: LocalizedStringKey?
+    var footer: Text?
     var footerID = ""
 
     var body: some View {
-        CardSection(Text(caption), footnote: footer.map { Text($0) }, id: idPrefix) {
+        CardSection(Text(caption), footnote: footer, id: idPrefix) {
             // In double-length text the value is clipped beside the label, so it stacks under it instead.
             ViewThatFits(in: .horizontal) {
                 HStack {
