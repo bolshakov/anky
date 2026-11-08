@@ -55,6 +55,12 @@ final class TakenAsChoiceTests: XCTestCase {
 
         scrollToChoice(in: app)
         XCTAssertEqual(selectedChoice(in: app), "As needed")
+        for dx in [0.1, 0.9] {
+            openChoiceMenu(in: app, atWidth: dx)
+            XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10), "no menu from dx \(dx)")
+            app.buttons["As needed"].tap()
+            XCTAssertTrue(app.buttons["Scheduled"].waitForNonExistence(timeout: 10))
+        }
         let asNeededBeforeOpening = asNeededCount(in: app)
         openChoiceMenu(in: app)
         XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
@@ -167,8 +173,8 @@ final class TakenAsChoiceTests: XCTestCase {
         }
     }
 
-    private func openChoiceMenu(in app: XCUIApplication) {
-        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+    private func openChoiceMenu(in app: XCUIApplication, atWidth dx: Double = 0.5) {
+        app.buttons["taken-as"].coordinate(withNormalizedOffset: CGVector(dx: dx, dy: 0.5)).tap()
     }
 
     private func segmentLabels(in app: XCUIApplication) -> [String] {
