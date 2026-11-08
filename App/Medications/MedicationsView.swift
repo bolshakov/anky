@@ -81,7 +81,7 @@ struct MedicationsView: View {
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }
-                .listRowInsets(.vertical, 0)
+                .fillsCardRow()
             }
         }
     }

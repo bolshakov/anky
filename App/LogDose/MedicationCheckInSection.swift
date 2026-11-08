@@ -43,7 +43,7 @@ private struct CheckInDelayRow: View {
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .listRowInsets(.vertical, 0)
+        .fillsCardRow()
         .accessibilityLabel("Check in after")
         .accessibilityValue(Text(delay.title))
         .accessibilityIdentifier("dose-check-in-after")

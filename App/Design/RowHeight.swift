@@ -11,7 +11,7 @@ private struct RowHeight: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(minHeight: max(height, Spacing.rowMinimumHeight))
-            .listRowInsets(.vertical, 0)
+            .fillsCardRow()
     }
 }
 
