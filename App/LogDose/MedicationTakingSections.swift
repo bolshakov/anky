@@ -11,7 +11,7 @@ struct MedicationTakingSections: View {
             if dynamicTypeSize.isAccessibilitySize {
                 TakenAsMenuRow(takenAs: $draft.takenAs)
             } else {
-                Picker("How you take it", selection: $draft.takenAs) { options }
+                Picker("How you take it", selection: $draft.takenAs) { TakenAsOptions() }
                     .pickerStyle(.segmented)
                     .labelsHidden()
                     .accessibilityIdentifier("taken-as")
@@ -20,8 +20,10 @@ struct MedicationTakingSections: View {
         }
         MedicationCheckInSection(checkIn: $draft.checkIn)
     }
+}
 
-    private var options: some View {
+private struct TakenAsOptions: View {
+    var body: some View {
         ForEach(TakenAs.allCases, id: \.self) { option in
             Text(option.title).tag(option)
         }
@@ -33,12 +35,8 @@ private struct TakenAsMenuRow: View {
 
     var body: some View {
         Menu {
-            Picker("How you take it", selection: $takenAs) {
-                ForEach(TakenAs.allCases, id: \.self) { option in
-                    Text(option.title).tag(option)
-                }
-            }
-            .labelsHidden()
+            Picker("How you take it", selection: $takenAs) { TakenAsOptions() }
+                .labelsHidden()
         } label: {
             VStack(alignment: .leading, spacing: Spacing.tightGap) {
                 Text("How you take it")
