@@ -25,11 +25,22 @@ final class EntryRowLargestTextTests: XCTestCase {
         let relaunched = launchAnky(folder: folder, presentation: english, arguments: largestTextArguments)
         let row = relaunched.descendants(matching: .any).matching(identifier: "entry-row-stiffness").firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let logEntry = relaunched.buttons["log-entry"]
-        for _ in 0 ..< 5 where row.frame.maxY > logEntry.frame.minY {
-            relaunched.swipeUp()
+        let floatingTop = min(
+            relaunched.buttons["log-medication"].frame.minY,
+            relaunched.buttons["log-entry"].frame.minY
+        )
+        // The floating buttons cover the middle of the screen at this size, so each drag starts above them and moves
+        // the row by the distance it still lacks, which stops it just clear of the buttons and not under the title.
+        let origin = relaunched.coordinate(withNormalizedOffset: .zero)
+        let start = origin.withOffset(CGVector(dx: relaunched.frame.midX, dy: 300))
+        for _ in 0 ..< 6 where row.frame.maxY > floatingTop {
+            let distance = min(row.frame.maxY - floatingTop + 4, 250)
+            start.press(
+                forDuration: 0.1,
+                thenDragTo: origin.withOffset(CGVector(dx: relaunched.frame.midX, dy: 300 - distance))
+            )
         }
-        XCTAssertLessThanOrEqual(row.frame.maxY, logEntry.frame.minY)
+        XCTAssertLessThanOrEqual(row.frame.maxY, floatingTop)
         attachScreenshot(named: "entry-row-largest-text")
 
         let words = try recognizedWords(in: rowImage(of: row, in: relaunched))
