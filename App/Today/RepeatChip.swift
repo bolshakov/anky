@@ -11,7 +11,6 @@ struct RepeatChip: View {
             Text(RecentEntryText.sameAsLastTime + " · " + recent.chipText)
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
