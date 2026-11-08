@@ -5,22 +5,31 @@ import SwiftUI
 struct DoseCheckInSection: View {
     @Binding var checkIn: DoseCheckIn
     let readingKind: EntryKind?
+    var isCard = false
 
     var body: some View {
-        Section {
-            Toggle("Check in later", isOn: $checkIn.isOn)
-                .accessibilityIdentifier("check-in-later")
-            if checkIn.isOn {
-                DoseCheckInMenu(delay: $checkIn.delay)
+        if isCard {
+            CardSection(footnote: footnote, id: "check-in") { rows }
+        } else {
+            Section {
+                rows
+            } footer: {
+                footnote
+                    .font(.footnote)
+                    .accessibilityIdentifier("check-in-footnote")
             }
-        } footer: {
-            footnote
-                .font(.footnote)
-                .accessibilityIdentifier("check-in-footnote")
         }
     }
 
-    @ViewBuilder private var footnote: some View {
+    @ViewBuilder private var rows: some View {
+        Toggle("Check in later", isOn: $checkIn.isOn)
+            .accessibilityIdentifier("check-in-later")
+        if checkIn.isOn {
+            DoseCheckInMenu(delay: $checkIn.delay)
+        }
+    }
+
+    private var footnote: Text {
         switch (readingKind, checkIn.isOn) {
         case (nil, true):
             Text("Anky asks how you feel after this long.")
