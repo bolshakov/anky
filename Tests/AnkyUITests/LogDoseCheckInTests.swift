@@ -123,10 +123,6 @@ final class LogDoseCheckInTests: XCTestCase {
         toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
         let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
         XCTAssertTrue(menu.waitForExistence(timeout: 10))
-        let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
-            app.swipeUp()
-        }
 
         for dy in [0.1, 0.9] {
             menu.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: dy)).tap()
