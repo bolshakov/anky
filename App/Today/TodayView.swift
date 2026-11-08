@@ -30,6 +30,13 @@ struct TodayView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric(relativeTo: .largeTitle) private var titleSize = Spacing.largeTitleSize
+
+    /// The list starts a nearly fixed distance below the bar while the large title grows with its font, so the pull up
+    /// toward the title shrinks as the title grows.
+    private var dateTopMargin: CGFloat {
+        Spacing.titleToDatePullPerTitlePoint * (titleSize - Spacing.largeTitleSize) - Spacing.titleToDatePull
+    }
 
     private var pairLayout: AnyLayout {
         dynamicTypeSize.isAccessibilitySize
@@ -96,12 +103,19 @@ struct TodayView: View {
         NavigationStack {
             List {
                 Section {
-                    dateLine
-                    repeatBlock
+                    cornerGuard
+                    VStack(alignment: .leading, spacing: Spacing.firstBlockTop) {
+                        dateLine
+                        repeatBlock
+                    }
+                    .bareRow()
+                    cornerGuard
                 }
                 entriesOrEmptyState
             }
             .listStyle(.insetGrouped)
+            .environment(\.defaultMinListRowHeight, 0)
+            .contentMargins(.top, dateTopMargin, for: .scrollContent)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -167,6 +181,15 @@ struct TodayView: View {
         }
     }
 
+    /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
+    /// the chip. A zero-height row takes each of those corners.
+    private var cornerGuard: some View {
+        Color.clear
+            .frame(height: 0)
+            .accessibilityHidden(true)
+            .bareRow()
+    }
+
     private var dateLine: some View {
         Text(verbatim: DayDateText.text(
             for: .now,
@@ -177,7 +200,6 @@ struct TodayView: View {
         .font(.subheadline)
         .foregroundStyle(.secondary)
         .accessibilityIdentifier("today-date")
-        .bareRow()
     }
 
     @ViewBuilder
@@ -208,12 +230,8 @@ struct TodayView: View {
     private var repeatBlock: some View {
         if let loggedEntry {
             RepeatLoggedCard(recent: RecentEntry(loggedEntry), onUndo: undoLogged)
-                .padding(.top, 16)
-                .bareRow()
         } else if let recent {
             RepeatChip(recent: recent) { logRecent(recent) }
-                .padding(.top, 16)
-                .bareRow()
         }
     }
 
