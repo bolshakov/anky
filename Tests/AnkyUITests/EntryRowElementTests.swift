@@ -34,7 +34,8 @@ final class EntryRowElementTests: XCTestCase {
     private func assertOneButtonRow(_ row: XCUIElement, in app: XCUIApplication) {
         XCTAssertEqual(row.elementType, .button)
         XCTAssertEqual(row.identifier, "entry-row-pain")
-        XCTAssertTrue(row.label.hasSuffix(", Pain, 4 of 10"), "row label is \(row.label)")
+        XCTAssertTrue(row.label.hasPrefix("Pain, "), "row label is \(row.label)")
+        XCTAssertTrue(row.label.hasSuffix(", No place, 4 of 10"), "row label is \(row.label)")
         let texts = app.staticTexts.allElementsBoundByIndex.filter { row.frame.contains($0.frame) }
         XCTAssertTrue(texts.isEmpty, "row texts are separate stops: \(texts.map(\.label))")
     }

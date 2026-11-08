@@ -1,13 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import Foundation
 import Testing
 
 struct DoseSubtitleCatalogTests {
-    @Test func theBeforeSubtitleIsOneWholeKeyPerKind() throws {
+    @Test func theBeforePhraseIsOneWholeKeyPerKindWithoutTheDoseWord() throws {
         let keys = try CompiledCatalog.entries().keys
         for kind in ["pain", "stiffness", "fatigue"] {
-            #expect(keys.contains("Dose · \(kind) was %lld"), "no whole key for \(kind)")
-            #expect(!keys.contains("\(kind) was %lld"), "the short \(kind) key is still in the catalog")
+            #expect(keys.contains("\(kind) was %lld"), "no whole key for \(kind)")
+            #expect(!keys.contains("Dose · \(kind) was %lld"), "the dose word is still in the \(kind) key")
         }
+    }
+
+    @Test func noKeyHoldsTheSecondLinesSeparator() throws {
+        let joined = try CompiledCatalog.entries().keys.filter { $0.contains(RowSecondLine.separator) }
+        #expect(joined == ["Done · %lld places"])
     }
 }

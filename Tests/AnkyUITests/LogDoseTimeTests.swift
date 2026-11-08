@@ -111,9 +111,9 @@ final class LogDoseTimeTests: XCTestCase {
         option.value as? String ?? ""
     }
 
-    /// The time the dose row on Today shows, which its spoken label starts with.
+    /// The time the dose row on Today shows, which its spoken label has after the medication.
     private func doseTime(in app: XCUIApplication) -> String {
-        String(doseRow(in: app).label.prefix(while: { $0 != "." }))
+        doseRowTime(of: doseRow(in: app).label)
     }
 
     /// Saves the dose and returns the time its row shows.

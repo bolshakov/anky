@@ -150,7 +150,7 @@ final class LogDoseReadingTests: XCTestCase {
 
         let row = app.buttons["before-reading-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let time = rowTime(of: row)
+        let time = readingRowTime(of: row)
         let places = try XCTUnwrap(textInRow("Neck and Lower back · \(time)", in: row, app))
         let level = try XCTUnwrap(textInRow("6 of 10", in: row, app))
         XCTAssertNotNil(textInRow("Pain", in: row, app))
@@ -171,13 +171,18 @@ final class LogDoseReadingTests: XCTestCase {
 
         let row = app.buttons["before-reading-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let time = try XCTUnwrap(textInRow(rowTime(of: row), in: row, app))
+        let time = try XCTUnwrap(textInRow(readingRowTime(of: row), in: row, app))
         let kind = try XCTUnwrap(textInRow("Fatigue", in: row, app))
         let level = try XCTUnwrap(textInRow("4 of 10", in: row, app))
         XCTAssertGreaterThan(time.frame.minY, kind.frame.minY)
         XCTAssertLessThan(time.frame.minX, level.frame.minX)
         let texts = app.staticTexts.allElementsBoundByIndex.filter { row.frame.contains($0.frame) }
         XCTAssertFalse(texts.contains { $0.label.contains("·") })
+    }
+
+    /// A reading row speaks its time first, unlike a Today entry row.
+    private func readingRowTime(of row: XCUIElement) -> String {
+        String(row.label.prefix { $0 != "," })
     }
 
     /// Section titles have no id, so they are found by their text.

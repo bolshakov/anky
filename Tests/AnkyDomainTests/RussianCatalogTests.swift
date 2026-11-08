@@ -123,7 +123,6 @@ private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
 %lld of %lld => %1$lld из %2$lld
 %@, %@ => %1$@, %2$@
-%@, %@, %@, %@ => %1$@, %2$@, %3$@, %4$@
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 """)
 
@@ -162,7 +161,6 @@ private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
 %lld of %lld => %1$lld of %2$lld
 %@, %@ => %1$@, %2$@
-%@, %@, %@, %@ => %1$@, %2$@, %3$@, %4$@
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
@@ -192,7 +190,7 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Before this dose", "Your latest entry before this dose. Tap to choose another."]
     + ["Edit Dose", "checked in at", "The entry used for this dose. Tap to open it."]
     + ["Choose a reading", "Log how you feel now"]
-    + ["Dose", "Dose · pain was %lld", "Dose · stiffness was %lld", "Dose · fatigue was %lld"]
+    + ["Dose", "pain was %lld", "stiffness was %lld", "fatigue was %lld"]
     + ["pain %lld after", "pain %lld before, %lld after"]
     + ["stiffness %lld after", "stiffness %lld before, %lld after"]
     + ["fatigue %lld after", "fatigue %lld before, %lld after"]
@@ -277,9 +275,7 @@ struct RussianCatalogTests {
     @Test func theJoiningFormatsReadTheSameInRussian() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             let two = ru.localizedString(forKey: "%@, %@", value: nil, table: nil)
-            let four = ru.localizedString(forKey: "%@, %@, %@, %@", value: nil, table: nil)
             #expect(two == "%1$@, %2$@")
-            #expect(four == "%1$@, %2$@, %3$@, %4$@")
             #expect(String(format: two, "a", "b") == "a, b")
         }
     }
