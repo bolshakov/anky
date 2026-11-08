@@ -5,20 +5,9 @@ import SwiftUI
 struct DoseCheckInSection: View {
     @Binding var checkIn: DoseCheckIn
     let readingKind: EntryKind?
-    var isCard = false
 
     var body: some View {
-        if isCard {
-            CardSection(footnote: footnote, id: "check-in") { rows }
-        } else {
-            Section {
-                rows
-            } footer: {
-                footnote
-                    .font(.footnote)
-                    .accessibilityIdentifier("check-in-footnote")
-            }
-        }
+        CardSection(footnote: footnote, id: "check-in") { rows }
     }
 
     @ViewBuilder private var rows: some View {
