@@ -48,10 +48,11 @@ private struct TakenAsMenuRow: View {
                 .foregroundStyle(Color.ink2)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .rowHeight()
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .rowHeight()
+        .listRowInsets(.vertical, 0)
         .accessibilityLabel("How you take it")
         .accessibilityValue(Text(takenAs.title))
         .accessibilityIdentifier("taken-as")
