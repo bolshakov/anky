@@ -449,22 +449,16 @@
     "Save check-in" : {
 
     },
-    "Saved as a Fatigue entry." : {
+    "Saved as a fatigue entry." : {
 
     },
-    "Saved as a Pain entry." : {
+    "Saved as a pain entry." : {
 
     },
-    "Saved as a Stiffness entry." : {
+    "Saved as a stiffness entry." : {
 
     },
-    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Fatigue entry." : {
-
-    },
-    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Pain entry." : {
-
-    },
-    "Starts at your earlier reading, with the same places. Change either if it is different. Saved as a Stiffness entry." : {
+    "Starts from your earlier entry. Change the level or places if they differ." : {
 
     },
     "stiffness %lld after" : {
@@ -915,28 +909,10 @@
     "Check in later" : {
 
     },
-    "Anky asks how your pain is after this long. Turn it on to choose a time." : {
+    "Turn it on to choose a time." : {
 
     },
-    "Anky asks how your pain is after this long." : {
-
-    },
-    "Anky asks how you feel after this long. Turn it on to choose a time." : {
-
-    },
-    "Anky asks how you feel after this long." : {
-
-    },
-    "Anky asks how stiff you are after this long. Turn it on to choose a time." : {
-
-    },
-    "Anky asks how stiff you are after this long." : {
-
-    },
-    "Anky asks how tired you are after this long. Turn it on to choose a time." : {
-
-    },
-    "Anky asks how tired you are after this long." : {
+    "Anky will ask how you feel after this long." : {
 
     },
     "Log how you feel" : {

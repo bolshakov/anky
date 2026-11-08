@@ -16,11 +16,9 @@ struct MedicationCheckInSection: View {
     }
 
     private var footnote: Text {
-        if checkIn.isOn {
-            Text("Anky asks how you feel after this long.")
-        } else {
-            Text("Anky asks how you feel after this long. Turn it on to choose a time.")
-        }
+        let ask = Text("Anky will ask how you feel after this long.")
+        guard !checkIn.isOn else { return ask }
+        return Text("\(ask) \(Text("Turn it on to choose a time."))")
     }
 }
 

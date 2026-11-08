@@ -51,23 +51,18 @@ enum CheckInText {
         return CheckInDayText.infoTaken(wording: wording, before: before, words: .app)
     }
 
-    static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> LocalizedStringKey {
-        switch (kind, startsAtEarlierReading) {
-        case (.pain, false): "Saved as a Pain entry."
-        case (.stiffness, false): "Saved as a Stiffness entry."
-        case (.fatigue, false): "Saved as a Fatigue entry."
-        case (.pain, true): """
-            Starts at your earlier reading, with the same places. Change either if it is different. \
-            Saved as a Pain entry.
-            """
-        case (.stiffness, true): """
-            Starts at your earlier reading, with the same places. Change either if it is different. \
-            Saved as a Stiffness entry.
-            """
-        case (.fatigue, true): """
-            Starts at your earlier reading, with the same places. Change either if it is different. \
-            Saved as a Fatigue entry.
-            """
+    static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> Text {
+        let saved = savedAs(kind)
+        guard startsAtEarlierReading else { return saved }
+        let starts = Text("Starts from your earlier entry. Change the level or places if they differ.")
+        return Text("\(starts) \(saved)")
+    }
+
+    private static func savedAs(_ kind: EntryKind) -> Text {
+        switch kind {
+        case .pain: Text("Saved as a pain entry.")
+        case .stiffness: Text("Saved as a stiffness entry.")
+        case .fatigue: Text("Saved as a fatigue entry.")
         }
     }
 }

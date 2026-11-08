@@ -139,7 +139,7 @@ struct CheckInView: View {
         CheckInText.severityCaption(for: draft.kind)
     }
 
-    private var footnote: LocalizedStringKey {
+    private var footnote: Text {
         CheckInText.footnote(for: draft.kind, startsAtEarlierReading: readings.before != nil)
     }
 

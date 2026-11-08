@@ -26,25 +26,25 @@ final class LogDoseCheckInTests: XCTestCase {
         addMedication(named: "Zorblex", app)
         XCTAssertEqual(
             footnote(app).label,
-            "Anky asks how you feel after this long. Turn it on to choose a time."
+            "Anky will ask how you feel after this long. Turn it on to choose a time."
         )
 
         toggleCheckIn(app)
-        XCTAssertEqual(footnote(app).label, "Anky asks how you feel after this long.")
+        XCTAssertEqual(footnote(app).label, "Anky will ask how you feel after this long.")
         let saved = app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Saved for'"))
         XCTAssertEqual(saved.count, 0)
     }
 
     func testFootnoteNamesTheKindOfAPainReadingInBothStates() {
-        expectFootnotes(of: .pain, "Anky asks how your pain is after this long.")
+        expectFootnotes(of: .pain, "Anky will ask how you feel after this long.")
     }
 
     func testFootnoteNamesTheKindOfAStiffnessReadingInBothStates() {
-        expectFootnotes(of: .stiffness, "Anky asks how stiff you are after this long.")
+        expectFootnotes(of: .stiffness, "Anky will ask how you feel after this long.")
     }
 
     func testFootnoteNamesTheKindOfAFatigueReadingInBothStates() {
-        expectFootnotes(of: .fatigue, "Anky asks how tired you are after this long.")
+        expectFootnotes(of: .fatigue, "Anky will ask how you feel after this long.")
     }
 
     func testFootnoteFollowsTheReadingPickedOnChooseAReading() {
@@ -62,7 +62,7 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
         XCTAssertEqual(
             footnote(app).label,
-            "Anky asks how tired you are after this long. Turn it on to choose a time."
+            "Anky will ask how you feel after this long. Turn it on to choose a time."
         )
 
         app.buttons["before-reading-row"].tap()
@@ -72,7 +72,7 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(
             footnote(app).label,
-            "Anky asks how stiff you are after this long. Turn it on to choose a time."
+            "Anky will ask how you feel after this long. Turn it on to choose a time."
         )
     }
 
