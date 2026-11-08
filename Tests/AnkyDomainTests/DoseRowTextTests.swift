@@ -7,14 +7,13 @@ struct DoseRowTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
     /// Each kind has its own closures, and they take numbers only. A test that reads "stiffness" therefore came from
-    /// the stiffness closures, not from a kind word joined to a shared phrase. The before closure is the whole line,
-    /// as the app's is, so a "Dose · " in front of it twice would show.
+    /// the stiffness closures, not from a kind word joined to a shared phrase.
     private var words: DoseWords {
         DoseWords(
             kind: "Dose",
             subtitle: { kind in
                 DosePainWords(
-                    before: { "Dose · \(Self.subtitleKind(kind)) was \($0)" },
+                    before: { "\(Self.subtitleKind(kind)) was \($0)" },
                     after: { "\(Self.subtitleKind(kind)) \($0) after" },
                     beforeAndAfter: { "\(Self.subtitleKind(kind)) \($0) before, \($1) after" }
                 )
@@ -66,51 +65,39 @@ struct DoseRowTextTests {
         Dose(id: UUID(), medicationID: medicationID, takenAt: date)
     }
 
-    @Test func aDoseWithNoReadingReadsAsItsKindAlone() {
-        #expect(DoseRowText.subtitle(for: readings(), words: words) == "Dose")
+    @Test func aDoseWithNoReadingHasNoPainPhrase() {
+        #expect(DoseRowText.painPhrase(for: readings(), words: words) == nil)
     }
 
-    @Test func aDoseWithNoReadingSpeaksItsTimeTitleAndKind() {
+    @Test func aDoseWithNoReadingSpeaksItsTitleTimeAndKind() {
         let label = DoseRowText.spokenLabel(time: "8:30", title: "Naproxen 500 mg", readings: readings(), words: words)
-        #expect(label == "8:30. Naproxen 500 mg. Dose.")
+        #expect(label == "Naproxen 500 mg. 8:30. Dose.")
     }
 
     @Test(arguments: [EntryKind.pain, .stiffness, .fatigue])
-    func aBeforeReadingAloneReadsTheWholeLineOfItsKind(kind: EntryKind) throws {
+    func aBeforeReadingAloneReadsTheWholePhraseOfItsKind(kind: EntryKind) throws {
         let before = try entry(kind, severity: 6)
-        let line = "Dose · \(Self.subtitleKind(kind)) was 6"
-        #expect(DoseRowText.subtitle(for: readings(before: before), words: words) == line)
-    }
-
-    @Test func aBeforeReadingAloneIsNotJoinedToTheDoseWord() throws {
-        let before = try entry(.pain, severity: 6)
-        let loneWords = DoseWords(
-            kind: "Dose",
-            subtitle: { _ in
-                DosePainWords(before: { "line \($0)" }, after: { _ in "" }, beforeAndAfter: { _, _ in "" })
-            },
-            spoken: words.spoken
-        )
-        #expect(DoseRowText.subtitle(for: readings(before: before), words: loneWords) == "line 6")
+        let phrase = "\(Self.subtitleKind(kind)) was 6"
+        #expect(DoseRowText.painPhrase(for: readings(before: before), words: words) == phrase)
     }
 
     @Test func anAfterReadingAloneReadsThePainAfter() throws {
         let after = try entry(.pain, severity: 3)
-        #expect(DoseRowText.subtitle(for: readings(after: after), words: words) == "Dose · pain 3 after")
+        #expect(DoseRowText.painPhrase(for: readings(after: after), words: words) == "pain 3 after")
     }
 
     @Test func bothReadingsReadBeforeAndAfter() throws {
         let before = try entry(.pain, severity: 4)
         let after = try entry(.pain, severity: 3)
-        let text = DoseRowText.subtitle(for: readings(before: before, after: after), words: words)
-        #expect(text == "Dose · pain 4 before, 3 after")
+        let text = DoseRowText.painPhrase(for: readings(before: before, after: after), words: words)
+        #expect(text == "pain 4 before, 3 after")
     }
 
     @Test func theKindWordFollowsTheBeforeReading() throws {
         let before = try entry(.stiffness, severity: 6)
         let after = try entry(.pain, severity: 3)
-        let text = DoseRowText.subtitle(for: readings(before: before, after: after), words: words)
-        #expect(text == "Dose · stiffness 6 before, 3 after")
+        let text = DoseRowText.painPhrase(for: readings(before: before, after: after), words: words)
+        #expect(text == "stiffness 6 before, 3 after")
     }
 
     @Test func theSpokenLabelOfABeforeReadingReadsThePainWas() throws {
@@ -118,7 +105,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before), words: words
         )
-        #expect(label == "8:30. Naproxen 500 mg. Dose. Pain was 6 of 10.")
+        #expect(label == "Naproxen 500 mg. 8:30. Dose. Pain was 6 of 10.")
     }
 
     @Test func theSpokenLabelFollowsTheKindOfTheBeforeReading() throws {
@@ -127,7 +114,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before, after: after), words: words
         )
-        #expect(label == "8:30. Naproxen 500 mg. Dose. Stiffness 6 before, 3 after.")
+        #expect(label == "Naproxen 500 mg. 8:30. Dose. Stiffness 6 before, 3 after.")
     }
 
     @Test func theSpokenLabelOfBothReadingsReadsBeforeAndAfter() throws {
@@ -136,7 +123,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before, after: after), words: words
         )
-        #expect(label == "8:30. Naproxen 500 mg. Dose. Pain 6 before, 3 after.")
+        #expect(label == "Naproxen 500 mg. 8:30. Dose. Pain 6 before, 3 after.")
     }
 
     @Test func theTitleIsTheDosesOwnMedicationNameAndStrength() {
