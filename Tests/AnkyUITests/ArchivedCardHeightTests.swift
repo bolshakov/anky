@@ -3,7 +3,7 @@ import XCTest
 
 @MainActor
 final class ArchivedCardHeightTests: XCTestCase {
-    func testArchivedCardIsAtLeast60PointsTall() {
+    func testArchivedCardIsAtLeast52PointsTall() {
         continueAfterFailure = false
         let app = launchAnky()
         addMedication(app, name: "Zorblex")
@@ -13,8 +13,8 @@ final class ArchivedCardHeightTests: XCTestCase {
 
         let card = app.buttons["archived-card"]
         XCTAssertTrue(card.waitForExistence(timeout: 10))
-        XCTAssertGreaterThanOrEqual(card.frame.height, 60)
-        XCTAssertLessThan(card.frame.height, 61)
+        XCTAssertGreaterThanOrEqual(card.frame.height, 52)
+        XCTAssertLessThan(card.frame.height, 53)
     }
 
     private func addMedication(_ app: XCUIApplication, name: String) {

@@ -5,17 +5,10 @@ struct ArchivedCard: View {
     let count: Int
 
     var body: some View {
-        HStack {
-            Text("Archived")
-            Spacer()
-            Text("\(count)")
-                .foregroundStyle(.secondary)
-        }
-        .padding(.vertical, 8)
-        .frame(minHeight: 60)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Archived"))
-        .accessibilityValue("\(count)")
-        .accessibilityIdentifier("archived-card")
+        ValueRow(Text("Archived"), value: Text("\(count)"))
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("Archived"))
+            .accessibilityValue("\(count)")
+            .accessibilityIdentifier("archived-card")
     }
 }

@@ -16,23 +16,14 @@ struct MedicationsView: View {
             archivedSection
             emptySection
         }
+        .screenSpacing()
         .sensoryFeedback(.success, trigger: saveTicks)
         .medicationFailureAlert($failure)
         .onAppear { medications.reload() }
-        .listSectionSpacing(.custom(12))
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
-        .safeAreaInset(edge: .bottom) {
-            Button {
-                isShowingNewMedication = true
-            } label: {
-                Text("Add medication")
-                    .frame(maxWidth: .infinity)
-            }
-            .primaryButton()
-            .controlSize(.large)
-            .accessibilityIdentifier("medications-add")
-            .padding()
+        .bottomPrimaryButton(Text("Add medication"), id: "medications-add") {
+            isShowingNewMedication = true
         }
         .sheet(isPresented: $isShowingNewMedication) {
             MedicationFormView(medications: medications, onSaved: { saveTicks += 1 })
@@ -49,26 +40,21 @@ struct MedicationsView: View {
     @ViewBuilder
     private var activeSection: some View {
         if !active.isEmpty {
-            Section {
+            CardSection(footnote: medications.archivedCount == 0 ? archiveFootnote : nil, id: "medications") {
                 ForEach(active) { medication in
-                    Button {
+                    TwoLineRow(
+                        Text(medication.listTitle),
+                        subtitle: Text(medication.takenAs.title)
+                    ) {
                         editing = medication
-                    } label: {
-                        MedicationRow(medication: medication)
                     }
-                    .buttonStyle(.plain)
                     .accessibilityIdentifier("medication-row")
-                    .listRowInsets(EdgeInsets())
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Archive", systemImage: "archivebox") {
                             archive(medication)
                         }
                         .tint(.accentColor)
                     }
-                }
-            } footer: {
-                if medications.archivedCount == 0 {
-                    archiveFootnote
                 }
             }
         }
@@ -82,26 +68,20 @@ struct MedicationsView: View {
         }
     }
 
-    private var archiveFootnote: some View {
-        MedicationsFootnote(
-            text: "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."
-        )
+    private var archiveFootnote: Text {
+        Text("Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.")
     }
 
     @ViewBuilder
     private var archivedSection: some View {
         if medications.archivedCount > 0 {
-            Section {
+            CardSection(footnote: active.isEmpty ? nil : archiveFootnote, id: "archived-link") {
                 NavigationLink {
                     ArchivedView(medications: medications)
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }
-                .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-            } footer: {
-                if !active.isEmpty {
-                    archiveFootnote
-                }
+                .listRowInsets(.vertical, 0)
             }
         }
     }
@@ -111,9 +91,7 @@ struct MedicationsView: View {
         if active.isEmpty {
             Section {
                 MedicationsEmptyBlock()
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
+                    .nonCardBlock()
             }
             .listSectionSpacing(.custom(96))
         }

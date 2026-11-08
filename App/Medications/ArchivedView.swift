@@ -12,16 +12,19 @@ struct ArchivedView: View {
 
     var body: some View {
         List {
-            Section {
+            CardSection(
+                footnote: Text("Swipe left to restore. Doses you logged stay in History."),
+                id: "archived"
+            ) {
                 ForEach(medications.archived) { medication in
                     Button {
                         editing = medication
                     } label: {
-                        MedicationRow(medication: medication, showsChevron: false)
+                        TwoLineRow(Text(medication.listTitle), subtitle: Text(medication.takenAs.title))
                     }
                     .buttonStyle(.plain)
                     .accessibilityIdentifier("archived-row")
-                    .listRowInsets(EdgeInsets())
+                    .listRowInsets(.vertical, 0)
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Restore", systemImage: "arrow.counterclockwise") {
                             restore(medication)
@@ -29,10 +32,9 @@ struct ArchivedView: View {
                         .tint(.accentColor)
                     }
                 }
-            } footer: {
-                MedicationsFootnote(text: "Swipe left to restore. Doses you logged stay in History.")
             }
         }
+        .screenSpacing()
         .navigationTitle("Archived")
         .navigationBarTitleDisplayMode(.inline)
         .sensoryFeedback(.success, trigger: saveTicks)
