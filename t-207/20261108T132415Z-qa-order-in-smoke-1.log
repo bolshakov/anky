@@ -1,0 +1,15 @@
+$ sed -n 90,102p .github/workflows/ci.yml
+exit: 0
+commit: 511f25fb737afb6a34572c5eb446bebfb582e3b2
+
+          -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
+
+      - name: ui smoke tests
+        run: >
+          scripts/ci/run-ui-tests.sh light .derived
+          EmptyStateTests/testFirstLaunchShowsEmptyState
+          SaveEntryTests/testSaveEntryOnToday
+          SaveEntryTests/testEntrySurvivesRelaunch
+          NewEntryOrderTests/testNewEntryWithRecentStartsWithChipsThenKind
+          NewEntryOrderTests/testNewEntryWithoutRecentStartsWithKind
+          NewEntryOrderTests/testEditFatigueHasNoWhereAndNoteLast

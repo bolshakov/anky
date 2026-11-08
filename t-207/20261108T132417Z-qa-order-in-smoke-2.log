@@ -1,0 +1,8 @@
+$ grep -n 'func test' Tests/AnkyUITests/NewEntryOrderTests.swift
+exit: 0
+commit: 511f25fb737afb6a34572c5eb446bebfb582e3b2
+
+7:    func testNewEntryWithRecentStartsWithChipsThenKind() {
+19:    func testNewEntryWithoutRecentStartsWithKind() {
+28:    func testRecentChipFillsKindPlacesAndSeverity() {
+50:    func testEditFatigueHasNoWhereAndNoteLast() {
