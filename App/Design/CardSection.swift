@@ -6,7 +6,6 @@ private struct SectionFooter: ViewModifier {
         content
             .textCase(nil)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .listRowInsets(.leading, .zero)
             .listRowInsets(.top, Spacing.footnoteGap)
     }
 }
