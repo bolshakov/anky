@@ -6,7 +6,7 @@ extension MorePlacesValue {
     var namesText: String {
         guard !all.isEmpty else { return noneText }
         let shown = names.map(placeName)
-        guard more > 0 else { return shown.joined(separator: ", ") }
+        guard more > 0 else { return SpokenList.joined(shown, locale: .current) }
         return String(localized: "\(shown[0]), \(shown[1]) and \(more) more")
     }
 
@@ -17,7 +17,7 @@ extension MorePlacesValue {
 
     var listText: String {
         guard !all.isEmpty else { return noneText }
-        return all.map(placeName).joined(separator: ", ")
+        return SpokenList.joined(all.map(placeName), locale: .current)
     }
 
     private var noneText: String {

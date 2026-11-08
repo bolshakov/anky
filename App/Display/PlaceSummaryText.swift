@@ -7,7 +7,7 @@ extension PlaceSummary {
         switch self {
         case .wholeBody: String(localized: "Whole body")
         case .noPlace: String(localized: "No place")
-        case let .places(ids): ids.map { String(localized: $0.displayName) }.joined(separator: ", ")
+        case let .places(ids): SpokenList.joined(ids.map { String(localized: $0.displayName) }, locale: .current)
         }
     }
 }

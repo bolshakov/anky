@@ -16,4 +16,10 @@ struct DoseSubtitleCatalogTests {
         let joined = try CompiledCatalog.entries().keys.filter { $0.contains(RowSecondLine.separator) }
         #expect(joined == ["Done · %lld places"])
     }
+
+    @Test func noKeyIsABareJoinOfTwoValues() throws {
+        let keys = try CompiledCatalog.entries().keys
+        #expect(!keys.contains("%@ %@"))
+        #expect(!keys.contains("%@, %@"))
+    }
 }

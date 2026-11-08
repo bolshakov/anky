@@ -16,9 +16,9 @@ struct MedicationCheckInSection: View {
     }
 
     private var footnote: Text {
-        let ask = Text("Anky will ask how you feel after this long.")
-        guard !checkIn.isOn else { return ask }
-        return Text("\(ask) \(Text("Turn it on to choose a time."))")
+        let ask = String(localized: "Anky will ask how you feel after this long.")
+        guard !checkIn.isOn else { return Text(verbatim: ask) }
+        return Text(verbatim: "\(ask) \(String(localized: "Turn it on to choose a time."))")
     }
 }
 

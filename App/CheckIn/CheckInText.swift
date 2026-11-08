@@ -38,16 +38,16 @@ enum CheckInText {
 
     static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> Text {
         let saved = savedAs(kind)
-        guard startsAtEarlierReading else { return saved }
-        let starts = Text("Starts from your earlier entry. Change the level or places if they differ.")
-        return Text("\(starts) \(saved)")
+        guard startsAtEarlierReading else { return Text(verbatim: saved) }
+        let starts = String(localized: "Starts from your earlier entry. Change the level or places if they differ.")
+        return Text(verbatim: "\(starts) \(saved)")
     }
 
-    private static func savedAs(_ kind: EntryKind) -> Text {
+    private static func savedAs(_ kind: EntryKind) -> String {
         switch kind {
-        case .pain: Text("Saved as a pain entry.")
-        case .stiffness: Text("Saved as a stiffness entry.")
-        case .fatigue: Text("Saved as a fatigue entry.")
+        case .pain: String(localized: "Saved as a pain entry.")
+        case .stiffness: String(localized: "Saved as a stiffness entry.")
+        case .fatigue: String(localized: "Saved as a fatigue entry.")
         }
     }
 }
