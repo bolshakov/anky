@@ -9,17 +9,13 @@ struct BeforeThisDoseSection: View {
     let onLog: () -> Void
 
     var body: some View {
-        Section {
+        CardSection(
+            Text("Before this dose"),
+            footnote: reading().map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
+            id: "before-reading"
+        ) {
             TimelineView(.everyMinute) { _ in
                 row(reading())
-            }
-        } header: {
-            Text("Before this dose")
-                .cardCaption()
-        } footer: {
-            if reading() != nil {
-                Text("Your latest entry before this dose. Tap to choose another.")
-                    .accessibilityIdentifier("before-reading-footer")
             }
         }
     }
@@ -29,7 +25,7 @@ struct BeforeThisDoseSection: View {
         if let entry {
             Button(action: onChoose) {
                 HStack(spacing: 12) {
-                    ReadingRow(caption: nil, entry: entry)
+                    ReadingRow(entry: entry)
                     chevron
                 }
             }

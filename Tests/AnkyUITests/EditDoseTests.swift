@@ -77,7 +77,6 @@ final class EditDoseTests: XCTestCase {
         XCTAssertEqual(dateRowTime(in: app), rowTime, rowLabel)
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.waitForExistence(timeout: 10))
-        XCTAssertTrue(before.label.hasPrefix("Before this dose"), before.label)
         XCTAssertTrue(before.label.contains("4 of 10"), before.label)
         XCTAssertTrue(app.buttons["save-dose-changes"].exists)
         XCTAssertTrue(app.buttons["edit-dose-cancel"].exists)
@@ -198,6 +197,51 @@ final class EditDoseTests: XCTestCase {
         XCTAssertEqual(alert.buttons["confirm-delete"].firstMatch.label, "Delete entry")
         alert.buttons["keep-entry"].firstMatch.tap()
         XCTAssertTrue(alert.waitForNonExistence(timeout: 10))
+    }
+
+    func testCancellingTheDoseDeleteAlertKeepsTheDose() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logZorblexDose(app)
+        doseRow(in: app).tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        chooseDeleteDose(in: app)
+
+        let alert = app.alerts["Delete this dose? This can't be undone."].firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        XCTAssertEqual(alert.buttons["confirm-delete"].firstMatch.label, "Delete dose")
+        alert.buttons["keep-entry"].firstMatch.tap()
+
+        XCTAssertTrue(alert.waitForNonExistence(timeout: 10))
+        XCTAssertTrue(editDoseScreen(in: app).exists)
+        app.buttons["edit-dose-cancel"].tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: app).exists)
+    }
+
+    func testConfirmingTheDoseDeleteAlertRemovesTheDoseAndClosesTheScreen() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        logZorblexDose(app)
+        doseRow(in: app).tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        chooseDeleteDose(in: app)
+
+        let alert = app.alerts["Delete this dose? This can't be undone."].firstMatch
+        XCTAssertTrue(alert.waitForExistence(timeout: 10))
+        alert.buttons["confirm-delete"].firstMatch.tap()
+
+        XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
+        XCTAssertTrue(doseRow(in: app).waitForNonExistence(timeout: 10))
+    }
+
+    private func chooseDeleteDose(in app: XCUIApplication) {
+        let more = app.buttons["dose-more"]
+        XCTAssertTrue(more.waitForExistence(timeout: 10))
+        more.tap()
+        let delete = app.buttons["Delete dose"]
+        XCTAssertTrue(delete.waitForExistence(timeout: 10))
+        delete.tap()
     }
 
     private func logZorblexDose(_ app: XCUIApplication) {
