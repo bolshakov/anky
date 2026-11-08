@@ -61,7 +61,7 @@ struct CheckInView: View {
                         .accessibilityIdentifier("check-in-cancel")
                 }
             }
-            .alert("This check-in could not be saved.", isPresented: $isShowingSaveFailure) {
+            .alert("Couldn't save this check-in. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
         }

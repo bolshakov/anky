@@ -157,7 +157,7 @@ final class NoteTests: XCTestCase {
 
         XCTAssertEqual(noteField(in: app).value as? String, typed + emoji)
         let counter = app.descendants(matching: .any).matching(identifier: "note-footnote").firstMatch
-        XCTAssertEqual(counter.label, "Limit reached")
+        XCTAssertEqual(counter.label, "Character limit reached")
     }
 
     func testTypingPastTheLimitInSeparateBatchesKeepsTheLimit() {
@@ -192,7 +192,7 @@ final class NoteTests: XCTestCase {
             app.swipeUp()
         }
         XCTAssertTrue(counter.waitForExistence(timeout: 10))
-        XCTAssertEqual(counter.label, "5 left")
+        XCTAssertEqual(counter.label, "5 characters left")
 
         saveEntry(app)
         XCTAssertTrue(entryScreen(app, id: "edit-entry-screen").waitForNonExistence(timeout: 10))

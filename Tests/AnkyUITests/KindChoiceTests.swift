@@ -12,7 +12,7 @@ final class KindChoiceTests: XCTestCase {
         XCTAssertEqual(app.segmentedControls.count, 1)
         let picker = app.segmentedControls["kind-picker"]
         XCTAssertTrue(picker.waitForExistence(timeout: 10))
-        XCTAssertEqual(picker.label, "What are you logging")
+        XCTAssertEqual(picker.label, "What are you logging?")
         XCTAssertEqual(picker.buttons.count, EntryKind.allCases.count)
 
         let minXs = EntryKind.allCases.map { kindSegment($0, in: app).frame.minX }

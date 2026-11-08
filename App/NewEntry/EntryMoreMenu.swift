@@ -9,7 +9,7 @@ struct EntryMoreMenu: View {
             Button("Delete entry", systemImage: "trash", role: .destructive, action: onDelete)
                 .accessibilityIdentifier("delete-entry")
         } label: {
-            Label("More", systemImage: "ellipsis")
+            Label("More actions", systemImage: "ellipsis")
         }
         .accessibilityIdentifier("entry-more")
     }

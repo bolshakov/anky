@@ -14,7 +14,8 @@ final class TodayListTests: XCTestCase {
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         XCTAssertFalse(app.staticTexts["empty-today"].exists)
-        XCTAssertTrue(app.staticTexts["Levels are 0 to 10. Stored on this iPhone only."].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.staticTexts["Levels are 0 to 10. Everything stays on this iPhone."]
+            .waitForExistence(timeout: 10))
         XCTAssertEqual(entryRows(in: app).count, 1)
 
         let chip = app.buttons["repeat-chip"]
@@ -77,7 +78,7 @@ final class TodayListTests: XCTestCase {
 
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let footnote = app.staticTexts["Levels are 0 to 10. Stored on this iPhone only."]
+        let footnote = app.staticTexts["Levels are 0 to 10. Everything stays on this iPhone."]
         let stops = [app.staticTexts["today-date"], app.buttons["repeat-chip"], row, footnote, app.buttons["log-entry"]]
         for stop in stops {
             XCTAssertTrue(stop.exists)

@@ -58,7 +58,7 @@ struct EditDoseView: View {
             }
             .bottomPrimaryButton(Text("Save changes"), id: "save-dose-changes", action: saveChanges)
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, words: .dose, onDelete: removeDose)
-            .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
+            .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
         }

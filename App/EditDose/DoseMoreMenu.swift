@@ -9,7 +9,7 @@ struct DoseMoreMenu: View {
             Button("Delete dose", systemImage: "trash", role: .destructive, action: onDelete)
                 .accessibilityIdentifier("delete-dose")
         } label: {
-            Label("More", systemImage: "ellipsis")
+            Label("More actions", systemImage: "ellipsis")
         }
         .accessibilityIdentifier("dose-more")
     }

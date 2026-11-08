@@ -123,7 +123,7 @@ struct TodayView: View {
                     Button {
                         isShowingLogDose = true
                     } label: {
-                        Text("Log medication")
+                        Text("Log dose")
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     .buttonStyle(.glass)
@@ -157,7 +157,7 @@ struct TodayView: View {
             .sheet(item: $checkingIn) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
-            .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
+            .alert("Couldn't save this entry. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
             .sensoryFeedback(.success, trigger: logTicks)
@@ -262,7 +262,7 @@ struct TodayView: View {
             try model.remove(id: loggedID)
             self.loggedID = nil
             undoTicks += 1
-            UIAccessibility.post(notification: .announcement, argument: String(localized: "Entry removed"))
+            UIAccessibility.post(notification: .announcement, argument: String(localized: "Entry deleted"))
         } catch {
             isShowingSaveFailure = true
         }

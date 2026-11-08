@@ -164,7 +164,7 @@ final class EditDoseTests: XCTestCase {
 
         let alert = failing.alerts.firstMatch
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
-        XCTAssertEqual(alert.label, "This dose could not be saved.")
+        XCTAssertEqual(alert.label, "Couldn't save this dose. Try again.")
         XCTAssertEqual(alert.buttons.count, 1)
         alert.buttons["OK"].tap()
         XCTAssertTrue(editDoseScreen(in: failing).waitForExistence(timeout: 10))
