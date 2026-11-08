@@ -58,4 +58,22 @@ if [ -n "$headers" ]; then
   violation "styles a header font, case or inset in the gallery, the pieces own that"
 fi
 
+# A screen is every file under App/ outside the pieces. It sets no section spacing, row inset, label case, header or
+# footer of its own, so a screen cannot drift from the shared look.
+# usage: scan_screens <regex>
+scan_screens() {
+  find "$root/App" -path "$design" -prune -o -name "*.swift" -print 2> /dev/null | sort | while read -r file; do
+    sed 's://.*$::' "$file" | grep -En -e "$1" | sed "s|^|$file:|"
+  done
+}
+
+screen_modifiers="(listSectionSpacing|listRowSpacing|contentMargins|listRowInsets)\\(|\\.textCase\\("
+section_closures="\\}[[:space:]]*(header|footer):[[:space:]]*\\{"
+section_arguments="(^|[^A-Za-z0-9_])Section\\((.*[^A-Za-z0-9_])?(header|footer):"
+sections=$(scan_screens "$screen_modifiers|$section_closures|$section_arguments")
+if [ -n "$sections" ]; then
+  echo "$sections"
+  violation "sets section spacing, inset, case, header or footer in a screen, use App/Design"
+fi
+
 exit $fail
