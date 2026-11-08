@@ -1,0 +1,4 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t182-03-3/checkout status --short
+exit: 0
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+

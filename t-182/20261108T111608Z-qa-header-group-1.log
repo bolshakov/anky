@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/pre.sh; today; awk -v a="$(title_bottom)" -v b="$(edge today-date top)" "BEGIN { printf \"%.1f\n\", b - a }"; height today-date'
+exit: 0
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+
+3.0
+18

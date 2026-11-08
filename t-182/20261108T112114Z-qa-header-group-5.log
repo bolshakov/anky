@@ -1,0 +1,9 @@
+$ zsh -c '. $TMPDIR/pre.sh; today accessibility-extra-extra-extra-large; shot header-xxxl; awk -v a="$(title_bottom)" -v b="$(edge today-date top)" "BEGIN { printf \"%.1f\n\", b - a }"; ui | grep "id=repeat-chip"; magick "$out/header-xxxl.png" -crop 1206x900+0+0 +repage "$out/header-xxxl-crop.png"'
+exit: 0
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3EF8C54A-E6DF-4B1F-8D17-6730283E583A (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-03-3/tmp/walk-t182.RrcF/header-xxxl.png
+2.7
+Button id=repeat-chip label='Same as last time, Lower back, 4 of 10' value=None enabled=True @16,323 316.3333333333333x188.66666666666663

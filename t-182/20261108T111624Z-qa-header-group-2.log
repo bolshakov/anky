@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/pre.sh; gap today-date repeat-chip; height repeat-chip'
+exit: 0
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+
+16.0
+44

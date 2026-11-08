@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/pre.sh; echo "walk-$$" > "$out/folder"; . "$TMPDIR/walk.sh"; today; awk -v a="$(title_bottom)" -v b="$(edge today-date top)" "BEGIN { printf \"%.1f\n\", b - a }"; ui | grep -c "id=repeat-chip"'
+exit: 1
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+
+3.0
+0

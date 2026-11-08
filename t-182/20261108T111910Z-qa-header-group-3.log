@@ -1,0 +1,9 @@
+$ zsh -c '. $TMPDIR/pre.sh; shot header-light; width repeat-chip; chip_padding header-light repeat-chip; magick "$out/header-light.png" -crop 1206x900+0+0 +repage "$out/header-light-crop.png"'
+exit: 0
+commit: de0f7fac4f124f5c616aa6bce93cc472804430b8
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3EF8C54A-E6DF-4B1F-8D17-6730283E583A (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-03-3/tmp/walk-t182.RrcF/header-light.png
+256.66666666666663
+left 13.0 right 13.0
