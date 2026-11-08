@@ -7,31 +7,26 @@ struct MedicationTakingSections: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        Section {
+        CardSection(Text("How you take it"), id: "taking") {
             if dynamicTypeSize.isAccessibilitySize {
-                takenAsPicker
-                    .pickerStyle(.menu)
+                MenuRow(Text("How you take it"), selection: $draft.takenAs) { options }
+                    .accessibilityLabel("How you take it")
+                    .accessibilityValue(Text(draft.takenAs.title))
+                    .accessibilityIdentifier("taken-as")
             } else {
-                takenAsPicker
+                Picker("How you take it", selection: $draft.takenAs) { options }
                     .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
+                    .labelsHidden()
+                    .accessibilityIdentifier("taken-as")
+                    .nonCardBlock()
             }
-        } header: {
-            Text("How you take it")
-                .font(.footnote)
-                .accessibilityAddTraits(.isHeader)
         }
-
-        DoseCheckInSection(checkIn: $draft.checkIn, readingKind: nil)
+        MedicationCheckInSection(checkIn: $draft.checkIn)
     }
 
-    private var takenAsPicker: some View {
-        Picker("How you take it", selection: $draft.takenAs) {
-            ForEach(TakenAs.allCases, id: \.self) { option in
-                Text(option.title).tag(option)
-            }
+    private var options: some View {
+        ForEach(TakenAs.allCases, id: \.self) { option in
+            Text(option.title).tag(option)
         }
-        .labelsHidden()
-        .accessibilityIdentifier("taken-as")
     }
 }

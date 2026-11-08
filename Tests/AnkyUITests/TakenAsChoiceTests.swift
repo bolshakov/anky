@@ -156,10 +156,7 @@ final class TakenAsChoiceTests: XCTestCase {
         if segmented.exists {
             return segmented.buttons.allElementsBoundByIndex.first(where: \.isSelected)?.label
         }
-        let prefix = "How you take it, "
-        let label = app.buttons["taken-as"].label
-        guard label.hasPrefix(prefix) else { return nil }
-        return String(label.dropFirst(prefix.count))
+        return app.buttons["taken-as"].value as? String
     }
 
     /// The pinned Save button covers the bottom of the form, so the choice must scroll above it,

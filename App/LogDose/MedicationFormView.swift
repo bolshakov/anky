@@ -29,13 +29,13 @@ struct MedicationFormView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
+                CardSection(id: "medication-fields") {
                     TextField("Name", text: $draft.name)
                         .autocorrectionDisabled()
                         .focused($focus, equals: .name)
                         .submitLabel(.next)
                         .onSubmit { focus = .strength }
-                        .frame(minHeight: 44)
+                        .rowHeight()
                         .contentShape(Rectangle())
                         .onTapGesture { focus = .name }
                         .accessibilityLabel("Name")
@@ -45,7 +45,7 @@ struct MedicationFormView: View {
                         .focused($focus, equals: .strength)
                         .submitLabel(.done)
                         .onSubmit { focus = nil }
-                        .frame(minHeight: 44)
+                        .rowHeight()
                         .contentShape(Rectangle())
                         .onTapGesture { focus = .strength }
                         .accessibilityLabel("Strength, optional")
@@ -56,13 +56,14 @@ struct MedicationFormView: View {
                     lifecycleSection(for: editing)
                 }
             }
+            .screenSpacing()
             .accessibilityIdentifier("medication-form")
             .navigationTitle(editing == nil ? "New Medication" : "Edit Medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
-                        .frame(minHeight: 44)
+                        .frame(minHeight: Spacing.rowMinimumHeight)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("medication-cancel")
                 }
@@ -78,8 +79,9 @@ struct MedicationFormView: View {
                 .controlSize(.large)
                 .disabled(!draft.isSavable)
                 .accessibilityIdentifier("medication-save")
-                .padding()
-                .background(Color(.systemGroupedBackground))
+                .padding(.horizontal, Spacing.screenMargin)
+                .padding(.vertical, Spacing.bottomClearance)
+                .background(Color.surface)
             }
             .medicationFailureAlert($failure)
         }
