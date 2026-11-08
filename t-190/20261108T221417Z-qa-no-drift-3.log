@@ -1,0 +1,36 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/summary.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb
+exit: 0
+commit: 3a37b2cda51c9779a1b7124be59c70e38ca25124
+
+frames (axe describe-ui id/label/frame, clock text excluded): A vs B, then A vs A control
+e-history-A-dark frames A-vs-B=0 frames A-vs-A=0
+e-history-A-light frames A-vs-B=0 frames A-vs-A=0
+e-meds-A-dark frames A-vs-B=0 frames A-vs-A=0
+e-meds-A-light frames A-vs-B=0 frames A-vs-A=0
+e-today-A-dark frames A-vs-B=0 frames A-vs-A=0
+e-today-A-light frames A-vs-B=0 frames A-vs-A=0
+f-history-A-dark frames A-vs-B=0 frames A-vs-A=0
+f-history-A-light frames A-vs-B=0 frames A-vs-A=0
+f-logdose-A-dark frames A-vs-B=0 frames A-vs-A=0
+f-logdose-A-light frames A-vs-B=0 frames A-vs-A=0
+f-newentry-A-dark frames A-vs-B=0 frames A-vs-A=0
+f-newentry-A-light frames A-vs-B=0 frames A-vs-A=0
+f-today-A-dark frames A-vs-B=0 frames A-vs-A=0
+f-today-A-light frames A-vs-B=0 frames A-vs-A=0
+f-todayax-A frames A-vs-B=0 frames A-vs-A=0
+pixels outside the home-indicator strip (bottom 52px): bbox of differing pixels, A-vs-B | A-vs-A control
+e-history-A-dark | 1x1+1+1 | 1x1+1+1
+e-history-A-light | 157x156+0+0 | 157x156+0+0
+e-meds-A-dark | 1x1+1+1 | 1x1+1+1
+e-meds-A-light | 1200x304+0+0 | 1200x304+0+0
+e-today-A-dark | 1x1+1+1 | 1x1+1+1
+e-today-A-light | 101x44+0+0 | 101x44+0+0
+f-history-A-dark | 1x1+1+1 | 1x1+1+1
+f-history-A-light | 1x1+1+1 | 157x156+0+0
+f-logdose-A-dark | 1110x1831+0+0 | 1110x1841+0+0
+f-logdose-A-light | 1206x2378+0+0 | 1200x2378+0+0
+f-newentry-A-dark | 1007x1920+0+0 | 1007x1920+0+0
+f-newentry-A-light | 1203x2378+0+0 | 1055x1967+0+0
+f-today-A-dark | 1x1+1+1 | 1110x385+0+0
+f-today-A-light | 1x1+1+1 | 1x1+1+1
+f-todayax-A | 1206x1296+0+0 | 765x466+0+0

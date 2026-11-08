@@ -1,0 +1,5 @@
+$ cmp /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/s7/e-today-A-light.png /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/s7/e-today-B-light.png
+exit: 1
+commit: 3a37b2cda51c9779a1b7124be59c70e38ca25124
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/s7/e-today-A-light.png /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/s7/e-today-B-light.png differ: char 155299, line 455

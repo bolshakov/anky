@@ -1,0 +1,9 @@
+$ sh -c 'git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/A status; echo ---; git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t190-01-1/tmp/sb/B status'
+exit: 0
+commit: 3a37b2cda51c9779a1b7124be59c70e38ca25124
+
+Not currently on any branch.
+nothing to commit, working tree clean
+---
+Not currently on any branch.
+nothing to commit, working tree clean
