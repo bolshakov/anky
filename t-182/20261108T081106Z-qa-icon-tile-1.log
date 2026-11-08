@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-02-1/tmp/s1b.sh
+exit: 0
+commit: cdb9a9e6abc7300f972946dfcaeab3a29d7cdc07
+
+dose-row
+96x96 px | srgba(255,255,255,1) srgba(228,228,230,1) srgba(228,228,230,1) srgba(228,228,230,1)
++12
+entry-row-fatigue
+96x96 px | srgba(255,255,255,1) srgba(228,228,230,1) srgba(228,228,230,1) srgba(228,228,230,1)
++12

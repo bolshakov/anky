@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-02-1/tmp/d1.sh
+exit: 0
+commit: cdb9a9e6abc7300f972946dfcaeab3a29d7cdc07
+
+Button id=entry-row-pain label='Pain, 09:07, Lower back, 4 of 10' value=None enabled=True @16,383 370x68
+Button id=entry-row-stiffness label='Stiffness, 09:06, Lower back, 4 of 10' value=None enabled=True @16,451 370x68
+Button id=entry-row-fatigue label='Fatigue, 09:06, 4 of 10' value=None enabled=True @16,519 370x68
+Button id=dose-row label='Walk medicine. 09:07. Dose. Pain was 4 of 10.' value=None enabled=True @16,315 370x68
+--- symbols:
+--- end

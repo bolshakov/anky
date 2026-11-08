@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-02-1/tmp/s2.sh
+exit: 0
+commit: cdb9a9e6abc7300f972946dfcaeab3a29d7cdc07
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 0F0439AB-B21C-4341-8420-F68DAC372CA1 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-02-1/tmp/walk-t182.12Xy/tiles-dark.png
+96x96 px at ++36++42
+srgba(28,28,30,1) srgba(61,61,65,1) srgba(61,61,65,1) srgba(61,61,65,1)

@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-02-1/tmp/d2.sh
+exit: 0
+commit: cdb9a9e6abc7300f972946dfcaeab3a29d7cdc07
+
+Button id=dose-row label='Walk medicine. 08:42. Dose. Pain was 4 of 10. Check in pending.' value=None enabled=True @32,534 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True @308,531 62x44
