@@ -55,8 +55,10 @@ final class TakenAsChoiceTests: XCTestCase {
 
         scrollToChoice(in: app)
         XCTAssertEqual(selectedChoice(in: app), "As needed")
+        let asNeededBeforeOpening = asNeededCount(in: app)
         openChoiceMenu(in: app)
         XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
+        XCTAssertGreaterThan(asNeededCount(in: app), asNeededBeforeOpening)
         app.buttons["Scheduled"].tap()
         saveNewMedication(named: "Zorblex", app)
 
@@ -145,6 +147,11 @@ final class TakenAsChoiceTests: XCTestCase {
             openChoiceMenu(in: app)
             app.buttons[option].tap()
         }
+    }
+
+    /// The row's own button reads "As needed" while the menu is shut, and the open menu adds an item of that name.
+    private func asNeededCount(in app: XCUIApplication) -> Int {
+        app.buttons.matching(NSPredicate(format: "label == 'As needed'")).count
     }
 
     /// A row scrolled off is missing from the lazy list, and one under the navigation bar takes no focus.
