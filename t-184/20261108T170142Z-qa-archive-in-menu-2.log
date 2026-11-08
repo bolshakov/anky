@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'tap_first medication-more; ui | grep "id=medication-archive "; ui | grep -c "id=medication-restore "; shot menu-open; menu_ink menu-open medication-archive'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+Button id=medication-archive label='Archive medication' value=None enabled=True @136,98 250x42
+0
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: C0827A4E-692D-4DAD-AF62-7DC63CEA9815 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/walk-t184.YVSq/menu-open.png
+0.00

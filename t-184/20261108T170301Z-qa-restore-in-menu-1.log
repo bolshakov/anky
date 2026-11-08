@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'edit_archived; ui | grep -c "id=medication-restore "; ui | grep -c "id=medication-more "; shot restore-closed'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+0
+1
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: C0827A4E-692D-4DAD-AF62-7DC63CEA9815 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/walk-t184.YVSq/restore-closed.png

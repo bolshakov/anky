@@ -1,0 +1,10 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'tap_first medication-restore; sleep 1; ui | grep -c "^Sheet "; ui | grep -c "id=archived-card "; ui | grep -c "id=medication-row "; shot restored-at-once'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+0
+0
+3
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: C0827A4E-692D-4DAD-AF62-7DC63CEA9815 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/walk-t184.YVSq/restored-at-once.png

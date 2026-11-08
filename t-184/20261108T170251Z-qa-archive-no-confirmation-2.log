@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'tap_first archived-card; ui | grep "id=archived-row "'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+Button id=archived-row label='Zorblex 500 mg, As needed' value=None enabled=True @16,148 370x60

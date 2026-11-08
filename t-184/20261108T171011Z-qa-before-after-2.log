@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'to_head; rebuild; git -C "$CHECKOUT" status --short; echo "status end"'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+rebuild exit 0
+status end

@@ -1,0 +1,11 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/step.sh 'edit_medication; tap_first medication-more; tap_first medication-archive; sleep 1; shot archived-at-once; ui | grep -c "^Sheet "; ui | grep -c "id=medication-save "; ui | grep -c "id=medication-row "; ui | grep -c "id=archived-card "'
+exit: 0
+commit: 661f06ca60f677a32ce7e975cdc80c2b912c4d57
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: C0827A4E-692D-4DAD-AF62-7DC63CEA9815 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t184-03-1/tmp/walk-t184.YVSq/archived-at-once.png
+0
+0
+2
+2
