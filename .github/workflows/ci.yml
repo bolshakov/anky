@@ -95,3 +95,6 @@ jobs:
           EmptyStateTests/testFirstLaunchShowsEmptyState
           SaveEntryTests/testSaveEntryOnToday
           SaveEntryTests/testEntrySurvivesRelaunch
+          NewEntryOrderTests/testNewEntryWithRecentStartsWithChipsThenKind
+          NewEntryOrderTests/testNewEntryWithoutRecentStartsWithKind
+          NewEntryOrderTests/testEditFatigueHasNoWhereAndNoteLast
