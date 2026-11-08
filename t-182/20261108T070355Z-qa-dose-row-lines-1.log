@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'today; ui | grep "id=dose-row"; shot dose-light; echo height-dose $(height dose-row)'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+Button id=dose-row label='Walk medicine. 07:59. Dose. Pain was 4 of 10.' value=None enabled=True @16,383 370x68
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3A55452D-7994-4A07-A203-7FB8C557B8AC (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/walk-t182.fv5l/dose-light.png
+height-dose 68

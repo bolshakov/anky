@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'tap_id check-in-label; sleep 1; echo check-in-screen-count $(ui | grep -c "id=check-in-screen ")'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+✓ Tap at resolved tap point at (339.0, 289.0) completed successfully
+check-in-screen-count 1

@@ -1,0 +1,11 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'ui | grep -E "id=(dose-row|check-in-label)"; echo check-in-right $(edge check-in-label right); echo dose-right $(edge dose-row right); shot dose-checkin'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+Button id=dose-row label='Walk medicine. 07:33. Dose. Check in pending.' value=None enabled=True @32,270 338x38
+StaticText id=check-in-label label='Check in' value=None enabled=True @308,267 62x44
+check-in-right 370
+dose-right 370
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3A55452D-7994-4A07-A203-7FB8C557B8AC (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/walk-t182.fv5l/dose-checkin.png

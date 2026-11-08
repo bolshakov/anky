@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'today; tap_id entry-row-pain; echo save-entry-count $(ui | grep -c "id=save-entry ")'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+✓ Tap at resolved tap point at (201.0, 485.0) completed successfully
+save-entry-count 1

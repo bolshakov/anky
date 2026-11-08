@@ -1,0 +1,8 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'today accessibility-extra-extra-extra-large; ui | grep "id=entry-row-"; shot rows-xxxl'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+Button id=entry-row-stiffness label='Stiffness, 08:00, Lower back, 4 of 10' value=None enabled=True @16,545.3333333333334 370x267.33333333333337
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3A55452D-7994-4A07-A203-7FB8C557B8AC (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/walk-t182.fv5l/rows-xxxl.png

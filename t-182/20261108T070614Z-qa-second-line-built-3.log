@@ -1,0 +1,5 @@
+$ sh -c 'cd /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/checkout && python3 -I -c "import json,sys; d=json.load(open('\''App/Localizable.xcstrings'\''))['\''strings'\'']; print([k for k in d if '\''·'\'' in k])"'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+['Done · %lld places']

@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/w.sh 'today_us; ui | grep "id=entry-row-pain"; shot us-rows; ui | grep "id=entry-row-pain" | python3 -I -c "import sys;print(ascii(sys.stdin.read()))"'
+exit: 0
+commit: 9d8e27d9afd0a48925d6701ea511b03f9dc03845
+
+Button id=entry-row-pain label='Pain, 7:59\u202fAM, Lower back, 4 of 10' value=None enabled=True @16,451 370x68
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3A55452D-7994-4A07-A203-7FB8C557B8AC (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t182-01-1/tmp/walk-t182.fv5l/us-rows.png
+"Button id=entry-row-pain label='Pain, 7:59\\u202fAM, Lower back, 4 of 10' value=None enabled=True @16,451 370x68\n"
