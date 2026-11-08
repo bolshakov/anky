@@ -59,13 +59,25 @@ func dateRowDay(in app: XCUIApplication) -> String? {
     return String(value[..<space.lowerBound])
 }
 
-/// Scrolls the form until the row can be tapped. At the largest size the row scrolls off the top of a form once a
-/// lower row is set, and a form leaves off screen rows out of the accessibility tree.
+/// Scrolls the form until the row's centre is clear of the navigation bar and of the pinned Save bar. At the largest
+/// size the form leaves the row out of the accessibility tree while it is off screen, below the first screen of a new
+/// form or above it once a lower row is set. A row in the tree can also have its centre off screen or under the bar
+/// while `isHittable` still says yes. A row that is not in the tree is looked for below first, then above.
 @MainActor
 func scrollToDateRow(in app: XCUIApplication) {
     let row = dateRow(in: app)
-    for _ in 0 ..< 5 where !row.exists || !row.isHittable {
-        app.swipeDown()
+    let top = app.frame.minY + app.frame.height / 8
+    func isClear() -> Bool {
+        let bottom = saveBarTop(in: app)
+        return row.exists && row.isHittable && (top ..< bottom).contains(row.frame.midY)
+    }
+    for attempt in 0 ..< 8 where !isClear() {
+        let rowIsBelow = row.exists ? row.frame.midY > app.frame.midY : attempt < 3
+        if rowIsBelow {
+            app.swipeUp()
+        } else {
+            app.swipeDown()
+        }
     }
 }
 

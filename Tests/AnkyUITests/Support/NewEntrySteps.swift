@@ -42,13 +42,22 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
     XCTFail("the severity slider did not reach \(level)")
 }
 
+/// The top edge of the pinned Save bar of whichever form is open, or the screen's bottom when none shows. `isHittable`
+/// does not see the bar covering an element, so a step compares frames with this.
+@MainActor
+func saveBarTop(in app: XCUIApplication) -> CGFloat {
+    let bars = ["save-entry", "save-dose", "save-check-in"].map { app.buttons[$0] }.filter(\.exists)
+    return bars.map(\.frame.minY).min() ?? app.frame.maxY
+}
+
 /// The pinned Save bar covers the bottom of the form, and a drag that starts under it taps Save, which saves the entry.
+/// A slider the bar leaves clear stays where it is: at the largest size the lift flings it off the top of the form.
 @MainActor
 private func liftAboveSaveBar(_ slider: XCUIElement, in app: XCUIApplication) {
     let margin = 0.02
     let from = app.coordinate(withNormalizedOffset: CGVector(dx: margin, dy: 0.6))
     let to = app.coordinate(withNormalizedOffset: CGVector(dx: margin, dy: 0.4))
-    for _ in 0 ..< 6 where slider.exists && slider.frame.midY > app.frame.midY {
+    for _ in 0 ..< 6 where slider.exists && slider.frame.maxY > saveBarTop(in: app) {
         from.press(forDuration: 0.1, thenDragTo: to)
     }
 }
