@@ -1,0 +1,12 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/s2.sh
+exit: 0
+commit: f976c42fd460830bb74369c2ac056b902d4d9a2b
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+picker rc 0
+✓ Tap at resolved tap point at (201.0, 206.33333333333334) completed successfully
+✓ Tap at resolved tap point at (201.0, 258.3333333333333) completed successfully
+Button id=done-places label='Done, 2 places' value=None enabled=True @16,716 370x56
+✓ Tap at resolved tap point at (201.0, 744.0) completed successfully
+0
+1

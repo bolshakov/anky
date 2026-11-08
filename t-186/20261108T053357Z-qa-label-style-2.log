@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/l2.sh
+exit: 0
+commit: f976c42fd460830bb74369c2ac056b902d4d9a2b
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+picker rc 0
+4
+Heading id=place-group-legs-label label='Legs' value=None enabled=True @16,79.33333333333326 370x32.33333333333334
+Heading id=place-group-head-label label='Head' value=None enabled=True @16,559.6666666666667 370x32.33333333333337

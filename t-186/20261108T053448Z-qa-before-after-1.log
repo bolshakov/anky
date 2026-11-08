@@ -1,0 +1,32 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/ba-after.sh
+exit: 0
+commit: f976c42fd460830bb74369c2ac056b902d4d9a2b
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+picker rc 0
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 8F44470B-0F15-408D-9854-7EB18ED9858F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-light.png
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 8F44470B-0F15-408D-9854-7EB18ED9858F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-end-light.png
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+picker rc 0
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 8F44470B-0F15-408D-9854-7EB18ED9858F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-dark.png
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 8F44470B-0F15-408D-9854-7EB18ED9858F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-end-dark.png
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+picker rc 0
+✓ Tap at resolved tap point at (201.0, 308.66666666666663) completed successfully
+✓ Tap at resolved tap point at (201.0, 360.66666666666663) completed successfully
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 8F44470B-0F15-408D-9854-7EB18ED9858F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-selected-light.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-dark.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-end-dark.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-end-light.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-light.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/walk-t186.gVYk/after-selected-light.png

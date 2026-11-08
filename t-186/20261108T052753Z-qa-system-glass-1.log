@@ -1,0 +1,8 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t186-01-2/tmp/s1b.sh
+exit: 0
+commit: f976c42fd460830bb74369c2ac056b902d4d9a2b
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+new_entry rc 0
+16 768 370 56
+824
