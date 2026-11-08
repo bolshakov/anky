@@ -16,7 +16,7 @@ struct EmptyHistoryView: View {
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("empty-history")
 
-                Text("Entries you add appear here, newest first.")
+                Text("Everything you log appears here, newest first.")
                     .font(.body)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)

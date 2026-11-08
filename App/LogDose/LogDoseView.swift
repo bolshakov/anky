@@ -82,7 +82,7 @@ struct LogDoseView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) { saveButton }
-            .alert("This dose could not be saved.", isPresented: $isShowingSaveFailure) {
+            .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
             .onChange(of: active) {

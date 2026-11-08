@@ -59,7 +59,7 @@
         }
       }
     },
-    "%lld left" : {
+    "%lld characters left" : {
       "localizations" : {
         "en" : {
           "variations" : {
@@ -67,43 +67,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld left"
+                  "value" : "%lld character left"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld left"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Остался %lld символ"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Осталось %lld символа"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Осталось %lld символов"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Осталось %lld символа"
+                  "value" : "%lld characters left"
                 }
               }
             }
@@ -251,7 +221,7 @@
         }
       }
     },
-    "Choose a reading" : {
+    "Choose an entry" : {
 
     },
     "Date and time" : {
@@ -405,25 +375,11 @@
         }
       }
     },
-    "Entries you add appear here, newest first." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Здесь появятся твои записи."
-          }
-        }
-      }
+    "Everything you log appears here, newest first." : {
+
     },
-    "Entry removed" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запись удалена"
-          }
-        }
-      }
+    "Entry deleted" : {
+
     },
     "Eyes" : {
       "localizations" : {
@@ -841,23 +797,16 @@
     "Levels are 0 to 10." : {
 
     },
-    "Levels are 0 to 10. Stored on this iPhone only." : {
+    "Levels are 0 to 10. Everything stays on this iPhone." : {
 
     },
-    "Limit reached" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Достигнут лимит символов"
-          }
-        }
-      }
+    "Character limit reached" : {
+
     },
     "Log Dose" : {
 
     },
-    "Log medication" : {
+    "Log dose" : {
 
     },
     "Medication" : {
@@ -1013,15 +962,8 @@
     "Log how you feel now" : {
 
     },
-    "Log how you feel, or a medication you took. Everything stays on this iPhone." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмечай самочувствие и записывай принятые лекарства. Все данные хранятся только на этом iPhone"
-          }
-        }
-      }
+    "Log how you feel, or a dose you took. Everything stays on this iPhone." : {
+
     },
     "Logged" : {
       "localizations" : {
@@ -1043,7 +985,7 @@
         }
       }
     },
-    "More" : {
+    "More actions" : {
 
     },
     "More places" : {
@@ -1482,42 +1424,28 @@
     "The entry used for this dose. Tap to open it." : {
 
     },
-    "This check-in could not be saved." : {
+    "Couldn't save this check-in. Try again." : {
 
     },
-    "This dose could not be deleted." : {
+    "Couldn't delete this dose. Try again." : {
 
     },
-    "This entry could not be deleted." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось удалить запись."
-          }
-        }
-      }
-    },
-    "This entry could not be saved." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось сохранить запись."
-          }
-        }
-      }
-    },
-    "This medication could not be archived." : {
+    "Couldn't delete this entry. Try again." : {
 
     },
-    "This medication could not be restored." : {
+    "Couldn't save this entry. Try again." : {
 
     },
-    "This dose could not be saved." : {
+    "Couldn't archive this medication. Try again." : {
 
     },
-    "This medication could not be saved." : {
+    "Couldn't restore this medication. Try again." : {
+
+    },
+    "Couldn't save this dose. Try again." : {
+
+    },
+    "Couldn't save this medication. Try again." : {
 
     },
     "Today" : {
@@ -1580,15 +1508,8 @@
         }
       }
     },
-    "What are you logging" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Что ты отмечаешь"
-          }
-        }
-      }
+    "What are you logging?" : {
+
     },
     "Where" : {
       "localizations" : {
@@ -1688,6 +1609,9 @@
     },
     "Time to check in" : {
       "comment" : "Text of a reminder notification that prompts the person to say how they feel after a dose. It is not a hotel or flight check-in."
+    },
+    "Dose deleted" : {
+
     }
   },
   "version" : "1.0"

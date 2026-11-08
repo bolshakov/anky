@@ -13,7 +13,7 @@ func scrollToNoteField(in app: XCUIApplication) {
     XCTAssertTrue(note.isHittable)
 }
 
-/// Today's "Log medication" sits in the bottom pair at every text size, so the swipe loop
+/// Today's "Log dose" sits in the bottom pair at every text size, so the swipe loop
 /// normally exits at once.
 @MainActor
 func tapLogMedication(in app: XCUIApplication) {

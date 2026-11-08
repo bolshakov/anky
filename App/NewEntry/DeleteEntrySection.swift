@@ -1,16 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import SwiftUI
+import UIKit
 
 struct DeleteWords {
     let message: LocalizedStringKey
     let button: LocalizedStringKey
     let failure: LocalizedStringKey
+    let announcement: String
 
     static var entry: DeleteWords {
         DeleteWords(
             message: "Delete this entry? This can't be undone.",
             button: "Delete entry",
-            failure: "This entry could not be deleted."
+            failure: "Couldn't delete this entry. Try again.",
+            announcement: String(localized: "Entry deleted")
         )
     }
 
@@ -18,7 +21,8 @@ struct DeleteWords {
         DeleteWords(
             message: "Delete this dose? This can't be undone.",
             button: "Delete dose",
-            failure: "This dose could not be deleted."
+            failure: "Couldn't delete this dose. Try again.",
+            announcement: String(localized: "Dose deleted")
         )
     }
 }
@@ -64,6 +68,7 @@ private struct EntryDeleteConfirmation: ViewModifier {
     private func delete() {
         do {
             try onDelete()
+            UIAccessibility.post(notification: .announcement, argument: words.announcement)
         } catch {
             isShowingDeleteFailure = true
         }

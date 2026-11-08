@@ -7,9 +7,9 @@ enum MedicationFailure {
 
     var message: LocalizedStringKey {
         switch self {
-        case .save: "This medication could not be saved."
-        case .archive: "This medication could not be archived."
-        case .restore: "This medication could not be restored."
+        case .save: "Couldn't save this medication. Try again."
+        case .archive: "Couldn't archive this medication. Try again."
+        case .restore: "Couldn't restore this medication. Try again."
         }
     }
 }

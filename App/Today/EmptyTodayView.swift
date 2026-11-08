@@ -16,7 +16,7 @@ struct EmptyTodayView: View {
                 .multilineTextAlignment(.center)
                 .accessibilityIdentifier("empty-today")
 
-            Text("Log how you feel, or a medication you took. Everything stays on this iPhone.")
+            Text("Log how you feel, or a dose you took. Everything stays on this iPhone.")
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

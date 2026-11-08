@@ -101,7 +101,7 @@ struct NewEntryView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) { saveButton }
-            .alert("This entry could not be saved.", isPresented: $isShowingSaveFailure) {
+            .alert("Couldn't save this entry. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, onDelete: removeEntry)

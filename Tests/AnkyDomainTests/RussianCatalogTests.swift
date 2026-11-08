@@ -8,8 +8,6 @@ private let approvedPlainValues = table("""
 Today => Сегодня
 Nothing logged today => Сегодня записей нет
 Log how you feel => Отметь самочувствие
-Log how you feel, or a medication you took. Everything stays on this iPhone. => \
-Отмечай самочувствие и записывай принятые лекарства. Все данные хранятся только на этом iPhone
 New Entry => Новая запись
 Cancel => Отмена
 Kind => Тип
@@ -20,9 +18,7 @@ Date and time => Дата и время
 How strong => Насколько сильно
 Severity => Сила симптома
 Add a note => Добавить заметку
-Limit reached => Достигнут лимит символов
 Save entry => Сохранить запись
-This entry could not be saved. => Не удалось сохранить запись.
 OK => ОК
 selected => выбрано
 not selected => не выбрано
@@ -83,11 +79,9 @@ Save changes => Сохранить изменения
 Delete => Удалить
 Delete entry => Удалить запись
 Delete this entry? This can't be undone. => Удалить эту запись? Это нельзя отменить.
-This entry could not be deleted. => Не удалось удалить запись.
 History => История
 Yesterday => Вчера
 No entries yet => Записей пока нет
-Entries you add appear here, newest first. => Здесь появятся твои записи.
 None => Нет
 Same as last time => Как в прошлый раз
 Logged => Записано
@@ -113,10 +107,8 @@ Swipe a place right to pin it as a shortcut on New Entry. => \
 Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
 Dismiss tip => Закрыть подсказку
 Pinned => Закреплено
-What are you logging => Что ты отмечаешь
 Note => Заметка
 Unpinned => Откреплено
-Entry removed => Запись удалена
 """)
 
 private let approvedFormatValues = table("""
@@ -124,15 +116,6 @@ private let approvedFormatValues = table("""
 %lld of %lld => %1$lld из %2$lld
 %@, %@ => %1$@, %2$@
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
-""")
-
-private let counterKey = "%lld left"
-
-private let approvedCounterValues = table("""
-one => Остался %lld символ
-few => Осталось %lld символа
-many => Осталось %lld символов
-other => Осталось %lld символа
 """)
 
 private let donePlacesKey = "Done · %lld places"
@@ -155,7 +138,7 @@ other => %lld места
 
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
-    + [counterKey, donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours"]
+    + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
@@ -168,7 +151,7 @@ private let startsAtEarlierReading = "Starts at your earlier reading, with the s
     + "Change either if it is different."
 
 /// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
-private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
+private let awaitingRussian = ["Log Dose", "Log dose", "Medication"]
     + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
     + ["Save medication", "As needed", "Scheduled"]
     + ["How you take it", "Check in after", "After"]
@@ -184,12 +167,12 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Swipe left to restore. Doses you logged stay in History."]
     + ["Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."]
     + ["Add what you take, then log a dose in two taps. Everything stays on this iPhone."]
-    + ["This medication could not be saved.", "This medication could not be archived."]
-    + ["Save dose", "This dose could not be saved."]
-    + ["This medication could not be restored.", "Strength, optional"]
+    + ["Couldn't save this medication. Try again.", "Couldn't archive this medication. Try again."]
+    + ["Save dose", "Couldn't save this dose. Try again."]
+    + ["Couldn't restore this medication. Try again.", "Strength, optional"]
     + ["Before this dose", "Your latest entry before this dose. Tap to choose another."]
     + ["Edit Dose", "checked in at", "The entry used for this dose. Tap to open it."]
-    + ["Choose a reading", "Log how you feel now"]
+    + ["Choose an entry", "Log how you feel now"]
     + ["Dose", "pain was %lld", "stiffness was %lld", "fatigue was %lld"]
     + ["pain %lld after", "pain %lld before, %lld after"]
     + ["stiffness %lld after", "stiffness %lld before, %lld after"]
@@ -198,7 +181,7 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Stiffness was %lld of 10", "Stiffness %lld after", "Stiffness %lld before, %lld after"]
     + ["Fatigue was %lld of 10", "Fatigue %lld after", "Fatigue %lld before, %lld after"]
     + ["%@ %@"]
-    + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "This check-in could not be saved."]
+    + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "Couldn't save this check-in. Try again."]
     + ["\(startsAtEarlierReading) Saved as a Pain entry."]
     + ["\(startsAtEarlierReading) Saved as a Stiffness entry."]
     + ["\(startsAtEarlierReading) Saved as a Fatigue entry."]
@@ -209,10 +192,14 @@ private let awaitingRussian = ["Log Dose", "Log medication", "Medication"]
     + ["Taken yesterday at %@. Before: Pain %lld.", "Taken yesterday at %@. Before: Stiffness %lld.",
        "Taken yesterday at %@. Before: Fatigue %lld."]
     + ["Check in", "Check In", "Check in pending", "Opens Check In"]
-    + ["Delete dose", "Delete this dose? This can't be undone.", "This dose could not be deleted."]
-    + ["Levels are 0 to 10. Stored on this iPhone only.", "Levels are 0 to 10."]
+    + ["Delete dose", "Delete this dose? This can't be undone.", "Couldn't delete this dose. Try again."]
+    + ["Levels are 0 to 10. Everything stays on this iPhone.", "Levels are 0 to 10."]
     + ["Time to check in"]
-    + ["More"]
+    + ["More actions"]
+    + ["Couldn't save this entry. Try again.", "Couldn't delete this entry. Try again."]
+    + ["Entry deleted", "Dose deleted", "%lld characters left", "Character limit reached"]
+    + ["Everything you log appears here, newest first.", "What are you logging?"]
+    + ["Log how you feel, or a dose you took. Everything stays on this iPhone."]
 
 private let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
@@ -339,39 +326,6 @@ struct RussianCatalogTests {
         }
     }
 
-    @Test func oneAndTwentyOneLeftTakeTheSingularForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [1, 21] {
-                #expect(String(localized: "\(count) left", bundle: ru, locale: russian) == "Остался \(count) символ")
-            }
-        }
-    }
-
-    @Test func twoAndTwentyTwoLeftTakeTheFewForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [2, 3, 4, 22] {
-                #expect(String(localized: "\(count) left", bundle: ru, locale: russian) == "Осталось \(count) символа")
-            }
-        }
-    }
-
-    @Test func fiveAndTheTeensLeftTakeTheManyForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [5, 11, 12, 13, 14, 20] {
-                #expect(String(localized: "\(count) left", bundle: ru, locale: russian) == "Осталось \(count) символов")
-            }
-        }
-    }
-
-    @Test func theCatalogHoldsAllFourRussianPluralForms() throws {
-        let entries = try CompiledCatalog.entries()
-        let plural = try #require(entries[counterKey]?.localizations?["ru"]?.variations?.plural)
-        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
-        for (form, value) in approvedCounterValues {
-            #expect(plural[form]?.stringUnit?.value == value)
-        }
-    }
-
     @Test func englishReadsAsBefore() throws {
         try CompiledCatalog.withBundle("en") { en in
             for (key, _) in approvedPlainValues {
@@ -380,8 +334,8 @@ struct RussianCatalogTests {
             for (key, value) in englishFormatValues {
                 #expect(en.localizedString(forKey: key, value: nil, table: nil) == value)
             }
-            for (count, expected) in [(1, "1 left"), (5, "5 left")] {
-                #expect(String(localized: "\(count) left", bundle: en, locale: english) == expected)
+            for (count, expected) in [(1, "1 character left"), (5, "5 characters left")] {
+                #expect(String(localized: "\(count) characters left", bundle: en, locale: english) == expected)
             }
             for (count, expected) in [(1, "Done · 1 place"), (5, "Done · 5 places")] {
                 #expect(String(localized: "Done · \(count) places", bundle: en, locale: english) == expected)

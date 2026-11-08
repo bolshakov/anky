@@ -16,7 +16,7 @@ struct MedicationMoreMenu: View {
                     .accessibilityIdentifier("medication-archive")
             }
         } label: {
-            Label("More", systemImage: "ellipsis")
+            Label("More actions", systemImage: "ellipsis")
         }
         .accessibilityIdentifier("medication-more")
     }
