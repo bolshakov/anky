@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t163-01-2/tmp/run.sh 'check_in_due; bottom; tap_id save-check-in; sleep 2; ui | grep -c "id=check-in-screen "'
+exit: 1
+commit: c01637c1baf96996bd6ab0c0e53d20a0e4b82142
+
+✓ Tap at resolved tap point at (339.0, 240.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 792.0) completed successfully
+0

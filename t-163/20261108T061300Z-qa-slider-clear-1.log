@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t163-01-2/tmp/run.sh 'new_entry; gap severity-slider save-entry; tap_mid severity-slider; sleep 1; ui | grep -c "id=save-entry "'
+exit: 0
+commit: c01637c1baf96996bd6ab0c0e53d20a0e4b82142
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+356.0
+1

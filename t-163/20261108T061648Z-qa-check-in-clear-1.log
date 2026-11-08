@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t163-01-2/tmp/run.sh 'ctrls='\''date-row|severity-value|severity-slider|severity-footnote|note-card'\''; check_in_due; under save-check-in "$ctrls"; echo count; ui | grep -c '\''id=save-check-in '\'''
+exit: 1
+commit: c01637c1baf96996bd6ab0c0e53d20a0e4b82142
+
+✓ Tap at resolved tap point at (339.0, 240.0) completed successfully
+save-check-in matches 0 elements
+save-check-in matches 0 elements
+count
+0
