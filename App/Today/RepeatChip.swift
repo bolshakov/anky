@@ -5,6 +5,11 @@ import SwiftUI
 struct RepeatChip: View {
     let recent: RecentEntry
     let onTap: () -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var borderShape: ButtonBorderShape {
+        dynamicTypeSize.isAccessibilitySize ? .roundedRectangle(radius: Corner.card) : .capsule
+    }
 
     var body: some View {
         Button(action: onTap) {
@@ -13,9 +18,9 @@ struct RepeatChip: View {
                 .multilineTextAlignment(.leading)
         }
         .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
+        .buttonBorderShape(borderShape)
         .frame(minHeight: 44)
-        .contentShape(Capsule())
+        .contentShape(borderShape)
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
         .accessibilityIdentifier("repeat-chip")
     }
