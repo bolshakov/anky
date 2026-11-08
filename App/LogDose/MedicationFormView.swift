@@ -52,9 +52,6 @@ struct MedicationFormView: View {
                         .accessibilityIdentifier("medication-strength")
                 }
                 MedicationTakingSections(draft: $draft)
-                if let editing {
-                    lifecycleSection(for: editing)
-                }
             }
             .screenSpacing()
             .accessibilityIdentifier("medication-form")
@@ -66,6 +63,15 @@ struct MedicationFormView: View {
                         .frame(minHeight: Spacing.rowMinimumHeight)
                         .contentShape(Rectangle())
                         .accessibilityIdentifier("medication-cancel")
+                }
+                if let editing {
+                    ToolbarItem(placement: .primaryAction) {
+                        MedicationMoreMenu(
+                            isArchived: editing.archivedAt != nil,
+                            onArchive: { archive(editing) },
+                            onRestore: { restore(editing) }
+                        )
+                    }
                 }
             }
             .safeAreaBar(edge: .bottom) {
@@ -84,22 +90,6 @@ struct MedicationFormView: View {
                 .background(Color.surface)
             }
             .medicationFailureAlert($failure)
-        }
-    }
-
-    private func lifecycleSection(for medication: Medication) -> some View {
-        Section {
-            if medication.archivedAt == nil {
-                Button("Archive medication") {
-                    archive(medication)
-                }
-                .accessibilityIdentifier("medication-archive")
-            } else {
-                Button("Restore medication") {
-                    restore(medication)
-                }
-                .accessibilityIdentifier("medication-restore")
-            }
         }
     }
 
