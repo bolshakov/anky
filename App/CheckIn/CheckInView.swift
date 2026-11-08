@@ -44,12 +44,10 @@ struct CheckInView: View {
                         .rowHeight()
                 }
                 NoteSection(draft: $draft)
+                saveSection
             }
             .screenSpacing()
             .accessibilityIdentifier("check-in-screen")
-            .bottomPrimaryButton(Text("Save check-in"), id: "save-check-in") {
-                saveCheckIn()
-            }
             .shortcutFeedback(model.shortcuts)
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
@@ -88,6 +86,20 @@ struct CheckInView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(infoTitle). \(infoDetail)")
             .accessibilityIdentifier("check-in-info")
+            .nonCardBlock()
+        }
+    }
+
+    private var saveSection: some View {
+        Section {
+            Button(action: saveCheckIn) {
+                Text("Save check-in")
+                    .frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            }
+            .primaryButton()
+            .buttonBorderShape(.capsule)
+            .controlSize(.large)
+            .accessibilityIdentifier("save-check-in")
             .nonCardBlock()
         }
     }
