@@ -1,0 +1,5 @@
+$ sh -c 'grep -rnE '\''\.padding\(.*[^A-Za-z0-9_.][1-9]|(width|height|minWidth|maxWidth|minHeight|maxHeight):[[:space:]]*-?[1-9]|spacing:[[:space:]]*-?[1-9]|\.offset\(.*[1-9]'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B/App --include='\''*.swift'\'' | grep -v '\''^/Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B/App/Design/'\''; echo done'
+exit: 0
+commit: 142743c1f619e856e2a708ceb8aa29b0dfe5dd55
+
+done

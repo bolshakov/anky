@@ -1,0 +1,69 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/run.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/T '.padding(16)' '.padding(.horizontal, 32)' '.padding(.leading, -16)' '.frame(width: 120)' '.frame(height: 52)' '.frame(minWidth: 44)' '.frame(maxWidth: 300)' '.frame(minHeight: 44)' '.frame(maxHeight: 200)' 'VStack(spacing: 12) { }' 'HStack(alignment: .top, spacing: 8) { }' '.offset(x: 4)' '.offset(y: -6)'
+exit: 0
+commit: 142743c1f619e856e2a708ceb8aa29b0dfe5dd55
+
+=== CASE: .padding(16)
+App/Today/Scratch.swift:6:    .padding(16)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .padding(.horizontal, 32)
+App/Today/Scratch.swift:6:    .padding(.horizontal, 32)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .padding(.leading, -16)
+App/Today/Scratch.swift:6:    .padding(.leading, -16)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(width: 120)
+App/Today/Scratch.swift:6:    .frame(width: 120)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(height: 52)
+App/Today/Scratch.swift:6:    .frame(height: 52)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(minWidth: 44)
+App/Today/Scratch.swift:6:    .frame(minWidth: 44)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(maxWidth: 300)
+App/Today/Scratch.swift:6:    .frame(maxWidth: 300)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(minHeight: 44)
+App/Today/Scratch.swift:6:    .frame(minHeight: 44)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .frame(maxHeight: 200)
+App/Today/Scratch.swift:6:    .frame(maxHeight: 200)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: VStack(spacing: 12) { }
+App/Today/Scratch.swift:5:    let v = VStack(spacing: 12) { }
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: HStack(alignment: .top, spacing: 8) { }
+App/Today/Scratch.swift:5:    let v = HStack(alignment: .top, spacing: 8) { }
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .offset(x: 4)
+App/Today/Scratch.swift:6:    .offset(x: 4)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1
+=== CASE: .offset(y: -6)
+App/Today/Scratch.swift:6:    .offset(y: -6)
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=0
+EXIT CODE: 1

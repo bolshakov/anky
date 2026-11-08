@@ -1,0 +1,28 @@
+$ sh -c 'sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B/scripts/ci/check-design-tokens.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B; echo EXIT CODE: $?; sed -n '\''/A screen writes no size/,$p'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B/scripts/ci/check-design-tokens.sh; echo ---GREP; grep -nE '\''[A-Za-z]+\.swift'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/B/scripts/ci/check-design-tokens.sh'
+exit: 0
+commit: 142743c1f619e856e2a708ceb8aa29b0dfe5dd55
+
+EXIT CODE: 0
+# A screen writes no size as a number. A number is its own when no name or decimal point runs into it, so Spacing.x2,
+# .title2 and 0.5 pass. A call's arguments end at its closing parenthesis, with one level of nested call searched too.
+# usage: call_number <call>
+call_number() {
+  args="([^()]|\\([^()]*\\))*"
+  echo "\\.$1\\(($args[^A-Za-z0-9_.])?[1-9]|\\.$1\\($args\\(([^()]*[^A-Za-z0-9_.])?[1-9]"
+}
+frame_labels="(width|height|minWidth|maxWidth|minHeight|maxHeight)"
+size_labels="(^|[^A-Za-z0-9_])($frame_labels|spacing):[[:space:]]*-?[1-9]"
+sizes=$(scan_screens "$(call_number padding)|$(call_number offset)|$size_labels")
+if [ -n "$sizes" ]; then
+  echo "$sizes"
+  violation "writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift"
+fi
+
+exit $fail
+---GREP
+14:glass=$(grep -rEn --include="*.swift" "\.glassProminent" "$root/App" | grep -v "^$root/App/Design/PrimaryButton.swift:")
+35:numbers=$(scan "(^|[^A-Za-z0-9_.])[1-9]" "$design/Spacing.swift" "$design/Corner.swift" "$design" "$gallery")
+38:  violation "writes a number of 1 or more in a piece, name it in Spacing.swift or Corner.swift"
+43:  "$design/ColorTokens.swift" "-" "$design" "$gallery")
+46:  violation "writes a colour in a piece, add a name to ColorTokens.swift"
+91:  violation "writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift"

@@ -1,0 +1,28 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/run.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t190-02-2/tmp/T '.padding(0)' '.padding(.horizontal, Spacing.screenMargin)' '.frame(maxWidth: .infinity)' '.frame(height: Spacing.rowHeight)' 'VStack(spacing: 0) { }' '.offset(x: 0)' '.font(.title2)' 'let v = 0 // the gap is 12 pt'
+exit: 0
+commit: 142743c1f619e856e2a708ceb8aa29b0dfe5dd55
+
+=== CASE: .padding(0)
+exit=0
+EXIT CODE: 0
+=== CASE: .padding(.horizontal, Spacing.screenMargin)
+exit=0
+EXIT CODE: 0
+=== CASE: .frame(maxWidth: .infinity)
+exit=0
+EXIT CODE: 0
+=== CASE: .frame(height: Spacing.rowHeight)
+exit=0
+EXIT CODE: 0
+=== CASE: VStack(spacing: 0) { }
+exit=0
+EXIT CODE: 0
+=== CASE: .offset(x: 0)
+exit=0
+EXIT CODE: 0
+=== CASE: .font(.title2)
+exit=0
+EXIT CODE: 0
+=== CASE: let v = 0 // the gap is 12 pt
+exit=0
+EXIT CODE: 0
