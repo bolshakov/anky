@@ -12,7 +12,7 @@ struct EntryIconRow: View {
             symbol: RowSymbol.name(for: entry.kind),
             title: Text(entry.kind.displayName),
             time: Self.time(of: entry),
-            detail: entry.kind.asksWhere ? entry.placeSummary.text : nil
+            detail: entry.rowPlaceSummary?.text
         ) {
             Text(entry.severity.value, format: .number)
                 .font(.body)
