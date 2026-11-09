@@ -1,0 +1,31 @@
+$ sh -c 'for n in 291 293 294 295; do echo "== PR $n"; gh pr view $n --json body --jq .body | awk "/Cleared Russian values/{f=1} f"; done'
+exit: 0
+commit: 2c5c7a88de9b0f4da72d02cfa9c0835ef9781d46
+
+== PR 291
+### Cleared Russian values
+- %lld left (plural, replaced by the "%lld character left" pair)
+- Entries you add appear here, newest first.
+- Entry removed
+- Kind
+- Limit reached
+- Log how you feel, or a medication you took. Everything stays on this iPhone.
+- This entry could not be deleted.
+- This entry could not be saved.
+- What are you logging
+
+== PR 293
+### Cleared Russian values
+
+None. The removed keys had no Russian value (they were all in `awaitingRussian`), so no `ru` hunk is in the diff.
+
+== PR 294
+### Cleared Russian values
+
+- "%@, %@"
+
+== PR 295
+### Cleared Russian values
+
+None. This task removed no key and no `ru` value.
+

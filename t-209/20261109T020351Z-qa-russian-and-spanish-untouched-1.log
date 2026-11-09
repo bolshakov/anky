@@ -1,0 +1,6 @@
+$ sh -c 'git diff origin/main -- App/Localizable.xcstrings | grep -nE "^[-+].*(\"ru\"|stringUnit|\"value\")" ; echo "ru lines added/removed: $(git diff origin/main -- App/Localizable.xcstrings | grep -cE "^[-+].*\"ru\"")"; echo "es count: $(grep -c "\"es\"" App/Localizable.xcstrings)"'
+exit: 0
+commit: 2c5c7a88de9b0f4da72d02cfa9c0835ef9781d46
+
+ru lines added/removed: 0
+es count: 0
