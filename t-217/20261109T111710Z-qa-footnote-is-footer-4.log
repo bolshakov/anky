@@ -1,0 +1,10 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t217-01-2/tmp/s4.sh
+exit: 0
+commit: 10ba352aa67ca09aec1d48822642fb04734cfe74
+
+medications-footnote: 0
+archived-link-footnote: 0
+medication-row: 0
+archived-card Button: 1
+StaticText id=empty-today label='Nothing logged today' value=None enabled=True @90.5,334.9770114942529 221x26.333333333333314
+StaticText id=medications-empty label='No medications yet, Add what you take, then log a dose in two taps. Everything stays on this iPhone.' value=None enabled=True @16,296 370x142.33333333333337
