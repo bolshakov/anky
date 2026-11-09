@@ -1,0 +1,5 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t218-01-2/tmp/count.sh dose-base-light 16 180.333 370 68.667 light
+exit: 0
+commit: dd4ecc4b129e73a90afefebba5fef424aef730e1
+
+dose-base-light mode=light tint=0 ink=299

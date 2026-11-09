@@ -1,0 +1,5 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t218-01-2/tmp/count.sh choice-base-light 16 177 370 68 light
+exit: 0
+commit: dd4ecc4b129e73a90afefebba5fef424aef730e1
+
+choice-base-light mode=light tint=0 ink=538
