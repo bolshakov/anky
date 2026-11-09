@@ -7,11 +7,15 @@ private struct TodayTopMargin: ViewModifier {
     /// The list starts a nearly fixed distance below the bar while the large title grows with its font, so the pull up
     /// toward the title shrinks as the title grows.
     private var margin: CGFloat {
-        Spacing.titleToDatePullPerTitlePoint * (titleSize - Spacing.largeTitleSize) - Spacing.titleToDatePull
+        Spacing.titleToDatePullPerTitlePoint * (titleSize - Spacing.largeTitleSize)
     }
 
+    /// A negative content margin leaves the first row undrawn while the list is pulled past the top, so the pull
+    /// up is the list's own padding and only the part that grows with the title is a margin.
     func body(content: Content) -> some View {
-        content.contentMargins(.top, margin, for: .scrollContent)
+        content
+            .contentMargins(.top, margin, for: .scrollContent)
+            .padding(.top, -Spacing.titleToDatePull)
     }
 }
 
