@@ -5,6 +5,7 @@ import SwiftUI
 
 struct ArchivedView: View {
     let medications: MedicationsModel
+    let onRestored: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var editing: Medication?
     @State private var saveTicks = 0
@@ -46,13 +47,19 @@ struct ArchivedView: View {
             }
         }
         .sheet(item: $editing) { medication in
-            MedicationFormView(medications: medications, editing: medication, onSaved: { _ in saveTicks += 1 })
+            MedicationFormView(
+                medications: medications,
+                editing: medication,
+                onSaved: { _ in saveTicks += 1 },
+                onArchivedOrRestored: onRestored
+            )
         }
     }
 
     private func restore(_ medication: Medication) {
         do {
             try medications.restore(id: medication.id)
+            onRestored()
         } catch {
             failure = .restore
         }
