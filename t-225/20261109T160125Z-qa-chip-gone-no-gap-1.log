@@ -1,0 +1,14 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t225-01-2/tmp/hdr.sh; top_state z-never; echo Z-top $(edge today-date top); echo Z-gap $(gap today-date empty-today); ui | grep -c '\''id=empty-today '\''; ui | grep -c '\''id=repeat-chip '\'''
+exit: 1
+commit: 512ac916e1a329a43f080c01407d294afe9daa0c
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: A3C71595-3DBC-4124-A29B-FE5364AF3A66 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t225-01-2/tmp/walk-t225.0XVk/z-never.png
+today-date: frame=[16 163.33333333333334 370 18] ink=423x42+4+11
+repeat-chip: not in ui
+first-row-top: 
+Z-top 163.33333333333334
+Z-gap 150.6
+1
+0
