@@ -111,11 +111,6 @@ struct TodayView: View {
                 try medications.removeDose(id: doseTarget.id)
             }
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
-            .onChange(of: reminderCheckIn, initial: true) { _, dose in
-                guard let dose else { return }
-                reminderCheckIn = nil
-                showCheckIn(dose)
-            }
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
@@ -143,21 +138,17 @@ struct TodayView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .padding()
             }
-            .sheet(isPresented: $isShowingNewEntry) {
-                NewEntryView(model: model, onSaved: { saveTicks += 1 })
-            }
-            .sheet(isPresented: $isShowingLogDose) {
-                LogDoseView(medications: medications, model: model, onSaved: { saveTicks += 1 })
-            }
-            .sheet(item: $editing) { entry in
-                NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
-            }
-            .sheet(item: $editingDose) { dose in
-                EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
-            }
-            .sheet(item: $checkingIn) { dose in
-                CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
-            }
+            .modifier(TodaySheets(
+                model: model,
+                medications: medications,
+                onSaved: { saveTicks += 1 },
+                reminderCheckIn: $reminderCheckIn,
+                isShowingNewEntry: $isShowingNewEntry,
+                isShowingLogDose: $isShowingLogDose,
+                editing: $editing,
+                editingDose: $editingDose,
+                checkingIn: $checkingIn
+            ))
             .alert("Couldn't save this entry. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -219,14 +210,6 @@ struct TodayView: View {
         } else if let recent {
             RepeatChip(recent: recent) { logRecent(recent) }
         }
-    }
-
-    private func showCheckIn(_ dose: Dose) {
-        isShowingNewEntry = false
-        isShowingLogDose = false
-        editing = nil
-        editingDose = nil
-        checkingIn = dose
     }
 
     private func open(_ entry: Entry) {
