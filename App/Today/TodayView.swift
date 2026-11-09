@@ -17,6 +17,7 @@ struct TodayView: View {
     @State private var logTicks = 0
     @State private var undoTicks = 0
     @State private var saveTicks = 0
+    @State private var deleteTicks = 0
     @State private var checkingIn: Dose?
     @State private var checkInNow = Date.now
     @State private var pendingDelete: Entry?
@@ -105,10 +106,12 @@ struct TodayView: View {
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
+                deleteTicks += 1
             }
             .entryDeleteConfirmation(isPresented: isConfirmingDoseDelete, words: .dose) {
                 guard let doseTarget else { return }
                 try medications.removeDose(id: doseTarget.id)
+                deleteTicks += 1
             }
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onChange(of: reminderCheckIn, initial: true) { _, dose in
@@ -151,9 +154,11 @@ struct TodayView: View {
             }
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
+                    .onDeleted { deleteTicks += 1 }
             }
             .sheet(item: $editingDose) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
+                    .onDeleted { deleteTicks += 1 }
             }
             .sheet(item: $checkingIn) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
@@ -164,6 +169,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: logTicks)
             .sensoryFeedback(.selection, trigger: undoTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
+            .sensoryFeedback(.warning, trigger: deleteTicks)
         }
     }
 

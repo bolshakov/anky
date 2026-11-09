@@ -59,7 +59,6 @@ private struct EntryDeleteConfirmation: ViewModifier {
                     }
                     .tint(.primary)
             }
-            .sensoryFeedback(trigger: isPresented) { _, isNow in isNow ? .warning : nil }
             .alert(words.failure, isPresented: $isShowingDeleteFailure) {
                 Button("OK") {}
             }
