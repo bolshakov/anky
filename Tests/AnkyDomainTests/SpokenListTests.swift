@@ -22,4 +22,9 @@ struct SpokenListTests {
     @Test func twoNamesJoinWithAndInRussian() {
         #expect(SpokenList.joined(["Поясница", "Шея"], locale: russian) == "Поясница и Шея")
     }
+
+    @Test func threeNamesJoinWithTheEnglishSerialComma() {
+        #expect(SpokenList
+            .joined(["Neck", "Back", "Hips"], locale: Locale(identifier: "en_US")) == "Neck, Back, and Hips")
+    }
 }

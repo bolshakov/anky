@@ -23,7 +23,7 @@ struct DateSection: View {
                 HStack {
                     Text("Date and time")
                     Spacer()
-                    Text("\(day), \(clock)")
+                    Text(verbatim: "\(day), \(clock)")
                         .foregroundStyle(Color.ink2)
                     RowChevron()
                 }
@@ -59,7 +59,7 @@ struct DateSection: View {
         case let .sameYear(shortDay):
             shortDay
         case let .otherYear(shortDay, year):
-            String(localized: "\(shortDay) \(year)")
+            "\(shortDay) \(year)"
         }
     }
 

@@ -113,7 +113,6 @@ Unpinned => Откреплено
 private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
 %lld of %lld => %1$lld из %2$lld
-%@, %@ => %1$@, %2$@
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 """)
 
@@ -142,7 +141,6 @@ private let approvedKeys = approvedPlainValues.map(\.key)
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
 %lld of %lld => %1$lld of %2$lld
-%@, %@ => %1$@, %2$@
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
@@ -170,15 +168,10 @@ private let awaitingRussian = ["Log Dose", "Log dose", "Medication"]
     + ["Pain was %lld of 10", "Pain %lld after", "Pain %lld before, %lld after"]
     + ["Stiffness was %lld of 10", "Stiffness %lld after", "Stiffness %lld before, %lld after"]
     + ["Fatigue was %lld of 10", "Fatigue %lld after", "Fatigue %lld before, %lld after"]
-    + ["%@ %@"]
     + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "Couldn't save this check-in. Try again."]
     + ["Starts from your earlier entry. Change the level or places if they differ."]
     + ["Saved as a pain entry.", "Saved as a stiffness entry.", "Saved as a fatigue entry."]
-    + ["Taken %@.", "Taken at %@.", "Taken yesterday at %@."]
-    + ["Taken %@. Before: Pain %lld.", "Taken %@. Before: Stiffness %lld.", "Taken %@. Before: Fatigue %lld."]
-    + ["Taken at %@. Before: Pain %lld.", "Taken at %@. Before: Stiffness %lld.", "Taken at %@. Before: Fatigue %lld."]
-    + ["Taken yesterday at %@. Before: Pain %lld.", "Taken yesterday at %@. Before: Stiffness %lld.",
-       "Taken yesterday at %@. Before: Fatigue %lld."]
+    + ["Taken %@.", "Before: pain %lld.", "Before: stiffness %lld.", "Before: fatigue %lld."]
     + ["Check in", "Check In", "Check in pending", "Opens Check In"]
     + ["Delete dose", "Delete this dose? This can't be undone.", "Couldn't delete this dose. Try again."]
     + ["Levels are 0 to 10. Everything stays on this iPhone.", "Levels are 0 to 10."]
@@ -244,14 +237,6 @@ struct RussianCatalogTests {
         let entries = try CompiledCatalog.entries()
         for key in awaitingRussian {
             #expect(entries[key]?.localizations?["ru"] == nil, "\(key) has a Russian value; approve it in the list")
-        }
-    }
-
-    @Test func theJoiningFormatsReadTheSameInRussian() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            let two = ru.localizedString(forKey: "%@, %@", value: nil, table: nil)
-            #expect(two == "%1$@, %2$@")
-            #expect(String(format: two, "a", "b") == "a, b")
         }
     }
 

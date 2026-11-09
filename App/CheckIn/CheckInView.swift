@@ -152,6 +152,6 @@ struct CheckInView: View {
     }
 
     private var infoDetail: String {
-        CheckInText.infoTaken(takenAt: dose.takenAt, before: readings.before, now: .now)
+        CheckInText.infoTaken(takenAt: dose.takenAt, before: readings.before)
     }
 }

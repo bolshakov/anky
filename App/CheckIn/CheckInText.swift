@@ -6,31 +6,12 @@ import SwiftUI
 extension CheckInInfoWords {
     static var app: CheckInInfoWords {
         CheckInInfoWords(
-            today: { time, before in
-                guard let before else { return String(localized: "Taken at \(time).") }
-                let level = before.severity.value
-                switch before.kind {
-                case .pain: return String(localized: "Taken at \(time). Before: Pain \(level).")
-                case .stiffness: return String(localized: "Taken at \(time). Before: Stiffness \(level).")
-                case .fatigue: return String(localized: "Taken at \(time). Before: Fatigue \(level).")
-                }
-            },
-            yesterday: { time, before in
-                guard let before else { return String(localized: "Taken yesterday at \(time).") }
-                let level = before.severity.value
-                switch before.kind {
-                case .pain: return String(localized: "Taken yesterday at \(time). Before: Pain \(level).")
-                case .stiffness: return String(localized: "Taken yesterday at \(time). Before: Stiffness \(level).")
-                case .fatigue: return String(localized: "Taken yesterday at \(time). Before: Fatigue \(level).")
-                }
-            },
-            onDay: { dayAndTime, before in
-                guard let before else { return String(localized: "Taken \(dayAndTime).") }
-                let level = before.severity.value
-                switch before.kind {
-                case .pain: return String(localized: "Taken \(dayAndTime). Before: Pain \(level).")
-                case .stiffness: return String(localized: "Taken \(dayAndTime). Before: Stiffness \(level).")
-                case .fatigue: return String(localized: "Taken \(dayAndTime). Before: Fatigue \(level).")
+            taken: { String(localized: "Taken \($0).") },
+            before: { kind, level in
+                switch kind {
+                case .pain: String(localized: "Before: pain \(level).")
+                case .stiffness: String(localized: "Before: stiffness \(level).")
+                case .fatigue: String(localized: "Before: fatigue \(level).")
                 }
             }
         )
@@ -46,23 +27,23 @@ enum CheckInText {
         }
     }
 
-    static func infoTaken(takenAt: Date, before: Entry?, now: Date) -> String {
-        let wording = CheckInDayText.wording(for: takenAt, now: now, calendar: .current, locale: .current)
-        return CheckInDayText.infoTaken(wording: wording, before: before, words: .app)
+    static func infoTaken(takenAt: Date, before: Entry?) -> String {
+        let taken = CheckInDayText.takenText(for: takenAt, calendar: .current, locale: .current)
+        return CheckInDayText.infoTaken(taken: taken, before: before, words: .app)
     }
 
     static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> Text {
         let saved = savedAs(kind)
-        guard startsAtEarlierReading else { return saved }
-        let starts = Text("Starts from your earlier entry. Change the level or places if they differ.")
-        return Text("\(starts) \(saved)")
+        guard startsAtEarlierReading else { return Text(verbatim: saved) }
+        let starts = String(localized: "Starts from your earlier entry. Change the level or places if they differ.")
+        return Text(verbatim: "\(starts) \(saved)")
     }
 
-    private static func savedAs(_ kind: EntryKind) -> Text {
+    private static func savedAs(_ kind: EntryKind) -> String {
         switch kind {
-        case .pain: Text("Saved as a pain entry.")
-        case .stiffness: Text("Saved as a stiffness entry.")
-        case .fatigue: Text("Saved as a fatigue entry.")
+        case .pain: String(localized: "Saved as a pain entry.")
+        case .stiffness: String(localized: "Saved as a stiffness entry.")
+        case .fatigue: String(localized: "Saved as a fatigue entry.")
         }
     }
 }
