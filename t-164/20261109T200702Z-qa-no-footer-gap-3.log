@@ -1,0 +1,13 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t164-01-1/tmp/walk-t164.3Ua4/gaps.py 107F7C1C-DE17-4552-B202-505E02825FB0
+exit: 0
+commit: 4925e6955e6cc4af1f6de17fe96a4cb89229ed98
+
+log-how-you-feel-row {'height': 50.333333333333314, 'width': 370, 'y': 363.66666666666663, 'x': 16}
+check-in-later {'width': 370, 'y': 446, 'height': 50.333333333333314, 'x': 16}
+check-in-footnote {'width': 370, 'x': 16, 'height': 45.666666666666686, 'y': 496.3333333333333}
+date-row {'width': 370, 'x': 16, 'height': 52, 'y': 574}
+dose-add-medication {'width': 370, 'height': 50.333333333333314, 'y': 249, 'x': 16}
+before-reading-label {'width': 370, 'y': 331.33333333333337, 'height': 32.333333333333314, 'x': 16}
+A 32.00000000000006
+B 32.0
+C 32.00000000000006
