@@ -129,7 +129,7 @@ struct EditDoseView: View {
 
     private func afterLabel(_ entry: Entry) -> String {
         let time = ClockText.text(for: entry.date, calendar: .current, locale: .current)
-        return "\(String(localized: "After")) · \(String(localized: "checked in at")) \(time)"
+        return String(format: String(localized: "After · checked in at %@"), time)
     }
 
     private func medicationRow(_ medication: Medication) -> some View {

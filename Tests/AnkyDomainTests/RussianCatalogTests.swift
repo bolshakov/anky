@@ -7,7 +7,7 @@ import Testing
 private let approvedPlainValues = table("""
 Today => Сегодня
 Nothing logged today => Сегодня записей нет
-Log how you feel => Отметь самочувствие
+Log how you feel => Отметить самочувствие
 New Entry => Новая запись
 Cancel => Отмена
 Pain => Боль
@@ -100,14 +100,113 @@ Unpin => Открепить
 Pin as shortcut => Закрепить как быстрый выбор
 Unpin shortcut => Открепить быстрый выбор
 You can pin up to 5. Unpin one to add another. => \
-Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое.
-Pin a shortcut => Закрепи быстрый выбор
+Можно закрепить не больше 5 мест. Чтобы добавить другое, нужно открепить одно.
+Pin a shortcut => Закрепить быстрый выбор
 Swipe a place right to pin it as a shortcut on New Entry. => \
-Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
+Смахнуть место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
 Dismiss tip => Закрыть подсказку
 Pinned => Закреплено
 Note => Заметка
 Unpinned => Откреплено
+Before this dose => Перед этим приёмом
+Before: fatigue %lld. => Перед приёмом: усталость %lld.
+Before: pain %lld. => Перед приёмом: боль %lld.
+Before: stiffness %lld. => Перед приёмом: скованность %lld.
+Check In => Самочувствие
+Check in => Отметить
+Check in pending => Ждёт отметки самочувствия
+Choose an entry => Выбор записи
+Delete dose => Удалить приём
+Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
+Dose => Приём
+Everything you log appears here, newest first. => Все записи появляются здесь, сначала новые.
+Entry deleted => Запись удалена
+fatigue %lld after => усталость после: %lld
+Fatigue %lld after => Усталость после: %lld
+fatigue %lld before, %lld after => усталость до: %1$lld, после: %2$lld
+Fatigue %lld before, %lld after => Усталость до: %1$lld, после: %2$lld
+Fatigue now => Усталость сейчас
+fatigue was %lld => усталость была %lld
+Fatigue was %lld of 10 => Усталость была %lld из 10
+Opens Check In => Открывает отметку самочувствия
+pain %lld after => боль после: %lld
+Pain %lld after => Боль после: %lld
+pain %lld before, %lld after => боль до: %1$lld, после: %2$lld
+Pain %lld before, %lld after => Боль до: %1$lld, после: %2$lld
+Pain now => Боль сейчас
+pain was %lld => боль была %lld
+Pain was %lld of 10 => Боль была %lld из 10
+Save check-in => Сохранить отметку
+Saved as a fatigue entry. => Сохранится как запись об усталости.
+Saved as a pain entry. => Сохранится как запись о боли.
+Saved as a stiffness entry. => Сохранится как запись о скованности.
+Starts from your earlier entry. Change the level or places if they differ. => \
+Значения взяты из прошлой записи. Уровень и места можно изменить.
+stiffness %lld after => скованность после: %lld
+Stiffness %lld after => Скованность после: %lld
+stiffness %lld before, %lld after => скованность до: %1$lld, после: %2$lld
+Stiffness %lld before, %lld after => Скованность до: %1$lld, после: %2$lld
+Stiffness now => Скованность сейчас
+stiffness was %lld => скованность была %lld
+Stiffness was %lld of 10 => Скованность была %lld из 10
+Taken %@. => Принято: %@.
+Levels are 0 to 10. => Уровни от 0 до 10.
+Levels are 0 to 10. Everything stays on this iPhone. => Уровни от 0 до 10. Всё остаётся на этом iPhone.
+Character limit reached => Достигнут лимит символов
+Log Dose => Новый приём
+Log dose => Записать приём
+Medication => Лекарство
+No medications yet => Лекарств пока нет
+Add medication => Добавить лекарство
+New Medication => Новое лекарство
+Name => Название
+Strength, for example 500 mg => Дозировка, например 500 мг
+Strength, optional => Дозировка, необязательно
+Save medication => Сохранить лекарство
+As needed => По необходимости
+Scheduled => По расписанию
+How you take it => Способ приёма
+Check in after => Отметить через
+After => Через
+Check in later => Отметить позже
+Turn it on to choose a time. => Включить, чтобы выбрать время.
+Anky will ask how you feel after this long. => Anky спросит о самочувствии, когда пройдёт это время.
+Log how you feel now => Отметить самочувствие сейчас
+Log how you feel, or a dose you took. Everything stays on this iPhone. => \
+Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone.
+More actions => Другие действия
+Save dose => Сохранить приём
+The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажатие открывает её.
+Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Можно попробовать ещё раз.
+Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Можно попробовать ещё раз.
+Couldn't delete this entry. Try again. => Не удалось удалить эту запись. Можно попробовать ещё раз.
+Couldn't save this entry. Try again. => Не удалось сохранить эту запись. Можно попробовать ещё раз.
+Couldn't archive this medication. Try again. => Не удалось архивировать это лекарство. Можно попробовать ещё раз.
+Couldn't restore this medication. Try again. => Не удалось восстановить это лекарство. Можно попробовать ещё раз.
+Couldn't save this dose. Try again. => Не удалось сохранить этот приём. Можно попробовать ещё раз.
+Couldn't save this medication. Try again. => Не удалось сохранить это лекарство. Можно попробовать ещё раз.
+What are you logging? => Что записать?
+Your latest entry before this dose. Tap to choose another. => \
+Последняя запись перед этим приёмом. Нажатие позволяет выбрать другую.
+Manage => Управлять
+Medications => Лекарства
+Archive => Архивировать
+Archived => В архиве
+Archive medication => Архивировать лекарство
+Edit Medication => Изменить лекарство
+Restore => Восстановить
+Restore medication => Восстановить лекарство
+Swipe left to restore. Doses you logged stay in History. => \
+Смахнуть влево, чтобы восстановить. Записанные приёмы останутся в «Истории».
+Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History. => \
+Смахнуть влево, чтобы архивировать. Архивные лекарства пропадают из списка при записи приёма; \
+записанные приёмы останутся в «Истории».
+Add what you take, then log a dose in two taps. Everything stays on this iPhone. => \
+Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone.
+Time to check in => Пора отметить самочувствие
+Dose deleted => Приём удалён
+Edit Dose => Изменить приём
+After · checked in at %@ => После · отмечено в %@
 """)
 
 private let approvedFormatValues = table("""
@@ -136,7 +235,7 @@ other => %lld места
 
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
-    + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours"]
+    + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
@@ -144,48 +243,10 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
-/// Keys that stay English only until t-47 gives them Russian. Removing a key from here is the step that approves it.
-private let awaitingRussian = ["Log Dose", "Log dose", "Medication"]
-    + ["No medications yet", "Add medication", "New Medication", "Name", "Strength, for example 500 mg"]
-    + ["Save medication", "As needed", "Scheduled"]
-    + ["How you take it", "Check in after", "After"]
-    + ["Check in later", "Anky will ask how you feel after this long.", "Turn it on to choose a time."]
-    + ["Manage", "Medications", "Archive", "Archived"]
-    + ["Edit Medication", "Archive medication", "Restore", "Restore medication"]
-    + ["Swipe left to restore. Doses you logged stay in History."]
-    + ["Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History."]
-    + ["Add what you take, then log a dose in two taps. Everything stays on this iPhone."]
-    + ["Couldn't save this medication. Try again.", "Couldn't archive this medication. Try again."]
-    + ["Save dose", "Couldn't save this dose. Try again."]
-    + ["Couldn't restore this medication. Try again.", "Strength, optional"]
-    + ["Before this dose", "Your latest entry before this dose. Tap to choose another."]
-    + ["Edit Dose", "checked in at", "The entry used for this dose. Tap to open it."]
-    + ["Choose an entry", "Log how you feel now"]
-    + ["Dose", "pain was %lld", "stiffness was %lld", "fatigue was %lld"]
-    + ["pain %lld after", "pain %lld before, %lld after"]
-    + ["stiffness %lld after", "stiffness %lld before, %lld after"]
-    + ["fatigue %lld after", "fatigue %lld before, %lld after"]
-    + ["Pain was %lld of 10", "Pain %lld after", "Pain %lld before, %lld after"]
-    + ["Stiffness was %lld of 10", "Stiffness %lld after", "Stiffness %lld before, %lld after"]
-    + ["Fatigue was %lld of 10", "Fatigue %lld after", "Fatigue %lld before, %lld after"]
-    + ["Pain now", "Stiffness now", "Fatigue now", "Save check-in", "Couldn't save this check-in. Try again."]
-    + ["Starts from your earlier entry. Change the level or places if they differ."]
-    + ["Saved as a pain entry.", "Saved as a stiffness entry.", "Saved as a fatigue entry."]
-    + ["Taken %@.", "Before: pain %lld.", "Before: stiffness %lld.", "Before: fatigue %lld."]
-    + ["Check in", "Check In", "Check in pending", "Opens Check In"]
-    + ["Delete dose", "Delete this dose? This can't be undone.", "Couldn't delete this dose. Try again."]
-    + ["Levels are 0 to 10. Everything stays on this iPhone.", "Levels are 0 to 10."]
-    + ["Time to check in"]
-    + ["More actions"]
-    + ["Couldn't save this entry. Try again.", "Couldn't delete this entry. Try again."]
-    + ["Entry deleted", "Dose deleted", "%lld characters left", "Character limit reached"]
-    + ["Everything you log appears here, newest first.", "What are you logging?"]
-    + ["Log how you feel, or a dose you took. Everything stays on this iPhone."]
-
-private let russian = Locale(identifier: "ru")
+let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
 
-private func table(_ text: String) -> [(key: String, value: String)] {
+func table(_ text: String) -> [(key: String, value: String)] {
     text.split(separator: "\n").map {
         let parts = $0.components(separatedBy: " => ")
         return (key: parts[0], value: parts[1])
@@ -228,15 +289,8 @@ struct RussianCatalogTests {
 
     @Test func everyKeyOfTheCatalogHasARussianValue() throws {
         let entries = try CompiledCatalog.entries()
-        for key in entries.keys.sorted() where !awaitingRussian.contains(key) {
+        for key in entries.keys.sorted() {
             #expect(entries[key]?.localizations?["ru"] != nil, "\(key) has no Russian value")
-        }
-    }
-
-    @Test func noAwaitingKeyHasARussianValueYet() throws {
-        let entries = try CompiledCatalog.entries()
-        for key in awaitingRussian {
-            #expect(entries[key]?.localizations?["ru"] == nil, "\(key) has a Russian value; approve it in the list")
         }
     }
 
