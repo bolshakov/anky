@@ -26,10 +26,10 @@ struct MedicationsView: View {
             isShowingNewMedication = true
         }
         .sheet(isPresented: $isShowingNewMedication) {
-            MedicationFormView(medications: medications, onSaved: { saveTicks += 1 })
+            MedicationFormView(medications: medications, onSaved: { _ in saveTicks += 1 })
         }
         .sheet(item: $editing) { medication in
-            MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
+            MedicationFormView(medications: medications, editing: medication, onSaved: { _ in saveTicks += 1 })
         }
     }
 
