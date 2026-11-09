@@ -69,9 +69,17 @@ struct RecentEntryTextTests {
         #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: true) == "Fatigue · 4")
     }
 
-    @Test func aChipWithNoPlaceReadsNoPlaceAndTheLevel() throws {
-        #expect(try recent([]).chipText(words: words, namesKind: false) == "No place · 4")
-        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: true) == "Stiffness · No place · 4")
+    @Test func aChipWithNoPlaceReadsTheLevelAloneAndTheKindWhenAsked() throws {
+        #expect(try recent([]).chipText(words: words, namesKind: false) == "4")
+        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: false) == "4")
+        #expect(try recent([]).chipText(words: words, namesKind: true) == "Pain · 4")
+        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: true) == "Stiffness · 4")
+    }
+
+    @Test func aChipWithNoPlaceStillSpeaksNoPlace() throws {
+        #expect(try recent([]).spokenText(words: words, namesKind: false) == "No place, 4 of 10")
+        #expect(try recent([], kind: .stiffness).spokenText(words: words, namesKind: true)
+            == "Stiffness, No place, 4 of 10")
     }
 
     @Test func aLongListChipReadsTwoNamesAndACount() throws {
