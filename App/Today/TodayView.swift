@@ -167,7 +167,7 @@ struct TodayView: View {
                 Button("OK") {}
             }
             .sensoryFeedback(.success, trigger: logTicks)
-            .sensoryFeedback(.selection, trigger: undoTicks)
+            .sensoryFeedback(.impact(weight: .light), trigger: undoTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
