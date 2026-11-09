@@ -92,7 +92,7 @@ struct CheckInView: View {
     private var saveSection: some View {
         Section {
             Button(action: saveCheckIn) {
-                Text("Save check-in")
+                Text("Save")
                     .frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
             }
             .primaryButton()

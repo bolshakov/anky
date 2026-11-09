@@ -78,7 +78,7 @@ struct MedicationFormView: View {
                 Button {
                     save()
                 } label: {
-                    Text(editing == nil ? "Save medication" : "Save changes")
+                    Text("Save")
                         .frame(maxWidth: .infinity)
                 }
                 .primaryButton()
