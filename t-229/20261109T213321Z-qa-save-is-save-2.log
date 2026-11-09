@@ -1,0 +1,11 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t229-01-1/tmp/walk-t229.kFvc/rstep.txt
+exit: 0
+commit: d792e6ec13a15d4eeffcebace1120e1cd95f037a
+
+Button id=medication-save label='Сохранить' value=None enabled=False @16,773.6666666666666 370x50.33333333333337
+Button id=save-dose label='Сохранить' value=None enabled=True @16,768 370x56
+Button id=save-entry label='Сохранить' value=None enabled=True @16,768 370x56
+Button id=save-entry label='Сохранить' value=None enabled=True @16,768 370x56
+Button id=save-check-in label='Сохранить' value=None enabled=True @16,764 370x56
+Button id=save-dose-changes label='Сохранить' value=None enabled=True @16,768 370x56
+Button id=medication-save label='Сохранить' value=None enabled=True @16,773.6666666666666 370x50.33333333333337

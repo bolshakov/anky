@@ -1,0 +1,11 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t229-01-1/tmp/cat.py show Save 'Save entry' 'Save dose' 'Save check-in' 'Save medication' 'Save changes'
+exit: 1
+commit: d792e6ec13a15d4eeffcebace1120e1cd95f037a
+
+Save => Сохранить [translated]
+MISSING Save entry
+MISSING Save dose
+MISSING Save check-in
+MISSING Save medication
+MISSING Save changes
+keys 197, missing 5
