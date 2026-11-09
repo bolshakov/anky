@@ -205,6 +205,7 @@ Add what you take, then log a dose in two taps. Everything stays on this iPhone.
 Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone.
 Time to check in => Пора отметить самочувствие
 Dose deleted => Приём удалён
+Edit Dose => Изменить приём
 """)
 
 private let approvedFormatValues = table("""
