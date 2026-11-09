@@ -1,0 +1,9 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/p.zsh 'today >/dev/null; axe tap -x 135 -y 199 --udid "$udid"; echo "repeat-logged count: $(ui | grep -c "id=repeat-logged ")"; shot logged'
+exit: 0
+commit: 904b602af7b043a9c11b7dfb621a89d64d06b0eb
+
+✓ Tap at (135.0, 199.0) completed successfully
+repeat-logged count: 1
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B3FC47BC-1C90-41A4-9A50-183C72BF559F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/walk-t213.PLUv/logged.png

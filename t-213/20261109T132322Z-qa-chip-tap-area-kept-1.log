@@ -1,0 +1,6 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/p.zsh 'echo "height $(height repeat-chip) width $(width repeat-chip)"; chip_edges chip-head'
+exit: 0
+commit: 904b602af7b043a9c11b7dfb621a89d64d06b0eb
+
+height 44 width 238.66666666666666
+D=182 ink=180.7 T=197.3 B=241.3 N=273.3 left=16 above=15.3 ink_above=16.6 below=32.0 drawn=44.0 frame=44.0

@@ -1,0 +1,3 @@
+base (a886e92 App files, rebuilt), Setup C, chip_edges chip-base:
+D=182 ink=180.7 T=203.3 B=235.3 N=276.3 left=16 above=21.3 ink_above=22.6 below=41.0 drawn=32.0 frame=44.0
+gap today-date repeat-chip: 16.0 ; gap today-date entry-row-pain: 95.0

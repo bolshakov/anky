@@ -1,0 +1,12 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/p.zsh 'shot chip-head; chip_edges chip-head; echo "gap today-date repeat-chip: $(\gap today-date repeat-chip)"; echo "repeat-chip count: $(ui | grep -c "id=repeat-chip ")"; echo "chip left edge pt: $(edge repeat-chip left)"; echo "date ink box px (WxH+X+Y, X/3 = left pt): $(magick "$out/chip-head.png" -crop 1206x51+0+489 +repage -fuzz 12% -format "%@" info:)"'
+exit: 0
+commit: 904b602af7b043a9c11b7dfb621a89d64d06b0eb
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B3FC47BC-1C90-41A4-9A50-183C72BF559F (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/walk-t213.PLUv/chip-head.png
+D=182 ink=180.7 T=197.3 B=241.3 N=273.3 left=16 above=15.3 ink_above=16.6 below=32.0 drawn=44.0 frame=44.0
+gap today-date repeat-chip: 16.0
+repeat-chip count: 1
+chip left edge pt: 16
+date ink box px (WxH+X+Y, X/3 = left pt): 423x40+52+11

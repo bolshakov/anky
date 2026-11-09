@@ -1,0 +1,8 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/p.zsh 'tap_id repeat-undo; echo "repeat-chip count after undo: $(ui | grep -c "id=repeat-chip ")"; axe tap -x 135 -y 179 --udid "$udid"; echo "repeat-logged count after tap above chip row date frame: $(ui | grep -c "id=repeat-logged ")"'
+exit: 0
+commit: 904b602af7b043a9c11b7dfb621a89d64d06b0eb
+
+✓ Tap at resolved tap point at (349.33333333333326, 219.33333333333334) completed successfully
+repeat-chip count after undo: 1
+✓ Tap at (135.0, 179.0) completed successfully
+repeat-logged count after tap above chip row date frame: 0

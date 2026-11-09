@@ -1,0 +1,5 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t213-01-3/tmp/p.zsh 'echo "gap today-date entry-row-pain: $(\gap today-date entry-row-pain)"'
+exit: 0
+commit: 904b602af7b043a9c11b7dfb621a89d64d06b0eb
+
+gap today-date entry-row-pain: 92.0
