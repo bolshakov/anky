@@ -44,6 +44,7 @@ extension CompiledCatalog {
     }
 
     struct Entry: Decodable {
+        let comment: String?
         let localizations: [String: Localization]?
     }
 
