@@ -19,8 +19,12 @@ struct TenYearsOfEntriesTests {
     private let ceiling = Duration.seconds(1)
     private let recentCeiling = Duration.milliseconds(50)
 
-    /// The ceiling is on the median of three opens, so one slow run on a busy runner does not fail the suite.
+    /// The median of this many opens is what `distinct` checks against its ceiling.
     private let opens = 3
+
+    /// The launch ceiling is on the fastest of this many opens, since a busy runner only adds time to some of them
+    /// while a real slowdown adds it to all of them.
+    private let launchOpens = 5
 
     /// What `distinct` returns on `MadeUpLog`, written by hand from its tail: newest date first, one entry per group.
     private var pinned: [RecentEntry] {
@@ -31,7 +35,7 @@ struct TenYearsOfEntriesTests {
         try withScratchFolder { folder in
             let url = folder.appending(path: "entries.store")
             try fill(url)
-            checkLaunch((0 ..< opens).map { _ in timedLaunch(url) })
+            checkLaunch((0 ..< launchOpens).map { _ in timedLaunch(url) })
         }
     }
 
@@ -96,8 +100,8 @@ struct TenYearsOfEntriesTests {
     /// Takes durations and counts only, so no failure of the ceiling or the count can print an entry.
     private func checkLaunch(_ launches: [Launch]) {
         #expect(launches.map(\.count) == Array(repeating: MadeUpLog.size, count: launches.count))
-        let median = launches.map(\.elapsed).sorted()[launches.count / 2]
-        #expect(median < ceiling)
+        let fastest = launches.map(\.elapsed).min() ?? .zero
+        #expect(fastest < ceiling)
     }
 
     private func timedLaunch(_ url: URL) -> Launch {
