@@ -71,7 +71,7 @@ struct DoseRowTextTests {
 
     @Test func aDoseWithNoReadingSpeaksItsTitleTimeAndKind() {
         let label = DoseRowText.spokenLabel(time: "8:30", title: "Naproxen 500 mg", readings: readings(), words: words)
-        #expect(label == "Naproxen 500 mg. 8:30. Dose.")
+        #expect(label == "Dose. Naproxen 500 mg. 8:30.")
     }
 
     @Test(arguments: [EntryKind.pain, .stiffness, .fatigue])
@@ -105,7 +105,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before), words: words
         )
-        #expect(label == "Naproxen 500 mg. 8:30. Dose. Pain was 6 of 10.")
+        #expect(label == "Dose. Naproxen 500 mg. 8:30. Pain was 6 of 10.")
     }
 
     @Test func theSpokenLabelFollowsTheKindOfTheBeforeReading() throws {
@@ -114,7 +114,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before, after: after), words: words
         )
-        #expect(label == "Naproxen 500 mg. 8:30. Dose. Stiffness 6 before, 3 after.")
+        #expect(label == "Dose. Naproxen 500 mg. 8:30. Stiffness 6 before, 3 after.")
     }
 
     @Test func theSpokenLabelOfBothReadingsReadsBeforeAndAfter() throws {
@@ -123,7 +123,7 @@ struct DoseRowTextTests {
         let label = DoseRowText.spokenLabel(
             time: "8:30", title: "Naproxen 500 mg", readings: readings(before: before, after: after), words: words
         )
-        #expect(label == "Naproxen 500 mg. 8:30. Dose. Pain 6 before, 3 after.")
+        #expect(label == "Dose. Naproxen 500 mg. 8:30. Pain 6 before, 3 after.")
     }
 
     @Test func theTitleIsTheDosesOwnMedicationNameAndStrength() {
