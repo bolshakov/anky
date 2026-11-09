@@ -10,6 +10,8 @@ struct CheckInView: View {
     let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
+    @State private var entriesAtOpen: [Entry]
+    @State private var lastChipsAtOpen: [PlaceID]
     @State private var checkIn = CheckInSave()
     @State private var isShowingPlaces = false
     @State private var isShowingSaveFailure = false
@@ -20,6 +22,8 @@ struct CheckInView: View {
         self.model = model
         self.onSaved = onSaved
         _draft = State(initialValue: DoseReadings(dose, in: model.entries).checkInDraft(now: .now))
+        _entriesAtOpen = State(initialValue: model.entries)
+        _lastChipsAtOpen = State(initialValue: model.shortcuts.lastChips)
     }
 
     var body: some View {
@@ -112,9 +116,9 @@ struct CheckInView: View {
 
     private var chips: [PlaceID] {
         PlaceChips.chips(
-            from: model.entries,
+            from: entriesAtOpen,
             pinned: model.shortcuts.pinned,
-            lastChips: model.shortcuts.lastChips
+            lastChips: lastChipsAtOpen
         )
     }
 
