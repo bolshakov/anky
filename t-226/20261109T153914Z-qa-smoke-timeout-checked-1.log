@@ -1,0 +1,6 @@
+$ zsh -c 'gh run view 42620244287 --attempt 2 --log 2>&1 | grep -n -E "try [12] timed out|simulator .* rebooted|ui tests exit"'
+exit: 0
+commit: 9a363067057c64df2cc0648ab159f165ef692588
+
+9368:ios	ui smoke tests	2026-11-09T13:05:45.1179880Z try 1 timed out after 540 s
+9378:ios	ui smoke tests	2026-11-09T13:05:56.6217430Z ui tests exit 1

@@ -1,0 +1,14 @@
+$ zsh -c 'for i in $(seq 10); do swift test --scratch-path .build --filter launchLoadOfTenYearsStaysUnderTheCeiling > "$TMPDIR/slow-$i.log" 2>&1; grep -c "Expectation failed" "$TMPDIR/slow-$i.log"; done'
+exit: 0
+commit: 9a363067057c64df2cc0648ab159f165ef692588
+
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1

@@ -1,0 +1,4 @@
+$ git diff --stat origin/main -- scripts/ci/run-ui-tests.sh
+exit: 0
+commit: 9a363067057c64df2cc0648ab159f165ef692588
+
