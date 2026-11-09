@@ -206,6 +206,7 @@ Add what you take, then log a dose in two taps. Everything stays on this iPhone.
 Time to check in => Пора отметить самочувствие
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём
+After · checked in at %@ => После · отмечено в %@
 """)
 
 private let approvedFormatValues = table("""

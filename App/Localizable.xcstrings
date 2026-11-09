@@ -1241,6 +1241,22 @@
         }
       }
     },
+    "After · checked in at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After · checked in at %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После · отмечено в %@"
+          }
+        }
+      }
+    },
     "%lld minutes" : {
       "localizations" : {
         "en" : {
