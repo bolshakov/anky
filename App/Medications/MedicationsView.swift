@@ -40,7 +40,7 @@ struct MedicationsView: View {
     @ViewBuilder
     private var activeSection: some View {
         if !active.isEmpty {
-            CardSection(footnote: medications.archivedCount == 0 ? archiveFootnote : nil, id: "medications") {
+            CardSection(footnote: archiveFootnote, id: "medications") {
                 ForEach(active) { medication in
                     TwoLineRow(
                         Text(medication.listTitle),
@@ -75,7 +75,7 @@ struct MedicationsView: View {
     @ViewBuilder
     private var archivedSection: some View {
         if medications.archivedCount > 0 {
-            CardSection(footnote: active.isEmpty ? nil : archiveFootnote, id: "archived-link") {
+            CardSection(id: "archived-link") {
                 NavigationLink {
                     ArchivedView(medications: medications)
                 } label: {
