@@ -104,7 +104,8 @@ struct EditDoseView: View {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(before))
                 } label: {
-                    ReadingRow(entry: before)
+                    EntryIconRow(entry: before)
+                        .spokenAsReading()
                 }
                 .accessibilityIdentifier("before-reading-row")
             } else {
@@ -118,7 +119,8 @@ struct EditDoseView: View {
                 NavigationLink {
                     NewEntryView(model: model, mode: .edit(after))
                 } label: {
-                    ReadingRow(entry: after)
+                    EntryIconRow(entry: after)
+                        .spokenAsReading()
                 }
                 .accessibilityIdentifier("after-reading-row")
             }
