@@ -5,7 +5,7 @@ import Foundation
 extension MorePlacesValue {
     var namesText: String {
         guard !all.isEmpty else { return noneText }
-        let shown = names.map(placeName)
+        let shown = SpokenList.items(names.map(placeName), locale: .current)
         guard more > 0 else { return SpokenList.joined(shown, locale: .current) }
         return String(localized: "\(shown[0]), \(shown[1]) and \(more) more")
     }
