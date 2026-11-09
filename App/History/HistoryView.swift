@@ -6,6 +6,8 @@ import SwiftUI
 struct HistoryView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let isClosingSheets: Bool
+    let onSheetsClosed: () -> Void
     @State private var now = Date.now
     @State private var editing: Entry?
     @State private var editingDose: Dose?
@@ -46,6 +48,22 @@ struct HistoryView: View {
             checkingIn = dose
         } else {
             editingDose = dose
+        }
+    }
+
+    private func closeSheets() {
+        guard editing != nil || editingDose != nil || checkingIn != nil else {
+            onSheetsClosed()
+            return
+        }
+        editing = nil
+        editingDose = nil
+        checkingIn = nil
+    }
+
+    private func sheetDismissed() {
+        if isClosingSheets {
+            onSheetsClosed()
         }
     }
 
@@ -125,13 +143,18 @@ struct HistoryView: View {
                 derived = HistoryDerived(inputs)
             }
             .checkInClock(now: $now, nextChange: current.nextCheckInChange)
-            .sheet(item: $editing) { entry in
+            .onChange(of: isClosingSheets, initial: true) { _, isClosing in
+                if isClosing {
+                    closeSheets()
+                }
+            }
+            .sheet(item: $editing, onDismiss: sheetDismissed) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
             }
-            .sheet(item: $editingDose) { dose in
+            .sheet(item: $editingDose, onDismiss: sheetDismissed) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
-            .sheet(item: $checkingIn) { dose in
+            .sheet(item: $checkingIn, onDismiss: sheetDismissed) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sensoryFeedback(.success, trigger: saveTicks)
