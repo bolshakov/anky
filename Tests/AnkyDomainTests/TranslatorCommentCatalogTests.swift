@@ -2,10 +2,21 @@
 import Foundation
 import Testing
 
-private let ambiguousKeys = [
-    "Check In", "Check in", "Dose", "Log dose", "Log Dose", "Pin", "Pinned", "Unpinned",
-    "Left", "Right", "Manage", "Archive", "More actions",
-]
+private let ambiguousKeys = """
+Check In
+Check in
+Dose
+Log dose
+Log Dose
+Pin
+Pinned
+Unpinned
+Left
+Right
+Manage
+Archive
+More actions
+""".split(separator: "\n").map(String.init)
 
 struct TranslatorCommentCatalogTests {
     @Test(arguments: ambiguousKeys)
