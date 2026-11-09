@@ -75,19 +75,8 @@ struct RecentEntryNamesTests {
         #expect(try recent(["si_l", "knee_r"]).names == [place("si_l"), place("knee_r")])
     }
 
-    @Test func painShowsNoKind() throws {
-        #expect(try recent(["lower"], kind: .pain).showsKind == false)
-    }
-
-    @Test func stiffnessShowsItsKind() throws {
-        let chip = try recent(["lower"], kind: .stiffness)
-        #expect(chip.showsKind == true)
-        #expect(chip.shownNames.count == 1)
-    }
-
-    @Test func fatigueShowsItsKindAndNoPlaces() throws {
+    @Test func fatigueHasNoPlaces() throws {
         let chip = try recent([], kind: .fatigue)
-        #expect(chip.showsKind == true)
         #expect(chip.names.isEmpty)
         #expect(chip.showsNoPlace == false)
     }

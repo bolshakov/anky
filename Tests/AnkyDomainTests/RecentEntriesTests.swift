@@ -125,4 +125,29 @@ struct RecentEntriesTests {
         let entries = [Entry(draft: made)]
         #expect(try RecentEntries.distinct(from: entries, limit: 10) == [recent(["lower"])])
     }
+
+    @Test func theKindFilterKeepsOnlyEntriesOfThatKind() throws {
+        let entries = try [entry(["lower"], kind: .stiffness), entry([], kind: .fatigue), entry(["neck"])]
+        #expect(try RecentEntries.distinct(from: entries, kind: .stiffness, limit: 3) == [recent(
+            ["lower"],
+            kind: .stiffness
+        )])
+        #expect(try RecentEntries.distinct(from: entries, kind: .fatigue, limit: 3) == [recent([], kind: .fatigue)])
+    }
+
+    @Test func theKindFilterRunsBeforeTheLimit() throws {
+        var entries = try [entry(at: 1, ["neck"]), entry(at: 2, ["lower"])]
+        for (minute, level) in [3, 4, 5].enumerated() {
+            var made = try draft(kind: .fatigue, level: level)
+            made.date = at(minute + 3)
+            entries.append(Entry(draft: made))
+        }
+        let expected = try [recent(["lower"]), recent(["neck"])]
+        #expect(RecentEntries.distinct(from: entries, kind: .pain, limit: 3) == expected)
+    }
+
+    @Test func aKindWithNoEntriesGivesNoRecentEntries() throws {
+        let entries = try [entry(["lower"])]
+        #expect(RecentEntries.distinct(from: entries, kind: .fatigue, limit: 3).isEmpty)
+    }
 }

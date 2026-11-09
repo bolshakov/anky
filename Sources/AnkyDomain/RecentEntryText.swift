@@ -21,14 +21,14 @@ public struct RecentWords {
 }
 
 public extension RecentEntry {
-    func chipText(words: RecentWords) -> String {
-        let kindPart = showsKind ? [words.kind(kind)] : []
+    func chipText(words: RecentWords, namesKind: Bool) -> String {
+        let kindPart = namesKind ? [words.kind(kind)] : []
         let placesPart = kind.asksWhere ? [chipPlaces(words)] : []
         return (kindPart + placesPart + [String(severity.value)]).joined(separator: " · ")
     }
 
-    func spokenText(words: RecentWords) -> String {
-        let kindPart = showsKind ? [words.kind(kind)] : []
+    func spokenText(words: RecentWords, namesKind: Bool) -> String {
+        let kindPart = namesKind ? [words.kind(kind)] : []
         return (kindPart + spokenNames(words) + [words.level(severity)]).joined(separator: ", ")
     }
 

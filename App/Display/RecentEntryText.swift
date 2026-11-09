@@ -42,12 +42,12 @@ extension RecentWords {
 }
 
 extension RecentEntry {
-    var chipText: String {
-        chipText(words: .app)
+    func chipText(namesKind: Bool) -> String {
+        chipText(words: .app, namesKind: namesKind)
     }
 
-    var spokenText: String {
-        spokenText(words: .app)
+    func spokenText(namesKind: Bool) -> String {
+        spokenText(words: .app, namesKind: namesKind)
     }
 
     var spokenPlaces: String {

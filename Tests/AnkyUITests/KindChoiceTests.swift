@@ -85,7 +85,7 @@ final class KindChoiceTests: XCTestCase {
     func testRecentChipsLineUpWithThePicker() {
         continueAfterFailure = false
         let app = launchAnky()
-        saveFatigueEntry(in: app)
+        savePainEntry(in: app)
 
         openNewEntry(app)
         let chips = app.descendants(matching: .any).matching(identifier: "recent-chips").firstMatch
@@ -95,9 +95,8 @@ final class KindChoiceTests: XCTestCase {
         XCTAssertEqual(chips.frame.minX, picker.frame.minX, accuracy: 1)
     }
 
-    private func saveFatigueEntry(in app: XCUIApplication) {
+    private func savePainEntry(in app: XCUIApplication) {
         openNewEntry(app)
-        chooseKind(.fatigue, in: app)
         saveEntry(app)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
     }

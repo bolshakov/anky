@@ -13,7 +13,7 @@ struct RepeatChip: View {
 
     var body: some View {
         Button(action: onTap) {
-            Text(RecentEntryText.sameAsLastTime + " · " + recent.chipText)
+            Text(RecentEntryText.sameAsLastTime + " · " + recent.chipText(namesKind: true))
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
         }
@@ -21,7 +21,7 @@ struct RepeatChip: View {
         .buttonBorderShape(borderShape)
         .frame(minHeight: Spacing.rowMinimumHeight)
         .contentShape(borderShape)
-        .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
+        .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText(namesKind: true))
         .accessibilityIdentifier("repeat-chip")
     }
 }
@@ -40,7 +40,7 @@ struct RepeatLoggedCard: View {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(Color("AccentColor"))
                     .accessibilityHidden(true)
-                Text(String(localized: "Logged") + " · " + recent.chipText)
+                Text(String(localized: "Logged") + " · " + recent.chipText(namesKind: true))
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .accessibilityHidden(true)
