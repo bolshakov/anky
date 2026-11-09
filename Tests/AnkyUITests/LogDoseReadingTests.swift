@@ -137,7 +137,7 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
     }
 
-    func testReadingRowPutsThePlacesWithTheTimeAndTheLevelAtTheRight() throws {
+    func testReadingRowPutsTheTimeBeforeThePlacesAndTheLevelNumberAtTheRight() throws {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
@@ -151,8 +151,8 @@ final class LogDoseReadingTests: XCTestCase {
         let row = app.buttons["before-reading-row"]
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let time = readingRowTime(of: row)
-        let places = try XCTUnwrap(textInRow("Neck and Lower back · \(time)", in: row, app))
-        let level = try XCTUnwrap(textInRow("6 of 10", in: row, app))
+        let places = try XCTUnwrap(textInRow("\(time) · Neck and Lower back", in: row, app))
+        let level = try XCTUnwrap(textInRow("6", in: row, app))
         XCTAssertNotNil(textInRow("Pain", in: row, app))
         XCTAssertGreaterThan(level.frame.minX, places.frame.maxX)
         XCTAssertGreaterThan(level.frame.midX, row.frame.midX)
@@ -173,7 +173,7 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let time = try XCTUnwrap(textInRow(readingRowTime(of: row), in: row, app))
         let kind = try XCTUnwrap(textInRow("Fatigue", in: row, app))
-        let level = try XCTUnwrap(textInRow("4 of 10", in: row, app))
+        let level = try XCTUnwrap(textInRow("4", in: row, app))
         XCTAssertGreaterThan(time.frame.minY, kind.frame.minY)
         XCTAssertLessThan(time.frame.minX, level.frame.minX)
         let texts = app.staticTexts.allElementsBoundByIndex.filter { row.frame.contains($0.frame) }

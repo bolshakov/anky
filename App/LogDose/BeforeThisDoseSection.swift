@@ -25,7 +25,8 @@ struct BeforeThisDoseSection: View {
         if let entry {
             Button(action: onChoose) {
                 HStack(spacing: Spacing.rowContentGap) {
-                    ReadingRow(entry: entry)
+                    EntryIconRow(entry: entry)
+                        .spokenAsReading()
                     chevron
                 }
             }
