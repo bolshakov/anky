@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/ev.sh; git -C "$CHECKOUT" reset -q --hard HEAD; rebuild; echo status:; git -C "$CHECKOUT" status --short'
+exit: 0
+commit: 626fe0c283e067fac692bce01548817e481a3c98
+
+rebuild exit 0
+status:

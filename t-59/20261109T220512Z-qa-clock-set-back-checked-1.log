@@ -1,0 +1,10 @@
+$ zsh -c '. $TMPDIR/ev.sh; rows; checked late-checked'
+exit: 0
+commit: 626fe0c283e067fac692bce01548817e481a3c98
+
+Walk beta, As needed
+Walk gamma, As needed
+Walk alpha, As needed
+Walk beta, As needed: unchecked
+Walk gamma, As needed: checked
+Walk alpha, As needed: checked
