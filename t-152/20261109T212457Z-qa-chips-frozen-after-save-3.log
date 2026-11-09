@@ -1,0 +1,5 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t152-01-1/tmp/pre.sh; sleep 2 && ui | grep -c '\''id=check-in-screen '\'''
+exit: 1
+commit: 012ca4c4b48accdfe241b814a3f3b9f3543b8b5e
+
+0

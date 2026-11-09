@@ -1,0 +1,5 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t152-01-1/tmp/pre.sh; open_check_in && chips && shot before-save'
+exit: 0
+commit: 012ca4c4b48accdfe241b814a3f3b9f3543b8b5e
+
+neck upper lower si_l si_r
