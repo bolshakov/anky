@@ -69,7 +69,7 @@ public enum DoseRowText {
     }
 
     public static func spokenLabel(time: String, title: String, readings: DoseReadings, words: DoseWords) -> String {
-        let head = "\(title). \(time). \(words.kind)."
+        let head = "\(words.kind). \(title). \(time)."
         guard let pain = DosePain(readings) else { return head }
         return "\(head) \(phrase(pain, words.spoken(pain.kind)))."
     }
