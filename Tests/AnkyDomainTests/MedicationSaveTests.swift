@@ -34,4 +34,13 @@ import Testing
         #expect(try save.save(draft(), at: date, add: store.add))
         #expect(store.contents.map(\.id) == [id])
     }
+
+    @Test func theIdItWritesUnderIsReadable() throws {
+        let store = FakeMedicationStore()
+        let id = UUID()
+        var save = MedicationSave(id: id)
+        #expect(save.id == id)
+        #expect(try save.save(draft(), at: date, add: store.add))
+        #expect(store.contents.map(\.id) == [save.id])
+    }
 }

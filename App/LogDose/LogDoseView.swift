@@ -242,10 +242,10 @@ struct LogDoseView: View {
         selectionTicks += 1
     }
 
-    /// The new medication is the newest, so it is last in the active list and becomes the chosen row. Choosing it
+    /// The medication the form just wrote becomes the chosen row, wherever it sorts in the active list. Choosing it
     /// does not tick, because the success haptic plays instead.
-    private func medicationSaved() {
-        selectedID = active.last?.id
+    private func medicationSaved(_ id: Medication.ID) {
+        selectedID = id
         saveTicks += 1
     }
 }

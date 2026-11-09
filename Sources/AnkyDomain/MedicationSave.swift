@@ -4,7 +4,7 @@ import Foundation
 /// Writes one draft as one medication. Once a write has worked, later calls write nothing, so a second tap on Save
 /// cannot make a second medication.
 @MainActor public struct MedicationSave {
-    private let id: UUID
+    public let id: UUID
     public private(set) var isSaved = false
 
     public init(id: UUID) {

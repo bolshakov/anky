@@ -6,7 +6,7 @@ import SwiftUI
 struct MedicationFormView: View {
     let medications: MedicationsModel
     let editing: Medication?
-    let onSaved: () -> Void
+    let onSaved: (Medication.ID) -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: MedicationDraft
     // Made once per opening, so a retry after a failed save writes the same medication.
@@ -19,7 +19,7 @@ struct MedicationFormView: View {
         case name, strength
     }
 
-    init(medications: MedicationsModel, editing: Medication? = nil, onSaved: @escaping () -> Void) {
+    init(medications: MedicationsModel, editing: Medication? = nil, onSaved: @escaping (Medication.ID) -> Void) {
         self.medications = medications
         self.editing = editing
         self.onSaved = onSaved
@@ -100,7 +100,7 @@ struct MedicationFormView: View {
             failure = .save
             return
         }
-        onSaved()
+        onSaved(editing?.id ?? saver.id)
         dismiss()
     }
 

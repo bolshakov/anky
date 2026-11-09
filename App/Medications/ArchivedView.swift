@@ -46,7 +46,7 @@ struct ArchivedView: View {
             }
         }
         .sheet(item: $editing) { medication in
-            MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
+            MedicationFormView(medications: medications, editing: medication, onSaved: { _ in saveTicks += 1 })
         }
     }
 
