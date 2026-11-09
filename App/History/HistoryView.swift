@@ -16,6 +16,7 @@ struct HistoryView: View {
     @State private var pendingDoseDelete: Dose?
     @State private var saveTicks = 0
     @State private var derived: HistoryDerived?
+    @State private var isWaitingForSheet = false
     @State private var shownDays = HistoryList.pageDays
 
     private var page: HistoryPage {
@@ -56,15 +57,16 @@ struct HistoryView: View {
             onSheetsClosed()
             return
         }
+        isWaitingForSheet = true
         editing = nil
         editingDose = nil
         checkingIn = nil
     }
 
     private func sheetDismissed() {
-        if isClosingSheets {
-            onSheetsClosed()
-        }
+        guard isWaitingForSheet else { return }
+        isWaitingForSheet = false
+        onSheetsClosed()
     }
 
     private var isConfirmingDelete: Binding<Bool> {
