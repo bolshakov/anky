@@ -1,0 +1,5 @@
+$ sh -c 'git grep -n -e "flame.fill" -e "\"link\"" -- App; echo "grep exit $?"'
+exit: 0
+commit: 0a9d56302c5af36fcbc534ec8691d826e508d604
+
+grep exit 1
