@@ -186,10 +186,10 @@
       }
     },
     "Check In" : {
-
+      "comment" : "Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in."
     },
     "Check in" : {
-
+      "comment" : "Label of the tappable control on a dose row that opens the Check In screen. It is not a hotel or flight check-in."
     },
     "Check in pending" : {
 
@@ -326,7 +326,7 @@
       }
     },
     "Dose" : {
-
+      "comment" : "A noun: one taken amount of a medication."
     },
     "Edit Entry" : {
       "localizations" : {
@@ -609,6 +609,7 @@
       }
     },
     "Left" : {
+      "comment" : "The left side of the body, not a direction.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -738,10 +739,10 @@
 
     },
     "Log Dose" : {
-
+      "comment" : "Title of the screen where the person records a dose they took. \"Log\" is a verb."
     },
     "Log dose" : {
-
+      "comment" : "Button that opens the Log Dose screen. \"Log\" is a verb."
     },
     "Medication" : {
 
@@ -902,7 +903,7 @@
       }
     },
     "More actions" : {
-
+      "comment" : "Accessibility label of the button drawn as three dots that opens a menu of further actions."
     },
     "More places" : {
       "localizations" : {
@@ -1035,6 +1036,7 @@
       }
     },
     "Pin" : {
+      "comment" : "Verb on a swipe button: keep a place as a quick choice on the New Entry screen. It is not a map pin.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1065,6 +1067,7 @@
       }
     },
     "Pinned" : {
+      "comment" : "Spoken when a place becomes a quick choice, and the state of such a place. It is not a map pin.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1085,6 +1088,7 @@
       }
     },
     "Right" : {
+      "comment" : "The right side of the body, not a direction.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1405,6 +1409,7 @@
       }
     },
     "Unpinned" : {
+      "comment" : "Spoken when a place stops being a quick choice. It is not a map pin.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1491,13 +1496,13 @@
 
     },
     "Manage" : {
-
+      "comment" : "Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them."
     },
     "Medications" : {
 
     },
     "Archive" : {
-
+      "comment" : "Verb: hides the medication from the list but keeps the history of its doses."
     },
     "Archived" : {
 
