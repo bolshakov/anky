@@ -1,0 +1,8 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t209-03-2/tmp/k-labels.txt
+exit: 0
+commit: 7b248174eb3d8500a90bfce0f3a9c75cdb362d83
+
+check-in-info | Ibuprofen. Taken yesterday at 23:34. Before: stiffness 4. | None | GenericElement
+severity-footnote | Starts from your earlier entry. Change the level or places if they differ. Saved as a stiffness entry. | None | StaticText
+severity-footnote | Starts from your earlier entry. Change the level or places if they differ. Saved as a fatigue entry. | None | StaticText
+severity-footnote | Starts from your earlier entry. Change the level or places if they differ. Saved as a pain entry. | None | StaticText
