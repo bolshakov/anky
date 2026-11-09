@@ -148,6 +148,7 @@ struct EditDoseView: View {
                 Spacer()
                 if isChecked {
                     Image(systemName: "checkmark")
+                        .foregroundStyle(.tint)
                         .accessibilityHidden(true)
                 }
             }
