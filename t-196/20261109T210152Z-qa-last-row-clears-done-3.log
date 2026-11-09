@@ -1,0 +1,17 @@
+$ sh -c 'axe describe-ui --udid A6311EA5-B822-4686-B358-5E51EE651E92 > /Users/bolshakov/Projects/personal/anky.wt/qa-t196-01-1/tmp/walk-t196.fOjA/fin.json; python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t196-01-1/tmp/walk-t196.fOjA/ids.py /Users/bolshakov/Projects/personal/anky.wt/qa-t196-01-1/tmp/walk-t196.fOjA/fin.json place-row-eyes place-eyes done-places; python3 -I -c "
+import json
+def walk(n,r):
+    if isinstance(n,dict):
+        if n.get('\''AXUniqueId'\'') in('\''place-row-eyes'\'','\''done-places'\''): r[n['\''AXUniqueId'\'']]=n['\''frame'\'']
+        for v in n.values(): walk(v,r)
+    elif isinstance(n,list):
+        for v in n: walk(v,r)
+r={}; walk(json.load(open('\''/Users/bolshakov/Projects/personal/anky.wt/qa-t196-01-1/tmp/walk-t196.fOjA/fin.json'\'')),r)
+e=r['\''place-row-eyes'\'']; d=r['\''done-places'\'']; print('\''eyes bottom'\'',e['\''y'\'']+e['\''height'\''],'\''done top'\'',d['\''y'\''],'\''gap'\'',d['\''y'\'']-(e['\''y'\'']+e['\''height'\'']))"'
+exit: 0
+commit: a99ec89e292d925eae24ac04311eab0f2f255e06
+
+place-row-eyes None {'x': 32, 'height': 20.333343505859375, 'width': 335.3333435058594, 'y': 340.8333435058594}
+place-eyes 'Eyes' {'x': 16, 'height': 52, 'y': 325, 'width': 370}
+done-places 'Done' {'height': 56, 'x': 16, 'width': 370, 'y': 397}
+eyes bottom 361.16668701171875 done top 397 gap 35.83331298828125
