@@ -2,7 +2,7 @@
 public enum EntryRowText {
     /// `places` is nil for a kind that has none to say, so the label then skips that part.
     public static func spokenLabel(kind: String, time: String, places: String?, severity: String) -> String {
-        [kind, time, places, severity].compactMap(\.self).joined(separator: ", ")
+        [kind, severity, time, places].compactMap(\.self).filter { !$0.isEmpty }.joined(separator: ", ")
     }
 
     /// A reading speaks its time first, unlike an entry row, which speaks its kind first.
