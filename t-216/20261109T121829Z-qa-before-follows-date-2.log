@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'pick_back 1; tap_id date-row; sleep 1; ui | grep -E "id=(before-reading-row|log-how-you-feel-row) "; shot back1; row_crop back1 before-reading-row'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (201.0, 510.0) completed successfully
+Button id=before-reading-row label='12:17, Pain, Lower back, 0 of 10' value=None enabled=True @16,345.33333333333337 370x68
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 342169F4-10CB-4C55-AAA1-BB54790BA02E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/walk-t216.tIaL/back1.png

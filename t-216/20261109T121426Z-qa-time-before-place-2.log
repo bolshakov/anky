@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'tap_id before-reading-row; sleep 1; ui | grep "id=reading-option "; shot choose; row_crop choose reading-option 1'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (201.0, 397.66666666666663) completed successfully
+Button id=reading-option label='Pain' value='13:10, Lower back, 0 of 10' enabled=True @16,177 370x68
+Button id=reading-option label='Stiffness' value='13:10, Lower back, 0 of 10' enabled=True @16,245 370x68
+Button id=reading-option label='Fatigue' value='13:09, 0 of 10' enabled=True @16,313 370x68
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 342169F4-10CB-4C55-AAA1-BB54790BA02E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/walk-t216.tIaL/choose.png

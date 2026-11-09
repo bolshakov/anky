@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'tap_id date-row; sleep 1; axe tap -x 232 -y 612 --udid "$udid" >/dev/null; sleep 1; ui | grep -E "id=date-row "; tap_id date-row; sleep 1; ui | grep -E "id=(date-row|before-reading-row|log-how-you-feel-row) "'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (201.0, 517.0) completed successfully
+Button id=date-row label='Date and time' value='Today 11:20' enabled=True @32,427.6666666666667 338x52
+✓ Tap at resolved tap point at (201.0, 453.6666666666667) completed successfully
+Button id=log-how-you-feel-row label='Log how you feel now' value=None enabled=True @16,345.33333333333337 370x50.333333333333314
+Button id=date-row label='Date and time' value='Today 11:20' enabled=True @16,427.6666666666667 370x52

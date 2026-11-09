@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'tap_id before-reading-row; sleep 1; ui | grep -c "id=reading-option "; tap_id reading-cancel; sleep 1'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (201.0, 379.33333333333337) completed successfully
+1
+Warning: Multiple (2) accessibility elements matched --id 'reading-cancel'. Use --id when labels are not unique. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available. No tap performed.
+Error: Multiple (2) accessibility elements matched --id 'reading-cancel'. Use --id when labels are not unique. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available.

@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'log_dose; ui | grep -E "id=(before-reading-row|log-how-you-feel-row) "'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+Button id=before-reading-row label='13:17, Stiffness, Lower back, 0 of 10' value=None enabled=True @16,345.33333333333337 370x68

@@ -1,0 +1,5 @@
+$ sh -c 'git grep -n -w ReadingRow; echo "grep exit $?"'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+grep exit 1

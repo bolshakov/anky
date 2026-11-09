@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/step.sh 'log_dose; ui | grep "id=before-reading-row "; shot logdose; row_crop logdose before-reading-row'
+exit: 0
+commit: 358df5b4a8245b3a26da7bdc071db310ecbaf5fa
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+Button id=before-reading-row label='13:10, Pain, Lower back, 0 of 10' value=None enabled=True @16,363.66666666666663 370x68
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 342169F4-10CB-4C55-AAA1-BB54790BA02E (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t216-02-1/tmp/walk-t216.tIaL/logdose.png
