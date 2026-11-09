@@ -13,7 +13,7 @@ struct NewEntryView: View {
     @State private var entriesAtOpen: [Entry]
     @State private var lastChipsAtOpen: [PlaceID]
     @State private var hasRecordedChips = false
-    @State private var recents: [RecentEntry]
+    @State private var recents: [EntryKind: [RecentEntry]]
     @State private var isShowingPlaces = false
     // Made once per opening, so a second tap on "Save entry" saves the same entry again.
     @State private var entryID = UUID()
@@ -40,9 +40,11 @@ struct NewEntryView: View {
         _startDraft = State(initialValue: opening)
         _entriesAtOpen = State(initialValue: model.entries)
         _lastChipsAtOpen = State(initialValue: model.shortcuts.lastChips)
-        let recents: [RecentEntry] = switch mode {
-        case .new: RecentEntries.distinct(from: model.entries, limit: 3)
-        case .edit: []
+        let recents: [EntryKind: [RecentEntry]] = switch mode {
+        case .new: Dictionary(uniqueKeysWithValues: EntryKind.allCases.map {
+                ($0, RecentEntries.distinct(from: model.entries, kind: $0, limit: 3))
+            })
+        case .edit: [:]
         }
         _recents = State(initialValue: recents)
     }
@@ -154,7 +156,7 @@ struct NewEntryView: View {
 
     @ViewBuilder
     private var recentChips: some View {
-        if !recents.isEmpty {
+        if let recents = recents[draft.kind], !recents.isEmpty {
             Section {
                 RecentChipsRow(recents: recents) { draft.apply($0) }
                     .nonCardBlock()

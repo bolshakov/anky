@@ -27,7 +27,7 @@ struct RecentChipsRow: View {
             onSelect(recent)
             taps += 1
         } label: {
-            Text(recent.chipText)
+            Text(recent.chipText(namesKind: false))
                 .font(.subheadline)
                 .lineLimit(1)
                 .fixedSize()
@@ -35,7 +35,7 @@ struct RecentChipsRow: View {
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
         .frame(height: chipHeight)
-        .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText)
+        .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText(namesKind: false))
         .accessibilityIdentifier("recent-chip-\(index)")
     }
 }

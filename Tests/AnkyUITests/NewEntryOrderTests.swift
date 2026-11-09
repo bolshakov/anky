@@ -7,7 +7,7 @@ final class NewEntryOrderTests: XCTestCase {
     func testNewEntryWithRecentStartsWithChipsThenKind() {
         continueAfterFailure = false
         let app = launchAnky()
-        saveFatigueEntry(in: app)
+        savePainInLeftKnee(in: app)
 
         openNewEntry(app)
         assertInOrder(
@@ -38,7 +38,6 @@ final class NewEntryOrderTests: XCTestCase {
             entryScreen(app).swipeDown()
         }
         XCTAssertTrue(chip.waitForExistence(timeout: 10))
-        chooseKind(.fatigue, in: app)
         chip.tap()
         XCTAssertTrue(kindSegment(.pain, in: app).isSelected)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 4)
