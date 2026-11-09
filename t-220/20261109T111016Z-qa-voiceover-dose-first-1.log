@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t220-01-1/tmp/reads.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t220-01-1/tmp/walk-t220.mVDi base
+exit: 0
+commit: c3001ed784d91a66a83e4e1322c892b3a8d0b056
+
+c3001ed784d91a66a83e4e1322c892b3a8d0b056
+today: Walk medicine. 12:09. Dose. Pain was 0 of 10.
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 64B138AA-9F6D-46FB-BC2F-ED8B140DCF37 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t220-01-1/tmp/walk-t220.mVDi/dose-base.png
+1110x204+48+829
+history: Walk medicine. 12:09. Dose. Pain was 0 of 10.
