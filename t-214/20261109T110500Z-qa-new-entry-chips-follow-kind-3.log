@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/st.sh; tap_third kind-picker 3 >/dev/null; chips'
+exit: 0
+commit: c2ab15c27e94983d20d996772574bf92a82f935a
+
+Button id=recent-chip-0 label='Same as last time, 0 of 10' value=None enabled=True @16,148 33.33333333333333x32

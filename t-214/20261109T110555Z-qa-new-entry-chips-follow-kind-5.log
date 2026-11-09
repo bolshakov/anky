@@ -1,0 +1,6 @@
+$ zsh -c '. $TMPDIR/st.sh; new_entry >/dev/null; tap_third kind-picker 3 >/dev/null; echo fatigue-rows=$(ui | grep -c "id=recent-chips "); tap_third kind-picker 1 >/dev/null; echo pain-rows=$(ui | grep -c "id=recent-chips ")'
+exit: 0
+commit: c2ab15c27e94983d20d996772574bf92a82f935a
+
+fatigue-rows=0
+pain-rows=1

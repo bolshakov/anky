@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/st.sh; today >/dev/null; ui | grep "id=repeat-chip "'
+exit: 0
+commit: c2ab15c27e94983d20d996772574bf92a82f935a
+
+Button id=repeat-chip label='Same as last time, Fatigue, 0 of 10' value=None enabled=True @16,197.33333333333334 228.33333333333331x44

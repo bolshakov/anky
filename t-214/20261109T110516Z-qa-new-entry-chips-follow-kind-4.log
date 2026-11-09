@@ -1,0 +1,5 @@
+$ zsh -c '. $TMPDIR/st.sh; tap_id recent-chip-0 >/dev/null; ui | grep "id=kind-picker "'
+exit: 0
+commit: c2ab15c27e94983d20d996772574bf92a82f935a
+
+TabGroup id=kind-picker label='What are you logging?' value=None enabled=True @16,212 370x31
