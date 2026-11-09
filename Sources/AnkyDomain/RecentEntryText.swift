@@ -23,7 +23,7 @@ public struct RecentWords {
 public extension RecentEntry {
     func chipText(words: RecentWords, namesKind: Bool) -> String {
         let kindPart = namesKind ? [words.kind(kind)] : []
-        let placesPart = kind.asksWhere ? [chipPlaces(words)] : []
+        let placesPart = names.isEmpty ? [] : [chipPlaces(words)]
         return (kindPart + placesPart + [String(severity.value)]).joined(separator: " · ")
     }
 
@@ -41,9 +41,6 @@ public extension RecentEntry {
     }
 
     private func chipPlaces(_ words: RecentWords) -> String {
-        if showsNoPlace {
-            return words.noPlace
-        }
         let listed = shownNames.map(words.name).joined(separator: ", ")
         return hiddenCount > 0 ? "\(listed) +\(hiddenCount)" : listed
     }

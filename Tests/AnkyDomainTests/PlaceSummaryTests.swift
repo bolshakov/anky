@@ -64,4 +64,26 @@ struct PlaceSummaryTests {
     @Test func anEntryWithOnlyUnknownIdsReadsAsNoPlace() throws {
         #expect(try entry(.pain, places: ["tentacle"]).placeSummary == .noPlace)
     }
+
+    @Test func aPainEntryWithNoPlacesShowsNoPlaceSummaryOnARow() throws {
+        #expect(try entry(.pain, places: []).rowPlaceSummary == nil)
+    }
+
+    @Test func aStiffnessEntryWithNoPlacesShowsNoPlaceSummaryOnARow() throws {
+        #expect(try entry(.stiffness, places: []).rowPlaceSummary == nil)
+    }
+
+    @Test func anEntryWithOnlyUnknownPlacesShowsNoPlaceSummaryOnARow() throws {
+        #expect(try entry(.pain, places: ["tentacle"]).rowPlaceSummary == nil)
+    }
+
+    @Test func aFatigueEntryShowsNoPlaceSummaryOnARow() throws {
+        #expect(try entry(.fatigue, places: []).rowPlaceSummary == nil)
+    }
+
+    @Test(arguments: [EntryKind.pain, .stiffness])
+    func anEntryWithPlacesShowsThemOnARow(kind: EntryKind) throws {
+        let summary = try entry(kind, places: ["lower", "si_l"]).rowPlaceSummary
+        #expect(summary == .places([place("lower"), place("si_l")]))
+    }
 }

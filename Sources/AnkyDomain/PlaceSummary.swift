@@ -12,3 +12,10 @@ public extension Entry {
         return known.isEmpty ? .noPlace : .places(known)
     }
 }
+
+public extension Entry {
+    var rowPlaceSummary: PlaceSummary? {
+        guard case .places = placeSummary else { return nil }
+        return placeSummary
+    }
+}
