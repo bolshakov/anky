@@ -46,3 +46,40 @@ struct CheckInDayTextTests {
         #expect(info("today at 12:00 PM", before: readings.before) == "Taken today at 12:00 PM.")
     }
 }
+
+struct TakenTextTests {
+    private let calendar = Calendar(identifier: .gregorian)
+    private let us = Locale(identifier: "en_US")
+
+    private func noon(daysBack: Int) throws -> Date {
+        let today = calendar.startOfDay(for: .now)
+        let day = try #require(calendar.date(byAdding: .day, value: -daysBack, to: today))
+        return try #require(calendar.date(bySettingHour: 12, minute: 0, second: 0, of: day))
+    }
+
+    private func text(daysBack: Int, locale: Locale? = nil) throws -> String {
+        try CheckInDayText.takenText(for: noon(daysBack: daysBack), calendar: calendar, locale: locale ?? us)
+    }
+
+    @Test func aDoseTodayReadsTodayWithItsTimeInLowercaseForTheMiddleOfASentence() throws {
+        #expect(try text(daysBack: 0) == "today at 12:00\u{202F}PM")
+    }
+
+    @Test func aDoseYesterdayReadsYesterdayWithItsTime() throws {
+        #expect(try text(daysBack: 1) == "yesterday at 12:00\u{202F}PM")
+    }
+
+    @Test func aDoseEightDaysBackReadsAPlainDateWithItsTime() throws {
+        let taken = try noon(daysBack: 8)
+        let year = calendar.component(.year, from: taken)
+        let day = calendar.component(.day, from: taken)
+        let text = try text(daysBack: 8)
+        #expect(text.hasSuffix(", \(year) at 12:00\u{202F}PM"))
+        #expect(text.contains("\(day)"))
+    }
+
+    @Test func theLocaleChoosesTheWordsAndTheClock() throws {
+        #expect(try text(daysBack: 1, locale: Locale(identifier: "en_GB")) == "yesterday at 12:00")
+        #expect(try text(daysBack: 0, locale: Locale(identifier: "ru_RU")) == "сегодня, 12:00")
+    }
+}

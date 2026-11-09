@@ -28,12 +28,8 @@ enum CheckInText {
     }
 
     static func infoTaken(takenAt: Date, before: Entry?) -> String {
-        let formatter = DateFormatter()
-        formatter.doesRelativeDateFormatting = true
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        formatter.formattingContext = .middleOfSentence
-        return CheckInDayText.infoTaken(taken: formatter.string(from: takenAt), before: before, words: .app)
+        let taken = CheckInDayText.takenText(for: takenAt, calendar: .current, locale: .current)
+        return CheckInDayText.infoTaken(taken: taken, before: before, words: .app)
     }
 
     static func footnote(for kind: EntryKind, startsAtEarlierReading: Bool) -> Text {
