@@ -241,10 +241,10 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 """)
 
-private let russian = Locale(identifier: "ru")
+let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
 
-private func table(_ text: String) -> [(key: String, value: String)] {
+func table(_ text: String) -> [(key: String, value: String)] {
     text.split(separator: "\n").map {
         let parts = $0.components(separatedBy: " => ")
         return (key: parts[0], value: parts[1])
