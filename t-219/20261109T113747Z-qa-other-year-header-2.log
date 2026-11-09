@@ -1,0 +1,14 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t219-01-1/tmp/s2.sh year-us
+exit: 0
+commit: e38140546ff40e0bd1940991a872314fcdd96796
+
+headers:
+Friday, November 6
+Monday, December 22, 2025
+saved date-row values (seed log):
+Fri, Nov 6 12:34\u202fPM
+Mon, Dec 22 2025 12:35\u202fPM
+MATCH-year-header: Monday, December 22, 2025
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 3156599E-F704-45E6-964D-08B0EF9D9293 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t219-01-1/tmp/walk-t219.2P42/year-us.png

@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t219-01-1/tmp/t1b.sh
+exit: 0
+commit: e38140546ff40e0bd1940991a872314fcdd96796
+
+today-date: Monday 9 November
+Monday 9 November
+MATCH-today-date
+headers:
+Friday 6 November
+Monday, 15 December 2025
+MATCH-header: Friday 6 November
