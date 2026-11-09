@@ -6,6 +6,7 @@ struct NewEntryView: View {
     let model: EntryLogModel
     let mode: EntryMode
     let onSaved: () -> Void
+    private(set) var deletedAction: () -> Void = {}
     let onAdded: (Entry) -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
@@ -47,6 +48,12 @@ struct NewEntryView: View {
         case .edit: [:]
         }
         _recents = State(initialValue: recents)
+    }
+
+    func onDeleted(_ action: @escaping () -> Void) -> Self {
+        var copy = self
+        copy.deletedAction = action
+        return copy
     }
 
     var body: some View {
@@ -220,6 +227,7 @@ struct NewEntryView: View {
     private func removeEntry() throws {
         guard case let .edit(entry) = mode else { return }
         try model.remove(id: entry.id)
+        deletedAction()
         dismiss()
     }
 }

@@ -13,6 +13,7 @@ struct HistoryView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @State private var saveTicks = 0
+    @State private var deleteTicks = 0
     @State private var derived: HistoryDerived?
     @State private var shownDays = HistoryList.pageDays
 
@@ -112,10 +113,12 @@ struct HistoryView: View {
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
+                deleteTicks += 1
             }
             .entryDeleteConfirmation(isPresented: isConfirmingDoseDelete, words: .dose) {
                 guard let doseTarget else { return }
                 try medications.removeDose(id: doseTarget.id)
+                deleteTicks += 1
             }
             .background(Color("PageBackground"))
             .accessibilityElement(children: .contain)
@@ -127,14 +130,17 @@ struct HistoryView: View {
             .checkInClock(now: $now, nextChange: current.nextCheckInChange)
             .sheet(item: $editing) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
+                    .onDeleted { deleteTicks += 1 }
             }
             .sheet(item: $editingDose) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
+                    .onDeleted { deleteTicks += 1 }
             }
             .sheet(item: $checkingIn) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sensoryFeedback(.success, trigger: saveTicks)
+            .sensoryFeedback(.warning, trigger: deleteTicks)
         }
     }
 }
