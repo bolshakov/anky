@@ -1,0 +1,18 @@
+$ python3 -I -c '
+import json
+s=json.load(open("App/Localizable.xcstrings"))["strings"]
+for k in ["%lld minutes","%lld hours"]:
+    for f,v in s[k]["localizations"]["ru"]["variations"]["plural"].items():
+        print(k,f,v["stringUnit"]["value"],v["stringUnit"]["state"])
+'
+exit: 0
+commit: c04e9a992e39ff4089bcdc1dd1a8a588f3c76d1d
+
+%lld minutes one %lld минута translated
+%lld minutes few %lld минуты translated
+%lld minutes many %lld минут translated
+%lld minutes other %lld минуты translated
+%lld hours one %lld час translated
+%lld hours few %lld часа translated
+%lld hours many %lld часов translated
+%lld hours other %lld часа translated
