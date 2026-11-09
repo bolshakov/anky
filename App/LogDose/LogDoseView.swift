@@ -17,7 +17,7 @@ struct LogDoseView: View {
     @State private var isShowingReadingChoice = false
     /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
     @State private var manualReadingID: UUID?
-    /// Made once per opening, so a second tap on "Save dose" logs the same dose again.
+    /// Made once per opening, so a second tap on Save logs the same dose again.
     @State private var doseID = UUID()
     /// The time the person set by hand. Nil while unedited, so the dose follows the clock until it is saved.
     @State private var chosenTakenAt: Date?
@@ -125,7 +125,7 @@ struct LogDoseView: View {
     /// Built here and not with `bottomPrimaryButton`, which cannot be disabled without disabling the form it sits on.
     private var saveButton: some View {
         Button(action: saveDose) {
-            Text("Save dose").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
         .buttonBorderShape(.capsule)

@@ -15,7 +15,7 @@ struct NewEntryView: View {
     @State private var hasRecordedChips = false
     @State private var recents: [EntryKind: [RecentEntry]]
     @State private var isShowingPlaces = false
-    // Made once per opening, so a second tap on "Save entry" saves the same entry again.
+    // Made once per opening, so a second tap on Save saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
@@ -118,7 +118,7 @@ struct NewEntryView: View {
 
     private var saveButton: some View {
         Button(action: save) {
-            saveTitle.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
         .buttonBorderShape(.capsule)
@@ -175,13 +175,6 @@ struct NewEntryView: View {
         switch mode {
         case .new: "New Entry"
         case .edit: "Edit Entry"
-        }
-    }
-
-    private var saveTitle: Text {
-        switch mode {
-        case .new: Text("Save entry")
-        case .edit: Text("Save changes")
         }
     }
 

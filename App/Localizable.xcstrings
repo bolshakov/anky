@@ -668,16 +668,6 @@
         }
       }
     },
-    "Save check-in" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить отметку"
-          }
-        }
-      }
-    },
     "Saved as a fatigue entry." : {
       "localizations" : {
         "ru" : {
@@ -1177,16 +1167,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дозировка, необязательно"
-          }
-        }
-      }
-    },
-    "Save medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить лекарство"
           }
         }
       }
@@ -1755,32 +1735,12 @@
         }
       }
     },
-    "Save changes" : {
+    "Save" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сохранить изменения"
-          }
-        }
-      }
-    },
-    "Save dose" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить приём"
-          }
-        }
-      }
-    },
-    "Save entry" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить запись"
+            "value" : "Сохранить"
           }
         }
       }
