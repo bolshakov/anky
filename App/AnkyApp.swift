@@ -32,6 +32,9 @@ struct AnkyApp: App {
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
         UNUserNotificationCenter.current().delegate = reminderTapDelegate
+        #if DEBUG
+            ReminderTapSwitch.listen(taps: taps, folder: EntriesLocation.folder())
+        #endif
         Self.colourSelectedSegments()
     }
 
