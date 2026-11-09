@@ -50,42 +50,21 @@ struct DoseRow: View {
 
     /// At accessibility sizes the label takes its own last line, so no word is squeezed beside it. The hidden copy
     /// reserves that line and the overlay sits on it.
-    @ViewBuilder
     private var layout: some View {
-        if dynamicTypeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: Spacing.tightGap) {
-                IconTile(symbol: RowSymbol.dose)
-                lines
-                if isWaiting {
-                    checkInLabel.hidden()
-                }
-            }
-        } else {
-            HStack(spacing: Spacing.rowContentGap) {
-                IconTile(symbol: RowSymbol.dose)
-                lines
-                Spacer()
-                if isWaiting {
-                    checkInLabel.hidden()
-                }
+        IconRow(
+            symbol: RowSymbol.dose,
+            title: Text(title),
+            time: time,
+            detail: DoseRowText.painPhrase(for: readings, words: .app)
+        ) {
+            if isWaiting {
+                checkInLabel.hidden()
             }
         }
     }
 
     private var checkInAlignment: Alignment {
         dynamicTypeSize.isAccessibilitySize ? .bottomLeading : .trailing
-    }
-
-    private var lines: some View {
-        VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
-            Text(title)
-                .font(.body)
-                .foregroundStyle(.primary)
-            Text(RowSecondLine.text(time: time, detail: DoseRowText.painPhrase(for: readings, words: .app)))
-                .font(.footnote)
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
-        }
     }
 
     private var checkInLabel: some View {

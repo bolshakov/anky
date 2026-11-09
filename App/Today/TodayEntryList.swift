@@ -49,7 +49,6 @@ struct TodayEntryList: View {
 struct EntryRow: View {
     let entry: Entry
     let onSelect: () -> Void
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var time: String {
         ClockText.text(for: entry.date, calendar: .current, locale: .current)
@@ -69,34 +68,16 @@ struct EntryRow: View {
         }
     }
 
-    /// At accessibility sizes the lines and the level stack in one column, so no word is squeezed into a narrow column.
-    @ViewBuilder
     private var layout: some View {
-        if dynamicTypeSize.isAccessibilitySize {
-            VStack(alignment: .leading, spacing: Spacing.tightGap) {
-                IconTile(symbol: RowSymbol.name(for: entry.kind))
-                lines
-                value
-            }
-        } else {
-            HStack(spacing: Spacing.rowContentGap) {
-                IconTile(symbol: RowSymbol.name(for: entry.kind))
-                lines
-                Spacer()
-                value
-            }
-        }
-    }
-
-    private var lines: some View {
-        VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
-            Text(entry.kind.displayName)
+        IconRow(
+            symbol: RowSymbol.name(for: entry.kind),
+            title: Text(entry.kind.displayName),
+            time: time,
+            detail: detail
+        ) {
+            Text(entry.severity.value, format: .number)
                 .font(.body)
-                .foregroundStyle(.primary)
-            Text(RowSecondLine.text(time: time, detail: detail))
-                .font(.footnote)
                 .monospacedDigit()
-                .foregroundStyle(.secondary)
         }
     }
 
@@ -112,11 +93,5 @@ struct EntryRow: View {
             places: places,
             severity: String(localized: entry.severity.spokenValue)
         )
-    }
-
-    private var value: some View {
-        Text(entry.severity.value, format: .number)
-            .font(.body)
-            .monospacedDigit()
     }
 }

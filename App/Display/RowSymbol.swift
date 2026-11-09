@@ -4,8 +4,8 @@ import AnkyDomain
 enum RowSymbol {
     static func name(for kind: EntryKind) -> String {
         switch kind {
-        case .pain: "bandage"
-        case .stiffness: "figure.flexibility"
+        case .pain: "bolt.fill"
+        case .stiffness: "lock.fill"
         case .fatigue: "battery.50percent"
         }
     }
