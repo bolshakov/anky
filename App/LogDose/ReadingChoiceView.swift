@@ -58,6 +58,7 @@ struct ReadingChoiceView: View {
                     .spokenAsReading()
                 if isChecked {
                     Image(systemName: "checkmark")
+                        .foregroundStyle(.tint)
                         .accessibilityHidden(true)
                 }
             }
