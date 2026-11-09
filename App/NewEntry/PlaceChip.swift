@@ -68,7 +68,7 @@ struct PlaceChip: View {
     }
 
     private var pinActionName: LocalizedStringResource {
-        isPinned ? "Unpin shortcut" : "Pin as shortcut"
+        isPinned ? "Unpin" : "Pin"
     }
 
     private func togglePin(event: ShortcutEvent) {
