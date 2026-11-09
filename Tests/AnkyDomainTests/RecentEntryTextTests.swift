@@ -46,50 +46,67 @@ struct RecentEntryTextTests {
         try RecentEntry(entry(places, kind: kind, level: level))
     }
 
-    @Test func aPainChipHasNoKindPrefix() throws {
-        #expect(try recent(["lower", "si_l", "si_r"]).chipText(words: words) == "Lower back, SI joints · 4")
+    @Test func aChipLeavesTheKindOutWhenTheCallerDoesNotAskForIt() throws {
+        #expect(try recent(["lower", "si_l", "si_r"])
+            .chipText(words: words, namesKind: false) == "Lower back, SI joints · 4")
+        #expect(try recent(["lower"], kind: .stiffness).chipText(words: words, namesKind: false) == "Lower back · 4")
+        #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: false) == "4")
+    }
+
+    @Test(arguments: [(EntryKind.pain, "Pain"), (.stiffness, "Stiffness"), (.fatigue, "Fatigue")])
+    func aChipNamesTheKindWhenTheCallerAsksForIt(kind: EntryKind, name: String) throws {
+        let places = kind.asksWhere ? ["lower"] : []
+        let text = try recent(places, kind: kind).chipText(words: words, namesKind: true)
+        #expect(text.hasPrefix(name + " · "))
     }
 
     @Test func aStiffnessChipReadsKindPlacesLevel() throws {
-        #expect(try recent(["lower"], kind: .stiffness).chipText(words: words) == "Stiffness · Lower back · 4")
+        #expect(try recent(["lower"], kind: .stiffness)
+            .chipText(words: words, namesKind: true) == "Stiffness · Lower back · 4")
     }
 
     @Test func aFatigueChipReadsKindAndLevel() throws {
-        #expect(try recent([], kind: .fatigue).chipText(words: words) == "Fatigue · 4")
+        #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: true) == "Fatigue · 4")
     }
 
     @Test func aChipWithNoPlaceReadsNoPlaceAndTheLevel() throws {
-        #expect(try recent([]).chipText(words: words) == "No place · 4")
-        #expect(try recent([], kind: .stiffness).chipText(words: words) == "Stiffness · No place · 4")
+        #expect(try recent([]).chipText(words: words, namesKind: false) == "No place · 4")
+        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: true) == "Stiffness · No place · 4")
     }
 
     @Test func aLongListChipReadsTwoNamesAndACount() throws {
-        #expect(try recent(["neck", "lower", "hip_l", "knee_l"]).chipText(words: words) == "Neck, Lower back +2 · 4")
+        let chip = try recent(["neck", "lower", "hip_l", "knee_l"])
+        #expect(chip.chipText(words: words, namesKind: false) == "Neck, Lower back +2 · 4")
     }
 
     @Test func aPairChipReadsTheStandInPluralName() throws {
-        #expect(try recent(["si_l", "si_r"]).chipText(words: words) == "SI joints · 4")
+        #expect(try recent(["si_l", "si_r"]).chipText(words: words, namesKind: false) == "SI joints · 4")
     }
 
     @Test func oneSideOfAPairReadsThatPlaceInTheChip() throws {
-        #expect(try recent(["si_l"]).chipText(words: words) == "Left SI joint · 4")
+        #expect(try recent(["si_l"]).chipText(words: words, namesKind: false) == "Left SI joint · 4")
     }
 
-    @Test func theSpokenTextOfAPainEntryHoldsEveryNameWithoutTheKind() throws {
+    @Test func theSpokenTextHoldsEveryNameAndLeavesTheKindOutWhenNotAsked() throws {
         let chip = try recent(["neck", "lower", "si_l", "si_r", "knee_l"])
-        #expect(chip.spokenText(words: words) == "Neck, Lower back, SI joints, Left knee, 4 of 10")
+        #expect(chip.spokenText(words: words, namesKind: false) == "Neck, Lower back, SI joints, Left knee, 4 of 10")
+        #expect(try recent([], kind: .fatigue).spokenText(words: words, namesKind: false) == "4 of 10")
     }
 
-    @Test func theSpokenTextOfAStiffnessEntryStartsWithItsKind() throws {
-        #expect(try recent(["lower"], kind: .stiffness).spokenText(words: words) == "Stiffness, Lower back, 4 of 10")
+    @Test(arguments: [(EntryKind.pain, "Pain"), (.stiffness, "Stiffness"), (.fatigue, "Fatigue")])
+    func theSpokenTextStartsWithTheKindWhenAsked(kind: EntryKind, name: String) throws {
+        let places = kind.asksWhere ? ["lower"] : []
+        let text = try recent(places, kind: kind).spokenText(words: words, namesKind: true)
+        #expect(text.hasPrefix(name + ", "))
     }
 
     @Test func theSpokenTextOfAFatigueEntryHasNoPlace() throws {
-        #expect(try recent([], kind: .fatigue).spokenText(words: words) == "Fatigue, 4 of 10")
+        #expect(try recent([], kind: .fatigue).spokenText(words: words, namesKind: true) == "Fatigue, 4 of 10")
     }
 
     @Test func theSpokenTextOfAnEntryWithNoPlaceSaysNoPlace() throws {
-        #expect(try recent([], kind: .stiffness).spokenText(words: words) == "Stiffness, No place, 4 of 10")
+        let text = try recent([], kind: .stiffness).spokenText(words: words, namesKind: true)
+        #expect(text == "Stiffness, No place, 4 of 10")
     }
 
     @Test func theSpokenPlacesJoinThePairAndThePlaceWithAnd() throws {

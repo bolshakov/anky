@@ -22,10 +22,6 @@ public struct RecentEntry: Equatable, Hashable, Sendable {
         names.count - shownNames.count
     }
 
-    public var showsKind: Bool {
-        kind != .pain
-    }
-
     public var showsNoPlace: Bool {
         kind.asksWhere && names.isEmpty
     }

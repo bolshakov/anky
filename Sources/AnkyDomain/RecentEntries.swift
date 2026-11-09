@@ -10,6 +10,10 @@ public enum RecentEntries {
         }
         return kept.newestFirst
     }
+
+    public static func distinct(from entries: [Entry], kind: EntryKind, limit: Int) -> [RecentEntry] {
+        distinct(from: entries.filter { $0.kind == kind }, limit: limit)
+    }
 }
 
 /// Orders an entry by its date, then by its save position, so the later saved of two equal dates ranks higher.
