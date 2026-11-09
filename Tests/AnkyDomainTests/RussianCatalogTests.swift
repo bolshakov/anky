@@ -7,7 +7,7 @@ import Testing
 private let approvedPlainValues = table("""
 Today => Сегодня
 Nothing logged today => Сегодня записей нет
-Log how you feel => Отметить самочувствие
+Log how you feel => Новая запись
 New Entry => Новая запись
 Cancel => Отмена
 Pain => Боль
@@ -53,8 +53,8 @@ Foot and toes => Стопа и пальцы ног
 Heel => Пятка
 Jaw => Челюсть
 Eyes => Глаза
-Left SI joint => Левый крестцово-подвздошный
-Right SI joint => Правый крестцово-подвздошный
+Left SI joint => Левый крестцово-подвздошный сустав
+Right SI joint => Правый крестцово-подвздошный сустав
 Left hip => Левый тазобедренный сустав
 Right hip => Правый тазобедренный сустав
 Left shoulder => Левое плечо
@@ -103,7 +103,7 @@ You can pin up to 5. Unpin one to add another. => \
 Можно закрепить не больше 5 мест. Чтобы добавить другое, нужно открепить одно.
 Pin a shortcut => Закрепить быстрый выбор
 Swipe a place right to pin it as a shortcut on New Entry. => \
-Смахнуть место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
+Смахивание места вправо закрепляет его для быстрого выбора на экране новой записи.
 Dismiss tip => Закрыть подсказку
 Pinned => Закреплено
 Note => Заметка
@@ -169,8 +169,8 @@ How you take it => Способ приёма
 Check in after => Отметить через
 After => Через
 Check in later => Отметить позже
-Turn it on to choose a time. => Включить, чтобы выбрать время.
-Anky will ask how you feel after this long. => Anky спросит о самочувствии, когда пройдёт это время.
+Turn it on to choose a time. => Время можно выбрать после включения.
+Anky will ask how you feel after this long. => Anky спросит о самочувствии через заданное время.
 Log how you feel now => Отметить самочувствие сейчас
 Log how you feel, or a dose you took. Everything stays on this iPhone. => \
 Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone.
@@ -188,7 +188,7 @@ Couldn't save this medication. Try again. => Не удалось сохрани�
 What are you logging? => Что записать?
 Your latest entry before this dose. Tap to choose another. => \
 Последняя запись перед этим приёмом. Нажатие позволяет выбрать другую.
-Manage => Управлять
+Manage => Лекарства
 Medications => Лекарства
 Archive => Архивировать
 Archived => В архиве
@@ -197,10 +197,10 @@ Edit Medication => Изменить лекарство
 Restore => Восстановить
 Restore medication => Восстановить лекарство
 Swipe left to restore. Doses you logged stay in History. => \
-Смахнуть влево, чтобы восстановить. Записанные приёмы останутся в «Истории».
+Смахивание влево восстанавливает лекарство. Записанные приёмы остаются в «Истории».
 Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History. => \
-Смахнуть влево, чтобы архивировать. Архивные лекарства пропадают из списка при записи приёма; \
-записанные приёмы останутся в «Истории».
+Смахивание влево архивирует лекарство. Архивные лекарства не показываются при записи приёма, а \
+записанные приёмы остаются в «Истории».
 Add what you take, then log a dose in two taps. Everything stays on this iPhone. => \
 Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone.
 Time to check in => Пора отметить самочувствие
