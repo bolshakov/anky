@@ -6,17 +6,21 @@ public struct RecentWords {
     public let name: (RecentName) -> String
     public let level: (Severity) -> String
     public let noPlace: String
+    public let locale: Locale
 
     public init(
         kind: @escaping (EntryKind) -> String,
         name: @escaping (RecentName) -> String,
         level: @escaping (Severity) -> String,
-        noPlace: String
+        noPlace: String,
+        locale: Locale
     ) {
+        // #lizard forgives
         self.kind = kind
         self.name = name
         self.level = level
         self.noPlace = noPlace
+        self.locale = locale
     }
 }
 
@@ -41,12 +45,12 @@ public extension RecentEntry {
     }
 
     private func chipPlaces(_ words: RecentWords) -> String {
-        let listed = shownNames.map(words.name).joined(separator: ", ")
+        let listed = SpokenList.items(shownNames.map(words.name), locale: words.locale).joined(separator: ", ")
         return hiddenCount > 0 ? "\(listed) +\(hiddenCount)" : listed
     }
 
     private func spokenNames(_ words: RecentWords) -> [String] {
         guard kind.asksWhere else { return [] }
-        return showsNoPlace ? [words.noPlace] : names.map(words.name)
+        return showsNoPlace ? [words.noPlace] : SpokenList.items(names.map(words.name), locale: words.locale)
     }
 }

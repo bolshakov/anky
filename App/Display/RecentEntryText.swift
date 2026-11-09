@@ -36,7 +36,8 @@ extension RecentWords {
                 }
             },
             level: { String(localized: $0.spokenValue) },
-            noPlace: String(localized: "No place")
+            noPlace: String(localized: "No place"),
+            locale: .current
         )
     }
 }

@@ -6,13 +6,19 @@ import Testing
 struct RecentEntryTextTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
     private let english = Locale(identifier: "en")
+    private let russian = Locale(identifier: "ru")
 
     private var words: RecentWords {
+        words(locale: english)
+    }
+
+    private func words(locale: Locale) -> RecentWords {
         RecentWords(
             kind: { $0.rawValue.capitalized },
             name: { Self.standInName($0) },
             level: { "\($0.value) of 10" },
-            noPlace: "No place"
+            noPlace: "No place",
+            locale: locale
         )
     }
 
@@ -139,5 +145,43 @@ struct RecentEntryTextTests {
             words: words, wholeBody: "Whole body", locale: english
         )
         #expect(places == "Whole body")
+    }
+
+    @Test func aRussianChipLowercasesEveryPlaceAfterTheFirst() throws {
+        let chip = try recent(["neck", "lower", "hip_l", "knee_l"])
+        #expect(chip.chipText(words: words(locale: russian), namesKind: false) == "Neck, lower back +2 · 4")
+    }
+
+    @Test func aRussianChipOfOnePlaceKeepsItsCapital() throws {
+        #expect(try recent(["neck"]).chipText(words: words(locale: russian), namesKind: false) == "Neck · 4")
+    }
+
+    @Test func aRussianChipWithNoPlaceReadsTheLevelAlone() throws {
+        #expect(try recent([], kind: .fatigue).chipText(words: words(locale: russian), namesKind: false) == "4")
+    }
+
+    @Test func aRussianChipKeepsTheKindCapitalised() throws {
+        let chip = try recent(["neck", "lower"]).chipText(words: words(locale: russian), namesKind: true)
+        #expect(chip == "Pain · Neck, lower back · 4")
+    }
+
+    @Test func aRussianSpokenTextLowercasesEveryPlaceAfterTheFirstAndKeepsTheLevel() throws {
+        let text = try recent(["neck", "lower", "knee_l"]).spokenText(words: words(locale: russian), namesKind: true)
+        #expect(text == "Pain, Neck, lower back, left knee, 4 of 10")
+    }
+
+    @Test func aRussianSpokenTextOfOnePlaceKeepsItsCapital() throws {
+        let text = try recent(["neck"]).spokenText(words: words(locale: russian), namesKind: false)
+        #expect(text == "Neck, 4 of 10")
+    }
+
+    @Test func aRussianSpokenTextKeepsNoPlaceCapitalised() throws {
+        let text = try recent([], kind: .stiffness).spokenText(words: words(locale: russian), namesKind: true)
+        #expect(text == "Stiffness, No place, 4 of 10")
+    }
+
+    @Test func aRussianSpokenTextOfAFatigueEntryHasNoPlace() throws {
+        let text = try recent([], kind: .fatigue).spokenText(words: words(locale: russian), namesKind: false)
+        #expect(text == "4 of 10")
     }
 }
