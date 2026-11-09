@@ -52,6 +52,36 @@
               }
             }
           }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Остался %lld символ"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символа"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Осталось %lld символа"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -164,16 +194,44 @@
       }
     },
     "Before this dose" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перед этим приёмом"
+          }
+        }
+      }
     },
     "Before: fatigue %lld." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перед приёмом: усталость %lld."
+          }
+        }
+      }
     },
     "Before: pain %lld." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перед приёмом: боль %lld."
+          }
+        }
+      }
     },
     "Before: stiffness %lld." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перед приёмом: скованность %lld."
+          }
+        }
+      }
     },
     "Cancel" : {
       "localizations" : {
@@ -186,13 +244,36 @@
       }
     },
     "Check In" : {
-      "comment" : "Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in."
+      "comment" : "Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самочувствие"
+          }
+        }
+      }
     },
     "Check in" : {
-      "comment" : "Label of the tappable control on a dose row that opens the Check In screen. It is not a hotel or flight check-in."
+      "comment" : "Label of the tappable control on a dose row that opens the Check In screen. It is not a hotel or flight check-in.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить"
+          }
+        }
+      }
     },
     "Check in pending" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ждёт отметки самочувствия"
+          }
+        }
+      }
     },
     "Chest wall" : {
       "localizations" : {
@@ -205,7 +286,14 @@
       }
     },
     "Choose an entry" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбор записи"
+          }
+        }
+      }
     },
     "Date and time" : {
       "localizations" : {
@@ -228,7 +316,14 @@
       }
     },
     "Delete dose" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить приём"
+          }
+        }
+      }
     },
     "Delete entry" : {
       "localizations" : {
@@ -241,7 +336,14 @@
       }
     },
     "Delete this dose? This can't be undone." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить этот приём? Это нельзя отменить."
+          }
+        }
+      }
     },
     "Delete this entry? This can't be undone." : {
       "localizations" : {
@@ -326,7 +428,15 @@
       }
     },
     "Dose" : {
-      "comment" : "A noun: one taken amount of a medication."
+      "comment" : "A noun: one taken amount of a medication.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приём"
+          }
+        }
+      }
     },
     "Edit Entry" : {
       "localizations" : {
@@ -359,10 +469,24 @@
       }
     },
     "Everything you log appears here, newest first." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все записи появляются здесь, сначала новые."
+          }
+        }
+      }
     },
     "Entry deleted" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запись удалена"
+          }
+        }
+      }
     },
     "Eyes" : {
       "localizations" : {
@@ -385,88 +509,284 @@
       }
     },
     "fatigue %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "усталость после: %lld"
+          }
+        }
+      }
     },
     "Fatigue %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость после: %lld"
+          }
+        }
+      }
     },
     "fatigue %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "усталость до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Fatigue %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Fatigue now" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость сейчас"
+          }
+        }
+      }
     },
     "fatigue was %lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "усталость была %lld"
+          }
+        }
+      }
     },
     "Fatigue was %lld of 10" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость была %lld из 10"
+          }
+        }
+      }
     },
     "Opens Check In" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывает отметку самочувствия"
+          }
+        }
+      }
     },
     "pain %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль после: %lld"
+          }
+        }
+      }
     },
     "Pain %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль после: %lld"
+          }
+        }
+      }
     },
     "pain %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Pain %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Pain now" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль сейчас"
+          }
+        }
+      }
     },
     "pain was %lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль была %lld"
+          }
+        }
+      }
     },
     "Pain was %lld of 10" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль была %lld из 10"
+          }
+        }
+      }
     },
     "Save check-in" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить отметку"
+          }
+        }
+      }
     },
     "Saved as a fatigue entry." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись об усталости."
+          }
+        }
+      }
     },
     "Saved as a pain entry." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись о боли."
+          }
+        }
+      }
     },
     "Saved as a stiffness entry." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись о скованности."
+          }
+        }
+      }
     },
     "Starts from your earlier entry. Change the level or places if they differ." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значения взяты из прошлой записи. Уровень и места можно изменить."
+          }
+        }
+      }
     },
     "stiffness %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность после: %lld"
+          }
+        }
+      }
     },
     "Stiffness %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность после: %lld"
+          }
+        }
+      }
     },
     "stiffness %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Stiffness %lld before, %lld after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность до: %1$lld, после: %2$lld"
+          }
+        }
+      }
     },
     "Stiffness now" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность сейчас"
+          }
+        }
+      }
     },
     "stiffness was %lld" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность была %lld"
+          }
+        }
+      }
     },
     "Stiffness was %lld of 10" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность была %lld из 10"
+          }
+        }
+      }
     },
     "Taken %@." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принято: %@."
+          }
+        }
+      }
     },
     "Feet and toes" : {
       "localizations" : {
@@ -730,58 +1050,186 @@
       }
     },
     "Levels are 0 to 10." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уровни от 0 до 10."
+          }
+        }
+      }
     },
     "Levels are 0 to 10. Everything stays on this iPhone." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уровни от 0 до 10. Всё остаётся на этом iPhone."
+          }
+        }
+      }
     },
     "Character limit reached" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Достигнут лимит символов"
+          }
+        }
+      }
     },
     "Log Dose" : {
-      "comment" : "Title of the screen where the person records a dose they took. \"Log\" is a verb."
+      "comment" : "Title of the screen where the person records a dose they took. \"Log\" is a verb.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый приём"
+          }
+        }
+      }
     },
     "Log dose" : {
-      "comment" : "Button that opens the Log Dose screen. \"Log\" is a verb."
+      "comment" : "Button that opens the Log Dose screen. \"Log\" is a verb.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записать приём"
+          }
+        }
+      }
     },
     "Medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарство"
+          }
+        }
+      }
     },
     "No medications yet" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарств пока нет"
+          }
+        }
+      }
     },
     "Add medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить лекарство"
+          }
+        }
+      }
     },
     "New Medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новое лекарство"
+          }
+        }
+      }
     },
     "Name" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название"
+          }
+        }
+      }
     },
     "Strength, for example 500 mg" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозировка, например 500 мг"
+          }
+        }
+      }
     },
     "Strength, optional" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозировка, необязательно"
+          }
+        }
+      }
     },
     "Save medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить лекарство"
+          }
+        }
+      }
     },
     "As needed" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По необходимости"
+          }
+        }
+      }
     },
     "Scheduled" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По расписанию"
+          }
+        }
+      }
     },
     "How you take it" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Способ приёма"
+          }
+        }
+      }
     },
     "Check in after" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить через"
+          }
+        }
+      }
     },
     "After" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Через"
+          }
+        }
+      }
     },
     "%lld minutes" : {
       "localizations" : {
@@ -806,10 +1254,28 @@
         "ru" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минута"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld минут"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
                 }
               }
             }
@@ -840,16 +1306,28 @@
         "ru" : {
           "variations" : {
             "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld час"
+                }
+              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld часа"
                 }
               },
-              "one" : {
+              "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld час"
+                  "value" : "%lld часов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld часа"
                 }
               }
             }
@@ -858,29 +1336,64 @@
       }
     },
     "Check in later" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить позже"
+          }
+        }
+      }
     },
     "Turn it on to choose a time." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить, чтобы выбрать время."
+          }
+        }
+      }
     },
     "Anky will ask how you feel after this long." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky спросит о самочувствии, когда пройдёт это время."
+          }
+        }
+      }
     },
     "Log how you feel" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отметь самочувствие"
+            "value" : "Отметить самочувствие"
           }
         }
       }
     },
     "Log how you feel now" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить самочувствие сейчас"
+          }
+        }
+      }
     },
     "Log how you feel, or a dose you took. Everything stays on this iPhone." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone."
+          }
+        }
+      }
     },
     "Logged" : {
       "localizations" : {
@@ -903,7 +1416,15 @@
       }
     },
     "More actions" : {
-      "comment" : "Accessibility label of the button drawn as three dots that opens a menu of further actions."
+      "comment" : "Accessibility label of the button drawn as three dots that opens a menu of further actions.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другие действия"
+          }
+        }
+      }
     },
     "More places" : {
       "localizations" : {
@@ -1051,7 +1572,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Закрепи быстрый выбор"
+            "value" : "Закрепить быстрый выбор"
           }
         }
       }
@@ -1219,7 +1740,14 @@
       }
     },
     "Save dose" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить приём"
+          }
+        }
+      }
     },
     "Save entry" : {
       "localizations" : {
@@ -1326,7 +1854,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи."
+            "value" : "Смахнуть место вправо, чтобы закрепить его для быстрого выбора на экране новой записи."
           }
         }
       }
@@ -1342,31 +1870,94 @@
       }
     },
     "The entry used for this dose. Tap to open it." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запись, использованная для этого приёма. Нажатие открывает её."
+          }
+        }
+      }
     },
     "Couldn't save this check-in. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить отметку. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't delete this dose. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить этот приём. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't delete this entry. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить эту запись. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't save this entry. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить эту запись. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't archive this medication. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось архивировать это лекарство. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't restore this medication. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось восстановить это лекарство. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't save this dose. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить этот приём. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Couldn't save this medication. Try again." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить это лекарство. Можно попробовать ещё раз."
+          }
+        }
+      }
     },
     "Today" : {
       "localizations" : {
@@ -1430,7 +2021,14 @@
       }
     },
     "What are you logging?" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что записать?"
+          }
+        }
+      }
     },
     "Where" : {
       "localizations" : {
@@ -1487,52 +2085,153 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое."
+            "value" : "Можно закрепить не больше 5 мест. Чтобы добавить другое, нужно открепить одно."
           }
         }
       }
     },
     "Your latest entry before this dose. Tap to choose another." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последняя запись перед этим приёмом. Нажатие позволяет выбрать другую."
+          }
+        }
+      }
     },
     "Manage" : {
-      "comment" : "Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them."
+      "comment" : "Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управлять"
+          }
+        }
+      }
     },
     "Medications" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства"
+          }
+        }
+      }
     },
     "Archive" : {
-      "comment" : "Verb: hides the medication from the list but keeps the history of its doses."
+      "comment" : "Verb: hides the medication from the list but keeps the history of its doses.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архивировать"
+          }
+        }
+      }
     },
     "Archived" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В архиве"
+          }
+        }
+      }
     },
     "Archive medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архивировать лекарство"
+          }
+        }
+      }
     },
     "Edit Medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить лекарство"
+          }
+        }
+      }
     },
     "Restore" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить"
+          }
+        }
+      }
     },
     "Restore medication" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить лекарство"
+          }
+        }
+      }
     },
     "Swipe left to restore. Doses you logged stay in History." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смахнуть влево, чтобы восстановить. Записанные приёмы останутся в «Истории»."
+          }
+        }
+      }
     },
     "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смахнуть влево, чтобы архивировать. Архивные лекарства пропадают из списка при записи приёма; записанные приёмы останутся в «Истории»."
+          }
+        }
+      }
     },
     "Add what you take, then log a dose in two taps. Everything stays on this iPhone." : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone."
+          }
+        }
+      }
     },
     "Time to check in" : {
-      "comment" : "Text of a reminder notification that prompts the person to say how they feel after a dose. It is not a hotel or flight check-in."
+      "comment" : "Text of a reminder notification that prompts the person to say how they feel after a dose. It is not a hotel or flight check-in.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пора отметить самочувствие"
+          }
+        }
+      }
     },
     "Dose deleted" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приём удалён"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
