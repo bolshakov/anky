@@ -100,6 +100,7 @@ struct TodayView: View {
             }
             .listStyle(.insetGrouped)
             .environment(\.defaultMinListRowHeight, 0)
+            .blockGapBetweenSections()
             .todayTopMargin()
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }

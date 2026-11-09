@@ -43,6 +43,6 @@ final class SectionCaptionTests: XCTestCase {
         XCTAssertTrue(date.waitForExistence(timeout: 10))
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        XCTAssertEqual(row.frame.minY - date.frame.maxY, 95.0, accuracy: 1)
+        XCTAssertEqual(row.frame.minY - date.frame.maxY, 92.0, accuracy: 1)
     }
 }

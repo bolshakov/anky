@@ -16,10 +16,10 @@ struct RepeatChip: View {
             Text(RecentEntryText.sameAsLastTime + " · " + recent.chipText(namesKind: true))
                 .font(.subheadline)
                 .multilineTextAlignment(.leading)
+                .frame(minHeight: Spacing.repeatChipLabelHeight)
         }
         .buttonStyle(.bordered)
         .buttonBorderShape(borderShape)
-        .frame(minHeight: Spacing.rowMinimumHeight)
         .contentShape(borderShape)
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText(namesKind: true))
         .accessibilityIdentifier("repeat-chip")
