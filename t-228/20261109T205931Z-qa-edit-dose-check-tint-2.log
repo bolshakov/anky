@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t228-01-1/tmp/ev.sh 'ui | grep "id=dose-medication-row "; echo dark tint=$(tint_px edit-head-dark dose-medication-row dark) ink=$(ink_px edit-head-dark dose-medication-row dark)'
+exit: 0
+commit: ac7695c922fc8af2b9a096ebcca789e475f4099e
+
+Button id=dose-medication-row label='Walk medicine, As needed' value=None enabled=True @16,180.33333333333334 370x68.66666666666666
+dark tint=292 ink=0

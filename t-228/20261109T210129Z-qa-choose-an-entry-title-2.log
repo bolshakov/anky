@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t228-01-1/tmp/ev.sh 'echo "Выбор записи: $(titled "Выбор записи")"; echo "Choose an Entry: $(titled "Choose an Entry")"'
+exit: 0
+commit: ac7695c922fc8af2b9a096ebcca789e475f4099e
+
+Выбор записи: 1
+Choose an Entry: 0
