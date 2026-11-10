@@ -6,6 +6,8 @@ import SwiftUI
 struct HistoryView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let isClosingSheets: Bool
+    let onSheetsClosed: () -> Void
     @State private var now = Date.now
     @State private var editing: Entry?
     @State private var editingDose: Dose?
@@ -15,6 +17,7 @@ struct HistoryView: View {
     @State private var saveTicks = 0
     @State private var deleteTicks = 0
     @State private var derived: HistoryDerived?
+    @State private var isWaitingForSheet = false
     @State private var shownDays = HistoryList.pageDays
 
     private var page: HistoryPage {
@@ -48,6 +51,23 @@ struct HistoryView: View {
         } else {
             editingDose = dose
         }
+    }
+
+    private func closeSheets() {
+        guard editing != nil || editingDose != nil || checkingIn != nil else {
+            onSheetsClosed()
+            return
+        }
+        isWaitingForSheet = true
+        editing = nil
+        editingDose = nil
+        checkingIn = nil
+    }
+
+    private func sheetDismissed() {
+        guard isWaitingForSheet else { return }
+        isWaitingForSheet = false
+        onSheetsClosed()
     }
 
     private var isConfirmingDelete: Binding<Bool> {
@@ -128,15 +148,20 @@ struct HistoryView: View {
                 derived = HistoryDerived(inputs)
             }
             .checkInClock(now: $now, nextChange: current.nextCheckInChange)
-            .sheet(item: $editing) { entry in
+            .onChange(of: isClosingSheets, initial: true) { _, isClosing in
+                if isClosing {
+                    closeSheets()
+                }
+            }
+            .sheet(item: $editing, onDismiss: sheetDismissed) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: { saveTicks += 1 })
                     .onDeleted { deleteTicks += 1 }
             }
-            .sheet(item: $editingDose) { dose in
+            .sheet(item: $editingDose, onDismiss: sheetDismissed) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
                     .onDeleted { deleteTicks += 1 }
             }
-            .sheet(item: $checkingIn) { dose in
+            .sheet(item: $checkingIn, onDismiss: sheetDismissed) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: { saveTicks += 1 })
             }
             .sensoryFeedback(.success, trigger: saveTicks)
