@@ -95,9 +95,4 @@ jobs:
       - name: ui smoke tests
         run: >
           scripts/ci/run-ui-tests.sh light .derived
-          EmptyStateTests/testFirstLaunchShowsEmptyState
-          SaveEntryTests/testSaveEntryOnToday
-          SaveEntryTests/testEntrySurvivesRelaunch
-          NewEntryOrderTests/testNewEntryWithRecentStartsWithChipsThenKind
-          NewEntryOrderTests/testNewEntryWithoutRecentStartsWithKind
-          NewEntryOrderTests/testEditFatigueHasNoWhereAndNoteLast
+          SmokeScenarioTests/testSmokeScenario
