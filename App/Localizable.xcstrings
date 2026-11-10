@@ -890,6 +890,16 @@
         }
       }
     },
+    "Skipped on days you have already logged something." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропускается в дни, когда вы уже что-то записали."
+          }
+        }
+      }
+    },
     "Starts from your earlier entry. Change the level or places if they differ." : {
       "localizations" : {
         "ru" : {
@@ -1539,6 +1549,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отметить позже"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
           }
         }
       }
