@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/s1.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+fill #e9d1ce text #992b0f contrast 5.35 low #992b0f 5.35
+fill #c13b14 text #ffffff contrast 5.38 low #ffffff 5.38
+fill #fbfbfe text #c23c14 contrast 5.15 low #c23c14 5.15
+fill #ffffff text #000000 contrast 21.00 low #000000 21.00
+fill #401e14 text #ffb59e contrast 8.74 low #ffb59e 8.74
+fill #ff764b text #000000 contrast 7.94 low #1a0a04 7.30
+fill #131313 text #ff7a50 contrast 7.21 low #ff7a50 7.21
+fill #1c1c1e text #ffffff contrast 17.01 low #3d3d41 1.57

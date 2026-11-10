@@ -1,0 +1,8 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/s3.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+fill #fbe5de text #992b0f contrast 6.41 low #992b0f 6.41
+fill #ffffff text #c23c14 contrast 5.32 low #c23c14 5.32
+fill #1c1c1e text #ff7a50 contrast 6.60 low #ff7a50 6.60
+fill #3a1f16 text #ffb59e contrast 8.90 low #ffb59e 8.90

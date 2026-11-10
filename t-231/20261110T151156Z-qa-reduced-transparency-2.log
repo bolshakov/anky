@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/r2.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+fill #141414 text #ff7a50 contrast 7.15 low #ff7a50 7.15
+fill #ff774c text #000000 contrast 8.00 low #1a0a04 7.34
+fill #401e14 text #ffb59e contrast 8.74 low #ffb59e 8.74

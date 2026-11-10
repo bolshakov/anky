@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/r3b.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+settings on
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+Group id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,82 76.66666666666667x36
+Button id=log-dose-cancel label='Cancel' value=None enabled=True actions= traits= @20,78 76.66666666666666x44
+fill #f4f4f4 text #c23c14 contrast 4.83 low #c23c14 4.83

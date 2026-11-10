@@ -1,0 +1,20 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/s4.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+settings on
+fill #e4cbc8 text #992b0f contrast 5.05 low #992b0f 5.05
+fill #bf3a13 text #ffffff contrast 5.48 low #ffffff 5.48
+fill #f4f4f5 text #c23c14 contrast 4.84 low #c23c14 4.84
+fill #ffffff text #000000 contrast 21.00 low #000000 21.00
+fill #401e14 text #ffb59e contrast 8.74 low #ffb59e 8.74
+fill #ff774c text #000000 contrast 8.00 low #1a0a04 7.34
+fill #141414 text #ff7a50 contrast 7.15 low #ff7a50 7.15
+fill #242426 text #ffffff contrast 15.49 low #49494e 1.73
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+fill #c23c14 text #ffffff contrast 5.32 low #ffffff 5.32
+fill #d1d1d1 text #000000 contrast 13.75 low #ffffff 1.53
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+fill #ff7a50 text #1a0a04 contrast 7.48 low #1c1c1e 6.60
+fill #555556 text #ffffff contrast 7.45 low #1c1c1e 2.28
+settings off

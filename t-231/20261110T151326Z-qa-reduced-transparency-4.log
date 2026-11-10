@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/r4.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+settings off
+fill #fbfbfe text #c23c14 contrast 5.15 low #c23c14 5.15

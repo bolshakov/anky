@@ -1,0 +1,9 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/r3.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+log-dose-cancel matches 2 elements
+fill #bf3a13 text #ffffff contrast 5.48 low #ffffff 5.48
+✓ Tap at resolved tap point at (201.0, 318.3333333333333) completed successfully
+fill #f4f4f4 text #9b3010 contrast 6.76 low #9b3010 6.76

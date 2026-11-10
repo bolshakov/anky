@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-03-1/tmp/s2.sh
+exit: 0
+commit: 63a0325b4600a3cc9e343f5e8ad06b2a9f7631a5
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+fill #c23c14 text #ffffff contrast 5.32 low #ffffff 5.32
+fill #d1d1d1 text #000000 contrast 13.75 low #ffffff 1.53
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+fill #ff7a50 text #1a0a04 contrast 7.48 low #1c1c1e 6.60
+fill #555556 text #ffffff contrast 7.45 low #1c1c1e 2.28
