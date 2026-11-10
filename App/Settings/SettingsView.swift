@@ -5,6 +5,8 @@ import SwiftUI
 struct SettingsView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let dailyReminder: DailyReminderSettings
+    let reminderScheduler: DailyReminderScheduler
     @State private var isConfirmingErase = false
     @State private var eraseTicks = 0
 
@@ -23,6 +25,7 @@ struct SettingsView: View {
                     .rowHeight()
                     .accessibilityIdentifier("settings-manage-medications")
                 }
+                RemindersSection(settings: dailyReminder, scheduler: reminderScheduler)
                 CardSection(
                     Text("Your data"),
                     footnote: Text("Everything stays on this iPhone."),
@@ -41,6 +44,14 @@ struct SettingsView: View {
                     }
                     .rowHeight()
                     .accessibilityIdentifier("settings-source-code")
+                    NavigationLink {
+                        PrivacyPolicyView()
+                    } label: {
+                        Text("Privacy policy")
+                            .foregroundStyle(Color.ink)
+                    }
+                    .rowHeight()
+                    .accessibilityIdentifier("settings-privacy-policy")
                 }
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {

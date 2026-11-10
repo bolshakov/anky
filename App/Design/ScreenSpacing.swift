@@ -11,6 +11,12 @@ extension View {
             .background(Color.surface)
     }
 
+    func readingScreenSpacing() -> some View {
+        contentMargins(.horizontal, Spacing.screenMargin, for: .scrollContent)
+            .contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
+            .contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
+    }
+
     func emptyBlockGap() -> some View {
         listSectionSpacing(.custom(Spacing.emptyBlockGap))
     }

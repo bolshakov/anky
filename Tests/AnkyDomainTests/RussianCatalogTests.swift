@@ -200,6 +200,8 @@ Couldn't erase your data. Try again. => Не удалось стереть да�
 All data erased => Все данные стёрты
 About => О приложении
 Source code and licence => Исходный код и лицензия
+Privacy policy => Политика конфиденциальности
+Privacy Policy => Политика конфиденциальности
 Version %@ (%@) => Версия %@ (%@)
 Free software, GPL-3.0-or-later => Свободная программа, GPL-3.0-or-later
 Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later. => \
@@ -218,6 +220,13 @@ Swipe left to archive. Archived medications leave Log Dose; doses you logged sta
 Add what you take, then log a dose in two taps. Everything stays on this iPhone. => \
 Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone.
 Time to check in => Пора отметить самочувствие
+Reminders => Напоминания
+Daily reminder => Ежедневное напоминание
+Time => Время
+Skipped on days you have already logged something. => \
+Пропускается в дни, когда вы уже что-то записали.
+Log how you feel today. => Пора записать самочувствие.
+Anky => Anky
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём
 After · checked in at %@ => После · отмечено в %@

@@ -71,14 +71,16 @@ func addZorblexCheckingInAfterThirtyMinutes(
     XCTAssertTrue(row.waitForExistence(timeout: 10))
 }
 
-/// Moves the dose an hour back, which keeps the reading saved an hour back in its window, then saves it.
+/// Moves the dose an hour back, which keeps the reading saved an hour back in its window, then saves it. The date row
+/// sits below the reading, so the form is scrolled back up to the reading, whose row leaves the tree while it is off
+/// screen at the largest size.
 @MainActor
 func saveDoseAnHourBack(in app: XCUIApplication) {
     scrollToDateRow(in: app)
     setDateTimeHoursBack(1, in: app)
     let before = app.buttons["before-reading-row"]
     for _ in 0 ..< 5 where !before.exists || !before.isHittable {
-        app.swipeUp()
+        app.swipeDown()
     }
     XCTAssertTrue(before.waitForExistence(timeout: 10))
     XCTAssertTrue(before.label.contains("4 of 10"), before.label)
