@@ -9,6 +9,7 @@ struct RootView: View {
     let reminderTaps: ReminderTapModel
     @State private var selection = Tab.today
     @State private var reminderCheckIn: Dose?
+    @State private var checkInAwaitingHistory: Dose?
     @State private var reminders = CheckInReminderScheduler()
     @Environment(\.scenePhase) private var scenePhase
 
@@ -21,12 +22,17 @@ struct RootView: View {
                 }
                 .tag(Tab.today)
 
-            HistoryView(model: model, medications: medications)
-                .tabItem {
-                    Label("History", systemImage: "clock")
-                        .fontWeight(selection == .history ? .bold : .regular)
-                }
-                .tag(Tab.history)
+            HistoryView(
+                model: model,
+                medications: medications,
+                isClosingSheets: checkInAwaitingHistory != nil,
+                onSheetsClosed: historyClosedSheets
+            )
+            .tabItem {
+                Label("History", systemImage: "clock")
+                    .fontWeight(selection == .history ? .bold : .regular)
+            }
+            .tag(Tab.history)
         }
         .onChange(of: reminderInputs, initial: true) { _, inputs in
             guard inputs.phase == .active else { return }
@@ -40,7 +46,6 @@ struct RootView: View {
     }
 
     private func open(_ tap: ReminderTapModel.Tap) {
-        selection = .today
         let destination = CheckInDue.destination(
             forReminderOf: tap.doseID,
             doses: medications.doses,
@@ -48,9 +53,26 @@ struct RootView: View {
             entries: model.entries,
             now: tap.at
         )
-        if case let .checkIn(dose) = destination {
-            reminderCheckIn = dose
+        guard case let .checkIn(dose) = destination else {
+            selection = .today
+            return
         }
+        if selection == .history {
+            checkInAwaitingHistory = dose
+        } else {
+            showCheckInOnToday(dose)
+        }
+    }
+
+    private func historyClosedSheets() {
+        guard let dose = checkInAwaitingHistory else { return }
+        checkInAwaitingHistory = nil
+        showCheckInOnToday(dose)
+    }
+
+    private func showCheckInOnToday(_ dose: Dose) {
+        selection = .today
+        reminderCheckIn = dose
     }
 
     private var reminderInputs: ReminderInputs {
