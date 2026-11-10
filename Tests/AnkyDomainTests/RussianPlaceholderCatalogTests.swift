@@ -4,19 +4,19 @@ import Testing
 
 /// Every key whose English or Russian holds a `%@`, with what that placeholder holds. A new `%@` key fails until it is
 /// added here with what it holds.
-private let approvedPlaceholders = [
-    "%@ of %lld": "a reading's level",
-    "%@, %@ and %lld more": "place names",
-    "After · checked in at %@": "a time",
-    "Taken %@.": "a time"
-]
+private let approvedPlaceholders = table("""
+%@ of %lld => a reading's level
+%@, %@ and %lld more => place names
+After · checked in at %@ => a time
+Taken %@. => a time
+""").map(\.key)
 
 private let textPlaceholder = "%(\\d+\\$)?@"
 
 struct RussianPlaceholderCatalogTests {
     @Test func everyKeyWithATextPlaceholderIsOnTheApprovedList() throws {
         let unapproved = try CompiledCatalog.entries()
-            .filter { approvedPlaceholders[$0.key] == nil && holdsATextPlaceholder($0.key, $0.value) }
+            .filter { !approvedPlaceholders.contains($0.key) && holdsATextPlaceholder($0.key, $0.value) }
             .keys.sorted()
         #expect(
             unapproved.isEmpty,
