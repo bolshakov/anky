@@ -1,0 +1,6 @@
+$ sh -c 'out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk-t231.mjUA'\''; udid='\''37440C9C-8EEB-4847-A9BC-04B8B5F3DB6D'\''; CHECKOUT='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/checkout'\''; . '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk.sh'\''; . '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/forms.sh'\''; open_history; ui | grep -E '\''dose-row|check-in-label|entry-row'\'''
+exit: 0
+commit: 12ed02e5db984e0201f5cc8278adf128a33990d4
+
+Button id=dose-row label='Dose. Walk medicine. 08:02. Check in pending.' value=None enabled=True actions=Delete traits= @32,231.33333333333334 338x38.00000000000003
+StaticText id=check-in-label label='Check in' value=None enabled=True actions=Delete traits= @308,228.33333333333334 62x44.00000000000003

@@ -1,0 +1,11 @@
+$ sh -c 'out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk-t231.mjUA'\''; udid='\''37440C9C-8EEB-4847-A9BC-04B8B5F3DB6D'\''; CHECKOUT='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/checkout'\''; . '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk.sh'\''; . '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/forms.sh'\''; edit_medication && tap_id medication-more && sleep 1 && tap_id medication-archive && sleep 2; ui | grep -E '\''archived-link|medication-row'\''; echo ---; tap_id archived-link && sleep 1 && ui'
+exit: 1
+commit: 12ed02e5db984e0201f5cc8278adf128a33990d4
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 178.0) completed successfully
+✓ Tap at resolved tap point at (364.0, 110.0) completed successfully
+✓ Tap at resolved tap point at (261.0, 119.0) completed successfully
+---
+Warning: No accessibility element matched --id 'archived-link'. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available. No tap performed.
+Error: No accessibility element matched --id 'archived-link'. Make sure the app is on the expected screen, then run `axe describe-ui --udid <SIMULATOR_UDID>` and prefer --id when available.

@@ -1,0 +1,23 @@
+$ sh -c '. '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk.sh'\''; out='\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk-t231.mjUA'\''; udid='\''37440C9C-8EEB-4847-A9BC-04B8B5F3DB6D'\''; . '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t231-01-6/tmp/walk.sh'\''; today; ui'
+exit: 0
+commit: 12ed02e5db984e0201f5cc8278adf128a33990d4
+
+Application id=None label='Anky' value=None enabled=True actions= traits= @0,0 402x874
+Group id=Today label=None value=None enabled=True actions= traits= @0,62 402x106
+Heading id=None label='Today' value=None enabled=True actions= traits= @16,119.66666666666667 95.33333333333333x40.66666666666667
+Group id=today-screen label=None value=None enabled=True actions= traits= @0,0 402x874
+StaticText id=today-date label='Tuesday 10 November' value=None enabled=True actions= traits= @16,163.33333333333334 152x18
+Button id=repeat-chip label='Same as last time, Pain, Upper back, 0 of 10' value=None enabled=True actions= traits= @16,197.33333333333334 299x44
+Button id=entry-row-pain label='Pain, 0 of 10, 09:57, Upper back' value=None enabled=True actions=Delete traits= @16,273.33333333333337 370x68
+Button id=entry-row-pain label='Pain, 0 of 10, 09:56, No place' value=None enabled=True actions=Delete traits= @16,341.33333333333337 370x68
+Button id=dose-row label='Dose. Walk medicine. 07:56.' value=None enabled=True actions=Delete traits= @16,409.33333333333337 370x68
+StaticText id=None label='Levels are 0 to 10. Everything stays on this iPhone.' value=None enabled=True actions= traits= @16,477.33333333333337 370x29.666666666666686
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x584.6666666666665
+Slider id=None label='Vertical scroll bar, 1 page' value='0%' enabled=True actions= traits= @369,116 30x584.6666666666665
+Button id=log-medication label='Log dose' value=None enabled=True actions= traits= @16,724.6666666666666 179x50.33333333333337
+Button id=log-entry label='Log how you feel' value=None enabled=True actions= traits= @207,724.6666666666666 179x50.33333333333337
+Group id=None label='Tab Bar' value=None enabled=True actions= traits= @0,791 402x83
+RadioButton id=None label='Today' value=1 enabled=True actions= traits= @111,795 94x54
+Image id=calendar label='calendar' value=None enabled=True actions= traits= @144,802.3333333333334 29x25
+RadioButton id=None label='History' value=0 enabled=True actions= traits= @197,795 94x54
+Image id=clock.fill label='clock' value=None enabled=True actions= traits= @230,801.3333333333334 27.333333333333314x27.33333333333337
