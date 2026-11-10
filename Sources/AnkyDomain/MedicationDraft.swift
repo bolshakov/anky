@@ -37,6 +37,9 @@ public struct MedicationDraft: Equatable, Sendable {
         updated.strength = strengthText.isEmpty ? nil : strengthText
         updated.takenAs = takenAs
         updated.checkInAfter = checkIn.checkInAfter
+        if takenAs == .asNeeded {
+            updated.schedule = nil
+        }
         updated.updatedAt = date
         return updated
     }

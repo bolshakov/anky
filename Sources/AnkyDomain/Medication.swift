@@ -18,6 +18,7 @@ public struct Medication: Equatable, Identifiable, Sendable {
     public let createdAt: Date
     public var updatedAt: Date
     public var archivedAt: Date?
+    public var schedule: MedicationSchedule?
 
     public init(id: UUID, name: String, takenAs: TakenAs, createdAt: Date) {
         self.id = id

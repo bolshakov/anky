@@ -166,4 +166,26 @@ struct MedicationDraftTests {
         draft.checkIn.isOn = false
         #expect(draft.applied(to: medication, at: date).checkInAfter == nil)
     }
+
+    private func scheduled() throws -> Medication {
+        var medication = existing()
+        medication.takenAs = .scheduled
+        medication.schedule = try MedicationSchedule(
+            repeat: .days(1), times: [#require(DoseTime(hour: 8, minute: 0))],
+            start: #require(ScheduleDay(year: 2026, month: 11, day: 1)), end: nil
+        )
+        return medication
+    }
+
+    @Test func applyingADraftThatIsAsNeededRemovesTheSchedule() throws {
+        let medication = try scheduled()
+        var draft = MedicationDraft(medication)
+        draft.takenAs = .asNeeded
+        #expect(draft.applied(to: medication, at: date).schedule == nil)
+    }
+
+    @Test func applyingADraftThatIsScheduledKeepsTheSchedule() throws {
+        let medication = try scheduled()
+        #expect(MedicationDraft(medication).applied(to: medication, at: date).schedule == medication.schedule)
+    }
 }
