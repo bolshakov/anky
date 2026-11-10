@@ -100,6 +100,21 @@ import SwiftData
         try commit()
     }
 
+    public func removeAll() throws {
+        let medications: [MedicationRecord]
+        let doses: [DoseRecord]
+        do {
+            medications = try context.fetch(FetchDescriptor<MedicationRecord>())
+            doses = try context.fetch(FetchDescriptor<DoseRecord>())
+        } catch {
+            throw MedicationStoreError.notSaved
+        }
+        guard !medications.isEmpty || !doses.isEmpty else { return }
+        doses.forEach { context.delete($0) }
+        medications.forEach { context.delete($0) }
+        try commit()
+    }
+
     private func doseRecord(id: UUID) throws -> DoseRecord {
         let descriptor = FetchDescriptor<DoseRecord>(predicate: #Predicate { $0.id == id })
         guard let record = try? context.fetch(descriptor).first else {
