@@ -2341,6 +2341,28 @@
         }
       }
     },
+    "Privacy policy" : {
+      "comment" : "Label of the Settings row that opens the privacy policy. The screen it opens is titled Privacy Policy.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "comment" : "Navigation title of the screen that shows the privacy policy. The Settings row that opens it is labelled Privacy policy.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
+        }
+      }
+    },
     "Version %@ (%@)" : {
       "localizations" : {
         "ru" : {

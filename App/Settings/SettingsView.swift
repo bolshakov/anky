@@ -41,6 +41,14 @@ struct SettingsView: View {
                     }
                     .rowHeight()
                     .accessibilityIdentifier("settings-source-code")
+                    NavigationLink {
+                        PrivacyPolicyView()
+                    } label: {
+                        Text("Privacy policy")
+                            .foregroundStyle(Color.ink)
+                    }
+                    .rowHeight()
+                    .accessibilityIdentifier("settings-privacy-policy")
                 }
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {
