@@ -94,6 +94,17 @@ struct RussianCountedTextTests {
         }
     }
 
+    @Test func theEnglishScheduleSentencesTakeTheirCountedForms() throws {
+        try CompiledCatalog.withBundle("en") { en in
+            let english = Locale(identifier: "en")
+            let days = String(localized: "Every \(2) days at \("08:00")", bundle: en, locale: english)
+            let weeks = String(localized: "Every \(3) weeks on \("Friday") at \("08:00")", bundle: en, locale: english)
+            let months = String(localized: "Every \(2) months on day \(9) at \("08:00")", bundle: en, locale: english)
+            #expect([days, weeks, months] == ["Every 2 days at 08:00", "Every 3 weeks on Friday at 08:00",
+                                              "Every 2 months on day 9 at 08:00"])
+        }
+    }
+
     @Test func aTakenTimeKeepsItsPlaceholder() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             let format = ru.localizedString(forKey: "Taken %@.", value: nil, table: nil)
