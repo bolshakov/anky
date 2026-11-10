@@ -14,6 +14,7 @@ Unpinned
 Left
 Right
 Manage
+Erase
 Archive
 More actions
 Save

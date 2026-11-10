@@ -25,6 +25,15 @@ struct DeleteWords {
             announcement: "Dose deleted"
         )
     }
+
+    static var allData: DeleteWords {
+        DeleteWords(
+            message: "Erase every entry? This can't be undone.",
+            button: "Erase",
+            failure: "Couldn't erase your data. Try again.",
+            announcement: "All data erased"
+        )
+    }
 }
 
 extension View {
