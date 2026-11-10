@@ -16,6 +16,9 @@ import Foundation
     func replaceDose(_ dose: Dose) throws
     /// Deletes the stored dose with that id and nothing else. Throws `notSaved` for a dose id the store does not hold.
     func removeDose(id: UUID) throws
+    /// Deletes every medication and every dose in one commit. On failure, deletes none. On an empty store, does
+    /// nothing.
+    func removeAll() throws
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

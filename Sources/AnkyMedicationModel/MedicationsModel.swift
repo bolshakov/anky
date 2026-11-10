@@ -85,6 +85,13 @@ import Observation
         doses.removeAll { $0.id == id }
     }
 
+    /// Empties both lists only after the store accepts. It needs no read first, since it deletes whatever is stored.
+    public func removeAll() throws {
+        try store.removeAll()
+        medications = []
+        doses = []
+    }
+
     /// Reads both lists before it changes either, so a failed read of doses leaves the medications as they were.
     private func readAll() throws {
         let medications = try store.all()

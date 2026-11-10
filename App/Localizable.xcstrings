@@ -2524,12 +2524,22 @@
         }
       }
     },
-    "Erase every entry? This can't be undone." : {
+    "Erase every entry, dose and medication on this iPhone? This can't be undone." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Стереть все записи? Это нельзя отменить."
+            "value" : "Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить."
+          }
+        }
+      }
+    },
+    "Your entries were erased, but your medications and doses were not. Try again to erase the rest." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное."
           }
         }
       }

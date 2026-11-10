@@ -192,7 +192,10 @@ Your data => Ваши данные
 Everything stays on this iPhone. => Всё хранится только на этом iPhone.
 Erase all data => Стереть все данные
 Erase => Стереть
-Erase every entry? This can't be undone. => Стереть все записи? Это нельзя отменить.
+Erase every entry, dose and medication on this iPhone? This can't be undone. => \
+Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить.
+Your entries were erased, but your medications and doses were not. Try again to erase the rest. => \
+Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное.
 Couldn't erase your data. Try again. => Не удалось стереть данные. Можно попробовать ещё раз.
 All data erased => Все данные стёрты
 About => О приложении

@@ -89,6 +89,34 @@ import Testing
         #expect(inner.doseContents.isEmpty)
     }
 
+    @Test func removeAllForwardsThroughTheOpenedStore() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex], doses: [Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)])
+        let store = DeferredMedicationStore { inner }
+        try store.removeAll()
+        #expect(inner.contents.isEmpty)
+        #expect(inner.doseContents.isEmpty)
+    }
+
+    @Test func removeAllOnAStoreThatCannotOpenThrowsUnavailableAndChangesNothing() throws {
+        let zorblex = medication("Zorblex")
+        let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
+        let inner = FakeMedicationStore([zorblex], doses: [original])
+        var locked = true
+        let store = DeferredMedicationStore {
+            if locked {
+                throw Locked()
+            }
+            return inner
+        }
+        #expect(throws: MedicationStoreError.unavailable) { try store.removeAll() }
+        #expect(inner.contents == [zorblex])
+        #expect(inner.doseContents == [original])
+        locked = false
+        try store.removeAll()
+        #expect(inner.contents.isEmpty)
+    }
+
     @Test func aDoseReplaceWhileLockedNeverReachesTheStore() throws {
         let zorblex = medication("Zorblex")
         let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)

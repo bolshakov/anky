@@ -47,6 +47,10 @@ import Foundation
         try current().removeDose(id: id)
     }
 
+    public func removeAll() throws {
+        try current().removeAll()
+    }
+
     private func current() throws -> MedicationStore {
         if let opened {
             return opened
