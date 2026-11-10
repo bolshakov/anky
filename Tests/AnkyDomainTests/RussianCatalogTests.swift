@@ -222,6 +222,9 @@ Add what you take, then log a dose in two taps. Everything stays on this iPhone.
 Time to check in => Пора отметить самочувствие
 Reminders => Напоминания
 Daily reminder => Ежедневное напоминание
+Time => Время
+Skipped on days you have already logged something. => \
+Пропускается в дни, когда вы уже что-то записали.
 Log how you feel today. => Пора записать самочувствие.
 Anky => Anky
 Dose deleted => Приём удалён

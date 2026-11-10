@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import SwiftUI
 
 struct RemindersSection: View {
@@ -6,10 +7,28 @@ struct RemindersSection: View {
     let scheduler: DailyReminderScheduler
 
     var body: some View {
-        CardSection(Text("Reminders"), id: "settings-reminders") {
+        CardSection(
+            Text("Reminders"),
+            footnote: Text("Skipped on days you have already logged something."),
+            id: "settings-reminders"
+        ) {
             SwitchRow(Text("Daily reminder"), isOn: isOn)
                 .accessibilityIdentifier("reminder-toggle")
+            if settings.isOn {
+                DatePicker("Time", selection: time, displayedComponents: .hourAndMinute)
+                    .datePickerStyle(.compact)
+                    .foregroundStyle(Color.ink)
+                    .rowHeight()
+                    .accessibilityIdentifier("reminder-time")
+            }
         }
+    }
+
+    private var time: Binding<Date> {
+        Binding(
+            get: { settings.time.date(on: .now, calendar: .current) },
+            set: { settings.time = DailyReminderTime(date: $0, calendar: .current) }
+        )
     }
 
     /// Turning on stays off until iOS grants permission, so a refusal leaves the switch off with nothing scheduled.
