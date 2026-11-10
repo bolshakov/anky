@@ -14,9 +14,11 @@ struct MorePlacesRow: View {
             content
                 .font(.body)
                 .frame(maxWidth: .infinity)
+                .rowHeight()
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .fillsCardRow()
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("More places")
         .accessibilityValue(value.listText)

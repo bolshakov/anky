@@ -31,9 +31,12 @@ struct DoseCheckInMenu: View {
                     }
                 }
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .rowHeight()
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .fillsCardRow()
         .accessibilityLabel("Check in after")
         .accessibilityValue(String(localized: delay.title))
         .accessibilityIdentifier("dose-check-in-after")
