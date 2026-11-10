@@ -9,6 +9,7 @@ private let approvedPlaceholders = table("""
 %@, %@ and %lld more => place names
 After · checked in at %@ => a time
 Taken %@. => a time
+Version %@ (%@) => the version and the build
 """).map(\.key)
 
 private let textPlaceholder = "%(\\d+\\$)?@"

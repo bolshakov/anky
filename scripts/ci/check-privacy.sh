@@ -15,7 +15,8 @@ calls='URLSession|URLRequest|NWConnection|NSUbiquitousKeyValueStore|ubiquityCont
 if grep -rEn --include="*.swift" "($calls)" $code
 then violation "uses a network or iCloud API"; fi
 
-if grep -rEn --include="*.swift" "https?://" $code
+# t-235: the system opens the repo link in the browser, so that one exact literal is approved.
+if grep -rEn --include="*.swift" "https?://" $code | sed 's|"https://github.com/bolshakov/anky"||g' | grep -E "https?://"
 then violation "contains a URL literal"; fi
 
 if grep -En '\.package\([^)]*(url|id):' "$root/Package.swift"

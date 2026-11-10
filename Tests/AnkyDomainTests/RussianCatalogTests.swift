@@ -188,6 +188,12 @@ Manage => Лекарства
 Medications => Лекарства
 Settings => Настройки
 Manage medications => Лекарства
+About => О приложении
+Source code and licence => Исходный код и лицензия
+Version %@ (%@) => Версия %@ (%@)
+Free software, GPL-3.0-or-later => Свободная программа, GPL-3.0-or-later
+Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later. => \
+Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней.
 Archive => Архивировать
 Archived => В архиве
 Archive medication => Архивировать лекарство
