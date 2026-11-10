@@ -3,11 +3,17 @@ import AnkyDomain
 import SwiftUI
 
 extension TakenAs {
-    var title: LocalizedStringKey {
+    var title: LocalizedStringResource {
         switch self {
         case .asNeeded: "As needed"
         case .scheduled: "Scheduled"
         }
+    }
+}
+
+extension Medication {
+    var spokenRowLabel: String {
+        "\(listTitle), \(String(localized: takenAs.title))"
     }
 }
 

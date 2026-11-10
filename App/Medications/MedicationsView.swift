@@ -48,7 +48,11 @@ struct MedicationsView: View {
                     ) {
                         editing = medication
                     }
-                    .accessibilityIdentifier("medication-row")
+                    .accessibilityRepresentation {
+                        Button { editing = medication } label: { Color.clear }
+                            .accessibilityLabel(medication.spokenRowLabel)
+                            .accessibilityIdentifier("medication-row")
+                    }
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Archive", systemImage: "archivebox") {
                             archive(medication)
