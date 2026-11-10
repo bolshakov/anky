@@ -2564,6 +2564,16 @@
         }
       }
     },
+    "Anky" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky"
+          }
+        }
+      }
+    },
     "Daily reminder" : {
       "localizations" : {
         "ru" : {
@@ -2579,7 +2589,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запишите, как вы себя чувствуете сегодня."
+            "value" : "Пора записать самочувствие."
           }
         }
       }
