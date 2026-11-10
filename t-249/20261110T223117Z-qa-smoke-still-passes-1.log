@@ -1,0 +1,20 @@
+$ scripts/ci/run-ui-tests.sh light .derived EmptyStateTests/testFirstLaunchShowsEmptyState SaveEntryTests/testSaveEntryOnToday SaveEntryTests/testEntrySurvivesRelaunch NewEntryOrderTests/testNewEntryWithRecentStartsWithChipsThenKind NewEntryOrderTests/testNewEntryWithoutRecentStartsWithKind NewEntryOrderTests/testEditFatigueHasNoWhereAndNoteLast
+exit: 0
+commit: 39a00e2acc7234d0d2443e847fcf7b92262fa41c
+
+No runtime specified, using 'iOS 26.5 (26.5 - 23F77) - com.apple.CoreSimulator.SimRuntime.iOS-26-5'
+simulator 30DA600D-1029-490D-BD2B-1B3B7FDDBFA8
+Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' passed (14.073 seconds).
+Test Case '-[AnkyUITests.NewEntryOrderTests testEditFatigueHasNoWhereAndNoteLast]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.NewEntryOrderTests testEditFatigueHasNoWhereAndNoteLast]' passed (38.291 seconds).
+Test Case '-[AnkyUITests.NewEntryOrderTests testNewEntryWithoutRecentStartsWithKind]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.NewEntryOrderTests testNewEntryWithoutRecentStartsWithKind]' passed (17.693 seconds).
+Test Case '-[AnkyUITests.NewEntryOrderTests testNewEntryWithRecentStartsWithChipsThenKind]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.NewEntryOrderTests testNewEntryWithRecentStartsWithChipsThenKind]' passed (45.797 seconds).
+Test Case '-[AnkyUITests.SaveEntryTests testEntrySurvivesRelaunch]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.SaveEntryTests testEntrySurvivesRelaunch]' passed (28.088 seconds).
+Test Case '-[AnkyUITests.SaveEntryTests testSaveEntryOnToday]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.SaveEntryTests testSaveEntryOnToday]' passed (23.693 seconds).
+simulator 30DA600D-1029-490D-BD2B-1B3B7FDDBFA8 deleted
+ui tests exit 0

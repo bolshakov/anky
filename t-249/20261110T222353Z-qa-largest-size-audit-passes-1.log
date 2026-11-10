@@ -1,0 +1,10 @@
+$ scripts/ci/run-ui-tests.sh light .derived CheckInAccessibilityTests/testLargestSizeScreensPassTheAudit
+exit: 0
+commit: 39a00e2acc7234d0d2443e847fcf7b92262fa41c
+
+No runtime specified, using 'iOS 26.5 (26.5 - 23F77) - com.apple.CoreSimulator.SimRuntime.iOS-26-5'
+simulator A87F2EE1-EDC5-48A8-AE48-830284A9584E
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testLargestSizeScreensPassTheAudit]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testLargestSizeScreensPassTheAudit]' passed (120.392 seconds).
+simulator A87F2EE1-EDC5-48A8-AE48-830284A9584E deleted
+ui tests exit 0

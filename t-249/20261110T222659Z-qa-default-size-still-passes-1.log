@@ -1,0 +1,12 @@
+$ scripts/ci/run-ui-tests.sh light .derived CheckInAccessibilityTests/testDefaultSizeScreensPassTheAudit CheckInAccessibilityTests/testWaitingDoseSpeaksItsWords
+exit: 0
+commit: 39a00e2acc7234d0d2443e847fcf7b92262fa41c
+
+No runtime specified, using 'iOS 26.5 (26.5 - 23F77) - com.apple.CoreSimulator.SimRuntime.iOS-26-5'
+simulator DAB5A855-5BE3-4BF6-8470-22CDA1B1AC58
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testDefaultSizeScreensPassTheAudit]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testDefaultSizeScreensPassTheAudit]' passed (120.077 seconds).
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testWaitingDoseSpeaksItsWords]' started (Iteration 1 of 2).
+Test Case '-[AnkyUITests.CheckInAccessibilityTests testWaitingDoseSpeaksItsWords]' passed (88.877 seconds).
+simulator DAB5A855-5BE3-4BF6-8470-22CDA1B1AC58 deleted
+ui tests exit 0
