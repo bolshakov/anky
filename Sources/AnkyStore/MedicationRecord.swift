@@ -12,8 +12,10 @@ import SwiftData
     var createdAt: Date
     var updatedAt: Date
     var archivedAt: Date?
+    var schedule: Data?
 
-    init(_ medication: Medication) {
+    init(_ medication: Medication) throws {
+        schedule = try medication.schedule.map(StoredSchedule.encoded)
         id = medication.id
         name = medication.name
         strength = medication.strength
@@ -25,7 +27,8 @@ import SwiftData
     }
 
     /// Writes every field except the id and the created time.
-    func assign(_ medication: Medication) {
+    func assign(_ medication: Medication) throws {
+        schedule = try medication.schedule.map(StoredSchedule.encoded)
         name = medication.name
         strength = medication.strength
         takenAs = medication.takenAs.rawValue
@@ -46,6 +49,7 @@ import SwiftData
         medication.checkInAfter = checkIn
         medication.updatedAt = updatedAt
         medication.archivedAt = archivedAt
+        medication.schedule = try schedule.map(StoredSchedule.read)
         return medication
     }
 }

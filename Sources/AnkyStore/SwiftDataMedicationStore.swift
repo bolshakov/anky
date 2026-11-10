@@ -43,7 +43,7 @@ import SwiftData
     }
 
     public func add(_ medication: Medication) throws {
-        context.insert(MedicationRecord(medication))
+        try context.insert(MedicationRecord(medication))
         try commit()
     }
 
@@ -54,7 +54,7 @@ import SwiftData
 
     public func update(_ medication: Medication) throws {
         let record = try record(id: medication.id)
-        record.assign(medication)
+        try record.assign(medication)
         try commit()
     }
 
