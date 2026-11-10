@@ -9,6 +9,7 @@ struct TodaySheets: ViewModifier {
     let model: EntryLogModel
     let medications: MedicationsModel
     let onSaved: () -> Void
+    let onDeleted: () -> Void
     @Binding var reminderCheckIn: Dose?
     @Binding var isShowingNewEntry: Bool
     @Binding var isShowingLogDose: Bool
@@ -32,9 +33,11 @@ struct TodaySheets: ViewModifier {
             }
             .sheet(item: $editing, onDismiss: presentPendingCheckIn) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: onSaved)
+                    .onDeleted(onDeleted)
             }
             .sheet(item: $editingDose, onDismiss: presentPendingCheckIn) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: onSaved)
+                    .onDeleted(onDeleted)
             }
             .sheet(item: $checkingIn) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: onSaved)

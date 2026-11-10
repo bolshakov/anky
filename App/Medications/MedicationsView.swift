@@ -7,7 +7,7 @@ struct MedicationsView: View {
     let medications: MedicationsModel
     @State private var isShowingNewMedication = false
     @State private var editing: Medication?
-    @State private var saveTicks = 0
+    @State private var successTicks = 0
     @State private var failure: MedicationFailure?
 
     var body: some View {
@@ -17,7 +17,7 @@ struct MedicationsView: View {
             emptySection
         }
         .screenSpacing()
-        .sensoryFeedback(.success, trigger: saveTicks)
+        .sensoryFeedback(.success, trigger: successTicks)
         .medicationFailureAlert($failure)
         .onAppear { medications.reload() }
         .navigationTitle("Medications")
@@ -26,10 +26,15 @@ struct MedicationsView: View {
             isShowingNewMedication = true
         }
         .sheet(isPresented: $isShowingNewMedication) {
-            MedicationFormView(medications: medications, onSaved: { saveTicks += 1 })
+            MedicationFormView(medications: medications, onSaved: { _ in successTicks += 1 })
         }
         .sheet(item: $editing) { medication in
-            MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
+            MedicationFormView(
+                medications: medications,
+                editing: medication,
+                onSaved: { _ in successTicks += 1 },
+                onArchivedOrRestored: { successTicks += 1 }
+            )
         }
     }
 
@@ -63,6 +68,7 @@ struct MedicationsView: View {
     private func archive(_ medication: Medication) {
         do {
             try medications.archive(id: medication.id)
+            successTicks += 1
         } catch {
             failure = .archive
         }
@@ -77,7 +83,7 @@ struct MedicationsView: View {
         if medications.archivedCount > 0 {
             CardSection(id: "archived-link") {
                 NavigationLink {
-                    ArchivedView(medications: medications)
+                    ArchivedView(medications: medications, onRestored: { successTicks += 1 })
                 } label: {
                     ArchivedCard(count: medications.archivedCount)
                 }

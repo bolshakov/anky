@@ -6,6 +6,7 @@ struct NewEntryView: View {
     let model: EntryLogModel
     let mode: EntryMode
     let onSaved: () -> Void
+    private(set) var deletedAction: () -> Void = {}
     let onAdded: (Entry) -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
@@ -15,7 +16,7 @@ struct NewEntryView: View {
     @State private var hasRecordedChips = false
     @State private var recents: [EntryKind: [RecentEntry]]
     @State private var isShowingPlaces = false
-    // Made once per opening, so a second tap on "Save entry" saves the same entry again.
+    // Made once per opening, so a second tap on Save saves the same entry again.
     @State private var entryID = UUID()
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
@@ -47,6 +48,12 @@ struct NewEntryView: View {
         case .edit: [:]
         }
         _recents = State(initialValue: recents)
+    }
+
+    func onDeleted(_ action: @escaping () -> Void) -> Self {
+        var copy = self
+        copy.deletedAction = action
+        return copy
     }
 
     var body: some View {
@@ -118,7 +125,7 @@ struct NewEntryView: View {
 
     private var saveButton: some View {
         Button(action: save) {
-            saveTitle.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
         .buttonBorderShape(.capsule)
@@ -178,13 +185,6 @@ struct NewEntryView: View {
         }
     }
 
-    private var saveTitle: Text {
-        switch mode {
-        case .new: Text("Save entry")
-        case .edit: Text("Save changes")
-        }
-    }
-
     private var screenID: String {
         switch mode {
         case .new: "new-entry-screen"
@@ -227,6 +227,7 @@ struct NewEntryView: View {
     private func removeEntry() throws {
         guard case let .edit(entry) = mode else { return }
         try model.remove(id: entry.id)
+        deletedAction()
         dismiss()
     }
 }

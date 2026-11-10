@@ -5,9 +5,10 @@ import SwiftUI
 
 struct ArchivedView: View {
     let medications: MedicationsModel
+    let onRestored: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var editing: Medication?
-    @State private var saveTicks = 0
+    @State private var successTicks = 0
     @State private var failure: MedicationFailure?
 
     var body: some View {
@@ -38,7 +39,7 @@ struct ArchivedView: View {
         .screenSpacing()
         .navigationTitle("Archived")
         .navigationBarTitleDisplayMode(.inline)
-        .sensoryFeedback(.success, trigger: saveTicks)
+        .sensoryFeedback(.success, trigger: successTicks)
         .medicationFailureAlert($failure)
         .onChange(of: medications.archived.isEmpty) {
             if medications.archived.isEmpty {
@@ -46,15 +47,30 @@ struct ArchivedView: View {
             }
         }
         .sheet(item: $editing) { medication in
-            MedicationFormView(medications: medications, editing: medication, onSaved: { saveTicks += 1 })
+            MedicationFormView(
+                medications: medications,
+                editing: medication,
+                onSaved: { _ in successTicks += 1 },
+                onArchivedOrRestored: restored
+            )
         }
     }
 
     private func restore(_ medication: Medication) {
         do {
             try medications.restore(id: medication.id)
+            restored()
         } catch {
             failure = .restore
+        }
+    }
+
+    /// The last restore closes this screen, so its haptic belongs to the screen underneath.
+    private func restored() {
+        if medications.archived.isEmpty {
+            onRestored()
+        } else {
+            successTicks += 1
         }
     }
 }

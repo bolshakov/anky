@@ -17,7 +17,7 @@ struct LogDoseView: View {
     @State private var isShowingReadingChoice = false
     /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
     @State private var manualReadingID: UUID?
-    /// Made once per opening, so a second tap on "Save dose" logs the same dose again.
+    /// Made once per opening, so a second tap on Save logs the same dose again.
     @State private var doseID = UUID()
     /// The time the person set by hand. Nil while unedited, so the dose follows the clock until it is saved.
     @State private var chosenTakenAt: Date?
@@ -125,7 +125,7 @@ struct LogDoseView: View {
     /// Built here and not with `bottomPrimaryButton`, which cannot be disabled without disabling the form it sits on.
     private var saveButton: some View {
         Button(action: saveDose) {
-            Text("Save dose").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
         .buttonBorderShape(.capsule)
@@ -242,10 +242,10 @@ struct LogDoseView: View {
         selectionTicks += 1
     }
 
-    /// The new medication is the newest, so it is last in the active list and becomes the chosen row. Choosing it
+    /// The medication the form just wrote becomes the chosen row, wherever it sorts in the active list. Choosing it
     /// does not tick, because the success haptic plays instead.
-    private func medicationSaved() {
-        selectedID = active.last?.id
+    private func medicationSaved(_ id: Medication.ID) {
+        selectedID = id
         saveTicks += 1
     }
 }

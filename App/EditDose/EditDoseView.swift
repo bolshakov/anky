@@ -9,12 +9,15 @@ struct EditDoseView: View {
     let medications: MedicationsModel
     let model: EntryLogModel
     let onSaved: () -> Void
+    private(set) var deletedAction: () -> Void = {}
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var takenAt: Date
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
+    @State private var readingSaveTicks = 0
+    @State private var readingDeleteTicks = 0
 
     init(dose: Dose, medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.dose = dose
@@ -23,6 +26,12 @@ struct EditDoseView: View {
         self.onSaved = onSaved
         _selectedID = State(initialValue: dose.medicationID)
         _takenAt = State(initialValue: dose.takenAt)
+    }
+
+    func onDeleted(_ action: @escaping () -> Void) -> Self {
+        var copy = self
+        copy.deletedAction = action
+        return copy
     }
 
     var body: some View {
@@ -56,12 +65,14 @@ struct EditDoseView: View {
                     DoseMoreMenu { isConfirmingDelete = true }
                 }
             }
-            .bottomPrimaryButton(Text("Save changes"), id: "save-dose-changes", action: saveChanges)
+            .bottomPrimaryButton(Text("Save"), id: "save-dose-changes", action: saveChanges)
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, words: .dose, onDelete: removeDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
         }
+        .sensoryFeedback(.success, trigger: readingSaveTicks)
+        .sensoryFeedback(.warning, trigger: readingDeleteTicks)
     }
 
     private func scrollToDate(_ proxy: ScrollViewProxy) {
@@ -89,6 +100,7 @@ struct EditDoseView: View {
     /// Dismisses only after the store removed the dose, and does not call `onSaved`, so no save haptic fires.
     private func removeDose() throws {
         try medications.removeDose(id: dose.id)
+        deletedAction()
         dismiss()
     }
 
@@ -102,7 +114,7 @@ struct EditDoseView: View {
         ) {
             if let before = readings.before {
                 NavigationLink {
-                    NewEntryView(model: model, mode: .edit(before))
+                    readingEditor(before)
                 } label: {
                     EntryIconRow(entry: before)
                         .spokenAsReading()
@@ -117,7 +129,7 @@ struct EditDoseView: View {
         if let after = readings.after {
             CardSection(Text(afterLabel(after)), id: "after-reading") {
                 NavigationLink {
-                    NewEntryView(model: model, mode: .edit(after))
+                    readingEditor(after)
                 } label: {
                     EntryIconRow(entry: after)
                         .spokenAsReading()
@@ -125,6 +137,11 @@ struct EditDoseView: View {
                 .accessibilityIdentifier("after-reading-row")
             }
         }
+    }
+
+    private func readingEditor(_ entry: Entry) -> NewEntryView {
+        NewEntryView(model: model, mode: .edit(entry), onSaved: { readingSaveTicks += 1 })
+            .onDeleted { readingDeleteTicks += 1 }
     }
 
     private func afterLabel(_ entry: Entry) -> String {
@@ -148,6 +165,7 @@ struct EditDoseView: View {
                 Spacer()
                 if isChecked {
                     Image(systemName: "checkmark")
+                        .foregroundStyle(.tint)
                         .accessibilityHidden(true)
                 }
             }

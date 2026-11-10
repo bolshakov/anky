@@ -14,7 +14,7 @@ final class EntryRowElementTests: XCTestCase {
 
         row.tap()
         XCTAssertTrue(app.buttons["save-entry"].waitForExistence(timeout: 10))
-        XCTAssertEqual(app.buttons["save-entry"].label, "Save changes")
+        XCTAssertEqual(app.buttons["save-entry"].label, "Save")
     }
 
     func testHistoryRowIsOneButtonAndOpensEditEntry() {

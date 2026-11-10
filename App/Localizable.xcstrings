@@ -285,7 +285,7 @@
         }
       }
     },
-    "Choose an entry" : {
+    "Choose an Entry" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -664,16 +664,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Боль была %lld из 10"
-          }
-        }
-      }
-    },
-    "Save check-in" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить отметку"
           }
         }
       }
@@ -1181,16 +1171,6 @@
         }
       }
     },
-    "Save medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить лекарство"
-          }
-        }
-      }
-    },
     "As needed" : {
       "localizations" : {
         "ru" : {
@@ -1416,7 +1396,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone."
+            "value" : "Записать самочувствие или приём лекарства. Всё остаётся на этом iPhone."
           }
         }
       }
@@ -1755,32 +1735,12 @@
         }
       }
     },
-    "Save changes" : {
+    "Save" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сохранить изменения"
-          }
-        }
-      }
-    },
-    "Save dose" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить приём"
-          }
-        }
-      }
-    },
-    "Save entry" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить запись"
+            "value" : "Сохранить"
           }
         }
       }
