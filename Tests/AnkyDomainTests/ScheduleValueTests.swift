@@ -19,7 +19,10 @@ struct ScheduleValueTests {
 
         #expect(ScheduleDay(moment, in: berlin) == ScheduleDay(year: 2026, month: 3, day: 29))
         #expect(ScheduleDay(moment, in: auckland) == ScheduleDay(year: 2026, month: 3, day: 29))
-        #expect(ScheduleDay(moment.addingTimeInterval(-7200), in: berlin) == ScheduleDay(year: 2026, month: 3, day: 28))
+
+        let earlier = moment.addingTimeInterval(-7200)
+        #expect(ScheduleDay(earlier, in: berlin) == ScheduleDay(year: 2026, month: 3, day: 28))
+        #expect(ScheduleDay(earlier, in: auckland) == ScheduleDay(year: 2026, month: 3, day: 29))
     }
 
     @Test(arguments: [(-1, 0), (24, 0), (0, 60), (0, -1)])

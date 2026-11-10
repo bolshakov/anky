@@ -4,11 +4,10 @@ import Foundation
 extension MedicationSchedule {
     public func nextDoses(after moment: Date, count: Int, calendar: Calendar) -> [Date] {
         guard count > 0, case let .days(interval) = `repeat` else { return [] }
-        let gregorian = Calendar.gregorian(in: calendar.timeZone)
-        let days = DayWalk(schedule: self, interval: interval, calendar: gregorian)
+        let days = DayWalk(schedule: self, interval: interval, calendar: calendar)
         var doses: [Date] = []
         for midnight in days.starting(after: moment) {
-            doses += times.compactMap { setTime($0, on: midnight, in: gregorian) }.filter { $0 > moment }
+            doses += times.compactMap { setTime($0, on: midnight, in: calendar) }.filter { $0 > moment }
             if doses.count >= count {
                 break
             }
@@ -35,7 +34,7 @@ private struct DayWalk {
     let calendar: Calendar
 
     func starting(after moment: Date) -> some Sequence<Date> {
-        let startOfStart = calendar.date(
+        let startOfStart = Calendar.gregorian(in: calendar.timeZone).date(
             from: DateComponents(year: schedule.start.year, month: schedule.start.month, day: schedule.start.day)
         )
         let first = startOfStart.map { firstIndex(from: $0, after: moment) } ?? 0
