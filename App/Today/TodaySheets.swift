@@ -3,8 +3,9 @@ import AnkyDomain
 import AnkyMedicationModel
 import SwiftUI
 
-/// Today's sheets, and the order a reminder tap closes and opens them in. Check In waits for the sheet that was open
-/// to finish dismissing, since SwiftUI can drop a sheet presented while another one is still on its way out.
+/// Today's sheets, and the order a reminder tap closes and opens them in. Check In and New Entry wait for the sheet
+/// that was open to finish dismissing, since SwiftUI can drop a sheet presented while another one is still on its way
+/// out.
 struct TodaySheets: ViewModifier {
     let model: EntryLogModel
     let medications: MedicationsModel
@@ -12,12 +13,18 @@ struct TodaySheets: ViewModifier {
     let onCreated: () -> Void
     let onDeleted: () -> Void
     @Binding var reminderCheckIn: Dose?
+    @Binding var reminderNewEntry: Bool
     @Binding var isShowingNewEntry: Bool
     @Binding var isShowingLogDose: Bool
     @Binding var editing: Entry?
     @Binding var editingDose: Dose?
     @Binding var checkingIn: Dose?
-    @State private var pendingCheckIn: Dose?
+    @State private var pending: Pending?
+
+    private enum Pending {
+        case checkIn(Dose)
+        case newEntry
+    }
 
     func body(content: Content) -> some View {
         content
@@ -26,21 +33,26 @@ struct TodaySheets: ViewModifier {
                 reminderCheckIn = nil
                 showCheckIn(dose)
             }
-            .sheet(isPresented: $isShowingNewEntry, onDismiss: presentPendingCheckIn) {
+            .onChange(of: reminderNewEntry, initial: true) { _, isRequested in
+                guard isRequested else { return }
+                reminderNewEntry = false
+                showNewEntry()
+            }
+            .sheet(isPresented: $isShowingNewEntry, onDismiss: presentPending) {
                 NewEntryView(model: model, onSaved: onCreated)
             }
-            .sheet(isPresented: $isShowingLogDose, onDismiss: presentPendingCheckIn) {
+            .sheet(isPresented: $isShowingLogDose, onDismiss: presentPending) {
                 LogDoseView(medications: medications, model: model, onSaved: onSaved)
             }
-            .sheet(item: $editing, onDismiss: presentPendingCheckIn) { entry in
+            .sheet(item: $editing, onDismiss: presentPending) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: onSaved)
                     .onDeleted(onDeleted)
             }
-            .sheet(item: $editingDose, onDismiss: presentPendingCheckIn) { dose in
+            .sheet(item: $editingDose, onDismiss: presentPending) { dose in
                 EditDoseView(dose: dose, medications: medications, model: model, onSaved: onSaved)
                     .onDeleted(onDeleted)
             }
-            .sheet(item: $checkingIn) { dose in
+            .sheet(item: $checkingIn, onDismiss: presentPending) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: onSaved)
             }
     }
@@ -50,16 +62,34 @@ struct TodaySheets: ViewModifier {
             checkingIn = dose
             return
         }
-        pendingCheckIn = dose
+        pending = .checkIn(dose)
+        closeSheets()
+    }
+
+    private func showNewEntry() {
+        guard !isShowingNewEntry else { return }
+        guard isShowingLogDose || editing != nil || editingDose != nil || checkingIn != nil else {
+            isShowingNewEntry = true
+            return
+        }
+        pending = .newEntry
+        closeSheets()
+        checkingIn = nil
+    }
+
+    private func closeSheets() {
         isShowingNewEntry = false
         isShowingLogDose = false
         editing = nil
         editingDose = nil
     }
 
-    private func presentPendingCheckIn() {
-        guard let dose = pendingCheckIn else { return }
-        pendingCheckIn = nil
-        checkingIn = dose
+    private func presentPending() {
+        guard let next = pending else { return }
+        pending = nil
+        switch next {
+        case let .checkIn(dose): checkingIn = dose
+        case .newEntry: isShowingNewEntry = true
+        }
     }
 }

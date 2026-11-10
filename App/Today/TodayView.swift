@@ -8,6 +8,7 @@ struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
     @Binding var reminderCheckIn: Dose?
+    @Binding var reminderNewEntry: Bool
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
@@ -151,6 +152,7 @@ struct TodayView: View {
                 },
                 onDeleted: { deleteTicks += 1 },
                 reminderCheckIn: $reminderCheckIn,
+                reminderNewEntry: $reminderNewEntry,
                 isShowingNewEntry: $isShowingNewEntry,
                 isShowingLogDose: $isShowingLogDose,
                 editing: $editing,
