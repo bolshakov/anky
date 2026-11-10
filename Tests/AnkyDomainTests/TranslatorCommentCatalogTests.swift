@@ -19,6 +19,8 @@ Archive
 More actions
 Save
 About
+Privacy policy
+Privacy Policy
 """.split(separator: "\n").map(String.init)
 
 struct TranslatorCommentCatalogTests {
