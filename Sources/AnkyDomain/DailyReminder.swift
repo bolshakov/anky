@@ -11,6 +11,16 @@ public struct DailyReminderTime: Equatable, Sendable {
     }
 
     public static let standard = DailyReminderTime(hour: 20, minute: 0)
+
+    public init(date: Date, calendar: Calendar) {
+        let parts = calendar.dateComponents([.hour, .minute], from: date)
+        self.init(hour: parts.hour ?? 0, minute: parts.minute ?? 0)
+    }
+
+    /// A moment on `day` that reads this clock time, for a picker that holds a `Date`.
+    public func date(on day: Date, calendar: Calendar) -> Date {
+        calendar.date(bySettingHour: hour, minute: minute, second: 0, of: day) ?? day
+    }
 }
 
 public enum DailyReminder {
