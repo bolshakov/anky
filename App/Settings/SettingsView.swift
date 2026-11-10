@@ -8,6 +8,8 @@ struct SettingsView: View {
     @State private var isConfirmingErase = false
     @State private var eraseTicks = 0
 
+    private let repository = URL(string: "https://github.com/bolshakov/anky")!
+
     var body: some View {
         NavigationStack {
             Form {
@@ -31,6 +33,14 @@ struct SettingsView: View {
                     }
                     .rowHeight()
                     .accessibilityIdentifier("settings-erase-all")
+                }
+                FooterBlockSection(Text("About"), footer: AboutBlock()) {
+                    Link(destination: repository) {
+                        Text("Source code and licence")
+                            .foregroundStyle(Color.ink)
+                    }
+                    .rowHeight()
+                    .accessibilityIdentifier("settings-source-code")
                 }
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {

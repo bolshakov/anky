@@ -2128,6 +2128,57 @@
         }
       }
     },
+    "About" : {
+      "comment" : "Noun: heading of the Settings group that names the app, its version and its licence.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
+          }
+        }
+      }
+    },
+    "Source code and licence" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходный код и лицензия"
+          }
+        }
+      }
+    },
+    "Version %@ (%@)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %@ (%@)"
+          }
+        }
+      }
+    },
+    "Free software, GPL-3.0-or-later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свободная программа, GPL-3.0-or-later"
+          }
+        }
+      }
+    },
+    "Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней."
+          }
+        }
+      }
+    },
     "Archive" : {
       "comment" : "Verb: hides the medication from the list but keeps the history of its doses.",
       "localizations" : {
