@@ -170,7 +170,7 @@ Turn it on to choose a time. => Время можно выбрать после 
 Anky will ask how you feel after this long. => Anky спросит о самочувствии через заданное время.
 Log how you feel now => Отметить самочувствие сейчас
 Log how you feel, or a dose you took. Everything stays on this iPhone. => \
-Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone.
+Записать самочувствие или приём лекарства. Всё остаётся на этом iPhone.
 More actions => Другие действия
 The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажатие открывает её.
 Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Можно попробовать ещё раз.
