@@ -9,7 +9,9 @@ struct RootView: View {
     let reminderTaps: ReminderTapModel
     @State private var selection = Tab.today
     @State private var reminderCheckIn: Dose?
+    @State private var reminderNewEntry = false
     @State private var checkInAwaitingHistory: Dose?
+    @State private var newEntryAwaitingHistory = false
     @State private var reminders = CheckInReminderScheduler()
     @State private var dailyReminder = DailyReminderSettings()
     @State private var dailyReminderScheduler = DailyReminderScheduler()
@@ -17,17 +19,22 @@ struct RootView: View {
 
     var body: some View {
         TabView(selection: $selection) {
-            TodayView(model: model, medications: medications, reminderCheckIn: $reminderCheckIn)
-                .tabItem {
-                    Label("Today", systemImage: "calendar")
-                        .fontWeight(selection == .today ? .bold : .regular)
-                }
-                .tag(Tab.today)
+            TodayView(
+                model: model,
+                medications: medications,
+                reminderCheckIn: $reminderCheckIn,
+                reminderNewEntry: $reminderNewEntry
+            )
+            .tabItem {
+                Label("Today", systemImage: "calendar")
+                    .fontWeight(selection == .today ? .bold : .regular)
+            }
+            .tag(Tab.today)
 
             HistoryView(
                 model: model,
                 medications: medications,
-                isClosingSheets: checkInAwaitingHistory != nil,
+                isClosingSheets: checkInAwaitingHistory != nil || newEntryAwaitingHistory,
                 onSheetsClosed: historyClosedSheets
             )
             .tabItem {
@@ -58,6 +65,15 @@ struct RootView: View {
             reminderTaps.pending = nil
             open(tap)
         }
+        .onChange(of: newEntryInputs, initial: true) { _, inputs in
+            guard inputs.phase == .active, inputs.isPending else { return }
+            reminderTaps.pendingNewEntry = false
+            if selection == .history {
+                newEntryAwaitingHistory = true
+            } else {
+                showNewEntryOnToday()
+            }
+        }
     }
 
     private func open(_ tap: ReminderTapModel.Tap) {
@@ -80,9 +96,18 @@ struct RootView: View {
     }
 
     private func historyClosedSheets() {
+        if newEntryAwaitingHistory {
+            newEntryAwaitingHistory = false
+            showNewEntryOnToday()
+        }
         guard let dose = checkInAwaitingHistory else { return }
         checkInAwaitingHistory = nil
         showCheckInOnToday(dose)
+    }
+
+    private func showNewEntryOnToday() {
+        selection = .today
+        reminderNewEntry = true
     }
 
     private func showCheckInOnToday(_ dose: Dose) {
@@ -102,6 +127,15 @@ struct RootView: View {
 
     private var tapInputs: TapInputs {
         TapInputs(tap: reminderTaps.pending, phase: scenePhase)
+    }
+
+    private var newEntryInputs: NewEntryInputs {
+        NewEntryInputs(isPending: reminderTaps.pendingNewEntry, phase: scenePhase)
+    }
+
+    private struct NewEntryInputs: Equatable {
+        let isPending: Bool
+        let phase: ScenePhase
     }
 
     private struct TapInputs: Equatable {

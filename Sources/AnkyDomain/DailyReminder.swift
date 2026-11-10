@@ -19,6 +19,10 @@ public enum DailyReminder {
 
     private static let searchDays = 14
 
+    public static func isTap(identifier: String) -> Bool {
+        identifier == Self.identifier
+    }
+
     /// The first moment at `time` after `now` on a day of `calendar` with no entry and no dose, or nil when each of the
     /// next `searchDays` days has one. An entry counts toward the day of its `date`, a dose toward the day of its
     /// `takenAt`.

@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import Foundation
 import Observation
 
@@ -10,9 +11,15 @@ import Observation
     }
 
     var pending: Tap?
+    var pendingNewEntry = false
 
-    /// The reminder's identifier is its dose's id, so any other identifier is not a tap on a check-in reminder.
+    /// A check-in reminder's identifier is its dose's id, and the daily reminder's is fixed. Any other identifier is
+    /// not a tap on a reminder.
     func received(identifier: String, at: Date) {
+        if DailyReminder.isTap(identifier: identifier) {
+            pendingNewEntry = true
+            return
+        }
         guard let doseID = UUID(uuidString: identifier) else { return }
         pending = Tap(doseID: doseID, at: at)
     }
