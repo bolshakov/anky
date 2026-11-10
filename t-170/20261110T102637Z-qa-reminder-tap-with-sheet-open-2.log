@@ -1,0 +1,5 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t170-01-8/tmp/w.sh 'fire_tap; echo "fire_tap exit $?"'
+exit: 0
+commit: d3a5559db06daeff163548962cd3966bcfc1c131
+
+fire_tap exit 0

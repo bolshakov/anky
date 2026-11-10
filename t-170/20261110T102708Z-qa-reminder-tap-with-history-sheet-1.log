@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t170-01-8/tmp/w.sh 'begin; seed_reading pain "$(date -v-90M "+%Y-%m-%d %H:%M")" 4; due_now; history; c history-screen; tap entry-row-pain; sleep 1; c edit-entry-screen'
+exit: 0
+commit: d3a5559db06daeff163548962cd3966bcfc1c131
+
+✓ Tap at resolved tap point at (201.0, 184.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+history-screen: 1
+edit-entry-screen: 1

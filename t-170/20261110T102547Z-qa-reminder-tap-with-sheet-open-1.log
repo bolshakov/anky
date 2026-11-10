@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t170-01-8/tmp/w.sh 'begin; due_now; tap log-entry; c new-entry-screen'
+exit: 0
+commit: d3a5559db06daeff163548962cd3966bcfc1c131
+
+✓ Tap at resolved tap point at (201.0, 184.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 798.8333333333333) completed successfully
+new-entry-screen: 1

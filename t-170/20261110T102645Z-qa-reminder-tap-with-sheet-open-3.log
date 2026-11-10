@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t170-01-8/tmp/w.sh 'c check-in-screen; c new-entry-screen; shot after-tap'
+exit: 0
+commit: d3a5559db06daeff163548962cd3966bcfc1c131
+
+check-in-screen: 1
+new-entry-screen: 0
+/Users/bolshakov/Projects/personal/anky.wt/qa-t170-01-8/tmp/walk-t170.inQu/after-tap.png
