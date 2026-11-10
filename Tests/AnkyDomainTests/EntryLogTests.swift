@@ -91,4 +91,35 @@ struct EntryLogTests {
         #expect(log.entries == [original])
         #expect(fixture.writeCount() == 1)
     }
+
+    @Test(arguments: StoreKind.allCases) func removeAllEmptiesTheListAndTheStore(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry(), entry()])
+        var log = EntryLog(store: fixture.store)
+
+        try log.removeAll()
+
+        #expect(log.entries.isEmpty)
+        #expect(try fixture.store.load().isEmpty)
+    }
+
+    @Test(arguments: StoreKind.allCases) func aRefusedRemoveAllLeavesEveryEntryInTheList(_ kind: StoreKind) throws {
+        let kept = try [entry(), entry()]
+        let fixture = try kind.fixture(holding: kept)
+        fixture.refuseWrites(true)
+        var log = EntryLog(store: fixture.store)
+
+        #expect(throws: EntryStoreError.notSaved) { try log.removeAll() }
+
+        #expect(log.entries == kept)
+        #expect(try fixture.store.load() == kept)
+    }
+
+    @Test(arguments: StoreKind.allCases) func removeAllOnAnEmptyLogSucceeds(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [])
+        var log = EntryLog(store: fixture.store)
+
+        try log.removeAll()
+
+        #expect(log.entries.isEmpty)
+    }
 }

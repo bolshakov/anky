@@ -29,4 +29,8 @@ import Observation
     func remove(id: UUID) throws {
         try log.remove(id: id)
     }
+
+    func removeAll() throws {
+        try log.removeAll()
+    }
 }

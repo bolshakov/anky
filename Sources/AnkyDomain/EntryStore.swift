@@ -11,6 +11,8 @@ public protocol EntryStore {
     func replace(_ entry: Entry) throws
     /// An unknown id is a no-op.
     func remove(id: UUID) throws
+    /// Deletes every entry in one commit. On failure, deletes none. On an empty store, does nothing.
+    func removeAll() throws
 }
 
 public enum FileProtection: Sendable {

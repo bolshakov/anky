@@ -56,4 +56,64 @@ struct EntryStoreContractTests {
         #expect(fixture.writeCount() == writes)
         #expect(try fixture.reopen().load() == [earlier])
     }
+
+    @Test(arguments: StoreKind.allCases) func removeAllDeletesEveryEntry(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry(), entry(), entry()])
+
+        try fixture.store.removeAll()
+
+        #expect(try fixture.reopen().load().isEmpty)
+    }
+
+    @Test(arguments: StoreKind.allCases) func removeAllDeletesInOneCommit(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry(), entry(), entry()])
+        let writes = fixture.writeCount()
+
+        try fixture.store.removeAll()
+
+        #expect(fixture.writeCount() == writes + 1)
+    }
+
+    @Test(arguments: StoreKind.allCases) func aRefusedRemoveAllKeepsEveryEntry(_ kind: StoreKind) throws {
+        let kept = try [entry(), entry(), entry()]
+        let fixture = try kind.fixture(holding: kept)
+        fixture.refuseWrites(true)
+
+        #expect(throws: EntryStoreError.notSaved) { try fixture.store.removeAll() }
+
+        #expect(try fixture.reopen().load() == kept)
+    }
+
+    @Test(arguments: StoreKind.allCases) func removeAllCanBeRetriedAfterARefusal(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry(), entry()])
+        fixture.refuseWrites(true)
+        #expect(throws: EntryStoreError.notSaved) { try fixture.store.removeAll() }
+        fixture.refuseWrites(false)
+
+        try fixture.store.removeAll()
+
+        #expect(try fixture.reopen().load().isEmpty)
+    }
+
+    @Test(arguments: StoreKind.allCases) func removeAllOnAnEmptyStoreWritesNothing(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [])
+        let writes = fixture.writeCount()
+
+        try fixture.store.removeAll()
+
+        #expect(fixture.writeCount() == writes)
+        #expect(try fixture.reopen().load().isEmpty)
+    }
+
+    @Test(arguments: StoreKind.allCases) func entriesAddedAfterRemoveAllLoadInOrder(_ kind: StoreKind) throws {
+        let fixture = try kind.fixture(holding: [entry(), entry()])
+        try fixture.store.removeAll()
+        let first = try entry()
+        let second = try entry()
+
+        try fixture.store.add(first)
+        try fixture.store.add(second)
+
+        #expect(try fixture.reopen().load() == [first, second])
+    }
 }

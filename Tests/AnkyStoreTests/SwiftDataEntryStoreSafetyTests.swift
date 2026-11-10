@@ -70,6 +70,18 @@ struct SwiftDataEntryStoreSafetyTests {
         }
     }
 
+    @Test func aRefusedRemoveAllThrowsNotSavedWithoutTheNoteText() throws {
+        try withFolder { folder in
+            let marker = "RemoveAll-NoteMarker"
+            let url = folder.appending(path: "entries.store")
+            try SwiftDataEntryStore(url: url).add(entry(note: marker))
+            let store = try SwiftDataEntryStore(url: url) { throw MarkedFailure(text: marker) }
+            let error = try #require(throws: EntryStoreError.self) { try store.removeAll() }
+            #expect(error == .notSaved)
+            assertNoText(error, holds: marker)
+        }
+    }
+
     @Test func anUnreadableRecordThrowsUnreadableWithoutTheNoteText() throws {
         try withFolder { folder in
             let url = folder.appending(path: "entries.store")

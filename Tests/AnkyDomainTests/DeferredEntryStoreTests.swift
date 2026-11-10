@@ -35,6 +35,23 @@ import Testing
         #expect(try store.load().map(\.note) == ["Zorblex"])
     }
 
+    @Test func removeAllOnAStoreThatCannotOpenThrowsUnavailableAndChangesNothing() throws {
+        let inner = try InMemoryEntryStore(entries: [entry("Zorblex")])
+        var locked = true
+        let store = DeferredEntryStore {
+            if locked {
+                throw Locked()
+            }
+            return inner
+        }
+        #expect(throws: EntryStoreError.unavailable) { try store.removeAll() }
+        #expect(inner.writeCount == 0)
+        locked = false
+        #expect(try store.load().map(\.note) == ["Zorblex"])
+        try store.removeAll()
+        #expect(try store.load().isEmpty)
+    }
+
     @Test func anOpenedStoreIsNotOpenedAgain() throws {
         var attempts = 0
         let store = DeferredEntryStore {
@@ -46,6 +63,7 @@ import Testing
         try store.add(first)
         try store.replace(first)
         try store.remove(id: first.id)
+        try store.removeAll()
         #expect(attempts == 1)
     }
 
