@@ -32,7 +32,7 @@ EOF
 echo "xcodebuild \$*" >> "$calls"
 echo "\${TEST_RUNNER_ANKY_PRESENTATION:-unset}" > "$tree/look.txt"
 case "\$STUB_XCODEBUILD" in
-  hang) sleep 60 & echo \$! >> "$tree/children.pid"; wait ;;
+  hang) echo "stub xcodebuild is stuck"; sleep 60 & echo \$! >> "$tree/children.pid"; wait ;;
   hang-once)
     [ "\$(grep -c '^xcodebuild ' "$calls")" -gt 1 ] || { sleep 60 & echo \$! >> "$tree/children.pid"; wait; } ;;
   skip-unnamed)
@@ -156,7 +156,7 @@ run_runner hang-once light "$tree/.derived" EmptyStateTests/testFirstLaunchShows
 between=$(sed -n '/^xcodebuild /,/^xcodebuild /p' "$calls" | sed '1d;$d')
 [ "$code" -eq 0 ] && [ "$elapsed" -lt 30 ] && grep -qx "try 1 timed out after 2 s" "$out" \
   && grep -qx "simulator $udid rebooted" "$out" \
-  && [ "$between" = "$(printf 'xcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
+  && [ "$between" = "$(printf 'xcrun simctl list devices\nxcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
   && [ -s "$tree/children.pid" ] && children_gone \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
@@ -169,6 +169,18 @@ run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmpty
   && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 2 ] \
   && [ -s "$tree/children.pid" ] && children_gone \
   && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a hung try prints the xcodebuild log tail and the simulator state before it is stopped"
+new_tree
+seconds=2
+run_runner hang light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+stuck=$(grep -n "^stub xcodebuild is stuck" "$out" | head -n 1 | cut -d: -f1)
+timed=$(grep -n "^try 1 timed out" "$out" | head -n 1 | cut -d: -f1)
+[ -n "$stuck" ] && [ -n "$timed" ] && [ "$stuck" -lt "$timed" ] \
+  && grep -qx "::group::hung try: tail of the xcodebuild log" "$out" \
+  && grep -qx "::group::hung try: simulator state" "$out" \
+  && grep -qx "xcrun simctl list devices" "$calls"
 report "$name" $?
 
 name="a named test that did not run exits non-zero"
