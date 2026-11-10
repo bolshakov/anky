@@ -54,7 +54,7 @@ import UserNotifications
 
     private static func request(at date: Date) -> UNNotificationRequest {
         let content = UNMutableNotificationContent()
-        content.title = "Anky"
+        content.title = String(localized: "Anky")
         content.body = String(localized: "Log how you feel today.")
         content.sound = .default
         content.interruptionLevel = .active
