@@ -1,0 +1,17 @@
+$ sh -c 'axe tap --id repeat-chip --wait-timeout 5 --udid 2B5DB589-C619-489C-82D4-EEBD97442958; axe describe-ui --udid 2B5DB589-C619-489C-82D4-EEBD97442958 | grep -o '\''"AXUniqueId" *: *"[^"]*"'\'' | sort -u'
+exit: 0
+commit: 9cc8918757df35da2cc171bbfb295231403e531f
+
+✓ Tap at resolved tap point at (119.5, 219.33333333333334) completed successfully
+"AXUniqueId" : "calendar"
+"AXUniqueId" : "checkmark.circle.fill"
+"AXUniqueId" : "clock.fill"
+"AXUniqueId" : "entry-row-pain"
+"AXUniqueId" : "log-entry"
+"AXUniqueId" : "log-medication"
+"AXUniqueId" : "repeat-logged"
+"AXUniqueId" : "repeat-undo"
+"AXUniqueId" : "slider.horizontal.3"
+"AXUniqueId" : "today-date"
+"AXUniqueId" : "today-screen"
+"AXUniqueId" : "Today"
