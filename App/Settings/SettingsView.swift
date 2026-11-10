@@ -45,6 +45,11 @@ struct SettingsView: View {
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {
                 try model.removeAll()
+                do {
+                    try medications.removeAll()
+                } catch {
+                    throw PartialDelete()
+                }
                 eraseTicks += 1
             }
             .sensoryFeedback(.warning, trigger: eraseTicks)
