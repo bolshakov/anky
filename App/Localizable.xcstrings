@@ -2239,6 +2239,77 @@
           }
         }
       }
+    },
+    "Your data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши данные"
+          }
+        }
+      }
+    },
+    "Everything stays on this iPhone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё хранится только на этом iPhone."
+          }
+        }
+      }
+    },
+    "Erase all data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все данные"
+          }
+        }
+      }
+    },
+    "Erase" : {
+      "comment" : "Verb on the destructive button of the erase alert: removes the data for good.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть"
+          }
+        }
+      }
+    },
+    "Erase every entry? This can't be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все записи? Это нельзя отменить."
+          }
+        }
+      }
+    },
+    "Couldn't erase your data. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось стереть данные. Можно попробовать ещё раз."
+          }
+        }
+      }
+    },
+    "All data erased" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все данные стёрты"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
