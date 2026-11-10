@@ -88,14 +88,6 @@ struct NextDosesOnDayRepeatsTests {
         #expect(doses.isEmpty)
     }
 
-    @Test func weekAndMonthRepeatsGiveNothingYet() throws {
-        let weekly = try schedule(.weeks(1, on: [.monday]))
-        let monthly = try schedule(.months(1, onDay: 12))
-
-        #expect(try weekly.nextDoses(after: moment(3, 1), count: 3, calendar: berlin).isEmpty)
-        #expect(try monthly.nextDoses(after: moment(3, 1), count: 3, calendar: berlin).isEmpty)
-    }
-
     @Test func aDoseKeepsItsWallClockTimeInAnotherTimeZone() throws {
         let daily = try schedule()
         let inBerlin = try daily.nextDoses(after: moment(3, 12), count: 1, calendar: berlin)
