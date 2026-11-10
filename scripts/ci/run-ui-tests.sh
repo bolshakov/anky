@@ -48,11 +48,33 @@ cleanup() {
 }
 trap cleanup EXIT
 
+# Prints where a hung try is stuck, because the try's own log is otherwise cut down to its test lines.
+diagnose() {
+  echo "::group::hung try: tail of the xcodebuild log"
+  tail -n 80 "$log"
+  echo "::endgroup::"
+  echo "::group::hung try: test processes"
+  ps -axww -o pid,ppid,etime,stat,%cpu,command | grep -E "xcodebuild|xctest|AnkyUITests|Anky\.app|testmanagerd|launchd_sim" \
+    | grep -v grep
+  echo "::endgroup::"
+  echo "::group::hung try: simulator state"
+  xcrun simctl list devices | grep -F "$udid"
+  echo "::endgroup::"
+  if command -v sample > /dev/null 2>&1; then
+    for pid in $(pgrep -f "Devices/$udid/.*(AnkyUITests-Runner|Anky\.app)"); do
+      echo "::group::hung try: stack sample of process $pid"
+      sample "$pid" 3 -file /dev/stdout 2>&1 | head -n 150
+      echo "::endgroup::"
+    done
+  fi
+}
+
 # Stops the try's process group once the limit runs out, and leaves the mark file behind.
 watch() {
   trap 'kill "$nap" 2>/dev/null; exit 0' TERM
   sleep "$limit" & nap=$!
   wait "$nap"
+  diagnose
   touch "$mark"
   stop_group "$1" TERM
   sleep 2 & nap=$!
