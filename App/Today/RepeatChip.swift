@@ -31,6 +31,10 @@ struct RepeatLoggedCard: View {
     let onUndo: () -> Void
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
+    static func spokenText(for recent: RecentEntry) -> String {
+        String(localized: "Logged") + ", " + recent.spokenText(namesKind: true)
+    }
+
     var body: some View {
         let layout = dynamicTypeSize.isAccessibilitySize
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: Spacing.inlineGap))
@@ -43,7 +47,7 @@ struct RepeatLoggedCard: View {
                 Text(String(localized: "Logged") + " · " + recent.chipText(namesKind: true))
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .accessibilityHidden(true)
+                    .accessibilityLabel(Self.spokenText(for: recent))
                     .accessibilityIdentifier("repeat-logged")
             }
             Button(action: onUndo) {

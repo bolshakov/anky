@@ -25,7 +25,11 @@ struct ArchivedView: View {
                             .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-                    .accessibilityIdentifier("archived-row")
+                    .accessibilityRepresentation {
+                        Button { editing = medication } label: { Color.clear }
+                            .accessibilityLabel(medication.spokenRowLabel)
+                            .accessibilityIdentifier("archived-row")
+                    }
                     .fillsCardRow()
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Restore", systemImage: "arrow.counterclockwise") {
