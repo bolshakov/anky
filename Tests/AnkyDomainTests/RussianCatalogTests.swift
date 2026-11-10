@@ -290,6 +290,24 @@ struct RussianCatalogTests {
         }
     }
 
+    @Test func noRussianValueIsEmpty() throws {
+        let entries = try CompiledCatalog.entries()
+        for key in entries.keys.sorted() {
+            let units = entries[key]?.localizations?["ru"]?.stringUnits ?? []
+            #expect(units.allSatisfy { !$0.value.isEmpty }, "\(key) has an empty Russian value")
+        }
+    }
+
+    @Test func everyCountedKeyHoldsAllFourRussianPluralForms() throws {
+        let entries = try CompiledCatalog.entries()
+        let counted = entries.filter { $0.value.localizations?.values.contains { $0.variations != nil } == true }
+        for key in counted.keys.sorted() {
+            let plural = counted[key]?.localizations?["ru"]?.variations?.plural ?? [:]
+            let forms = plural.filter { $0.value.stringUnit != nil }.keys
+            #expect(Set(forms) == ["one", "few", "many", "other"], "\(key) lacks a Russian plural form")
+        }
+    }
+
     @Test func oneAndTwentyOnePlacesTakeTheSingularForm() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             for count in [1, 21] {

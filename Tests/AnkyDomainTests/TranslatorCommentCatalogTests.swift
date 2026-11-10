@@ -16,6 +16,7 @@ Right
 Manage
 Archive
 More actions
+Save
 """.split(separator: "\n").map(String.init)
 
 struct TranslatorCommentCatalogTests {
