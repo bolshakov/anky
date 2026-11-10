@@ -145,6 +145,10 @@ struct TodayView: View {
                 model: model,
                 medications: medications,
                 onSaved: { saveTicks += 1 },
+                onCreated: {
+                    loggedID = nil
+                    saveTicks += 1
+                },
                 onDeleted: { deleteTicks += 1 },
                 reminderCheckIn: $reminderCheckIn,
                 isShowingNewEntry: $isShowingNewEntry,
