@@ -35,6 +35,7 @@ struct RecentChipsRow: View {
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
         .frame(height: chipHeight)
+        .minimumTapTarget()
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText(namesKind: false))
         .accessibilityIdentifier("recent-chip-\(index)")
     }

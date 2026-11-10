@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct ChipFlowLayout: Layout {
-    private let spacing = Spacing.inlineGap
+    private let horizontalSpacing = Spacing.inlineGap
 
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache _: inout ()) -> CGSize {
         let frames = frames(for: subviews, width: proposal.width ?? .infinity)
@@ -26,11 +26,11 @@ struct ChipFlowLayout: Layout {
         for subview in subviews {
             let size = chipSize(subview, width: width)
             if origin.x > 0, origin.x + size.width > width {
-                origin = CGPoint(x: 0, y: origin.y + rowHeight + spacing)
+                origin = CGPoint(x: 0, y: origin.y + rowHeight)
                 rowHeight = 0
             }
             frames.append(CGRect(origin: origin, size: size))
-            origin.x += size.width + spacing
+            origin.x += size.width + horizontalSpacing
             rowHeight = max(rowHeight, size.height)
         }
         return frames

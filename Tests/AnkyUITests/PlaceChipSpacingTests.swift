@@ -3,17 +3,17 @@ import XCTest
 
 @MainActor
 final class PlaceChipSpacingTests: XCTestCase {
-    func testPlaceChipsAreAboutThirtyTwoPointsTall() {
+    func testPlaceChipsAreFortyFourPointsTall() {
         continueAfterFailure = false
         let frames = placeChipFrames()
 
         XCTAssertFalse(frames.isEmpty, "the Where card shows place chips")
         for frame in frames {
-            XCTAssertTrue((28.0 ... 36.0).contains(frame.height), "a place chip is \(frame.height) pt tall")
+            XCTAssertGreaterThanOrEqual(frame.height, 44, "a place chip is \(frame.height) pt tall")
         }
     }
 
-    func testTheGapBetweenTheFirstAndSecondRowsIsAboutEightPoints() {
+    func testChipBoxesTouchBetweenRowsAndStayEightPointsApartInARow() {
         continueAfterFailure = false
         let frames = placeChipFrames()
         let firstTop = frames.map(\.minY).min() ?? 0
@@ -29,7 +29,7 @@ final class PlaceChipSpacingTests: XCTestCase {
         let firstRowBottom = firstRow.map(\.maxY).max() ?? firstTop
         let secondRowTop = secondRow.map(\.minY).min() ?? firstRowBottom
         let gap = secondRowTop - firstRowBottom
-        XCTAssertTrue((7.0 ... 9.0).contains(gap), "the rows are \(gap) pt apart")
+        XCTAssertTrue((-0.5 ... 0.5).contains(gap), "the boxes of two rows are \(gap) pt apart")
     }
 
     func testRepeatChipIsAtLeastFortyFourPointsTall() {
