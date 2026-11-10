@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid C3651299-639A-44B8-8F51-DDAE58F78E55 | grep -cE '\''confirm-delete|keep-entry|AXLabel.*(erased|Erase every|were not)'\''; axe describe-ui --udid C3651299-639A-44B8-8F51-DDAE58F78E55 | grep -E '\''settings-screen|settings-erase-all'\'' | sort -u'
+exit: 0
+commit: 5d626bf14ac556e9e435bd1a5b1bf89c9af0ca26
+
+0
+                                                                                        "AXUniqueId" : "settings-erase-all",
+                                                                        "AXUniqueId" : "settings-screen",

@@ -1,0 +1,15 @@
+$ sh -c 'axe describe-ui --udid C3651299-639A-44B8-8F51-DDAE58F78E55 | grep -E '\''AXLabel.*(Erase|Cancel)|confirm-delete|keep-entry'\'' | sort -u'
+exit: 0
+commit: 5d626bf14ac556e9e435bd1a5b1bf89c9af0ca26
+
+                                                                                        "AXLabel" : "Erase all data",
+                                                "AXLabel" : "Cancel",
+                                                "AXLabel" : "Erase",
+                                                "AXUniqueId" : "confirm-delete",
+                                                "AXUniqueId" : "keep-entry",
+                                            "AXLabel" : "Cancel"
+                                            "AXLabel" : "Erase",
+                                            "AXUniqueId" : "confirm-delete",
+                                            "AXUniqueId" : "keep-entry",
+                                        "AXLabel" : "Erase every entry, dose and medication on this iPhone? This can't be undone.",
+                "AXLabel" : "Erase every entry, dose and medication on this iPhone? This can't be undone.",

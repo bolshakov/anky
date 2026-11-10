@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid C3651299-639A-44B8-8F51-DDAE58F78E55 | grep -E '\''AXLabel'\'' | grep -iE '\''erased|try|OK'\'' | sort -u'
+exit: 0
+commit: 5d626bf14ac556e9e435bd1a5b1bf89c9af0ca26
+
+                                            "AXLabel" : "OK",
+                                        "AXLabel" : "Your entries were erased, but your medications and doses were not. Try again to erase the rest.",
+                "AXLabel" : "Your entries were erased, but your medications and doses were not. Try again to erase the rest."
