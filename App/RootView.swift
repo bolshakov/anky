@@ -11,6 +11,8 @@ struct RootView: View {
     @State private var reminderCheckIn: Dose?
     @State private var checkInAwaitingHistory: Dose?
     @State private var reminders = CheckInReminderScheduler()
+    @State private var dailyReminder = DailyReminderSettings()
+    @State private var dailyReminderScheduler = DailyReminderScheduler()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -34,16 +36,22 @@ struct RootView: View {
             }
             .tag(Tab.history)
 
-            SettingsView(model: model, medications: medications)
-                .tabItem {
-                    Label("Settings", systemImage: "slider.horizontal.3")
-                        .fontWeight(selection == .settings ? .bold : .regular)
-                }
-                .tag(Tab.settings)
+            SettingsView(
+                model: model,
+                medications: medications,
+                dailyReminder: dailyReminder,
+                reminderScheduler: dailyReminderScheduler
+            )
+            .tabItem {
+                Label("Settings", systemImage: "slider.horizontal.3")
+                    .fontWeight(selection == .settings ? .bold : .regular)
+            }
+            .tag(Tab.settings)
         }
         .onChange(of: reminderInputs, initial: true) { _, inputs in
             guard inputs.phase == .active else { return }
             reminders.reconcile(doses: inputs.doses, medications: inputs.medications, entries: inputs.entries)
+            dailyReminderScheduler.reconcile(settings: dailyReminder, entries: inputs.entries, doses: inputs.doses)
         }
         .onChange(of: tapInputs, initial: true) { _, inputs in
             guard inputs.phase == .active, let tap = inputs.tap else { return }
@@ -87,6 +95,7 @@ struct RootView: View {
             doses: medications.doses,
             medications: medications.medications,
             entries: model.entries,
+            dailyReminder: DailyReminderChoice(isOn: dailyReminder.isOn, time: dailyReminder.time),
             phase: scenePhase
         )
     }
@@ -104,7 +113,13 @@ struct RootView: View {
         let doses: [Dose]
         let medications: [Medication]
         let entries: [Entry]
+        let dailyReminder: DailyReminderChoice
         let phase: ScenePhase
+    }
+
+    private struct DailyReminderChoice: Equatable {
+        let isOn: Bool
+        let time: DailyReminderTime
     }
 
     private enum Tab {

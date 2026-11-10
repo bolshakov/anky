@@ -2585,6 +2585,46 @@
           }
         }
       }
+    },
+    "Anky" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky"
+          }
+        }
+      }
+    },
+    "Daily reminder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневное напоминание"
+          }
+        }
+      }
+    },
+    "Log how you feel today." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пора записать самочувствие."
+          }
+        }
+      }
+    },
+    "Reminders" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напоминания"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

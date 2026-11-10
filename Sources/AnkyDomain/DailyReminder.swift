@@ -39,4 +39,51 @@ public enum DailyReminder {
             .compactMap { calendar.date(bySettingHour: time.hour, minute: time.minute, second: 0, of: $0) }
             .first { $0 > now }
     }
+
+    /// Nil while the reminder is off, so turning it off leaves nothing to schedule.
+    public static func pendingFireDate( // swiftlint:disable:this function_parameter_count
+        isOn: Bool,
+        entries: [Entry],
+        doses: [Dose],
+        time: DailyReminderTime,
+        now: Date,
+        calendar: Calendar
+    ) -> Date? {
+        // #lizard forgives
+        guard isOn else { return nil }
+        return fireDate(entries: entries, doses: doses, time: time, now: now, calendar: calendar)
+    }
+}
+
+/// The two choices the person makes in Settings. They hold no health data.
+public struct DailyReminderStore {
+    private enum Key {
+        static let isOn = "dailyReminder.isOn"
+        static let hour = "dailyReminder.hour"
+        static let minute = "dailyReminder.minute"
+    }
+
+    private let defaults: UserDefaults
+
+    public init(defaults: UserDefaults) {
+        self.defaults = defaults
+    }
+
+    public var isOn: Bool {
+        get { defaults.bool(forKey: Key.isOn) }
+        set { defaults.set(newValue, forKey: Key.isOn) }
+    }
+
+    public var time: DailyReminderTime {
+        get {
+            guard let hour = defaults.object(forKey: Key.hour) as? Int,
+                  let minute = defaults.object(forKey: Key.minute) as? Int
+            else { return .standard }
+            return DailyReminderTime(hour: hour, minute: minute)
+        }
+        set {
+            defaults.set(newValue.hour, forKey: Key.hour)
+            defaults.set(newValue.minute, forKey: Key.minute)
+        }
+    }
 }
