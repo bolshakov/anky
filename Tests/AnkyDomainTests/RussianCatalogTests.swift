@@ -205,6 +205,9 @@ Time to check in => Пора отметить самочувствие
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём
 After · checked in at %@ => После · отмечено в %@
+Every day at %@ => Каждый день в %@
+Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
+Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
 """)
 
 private let approvedFormatValues = table("""
@@ -234,6 +237,7 @@ other => %lld места
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
+    + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld

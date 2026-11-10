@@ -29,11 +29,39 @@ many => Осталось %lld символов
 other => Осталось %lld символа
 """)
 
+private let everyDaysKey = "Every %lld days at %@"
+
+private let approvedEveryDaysValues = table("""
+one => Каждые %1$lld день в %2$@
+few => Каждые %1$lld дня в %2$@
+many => Каждые %1$lld дней в %2$@
+other => Каждые %1$lld дня в %2$@
+""")
+
+private let everyWeeksKey = "Every %lld weeks on %@ at %@"
+
+private let approvedEveryWeeksValues = table("""
+one => Каждые %1$lld неделю: %2$@, в %3$@
+few => Каждые %1$lld недели: %2$@, в %3$@
+many => Каждые %1$lld недель: %2$@, в %3$@
+other => Каждые %1$lld недели: %2$@, в %3$@
+""")
+
+private let everyMonthsKey = "Every %lld months on day %lld at %@"
+
+private let approvedEveryMonthsValues = table("""
+one => Каждые %1$lld месяц %2$lld-го числа в %3$@
+few => Каждые %1$lld месяца %2$lld-го числа в %3$@
+many => Каждые %1$lld месяцев %2$lld-го числа в %3$@
+other => Каждые %1$lld месяца %2$lld-го числа в %3$@
+""")
+
 struct RussianCountedTextTests {
     @Test func theCountedTextsHoldAllFourRussianPluralForms() throws {
         let entries = try CompiledCatalog.entries()
         let counted = [(minutesKey, approvedMinutesValues), (hoursKey, approvedHoursValues),
-                       (charactersLeftKey, approvedCharactersLeftValues)]
+                       (charactersLeftKey, approvedCharactersLeftValues), (everyDaysKey, approvedEveryDaysValues),
+                       (everyWeeksKey, approvedEveryWeeksValues), (everyMonthsKey, approvedEveryMonthsValues)]
         for (key, approved) in counted {
             let plural = try #require(entries[key]?.localizations?["ru"]?.variations?.plural)
             #expect(Set(plural.keys) == ["one", "few", "many", "other"], "\(key) lacks a plural form")
