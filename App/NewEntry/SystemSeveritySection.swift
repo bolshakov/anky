@@ -41,7 +41,7 @@ struct SystemSeveritySection: View {
                     .accessibilityIdentifier("\(idPrefix)-high-label")
                     .accessibilityHidden(true)
             }
-            .frame(minHeight: Spacing.rowMinimumHeight)
+            .minimumTapTarget()
             .accessibilityLabel(spokenLabel)
             .accessibilityValue(severity.spokenValue)
             .accessibilityIdentifier("\(idPrefix)-slider")
