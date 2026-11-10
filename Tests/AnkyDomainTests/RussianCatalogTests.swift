@@ -186,6 +186,8 @@ Your latest entry before this dose. Tap to choose another. => \
 Последняя запись перед этим приёмом. Нажатие позволяет выбрать другую.
 Manage => Лекарства
 Medications => Лекарства
+Settings => Настройки
+Manage medications => Лекарства
 Archive => Архивировать
 Archived => В архиве
 Archive medication => Архивировать лекарство
