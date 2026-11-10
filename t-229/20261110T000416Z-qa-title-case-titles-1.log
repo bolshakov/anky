@@ -1,0 +1,30 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t229-02-3/tmp/s1.sh
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+## today; title 'Today'
+Heading id=None label='Today' value=None enabled=True @16,119.66666666666667 95.33333333333333x40.66666666666667
+RadioButton id=None label='Today' value=1 enabled=True @111,795 94x54
+## open_history; title 'History'
+Heading id=None label='History' value=None enabled=True @16,119.66666666666667 116x40.66666666666667
+RadioButton id=None label='History' value=1 enabled=True @197,795 94x54
+## log_dose; title 'Log Dose'
+Heading id=None label='Log Dose' value=None enabled=True @163.66666666666666,89.66666666666666 74.33333333333334x20.66666666666667
+## open_dose; title 'Edit Dose'
+Heading id=None label='Edit Dose' value=None enabled=True @163,89.66666666666666 75.66666666666669x20.66666666666667
+## edit_entry; title 'Edit Entry'
+Heading id=None label='Edit Entry' value=None enabled=True @162.33333333333334,89.66666666666666 77.33333333333334x20.66666666666667
+Heading id=None label='Edit Entry' value=None enabled=True @162.33333333333334,89.99999999999999 77.33333333333334x20.33333333333333
+## new_entry; title 'New Entry'
+Heading id=None label='New Entry' value=None enabled=True @160,89.66666666666666 82x20.66666666666667
+Heading id=None label='New Entry' value=None enabled=True @160,89.99999999999999 82x20.33333333333333
+## open_where; title 'Where'
+Heading id=None label='Where' value=None enabled=True @174.66666666666666,89.66666666666666 52.33333333333334x20.66666666666667
+## open_medications; title 'Medications'
+Heading id=None label='Medications' value=None enabled=True @152.33333333333334,89.66666666666666 97.33333333333334x20.66666666666667
+## edit_medication; title 'Edit Medication'
+Heading id=None label='Edit Medication' value=None enabled=True @139.33333333333331,99.66666666666666 123.33333333333331x20.66666666666667
+## log_dose; tap_id dose-add-medication; title 'New Medication'
+Heading id=None label='New Medication' value=None enabled=True @137,99.66666666666666 127.66666666666669x20.66666666666667
+## Setup C; open_check_in; title 'Check In'
+Heading id=None label='Check In' value=None enabled=True @166.33333333333334,89.66666666666666 69.33333333333334x20.66666666666667

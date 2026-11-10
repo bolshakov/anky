@@ -1,0 +1,5 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t229-02-3/tmp/cat.py en 'Record|Remove|Discard|Erase|Store|Submit|Clear|Add entry|Add dose'
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+keys 197, missing 0

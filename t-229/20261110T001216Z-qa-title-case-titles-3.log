@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t229-02-3/tmp/s3c.sh
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+✓ Tap at (201.0, 174.0) completed successfully
+## title Archived
+Heading id=None label='Archived' value=None enabled=True @165.66666666666666,89.66666666666666 70.66666666666666x20.66666666666667

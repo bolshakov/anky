@@ -1,0 +1,5 @@
+$ sh -c 'git diff origin/main...HEAD -- App/Localizable.xcstrings | grep -E "^-[[:space:]]*\"value\""'
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+-            "value" : "Отметить самочувствие или приём лекарства. Всё остаётся на этом iPhone."

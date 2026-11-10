@@ -1,0 +1,7 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t229-02-3/tmp/r3.sh
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+Button id=log-entry label='Log how you feel' value=None enabled=True @207,724.6666666666666 179x50.33333333333337
+Button id=log-medication label='Log dose' value=None enabled=True @16,724.6666666666666 179x50.33333333333337
+Button id=cancel-entry label='Cancel' value=None enabled=True @20,78 76.66666666666666x44

@@ -1,0 +1,19 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t229-02-3/tmp/cat.py capitals
+exit: 0
+commit: a54d5ee106f562141768f2dcf37b6af5ee5e06dc
+
+Check In
+Choose an Entry
+Edit Dose
+Edit Entry
+Opens Check In
+Left SI joint
+Log Dose
+New Medication
+New Entry
+Right SI joint
+Swipe a place right to pin it as a shortcut on New Entry.
+Edit Medication
+Swipe left to restore. Doses you logged stay in History.
+Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History.
+keys 197, missing 0
