@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-02-6/tmp/s4.sh
+exit: 0
+commit: b3b200d0c8bd48768e40faf58751ac14ebb33571
+
+Button id=place-chip-neck label='Neck' value=None enabled=True actions=Pin traits= @32,541.6666666666667 59.33333333333333x44
+Button id=place-chip-si_l label='Left SI joint' value=None enabled=True actions=Pin traits= @32,585.6666666666667 101.33333333333331x44

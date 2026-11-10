@@ -1,0 +1,48 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-02-6/tmp/s1.sh
+exit: 0
+commit: b3b200d0c8bd48768e40faf58751ac14ebb33571
+
+### open_check_in
+controls 4, under 44: 0
+### today
+exit 0
+controls 7, under 44: 0
+### open_history
+exit 0
+controls 4, under 44: 0
+### new_entry
+exit 0
+UNDER44 TextField id=note-field label='Note' 338.0x22.0 @32.0,827.7
+controls 23, under 44: 1
+### edit_entry
+exit 0
+UNDER44 Button id=entry-more label='More actions' 36.0x36.0 @346.0,82.0
+UNDER44 TextField id=note-field label='Note' 338.0x22.0 @32.0,751.7
+controls 23, under 44: 2
+### open_where
+exit 0
+UNDER44 TextField id=None label=None 336.0x38.0 @33.0,803.0
+controls 21, under 44: 1
+### log_dose
+exit 0
+UNDER44 CheckBox id=None label=None 63.0x28.0 @309.0,520.7
+controls 18, under 44: 1
+### choose_entry
+exit 0
+UNDER44 Button id=log-dose-cancel label='Cancel' 70.6x40.5 @34.4,76.7
+UNDER44 Button id=log-dose-manage label='Manage' 67.5x40.5 @300.1,76.7
+UNDER44 CheckBox id=None label=None 58.0x25.8 @300.4,484.2
+controls 21, under 44: 3
+### open_dose
+exit 0
+UNDER44 Button id=dose-more label='More actions' 36.0x36.0 @346.0,82.0
+controls 9, under 44: 1
+### open_medications
+exit 0
+controls 10, under 44: 0
+### edit_medication
+exit 0
+UNDER44 Button id=BackButton label='Log Dose' 40.5x40.5 @30.7,76.7
+UNDER44 Button id=medication-more label='More actions' 36.0x36.0 @346.0,92.0
+UNDER44 CheckBox id=None label=None 63.0x28.0 @309.0,418.3
+controls 21, under 44: 3

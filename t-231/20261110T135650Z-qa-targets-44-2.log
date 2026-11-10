@@ -1,0 +1,6 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-02-6/tmp/s2.sh
+exit: 0
+commit: b3b200d0c8bd48768e40faf58751ac14ebb33571
+
+Button id=entry-row-pain label='Pain, 0 of 10, 14:56, Left SI joint' value=None enabled=True actions=Delete traits= @16,273.33333333333337 370x68
+Button id=entry-row-pain label='Pain, 0 of 10, 14:50, No place' value=None enabled=True actions=Delete traits= @16,341.33333333333337 370x68

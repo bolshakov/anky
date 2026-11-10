@@ -1,0 +1,5 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t231-02-6/tmp/s3.sh
+exit: 0
+commit: b3b200d0c8bd48768e40faf58751ac14ebb33571
+
+TextField id=note-field label='Note' value='Edge' enabled=True actions= traits= @32,827.6666666666666 338x22
