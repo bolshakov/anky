@@ -31,8 +31,8 @@ struct RepeatLoggedCard: View {
     let onUndo: () -> Void
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    static func text(for recent: RecentEntry) -> String {
-        String(localized: "Logged") + " · " + recent.chipText(namesKind: true)
+    static func spokenText(for recent: RecentEntry) -> String {
+        String(localized: "Logged") + ", " + recent.spokenText(namesKind: true)
     }
 
     var body: some View {
@@ -44,9 +44,10 @@ struct RepeatLoggedCard: View {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(Color("AccentColor"))
                     .accessibilityHidden(true)
-                Text(Self.text(for: recent))
+                Text(String(localized: "Logged") + " · " + recent.chipText(namesKind: true))
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityLabel(Self.spokenText(for: recent))
                     .accessibilityIdentifier("repeat-logged")
             }
             Button(action: onUndo) {

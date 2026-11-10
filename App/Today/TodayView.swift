@@ -257,7 +257,7 @@ struct TodayView: View {
             try model.add(entry)
             loggedID = entry.id
             logTicks += 1
-            AccessibilityNotification.Announcement(RepeatLoggedCard.text(for: RecentEntry(entry))).post()
+            AccessibilityNotification.Announcement(RepeatLoggedCard.spokenText(for: RecentEntry(entry))).post()
         } catch {
             isShowingSaveFailure = true
         }
