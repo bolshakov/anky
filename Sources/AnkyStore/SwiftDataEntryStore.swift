@@ -62,6 +62,18 @@ import SwiftData
         try commit()
     }
 
+    public func removeAll() throws {
+        let records: [EntryRecord]
+        do {
+            records = try context.fetch(FetchDescriptor<EntryRecord>())
+        } catch {
+            throw EntryStoreError.notSaved
+        }
+        guard !records.isEmpty else { return }
+        records.forEach { context.delete($0) }
+        try commit()
+    }
+
     private func record(id: UUID) throws -> EntryRecord? {
         let descriptor = FetchDescriptor<EntryRecord>(predicate: #Predicate { $0.id == id })
         do {

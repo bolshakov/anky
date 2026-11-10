@@ -27,6 +27,10 @@ import Foundation
         try current().remove(id: id)
     }
 
+    public func removeAll() throws {
+        try current().removeAll()
+    }
+
     private func current() throws -> any EntryStore {
         if let opened {
             return opened

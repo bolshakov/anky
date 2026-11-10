@@ -236,7 +236,7 @@ struct SwiftDataDoseTests {
                     configurations: ModelConfiguration(url: url)
                 )
                 let context = ModelContext(container)
-                context.insert(MedicationRecord(zorblex))
+                try context.insert(MedicationRecord(zorblex))
                 try context.save()
             }
 

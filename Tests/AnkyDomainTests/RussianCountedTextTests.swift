@@ -29,11 +29,39 @@ many => Осталось %lld символов
 other => Осталось %lld символа
 """)
 
+private let everyDaysKey = "Every %lld days at %@"
+
+private let approvedEveryDaysValues = table("""
+one => Каждые %1$lld день в %2$@
+few => Каждые %1$lld дня в %2$@
+many => Каждые %1$lld дней в %2$@
+other => Каждые %1$lld дня в %2$@
+""")
+
+private let everyWeeksKey = "Every %lld weeks on %@ at %@"
+
+private let approvedEveryWeeksValues = table("""
+one => Каждые %1$lld неделю: %2$@, в %3$@
+few => Каждые %1$lld недели: %2$@, в %3$@
+many => Каждые %1$lld недель: %2$@, в %3$@
+other => Каждые %1$lld недели: %2$@, в %3$@
+""")
+
+private let everyMonthsKey = "Every %lld months on day %lld at %@"
+
+private let approvedEveryMonthsValues = table("""
+one => Каждые %1$lld месяц %2$lld-го числа в %3$@
+few => Каждые %1$lld месяца %2$lld-го числа в %3$@
+many => Каждые %1$lld месяцев %2$lld-го числа в %3$@
+other => Каждые %1$lld месяца %2$lld-го числа в %3$@
+""")
+
 struct RussianCountedTextTests {
     @Test func theCountedTextsHoldAllFourRussianPluralForms() throws {
         let entries = try CompiledCatalog.entries()
         let counted = [(minutesKey, approvedMinutesValues), (hoursKey, approvedHoursValues),
-                       (charactersLeftKey, approvedCharactersLeftValues)]
+                       (charactersLeftKey, approvedCharactersLeftValues), (everyDaysKey, approvedEveryDaysValues),
+                       (everyWeeksKey, approvedEveryWeeksValues), (everyMonthsKey, approvedEveryMonthsValues)]
         for (key, approved) in counted {
             let plural = try #require(entries[key]?.localizations?["ru"]?.variations?.plural)
             #expect(Set(plural.keys) == ["one", "few", "many", "other"], "\(key) lacks a plural form")
@@ -63,6 +91,17 @@ struct RussianCountedTextTests {
             for (count, expected) in left {
                 #expect(String(localized: "\(count) characters left", bundle: ru, locale: russian) == expected)
             }
+        }
+    }
+
+    @Test func theEnglishScheduleSentencesTakeTheirCountedForms() throws {
+        try CompiledCatalog.withBundle("en") { en in
+            let english = Locale(identifier: "en")
+            let days = String(localized: "Every \(2) days at \("08:00")", bundle: en, locale: english)
+            let weeks = String(localized: "Every \(3) weeks on \("Friday") at \("08:00")", bundle: en, locale: english)
+            let months = String(localized: "Every \(2) months on day \(9) at \("08:00")", bundle: en, locale: english)
+            #expect([days, weeks, months] == ["Every 2 days at 08:00", "Every 3 weeks on Friday at 08:00",
+                                              "Every 2 months on day 9 at 08:00"])
         }
     }
 

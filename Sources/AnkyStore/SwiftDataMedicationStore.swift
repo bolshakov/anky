@@ -43,7 +43,7 @@ import SwiftData
     }
 
     public func add(_ medication: Medication) throws {
-        context.insert(MedicationRecord(medication))
+        try context.insert(MedicationRecord(medication))
         try commit()
     }
 
@@ -54,7 +54,7 @@ import SwiftData
 
     public func update(_ medication: Medication) throws {
         let record = try record(id: medication.id)
-        record.assign(medication)
+        try record.assign(medication)
         try commit()
     }
 
@@ -97,6 +97,21 @@ import SwiftData
     public func removeDose(id: UUID) throws {
         let stored = try doseRecord(id: id)
         context.delete(stored)
+        try commit()
+    }
+
+    public func removeAll() throws {
+        let medications: [MedicationRecord]
+        let doses: [DoseRecord]
+        do {
+            medications = try context.fetch(FetchDescriptor<MedicationRecord>())
+            doses = try context.fetch(FetchDescriptor<DoseRecord>())
+        } catch {
+            throw MedicationStoreError.notSaved
+        }
+        guard !medications.isEmpty || !doses.isEmpty else { return }
+        doses.forEach { context.delete($0) }
+        medications.forEach { context.delete($0) }
         try commit()
     }
 

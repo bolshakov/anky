@@ -31,4 +31,9 @@ public struct EntryLog {
         try store.remove(id: id)
         entries.removeAll { $0.id == id }
     }
+
+    public mutating func removeAll() throws {
+        try store.removeAll()
+        entries.removeAll()
+    }
 }

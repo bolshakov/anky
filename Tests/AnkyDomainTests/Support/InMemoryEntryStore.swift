@@ -38,6 +38,11 @@ final class InMemoryEntryStore: EntryStore {
         try write { entries.removeAll { $0.id == id } }
     }
 
+    func removeAll() throws {
+        guard !entries.isEmpty else { return }
+        try write { entries.removeAll() }
+    }
+
     private func write(_ change: () -> Void) throws {
         writeCount += 1
         if refusesWrites {

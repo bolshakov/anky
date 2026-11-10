@@ -14,9 +14,11 @@ Unpinned
 Left
 Right
 Manage
+Erase
 Archive
 More actions
 Save
+About
 """.split(separator: "\n").map(String.init)
 
 struct TranslatorCommentCatalogTests {

@@ -6,6 +6,7 @@ struct DeleteWords {
     let message: LocalizedStringKey
     let button: LocalizedStringKey
     let failure: LocalizedStringKey
+    var partialFailure: LocalizedStringKey?
     let announcement: LocalizedStringResource
 
     static var entry: DeleteWords {
@@ -25,7 +26,23 @@ struct DeleteWords {
             announcement: "Dose deleted"
         )
     }
+
+    static var allData: DeleteWords {
+        DeleteWords(
+            message: "Erase every entry, dose and medication on this iPhone? This can't be undone.",
+            button: "Erase",
+            failure: "Couldn't erase your data. Try again.",
+            partialFailure: """
+            Your entries were erased, but your medications and doses were not. Try again to erase the rest.
+            """,
+            announcement: "All data erased"
+        )
+    }
 }
+
+/// Thrown by a delete action that finished some of its work. The person sees `DeleteWords.partialFailure`, with no
+/// announcement.
+struct PartialDelete: Error {}
 
 extension View {
     func entryDeleteConfirmation(
@@ -42,6 +59,7 @@ private struct EntryDeleteConfirmation: ViewModifier {
     let words: DeleteWords
     let onDelete: () throws -> Void
     @State private var isShowingDeleteFailure = false
+    @State private var isShowingPartialFailure = false
 
     func body(content: Content) -> some View {
         content
@@ -62,12 +80,17 @@ private struct EntryDeleteConfirmation: ViewModifier {
             .alert(words.failure, isPresented: $isShowingDeleteFailure) {
                 Button("OK") {}
             }
+            .alert(words.partialFailure ?? words.failure, isPresented: $isShowingPartialFailure) {
+                Button("OK") {}
+            }
     }
 
     private func delete() {
         do {
             try onDelete()
             UIAccessibility.post(notification: .announcement, argument: String(localized: words.announcement))
+        } catch is PartialDelete {
+            isShowingPartialFailure = true
         } catch {
             isShowingDeleteFailure = true
         }

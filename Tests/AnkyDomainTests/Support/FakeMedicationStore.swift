@@ -101,4 +101,12 @@ import Foundation
         }
         doseContents.remove(at: index)
     }
+
+    func removeAll() throws {
+        if writeFailure {
+            throw MedicationStoreError.notSaved
+        }
+        contents = []
+        doseContents = []
+    }
 }

@@ -478,6 +478,198 @@
         }
       }
     },
+    "Every day at %@" : {
+      "comment" : "How a schedule that repeats daily reads, such as 'Every day at 08:00'. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый день в %@"
+          }
+        }
+      }
+    },
+    "Every %lld days at %@" : {
+      "comment" : "How a schedule that repeats every few days reads, such as 'Every 3 days at 08:00'. %1$lld is the number of days, at least 2. %2$@ holds the clock times, already formatted for the language. Needs every plural form of the language.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld day at %2$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld days at %2$@"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld день в %2$@"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld дня в %2$@"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld дней в %2$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld дня в %2$@"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Every week on %@ at %@" : {
+      "comment" : "How a schedule that repeats weekly reads, such as 'Every week on Friday at 09:00'. The first %@ is the weekdays and the second the clock times. %@ holds one or more weekday names, such as Friday or Monday and Friday, as the language writes a weekday on its own. In Russian that is the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждую неделю: %1$@, в %2$@"
+          }
+        }
+      }
+    },
+    "Every %lld weeks on %@ at %@" : {
+      "comment" : "How a schedule that repeats every few weeks reads, such as 'Every 2 weeks on Friday at 09:00'. %1$lld is the number of weeks, at least 2. %2$@ holds the weekdays and %3$@ the clock times, already formatted for the language. In Russian the weekdays are in the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. Needs every plural form of the language.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld week on %2$@ at %3$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld weeks on %2$@ at %3$@"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld неделю: %2$@, в %3$@"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld недель: %2$@, в %3$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Every month on day %lld at %@" : {
+      "comment" : "How a schedule that repeats monthly reads, such as 'Every month on day 15 at 09:00'. %1$lld is the day of the month, 1 to 31. %2$@ holds the clock times, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый месяц %1$lld-го числа в %2$@"
+          }
+        }
+      }
+    },
+    "Every %lld months on day %lld at %@" : {
+      "comment" : "How a schedule that repeats every few months reads, such as 'Every 3 months on day 15 at 09:00'. %1$lld is the number of months, at least 2. %2$lld is the day of the month, 1 to 31. %3$@ holds the clock times, already formatted for the language. Needs every plural form of the language.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld month on day %2$lld at %3$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Every %1$lld months on day %2$lld at %3$@"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld месяц %2$lld-го числа в %3$@"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld месяца %2$lld-го числа в %3$@"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld месяцев %2$lld-го числа в %3$@"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld месяца %2$lld-го числа в %3$@"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Everything you log appears here, newest first." : {
       "localizations" : {
         "ru" : {
@@ -2128,6 +2320,57 @@
         }
       }
     },
+    "About" : {
+      "comment" : "Noun: heading of the Settings group that names the app, its version and its licence.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
+          }
+        }
+      }
+    },
+    "Source code and licence" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходный код и лицензия"
+          }
+        }
+      }
+    },
+    "Version %@ (%@)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %@ (%@)"
+          }
+        }
+      }
+    },
+    "Free software, GPL-3.0-or-later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Свободная программа, GPL-3.0-or-later"
+          }
+        }
+      }
+    },
+    "Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней."
+          }
+        }
+      }
+    },
     "Archive" : {
       "comment" : "Verb: hides the medication from the list but keeps the history of its doses.",
       "localizations" : {
@@ -2236,6 +2479,87 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Приём удалён"
+          }
+        }
+      }
+    },
+    "Your data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваши данные"
+          }
+        }
+      }
+    },
+    "Everything stays on this iPhone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Всё хранится только на этом iPhone."
+          }
+        }
+      }
+    },
+    "Erase all data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все данные"
+          }
+        }
+      }
+    },
+    "Erase" : {
+      "comment" : "Verb on the destructive button of the erase alert: removes the data for good.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть"
+          }
+        }
+      }
+    },
+    "Erase every entry, dose and medication on this iPhone? This can't be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить."
+          }
+        }
+      }
+    },
+    "Your entries were erased, but your medications and doses were not. Try again to erase the rest." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное."
+          }
+        }
+      }
+    },
+    "Couldn't erase your data. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось стереть данные. Можно попробовать ещё раз."
+          }
+        }
+      }
+    },
+    "All data erased" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все данные стёрты"
           }
         }
       }

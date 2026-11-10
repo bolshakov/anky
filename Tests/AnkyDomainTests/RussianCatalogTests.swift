@@ -188,6 +188,22 @@ Manage => Лекарства
 Medications => Лекарства
 Settings => Настройки
 Manage medications => Лекарства
+Your data => Ваши данные
+Everything stays on this iPhone. => Всё хранится только на этом iPhone.
+Erase all data => Стереть все данные
+Erase => Стереть
+Erase every entry, dose and medication on this iPhone? This can't be undone. => \
+Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить.
+Your entries were erased, but your medications and doses were not. Try again to erase the rest. => \
+Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное.
+Couldn't erase your data. Try again. => Не удалось стереть данные. Можно попробовать ещё раз.
+All data erased => Все данные стёрты
+About => О приложении
+Source code and licence => Исходный код и лицензия
+Version %@ (%@) => Версия %@ (%@)
+Free software, GPL-3.0-or-later => Свободная программа, GPL-3.0-or-later
+Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later. => \
+Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней.
 Archive => Архивировать
 Archived => В архиве
 Archive medication => Архивировать лекарство
@@ -205,6 +221,9 @@ Time to check in => Пора отметить самочувствие
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём
 After · checked in at %@ => После · отмечено в %@
+Every day at %@ => Каждый день в %@
+Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
+Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
 """)
 
 private let approvedFormatValues = table("""
@@ -213,18 +232,18 @@ private let approvedFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 """)
 
-private let donePlacesKey = "Done · %lld places"
+let donePlacesKey = "Done · %lld places"
 
-private let approvedDoneValues = table("""
+let approvedDoneValues = table("""
 one => Готово · %lld место
 few => Готово · %lld места
 many => Готово · %lld мест
 other => Готово · %lld места
 """)
 
-private let morePlacesKey = "%lld places"
+let morePlacesKey = "%lld places"
 
-private let approvedMorePlacesValues = table("""
+let approvedMorePlacesValues = table("""
 one => %lld место
 few => %lld места
 many => %lld мест
@@ -234,6 +253,7 @@ other => %lld места
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
+    + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
@@ -297,75 +317,6 @@ struct RussianCatalogTests {
         for key in entries.keys.sorted() {
             let units = entries[key]?.localizations?["ru"]?.stringUnits ?? []
             #expect(units.allSatisfy { !$0.value.isEmpty }, "\(key) has an empty Russian value")
-        }
-    }
-
-    @Test func everyCountedKeyHoldsAllFourRussianPluralForms() throws {
-        let entries = try CompiledCatalog.entries()
-        let counted = entries.filter { $0.value.localizations?.values.contains { $0.variations != nil } == true }
-        for key in counted.keys.sorted() {
-            let plural = counted[key]?.localizations?["ru"]?.variations?.plural ?? [:]
-            let forms = plural.filter { $0.value.stringUnit != nil }.keys
-            #expect(Set(forms) == ["one", "few", "many", "other"], "\(key) lacks a Russian plural form")
-        }
-    }
-
-    @Test func oneAndTwentyOnePlacesTakeTheSingularForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [1, 21] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) место")
-            }
-        }
-    }
-
-    @Test func twoAndTwentyTwoPlacesTakeTheFewForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [2, 3, 4, 22] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) места")
-            }
-        }
-    }
-
-    @Test func fiveAndTheTeensPlacesTakeTheManyForm() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [5, 11, 12, 13, 14, 20] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) мест")
-            }
-        }
-    }
-
-    @Test func theDoneButtonHoldsAllFourRussianPluralForms() throws {
-        let entries = try CompiledCatalog.entries()
-        let plural = try #require(entries[donePlacesKey]?.localizations?["ru"]?.variations?.plural)
-        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
-        for (form, value) in approvedDoneValues {
-            #expect(plural[form]?.stringUnit?.value == value)
-        }
-    }
-
-    @Test func theCountOfPlacesHoldsAllFourRussianPluralForms() throws {
-        let entries = try CompiledCatalog.entries()
-        let plural = try #require(entries[morePlacesKey]?.localizations?["ru"]?.variations?.plural)
-        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
-        for (form, value) in approvedMorePlacesValues {
-            #expect(plural[form]?.stringUnit?.value == value)
-        }
-    }
-
-    @Test func theCountOfPlacesTakesTheRussianPluralForms() throws {
-        try CompiledCatalog.withBundle("ru") { ru in
-            for count in [1, 21] {
-                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) место")
-            }
-            for count in [2, 3, 4, 22] {
-                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) места")
-            }
-            for count in [5, 11, 12, 13, 14, 20] {
-                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) == "\(count) мест")
-            }
         }
     }
 

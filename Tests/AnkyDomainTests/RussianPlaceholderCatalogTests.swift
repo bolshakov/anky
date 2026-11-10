@@ -8,7 +8,14 @@ private let approvedPlaceholders = table("""
 %@ of %lld => a reading's level
 %@, %@ and %lld more => place names
 After · checked in at %@ => a time
+Every %lld days at %@ => clock times
+Every %lld months on day %lld at %@ => clock times
+Every %lld weeks on %@ at %@ => weekday names and clock times
+Every day at %@ => clock times
+Every month on day %lld at %@ => clock times
+Every week on %@ at %@ => weekday names and clock times
 Taken %@. => a time
+Version %@ (%@) => the version and the build
 """).map(\.key)
 
 private let textPlaceholder = "%(\\d+\\$)?@"
