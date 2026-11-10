@@ -12,7 +12,7 @@ struct PlaceChip: View {
 
     var body: some View {
         chipButton
-            .contentShape(Capsule())
+            .minimumTapTarget()
             .accessibilityLabel(place.displayName)
             .accessibilityAddTraits(isSelected ? .isSelected : [])
             .accessibilityAction(named: Text(pinActionName)) {

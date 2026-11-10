@@ -28,7 +28,7 @@ struct DoseRow: View {
         }
         // The visible texts stay out of the accessibility tree, so the row is one element.
         .accessibilityRepresentation {
-            Button(action: onSelect) { Color.clear }
+            Button(action: onSelect) { Color.clear.minimumTapTarget() }
                 .accessibilityLabel(spokenLabel)
                 .accessibilityHint(isWaiting ? String(localized: "Opens Check In") : "")
                 .accessibilityIdentifier("dose-row")

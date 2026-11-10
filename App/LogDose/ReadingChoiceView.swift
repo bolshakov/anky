@@ -38,6 +38,8 @@ struct ReadingChoiceView: View {
                     Button("Cancel") {
                         dismiss()
                     }
+                    .frame(minHeight: Spacing.rowMinimumHeight)
+                    .contentShape(Rectangle())
                     .accessibilityIdentifier("reading-cancel")
                 }
             }
