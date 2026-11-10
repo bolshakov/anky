@@ -7,6 +7,7 @@ struct MedicationFormView: View {
     let medications: MedicationsModel
     let editing: Medication?
     let onSaved: (Medication.ID) -> Void
+    let onArchivedOrRestored: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: MedicationDraft
     // Made once per opening, so a retry after a failed save writes the same medication.
@@ -19,10 +20,16 @@ struct MedicationFormView: View {
         case name, strength
     }
 
-    init(medications: MedicationsModel, editing: Medication? = nil, onSaved: @escaping (Medication.ID) -> Void) {
+    init(
+        medications: MedicationsModel,
+        editing: Medication? = nil,
+        onSaved: @escaping (Medication.ID) -> Void,
+        onArchivedOrRestored: @escaping () -> Void = {}
+    ) {
         self.medications = medications
         self.editing = editing
         self.onSaved = onSaved
+        self.onArchivedOrRestored = onArchivedOrRestored
         _draft = State(initialValue: editing.map(MedicationDraft.init) ?? MedicationDraft())
     }
 
@@ -123,6 +130,7 @@ struct MedicationFormView: View {
             failure = .archive
             return
         }
+        onArchivedOrRestored()
         dismiss()
     }
 
@@ -133,6 +141,7 @@ struct MedicationFormView: View {
             failure = .restore
             return
         }
+        onArchivedOrRestored()
         dismiss()
     }
 }
