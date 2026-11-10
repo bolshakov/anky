@@ -33,6 +33,13 @@ struct RootView: View {
                     .fontWeight(selection == .history ? .bold : .regular)
             }
             .tag(Tab.history)
+
+            SettingsView(model: model, medications: medications)
+                .tabItem {
+                    Label("Settings", systemImage: "slider.horizontal.3")
+                        .fontWeight(selection == .settings ? .bold : .regular)
+                }
+                .tag(Tab.settings)
         }
         .onChange(of: reminderInputs, initial: true) { _, inputs in
             guard inputs.phase == .active else { return }
@@ -101,6 +108,6 @@ struct RootView: View {
     }
 
     private enum Tab {
-        case today, history
+        case today, history, settings
     }
 }
