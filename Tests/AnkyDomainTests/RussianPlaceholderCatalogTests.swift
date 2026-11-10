@@ -8,7 +8,7 @@ private let approvedPlaceholders = [
     "%@ of %lld": "a reading's level",
     "%@, %@ and %lld more": "place names",
     "After · checked in at %@": "a time",
-    "Taken %@.": "a time",
+    "Taken %@.": "a time"
 ]
 
 private let textPlaceholder = "%(\\d+\\$)?@"
