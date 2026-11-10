@@ -40,7 +40,7 @@ struct PlaceChip: View {
         }
         .buttonBorderShape(.capsule)
         if isSelected {
-            button.buttonStyle(.borderedProminent)
+            button.buttonStyle(.borderedProminent).foregroundStyle(Color.onTint)
         } else {
             button.buttonStyle(.bordered).tint(.primary)
         }
