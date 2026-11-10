@@ -49,6 +49,7 @@ public enum DailyReminder {
         now: Date,
         calendar: Calendar
     ) -> Date? {
+        // #lizard forgives
         guard isOn else { return nil }
         return fireDate(entries: entries, doses: doses, time: time, now: now, calendar: calendar)
     }
