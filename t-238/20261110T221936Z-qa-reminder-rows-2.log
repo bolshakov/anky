@@ -1,0 +1,8 @@
+$ grep -E 'reminder-time|settings-reminders-footnote|20:00|Skipped' /Users/bolshakov/Projects/personal/anky.wt/qa-t238-03-1/tmp/w/ui.json
+exit: 0
+commit: 703594d45219862c7327626b58dd1f685da2b0a1
+
+                                                                                            "AXValue" : "20:00",
+                                                                                        "AXUniqueId" : "reminder-time",
+                                                                                        "AXUniqueId" : "settings-reminders-footnote",
+                                                                                        "AXLabel" : "Skipped on days you have already logged something."
