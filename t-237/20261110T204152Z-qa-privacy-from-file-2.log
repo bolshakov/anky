@@ -1,0 +1,4 @@
+$ git status --short PRIVACY.md
+exit: 0
+commit: a5401b542cb11702444c66e5d17c45106c65d86a
+

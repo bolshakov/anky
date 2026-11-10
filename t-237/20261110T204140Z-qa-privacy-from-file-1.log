@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 0212C04F-E14E-4613-8B50-D65770D80359 | grep -o '\''Anky has[^"]*'\'''
+exit: 0
+commit: a5401b542cb11702444c66e5d17c45106c65d86a
+
+Anky has no sync, no Zebrafish and no HealthKit.\n

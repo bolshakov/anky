@@ -1,0 +1,6 @@
+$ sh -c 'grep -rEn "URLSession|URLRequest|WebKit|import Network|WKWebView" App/Settings; echo grep-exit=$?; scripts/ci/check-privacy.sh; echo check-exit=$?'
+exit: 0
+commit: a5401b542cb11702444c66e5d17c45106c65d86a
+
+grep-exit=1
+check-exit=0
