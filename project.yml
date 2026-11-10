@@ -10,7 +10,10 @@ targets:
   Anky:
     type: application
     platform: iOS
-    sources: [App]
+    sources:
+      - App
+      - path: PRIVACY.md
+        buildPhase: resources
     dependencies:
       - package: Anky
         product: AnkyDomain
