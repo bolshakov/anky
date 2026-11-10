@@ -1,0 +1,5 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/ru.py states
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+keys 197, russian values 212, not translated 0

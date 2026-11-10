@@ -1,0 +1,9 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/ru.py placeholders
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+%@ of %lld => %1$@ из %2$lld
+%@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
+After · checked in at %@ => После · отмечено в %@
+Taken %@. => Принято: %@.
+keys with a text placeholder 4, naming a medication 0

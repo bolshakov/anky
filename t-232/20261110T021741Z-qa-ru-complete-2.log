@@ -1,0 +1,4 @@
+$ sh -c 'git diff origin/main...HEAD -- App/Localizable.xcstrings | grep -E '\''^-[[:space:]]*"value"'\'''
+exit: 1
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+

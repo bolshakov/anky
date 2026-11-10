@@ -1,0 +1,19 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/ru.py comments 'Check In' 'Check in' Dose 'Log dose' 'Log Dose' Pin Pinned Unpinned Left Right Manage Archive 'More actions' Save
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+Check In :: Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in.
+Check in :: Label of the tappable control on a dose row that opens the Check In screen. It is not a hotel or flight check-in.
+Dose :: A noun: one taken amount of a medication.
+Log dose :: Button that opens the Log Dose screen. "Log" is a verb.
+Log Dose :: Title of the screen where the person records a dose they took. "Log" is a verb.
+Pin :: Verb on a swipe button: keep a place as a quick choice on the New Entry screen. It is not a map pin.
+Pinned :: Spoken when a place becomes a quick choice, and the state of such a place. It is not a map pin.
+Unpinned :: Spoken when a place stops being a quick choice. It is not a map pin.
+Left :: The left side of the body, not a direction.
+Right :: The right side of the body, not a direction.
+Manage :: Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them.
+Archive :: Verb: hides the medication from the list but keeps the history of its doses.
+More actions :: Accessibility label of the button drawn as three dots that opens a menu of further actions.
+Save :: Verb: primary button of every form. It stores what the form holds, such as an entry, a dose or a medication.
+asked 14, without a comment 0

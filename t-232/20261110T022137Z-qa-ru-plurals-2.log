@@ -1,0 +1,21 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/s2.sh
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+✓ Tap at resolved tap point at (105.5, 749.8333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 255.83333333333334) completed successfully
+✓ Tap at resolved tap point at (355.0, 415.33333333333337) completed successfully
+✓ Tap at resolved tap point at (201.0, 467.3333333333333) completed successfully
+Image id=clock.fill label='часы' value=None enabled=True @230,801.3333333333334 27.333333333333314x27.33333333333337
+Button id=log-how-you-feel-row label='Отметить самочувствие сейчас' value=None enabled=True @30.72636815920398,322.7794361525705 340.5472636815921x46.326699834162525
+StaticText id=None label='Отметить самочувствие сейчас' value=None enabled=True @45.45273631840796,336.58540630182415 311.094527363184x18.71475953565505
+PopUpButton id=dose-check-in-after label='Отметить через' value='2 часа' enabled=True @16,441.3333333333333 370x52
+StaticText id=None label='2 часа' value=None enabled=True @295.6666666666667,457.16666666666663 51x20.33333333333337
+Button id=None label='30 минут' value=None enabled=True @76,273.3333333333333 250x42
+Button id=None label='1 час' value=None enabled=True @76,315.3333333333333 250x42
+Button id=None label='2 часа' value=None enabled=True @76,357.3333333333333 250x42
+Button id=None label='3 часа' value=None enabled=True @76,399.3333333333333 250x42
+Button id=None label='4 часа' value=None enabled=True @76,441.3333333333333 250x42
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 4CA99E9C-4172-4C21-8DF7-677A1A165069 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/walk-t232.Kz48/ru-delays.png

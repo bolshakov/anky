@@ -1,0 +1,12 @@
+$ zsh /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/s3.sh
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+✓ Tap at resolved tap point at (296.5, 749.8333333333333) completed successfully
+✓ Tap at resolved tap point at (201.0, 714.0) completed successfully
+StaticText id=note-footnote label='Остался 21 символ' value=None enabled=True @16,730.3333
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 4CA99E9C-4172-4C21-8DF7-677A1A165069 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/walk-t232.Kz48/ru-note-21.png
+StaticText id=note-footnote label='Осталось 18 символов' value=None enabled=True @16,730.3
+StaticText id=note-footnote label='Осталось 2 символа' value=None enabled=True @16,730.333

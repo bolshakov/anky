@@ -1,0 +1,25 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t232-01-1/tmp/ru.py plurals
+exit: 0
+commit: f1c2106d34ad6f0db1c462bc3158ed56743e86f3
+
+%lld characters left (one) => Остался %lld символ
+%lld characters left (few) => Осталось %lld символа
+%lld characters left (many) => Осталось %lld символов
+%lld characters left (other) => Осталось %lld символа
+%lld hours (one) => %lld час
+%lld hours (few) => %lld часа
+%lld hours (many) => %lld часов
+%lld hours (other) => %lld часа
+%lld minutes (one) => %lld минута
+%lld minutes (few) => %lld минуты
+%lld minutes (many) => %lld минут
+%lld minutes (other) => %lld минуты
+%lld places (one) => %lld место
+%lld places (few) => %lld места
+%lld places (many) => %lld мест
+%lld places (other) => %lld места
+Done · %lld places (one) => Готово · %lld место
+Done · %lld places (few) => Готово · %lld места
+Done · %lld places (many) => Готово · %lld мест
+Done · %lld places (other) => Готово · %lld места
+counted 5, lacking a form 0
