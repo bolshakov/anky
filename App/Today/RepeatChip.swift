@@ -19,6 +19,7 @@ struct RepeatChip: View {
                 .frame(minHeight: Spacing.repeatChipLabelHeight)
         }
         .buttonStyle(.bordered)
+        .foregroundStyle(Color.onSoft)
         .buttonBorderShape(borderShape)
         .contentShape(borderShape)
         .accessibilityLabel(RecentEntryText.sameAsLastTime + ", " + recent.spokenText(namesKind: true))
