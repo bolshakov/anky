@@ -28,7 +28,7 @@ struct SettingsView: View {
                 RemindersSection(settings: dailyReminder, scheduler: reminderScheduler)
                 CardSection(
                     Text("Your data"),
-                    footnote: Text("Everything stays on this iPhone."),
+                    footnote: Text("Your data stays on this iPhone unless you share an export."),
                     id: "your-data"
                 ) {
                     Button("Erase all data", role: .destructive) {
@@ -39,8 +39,15 @@ struct SettingsView: View {
                 }
                 FooterBlockSection(Text("About"), footer: AboutBlock()) {
                     Link(destination: repository) {
-                        Text("Source code and licence")
-                            .foregroundStyle(Color.ink)
+                        HStack {
+                            Text("Source code and license")
+                                .foregroundStyle(Color.ink)
+                            Spacer()
+                            Image(systemName: "arrow.up.right")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(Color.ink2)
+                                .accessibilityHidden(true)
+                        }
                     }
                     .rowHeight()
                     .accessibilityIdentifier("settings-source-code")
