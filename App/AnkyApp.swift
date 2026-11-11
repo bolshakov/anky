@@ -40,6 +40,7 @@ struct AnkyApp: App {
         #if DEBUG
             ReminderTapSwitch.listen(taps: taps, folder: EntriesLocation.folder())
             PendingDosesSwitch.listen(folder: EntriesLocation.folder())
+            DebugDoseSeed.seed(into: medications, folder: MedicationsLocation.folder())
         #endif
         Self.colourSelectedSegments()
     }

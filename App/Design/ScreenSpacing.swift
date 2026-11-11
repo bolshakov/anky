@@ -17,6 +17,10 @@ extension View {
             .contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
     }
 
+    func lastBlockClearance() -> some View {
+        contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
+    }
+
     func emptyBlockGap() -> some View {
         listSectionSpacing(.custom(Spacing.emptyBlockGap))
     }

@@ -72,6 +72,7 @@ struct SettingsView: View {
             }
             .sensoryFeedback(.warning, trigger: eraseTicks)
             .screenSpacing()
+            .lastBlockClearance()
             .accessibilityIdentifier("settings-screen")
             .navigationTitle("Settings")
         }
