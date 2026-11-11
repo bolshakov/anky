@@ -103,7 +103,8 @@ struct DoseNotificationReconcilerTests {
         #expect(await Set(center.addedIdentifiers).count == before.count + after.count)
     }
 
-    @Test func `an edit that keeps a time leaves those notifications alone`() async throws {
+    @Test func `an edit that adds a time keeps the notifications still in the window and adds only the new ones`(
+    ) async throws {
         var naproxen = try medication("Naproxen", at: [(9, 0)])
         let center = FakeNotificationCenter()
         await reconcile([naproxen], on: center)
@@ -245,15 +246,27 @@ struct DoseNotificationReconcilerTests {
         #expect(await center.calls.isEmpty)
     }
 
-    @Test func `an answer of yes is asked once and schedules the window`() async throws {
+    @Test func `an answer of yes schedules the window`() async throws {
         let naproxen = try medication("Naproxen")
         let center = FakeNotificationCenter(permission: .notDetermined, answer: true)
 
         await reconcile([naproxen], on: center)
-        await reconcile([naproxen], on: center)
 
         #expect(await center.permissionRequests == 1)
         #expect(await center.addedIdentifiers == expected([naproxen]))
+    }
+
+    @Test func `turning notifications on in Settings lets the next rebuild fill the window without asking`(
+    ) async throws {
+        let naproxen = try medication("Naproxen")
+        let center = FakeNotificationCenter(permission: .denied)
+        await reconcile([naproxen], on: center)
+
+        await center.setPermission(.allowed)
+        await reconcile([naproxen], on: center)
+
+        #expect(await center.addedIdentifiers == expected([naproxen]))
+        #expect(await center.permissionRequests == 0)
     }
 
     @Test func `permission is not asked when no scheduled medication exists`() async throws {

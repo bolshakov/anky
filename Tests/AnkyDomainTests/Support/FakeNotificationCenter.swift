@@ -58,6 +58,10 @@ actor FakeNotificationCenter: NotificationCenterPort {
         return answer
     }
 
+    func setPermission(_ permission: NotificationPermission) {
+        current = permission
+    }
+
     func add(_ notification: DoseNotification) {
         calls.append(.add(notification.identifier))
         pendingIdentifiers.append(notification.identifier)
