@@ -1383,6 +1383,16 @@
         }
       }
     },
+    "Not set" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не задано"
+          }
+        }
+      }
+    },
     "Scheduled" : {
       "localizations" : {
         "ru" : {
