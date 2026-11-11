@@ -17,6 +17,7 @@ struct ScheduleView: View {
     var body: some View {
         List {
             ScheduleRepeatSection(schedule: $schedule)
+            ScheduleTimesSection(schedule: $schedule)
         }
         .screenSpacing()
         .accessibilityIdentifier("schedule-screen")
