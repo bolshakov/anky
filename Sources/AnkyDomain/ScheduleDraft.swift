@@ -5,7 +5,7 @@ public struct ScheduleDraft: Equatable, Sendable {
     public enum Unit: Equatable, Sendable { case days, weeks, months }
 
     public enum Preset: Equatable, Sendable, CaseIterable {
-        case everyDay, everyWeek, everyTwoWeeks, everyFourWeeks, everyMonth, custom
+        case everyDay, everyWeek, everyTwoWeeks, everyFourWeeks
     }
 
     public var unit: Unit
@@ -44,14 +44,13 @@ public struct ScheduleDraft: Equatable, Sendable {
         }
     }
 
-    public var preset: Preset {
-        Preset.allCases.first { $0.repeatUnit == unit && $0.repeatInterval == interval } ?? .custom
+    public var preset: Preset? {
+        Preset.allCases.first { $0.repeatUnit == unit && $0.repeatInterval == interval }
     }
 
     public mutating func choose(_ preset: Preset) {
-        guard let presetUnit = preset.repeatUnit, let presetInterval = preset.repeatInterval else { return }
-        unit = presetUnit
-        interval = presetInterval
+        unit = preset.repeatUnit
+        interval = preset.repeatInterval
     }
 
     public func schedule() -> MedicationSchedule? {
@@ -65,21 +64,18 @@ public struct ScheduleDraft: Equatable, Sendable {
 }
 
 private extension ScheduleDraft.Preset {
-    var repeatUnit: ScheduleDraft.Unit? {
+    var repeatUnit: ScheduleDraft.Unit {
         switch self {
         case .everyDay: .days
         case .everyWeek, .everyTwoWeeks, .everyFourWeeks: .weeks
-        case .everyMonth: .months
-        case .custom: nil
         }
     }
 
-    var repeatInterval: Int? {
+    var repeatInterval: Int {
         switch self {
-        case .everyDay, .everyWeek, .everyMonth: 1
+        case .everyDay, .everyWeek: 1
         case .everyTwoWeeks: 2
         case .everyFourWeeks: 4
-        case .custom: nil
         }
     }
 }

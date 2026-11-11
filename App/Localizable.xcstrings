@@ -85,110 +85,6 @@
         }
       }
     },
-    "%lld days" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld day"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld days"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld день"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld дня"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld дней"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld дня"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld months" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld month"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld months"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld месяц"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld месяца"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld месяцев"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld месяца"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "%lld of %lld" : {
       "localizations" : {
         "en" : {
@@ -250,58 +146,6 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld места"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld weeks" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld week"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld weeks"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld неделя"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld недели"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld недель"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld недели"
                 }
               }
             }
@@ -451,32 +295,12 @@
         }
       }
     },
-    "Custom…" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Другой…"
-          }
-        }
-      }
-    },
     "Date and time" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дата и время"
-          }
-        }
-      }
-    },
-    "Days" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дни"
           }
         }
       }
@@ -650,16 +474,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Локти"
-          }
-        }
-      }
-    },
-    "Every" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждые"
           }
         }
       }
@@ -962,16 +776,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Усталость была %lld из 10"
-          }
-        }
-      }
-    },
-    "Months" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Месяцы"
           }
         }
       }
@@ -1675,26 +1479,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Каждые 4 недели"
-          }
-        }
-      }
-    },
-    "Every month" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждый месяц"
-          }
-        }
-      }
-    },
-    "On day" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "День месяца"
           }
         }
       }
@@ -2603,16 +2387,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Верхняя часть спины"
-          }
-        }
-      }
-    },
-    "Weeks" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Недели"
           }
         }
       }
