@@ -1,0 +1,11 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t239-04-2/tmp/ids.sh
+exit: 0
+commit: 6c8e72fb8cc59744361cab93c7392270259b9eff
+
+weekday-mon Monday off CheckBox
+weekday-tue Tuesday off CheckBox
+weekday-wed Wednesday on CheckBox
+weekday-thu Thursday off CheckBox
+weekday-fri Friday off CheckBox
+weekday-sat Saturday off CheckBox
+weekday-sun Sunday off CheckBox

@@ -1,0 +1,9 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t239-04-2/tmp/step2.sh
+exit: 0
+commit: 6c8e72fb8cc59744361cab93c7392270259b9eff
+
+BEFORE
+weekday-wed Wednesday on CheckBox
+✓ Tap at resolved tap point at (151.66666666666666, 273.0) completed successfully
+AFTER
+weekday-wed Wednesday on CheckBox
