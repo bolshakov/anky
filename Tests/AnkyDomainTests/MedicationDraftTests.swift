@@ -188,4 +188,64 @@ struct MedicationDraftTests {
         let medication = try scheduled()
         #expect(MedicationDraft(medication).applied(to: medication, at: date).schedule == medication.schedule)
     }
+
+    @Test func aNewDraftHasNoSchedule() {
+        #expect(MedicationDraft().schedule == nil)
+    }
+
+    @Test func aDraftOfAMedicationCopiesItsSchedule() throws {
+        #expect(try MedicationDraft(scheduled()).schedule == scheduled().schedule)
+        #expect(MedicationDraft(existing()).schedule == nil)
+    }
+
+    @Test func applyingAScheduledDraftWritesItsEditedSchedule() throws {
+        let medication = try scheduled()
+        var draft = MedicationDraft(medication)
+        let edited = try MedicationSchedule(
+            repeat: .weeks(2, on: [.friday]), times: [#require(DoseTime(hour: 21, minute: 0))],
+            start: #require(ScheduleDay(year: 2026, month: 11, day: 13)), end: nil
+        )
+        draft.schedule = edited
+        #expect(draft.applied(to: medication, at: date).schedule == edited)
+    }
+
+    @Test func applyingAScheduledDraftWithNoScheduleLeavesNone() throws {
+        var medication = try scheduled()
+        medication.schedule = nil
+        var draft = MedicationDraft(medication)
+        draft.takenAs = .scheduled
+        #expect(draft.applied(to: medication, at: date).schedule == nil)
+    }
+
+    @Test func aNewScheduledMedicationSavesTheSchedule() throws {
+        var draft = draft(name: "Zorblex")
+        draft.takenAs = .scheduled
+        draft.schedule = try scheduled().schedule
+        let saved = draft.medication(id: UUID(), at: date)
+        #expect(saved.schedule == draft.schedule)
+        #expect(saved.takenAs == .scheduled)
+    }
+
+    @Test func aNewAsNeededMedicationSavesNoScheduleEvenWhenTheDraftHoldsOne() throws {
+        var draft = draft(name: "Zorblex")
+        draft.schedule = try scheduled().schedule
+        #expect(draft.medication(id: UUID(), at: date).schedule == nil)
+    }
+
+    @Test func switchingToAsNeededAndBackKeepsTheDraftsSchedule() throws {
+        let medication = try scheduled()
+        var draft = MedicationDraft(medication)
+        draft.takenAs = .asNeeded
+        draft.takenAs = .scheduled
+        #expect(draft.schedule == medication.schedule)
+        #expect(draft.applied(to: medication, at: date).schedule == medication.schedule)
+    }
+
+    @Test func savingAsNeededClearsTheScheduleOfTheSavedMedicationButNotTheDraft() throws {
+        let medication = try scheduled()
+        var draft = MedicationDraft(medication)
+        draft.takenAs = .asNeeded
+        #expect(draft.applied(to: medication, at: date).schedule == nil)
+        #expect(draft.schedule == medication.schedule)
+    }
 }
