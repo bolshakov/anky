@@ -1,20 +1,24 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import SwiftUI
 
 struct PrivacyPolicyView: View {
-    private let policy = Self.load()
+    private let blocks = Self.load()
 
     var body: some View {
         Group {
-            if let policy {
+            if blocks.isEmpty {
+                ContentUnavailableView("Privacy Policy", systemImage: "doc.text")
+            } else {
                 ScrollView {
-                    Text(policy)
-                        .foregroundStyle(Color.ink)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    LazyVStack(alignment: .leading, spacing: Spacing.readingBlockGap) {
+                        ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
+                            PolicyBlockView(block: block)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
                 }
                 .readingScreenSpacing()
-            } else {
-                ContentUnavailableView("Privacy Policy", systemImage: "doc.text")
             }
         }
         .background(Color.surface)
@@ -23,13 +27,10 @@ struct PrivacyPolicyView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 
-    private static func load() -> AttributedString? {
+    private static func load() -> [PolicyBlock] {
         guard let url = Bundle.main.url(forResource: "PRIVACY", withExtension: "md"),
               let markdown = try? String(contentsOf: url, encoding: .utf8)
-        else { return nil }
-        return try? AttributedString(
-            markdown: markdown,
-            options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
-        )
+        else { return [] }
+        return PolicyBlock.blocks(from: markdown)
     }
 }
