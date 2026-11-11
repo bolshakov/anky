@@ -1886,7 +1886,7 @@
           }
         }
       },
-      "comment" : "Nothing at all. Used in three places: the Schedule screen when a schedule has no end date, Edit Dose when a dose has no reading before it, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
+      "comment" : "Nothing at all. Used in four places: the Schedule screen when a schedule has no end date, Edit Dose when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
     },
     "not selected" : {
       "localizations" : {
