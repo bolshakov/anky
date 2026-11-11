@@ -1,0 +1,12 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t261-01-1/tmp/qa261/row.sh
+exit: 0
+commit: 1f1963894fef589929c1f7364272e15a56760e06
+
+schedule-weekdays | None | Group | None | {'y': 257, 'width': 314, 'x': 44, 'height': 80}
+weekday-mon | Monday | GenericElement | None | {'y': 257, 'width': 45, 'x': 44, 'height': 80}
+weekday-tue | Tuesday | GenericElement | None | {'y': 257, 'width': 44.7, 'x': 89, 'height': 80}
+weekday-wed | Wednesday | GenericElement | None | {'y': 257, 'width': 45, 'x': 133.7, 'height': 80}
+weekday-thu | Thursday | GenericElement | None | {'y': 257, 'width': 44.7, 'height': 80, 'x': 178.7}
+weekday-fri | Friday | GenericElement | None | {'y': 257, 'width': 45, 'x': 223.3, 'height': 80}
+weekday-sat | Saturday | GenericElement | None | {'y': 257, 'width': 44.7, 'x': 268.3, 'height': 80}
+weekday-sun | Sunday | GenericElement | None | {'y': 257, 'width': 45, 'x': 313, 'height': 80}

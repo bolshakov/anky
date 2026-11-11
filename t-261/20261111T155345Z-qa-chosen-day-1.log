@@ -1,0 +1,23 @@
+$ sh -c 'echo BEFORE; sh /Users/bolshakov/Projects/personal/anky.wt/qa-t261-01-1/tmp/qa261/row.sh; echo; echo AFTER-WED-TAP; axe tap --id weekday-wed --udid 41A32C4C-706E-49D2-9750-30F679BAD73B >/dev/null; sleep 1; sh /Users/bolshakov/Projects/personal/anky.wt/qa-t261-01-1/tmp/qa261/row.sh'
+exit: 0
+commit: 1f1963894fef589929c1f7364272e15a56760e06
+
+BEFORE
+schedule-weekdays | None | Group | None | {'x': 44, 'width': 314, 'height': 80, 'y': 257}
+weekday-mon | Monday | GenericElement | None | {'y': 257, 'x': 44, 'width': 45, 'height': 80}
+weekday-tue | Tuesday | GenericElement | None | {'width': 44.7, 'x': 89, 'height': 80, 'y': 257}
+weekday-wed | Wednesday | GenericElement | None | {'x': 133.7, 'width': 45, 'height': 80, 'y': 257}
+weekday-thu | Thursday | GenericElement | None | {'x': 178.7, 'width': 44.7, 'height': 80, 'y': 257}
+weekday-fri | Friday | GenericElement | None | {'width': 45, 'x': 223.3, 'height': 80, 'y': 257}
+weekday-sat | Saturday | GenericElement | None | {'x': 268.3, 'width': 44.7, 'height': 80, 'y': 257}
+weekday-sun | Sunday | GenericElement | None | {'x': 313, 'width': 45, 'height': 80, 'y': 257}
+
+AFTER-WED-TAP
+schedule-weekdays | None | Group | None | {'x': 44, 'y': 257, 'height': 80, 'width': 314}
+weekday-mon | Monday | GenericElement | None | {'x': 44, 'y': 257, 'height': 80, 'width': 45}
+weekday-tue | Tuesday | GenericElement | None | {'x': 89, 'height': 80, 'y': 257, 'width': 44.7}
+weekday-wed | Wednesday | GenericElement | None | {'height': 80, 'y': 257, 'x': 133.7, 'width': 45}
+weekday-thu | Thursday | GenericElement | None | {'x': 178.7, 'height': 80, 'y': 257, 'width': 44.7}
+weekday-fri | Friday | GenericElement | None | {'x': 223.3, 'y': 257, 'height': 80, 'width': 45}
+weekday-sat | Saturday | GenericElement | None | {'x': 268.3, 'y': 257, 'height': 80, 'width': 44.7}
+weekday-sun | Sunday | GenericElement | None | {'height': 80, 'x': 313, 'y': 257, 'width': 45}
