@@ -251,12 +251,22 @@ Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
 Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
 %@. Next: %@. => %1$@. Следующий приём: %2$@.
 %@. => %@.
+Report and BASDAI => Отчёт и BASDAI
+Report for your doctor => Отчёт для врача
+Report => Отчёт
+Period => Период
+1 month => 1 месяц
+3 months => 3 месяца
+6 months => 6 месяцев
+Preview => Просмотреть
 """)
 
 private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
 %lld of %lld => %1$lld из %2$lld
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
+%@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
+Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Можно выбрать период длиннее.
 """)
 
 let donePlacesKey = "Done · %lld places"
@@ -280,12 +290,15 @@ other => %lld места
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
+    + ["%lld entries", "%lld doses"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
 %lld of %lld => %1$lld of %2$lld
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
+%@ and %@, %@ to %@. => %1$@ and %2$@, %3$@ to %4$@.
+Nothing logged from %@ to %@. Pick a longer period. => Nothing logged from %1$@ to %2$@. Pick a longer period.
 """)
 
 let russian = Locale(identifier: "ru")

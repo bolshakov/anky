@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ and %@, %@ to %@." : {
+      "comment" : "The Report screen's counts line, such as '142 entries and 38 doses, 11 August to 11 November.' %1$@ is the entries count, %2$@ the doses count, %3$@ the period's first day and %4$@ today, each a day and a month.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ and %2$@, %3$@ to %4$@."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ и %2$@, с %3$@ по %4$@."
+          }
+        }
+      }
+    },
     "%@ of %lld" : {
       "localizations" : {
         "en" : {
@@ -85,6 +102,112 @@
         }
       }
     },
+    "%lld doses" : {
+      "comment" : "How many doses the report period holds, the second part of the Report screen's counts line.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld dose"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld doses"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld приём"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld приёма"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld приёмов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld приёма"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld entries" : {
+      "comment" : "How many entries the report period holds, the first part of the Report screen's counts line.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entry"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld entries"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld запись"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld записи"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld записей"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld записи"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld of %lld" : {
       "localizations" : {
         "en" : {
@@ -149,6 +272,39 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "1 month" : {
+      "comment" : "A Report period: the month before today.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 месяц"
+          }
+        }
+      }
+    },
+    "3 months" : {
+      "comment" : "A Report period: the three months before today.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 месяца"
+          }
+        }
+      }
+    },
+    "6 months" : {
+      "comment" : "A Report period: the six months before today.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 месяцев"
           }
         }
       }
@@ -780,6 +936,23 @@
         }
       }
     },
+    "Nothing logged from %@ to %@. Pick a longer period." : {
+      "comment" : "The Report screen's line when the period holds no entry and no dose. %1$@ is the period's first day and %2$@ today, each a day and a month.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing logged from %1$@ to %2$@. Pick a longer period."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С %1$@ по %2$@ записей нет. Можно выбрать период длиннее."
+          }
+        }
+      }
+    },
     "Off in iOS Settings" : {
       "localizations" : {
         "ru" : {
@@ -866,6 +1039,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Боль была %lld из 10"
+          }
+        }
+      }
+    },
+    "Period" : {
+      "comment" : "The label of the Report screen's choice of how far back the report goes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Период"
+          }
+        }
+      }
+    },
+    "Preview" : {
+      "comment" : "The button that builds the report and opens it in the system preview. A verb.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотреть"
+          }
+        }
+      }
+    },
+    "Report" : {
+      "comment" : "The title of the screen that picks a period for a report to show a doctor.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт"
+          }
+        }
+      }
+    },
+    "Report and BASDAI" : {
+      "comment" : "The VoiceOver name of the Today toolbar button that opens the report and BASDAI menu.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт и BASDAI"
+          }
+        }
+      }
+    },
+    "Report for your doctor" : {
+      "comment" : "The Today menu item that opens the Report screen, where a period is picked for a PDF to show a doctor.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт для врача"
           }
         }
       }

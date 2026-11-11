@@ -9,6 +9,7 @@ private let approvedPlaceholders = table("""
 %@. => the schedule in words
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@, %@ and %lld more => place names
+%@ and %@, %@ to %@. => the entry and dose counts, then two days
 After · checked in at %@ => a time
 Every %lld days at %@ => clock times
 Every %lld months on day %lld at %@ => clock times
@@ -16,6 +17,7 @@ Every %lld weeks on %@ at %@ => weekday names and clock times
 Every day at %@ => clock times
 Every month on day %lld at %@ => clock times
 Every week on %@ at %@ => weekday names and clock times
+Nothing logged from %@ to %@. Pick a longer period. => two days
 Taken %@. => a time
 Version %@ (%@) => the version and the build
 """).map(\.key)
