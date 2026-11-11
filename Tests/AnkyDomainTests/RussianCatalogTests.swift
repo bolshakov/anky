@@ -248,6 +248,7 @@ Time => Время
 Skipped on days you have already logged something. => \
 Пропускается в дни, когда вы уже что-то записали.
 Log how you feel today. => Пора записать самочувствие.
+Time for your dose. => Пора принять лекарство.
 Anky => Anky
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём
