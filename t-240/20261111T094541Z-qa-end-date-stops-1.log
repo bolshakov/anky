@@ -1,0 +1,35 @@
+$ sed -n 60,90p Tests/AnkyDomainTests/DoseNotificationPlanTests.swift
+exit: 0
+commit: 3de9545b8a71fba6d8a5ad52b6da09cf0326f44c
+
+        DoseNotificationPlan.window(medications: medications, now: now, budget: budget, calendar: calendar ?? berlin)
+    }
+
+    // MARK: End date
+
+    @Test func aDailyScheduleStopsAfterItsEndDayAndKeepsTheEndDayItself() throws {
+        let naproxen = try medication(schedule: schedule(from: (3, 10), to: (3, 14)))
+
+        let planned = try window([naproxen], now: moment(3, 11, 12), budget: 10)
+
+        #expect(try planned.map(\.fireAt) == [moment(3, 12, 9), moment(3, 13, 9), moment(3, 14, 9)])
+    }
+
+    @Test func aDoseOnTheEndDayAfterNowIsKeptAndTheNextDaysIsNot() throws {
+        let naproxen = try medication(schedule: schedule(at: [(8, 0), (20, 0)], to: (3, 14)))
+
+        let planned = try window([naproxen], now: moment(3, 14, 12), budget: 10)
+
+        #expect(try planned.map(\.fireAt) == [moment(3, 14, 20)])
+    }
+
+    @Test func aScheduleWhoseEndDayHasPassedPlansNothing() throws {
+        let naproxen = try medication(schedule: schedule(to: (3, 14)))
+
+        #expect(try window([naproxen], now: moment(3, 15, 6)).isEmpty)
+    }
+
+    // MARK: Which medications count
+
+    @Test func archivedAsNeededAndUnscheduledMedicationsGetNoNotification() throws {
+        let daily = try schedule()
