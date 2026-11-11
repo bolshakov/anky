@@ -976,6 +976,16 @@
         }
       }
     },
+    "Off in iOS Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выключено в настройках iOS"
+          }
+        }
+      }
+    },
     "Opens Check In" : {
       "localizations" : {
         "ru" : {

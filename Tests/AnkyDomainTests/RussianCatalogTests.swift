@@ -243,6 +243,7 @@ Add what you take, then log a dose in two taps. Everything stays on this iPhone.
 Time to check in => Пора отметить самочувствие
 Reminders => Напоминания
 Daily reminder => Ежедневное напоминание
+Off in iOS Settings => Выключено в настройках iOS
 Time => Время
 Skipped on days you have already logged something. => \
 Пропускается в дни, когда вы уже что-то записали.

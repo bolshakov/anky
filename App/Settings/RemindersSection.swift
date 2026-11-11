@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import AnkyDomain
 import SwiftUI
+import UIKit
 
 struct RemindersSection: View {
     let settings: DailyReminderSettings
     let scheduler: DailyReminderScheduler
+    @State private var isDeniedByiOS = false
+    @Environment(\.openURL) private var openURL
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         CardSection(
@@ -12,16 +16,46 @@ struct RemindersSection: View {
             footnote: Text("Skipped on days you have already logged something."),
             id: "settings-reminders"
         ) {
-            SwitchRow(Text("Daily reminder"), isOn: isOn)
-                .accessibilityIdentifier("reminder-toggle")
-            if settings.isOn {
-                DatePicker("Time", selection: time, displayedComponents: .hourAndMinute)
-                    .datePickerStyle(.compact)
-                    .foregroundStyle(Color.ink)
-                    .rowHeight()
-                    .accessibilityIdentifier("reminder-time")
+            if isDeniedByiOS {
+                deniedRow
+            } else {
+                SwitchRow(Text("Daily reminder"), isOn: isOn)
+                    .accessibilityIdentifier("reminder-toggle")
+                if settings.isOn {
+                    DatePicker("Time", selection: time, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(.compact)
+                        .foregroundStyle(Color.ink)
+                        .rowHeight()
+                        .accessibilityIdentifier("reminder-time")
+                }
             }
         }
+        .task(id: scenePhase) {
+            if scenePhase == .active {
+                await refreshDenied()
+            }
+        }
+    }
+
+    private var deniedRow: some View {
+        Button {
+            if let url = URL(string: UIApplication.openNotificationSettingsURLString) {
+                openURL(url)
+            }
+        } label: {
+            LabeledContent {
+                RowChevron()
+            } label: {
+                Text("Off in iOS Settings")
+                    .foregroundStyle(Color.ink)
+            }
+        }
+        .rowHeight()
+        .accessibilityIdentifier("reminder-denied")
+    }
+
+    private func refreshDenied() async {
+        isDeniedByiOS = await scheduler.isDeniedByiOS()
     }
 
     private var time: Binding<Date> {
@@ -44,6 +78,7 @@ struct RemindersSection: View {
                     if await scheduler.requestPermission() {
                         settings.isOn = true
                     }
+                    await refreshDenied()
                 }
             }
         )
