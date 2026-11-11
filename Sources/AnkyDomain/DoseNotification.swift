@@ -12,8 +12,6 @@ public struct DoseNotification: Equatable, Sendable {
         self.fireAt = fireAt
     }
 
-    /// Never a bare UUID: the check-in scheduler cancels pending UUID identifiers it does not want, and a tap on a
-    /// bare UUID reads as a check-in.
     public var identifier: String {
         "\(DoseNotificationPlan.identifierPrefix)\(medicationID.uuidString).\(Int(fireAt.timeIntervalSince1970))"
     }

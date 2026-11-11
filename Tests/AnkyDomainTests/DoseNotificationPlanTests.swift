@@ -93,9 +93,10 @@ struct DoseNotificationPlanTests {
         let unscheduled = try medication("Unscheduled", schedule: nil)
         let active = try medication("Active", schedule: daily)
 
-        let planned = try window([archived, asNeeded, unscheduled, active], now: moment(3, 12, 6), budget: 1)
+        let planned = try window([archived, asNeeded, unscheduled, active], now: moment(3, 12, 6), budget: 3)
 
-        #expect(planned.map(\.medicationName) == ["Active"])
+        #expect(planned.count == 3)
+        #expect(planned.allSatisfy { $0.medicationID == active.id })
     }
 
     @Test func noActiveScheduledMedicationPlansNothing() throws {
