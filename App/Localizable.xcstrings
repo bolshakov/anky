@@ -1483,6 +1483,36 @@
         }
       }
     },
+    "On day" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "День месяца"
+          }
+        }
+      }
+    },
+    "on" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "включено"
+          }
+        }
+      }
+    },
+    "off" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "выключено"
+          }
+        }
+      }
+    },
     "Scheduled" : {
       "localizations" : {
         "ru" : {
