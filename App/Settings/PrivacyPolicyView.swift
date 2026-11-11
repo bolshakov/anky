@@ -11,10 +11,11 @@ struct PrivacyPolicyView: View {
                 ContentUnavailableView("Privacy Policy", systemImage: "doc.text")
             } else {
                 ScrollView {
-                    LazyVStack(alignment: .leading, spacing: Spacing.readingBlockGap) {
-                        ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
+                    LazyVStack(alignment: .leading, spacing: 0) {
+                        ForEach(Array(blocks.enumerated()), id: \.offset) { index, block in
                             PolicyBlockView(block: block)
                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top, topGap(at: index))
                         }
                     }
                 }
@@ -25,6 +26,14 @@ struct PrivacyPolicyView: View {
         .accessibilityIdentifier("privacy-policy-screen")
         .navigationTitle("Privacy Policy")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func topGap(at index: Int) -> CGFloat {
+        guard index > 0 else { return 0 }
+        if case .listItem = blocks[index], case .listItem = blocks[index - 1] {
+            return Spacing.listItemGap
+        }
+        return Spacing.readingBlockGap
     }
 
     private static func load() -> [PolicyBlock] {

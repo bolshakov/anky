@@ -13,10 +13,18 @@ struct PolicyBlockView: View {
                 .bold()
                 .accessibilityAddTraits(.isHeader)
                 .foregroundStyle(Color.ink)
-        case let .paragraph(text), let .listItem(text):
+        case let .paragraph(text):
             Text(text)
                 .font(.body)
                 .foregroundStyle(Color.ink)
+        case let .listItem(text):
+            HStack(alignment: .firstTextBaseline, spacing: Spacing.inlineGap) {
+                Text("•")
+                    .accessibilityHidden(true)
+                Text(text)
+            }
+            .font(.body)
+            .foregroundStyle(Color.ink)
         }
     }
 }
