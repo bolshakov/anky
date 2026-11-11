@@ -29,8 +29,10 @@ struct ScheduleDurationSection: View {
             Button {
                 schedule.setEnd(schedule.start)
             } label: {
-                Text("None").foregroundStyle(Color.tint)
+                Text("None").foregroundStyle(Color.ink)
             }
+            .buttonStyle(.bordered)
+            .tint(Color.ink2)
         }
         .rowHeight()
         .accessibilityElement(children: .combine)
