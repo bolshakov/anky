@@ -203,7 +203,8 @@ Medications => Лекарства
 Settings => Настройки
 Manage medications => Лекарства
 Your data => Ваши данные
-Everything stays on this iPhone. => Всё хранится только на этом iPhone.
+Your data stays on this iPhone unless you share an export. => \
+Ваши данные остаются на этом iPhone, пока вы не поделитесь экспортом.
 Erase all data => Стереть все данные
 Erase => Стереть
 Erase every entry, dose and medication on this iPhone? This can't be undone. => \
@@ -213,7 +214,7 @@ Your entries were erased, but your medications and doses were not. Try again to 
 Couldn't erase your data. Try again. => Не удалось стереть данные. Можно попробовать ещё раз.
 All data erased => Все данные стёрты
 About => О приложении
-Source code and licence => Исходный код и лицензия
+Source code and license => Исходный код и лицензия
 Privacy policy => Политика конфиденциальности
 Privacy Policy => Политика конфиденциальности
 Version %@ (%@) => Версия %@ (%@)
