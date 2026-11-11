@@ -1,0 +1,5 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t260-01-1/tmp/walk.bNxg/element.py schedule-repeat-section-label
+exit: 1
+commit: 20f4ceabeda6a6319dd976cb0f46106a6e078c81
+
+no element with id schedule-repeat-section-label after 10 s

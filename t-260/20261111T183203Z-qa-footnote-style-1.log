@@ -1,0 +1,27 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t260-01-1/tmp/walk.bNxg/element.py schedule-starts
+exit: 0
+commit: 20f4ceabeda6a6319dd976cb0f46106a6e078c81
+
+{
+  "AXUniqueId": "schedule-starts",
+  "AXLabel": null,
+  "title": null,
+  "role": "AXGroup",
+  "type": "Group",
+  "frame": {
+    "x": 251.66666666666666,
+    "y": 585,
+    "height": 34.66666666666674,
+    "width": 118.33333333333334
+  },
+  "help": null,
+  "AXValue": null,
+  "role_description": "group",
+  "AXFrame": "{{251.66666666666666, 585}, {118.33333333333334, 34.666666666666742}}",
+  "enabled": true,
+  "traits": [],
+  "custom_actions": [],
+  "pid": 89545,
+  "content_required": false,
+  "subrole": null
+}

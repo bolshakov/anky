@@ -1,0 +1,27 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t260-01-1/tmp/walk.bNxg/element.py schedule-done
+exit: 0
+commit: 20f4ceabeda6a6319dd976cb0f46106a6e078c81
+
+{
+  "content_required": false,
+  "AXValue": null,
+  "pid": 89545,
+  "AXUniqueId": "schedule-done",
+  "role": "AXButton",
+  "subrole": null,
+  "traits": [],
+  "AXLabel": "Done",
+  "help": null,
+  "type": "Button",
+  "frame": {
+    "x": 16,
+    "y": 730.6666666666666,
+    "height": 93.33333333333337,
+    "width": 370
+  },
+  "title": null,
+  "AXFrame": "{{16, 730.66666666666663}, {370, 93.333333333333371}}",
+  "custom_actions": [],
+  "role_description": "button",
+  "enabled": true
+}
