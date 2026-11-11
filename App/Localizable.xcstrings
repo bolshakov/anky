@@ -1363,16 +1363,6 @@
         }
       }
     },
-    "Strength, for example 500 mg" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дозировка, например 500 мг"
-          }
-        }
-      }
-    },
     "Strength, optional" : {
       "localizations" : {
         "ru" : {
