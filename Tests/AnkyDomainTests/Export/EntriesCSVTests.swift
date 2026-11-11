@@ -55,9 +55,10 @@ struct EntriesCSVTests {
 
     @Test(arguments: ["Hurt, \"a lot\"\nTëma Бехтерев", "one\r\ntwo", "one\rtwo"])
     func keepsANoteAsOneCellWithItsLineBreaks(note: String) throws {
-        let text = try EntriesCSV.table([entry(note: note)]).text
-        let quoted = "\"" + note.replacingOccurrences(of: "\"", with: "\"\"") + "\""
-        #expect(text.hasSuffix(",\(quoted)\n"))
+        let records = try CSVReader.records(EntriesCSV.table([entry(note: note)]).text)
+        #expect(records.count == 2)
+        #expect(records.last?.count == 6)
+        #expect(records.last?.last == note)
     }
 
     @Test func ordersRowsByTimeThenByID() throws {
