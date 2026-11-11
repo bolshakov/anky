@@ -1,0 +1,4 @@
+$ grep -rni licence /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/App /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/Sources /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/Tests /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/README.md /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/PRIVACY.md
+exit: 1
+commit: f7d9d9841f16ba2090c73cb2c2b6795ca82854f1
+

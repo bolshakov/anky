@@ -1,0 +1,8 @@
+$ grep -rn 'Tëma Bolshakov' /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/App /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/README.md /Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/PRIVACY.md
+exit: 0
+commit: f7d9d9841f16ba2090c73cb2c2b6795ca82854f1
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/App/Settings/AboutBlock.swift:28:            Text(verbatim: "© \(CopyrightYears.text()) Tëma Bolshakov")
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/README.md:13:© 2026 Tëma Bolshakov
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/PRIVACY.md:8:so the developer has no access to it. Anky is made by Tëma Bolshakov, an individual developer.
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-02-1/checkout/PRIVACY.md:78:Contact the developer: Tëma Bolshakov · [contact email]
