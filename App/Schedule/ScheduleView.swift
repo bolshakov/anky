@@ -6,6 +6,7 @@ import SwiftUI
 struct ScheduleView: View {
     @Binding var draft: MedicationDraft
     @State private var schedule: ScheduleDraft
+    @Environment(\.dismiss) private var dismiss
 
     init(draft: Binding<MedicationDraft>) {
         _draft = draft
@@ -25,6 +26,7 @@ struct ScheduleView: View {
         .accessibilityIdentifier("schedule-screen")
         .navigationTitle("Schedule")
         .navigationBarTitleDisplayMode(.inline)
+        .bottomPrimaryButton(Text("Done"), id: "schedule-done") { dismiss() }
         .onAppear {
             if draft.schedule == nil {
                 draft.schedule = schedule.schedule()
