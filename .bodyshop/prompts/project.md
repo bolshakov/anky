@@ -6,9 +6,9 @@ anky tracks ankylosing spondylitis symptoms on an iPhone. Read `CLAUDE.md` first
 
 Confirmed by the stakeholder on 2026-10-26. The data is health data about one person, and it stays on the phone.
 
-The promise: entries live only on the device. There is no network sync, no iCloud sync, no analytics and no HealthKit.
-Each of those is a product call. A ticket may add one only after the stakeholder approves it, and the promise is
-reworded in the same change.
+The promise: entries live only on the device, and leave it only when the person shares an export through the iOS share
+sheet. There is no network sync, no iCloud sync, no analytics and no HealthKit. Each of those is a product call. A
+ticket may add one only after the stakeholder approves it, and the promise is reworded in the same change.
 
 In scope:
 - Entries leave the device. Nothing is sent, logged, or backed up off the device without a ticket that says so.
