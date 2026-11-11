@@ -3,7 +3,10 @@ import UserNotifications
 
 /// Passes a tap on a delivered reminder to the model. It has no `willPresent`, so a reminder still shows no banner
 /// while the app is open.
-final class ReminderTapDelegate: NSObject, UNUserNotificationCenterDelegate, Sendable {
+///
+/// The conformance is main-actor isolated because UIKit finishes handling the response on the thread `didReceive`
+/// returns on, and aborts the app with "Call must be made on main thread" when that is not the main thread.
+@MainActor final class ReminderTapDelegate: NSObject, @MainActor UNUserNotificationCenterDelegate {
     private let taps: ReminderTapModel
 
     init(taps: ReminderTapModel) {
@@ -15,7 +18,6 @@ final class ReminderTapDelegate: NSObject, UNUserNotificationCenterDelegate, Sen
         didReceive response: UNNotificationResponse
     ) async {
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
-        let identifier = response.notification.request.identifier
-        await taps.received(identifier: identifier, at: .now)
+        taps.received(identifier: response.notification.request.identifier, at: .now)
     }
 }
