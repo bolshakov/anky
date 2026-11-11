@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import SwiftUI
 
 struct AboutBlock: View {
@@ -24,8 +25,7 @@ struct AboutBlock: View {
                 .foregroundStyle(Color.ink)
             Text("Version \(version) (\(build))")
                 .accessibilityIdentifier("settings-version")
-            Text(verbatim: "© 2026 Tëma Bolshakov")
-            Text("Free software, GPL-3.0-or-later")
+            Text(verbatim: "© \(CopyrightYears.text()) Tëma Bolshakov")
             Text("Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later.")
                 .padding(.top, Spacing.inlineGap)
         }
