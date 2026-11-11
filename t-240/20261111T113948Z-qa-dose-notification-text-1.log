@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid C366BCAF-A0AD-412B-A506-ABCE55D1F007 | grep -E '\''PopoverDismissRegion|"AXValue" : "[0-9]{2}:[0-9]{2}"|Time Picker'\'''
+exit: 0
+commit: 91968155ed2c092ae061989838c0ee941ecd6d37
+
+                                                                            "AXValue" : "12:40",
+                                                                            "AXLabel" : "Time Picker",
