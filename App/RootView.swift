@@ -15,6 +15,7 @@ struct RootView: View {
     @State private var reminders = CheckInReminderScheduler()
     @State private var dailyReminder = DailyReminderSettings()
     @State private var dailyReminderScheduler = DailyReminderScheduler()
+    @State private var doseNotifications = DoseNotificationScheduler()
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -59,6 +60,7 @@ struct RootView: View {
             guard inputs.phase == .active else { return }
             reminders.reconcile(doses: inputs.doses, medications: inputs.medications, entries: inputs.entries)
             dailyReminderScheduler.reconcile(settings: dailyReminder, entries: inputs.entries, doses: inputs.doses)
+            doseNotifications.reconcile(medications: inputs.medications)
         }
         .onChange(of: tapInputs, initial: true) { _, inputs in
             guard inputs.phase == .active, let tap = inputs.tap else { return }
