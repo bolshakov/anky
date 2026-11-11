@@ -1,0 +1,6 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t239-02-1/tmp/ev.sh | grep -E '\''schedule-row|medication-name'\'''
+exit: 0
+commit: 76d928004f8a8841c38fe30daeb9e5b9f2ab821d
+
+medication-name | Name | Zorblex | True
+schedule-row | Schedule, Every 2 weeks on Wednesday at 09:00 | None | True

@@ -1,0 +1,23 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t239-02-1/tmp/ev.sh
+exit: 0
+commit: 76d928004f8a8841c38fe30daeb9e5b9f2ab821d
+
+Medications | None | None | True
+BackButton | Settings | None | True
+medications-empty | No medications yet, Add what you take, then log a dose in two taps. Everything stays on this iPhone. | None | True
+pills | pills | None | True
+medications-add | Add medication | None | True
+calendar | calendar | None | True
+clock.fill | clock | None | True
+slider.horizontal.3 | edit | None | True
+New Medication | None | None | True
+medication-cancel | Cancel | None | True
+medication-cancel | Cancel | None | True
+medication-form | None | None | True
+medication-name | Name | Name | True
+medication-strength | Strength, optional | Strength, for example 500 mg | True
+taking-label | How you take it | None | True
+taken-as | None | None | True
+check-in-later | Check in later | 0 | True
+check-in-footnote | Anky will ask how you feel after this long. Turn it on to choose a time. | None | True
+medication-save | Save | None | False
