@@ -174,13 +174,6 @@ Every day => Каждый день
 Every week => Каждую неделю
 Every 2 weeks => Каждые 2 недели
 Every 4 weeks => Каждые 4 недели
-Every month => Каждый месяц
-Custom… => Другой…
-Every => Каждые
-Days => Дни
-Weeks => Недели
-Months => Месяцы
-On day => День месяца
 on => включено
 off => выключено
 How you take it => Способ приёма
@@ -288,7 +281,6 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
-    + ["%lld days", "%lld weeks", "%lld months"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld

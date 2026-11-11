@@ -20,9 +20,6 @@ struct ScheduleView: View {
             if schedule.unit == .weeks {
                 CardSection(id: "schedule-weekdays-section") { ScheduleWeekdayRow(weekdays: weekdays) }
             }
-            if schedule.unit == .months {
-                CardSection(id: "schedule-day-section") { ScheduleOnDayRow(day: $schedule.dayOfMonth) }
-            }
             ScheduleTimesSection(schedule: $schedule)
             ScheduleDurationSection(schedule: $schedule)
             ScheduleFootnote(schedule: schedule)

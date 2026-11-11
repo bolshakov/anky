@@ -46,16 +46,15 @@ struct ScheduleDraftTests {
     @Test(arguments: [(ScheduleRepeat.days(1), ScheduleDraft.Preset.everyDay),
                       (.weeks(1, on: [.wednesday]), .everyWeek),
                       (.weeks(2, on: [.wednesday]), .everyTwoWeeks),
-                      (.weeks(4, on: [.wednesday]), .everyFourWeeks),
-                      (.months(1, onDay: 11), .everyMonth)])
+                      (.weeks(4, on: [.wednesday]), .everyFourWeeks)])
     func aStoredScheduleOpensOnThePresetItMatches(_ shape: ScheduleRepeat, _ preset: ScheduleDraft.Preset) throws {
         #expect(try ScheduleDraft(stored(shape), calendar: calendar).preset == preset)
     }
 
     @Test(arguments: [ScheduleRepeat.days(2), .days(7), .weeks(3, on: [.wednesday]), .weeks(8, on: [.monday]),
-                      .months(2, onDay: 11), .months(12, onDay: 1)])
-    func aStoredScheduleThatMatchesNoPresetOpensOnCustom(_ shape: ScheduleRepeat) throws {
-        #expect(try ScheduleDraft(stored(shape), calendar: calendar).preset == .custom)
+                      .months(1, onDay: 11), .months(2, onDay: 11), .months(12, onDay: 1)])
+    func aStoredScheduleOutsideTheFourHasNoPreset(_ shape: ScheduleRepeat) throws {
+        #expect(try ScheduleDraft(stored(shape), calendar: calendar).preset == nil)
     }
 
     @Test func theWeekdaysOfAPresetDoNotChangeItsPreset() throws {
@@ -101,42 +100,51 @@ struct ScheduleDraftTests {
     @Test(arguments: [(ScheduleDraft.Preset.everyDay, ScheduleRepeat.days(1)),
                       (.everyWeek, .weeks(1, on: [.wednesday])),
                       (.everyTwoWeeks, .weeks(2, on: [.wednesday])),
-                      (.everyFourWeeks, .weeks(4, on: [.wednesday])),
-                      (.everyMonth, .months(1, onDay: 11))])
+                      (.everyFourWeeks, .weeks(4, on: [.wednesday]))])
     func choosingAPresetBuildsItsRepeat(_ preset: ScheduleDraft.Preset, _ shape: ScheduleRepeat) throws {
         var draft = ScheduleDraft(startingOn: wednesday, calendar: calendar)
-        draft.choose(.everyMonth)
+        draft.choose(.everyFourWeeks)
         draft.choose(preset)
         #expect(draft.preset == preset)
         #expect(try draft.schedule() == stored(shape))
     }
 
-    @Test func choosingAPresetKeepsTheWeekdaysTheDayAndTheTimes() throws {
-        var draft = try ScheduleDraft(stored(.weeks(2, on: [.monday, .friday])), calendar: calendar)
-        draft.times = try [nineOClock, #require(DoseTime(hour: 21, minute: 0))]
+    @Test(arguments: ScheduleDraft.Preset.allCases)
+    func choosingAPresetReplacesAStoredRepeatOutsideTheFour(_ preset: ScheduleDraft.Preset) throws {
+        for shape in [ScheduleRepeat.months(1, onDay: 11), .days(3), .weeks(3, on: [.wednesday])] {
+            var draft = try ScheduleDraft(stored(shape), calendar: calendar)
+            #expect(draft.preset == nil)
+            draft.choose(preset)
+            #expect(draft.preset == preset)
+        }
+    }
+
+    @Test func choosingEveryTwoWeeksShowsItSelectedAndKeepsTheWeekdaysTheDayAndTheTimes() throws {
+        let evening = try #require(DoseTime(hour: 21, minute: 0))
+        var draft = try ScheduleDraft(stored(.weeks(4, on: [.monday, .friday])), calendar: calendar)
+        draft.times = [nineOClock, evening]
         draft.dayOfMonth = 30
-        draft.choose(.everyMonth)
-        draft.choose(.everyFourWeeks)
+        draft.choose(.everyTwoWeeks)
+        #expect(draft.preset == .everyTwoWeeks)
         #expect(draft.weekdays == [.monday, .friday])
         #expect(draft.dayOfMonth == 30)
-        #expect(draft.times.count == 2)
+        #expect(draft.times == [nineOClock, evening])
     }
 
-    @Test func choosingCustomChangesNothing() throws {
-        let original = try ScheduleDraft(stored(.weeks(3, on: [.friday])), calendar: calendar)
-        var draft = original
-        draft.choose(.custom)
-        #expect(draft == original)
-        var preset = ScheduleDraft(startingOn: wednesday, calendar: calendar)
-        preset.choose(.custom)
-        #expect(preset.preset == .everyDay)
+    @Test func choosingAPresetOverAStoredMonthlyScheduleKeepsItsTimes() throws {
+        let evening = try #require(DoseTime(hour: 21, minute: 0))
+        var draft = try ScheduleDraft(stored(.months(1, onDay: 15)), calendar: calendar)
+        draft.times = [nineOClock, evening]
+        draft.choose(.everyTwoWeeks)
+        #expect(draft.preset == .everyTwoWeeks)
+        #expect(draft.times == [nineOClock, evening])
     }
 
-    @Test func aDraftEditedToACustomRepeatNamesCustomAndBuildsIt() throws {
+    @Test func aDraftEditedToARepeatOutsideTheFourHasNoPresetAndBuildsIt() throws {
         var draft = ScheduleDraft(startingOn: wednesday, calendar: calendar)
         draft.unit = .weeks
         draft.interval = 3
-        #expect(draft.preset == .custom)
+        #expect(draft.preset == nil)
         #expect(try draft.schedule() == stored(.weeks(3, on: [.wednesday])))
     }
 
