@@ -5,8 +5,13 @@ public enum EntriesCSV {
     public static let header = ["id", "time", "kind", "severity", "places", "note"]
 
     public static func table(_ entries: [Entry]) -> CSVTable {
-        let sorted = entries.sorted { ($0.date, $0.id.uuidString) < ($1.date, $1.id.uuidString) }
+        let sorted = entries.sorted { order(of: $0) < order(of: $1) }
         return CSVTable(header: header, rows: sorted.map(row))
+    }
+
+    /// The printed second, not the stored date, so rows in one printed second follow the id column.
+    private static func order(of entry: Entry) -> (Double, String) {
+        (entry.date.timeIntervalSince1970.rounded(.down), entry.id.uuidString)
     }
 
     private static func row(_ entry: Entry) -> [CSVCell] {

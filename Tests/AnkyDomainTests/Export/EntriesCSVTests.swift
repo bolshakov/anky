@@ -68,6 +68,12 @@ struct EntriesCSVTests {
         #expect(ids == expected)
     }
 
+    @Test func ordersTwoEntriesInTheSamePrintedSecondByID() throws {
+        let entries = try [("B", 5.1), ("A", 5.9)].map { try entry(id: idEnding($0), at: morning + $1) }
+        let ids = EntriesCSV.table(entries).rows.map { $0[0] }
+        #expect(ids == [.text(idEnding("A")), .text(idEnding("B"))])
+    }
+
     @Test func printsATimeWithFractionalSecondsWhole() throws {
         let row = try EntriesCSV.table([entry(at: morning.addingTimeInterval(5.75))]).rows[0]
         #expect(row[1] == .text("2025-11-11T08:15:05Z"))
