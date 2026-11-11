@@ -6,7 +6,7 @@ struct ScheduleRepeatSection: View {
     @Binding var schedule: ScheduleDraft
 
     var body: some View {
-        CardSection(id: "schedule-repeat-section") {
+        CardSection(Text("Schedule"), id: "schedule-repeat-section") {
             MenuRow(Text("Repeat"), selection: preset) {
                 Text("Every day").tag(Optional(ScheduleDraft.Preset.everyDay))
                 Text("Every week").tag(Optional(ScheduleDraft.Preset.everyWeek))
