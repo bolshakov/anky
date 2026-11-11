@@ -56,12 +56,38 @@ many => Каждые %1$lld месяцев %2$lld-го числа в %3$@
 other => Каждые %1$lld месяца %2$lld-го числа в %3$@
 """)
 
+private let customCountKeys = ["%lld days", "%lld weeks", "%lld months"]
+
+private let approvedDaysValues = table("""
+one => %lld день
+few => %lld дня
+many => %lld дней
+other => %lld дня
+""")
+
+private let approvedWeeksValues = table("""
+one => %lld неделя
+few => %lld недели
+many => %lld недель
+other => %lld недели
+""")
+
+private let approvedMonthsValues = table("""
+one => %lld месяц
+few => %lld месяца
+many => %lld месяцев
+other => %lld месяца
+""")
+
+private let approvedCustomCountValues = [approvedDaysValues, approvedWeeksValues, approvedMonthsValues]
+
 struct RussianCountedTextTests {
     @Test func theCountedTextsHoldAllFourRussianPluralForms() throws {
         let entries = try CompiledCatalog.entries()
         let counted = [(minutesKey, approvedMinutesValues), (hoursKey, approvedHoursValues),
                        (charactersLeftKey, approvedCharactersLeftValues), (everyDaysKey, approvedEveryDaysValues),
                        (everyWeeksKey, approvedEveryWeeksValues), (everyMonthsKey, approvedEveryMonthsValues)]
+            + zip(customCountKeys, approvedCustomCountValues).map { ($0, $1) }
         for (key, approved) in counted {
             let plural = try #require(entries[key]?.localizations?["ru"]?.variations?.plural)
             #expect(Set(plural.keys) == ["one", "few", "many", "other"], "\(key) lacks a plural form")
@@ -80,6 +106,31 @@ struct RussianCountedTextTests {
             let hours = [(1, "час"), (2, "часа"), (4, "часа"), (5, "часов"), (11, "часов"), (21, "час"), (22, "часа")]
             for (count, word) in hours {
                 #expect(String(localized: "\(count) hours", bundle: ru, locale: russian) == "\(count) \(word)")
+            }
+        }
+    }
+
+    @Test func theCustomRepeatCountsTakeTheFormOfTheirCount() throws {
+        try CompiledCatalog.withBundle("ru") { ru in
+            let counts = [(1, "1 день", "1 неделя", "1 месяц"), (2, "2 дня", "2 недели", "2 месяца"),
+                          (5, "5 дней", "5 недель", "5 месяцев"), (21, "21 день", "21 неделя", "21 месяц"),
+                          (99, "99 дней", "99 недель", "99 месяцев")]
+            for (count, days, weeks, months) in counts {
+                #expect(String(localized: "\(count) days", bundle: ru, locale: russian) == days)
+                #expect(String(localized: "\(count) weeks", bundle: ru, locale: russian) == weeks)
+                #expect(String(localized: "\(count) months", bundle: ru, locale: russian) == months)
+            }
+        }
+        try CompiledCatalog.withBundle("en") { en in
+            let english = Locale(identifier: "en")
+            for (count, expected) in [(1, "1 day"), (3, "3 days")] {
+                #expect(String(localized: "\(count) days", bundle: en, locale: english) == expected)
+            }
+            for (count, expected) in [(1, "1 week"), (3, "3 weeks")] {
+                #expect(String(localized: "\(count) weeks", bundle: en, locale: english) == expected)
+            }
+            for (count, expected) in [(1, "1 month"), (3, "3 months")] {
+                #expect(String(localized: "\(count) months", bundle: en, locale: english) == expected)
             }
         }
     }

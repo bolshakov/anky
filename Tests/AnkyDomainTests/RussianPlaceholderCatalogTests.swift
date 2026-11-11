@@ -6,6 +6,8 @@ import Testing
 /// added here with what it holds.
 private let approvedPlaceholders = table("""
 %@ of %lld => a reading's level
+%@. => the schedule in words
+%@. Next: %@. => the schedule in words and the day of the next dose
 %@, %@ and %lld more => place names
 After · checked in at %@ => a time
 Every %lld days at %@ => clock times

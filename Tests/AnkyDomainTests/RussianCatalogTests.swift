@@ -162,6 +162,27 @@ Strength, for example 500 mg => Дозировка, например 500 мг
 Strength, optional => Дозировка, необязательно
 As needed => По необходимости
 Scheduled => По расписанию
+Not set => Не задано
+Schedule => Расписание
+Repeat => Повтор
+Times => Время приёма
+Add a time => Добавить время
+Duration => Продолжительность
+Starts => Начало
+Ends => Окончание
+Every day => Каждый день
+Every week => Каждую неделю
+Every 2 weeks => Каждые 2 недели
+Every 4 weeks => Каждые 4 недели
+Every month => Каждый месяц
+Custom… => Другой…
+Every => Каждые
+Days => Дни
+Weeks => Недели
+Months => Месяцы
+On day => День месяца
+on => включено
+off => выключено
 How you take it => Способ приёма
 Check in after => Отметить через
 After => Через
@@ -234,6 +255,8 @@ After · checked in at %@ => После · отмечено в %@
 Every day at %@ => Каждый день в %@
 Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
 Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
+%@. Next: %@. => %1$@. Следующий приём: %2$@.
+%@. => %@.
 """)
 
 private let approvedFormatValues = table("""
@@ -264,6 +287,7 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
+    + ["%lld days", "%lld weeks", "%lld months"]
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
