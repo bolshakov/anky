@@ -17,7 +17,8 @@ public protocol NotificationCenterPort: Sendable {
     func pending() async -> [PendingNotification]
     func permission() async -> NotificationPermission
     func requestPermission() async -> Bool
-    func add(_ notification: DoseNotification) async
+    /// True when the system took the request.
+    func add(_ notification: DoseNotification) async -> Bool
     func remove(identifiers: [String]) async
 }
 
@@ -44,8 +45,9 @@ public struct DoseNotificationReconciler: Sendable {
         }
         let missing = window.filter { !pendingDoses.contains($0.identifier) }
         guard !missing.isEmpty, await isAllowed() else { return }
+        // A refused dose stays missing, so the next rebuild offers it again.
         for notification in missing {
-            await center.add(notification)
+            _ = await center.add(notification)
         }
     }
 

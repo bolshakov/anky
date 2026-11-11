@@ -47,8 +47,13 @@ private struct SystemNotificationCenter: NotificationCenterPort {
         await (try? center.requestAuthorization(options: [.alert, .sound])) ?? false
     }
 
-    func add(_ notification: DoseNotification) async {
-        try? await center.add(Self.request(for: notification))
+    func add(_ notification: DoseNotification) async -> Bool {
+        do {
+            try await center.add(Self.request(for: notification))
+            return true
+        } catch {
+            return false
+        }
     }
 
     func remove(identifiers: [String]) async {

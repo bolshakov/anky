@@ -3,6 +3,8 @@ import AnkyDomain
 import Foundation
 
 /// A notification center held in memory. It keeps what is pending by identifier and records every call.
+/// Like the system, it holds at most `DoseNotificationPlan.limit` requests and silently drops the earliest-added one
+/// past that.
 actor FakeNotificationCenter: NotificationCenterPort {
     enum Call: Equatable {
         case add(String)
@@ -12,22 +14,27 @@ actor FakeNotificationCenter: NotificationCenterPort {
     private(set) var pendingIdentifiers: [String]
     private(set) var permissionRequests = 0
     private(set) var calls: [Call] = []
+    private(set) var offered: [DoseNotification] = []
+    private(set) var droppedIdentifiers: [String] = []
     /// The most requests that were pending at once, so a test can tell whether a rebuild passed the limit midway.
     private(set) var peakPending: Int
     private var current: NotificationPermission
     private let answer: Bool
+    private var refusing: Set<String>
 
     /// `answer` is what a request for permission returns. Answering true makes the permission `.allowed`, and
-    /// answering false makes it `.denied`.
+    /// answering false makes it `.denied`. An identifier in `refusing` is refused by `add` and never becomes pending.
     init(
         pending: [String] = [],
         permission: NotificationPermission = .allowed,
-        answer: Bool = true
+        answer: Bool = true,
+        refusing: Set<String> = []
     ) {
         pendingIdentifiers = pending
         peakPending = pending.count
         current = permission
         self.answer = answer
+        self.refusing = refusing
     }
 
     var addedIdentifiers: [String] {
@@ -62,14 +69,33 @@ actor FakeNotificationCenter: NotificationCenterPort {
         current = permission
     }
 
-    func add(_ notification: DoseNotification) {
+    func setRefusing(_ identifiers: Set<String>) {
+        refusing = identifiers
+    }
+
+    func add(_ notification: DoseNotification) -> Bool {
         calls.append(.add(notification.identifier))
-        pendingIdentifiers.append(notification.identifier)
-        peakPending = max(peakPending, pendingIdentifiers.count)
+        offered.append(notification)
+        guard !refusing.contains(notification.identifier) else { return false }
+        hold(notification.identifier)
+        return true
+    }
+
+    /// A request from another scheduler, such as a check-in or the daily reminder.
+    func addOther(_ identifier: String) {
+        hold(identifier)
     }
 
     func remove(identifiers: [String]) {
         calls.append(.remove(identifiers))
         pendingIdentifiers.removeAll { identifiers.contains($0) }
+    }
+
+    private func hold(_ identifier: String) {
+        pendingIdentifiers.append(identifier)
+        peakPending = max(peakPending, pendingIdentifiers.count)
+        while pendingIdentifiers.count > DoseNotificationPlan.limit {
+            droppedIdentifiers.append(pendingIdentifiers.removeFirst())
+        }
     }
 }
