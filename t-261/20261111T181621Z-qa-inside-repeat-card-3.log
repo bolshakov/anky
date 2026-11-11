@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid A4C50CA5-3380-48E3-88BC-1C48FCFE7DE5 | grep -c schedule-weekdays; axe describe-ui --udid A4C50CA5-3380-48E3-88BC-1C48FCFE7DE5 | grep -o '\''schedule-repeat\|weekday-[a-z]*'\'''
+exit: 0
+commit: e80cbbaa248802ae2f276fe4c51eda5cf35aff36
+
+0
+schedule-repeat

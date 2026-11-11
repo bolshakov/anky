@@ -1,0 +1,22 @@
+$ sh -c 'axe describe-ui --udid A4C50CA5-3380-48E3-88BC-1C48FCFE7DE5 | python3 -c '\''
+import json,sys
+def w(n):
+    if isinstance(n,dict):
+        i=n.get("AXUniqueId") or ""
+        if i.startswith(("schedule-weekdays","weekday-","schedule-repeat")): print(i,n.get("AXLabel"),n.get("frame"),n.get("AXValue"))
+        for c in n.get("children",[]): w(c)
+    else:
+        for c in n: w(c)
+w(json.load(sys.stdin))'\'''
+exit: 0
+commit: e80cbbaa248802ae2f276fe4c51eda5cf35aff36
+
+schedule-repeat Repeat, Every week, Every week {'y': 158, 'height': 52, 'x': 16, 'width': 370} None
+schedule-weekdays None {'height': 80, 'x': 44, 'width': 314, 'y': 225} None
+weekday-mon Monday {'height': 80, 'x': 44, 'width': 45, 'y': 225} None
+weekday-tue Tuesday {'height': 80, 'x': 89, 'width': 44.66666666666666, 'y': 225} None
+weekday-wed Wednesday {'height': 80, 'x': 133.66666666666666, 'width': 45, 'y': 225} None
+weekday-thu Thursday {'height': 80, 'x': 178.66666666666666, 'width': 44.66666666666666, 'y': 225} None
+weekday-fri Friday {'height': 80, 'x': 223.33333333333331, 'width': 45, 'y': 225} None
+weekday-sat Saturday {'height': 80, 'x': 268.3333333333333, 'width': 44.666666666666686, 'y': 225} None
+weekday-sun Sunday {'height': 80, 'x': 313, 'width': 45, 'y': 225} None
