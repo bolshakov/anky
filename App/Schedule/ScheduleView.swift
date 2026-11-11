@@ -23,6 +23,7 @@ struct ScheduleView: View {
             if schedule.unit == .months {
                 CardSection(id: "schedule-day-section") { ScheduleOnDayRow(day: $schedule.dayOfMonth) }
             }
+            ScheduleTimesSection(schedule: $schedule)
         }
         .screenSpacing()
         .accessibilityIdentifier("schedule-screen")
