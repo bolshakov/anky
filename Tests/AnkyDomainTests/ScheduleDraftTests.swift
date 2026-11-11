@@ -9,9 +9,8 @@ private let nineOClock = DoseTime(hour: 9, minute: 0)!
 struct ScheduleDraftTests {
     private let calendar = Calendar(identifier: .gregorian)
 
-    private func stored(_ shape: ScheduleRepeat, start: ScheduleDay = wednesday, end: ScheduleDay? = nil) throws
-        -> MedicationSchedule {
-        try MedicationSchedule(repeat: shape, times: [nineOClock], start: start, end: end)
+    private func stored(_ shape: ScheduleRepeat, start: ScheduleDay = wednesday) throws -> MedicationSchedule {
+        try MedicationSchedule(repeat: shape, times: [nineOClock], start: start, end: nil)
     }
 
     @Test func aNewDraftIsEveryDayAtNineWithNoEnd() throws {
@@ -31,14 +30,16 @@ struct ScheduleDraftTests {
 
     @Test(arguments: [(2026, 11, 8, Locale.Weekday.sunday), (2026, 11, 9, .monday), (2026, 11, 14, .saturday),
                       (2027, 1, 31, .sunday)])
-    func theStartingWeekdayIsThatOfTheCalendarDay(_ year: Int, _ month: Int, _ day: Int, _ weekday: Locale.Weekday) {
-        let start = ScheduleDay(year: year, month: month, day: day)!
+    func theStartingWeekdayIsThatOfTheCalendarDay(
+        _ year: Int, _ month: Int, _ day: Int, _ weekday: Locale.Weekday
+    ) throws {
+        let start = try #require(ScheduleDay(year: year, month: month, day: day))
         #expect(ScheduleDraft(startingOn: start, calendar: calendar).weekdays == [weekday])
     }
 
-    @Test func theStartingWeekdayDoesNotDependOnTheCalendarsTimeZone() {
+    @Test func theStartingWeekdayDoesNotDependOnTheCalendarsTimeZone() throws {
         var kiritimati = calendar
-        kiritimati.timeZone = TimeZone(identifier: "Pacific/Kiritimati")!
+        kiritimati.timeZone = try #require(TimeZone(identifier: "Pacific/Kiritimati"))
         #expect(ScheduleDraft(startingOn: wednesday, calendar: kiritimati).weekdays == [.wednesday])
     }
 

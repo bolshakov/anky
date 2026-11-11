@@ -22,9 +22,9 @@ struct MedicationScheduleLineTests {
         )
     }
 
-    private func line(_ takenAs: TakenAs, _ schedule: MedicationSchedule?, in locale: Locale, language: String) throws
-        -> String {
-        try CompiledCatalog.withBundle(language) {
+    private func line(_ takenAs: TakenAs, _ schedule: MedicationSchedule?, in locale: Locale) throws -> String {
+        let language = locale.language.languageCode?.identifier ?? "en"
+        return try CompiledCatalog.withBundle(language) {
             MedicationScheduleLine.text(
                 takenAs: takenAs, schedule: schedule, locale: locale, calendar: calendar, bundle: $0
             )
@@ -32,27 +32,27 @@ struct MedicationScheduleLineTests {
     }
 
     @Test func asNeededReadsAsNeeded() throws {
-        #expect(try line(.asNeeded, nil, in: british, language: "en") == "As needed")
-        #expect(try line(.asNeeded, nil, in: russian, language: "ru") == "По необходимости")
+        #expect(try line(.asNeeded, nil, in: british) == "As needed")
+        #expect(try line(.asNeeded, nil, in: russian) == "По необходимости")
     }
 
     @Test func asNeededIgnoresASchedule() throws {
-        #expect(try line(.asNeeded, everyTwoWeeks(), in: british, language: "en") == "As needed")
+        #expect(try line(.asNeeded, everyTwoWeeks(), in: british) == "As needed")
     }
 
     @Test func scheduledWithAScheduleReadsItsWords() throws {
         let schedule = try everyTwoWeeks()
-        let english = try line(.scheduled, schedule, in: british, language: "en")
+        let english = try line(.scheduled, schedule, in: british)
         #expect(english == "Every 2 weeks on Friday at 09:00")
         let words = try CompiledCatalog.withBundle("ru") {
             schedule.words(locale: russian, calendar: calendar, bundle: $0)
         }
-        #expect(try line(.scheduled, schedule, in: russian, language: "ru") == words)
+        #expect(try line(.scheduled, schedule, in: russian) == words)
         #expect(words == "Каждые 2 недели: пятница, в 09:00")
     }
 
     @Test func scheduledWithNoScheduleReadsNotSet() throws {
-        #expect(try line(.scheduled, nil, in: british, language: "en") == "Not set")
-        #expect(try line(.scheduled, nil, in: russian, language: "ru") == "Не задано")
+        #expect(try line(.scheduled, nil, in: british) == "Not set")
+        #expect(try line(.scheduled, nil, in: russian) == "Не задано")
     }
 }

@@ -2,13 +2,14 @@
 import Foundation
 
 public enum MedicationScheduleLine {
-    public static func text(
+    public static func text( // swiftlint:disable:this function_parameter_count
         takenAs: TakenAs,
         schedule: MedicationSchedule?,
         locale: Locale,
         calendar: Calendar,
         bundle: Bundle
     ) -> String {
+        // #lizard forgives
         switch (takenAs, schedule) {
         case (.asNeeded, _):
             String(localized: "As needed", bundle: bundle, locale: locale)
