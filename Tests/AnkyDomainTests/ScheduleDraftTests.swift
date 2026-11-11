@@ -131,6 +131,14 @@ struct ScheduleDraftTests {
         #expect(draft.times == [nineOClock, evening])
     }
 
+    @Test func choosingEveryDayAndThenEveryWeekKeepsTheChosenWeekdays() throws {
+        var draft = try ScheduleDraft(stored(.weeks(1, on: [.monday, .friday])), calendar: calendar)
+        draft.choose(.everyDay)
+        draft.choose(.everyWeek)
+        #expect(draft.weekdays == [.monday, .friday])
+        #expect(try draft.schedule() == stored(.weeks(1, on: [.monday, .friday])))
+    }
+
     @Test func choosingAPresetOverAStoredMonthlyScheduleKeepsItsTimes() throws {
         let evening = try #require(DoseTime(hour: 21, minute: 0))
         var draft = try ScheduleDraft(stored(.months(1, onDay: 15)), calendar: calendar)
