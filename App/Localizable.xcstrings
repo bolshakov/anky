@@ -708,7 +708,8 @@
             "value" : "Усталость"
           }
         }
-      }
+      },
+      "comment" : "Fatigue or tiredness. The name of the fatigue symptom on entries, and the short name of BASDAI question 1, used where the whole question does not fit, such as a report column."
     },
     "fatigue %lld after" : {
       "localizations" : {
@@ -1884,7 +1885,8 @@
             "value" : "Нет"
           }
         }
-      }
+      },
+      "comment" : "Nothing at all. Used in four places: the Schedule screen when a schedule has no end date, Edit Dose when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
     },
     "not selected" : {
       "localizations" : {
@@ -2818,6 +2820,66 @@
           }
         }
       }
+    },
+    "How would you describe the overall level of fatigue/tiredness you have experienced?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "How would you describe the overall level of AS **neck, back or hip** pain you have had?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation. AS is ankylosing spondylitis."
+    },
+    "How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips you have had?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "How would you describe the overall level of discomfort you have had from any areas tender to touch or pressure?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "How would you describe the overall level of morning stiffness you have had from the time you wake up?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "How long does your morning stiffness last from the time you wake up?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "Spinal pain" : {
+      "comment" : "Short name of BASDAI question 2, on neck, back or hip pain. Used where the whole question does not fit, such as a report column."
+    },
+    "Joint pain" : {
+      "comment" : "Short name of BASDAI question 3, on pain or swelling in joints other than the neck, back or hips. Used where the whole question does not fit, such as a report column."
+    },
+    "Tenderness" : {
+      "comment" : "Short name of BASDAI question 4, on discomfort from areas tender to touch or pressure. Used where the whole question does not fit, such as a report column."
+    },
+    "Stiffness severity" : {
+      "comment" : "Short name of BASDAI question 5, on how bad morning stiffness is. Used where the whole question does not fit, such as a report column."
+    },
+    "Stiffness duration" : {
+      "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'."
+    },
+    "Very severe" : {
+      "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None."
+    },
+    "0 hrs" : {
+      "comment" : "The label under the left end of the slider of BASDAI question 6, how long morning stiffness lasts: zero hours. hrs is the abbreviation of hours."
+    },
+    "2 or more hrs" : {
+      "comment" : "The label under the right end of the slider of BASDAI question 6, how long morning stiffness lasts: two hours or longer. hrs is the abbreviation of hours."
+    },
+    "1 hr" : {
+      "comment" : "One hour, abbreviated. Shown under the middle of the slider of BASDAI question 6, how long morning stiffness lasts, and as its value at the middle step."
+    },
+    "%lld min" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 under one hour, such as '48 min'. %lld is a number of minutes from 0 to 48. min is the abbreviation of minutes."
+    },
+    "1 hr %lld min" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 between one and two hours, such as '1 hr 12 min'. %lld is the minutes past the hour, from 12 to 48."
+    },
+    "2 hrs or more" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 at its last step: two hours or longer, abbreviated."
+    },
+    "Not answered" : {
+      "comment" : "The value shown beside a BASDAI question the person has not answered yet. It is a state, not a zero."
+    },
+    "not answered" : {
+      "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech."
     }
   },
   "version" : "1.0"
