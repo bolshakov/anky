@@ -8,11 +8,10 @@ func madeUpBasdai(
     createdAt: Date? = nil,
     answers: [Int] = [4, 5, 6, 7, 3, 8]
 ) -> BasdaiResult {
-    let createdAt = createdAt ?? date
-    guard let result = BasdaiResult(
-        id: UUID(), date: date, createdAt: createdAt, updatedAt: createdAt, answers: answers
-    ) else {
+    guard var result = BasdaiResult(id: UUID(), date: date, answers: answers) else {
         preconditionFailure("A made-up result needs six answers from 0 to 10.")
     }
+    result.createdAt = createdAt ?? date
+    result.updatedAt = result.createdAt
     return result
 }

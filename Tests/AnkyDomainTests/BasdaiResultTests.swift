@@ -7,13 +7,13 @@ struct BasdaiResultTests {
     private let date = Date(timeIntervalSince1970: 1_800_000_000)
 
     private func result(_ answers: [Int]) -> BasdaiResult? {
-        BasdaiResult(id: UUID(), date: date, createdAt: date, updatedAt: date, answers: answers)
+        BasdaiResult(id: UUID(), date: date, answers: answers)
     }
 
     @Test func sixAnswersFromZeroToTenMakeAResult() throws {
         let made = try #require(result([0, 10, 3, 4, 5, 6]))
         #expect(made.answers == [0, 10, 3, 4, 5, 6])
-        #expect(made.date == date)
+        #expect([made.date, made.createdAt, made.updatedAt] == [date, date, date])
     }
 
     @Test(arguments: [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 6, 7], []])

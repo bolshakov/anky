@@ -10,13 +10,13 @@ public struct BasdaiResult: Identifiable, Equatable, Sendable {
     public var updatedAt: Date
     public var answers: [Int]
 
-    /// Fails unless there are exactly six answers, each from 0 to 10.
-    public init?(id: UUID, date: Date, createdAt: Date, updatedAt: Date, answers: [Int]) {
+    /// Fails unless there are exactly six answers, each from 0 to 10. A new result is created and updated at its date.
+    public init?(id: UUID, date: Date, answers: [Int]) {
         guard answers.count == 6, answers.allSatisfy((0 ... 10).contains) else { return nil }
         self.id = id
         self.date = date
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        createdAt = date
+        updatedAt = date
         self.answers = answers
     }
 }
