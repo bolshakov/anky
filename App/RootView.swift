@@ -96,8 +96,7 @@ struct RootView: View {
     }
 
     private func openLogDose(for medicationID: UUID) {
-        let isActive = medications.medications.contains { $0.id == medicationID && $0.archivedAt == nil }
-        guard isActive else {
+        guard DoseTap.opensLogDose(medicationID: medicationID, medications: medications.medications) else {
             selection = .today
             return
         }
