@@ -36,8 +36,13 @@ private struct ScheduleRow: View {
         NavigationLink {
             ScheduleView(draft: $draft)
         } label: {
-            TwoLineRow(Text("Schedule"), subtitle: Text(line))
+            if draft.schedule == nil {
+                ValueRow(Text("Schedule"), value: Text(line))
+            } else {
+                TwoLineRow(Text("Schedule"), subtitle: Text(line))
+            }
         }
+        .fillsCardRow()
         .accessibilityLabel("\(String(localized: "Schedule")), \(line)")
         .accessibilityIdentifier("schedule-row")
     }
