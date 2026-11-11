@@ -24,6 +24,8 @@ struct ScheduleView: View {
                 CardSection(id: "schedule-day-section") { ScheduleOnDayRow(day: $schedule.dayOfMonth) }
             }
             ScheduleTimesSection(schedule: $schedule)
+            ScheduleDurationSection(schedule: $schedule)
+            ScheduleFootnote(schedule: schedule)
         }
         .screenSpacing()
         .accessibilityIdentifier("schedule-screen")

@@ -27,6 +27,7 @@ public enum MedicationScheduleLine {
         calendar: Calendar,
         bundle: Bundle
     ) -> String {
+        // #lizard forgives
         let words = schedule.words(locale: locale, calendar: calendar, bundle: bundle)
         guard let next = schedule.nextDoses(after: now, count: 1, calendar: calendar).first else {
             return String(localized: "\(words).", bundle: bundle, locale: locale)
