@@ -1,0 +1,15 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t239-05-1/tmp/w/snap.sh
+exit: 0
+commit: 46e68aca7268165ed2158fda2fb3d05035459db5
+
+'schedule-screen' | None | None
+'schedule-repeat' | Repeat, Every month, Every month | None
+'schedule-day-of-month' | On day, 11, 11 | None
+'schedule-times-label' | Times | None
+'schedule-time-1' | None | None
+'schedule-time-2' | None | None
+'schedule-add-time' | Add a time | None
+'schedule-duration-label' | Duration | None
+'schedule-starts' | None | None
+'schedule-ends' | Ends | None
+'schedule-footnote' | Every month on day 11 at 09:00 and 10:00. Next: Wednesday, November 11. | None

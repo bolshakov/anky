@@ -1,0 +1,13 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t239-05-1/tmp/w/snap.sh
+exit: 0
+commit: 46e68aca7268165ed2158fda2fb3d05035459db5
+
+'schedule-screen' | None | None
+'schedule-repeat' | Repeat, Every day, Every day | None
+'schedule-times-label' | Times | None
+'schedule-time-1' | None | None
+'schedule-add-time' | Add a time | None
+'schedule-duration-label' | Duration | None
+'schedule-starts' | None | None
+'schedule-ends' | Ends | None
+'schedule-footnote' | Every day at 09:00. Next: Wednesday, November 11. | None
