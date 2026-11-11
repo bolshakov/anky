@@ -17,8 +17,8 @@ import Testing
     @Test func twoResultsWithTheSameDateListTheLaterCreatedFirst() throws {
         let first = madeUpBasdai(date: morning, createdAt: morning)
         let second = madeUpBasdai(date: morning, createdAt: morning.addingTimeInterval(20))
-        var log = BasdaiLog(store: FakeBasdaiStore([second]))
-        try log.add(first)
+        var log = BasdaiLog(store: FakeBasdaiStore([first]))
+        try log.add(second)
         #expect(log.results == [second, first])
         #expect(BasdaiLog(store: FakeBasdaiStore([first, second])).results == [second, first])
     }
