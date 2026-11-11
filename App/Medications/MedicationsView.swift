@@ -49,7 +49,7 @@ struct MedicationsView: View {
                 ForEach(active) { medication in
                     TwoLineRow(
                         Text(medication.listTitle),
-                        subtitle: Text(medication.takenAs.title)
+                        subtitle: Text(medication.scheduleLine)
                     ) {
                         editing = medication
                     }

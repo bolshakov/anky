@@ -19,7 +19,27 @@ struct MedicationTakingSections: View {
                     .nonCardBlock()
             }
         }
+        if draft.takenAs == .scheduled {
+            CardSection(id: "schedule") {
+                ScheduleRow(draft: $draft)
+            }
+        }
         MedicationCheckInSection(checkIn: $draft.checkIn)
+    }
+}
+
+private struct ScheduleRow: View {
+    @Binding var draft: MedicationDraft
+
+    var body: some View {
+        let line = MedicationScheduleLine.shown(takenAs: draft.takenAs, schedule: draft.schedule)
+        NavigationLink {
+            ScheduleView(draft: $draft)
+        } label: {
+            TwoLineRow(Text("Schedule"), subtitle: Text(line))
+        }
+        .accessibilityLabel("\(String(localized: "Schedule")), \(line)")
+        .accessibilityIdentifier("schedule-row")
     }
 }
 
