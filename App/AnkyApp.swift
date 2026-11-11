@@ -27,7 +27,8 @@ struct AnkyApp: App {
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
         ))
-        _medications = State(initialValue: MedicationsModel(store: Self.medicationStore()))
+        let medications = MedicationsModel(store: Self.medicationStore())
+        _medications = State(initialValue: medications)
         let taps = ReminderTapModel()
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
@@ -35,6 +36,7 @@ struct AnkyApp: App {
         #if DEBUG
             ReminderTapSwitch.listen(taps: taps, folder: EntriesLocation.folder())
             PendingDosesSwitch.listen(folder: EntriesLocation.folder())
+            DebugDoseSeed.seed(into: medications, folder: MedicationsLocation.folder())
         #endif
         Self.colourSelectedSegments()
     }
