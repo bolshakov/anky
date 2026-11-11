@@ -11,6 +11,7 @@ enum Spacing {
     static let blockGap: CGFloat = 32
     static let emptyBlockGap: CGFloat = 96
     static let labelGap: CGFloat = 12
+    static let readingBlockGap: CGFloat = 16
     static let footnoteGap: CGFloat = 8
     static let inlineGap: CGFloat = 8
     static let tightGap: CGFloat = 4
