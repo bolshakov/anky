@@ -1,0 +1,10 @@
+$ sh -c 'ls App/Schedule; grep -rnE '\''ScheduleCustomView|ScheduleOnDayRow|\.everyMonth\b|\.custom\b'\'' App/Schedule Tests Sources'
+exit: 1
+commit: 95872b2a8c8b81490c4c6c72a08cfc777e17c365
+
+ScheduleDurationSection.swift
+ScheduleFootnote.swift
+ScheduleRepeatSection.swift
+ScheduleTimesSection.swift
+ScheduleView.swift
+ScheduleWeekdayRow.swift
