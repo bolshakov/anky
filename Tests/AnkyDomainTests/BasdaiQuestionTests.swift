@@ -38,6 +38,15 @@ struct BasdaiQuestionTests {
         #expect(try questions().map(marked) == wordings)
     }
 
+    @Test func everyWordOfTheTableIsAKeyOfTheCatalog() throws {
+        let keys = try Set(CompiledCatalog.entries().keys)
+        for question in try questions() {
+            let words = [marked(question), question.shortName, question.lowLabel, question.highLabel, question.midLabel]
+            let missing = Set(words.compactMap(\.self)).subtracting(keys)
+            #expect(missing.isEmpty, "Question \(question.number) words missing from the catalog: \(missing.sorted())")
+        }
+    }
+
     @Test func theTextOfAQuestionIsItsWordingWithoutMarks() throws {
         let second = try questions()[1]
         #expect(second.text == "How would you describe the overall level of AS neck, back or hip pain you have had?")

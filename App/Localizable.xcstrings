@@ -708,7 +708,8 @@
             "value" : "Усталость"
           }
         }
-      }
+      },
+      "comment" : "Fatigue or tiredness. The name of the fatigue symptom on entries, and the short name of BASDAI question 1, used where the whole question does not fit, such as a report column."
     },
     "fatigue %lld after" : {
       "localizations" : {
@@ -1884,7 +1885,8 @@
             "value" : "Нет"
           }
         }
-      }
+      },
+      "comment" : "Nothing at all. Used in three places: the Schedule screen when a schedule has no end date, Edit Dose when a dose has no reading before it, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
     },
     "not selected" : {
       "localizations" : {
