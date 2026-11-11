@@ -3,7 +3,7 @@ import AnkyDomain
 import Foundation
 import Observation
 
-/// Holds a tap on a check-in reminder until the screens take it, so a tap that launched the app is not lost.
+/// Holds a tap on a reminder until the screens take it, so a tap that launched the app is not lost.
 @MainActor @Observable final class ReminderTapModel {
     struct Tap: Equatable {
         let doseID: UUID
@@ -12,15 +12,14 @@ import Observation
 
     var pending: Tap?
     var pendingNewEntry = false
+    var pendingLogDose: UUID?
 
-    /// A check-in reminder's identifier is its dose's id, and the daily reminder's is fixed. Any other identifier is
-    /// not a tap on a reminder.
     func received(identifier: String, at: Date) {
-        if DailyReminder.isTap(identifier: identifier) {
-            pendingNewEntry = true
-            return
+        switch ReminderTapKind.of(identifier: identifier) {
+        case .dailyReminder: pendingNewEntry = true
+        case let .doseDue(medicationID): pendingLogDose = medicationID
+        case let .checkIn(doseID): pending = Tap(doseID: doseID, at: at)
+        case .other: break
         }
-        guard let doseID = UUID(uuidString: identifier) else { return }
-        pending = Tap(doseID: doseID, at: at)
     }
 }

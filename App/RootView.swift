@@ -10,8 +10,10 @@ struct RootView: View {
     @State private var selection = Tab.today
     @State private var reminderCheckIn: Dose?
     @State private var reminderNewEntry = false
+    @State private var reminderLogDose: UUID?
     @State private var checkInAwaitingHistory: Dose?
     @State private var newEntryAwaitingHistory = false
+    @State private var logDoseAwaitingHistory: UUID?
     @State private var reminders = CheckInReminderScheduler()
     @State private var dailyReminder = DailyReminderSettings()
     @State private var dailyReminderScheduler = DailyReminderScheduler()
@@ -24,7 +26,8 @@ struct RootView: View {
                 model: model,
                 medications: medications,
                 reminderCheckIn: $reminderCheckIn,
-                reminderNewEntry: $reminderNewEntry
+                reminderNewEntry: $reminderNewEntry,
+                reminderLogDose: $reminderLogDose
             )
             .tabItem {
                 Label("Today", systemImage: "calendar")
@@ -35,7 +38,8 @@ struct RootView: View {
             HistoryView(
                 model: model,
                 medications: medications,
-                isClosingSheets: checkInAwaitingHistory != nil || newEntryAwaitingHistory,
+                isClosingSheets: checkInAwaitingHistory != nil || newEntryAwaitingHistory || logDoseAwaitingHistory !=
+                    nil,
                 onSheetsClosed: historyClosedSheets
             )
             .tabItem {
@@ -76,6 +80,24 @@ struct RootView: View {
                 showNewEntryOnToday()
             }
         }
+        .onChange(of: logDoseInputs, initial: true) { _, inputs in
+            guard inputs.phase == .active, let medicationID = inputs.medicationID else { return }
+            reminderTaps.pendingLogDose = nil
+            openLogDose(for: medicationID)
+        }
+    }
+
+    private func openLogDose(for medicationID: UUID) {
+        let isActive = medications.medications.contains { $0.id == medicationID && $0.archivedAt == nil }
+        guard isActive else {
+            selection = .today
+            return
+        }
+        if selection == .history {
+            logDoseAwaitingHistory = medicationID
+        } else {
+            showLogDoseOnToday(medicationID)
+        }
     }
 
     private func open(_ tap: ReminderTapModel.Tap) {
@@ -102,6 +124,10 @@ struct RootView: View {
             newEntryAwaitingHistory = false
             showNewEntryOnToday()
         }
+        if let medicationID = logDoseAwaitingHistory {
+            logDoseAwaitingHistory = nil
+            showLogDoseOnToday(medicationID)
+        }
         guard let dose = checkInAwaitingHistory else { return }
         checkInAwaitingHistory = nil
         showCheckInOnToday(dose)
@@ -110,6 +136,11 @@ struct RootView: View {
     private func showNewEntryOnToday() {
         selection = .today
         reminderNewEntry = true
+    }
+
+    private func showLogDoseOnToday(_ medicationID: UUID) {
+        selection = .today
+        reminderLogDose = medicationID
     }
 
     private func showCheckInOnToday(_ dose: Dose) {
@@ -131,8 +162,17 @@ struct RootView: View {
         TapInputs(tap: reminderTaps.pending, phase: scenePhase)
     }
 
+    private var logDoseInputs: LogDoseInputs {
+        LogDoseInputs(medicationID: reminderTaps.pendingLogDose, phase: scenePhase)
+    }
+
     private var newEntryInputs: NewEntryInputs {
         NewEntryInputs(isPending: reminderTaps.pendingNewEntry, phase: scenePhase)
+    }
+
+    private struct LogDoseInputs: Equatable {
+        let medicationID: UUID?
+        let phase: ScenePhase
     }
 
     private struct NewEntryInputs: Equatable {

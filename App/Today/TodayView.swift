@@ -9,6 +9,7 @@ struct TodayView: View {
     let medications: MedicationsModel
     @Binding var reminderCheckIn: Dose?
     @Binding var reminderNewEntry: Bool
+    @Binding var reminderLogDose: UUID?
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var editing: Entry?
@@ -153,6 +154,7 @@ struct TodayView: View {
                 onDeleted: { deleteTicks += 1 },
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
+                reminderLogDose: $reminderLogDose,
                 isShowingNewEntry: $isShowingNewEntry,
                 isShowingLogDose: $isShowingLogDose,
                 editing: $editing,

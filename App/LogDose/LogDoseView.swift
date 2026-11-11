@@ -26,10 +26,16 @@ struct LogDoseView: View {
     @State private var checkIn = DoseCheckIn(savedDelay: nil)
     @State private var checkInBuiltFor: UUID?
 
-    init(medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
+    init(
+        medications: MedicationsModel,
+        model: EntryLogModel,
+        preselected: UUID? = nil,
+        onSaved: @escaping () -> Void
+    ) {
         self.medications = medications
         self.model = model
         self.onSaved = onSaved
+        _selectedID = State(initialValue: preselected)
     }
 
     var body: some View {
