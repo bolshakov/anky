@@ -3043,6 +3043,17 @@
           }
         }
       }
+    },
+    "Time for your dose." : {
+      "comment" : "Body of a notification that tells the person it is time to take a medication. The title is the medication's name.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пора принять лекарство."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
