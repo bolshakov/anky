@@ -2565,16 +2565,6 @@
         }
       }
     },
-    "Free software, GPL-3.0-or-later" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Свободная программа, GPL-3.0-or-later"
-          }
-        }
-      }
-    },
     "Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later." : {
       "localizations" : {
         "ru" : {
