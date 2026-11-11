@@ -5,7 +5,7 @@ import Testing
 
 @MainActor struct BasdaiLogTests {
     private let morning = Date(timeIntervalSince1970: 1_800_000_000)
-    private var evening: Date { morning.addingTimeInterval(36000) }
+    private let evening = Date(timeIntervalSince1970: 1_800_036_000)
 
     @Test func loadsTheSavedResultsNewestFirst() {
         let older = madeUpBasdai(date: morning)
