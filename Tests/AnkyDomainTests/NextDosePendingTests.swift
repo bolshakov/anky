@@ -3,8 +3,6 @@ import AnkyDomain
 import Foundation
 import Testing
 
-/// What the system holds after a rebuild, seen through the port: the next dose is pending, even when the system
-/// refuses a request or other requests share its limit.
 struct NextDosePendingTests {
     private let berlin: Calendar
 
@@ -123,8 +121,6 @@ struct NextDosePendingTests {
         #expect(await center.droppedIdentifiers.isEmpty)
     }
 
-    /// Task 01's cause: requests added after the window was built pushed the total past the limit, and the system
-    /// dropped the earliest-added request, which is the nearest dose.
     @Test func `a check-in and the daily reminder added after the window leave the next dose pending`() async throws {
         let naproxen = try medication("Naproxen", at: [(9, 0)])
         let center = FakeNotificationCenter()
