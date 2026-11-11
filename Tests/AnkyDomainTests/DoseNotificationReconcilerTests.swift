@@ -73,7 +73,7 @@ struct DoseNotificationReconcilerTests {
 
         #expect(await center.addedIdentifiers == expected([naproxen]))
         #expect(await center.removedIdentifiers.isEmpty)
-        #expect(await center.pendingIdentifiers.count == DoseNotificationPlan.limit)
+        #expect(await center.pendingIdentifiers.count == DoseNotificationPlan.limit - DoseNotificationPlan.reserve)
     }
 
     @Test func `a rebuild with nothing changed adds and removes nothing`() async throws {
@@ -178,7 +178,7 @@ struct DoseNotificationReconcilerTests {
         await reconcile(medications, on: center)
 
         let pending = await center.pendingIdentifiers
-        #expect(pending.count == DoseNotificationPlan.limit)
+        #expect(pending.count == DoseNotificationPlan.limit - DoseNotificationPlan.reserve)
         #expect(others.allSatisfy(pending.contains))
         #expect(await pendingDoses(center) == expected(medications, otherPending: others.count))
     }
@@ -197,10 +197,10 @@ struct DoseNotificationReconcilerTests {
 
         let kept = await pendingDoses(center)
         #expect(Set(kept) == Set(everyDose.prefix(kept.count).map(\.identifier)))
-        #expect(kept.count == DoseNotificationPlan.limit - 4)
+        #expect(kept.count == DoseNotificationPlan.limit - DoseNotificationPlan.reserve - 4)
     }
 
-    @Test func `a rebuild removes before it adds, so the count never passes the limit`() async throws {
+    @Test func `a rebuild removes before it adds, so the count never passes the budget`() async throws {
         let naproxen = try medication("Naproxen", at: [(9, 0)])
         let center = FakeNotificationCenter()
         await reconcile([naproxen], on: center)
@@ -209,7 +209,7 @@ struct DoseNotificationReconcilerTests {
 
         await reconcile([edited], on: center)
 
-        #expect(await center.peakPending == DoseNotificationPlan.limit)
+        #expect(await center.peakPending == DoseNotificationPlan.limit - DoseNotificationPlan.reserve)
     }
 
     @Test func `no budget left adds nothing and still removes the old doses`() async throws {
