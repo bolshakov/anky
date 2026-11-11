@@ -24,6 +24,7 @@ struct TodayView: View {
     @State private var checkInNow = Date.now
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
+    @State private var isShowingReport = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var pairLayout: AnyLayout {
@@ -119,6 +120,10 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
+            .toolbar { ReportMenu { isShowingReport = true } }
+            .navigationDestination(isPresented: $isShowingReport) {
+                ReportView(model: model, medications: medications)
+            }
             .safeAreaInset(edge: .bottom) {
                 pairLayout {
                     Button {

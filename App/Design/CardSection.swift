@@ -24,12 +24,21 @@ struct CardSection<Content: View>: View {
     private let label: Text?
     private let footnote: Text?
     private let id: String
+    private let footnoteID: String
     private let content: Content
 
-    init(_ label: Text? = nil, footnote: Text? = nil, id: String, @ViewBuilder content: () -> Content) {
+    init(
+        _ label: Text? = nil,
+        footnote: Text? = nil,
+        id: String,
+        footnoteID: String? = nil,
+        @ViewBuilder content: () -> Content
+    ) {
+        // #lizard forgives
         self.label = label
         self.footnote = footnote
         self.id = id
+        self.footnoteID = footnoteID ?? "\(id)-footnote"
         self.content = content()
     }
 
@@ -47,7 +56,7 @@ struct CardSection<Content: View>: View {
             if let footnote {
                 footnote
                     .modifier(SectionFooter())
-                    .accessibilityIdentifier("\(id)-footnote")
+                    .accessibilityIdentifier(footnoteID)
             }
         }
     }

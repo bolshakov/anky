@@ -22,12 +22,17 @@ struct AnkyApp: App {
             fileURL: folder.appending(path: "tip-progress.json"),
             protection: .complete
         )
-        _model = State(initialValue: EntryLogModel(
+        let model = EntryLogModel(
             log: EntryLog(store: Self.entryStore()),
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
-        ))
-        _medications = State(initialValue: MedicationsModel(store: Self.medicationStore()))
+        )
+        let medications = MedicationsModel(store: Self.medicationStore())
+        #if DEBUG
+            DebugSeed.plant(entries: model, medications: medications)
+        #endif
+        _model = State(initialValue: model)
+        _medications = State(initialValue: medications)
         let taps = ReminderTapModel()
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
