@@ -84,6 +84,13 @@ struct ReportCountsLineTests {
             "0 entries and 2 doses, 11 October to 11 November.")
     }
 
+    @Test func theDaysFollowTheRegionsOrder() throws {
+        #expect(
+            try line(entries: 1, doses: 1, period: .oneMonth, in: Locale(identifier: "en_US"))
+                == "1 entry and 1 dose, October 11 to November 11."
+        )
+    }
+
     @Test(arguments: [(1, 2, "1 запись и 2 приёма, с 11 октября по 11 ноября."),
                       (5, 21, "5 записей и 21 приём, с 11 октября по 11 ноября.")])
     func russianCountsTakeTheirPluralForms(entries: Int, doses: Int, sentence: String) throws {
