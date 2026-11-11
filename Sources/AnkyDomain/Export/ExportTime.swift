@@ -3,6 +3,6 @@ import Foundation
 
 public enum ExportTime {
     public static func utc(_ date: Date) -> String {
-        date.formatted(.iso8601)
+        date.formatted(Date.ISO8601FormatStyle(timeZone: .gmt))
     }
 }
