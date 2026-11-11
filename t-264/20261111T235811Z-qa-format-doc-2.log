@@ -1,0 +1,12 @@
+$ cat docs/release-checklist.md
+exit: 0
+commit: efba9d5052f824e49cd0fb69eccc8401b64442ec
+
+# Release checklist
+
+Steps to take before a version of Anky ships.
+
+## Exports stay readable
+
+- Before shipping, open an export made by the previous version and check it still reads as
+  [`docs/export-format.md`](export-format.md) says.
