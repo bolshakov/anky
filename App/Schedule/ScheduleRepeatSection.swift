@@ -14,6 +14,9 @@ struct ScheduleRepeatSection: View {
                 Text("Every 4 weeks").tag(Optional(ScheduleDraft.Preset.everyFourWeeks))
             }
             .accessibilityIdentifier("schedule-repeat")
+            if schedule.unit == .weeks {
+                ScheduleWeekdayRow(weekdays: schedule.weekdays) { schedule.toggle($0) }
+            }
         }
     }
 

@@ -17,11 +17,6 @@ struct ScheduleView: View {
     var body: some View {
         List {
             ScheduleRepeatSection(schedule: $schedule)
-            if schedule.unit == .weeks {
-                CardSection(id: "schedule-weekdays-section") {
-                    ScheduleWeekdayRow(weekdays: schedule.weekdays) { schedule.toggle($0) }
-                }
-            }
             ScheduleTimesSection(schedule: $schedule)
             ScheduleDurationSection(schedule: $schedule)
             ScheduleFootnote(schedule: schedule)
