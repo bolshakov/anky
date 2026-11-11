@@ -1,0 +1,23 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t239-06-1/tmp/bin/ids.sh 6FAC936E-182B-473A-B84F-A1E042AC4DF6
+exit: 0
+commit: fce47115a528e3c542fefe603e06a6f227ae4bc7
+
+"AXLabel" : "1 day"
+"AXLabel" : "Add what you take, then log a dose in two taps. Everything stays on this iPhone."
+"AXLabel" : "Custom…"
+"AXLabel" : "Days"
+"AXLabel" : "Every, 1 day, Decrement"
+"AXLabel" : "Every, 1 day, Increment"
+"AXLabel" : "Every, 1 day"
+"AXLabel" : "Every"
+"AXLabel" : "Months"
+"AXLabel" : "Schedule"
+"AXLabel" : "Weeks"
+"AXUniqueId" : "BackButton"
+"AXUniqueId" : "custom-every-Decrement"
+"AXUniqueId" : "custom-every-Increment"
+"AXUniqueId" : "custom-every"
+"AXUniqueId" : "custom-unit"
+"AXUniqueId" : "Custom…"
+"AXValue" : "0%"
+"AXValue" : "1"
