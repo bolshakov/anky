@@ -55,4 +55,18 @@ struct MedicationScheduleLineTests {
         #expect(try line(.scheduled, nil, in: british) == "Not set")
         #expect(try line(.scheduled, nil, in: russian) == "Не задано")
     }
+
+    @Test(arguments: [british, russian])
+    func theListLineOfASavedMedicationEqualsTheLineTheFormRowShows(locale: Locale) throws {
+        var draft = MedicationDraft()
+        draft.name = "Zorblex"
+        draft.takenAs = .scheduled
+        draft.schedule = try everyTwoWeeks()
+        let saved = draft.medication(id: UUID(), at: Date(timeIntervalSince1970: 1_800_000_000))
+
+        let formLine = try line(draft.takenAs, draft.schedule, in: locale)
+        let listLine = try line(saved.takenAs, saved.schedule, in: locale)
+        #expect(listLine == formLine)
+        #expect(formLine != (try line(.scheduled, nil, in: locale)))
+    }
 }
