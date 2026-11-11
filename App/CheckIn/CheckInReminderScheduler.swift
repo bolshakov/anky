@@ -13,13 +13,15 @@ import UserNotifications
     }
 
     /// Runs one after another, so two reconciles never ask for permission or add the same request at once.
-    func reconcile(doses: [Dose], medications: [Medication], entries: [Entry]) {
+    func reconcile(doses: [Dose], medications: [Medication], entries: [Entry]) -> Task<Void, Never> {
         let wanted = CheckInDue.reminders(doses: doses, medications: medications, entries: entries, now: .now)
         let previous = lastRun
-        lastRun = Task { [center] in
+        let run = Task { [center] in
             await previous?.value
             await Self.schedule(wanted, in: center)
         }
+        lastRun = run
+        return run
     }
 
     private static func schedule(_ wanted: [CheckInReminder], in center: UNUserNotificationCenter) async {

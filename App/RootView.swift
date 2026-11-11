@@ -62,9 +62,17 @@ struct RootView: View {
         }
         .onChange(of: reminderInputs, initial: true) { _, inputs in
             guard inputs.phase == .active else { return }
-            reminders.reconcile(doses: inputs.doses, medications: inputs.medications, entries: inputs.entries)
-            dailyReminderScheduler.reconcile(settings: dailyReminder, entries: inputs.entries, doses: inputs.doses)
-            doseNotifications.reconcile(medications: inputs.medications)
+            let checkIns = reminders.reconcile(
+                doses: inputs.doses,
+                medications: inputs.medications,
+                entries: inputs.entries
+            )
+            let daily = dailyReminderScheduler.reconcile(
+                settings: dailyReminder,
+                entries: inputs.entries,
+                doses: inputs.doses
+            )
+            doseNotifications.reconcile(medications: inputs.medications, after: [checkIns, daily])
         }
         .onChange(of: tapInputs, initial: true) { _, inputs in
             guard inputs.phase == .active, let tap = inputs.tap else { return }

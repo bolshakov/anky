@@ -14,7 +14,11 @@ import UserNotifications
 
     /// Runs one after another, so two reconciles never add the request at once. The date is fixed when called, so the
     /// last call decides what stays pending.
-    func reconcile(settings: DailyReminderSettings, entries: [Entry], doses: [Dose]) {
+    func reconcile(
+        settings: DailyReminderSettings,
+        entries: [Entry],
+        doses: [Dose]
+    ) -> Task<Void, Never> {
         let date = DailyReminder.pendingFireDate(
             isOn: settings.isOn,
             entries: entries,
@@ -24,10 +28,12 @@ import UserNotifications
             calendar: .current
         )
         let previous = lastRun
-        lastRun = Task { [center] in
+        let run = Task { [center] in
             await previous?.value
             await Self.schedule(date, in: center)
         }
+        lastRun = run
+        return run
     }
 
     /// The one call of `requestAuthorization` for this reminder. Only the toggle's action may call it.
@@ -39,9 +45,13 @@ import UserNotifications
         await center.notificationSettings().authorizationStatus == .denied
     }
 
+    /// Adding under the same identifier replaces the request in place. A remove first would leave a moment with one
+    /// request fewer, and a dose rebuild that reads then sizes its window one too big.
     private static func schedule(_ date: Date?, in center: UNUserNotificationCenter) async {
-        center.removePendingNotificationRequests(withIdentifiers: [DailyReminder.identifier])
-        guard let date, await isAllowed(by: center) else { return }
+        guard let date, await isAllowed(by: center) else {
+            center.removePendingNotificationRequests(withIdentifiers: [DailyReminder.identifier])
+            return
+        }
         try? await center.add(request(at: date))
     }
 

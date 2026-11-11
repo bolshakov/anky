@@ -13,13 +13,16 @@ import AnkyDomain
     }
 
     /// Runs one after another, so two rebuilds never interleave. The date is fixed when called, so the last call
-    /// decides what stays pending.
-    func reconcile(medications: [Medication]) {
+    /// decides what stays pending. It starts once `others` end, so its read counts the requests they add.
+    func reconcile(medications: [Medication], after others: [Task<Void, Never>]) {
         let now = Date.now
         let calendar = Calendar.current
         let previous = lastRun
         lastRun = Task { [reconciler] in
             await previous?.value
+            for other in others {
+                await other.value
+            }
             await reconciler.reconcile(medications: medications, now: now, calendar: calendar)
         }
     }

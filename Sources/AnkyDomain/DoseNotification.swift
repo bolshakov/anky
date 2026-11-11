@@ -19,6 +19,9 @@ public struct DoseNotification: Equatable, Sendable {
 
 public enum DoseNotificationPlan {
     public static let limit = 64
+    /// Room left for requests the other schedulers add after the window is built. Past the limit iOS silently drops
+    /// the earliest-added request, which is the nearest dose.
+    public static let reserve = 4
     public static let identifierPrefix = "dose-due."
 
     public static func isDose(identifier: String) -> Bool {
@@ -33,7 +36,7 @@ public enum DoseNotificationPlan {
     }
 
     public static func budget(otherPending: Int) -> Int {
-        max(0, limit - otherPending)
+        max(0, limit - reserve - otherPending)
     }
 
     public static func window(

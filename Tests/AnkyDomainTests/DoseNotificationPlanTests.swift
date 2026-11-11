@@ -243,8 +243,12 @@ struct DoseNotificationPlanTests {
         #expect(DoseNotificationPlan.identifierPrefix == "dose-due.")
     }
 
-    @Test(arguments: [(0, 64), (1, 63), (10, 54), (64, 0), (65, 0), (500, 0)])
-    func theBudgetIsWhatTheOtherPendingRequestsLeave(otherPending: Int, budget: Int) {
+    @Test func theReserveIsFour() {
+        #expect(DoseNotificationPlan.reserve == 4)
+    }
+
+    @Test(arguments: [(0, 60), (1, 59), (10, 50), (59, 1), (60, 0), (64, 0), (500, 0)])
+    func theBudgetIsWhatTheOtherPendingRequestsAndTheReserveLeave(otherPending: Int, budget: Int) {
         #expect(DoseNotificationPlan.budget(otherPending: otherPending) == budget)
     }
 }
