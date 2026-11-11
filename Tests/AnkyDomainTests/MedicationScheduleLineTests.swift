@@ -67,6 +67,6 @@ struct MedicationScheduleLineTests {
         let formLine = try line(draft.takenAs, draft.schedule, in: locale)
         let listLine = try line(saved.takenAs, saved.schedule, in: locale)
         #expect(listLine == formLine)
-        #expect(formLine != (try line(.scheduled, nil, in: locale)))
+        #expect(try formLine != line(.scheduled, nil, in: locale))
     }
 }
