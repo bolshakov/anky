@@ -1,0 +1,5 @@
+$ sh -c ''\''/Users/bolshakov/Projects/personal/anky.wt/qa-t258-01-1/tmp/pending.sh'\'' 2C87CB47-7C8D-4E60-966B-42F2666C4D27 62D7771A-2914-48BE-A9A6-9F778B1D6EA5 | grep -c Ibuprofen'
+exit: 1
+commit: 31bd27e1fc9ba75160c1ff5d254bd3c2ca962062
+
+0
