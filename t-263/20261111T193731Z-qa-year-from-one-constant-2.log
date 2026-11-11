@@ -1,0 +1,10 @@
+$ sh -c 'grep -rn CopyrightYears '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources'\'' '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/App'\''; echo ---; grep -rn '\''2026'\'' '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources'\'' '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/App'\'''
+exit: 0
+commit: 11c2fd70e18c7045e69207e0d2144b1adb73258a
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources/AnkyDomain/CopyrightYears.swift:5:public enum CopyrightYears {
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources/AnkyDomain/CopyrightYears.swift:9:    public static func text(first: Int = CopyrightYears.first, latest: Int = CopyrightYears.latest) -> String {
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/App/Settings/AboutBlock.swift:28:            Text(verbatim: "© \(CopyrightYears.text()) Tëma Bolshakov")
+---
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources/AnkyDomain/CopyrightYears.swift:6:    public static let first = 2026
+/Users/bolshakov/Projects/personal/anky.wt/qa-t263-01-1/checkout/Sources/AnkyDomain/CopyrightYears.swift:7:    public static let latest = 2026
