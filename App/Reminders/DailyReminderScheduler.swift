@@ -39,9 +39,13 @@ import UserNotifications
         await center.notificationSettings().authorizationStatus == .denied
     }
 
+    /// Adding under the same identifier replaces the request in place. A remove first would leave a moment with one
+    /// request fewer, and a dose rebuild that reads then sizes its window one too big.
     private static func schedule(_ date: Date?, in center: UNUserNotificationCenter) async {
-        center.removePendingNotificationRequests(withIdentifiers: [DailyReminder.identifier])
-        guard let date, await isAllowed(by: center) else { return }
+        guard let date, await isAllowed(by: center) else {
+            center.removePendingNotificationRequests(withIdentifiers: [DailyReminder.identifier])
+            return
+        }
         try? await center.add(request(at: date))
     }
 
