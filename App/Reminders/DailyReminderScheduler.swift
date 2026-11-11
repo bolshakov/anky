@@ -14,7 +14,11 @@ import UserNotifications
 
     /// Runs one after another, so two reconciles never add the request at once. The date is fixed when called, so the
     /// last call decides what stays pending.
-    func reconcile(settings: DailyReminderSettings, entries: [Entry], doses: [Dose]) {
+    func reconcile(
+        settings: DailyReminderSettings,
+        entries: [Entry],
+        doses: [Dose]
+    ) -> Task<Void, Never> {
         let date = DailyReminder.pendingFireDate(
             isOn: settings.isOn,
             entries: entries,
@@ -24,10 +28,12 @@ import UserNotifications
             calendar: .current
         )
         let previous = lastRun
-        lastRun = Task { [center] in
+        let run = Task { [center] in
             await previous?.value
             await Self.schedule(date, in: center)
         }
+        lastRun = run
+        return run
     }
 
     /// The one call of `requestAuthorization` for this reminder. Only the toggle's action may call it.
