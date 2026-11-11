@@ -167,6 +167,9 @@ Schedule => Расписание
 Repeat => Повтор
 Times => Время приёма
 Add a time => Добавить время
+Duration => Продолжительность
+Starts => Начало
+Ends => Окончание
 Every day => Каждый день
 Every week => Каждую неделю
 Every 2 weeks => Каждые 2 недели
@@ -246,6 +249,8 @@ After · checked in at %@ => После · отмечено в %@
 Every day at %@ => Каждый день в %@
 Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
 Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
+%@. Next: %@. => %1$@. Следующий приём: %2$@.
+%@. => %@.
 """)
 
 private let approvedFormatValues = table("""
