@@ -162,6 +162,7 @@ Strength, for example 500 mg => Дозировка, например 500 мг
 Strength, optional => Дозировка, необязательно
 As needed => По необходимости
 Scheduled => По расписанию
+Not set => Не задано
 How you take it => Способ приёма
 Check in after => Отметить через
 After => Через

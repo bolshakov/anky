@@ -6,12 +6,14 @@ public struct MedicationDraft: Equatable, Sendable {
     public var strength: String
     public var takenAs: TakenAs
     public var checkIn: DoseCheckIn
+    public var schedule: MedicationSchedule?
 
     public init() {
         name = ""
         strength = ""
         takenAs = .asNeeded
         checkIn = DoseCheckIn(savedDelay: nil)
+        schedule = nil
     }
 
     public init(_ medication: Medication) {
@@ -19,6 +21,7 @@ public struct MedicationDraft: Equatable, Sendable {
         strength = medication.strength ?? ""
         takenAs = medication.takenAs
         checkIn = DoseCheckIn(savedDelay: medication.checkInAfter)
+        schedule = medication.schedule
     }
 
     public var isSavable: Bool {
@@ -37,9 +40,7 @@ public struct MedicationDraft: Equatable, Sendable {
         updated.strength = strengthText.isEmpty ? nil : strengthText
         updated.takenAs = takenAs
         updated.checkInAfter = checkIn.checkInAfter
-        if takenAs == .asNeeded {
-            updated.schedule = nil
-        }
+        updated.schedule = takenAs == .scheduled ? schedule : nil
         updated.updatedAt = date
         return updated
     }
