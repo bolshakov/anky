@@ -1,0 +1,11 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t240-05-1/tmp/qa/rows.sh CBD33779-8788-45DB-BF85-3FAB164F7181
+exit: 0
+commit: 9d09747efa37b8a6ec273ca04fd08932c1dc877d
+
+today-screen | None | []
+log-dose-cancel | Cancel | []
+log-dose-cancel | Cancel | []
+dose-medication-row | Walk A, Scheduled | []
+dose-medication-row | Walk B, Scheduled | []
+checkmark | Selected | []
+save-dose | Save | []
