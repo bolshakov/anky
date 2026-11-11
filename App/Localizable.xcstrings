@@ -1413,6 +1413,26 @@
         }
       }
     },
+    "Times" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время приёма"
+          }
+        }
+      }
+    },
+    "Add a time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить время"
+          }
+        }
+      }
+    },
     "Every day" : {
       "localizations" : {
         "ru" : {
