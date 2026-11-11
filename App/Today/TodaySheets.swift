@@ -14,16 +14,19 @@ struct TodaySheets: ViewModifier {
     let onDeleted: () -> Void
     @Binding var reminderCheckIn: Dose?
     @Binding var reminderNewEntry: Bool
+    @Binding var reminderLogDose: UUID?
     @Binding var isShowingNewEntry: Bool
     @Binding var isShowingLogDose: Bool
     @Binding var editing: Entry?
     @Binding var editingDose: Dose?
     @Binding var checkingIn: Dose?
+    @State private var logDoseMedication: UUID?
     @State private var pending: Pending?
 
     private enum Pending {
         case checkIn(Dose)
         case newEntry
+        case logDose(UUID)
     }
 
     func body(content: Content) -> some View {
@@ -38,11 +41,16 @@ struct TodaySheets: ViewModifier {
                 reminderNewEntry = false
                 showNewEntry()
             }
+            .onChange(of: reminderLogDose, initial: true) { _, medicationID in
+                guard let medicationID else { return }
+                reminderLogDose = nil
+                showLogDose(medicationID)
+            }
             .sheet(isPresented: $isShowingNewEntry, onDismiss: presentPending) {
                 NewEntryView(model: model, onSaved: onCreated)
             }
-            .sheet(isPresented: $isShowingLogDose, onDismiss: presentPending) {
-                LogDoseView(medications: medications, model: model, onSaved: onSaved)
+            .sheet(isPresented: $isShowingLogDose, onDismiss: logDoseDismissed) {
+                LogDoseView(medications: medications, model: model, preselected: logDoseMedication, onSaved: onSaved)
             }
             .sheet(item: $editing, onDismiss: presentPending) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: onSaved)
@@ -77,6 +85,22 @@ struct TodaySheets: ViewModifier {
         checkingIn = nil
     }
 
+    private func showLogDose(_ medicationID: UUID) {
+        guard isShowingNewEntry || isShowingLogDose || editing != nil || editingDose != nil || checkingIn != nil else {
+            logDoseMedication = medicationID
+            isShowingLogDose = true
+            return
+        }
+        pending = .logDose(medicationID)
+        closeSheets()
+        checkingIn = nil
+    }
+
+    private func logDoseDismissed() {
+        logDoseMedication = nil
+        presentPending()
+    }
+
     private func closeSheets() {
         isShowingNewEntry = false
         isShowingLogDose = false
@@ -90,6 +114,9 @@ struct TodaySheets: ViewModifier {
         switch next {
         case let .checkIn(dose): checkingIn = dose
         case .newEntry: isShowingNewEntry = true
+        case let .logDose(medicationID):
+            logDoseMedication = medicationID
+            isShowingLogDose = true
         }
     }
 }
