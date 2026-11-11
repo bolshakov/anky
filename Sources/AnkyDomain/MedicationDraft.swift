@@ -25,7 +25,7 @@ public struct MedicationDraft: Equatable, Sendable {
     }
 
     public var isSavable: Bool {
-        !trimmed(name).isEmpty
+        !trimmed(name).isEmpty && (takenAs == .asNeeded || schedule != nil)
     }
 
     public func medication(id: UUID, at date: Date) -> Medication {

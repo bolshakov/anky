@@ -11,9 +11,19 @@ extension TakenAs {
     }
 }
 
+extension MedicationScheduleLine {
+    static func shown(takenAs: TakenAs, schedule: MedicationSchedule?) -> String {
+        text(takenAs: takenAs, schedule: schedule, locale: .current, calendar: .current, bundle: .main)
+    }
+}
+
 extension Medication {
+    var scheduleLine: String {
+        MedicationScheduleLine.shown(takenAs: takenAs, schedule: schedule)
+    }
+
     var spokenRowLabel: String {
-        "\(listTitle), \(String(localized: takenAs.title))"
+        "\(listTitle), \(scheduleLine)"
     }
 }
 

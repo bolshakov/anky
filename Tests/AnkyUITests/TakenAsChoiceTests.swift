@@ -66,10 +66,11 @@ final class TakenAsChoiceTests: XCTestCase {
         XCTAssertTrue(app.buttons["Scheduled"].waitForExistence(timeout: 10))
         XCTAssertGreaterThan(asNeededCount(in: app), asNeededBeforeOpening)
         app.buttons["Scheduled"].tap()
+        keepTheDefaultSchedule(in: app)
         saveNewMedication(named: "Zorblex", app)
 
         openMedicationsFromLogDose(app)
-        XCTAssertTrue(app.buttons["medication-row"].firstMatch.label.contains("Scheduled"))
+        XCTAssertTrue(app.buttons["medication-row"].firstMatch.label.contains("Every day"))
     }
 
     func testScheduledMedicationOpensAtLargestSizeShowingScheduled() {
@@ -115,8 +116,22 @@ final class TakenAsChoiceTests: XCTestCase {
         openNewMedication(app)
         if scheduled {
             choose("Scheduled", in: app)
+            keepTheDefaultSchedule(in: app)
         }
         saveNewMedication(named: "Zorblex", app)
+    }
+
+    /// A Scheduled medication is saved only with a schedule, and opening the Schedule screen sets the default one.
+    private func keepTheDefaultSchedule(in app: XCUIApplication) {
+        let row = app.buttons["schedule-row"]
+        for _ in 0 ..< 5 where !row.isHittable {
+            app.swipeUp()
+        }
+        row.tap()
+        let screen = app.descendants(matching: .any)["schedule-screen"]
+        XCTAssertTrue(screen.waitForExistence(timeout: 10))
+        app.navigationBars["Schedule"].buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(screen.waitForNonExistence(timeout: 10))
     }
 
     private func openMedicationsFromLogDose(_ app: XCUIApplication) {
