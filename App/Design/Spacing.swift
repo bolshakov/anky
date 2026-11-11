@@ -26,6 +26,11 @@ enum Spacing {
     static let chevronSlotWidth: CGFloat = 8
     static let chevronSlotHeight: CGFloat = 14
     static let tapTarget: CGFloat = 44
+    static let weekdayRowHeight: CGFloat = 80
+    static let weekdayRowPadding: CGFloat = 12
+    static let weekdayLetterSize: CGFloat = 17
+    static let weekdayDot: CGFloat = 6
+    static let weekdayChosenCircle: CGFloat = 40
     static let tipGap: CGFloat = 12
     static let tipInset: CGFloat = 4
     static let emptyStateGap: CGFloat = 12

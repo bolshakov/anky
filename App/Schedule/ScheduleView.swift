@@ -18,7 +18,9 @@ struct ScheduleView: View {
         List {
             ScheduleRepeatSection(schedule: $schedule)
             if schedule.unit == .weeks {
-                CardSection(id: "schedule-weekdays-section") { ScheduleWeekdayRow(weekdays: weekdays) }
+                CardSection(id: "schedule-weekdays-section") {
+                    ScheduleWeekdayRow(weekdays: schedule.weekdays) { schedule.toggle($0) }
+                }
             }
             ScheduleTimesSection(schedule: $schedule)
             ScheduleDurationSection(schedule: $schedule)
@@ -36,17 +38,5 @@ struct ScheduleView: View {
         .onChange(of: schedule) { _, changed in
             draft.schedule = changed.schedule()
         }
-    }
-
-    /// The row only says which weekday was tapped. `toggle` decides, so the last weekday stays on.
-    private var weekdays: Binding<Set<Locale.Weekday>> {
-        Binding(
-            get: { schedule.weekdays },
-            set: { changed in
-                if let tapped = changed.symmetricDifference(schedule.weekdays).first {
-                    schedule.toggle(tapped)
-                }
-            }
-        )
     }
 }
