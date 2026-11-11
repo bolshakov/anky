@@ -2,32 +2,26 @@
 import SwiftUI
 
 struct ScheduleWeekdayRow: View {
-    @Binding var weekdays: Set<Locale.Weekday>
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    let weekdays: Set<Locale.Weekday>
+    let onTap: (Locale.Weekday) -> Void
 
     private let calendar = Calendar.current
 
     var body: some View {
-        let buttons = ForEach(orderedWeekdays, id: \.self) { weekday in
-            WeekdayButton(
-                weekday: weekday,
-                symbol: calendar.veryShortStandaloneWeekdaySymbols[weekday.symbolIndex],
-                name: calendar.standaloneWeekdaySymbols[weekday.symbolIndex],
-                isOn: weekdays.contains(weekday)
-            ) {
-                weekdays.formSymmetricDifference([weekday])
-            }
-        }
-        Group {
-            if dynamicTypeSize.isAccessibilitySize {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 4), spacing: Spacing.inlineGap) {
-                    buttons
+        HStack(spacing: 0) {
+            ForEach(orderedWeekdays, id: \.self) { weekday in
+                WeekdayColumn(
+                    weekday: weekday,
+                    letter: calendar.veryShortStandaloneWeekdaySymbols[weekday.symbolIndex],
+                    name: calendar.standaloneWeekdaySymbols[weekday.symbolIndex],
+                    isChosen: weekdays.contains(weekday)
+                ) {
+                    onTap(weekday)
                 }
-            } else {
-                HStack(spacing: Spacing.inlineGap) { buttons }
             }
         }
-        .padding(.vertical, Spacing.tightGap)
+        .padding(.horizontal, Spacing.weekdayRowPadding)
+        .frame(height: Spacing.weekdayRowHeight)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("schedule-weekdays")
     }
@@ -38,25 +32,38 @@ struct ScheduleWeekdayRow: View {
     }
 }
 
-private struct WeekdayButton: View {
+private struct WeekdayColumn: View {
     let weekday: Locale.Weekday
-    let symbol: String
+    let letter: String
     let name: String
-    let isOn: Bool
-    let toggle: () -> Void
+    let isChosen: Bool
+    let tap: () -> Void
 
     var body: some View {
-        Button(action: toggle) {
-            Text(symbol)
-                .frame(maxWidth: .infinity, minHeight: Spacing.tapTarget)
+        Button(action: tap) {
+            VStack(spacing: Spacing.tightGap) {
+                Text(letter)
+                    .font(.system(size: Spacing.weekdayLetterSize))
+                    .foregroundStyle(isChosen ? Color.onTint : Color.ink)
+                    .frame(width: Spacing.weekdayChosenCircle, height: Spacing.weekdayChosenCircle)
+                    .background {
+                        if isChosen {
+                            Circle().fill(Color.tint)
+                        }
+                    }
+                Circle()
+                    .fill(Color.ink2)
+                    .frame(width: Spacing.weekdayDot, height: Spacing.weekdayDot)
+                    .opacity(isChosen ? 0 : 1)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .contentShape(.rect)
         }
-        .buttonStyle(.borderless)
-        .foregroundStyle(isOn ? Color.onTint : Color.ink)
-        .background(isOn ? Color.tint : Color.fill, in: .capsule)
-        .contentShape(.capsule)
+        .buttonStyle(.plain)
+        .frame(minWidth: Spacing.tapTarget)
+        .accessibilityElement(children: .ignore)
         .accessibilityLabel(name)
-        .accessibilityValue(isOn ? Text("on") : Text("off"))
-        .accessibilityAddTraits(.isToggle)
+        .accessibilityAddTraits(isChosen ? .isSelected : [])
         .accessibilityIdentifier("weekday-\(weekday.idSuffix)")
     }
 }
