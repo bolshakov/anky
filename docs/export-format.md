@@ -122,8 +122,7 @@ One row per dose taken. Rows are ordered by `time_taken`, then by `id`.
 `schema_version` in `manifest.json` goes up when a column is removed, renamed, moved or changes meaning, or a file is
 removed or renamed.
 
-A new column at the end of a file, or a new file, keeps the version. A reader ignores the columns and files it does
-not know, and finds a column by its header name rather than by its place.
+A new column at the end of a file, or a new file, keeps the version, so a reader ignores what it does not know.
 
 ## Example
 
