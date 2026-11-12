@@ -3891,6 +3891,18 @@
     "Result deleted" : {
       "comment" : "What VoiceOver announces after a saved BASDAI result is deleted."
     },
+    "BASDAI scores" : {
+      "comment" : "The report PDF's heading above the BASDAI table: the scores of the questionnaire saved in the period, each with its six answers."
+    },
+    "BASDAI scores, continued" : {
+      "comment" : "The report PDF's heading above the BASDAI table when the table goes on from the page before."
+    },
+    "Date" : {
+      "comment" : "The report PDF's BASDAI table, the heading of the column that holds the day a result was saved."
+    },
+    "Q%lld" : {
+      "comment" : "The report PDF's BASDAI table, the heading of the column for one question: Q1 to Q6, where %lld is the question number from 1 to 6. The key under the table says what each one asks."
+    },
     "Score" : {
       "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'."
     }

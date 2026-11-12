@@ -80,6 +80,13 @@ private struct ReportPageContent: View {
                 rows: rows.map { height(ReportMedicationRowView(text: $0)) },
                 note: height(ReportMedicationNoteLine(hasScheduled: hasScheduled))
             )
+        case let .basdai(rows):
+            return .table(
+                heading: height(ReportBasdaiHeading(isContinued: false)),
+                columnHeader: height(ReportBasdaiColumnHeader()),
+                rows: rows.map { height(ReportBasdaiRowView(text: $0)) },
+                note: height(ReportBasdaiKeyLine())
+            )
         }
     }
 
@@ -91,6 +98,11 @@ private struct ReportPageContent: View {
             AnyView(ReportMedicationBlock(
                 rows: Array(rows[slice.rows ?? rows.indices]), hasScheduled: hasScheduled,
                 isContinued: slice.isContinued, showsNote: slice.showsNote
+            ))
+        case let .basdai(rows):
+            AnyView(ReportBasdaiBlock(
+                rows: Array(rows[slice.rows ?? rows.indices]),
+                isContinued: slice.isContinued, showsKey: slice.showsNote
             ))
         }
     }
