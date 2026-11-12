@@ -10,6 +10,7 @@ private let approvedPlaceholders = table("""
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@, %@ and %lld more => place names
 %@ and %@, %@ to %@. => the entry and dose counts, then two days
+%@ by week: %@, %@ => a symptom name, then the week counts
 %@ to %@ => two days
 After · checked in at %@ => a time
 Every %lld days at %@ => clock times
