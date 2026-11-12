@@ -24,21 +24,27 @@ struct CardSection<Content: View>: View {
     private let label: Text?
     private let footnote: Text?
     private let id: String
+    private let labelID: String
     private let footnoteID: String
+    private let labelFocus: AccessibilityFocusState<Bool>.Binding?
     private let content: Content
 
     init(
         _ label: Text? = nil,
         footnote: Text? = nil,
         id: String,
+        labelID: String? = nil,
         footnoteID: String? = nil,
+        labelFocus: AccessibilityFocusState<Bool>.Binding? = nil,
         @ViewBuilder content: () -> Content
     ) {
         // #lizard forgives
         self.label = label
         self.footnote = footnote
         self.id = id
+        self.labelID = labelID ?? "\(id)-label"
         self.footnoteID = footnoteID ?? "\(id)-footnote"
+        self.labelFocus = labelFocus
         self.content = content()
     }
 
@@ -48,9 +54,7 @@ struct CardSection<Content: View>: View {
                 .listRowBackground(Color.card)
         } header: {
             if let label {
-                label
-                    .modifier(SectionLabel())
-                    .accessibilityIdentifier("\(id)-label")
+                labelView(label)
             }
         } footer: {
             if let footnote {
@@ -58,6 +62,18 @@ struct CardSection<Content: View>: View {
                     .modifier(SectionFooter())
                     .accessibilityIdentifier(footnoteID)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func labelView(_ label: Text) -> some View {
+        let view = label
+            .modifier(SectionLabel())
+            .accessibilityIdentifier(labelID)
+        if let labelFocus {
+            view.accessibilityFocused(labelFocus)
+        } else {
+            view
         }
     }
 }

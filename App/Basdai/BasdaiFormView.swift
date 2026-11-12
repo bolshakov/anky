@@ -8,7 +8,8 @@ struct BasdaiFormView: View {
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDiscard = false
-    @AccessibilityFocusState private var focus: BasdaiFormFocus?
+    @AccessibilityFocusState private var isLabelFocused: Bool
+    @AccessibilityFocusState private var isCancelFocused: Bool
 
     var isComplete: Bool {
         answers.isComplete
@@ -21,20 +22,13 @@ struct BasdaiFormView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    Text("All questions refer to **last week**.")
-                        .accessibilityIdentifier("basdai-intro")
-                        .accessibilityFocused($focus, equals: .intro)
-                        .nonCardBlock()
-                }
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
-                    BasdaiQuestionBlock(question: question, answer: $answers[question.number - 1])
+                    questionSection(question)
                 }
-                CardSection(footnote: citation, id: "basdai-end", footnoteID: "basdai-citation") {}
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
-            .onAppear { focus = .intro }
+            .onAppear { isLabelFocused = true }
             .navigationTitle("BASDAI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -44,7 +38,7 @@ struct BasdaiFormView: View {
                             .frame(minHeight: Spacing.rowMinimumHeight)
                             .contentShape(Rectangle())
                             .accessibilityIdentifier("basdai-cancel")
-                            .accessibilityFocused($focus, equals: .cancel)
+                            .accessibilityFocused($isCancelFocused)
                             .confirmationDialog(
                                 "Discard answers?",
                                 isPresented: $isConfirmingDiscard,
@@ -68,9 +62,24 @@ struct BasdaiFormView: View {
             .interactiveDismissDisabled(isAnyAnswered)
             .onChange(of: isConfirmingDiscard) { _, isShowing in
                 if !isShowing {
-                    focus = .cancel
+                    isCancelFocused = true
                 }
             }
+        }
+    }
+
+    private func questionSection(_ question: BasdaiQuestion) -> some View {
+        let isFirst = question.number == 1
+        let isLast = question.number == BasdaiQuestion.all.count
+        return CardSection(
+            isFirst ? Text("Last week") : nil,
+            footnote: isLast ? citation : nil,
+            id: "basdai-q\(question.number)",
+            labelID: "basdai-intro",
+            footnoteID: "basdai-citation",
+            labelFocus: $isLabelFocused
+        ) {
+            BasdaiQuestionBlock(question: question, answer: $answers[question.number - 1])
         }
     }
 
@@ -104,9 +113,4 @@ struct BasdaiFormView: View {
             isShowingSaveFailure = true
         }
     }
-}
-
-private enum BasdaiFormFocus: Hashable {
-    case intro
-    case cancel
 }

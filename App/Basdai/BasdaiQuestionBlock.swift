@@ -8,18 +8,13 @@ struct BasdaiQuestionBlock: View {
     @Environment(\.locale) private var locale
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    /// Dimmed by opacity and not `.disabled`, since a disabled slider would take no first touch to answer it.
-    private static let unansweredOpacity = 0.4
-
     var body: some View {
-        CardSection(id: "basdai-q\(question.number)") {
-            VStack(alignment: .leading, spacing: Spacing.cardContentGap) {
-                heading
-                    .accessibilityHidden(true)
-                VStack(spacing: Spacing.tightGap) {
-                    slider
-                    BasdaiEndLabels(question: question)
-                }
+        VStack(alignment: .leading, spacing: Spacing.cardContentGap) {
+            heading
+                .accessibilityHidden(true)
+            VStack(spacing: Spacing.tightGap) {
+                slider
+                BasdaiEndLabels(question: question)
             }
         }
     }
@@ -34,7 +29,6 @@ struct BasdaiQuestionBlock: View {
         }
         // Inside the scrolling form a tap on the thumb ends before the slider starts editing, so the tap answers too.
         .simultaneousGesture(TapGesture().onEnded { answer = answer.touched() })
-        .opacity(answer.value == nil ? Self.unansweredOpacity : 1)
         .minimumTapTarget()
         .accessibilityLabel(Text(verbatim: question.text))
         .accessibilityValue(Text(verbatim: question.spokenText(answer, locale: locale)))
@@ -59,7 +53,7 @@ struct BasdaiQuestionBlock: View {
     }
 
     private var wording: AttributedString {
-        question.wording.reduce(into: AttributedString()) { text, segment in
+        question.wording.reduce(into: AttributedString("\(question.number). ")) { text, segment in
             var part = AttributedString(segment.text)
             if segment.isBold {
                 part.inlinePresentationIntent = .stronglyEmphasized
