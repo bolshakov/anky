@@ -109,6 +109,7 @@ struct TodayView: View {
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
             .todayTopMargin()
+            .reportMenuInBar(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -263,7 +264,9 @@ struct TodayView: View {
             isShowingSaveFailure = true
         }
     }
+}
 
+extension TodayView {
     private func undoLogged() {
         guard let loggedID else { return }
         do {
