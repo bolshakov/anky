@@ -1,0 +1,13 @@
+$ sh -c 'axe describe-ui --udid 47C75BBF-45CA-4359-B5BB-25B764EEF84C | python3 -I -c "
+import json,sys
+def w(n):
+    if isinstance(n,dict):
+        if n.get('\''AXUniqueId'\'')=='\''report-menu'\'': print(json.dumps(n))
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(json.load(sys.stdin))"'
+exit: 0
+commit: 3a026fd7b1fac8df05b249843e4f42856abfa187
+
+{"custom_actions": [], "role": "AXButton", "frame": {"width": 36, "x": 346, "height": 36, "y": 66}, "title": null, "AXLabel": "Report and BASDAI", "type": "Button", "help": null, "enabled": true, "AXUniqueId": "report-menu", "role_description": "button", "pid": 35090, "AXFrame": "{{346, 66}, {36, 36}}", "AXValue": null, "subrole": null, "content_required": false, "children": [], "traits": []}

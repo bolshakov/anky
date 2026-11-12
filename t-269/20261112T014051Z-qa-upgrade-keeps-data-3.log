@@ -1,0 +1,24 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t269-04-1/tmp/scripts/ids.sh 72C54142-319C-446B-9FCA-BFF192A8924E
+exit: 0
+commit: 3a026fd7b1fac8df05b249843e4f42856abfa187
+
+None | Anky | Application
+BASDAI | None | Group
+BackButton | Today | Button
+None | BASDAI | Heading
+basdai-screen | None | Group
+basdai-empty | No BASDAI results yet, BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date., Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). | StaticText
+chart.bar | Chart Column | Image
+None | No BASDAI results yet | StaticText
+None | BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date. | StaticText
+None | Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). | StaticText
+None | Vertical scroll bar, 1 page | Slider
+None | Vertical scroll bar, 1 page | Slider
+basdai-start | Start | Button
+None | Tab Bar | Group
+None | Today | RadioButton
+calendar | calendar | Image
+None | History | RadioButton
+clock.fill | clock | Image
+None | Settings | RadioButton
+slider.horizontal.3 | edit | Image

@@ -1,0 +1,32 @@
+$ sh -c 'axe describe-ui --udid 47C75BBF-45CA-4359-B5BB-25B764EEF84C | python3 -I -c "
+import json,sys
+def w(n):
+    if isinstance(n,dict):
+        if n.get('\''AXUniqueId'\'') or n.get('\''AXLabel'\''): print(n.get('\''AXUniqueId'\''),'\''|'\'',n.get('\''AXLabel'\''),'\''|'\'',n.get('\''type'\''))
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(json.load(sys.stdin))"'
+exit: 0
+commit: 3a026fd7b1fac8df05b249843e4f42856abfa187
+
+None | Anky | Application
+BASDAI | None | Group
+BackButton | Today | Button
+None | BASDAI | Heading
+basdai-screen | None | Group
+basdai-empty | No BASDAI results yet, BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date., Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). | StaticText
+chart.bar | Chart Column | Image
+None | No BASDAI results yet | StaticText
+None | BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date. | StaticText
+None | Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). | StaticText
+None | Vertical scroll bar, 1 page | Slider
+None | Vertical scroll bar, 1 page | Slider
+basdai-start | Start | Button
+None | Tab Bar | Group
+calendar | Today | RadioButton
+calendar | calendar | Image
+clock | History | RadioButton
+clock.fill | clock | Image
+slider.horizontal.3 | Settings | RadioButton
+slider.horizontal.3 | edit | Image
