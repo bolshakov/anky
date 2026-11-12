@@ -122,6 +122,7 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
+            .toolbarTitleDisplayMode(.inlineLarge)
             .toolbar { ReportMenu(onReport: { isShowingReport = true }, onBasdai: { isShowingBasdai = true }) }
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications)
