@@ -18,6 +18,7 @@ new_tree() {
   calls=$tree/calls.log
   out=$tree/out.log
   omit=
+  simctl_fail=
   seconds=
   mkdir -p "$bin"
   cat > "$bin/xcrun" <<EOF
@@ -25,7 +26,11 @@ new_tree() {
 echo "xcrun \$*" >> "$calls"
 case "\$*" in
   "simctl create "*) echo "$udid" ;;
+  "simctl shutdown "*) [ "\$STUB_SIMCTL_FAIL" = shutdown ] && exit 1 ;;
+  "simctl boot "*)
+    [ "\$STUB_SIMCTL_FAIL" = boot ] && [ "\$(grep -c '^xcrun simctl boot ' "$calls")" -gt 1 ] && exit 1 ;;
 esac
+exit 0
 EOF
   cat > "$bin/xcodebuild" <<EOF
 #!/bin/sh
@@ -33,7 +38,7 @@ echo "xcodebuild \$*" >> "$calls"
 echo "\${TEST_RUNNER_ANKY_PRESENTATION:-unset}" > "$tree/look.txt"
 case "\$STUB_XCODEBUILD" in
   hang) echo "stub xcodebuild is stuck"; sleep 60 & echo \$! >> "$tree/children.pid"; wait ;;
-  hang-once)
+  hang-once|hang-once-fail)
     [ "\$(grep -c '^xcodebuild ' "$calls")" -gt 1 ] || { sleep 60 & echo \$! >> "$tree/children.pid"; wait; } ;;
   skip-unnamed)
     echo "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' passed (0.1 seconds)."
@@ -46,7 +51,7 @@ for arg do
       name=\${arg#-only-testing:AnkyUITests/}
       case_line="Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]'"
       case "\$STUB_XCODEBUILD" in
-        fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
+        fail|hang-once-fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
         skip) echo "\$case_line skipped (0.0 seconds)." ;;
         flaky)
           echo "\$case_line failed (0.1 seconds)."
@@ -66,7 +71,7 @@ run_runner() {
   mode=$1
   shift
   start=$(date +%s)
-  STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" bash "$runner" "$@" > "$out" 2>&1
+  STUB_XCODEBUILD=$mode STUB_OMIT=$omit STUB_SIMCTL_FAIL=$simctl_fail UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" bash "$runner" "$@" > "$out" 2>&1
   code=$?
   elapsed=$(($(date +%s) - start))
 }
@@ -158,6 +163,42 @@ between=$(sed -n '/^xcodebuild /,/^xcodebuild /p' "$calls" | sed '1d;$d')
   && grep -qx "simulator $udid rebooted" "$out" \
   && [ "$between" = "$(printf 'xcrun simctl list devices\nxcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
   && [ -s "$tree/children.pid" ] && children_gone \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a failed shutdown still reruns, and the second try passes"
+new_tree
+seconds=2
+simctl_fail=shutdown
+run_runner hang-once light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+between=$(sed -n '/^xcodebuild /,/^xcodebuild /p' "$calls" | sed '1d;$d')
+[ "$code" -eq 0 ] && grep -qx "try 1 timed out after 2 s" "$out" \
+  && grep -qx "::warning::simctl shutdown of $udid failed, running try 2 anyway" "$out" \
+  && ! grep -q "rebooted" "$out" \
+  && [ "$between" = "$(printf 'xcrun simctl list devices\nxcrun simctl shutdown %s\nxcrun simctl boot %s' "$udid" "$udid")" ] \
+  && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 2 ] \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a failed shutdown then a failing second try exits non-zero"
+new_tree
+seconds=2
+simctl_fail=shutdown
+run_runner hang-once-fail light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -ne 0 ] && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 2 ] \
+  && grep -qx "::warning::simctl shutdown of $udid failed, running try 2 anyway" "$out" \
+  && grep -qF "Test Case '-[AnkyUITests.EmptyStateTests testFirstLaunchShowsEmptyState]' failed" "$out" \
+  && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a failed boot still reruns, and the second try passes"
+new_tree
+seconds=2
+simctl_fail=boot
+run_runner hang-once light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmptyState
+[ "$code" -eq 0 ] && grep -qx "::warning::simctl boot of $udid failed, running try 2 anyway" "$out" \
+  && ! grep -q "simctl shutdown of" "$out" && ! grep -q "rebooted" "$out" \
+  && [ "$(grep -c '^xcodebuild ' "$calls")" -eq 2 ] \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
 

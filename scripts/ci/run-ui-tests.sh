@@ -142,9 +142,16 @@ run_try "$@"
 while [ -e "$mark" ]; do
   echo "try $try timed out after $limit s"
   [ "$try" = 2 ] && exit 1
-  xcrun simctl shutdown "$udid" || exit 1
-  xcrun simctl boot "$udid" || exit 1
-  echo "simulator $udid rebooted"
+  rebooted=1
+  if ! xcrun simctl shutdown "$udid"; then
+    echo "::warning::simctl shutdown of $udid failed, running try 2 anyway"
+    rebooted=0
+  fi
+  if ! xcrun simctl boot "$udid"; then
+    echo "::warning::simctl boot of $udid failed, running try 2 anyway"
+    rebooted=0
+  fi
+  [ "$rebooted" = 1 ] && echo "simulator $udid rebooted"
   try=2
   run_try "$@"
 done
