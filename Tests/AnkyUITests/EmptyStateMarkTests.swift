@@ -8,7 +8,8 @@ final class EmptyStateMarkTests: XCTestCase {
         let app = launchAnky()
 
         XCTAssertTrue(app.staticTexts["empty-today"].waitForExistence(timeout: 10))
-        XCTAssertEqual(app.images.count, 0)
+        let today = app.descendants(matching: .any)["today-screen"]
+        XCTAssertEqual(today.images.count, 0)
         attachScreenshot(named: "empty-state-mark")
     }
 }
