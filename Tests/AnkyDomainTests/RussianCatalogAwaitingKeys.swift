@@ -49,4 +49,6 @@ Legend one entry
 Legend number under a bar
 Legend none logged
 Week count none
+Severity by week heading
+Kind none logged
 """.split(separator: "\n").map(String.init)

@@ -94,8 +94,17 @@ struct ReportView: View {
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
             totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
-            blocks: []
+            blocks: [.whole(AnyView(ReportSeverityByWeek(block: severityBlock(now: now))))]
         ).pages
+    }
+
+    private func severityBlock(now: Date) -> ReportSeverityBlock {
+        ReportSeverityBlock(
+            figures: ReportWeeklyFigures(entries: model.entries, period: period, now: now, calendar: .current),
+            locale: .current,
+            calendar: .current,
+            bundle: .main
+        )
     }
 }
 
