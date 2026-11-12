@@ -68,9 +68,13 @@ struct BasdaiQuestionBlock: View {
         }
     }
 
+    /// A native decrement at exactly 0 changes nothing and never calls the setter, so an unanswered slider sits just
+    /// above 0, where a decrement answers 0.
+    private static let unansweredLevel = 0.001
+
     private var level: Binding<Double> {
         Binding(
-            get: { Double(answer.value ?? 0) },
+            get: { answer.value.map(Double.init) ?? Self.unansweredLevel },
             set: { answer = answer.slid(to: Int($0)) }
         )
     }

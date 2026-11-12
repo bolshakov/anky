@@ -3491,6 +3491,59 @@
     "%@. Score %@." : {
       "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
     },
+    "and %lld more places" : {
+      "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more place"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more places"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld место"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld мест"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%@ (%lld–%lld)" : {
       "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
       "localizations" : {
