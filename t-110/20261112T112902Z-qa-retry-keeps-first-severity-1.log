@@ -1,0 +1,6 @@
+$ sh -c '/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.6wuLopJwgy/run | grep ex1'
+exit: 0
+commit: fff84ab5a0d9fc9690b3f469b3c693f8b71389fe
+
+ex1 first threw no
+ex1 retry returned true added 1 sev true kind fatigue date true doseptr true isSaved true

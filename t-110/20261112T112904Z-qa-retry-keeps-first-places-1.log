@@ -1,0 +1,6 @@
+$ sh -c '/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.6wuLopJwgy/run | grep ex2'
+exit: 0
+commit: fff84ab5a0d9fc9690b3f469b3c693f8b71389fe
+
+ex2 first threw no
+ex2 added 1 places ["neck"] retry draft places ["lower", "jaw"] doseptr true isSaved true
