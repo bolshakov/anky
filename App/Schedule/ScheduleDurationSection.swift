@@ -4,6 +4,7 @@ import SwiftUI
 
 struct ScheduleDurationSection: View {
     @Binding var schedule: ScheduleDraft
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         CardSection(Text("Duration"), id: "schedule-duration") {
@@ -40,7 +41,7 @@ struct ScheduleDurationSection: View {
     }
 
     private func setEndRow(_ end: ScheduleDay) -> some View {
-        HStack {
+        setEndLayout {
             DatePicker(
                 selection: ends(end),
                 in: ScheduleCalendar.date(schedule.start)...,
@@ -61,6 +62,11 @@ struct ScheduleDurationSection: View {
             .accessibilityIdentifier("schedule-ends-clear")
         }
         .rowHeight()
+    }
+
+    /// At accessibility sizes the compact picker's pill alone fills the card's width, so the × goes below it.
+    private var setEndLayout: AnyLayout {
+        dynamicTypeSize.isAccessibilitySize ? AnyLayout(VStackLayout(alignment: .leading)) : AnyLayout(HStackLayout())
     }
 
     private var starts: Binding<Date> {
