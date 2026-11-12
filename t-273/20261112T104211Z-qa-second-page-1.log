@@ -1,0 +1,111 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t273-09-1/tmp/out/second.txt
+exit: 0
+commit: 0c0606d3df74c5d6ceca31e4bdda618426f22731
+
+dev.bolshakov.Anky: 15243
+✓ Tap at resolved tap point at (364.0, 84.0) completed successfully
+✓ Tap at resolved tap point at (261.0, 103.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+pages 2
+--- page 1 size 595.2x841.8
+Symptom report
+12. August to 12. November 2026 · 3 months · created 12. November 2026
+Anky
+Name
+42 entries 32 doses First entry 10. September Recorded by the patient in Anky.
+Counts, averages and ranges only.
+Places logged
+Place Entries
+Place Entries
+Lower back 9
+Right SI joint 6
+Neck 7
+Upper back 4
+Left SI joint 6
+Left hip 3
+and 3 more places
+Medication: doses, and pain before and after
+Medication Doses Per week
+With an
+after-reading
+Pain before: average
+(lowest–highest)
+Pain after: average
+(lowest–highest)
+Average time
+to after-
+reading
+Zorblex 50 mg
+As needed
+5 0,4 4 6,5 (5–8) 3,5 (2–5) 1 h 50 min
+Marvex 10 mg
+Scheduled
+4 0,3 0– – –
+Oldpill 5 mg
+As needed
+3 0,2 0– – –
+Quillen 20 mg
+As needed
+2 0,2 1 6 3 45 min
+Ravolin 1 mg
+As needed
+2 0,2 0– – –
+Sarpex 3 mg
+As needed
+2 0,2 0– – –
+Tembrid 5 mg
+As needed
+2 0,2 0– – –
+Torvala 7 mg
+As needed
+2 0,2 0– – –
+Vessiril 9 mg
+As needed
+2 0,2 0– – –
+Xyrabel 11 mg
+As needed
+2 0,2 0– – –
+Restiva 2 mg
+As needed
+1 0,1 0– – –
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page 1 of 2 Get Anky on the App Store
+--- page 2 size 595.2x841.8
+Symptom report
+12. August to 12. November 2026 · 3 months · created 12. November 2026
+Anky
+Name
+Medication, continued
+Medication Doses Per week
+With an
+after-reading
+Pain before: average
+(lowest–highest)
+Pain after: average
+(lowest–highest)
+Average time
+to after-
+reading
+Solvane 4 mg
+As needed
+1 0,1 0– – –
+Tarnevil slow
+release morning
+tablet with a long
+made up name to
+wrap 6 mg
+As needed
+1 0,1 0– – –
+Ulvaxa 8 mg
+As needed
+1 0,1 0– – –
+Wendolan 10 mg
+As needed
+1 0,1 0– – –
+Yarvex 12 mg
+As needed
+1 0,1 0– – –
+Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled
+medication often has no after-reading.
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page 2 of 2 Get Anky on the App Store

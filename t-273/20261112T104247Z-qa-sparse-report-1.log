@@ -1,0 +1,22 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t273-09-1/tmp/out/sparse.txt
+exit: 0
+commit: 0c0606d3df74c5d6ceca31e4bdda618426f22731
+
+dev.bolshakov.Anky: 20389
+✓ Tap at resolved tap point at (364.0, 84.0) completed successfully
+✓ Tap at resolved tap point at (261.0, 103.0) completed successfully
+✓ Tap at resolved tap point at (201.0, 747.0) completed successfully
+pages 1
+--- page 1 size 595.2x841.8
+Symptom report
+12. August to 12. November 2026 · 3 months · created 12. November 2026
+Anky
+Name
+2 entries 0 doses First entry 8. November Recorded by the patient in Anky.
+Counts, averages and ranges only.
+Places logged
+None logged in this period
+Medication: doses, and pain before and after
+None logged in this period
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page 1 of 1 Get Anky on the App Store
