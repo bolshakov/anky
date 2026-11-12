@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t129-01-1/tmp/row.sh 0C671E33-5E9A-4C1B-A8C0-46FAD1400CDB dose-row
+exit: 0
+commit: 4e7be2470d1f0ef667a72d7fe5cd21ab106a93bc
+
+{"AXLabel": "Dose. Zorblex. 13:16.", "AXUniqueId": "dose-row", "role": "AXButton", "type": "Button"}
