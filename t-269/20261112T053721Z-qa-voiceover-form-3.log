@@ -1,0 +1,6 @@
+$ sh /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.pX8QkC3bPD/read.sh BA2DA312-FDD4-4504-813C-7BEFBD670897 /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.pX8QkC3bPD basdai-q3-value basdai-q3-slider
+exit: 0
+commit: 2745cdcd7da1b2de888f17a4ea2f86f8868665bb
+
+{"AXFrame": "{{264.66666666666669, 162.66666666666657}, {105.33333333333331, 20.333333333333314}}", "AXLabel": "Not answered", "AXUniqueId": "basdai-q3-value", "AXValue": null, "children": [], "content_required": false, "custom_actions": [], "enabled": true, "frame": {"height": 20.333333333333314, "width": 105.33333333333331, "x": 264.6666666666667, "y": 162.66666666666657}, "help": null, "pid": 33423, "role": "AXStaticText", "role_description": "text", "subrole": null, "title": null, "traits": [], "type": "StaticText"}
+{"AXFrame": "{{32, 260.99999999999989}, {338, 44}}", "AXLabel": "How would you describe the overall level of pain/swelling in joints other than neck, back or hips you have had?", "AXUniqueId": "basdai-q3-slider", "AXValue": 0, "children": [], "content_required": false, "custom_actions": [], "enabled": true, "frame": {"height": 44, "width": 338, "x": 32, "y": 260.9999999999999}, "help": null, "pid": 33423, "role": "AXSlider", "role_description": "slider", "subrole": null, "title": null, "traits": [], "type": "Slider"}

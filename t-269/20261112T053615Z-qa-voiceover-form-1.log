@@ -1,0 +1,6 @@
+$ sh /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.pX8QkC3bPD/read.sh BA2DA312-FDD4-4504-813C-7BEFBD670897 /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.pX8QkC3bPD basdai-q2-slider basdai-q2-value
+exit: 0
+commit: 2745cdcd7da1b2de888f17a4ea2f86f8868665bb
+
+{"AXFrame": "{{264.66666666666669, 439.33333333333331}, {105.33333333333331, 20.333333333333314}}", "AXLabel": "Not answered", "AXUniqueId": "basdai-q2-value", "AXValue": null, "children": [], "content_required": false, "custom_actions": [], "enabled": true, "frame": {"height": 20.333333333333314, "width": 105.33333333333331, "x": 264.6666666666667, "y": 439.3333333333333}, "help": null, "pid": 33423, "role": "AXStaticText", "role_description": "text", "subrole": null, "title": null, "traits": [], "type": "StaticText"}
+{"AXFrame": "{{32, 537.66666666666663}, {338, 44}}", "AXLabel": "How would you describe the overall level of AS neck, back or hip pain you have had?", "AXUniqueId": "basdai-q2-slider", "AXValue": 0, "children": [], "content_required": false, "custom_actions": [], "enabled": true, "frame": {"height": 44, "width": 338, "x": 32, "y": 537.6666666666666}, "help": null, "pid": 33423, "role": "AXSlider", "role_description": "slider", "subrole": null, "title": null, "traits": [], "type": "Slider"}
