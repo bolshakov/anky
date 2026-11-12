@@ -1,0 +1,32 @@
+$ git diff -U0 origin/main...HEAD
+exit: 0
+commit: 88728a61e6942d9f7be833637660fd61875c7b88
+
+diff --git a/Sources/AnkyDomain/CheckInSave.swift b/Sources/AnkyDomain/CheckInSave.swift
+index 8a7c327..9d20194 100644
+--- a/Sources/AnkyDomain/CheckInSave.swift
++++ b/Sources/AnkyDomain/CheckInSave.swift
+@@ -5 +5 @@ import Foundation
+-/// nothing, so a second tap on Save check-in cannot make a second entry.
++/// nothing, so a second tap on Save cannot make a second entry.
+diff --git a/Tests/AnkyUITests/CheckInSaveClearOfControlsTests.swift b/Tests/AnkyUITests/CheckInSaveClearOfControlsTests.swift
+index eef663e..65e7ccc 100644
+--- a/Tests/AnkyUITests/CheckInSaveClearOfControlsTests.swift
++++ b/Tests/AnkyUITests/CheckInSaveClearOfControlsTests.swift
+@@ -4 +4 @@ import XCTest
+-/// Save check-in is the last row of the form, so at the end of the form the note sits above it.
++/// Save is the last row of the form, so at the end of the form the note sits above it.
+diff --git a/Tests/AnkyUITests/Support/CheckInSteps.swift b/Tests/AnkyUITests/Support/CheckInSteps.swift
+index d8a548b..47afd9a 100644
+--- a/Tests/AnkyUITests/Support/CheckInSteps.swift
++++ b/Tests/AnkyUITests/Support/CheckInSteps.swift
+@@ -110 +110 @@ func scrollToBottom(of app: XCUIApplication) {
+-/// Save check-in is the last row of the form, so the form is swiped until it is hittable.
++/// Save is the last row of the form, so the form is swiped until it is hittable.
+diff --git a/Tests/AnkyUITests/Support/LargeText.swift b/Tests/AnkyUITests/Support/LargeText.swift
+index b91ce73..cbe70cd 100644
+--- a/Tests/AnkyUITests/Support/LargeText.swift
++++ b/Tests/AnkyUITests/Support/LargeText.swift
+@@ -28 +28 @@ func tapLogMedication(in app: XCUIApplication) {
+-/// At the largest size the severity slider sits below the first screen. The pinned "Save entry"
++/// At the largest size the severity slider sits below the first screen. The pinned Save button

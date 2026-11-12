@@ -1,0 +1,9 @@
+$ sh -c 'sed -n 5p Sources/AnkyDomain/CheckInSave.swift; sed -n 4p Tests/AnkyUITests/CheckInSaveClearOfControlsTests.swift; sed -n 110p Tests/AnkyUITests/Support/CheckInSteps.swift; sed -n 28,29p Tests/AnkyUITests/Support/LargeText.swift'
+exit: 0
+commit: 88728a61e6942d9f7be833637660fd61875c7b88
+
+/// nothing, so a second tap on Save cannot make a second entry.
+/// Save is the last row of the form, so at the end of the form the note sits above it.
+/// Save is the last row of the form, so the form is swiped until it is hittable.
+/// At the largest size the severity slider sits below the first screen. The pinned Save button
+/// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
