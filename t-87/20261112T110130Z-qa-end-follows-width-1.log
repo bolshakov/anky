@@ -1,0 +1,5 @@
+$ sh /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.77fJsbwXHj/frame.sh EC244508-6A1F-49DE-A03B-26B5CBB57C5D
+exit: 0
+commit: 145946f66a75da1662f800488813243af032122e
+
+severity-slider {{36, 331.33333333333337}, {368, 44}} {'height': 44, 'x': 36, 'width': 368, 'y': 331.33333333333337}
