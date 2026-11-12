@@ -25,6 +25,7 @@ Run these from the worktree root. CI runs the same ones.
 - `scripts/ci/check-layers.sh`
 - `scripts/ci/check-privacy.sh`, and `scripts/ci/test-check-privacy.sh` when you change it
 - `scripts/ci/check-design-tokens.sh`, and `scripts/ci/test-check-design-tokens.sh` when you change it
+- `scripts/ci/check-card-gone.sh`, and `scripts/ci/test-check-card-gone.sh` when you change it
 - `scripts/ci/check-license-headers.sh`, and `scripts/ci/test-check-license-headers.sh` when you change it
 - `scripts/ci/check-ui-catalog.sh`, and `scripts/ci/test-check-ui-catalog.sh` when you change it
 - `swift test --scratch-path .build`
