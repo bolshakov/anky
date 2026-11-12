@@ -56,6 +56,12 @@ jobs:
       - name: license header check proves itself
         run: scripts/ci/test-check-license-headers.sh
 
+      - name: ui catalog
+        run: scripts/ci/check-ui-catalog.sh
+
+      - name: ui catalog check proves itself
+        run: scripts/ci/test-check-ui-catalog.sh
+
       - name: ui test runner proves itself
         run: scripts/ci/test-run-ui-tests.sh
 
