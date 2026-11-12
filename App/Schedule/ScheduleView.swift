@@ -20,7 +20,6 @@ struct ScheduleView: View {
             ScheduleRepeatSection(schedule: $schedule)
             ScheduleTimesSection(schedule: $schedule)
             ScheduleDurationSection(schedule: $schedule)
-            ScheduleFootnote(schedule: schedule)
         }
         .screenSpacing()
         .accessibilityIdentifier("schedule-screen")
