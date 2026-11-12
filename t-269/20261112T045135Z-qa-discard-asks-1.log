@@ -1,0 +1,14 @@
+$ sh -c 'axe tap --id basdai-cancel --wait-timeout 5 --udid E7EA5CEE-C83B-432B-BFAF-0EA9CC8826FB; axe describe-ui --udid E7EA5CEE-C83B-432B-BFAF-0EA9CC8826FB | grep -o '\''"AXUniqueId" *: *"[^"]*"'\'' | sort -u'
+exit: 0
+commit: d55e6ab61a68b091b9de846767ee7849276e8d30
+
+✓ Tap at resolved tap point at (58.33333333333333, 100.0) completed successfully
+"AXUniqueId" : "BackButton"
+"AXUniqueId" : "basdai-empty"
+"AXUniqueId" : "basdai-screen"
+"AXUniqueId" : "basdai-start"
+"AXUniqueId" : "BASDAI"
+"AXUniqueId" : "calendar"
+"AXUniqueId" : "chart.bar"
+"AXUniqueId" : "clock.fill"
+"AXUniqueId" : "slider.horizontal.3"

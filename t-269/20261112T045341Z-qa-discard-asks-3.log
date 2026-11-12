@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid E7EA5CEE-C83B-432B-BFAF-0EA9CC8826FB | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t269-07-1/tmp/w/q1.py; axe describe-ui --udid E7EA5CEE-C83B-432B-BFAF-0EA9CC8826FB | grep -c basdai-form'
+exit: 0
+commit: d55e6ab61a68b091b9de846767ee7849276e8d30
+
+basdai-q1-value AXLabel = 4 of 10
+1
