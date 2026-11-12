@@ -78,20 +78,38 @@ struct BasdaiQuestionBlock: View {
 
 private struct BasdaiEndLabels: View {
     let question: BasdaiQuestion
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        HStack {
-            Text(verbatim: question.lowLabel)
-            Spacer()
-            Text(verbatim: question.highLabel)
-        }
-        .overlay {
-            if let mid = question.midLabel {
-                Text(verbatim: mid)
+        labels
+            .font(.footnote)
+            .foregroundStyle(Color.ink2)
+            .accessibilityHidden(true)
+    }
+
+    /// The overlay keeps the mid label centred whatever the end labels' widths, but takes no room, so at the
+    /// accessibility sizes, where the end labels grow into the middle, the labels stack instead.
+    @ViewBuilder private var labels: some View {
+        if dynamicTypeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: Spacing.tightGap) {
+                Text(verbatim: question.lowLabel)
+                if let mid = question.midLabel {
+                    Text(verbatim: mid)
+                }
+                Text(verbatim: question.highLabel)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        } else {
+            HStack {
+                Text(verbatim: question.lowLabel)
+                Spacer()
+                Text(verbatim: question.highLabel)
+            }
+            .overlay {
+                if let mid = question.midLabel {
+                    Text(verbatim: mid)
+                }
             }
         }
-        .font(.footnote)
-        .foregroundStyle(Color.ink2)
-        .accessibilityHidden(true)
     }
 }
