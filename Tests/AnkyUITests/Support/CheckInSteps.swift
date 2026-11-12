@@ -182,6 +182,7 @@ func nameNewMedication(_ name: String, in app: XCUIApplication) {
 /// Makes the switch on when it is off, then picks the option from the menu.
 @MainActor
 func choose(_ option: String, in app: XCUIApplication) {
+    XCTAssertTrue(checkInSwitch(in: app).waitForExistence(timeout: 10))
     if checkInSwitch(in: app).value as? String == "0" {
         turnOn(in: app)
     } else {
