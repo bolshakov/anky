@@ -6,6 +6,7 @@ import SwiftUI
 struct SettingsView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
     let dailyReminder: DailyReminderSettings
     let reminderScheduler: DailyReminderScheduler
     let exportData: @MainActor () throws -> ExportData
@@ -64,21 +65,32 @@ struct SettingsView: View {
                     .accessibilityIdentifier("settings-privacy-policy")
                 }
             }
-            .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {
-                try ExportArchive.removeLeftovers(in: ExportBuild.folder)
-                try model.removeAll()
-                do {
-                    try medications.removeAll()
-                } catch {
-                    throw PartialDelete()
-                }
-                eraseTicks += 1
-            }
+            .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData, onDelete: eraseAll)
             .sensoryFeedback(.warning, trigger: eraseTicks)
             .screenSpacing()
             .lastBlockClearance()
             .accessibilityIdentifier("settings-screen")
             .navigationTitle("Settings")
+        }
+    }
+
+    private func eraseAll() throws {
+        try ExportArchive.removeLeftovers(in: ExportBuild.folder)
+        try model.removeAll()
+        try eraseMedicationsThenBasdai()
+        eraseTicks += 1
+    }
+
+    private func eraseMedicationsThenBasdai() throws {
+        try erase(medications.removeAll, orReport: .medicationsAndBasdai)
+        try erase(basdai.removeAll, orReport: .basdai)
+    }
+
+    private func erase(_ remove: () throws -> Void, orReport kept: PartialDelete.Kept) throws {
+        do {
+            try remove()
+        } catch {
+            throw PartialDelete(kept: kept)
         }
     }
 }
