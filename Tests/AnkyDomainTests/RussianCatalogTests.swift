@@ -158,7 +158,6 @@ No medications yet => Лекарств пока нет
 Add medication => Добавить лекарство
 New Medication => Новое лекарство
 Name => Название
-Strength, for example 500 mg => Дозировка, например 500 мг
 Strength, optional => Дозировка, необязательно
 As needed => По необходимости
 Scheduled => По расписанию

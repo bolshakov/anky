@@ -44,6 +44,7 @@ enum Spacing {
     static let emptyTodayBottom: CGFloat = 48
     static let rowHeight: CGFloat = 52
     static let twoLineRowHeight: CGFloat = 60
+    static let twoLineRowPadding: CGFloat = 8
     static let rowMinimumHeight: CGFloat = 44
     static let recentRowHeight: CGFloat = 32
     static let iconTile: CGFloat = 32

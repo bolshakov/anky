@@ -25,6 +25,7 @@ struct TwoLineRow: View {
                     .accessibilityElement(children: .combine)
             }
         }
+        .padding(.vertical, Spacing.twoLineRowPadding)
         .rowHeight(Spacing.twoLineRowHeight)
     }
 
