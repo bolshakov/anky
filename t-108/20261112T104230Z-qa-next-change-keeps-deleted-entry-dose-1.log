@@ -1,0 +1,19 @@
+$ grep -n -A14 'func theNextChangeKeepsADoseWhoseAfterEntryWasDeleted' /Users/bolshakov/Projects/personal/anky.wt/qa-t108-01-1/checkout/Tests/AnkyDomainTests/CheckInDueTests.swift
+exit: 0
+commit: e4c0559b0e025b3f3e1827fdb7e04cd47f061f8d
+
+293:    @Test func theNextChangeKeepsADoseWhoseAfterEntryWasDeleted() throws {
+294-        let unrelated = try entry(at: takenAt)
+295-        let next = CheckInDue.nextChange(
+296-            doses: [dose(after: UUID())],
+297-            medications: [medication()],
+298-            entries: [unrelated],
+299-            after: takenAt.addingTimeInterval(10 * 60)
+300-        )
+301-        #expect(next == takenAt.addingTimeInterval(30 * 60))
+302-    }
+303-
+304-    @Test func theNextChangeIsTheWaitingDoseDueMomentAndNotTheCheckedInOnes() throws {
+305-        let reading = try entry(at: takenAt)
+306-        let checkedIn = dose(at: takenAt, after: reading.id)
+307-        let waiting = dose(at: takenAt.addingTimeInterval(10 * 60))
