@@ -6,8 +6,9 @@ struct BasdaiFormView: View {
     let onSave: ([Int]) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
+    @State private var isShowingSaveFailure = false
     @State private var isConfirmingDiscard = false
-    @AccessibilityFocusState private var isCancelFocused: Bool
+    @AccessibilityFocusState private var focus: BasdaiFormFocus?
 
     var isComplete: Bool {
         answers.isComplete
@@ -23,6 +24,7 @@ struct BasdaiFormView: View {
                 Section {
                     Text("All questions refer to **last week**.")
                         .accessibilityIdentifier("basdai-intro")
+                        .accessibilityFocused($focus, equals: .intro)
                         .nonCardBlock()
                 }
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
@@ -32,6 +34,7 @@ struct BasdaiFormView: View {
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
+            .onAppear { focus = .intro }
             .navigationTitle("BASDAI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -41,7 +44,7 @@ struct BasdaiFormView: View {
                             .frame(minHeight: Spacing.rowMinimumHeight)
                             .contentShape(Rectangle())
                             .accessibilityIdentifier("basdai-cancel")
-                            .accessibilityFocused($isCancelFocused)
+                            .accessibilityFocused($focus, equals: .cancel)
                             .confirmationDialog(
                                 "Discard answers?",
                                 isPresented: $isConfirmingDiscard,
@@ -55,6 +58,9 @@ struct BasdaiFormView: View {
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .alert("Couldn't save this result. Try again.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
+            }
             .background {
                 BasdaiDismissGuard { isConfirmingDiscard = true }
                     .accessibilityHidden(true)
@@ -62,7 +68,7 @@ struct BasdaiFormView: View {
             .interactiveDismissDisabled(isAnyAnswered)
             .onChange(of: isConfirmingDiscard) { _, isShowing in
                 if !isShowing {
-                    isCancelFocused = true
+                    focus = .cancel
                 }
             }
         }
@@ -90,7 +96,17 @@ struct BasdaiFormView: View {
     }
 
     private func save() {
-        guard let values = answers.completeValues, (try? onSave(values)) != nil else { return }
-        dismiss()
+        guard let values = answers.completeValues else { return }
+        do {
+            try onSave(values)
+            dismiss()
+        } catch {
+            isShowingSaveFailure = true
+        }
     }
+}
+
+private enum BasdaiFormFocus: Hashable {
+    case intro
+    case cancel
 }

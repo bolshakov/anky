@@ -3485,6 +3485,12 @@
     "Garrett S, et al. J Rheumatol 1994;21(12):2286-91." : {
       "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published."
     },
+    "Couldn't save this result. Try again." : {
+      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
+    },
+    "%@. Score %@." : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
+    },
     "and %lld more places" : {
       "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
       "localizations" : {
