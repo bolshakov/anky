@@ -89,7 +89,7 @@ struct ReportView: View {
             entries: model.entries, doses: medications.doses, period: period, now: now, calendar: .current
         )
         let places = ReportBlock.whole(AnyView(ReportPlacesBlock(places: places(now: now))))
-        let medication = ReportBlock.whole(AnyView(medicationBlock(now: now)))
+        let medication = medicationTable(now: now)
         return ReportDocument(
             size: .forRegion(Locale.current.region),
             headerLine: ReportHeaderLine.text(
@@ -100,14 +100,14 @@ struct ReportView: View {
         ).pages
     }
 
-    private func medicationBlock(now: Date) -> ReportMedicationBlock {
+    private func medicationTable(now: Date) -> ReportBlock {
         let figures = ReportMedications(
             medications: medications.medications, doses: medications.doses, entries: model.entries,
             period: period, now: now, calendar: .current
         )
-        return ReportMedicationBlock(
+        return .table(
             rows: figures.rows.map { ReportMedicationRowText($0, locale: .current, bundle: .main) },
-            hasScheduled: figures.hasScheduled, isContinued: false, showsNote: true
+            hasScheduled: figures.hasScheduled
         )
     }
 
