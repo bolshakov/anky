@@ -1,0 +1,27 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t262-01-2/tmp/walk.edjK/element.py schedule-row
+exit: 0
+commit: 35fa3288e5cd8269718190a9f47266b55e505e1a
+
+{
+  "role": "AXButton",
+  "subrole": null,
+  "help": null,
+  "custom_actions": [],
+  "pid": 40054,
+  "type": "Button",
+  "content_required": false,
+  "AXFrame": "{{16, 406.33333333333331}, {370, 52}}",
+  "enabled": true,
+  "traits": [],
+  "role_description": "button",
+  "frame": {
+    "y": 406.3333333333333,
+    "height": 52,
+    "width": 370,
+    "x": 16
+  },
+  "AXLabel": "Schedule, Not set",
+  "AXUniqueId": "schedule-row",
+  "title": null,
+  "AXValue": null
+}

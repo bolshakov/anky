@@ -1,0 +1,27 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t262-01-2/tmp/walk.edjK/element.py medication-strength
+exit: 0
+commit: 35fa3288e5cd8269718190a9f47266b55e505e1a
+
+{
+  "enabled": true,
+  "frame": {
+    "x": 32,
+    "height": 52,
+    "y": 210,
+    "width": 338
+  },
+  "type": "TextField",
+  "AXLabel": "Дозировка, необязательно",
+  "role_description": "text field",
+  "AXFrame": "{{32, 210}, {338, 52}}",
+  "AXValue": "Дозировка, необязательно",
+  "AXUniqueId": "medication-strength",
+  "traits": [],
+  "role": "AXTextField",
+  "help": null,
+  "custom_actions": [],
+  "title": null,
+  "subrole": null,
+  "content_required": false,
+  "pid": 39138
+}
