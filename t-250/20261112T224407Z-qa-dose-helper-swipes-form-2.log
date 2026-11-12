@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid D290BC26-35A0-4DB1-A6B5-302B7FE1A653 | grep -n log-dose-screen'
+exit: 0
+commit: 0ce90a62653b54020b5cc25001e5dcc1f25452ff
+
+2686:                                                        "AXUniqueId" : "log-dose-screen",

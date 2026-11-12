@@ -1,0 +1,5 @@
+$ grep -n 'swipeDown\|log-dose-screen' Tests/AnkyUITests/Support/CheckInSteps.swift
+exit: 0
+commit: 0ce90a62653b54020b5cc25001e5dcc1f25452ff
+
+83:        identified("log-dose-screen", in: app).swipeDown()
