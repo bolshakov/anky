@@ -1,0 +1,7 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t211-01-1/tmp/qa/c2.sh
+exit: 0
+commit: 7b0ebe593cc26657343e936a9cd0398e37a5b13a
+
+/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.0f06OXqg6Y/App/Today/Row.swift:1:let v = Text("a").offset(x:
+DESIGN TOKEN VIOLATION: writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift
+exit=1
