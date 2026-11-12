@@ -129,6 +129,7 @@ final class EditDoseTests: XCTestCase {
         continueAfterFailure = false
         let app = launchAnky()
         try logZorblexDoseAnHourBack(app)
+        let timeBeforeMove = doseRowTime(of: doseRow(in: app).label)
 
         doseRow(in: app).tap()
         setDateToYesterday(in: app)
@@ -144,7 +145,10 @@ final class EditDoseTests: XCTestCase {
             "headers are \(dayHeaderLabels(in: app))"
         )
         XCTAssertGreaterThan(doseRow(in: app).frame.minY, yesterday.frame.minY)
-        XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
+        let movedLabel = doseRow(in: app).label
+        XCTAssertEqual(doseRowTime(of: movedLabel), timeBeforeMove, movedLabel)
+        XCTAssertTrue(movedLabel.contains("Zorblex"), movedLabel)
+        XCTAssertTrue(movedLabel.contains("4 of 10"), movedLabel)
         app.tabBars.buttons["Today"].tap()
     }
 
