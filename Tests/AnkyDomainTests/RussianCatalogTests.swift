@@ -158,7 +158,6 @@ No medications yet => Лекарств пока нет
 Add medication => Добавить лекарство
 New Medication => Новое лекарство
 Name => Название
-Strength, for example 500 mg => Дозировка, например 500 мг
 Strength, optional => Дозировка, необязательно
 As needed => По необходимости
 Scheduled => По расписанию
@@ -168,6 +167,7 @@ Repeat => Повтор
 Times => Время приёма
 Add a time => Добавить время
 Duration => Продолжительность
+Last week => За последнюю неделю
 Starts => Начало
 Ends => Окончание
 Every day => Каждый день
@@ -263,7 +263,7 @@ Period => Период
 3 months => 3 месяца
 6 months => 6 месяцев
 Preview => Просмотреть
-""")
+""") + reportDraftPlainValues
 
 private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
@@ -272,7 +272,7 @@ private let approvedFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Можно выбрать период длиннее.
 %@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
-""")
+""") + reportDraftFormatValues
 
 let donePlacesKey = "Done · %lld places"
 
@@ -297,6 +297,7 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["%lld entries", "%lld doses"]
     + ["%lld weeks", "entries logged in %lld of them"]
+    + ["and %lld more places"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
@@ -306,7 +307,7 @@ private let englishFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ and %2$@, %3$@ to %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => Nothing logged from %1$@ to %2$@. Pick a longer period.
 %@ by week: %@, %@ => %1$@ by week: %2$@, %3$@
-""")
+""") + reportDraftEnglishFormatValues
 
 let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")

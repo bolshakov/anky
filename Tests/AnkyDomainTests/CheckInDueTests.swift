@@ -277,3 +277,40 @@ struct CheckInDueTests {
         #expect(next == nil)
     }
 }
+
+extension CheckInDueTests {
+    @Test func theNextChangeSkipsADoseWithItsAfterReading() throws {
+        let reading = try entry(at: takenAt)
+        let next = CheckInDue.nextChange(
+            doses: [dose(after: reading.id)],
+            medications: [medication()],
+            entries: [reading],
+            after: takenAt.addingTimeInterval(10 * 60)
+        )
+        #expect(next == nil)
+    }
+
+    @Test func theNextChangeKeepsADoseWhoseAfterEntryWasDeleted() throws {
+        let unrelated = try entry(at: takenAt)
+        let next = CheckInDue.nextChange(
+            doses: [dose(after: UUID())],
+            medications: [medication()],
+            entries: [unrelated],
+            after: takenAt.addingTimeInterval(10 * 60)
+        )
+        #expect(next == takenAt.addingTimeInterval(30 * 60))
+    }
+
+    @Test func theNextChangeIsTheWaitingDoseDueMomentAndNotTheCheckedInOnes() throws {
+        let reading = try entry(at: takenAt)
+        let checkedIn = dose(at: takenAt, after: reading.id)
+        let waiting = dose(at: takenAt.addingTimeInterval(10 * 60))
+        let next = CheckInDue.nextChange(
+            doses: [checkedIn, waiting],
+            medications: [medication()],
+            entries: [reading],
+            after: takenAt.addingTimeInterval(20 * 60)
+        )
+        #expect(next == takenAt.addingTimeInterval(40 * 60))
+    }
+}

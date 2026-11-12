@@ -88,13 +88,16 @@ struct ReportView: View {
         let summary = ReportSummary(
             entries: model.entries, doses: medications.doses, period: period, now: now, calendar: .current
         )
+        let severity = ReportBlock.whole(AnyView(ReportSeverityByWeek(block: severityBlock(now: now))))
+        let places = ReportBlock.whole(AnyView(ReportPlacesBlock(places: places(now: now))))
+        let medication = ReportBlock.whole(AnyView(medicationBlock(now: now)))
         return ReportDocument(
             size: .forRegion(Locale.current.region),
             headerLine: ReportHeaderLine.text(
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
             totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
-            blocks: [.whole(AnyView(ReportSeverityByWeek(block: severityBlock(now: now))))]
+            blocks: [severity, places, medication]
         ).pages
     }
 
@@ -104,6 +107,24 @@ struct ReportView: View {
             locale: .current,
             calendar: .current,
             bundle: .main
+        )
+    }
+
+    private func medicationBlock(now: Date) -> ReportMedicationBlock {
+        let figures = ReportMedications(
+            medications: medications.medications, doses: medications.doses, entries: model.entries,
+            period: period, now: now, calendar: .current
+        )
+        return ReportMedicationBlock(
+            rows: figures.rows.map { ReportMedicationRowText($0, locale: .current, bundle: .main) },
+            hasScheduled: figures.hasScheduled, isContinued: false, showsNote: true
+        )
+    }
+
+    private func places(now: Date) -> ReportPlaces {
+        ReportPlaces(
+            entries: model.entries, period: period, now: now, calendar: .current, locale: .current,
+            name: { String(localized: $0.displayName) }
         )
     }
 }

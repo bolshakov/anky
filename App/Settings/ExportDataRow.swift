@@ -15,11 +15,14 @@ struct ExportDataRow: View {
                     .foregroundStyle(Color.ink)
                 Spacer()
                 trailing
-                    .accessibilityHidden(true)
             }
         }
         .rowHeight()
-        .accessibilityLabel(flow.isShowingProgress ? Text("Exporting") : Text("Export data"))
+        .accessibilityRepresentation {
+            Button(action: start) {
+                flow.isShowingProgress ? Text("Exporting") : Text("Export data")
+            }
+        }
         .accessibilityIdentifier("settings-export")
         .sheet(isPresented: isSharing, onDismiss: closeSheet) {
             if let file = flow.sharedFile {

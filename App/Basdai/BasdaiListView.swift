@@ -1,11 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import SwiftUI
 
 struct BasdaiListView: View {
     let model: BasdaiModel
     @State private var isShowingForm = false
+    @State private var basdaiSave = BasdaiSave()
+    @State private var saveTicks = 0
+    @State private var pendingDelete: UUID?
 
     var body: some View {
+        // Captured here, so the alert's button deletes the result it was asked about even after the binding clears.
+        let target = pendingDelete
         List {
             if model.results.isEmpty {
                 Section {
@@ -14,16 +20,51 @@ struct BasdaiListView: View {
                 }
                 .emptyBlockGap()
             } else {
-                CardSection(footnote: footnote, id: "basdai-results") {}
+                CardSection(footnote: footnote, id: "basdai-results") {
+                    ForEach(Array(model.results.enumerated()), id: \.element.id) { index, result in
+                        BasdaiResultRow(result: result)
+                            .accessibilityIdentifier("basdai-row-\(index)")
+                            .deleteSwipe {
+                                pendingDelete = result.id
+                            }
+                    }
+                }
             }
         }
         .screenSpacing()
         .accessibilityIdentifier("basdai-screen")
         .navigationTitle("BASDAI")
         .navigationBarTitleDisplayMode(.inline)
-        .bottomPrimaryButton(Text("Start"), id: "basdai-start") { isShowingForm = true }
+        .entryDeleteConfirmation(isPresented: isConfirmingDelete, words: .basdai) {
+            guard let target else { return }
+            try model.remove(id: target)
+        }
+        .bottomPrimaryButton(Text("Start"), id: "basdai-start", action: start)
         .sheet(isPresented: $isShowingForm) {
-            BasdaiFormView(onSave: { _ in })
+            BasdaiFormView(onSave: save)
+        }
+        .sensoryFeedback(.success, trigger: saveTicks)
+    }
+
+    private var isConfirmingDelete: Binding<Bool> {
+        Binding(
+            get: { pendingDelete != nil },
+            set: { isShowing in
+                if !isShowing {
+                    pendingDelete = nil
+                }
+            }
+        )
+    }
+
+    private func start() {
+        basdaiSave = BasdaiSave()
+        isShowingForm = true
+    }
+
+    private func save(_ answers: [Int]) throws {
+        if try basdaiSave.save(answers, at: .now, add: model.add) {
+            saveTicks += 1
         }
     }
 

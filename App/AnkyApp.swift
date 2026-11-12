@@ -117,8 +117,17 @@ struct AnkyApp: App {
 
     private static func basdaiStore() -> BasdaiStore {
         DeferredBasdaiStore {
-            try SwiftDataBasdaiStore(url: BasdaiLocation.fileURL())
+            try SwiftDataBasdaiStore(url: BasdaiLocation.fileURL(), beforeSave: basdaiWriteGuard)
         }
+    }
+
+    private static var basdaiWriteGuard: @MainActor () throws -> Void {
+        #if DEBUG
+            let folder = BasdaiLocation.folder()
+            return { try BasdaiWriteSwitch.check(folder: folder) }
+        #else
+            return {}
+        #endif
     }
 
     private static func tipOptions(folder: URL) -> [Tips.ConfigurationOption] {

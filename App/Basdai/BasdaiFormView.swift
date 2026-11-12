@@ -6,7 +6,9 @@ struct BasdaiFormView: View {
     let onSave: ([Int]) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
+    @State private var isShowingSaveFailure = false
     @State private var isConfirmingDiscard = false
+    @AccessibilityFocusState private var isLabelFocused: Bool
     @AccessibilityFocusState private var isCancelFocused: Bool
 
     var isComplete: Bool {
@@ -20,18 +22,13 @@ struct BasdaiFormView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    Text("All questions refer to **last week**.")
-                        .accessibilityIdentifier("basdai-intro")
-                        .nonCardBlock()
-                }
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
-                    BasdaiQuestionBlock(question: question, answer: $answers[question.number - 1])
+                    questionSection(question)
                 }
-                CardSection(footnote: citation, id: "basdai-end", footnoteID: "basdai-citation") {}
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
+            .onAppear { isLabelFocused = true }
             .navigationTitle("BASDAI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -55,6 +52,9 @@ struct BasdaiFormView: View {
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .alert("Couldn't save this result. Try again.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
+            }
             .background {
                 BasdaiDismissGuard { isConfirmingDiscard = true }
                     .accessibilityHidden(true)
@@ -65,6 +65,21 @@ struct BasdaiFormView: View {
                     isCancelFocused = true
                 }
             }
+        }
+    }
+
+    private func questionSection(_ question: BasdaiQuestion) -> some View {
+        let isFirst = question.number == 1
+        let isLast = question.number == BasdaiQuestion.all.count
+        return CardSection(
+            isFirst ? Text("Last week") : nil,
+            footnote: isLast ? citation : nil,
+            id: "basdai-q\(question.number)",
+            labelID: "basdai-intro",
+            footnoteID: "basdai-citation",
+            labelFocus: $isLabelFocused
+        ) {
+            BasdaiQuestionBlock(question: question, answer: $answers[question.number - 1])
         }
     }
 
@@ -90,7 +105,12 @@ struct BasdaiFormView: View {
     }
 
     private func save() {
-        guard let values = answers.completeValues, (try? onSave(values)) != nil else { return }
-        dismiss()
+        guard let values = answers.completeValues else { return }
+        do {
+            try onSave(values)
+            dismiss()
+        } catch {
+            isShowingSaveFailure = true
+        }
     }
 }

@@ -47,7 +47,7 @@ struct MedicationFormView: View {
                         .onTapGesture { focus = .name }
                         .accessibilityLabel("Name")
                         .accessibilityIdentifier("medication-name")
-                    TextField("Strength, for example 500 mg", text: $draft.strength)
+                    TextField("Strength, optional", text: $draft.strength)
                         .autocorrectionDisabled()
                         .focused($focus, equals: .strength)
                         .submitLabel(.done)

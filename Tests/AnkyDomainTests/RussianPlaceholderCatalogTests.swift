@@ -7,10 +7,12 @@ import Testing
 private let approvedPlaceholders = table("""
 %@ of %lld => a reading's level
 %@. => the schedule in words
+%@. Score %@. => a BASDAI result's date and its score
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@, %@ and %lld more => place names
 %@ and %@, %@ to %@. => the entry and dose counts, then two days
 %@ by week: %@, %@ => a symptom name, then the week counts
+%@ (%lld–%lld) => the average pain with one decimal
 %@ to %@ => two days
 After · checked in at %@ => a time
 Every %lld days at %@ => clock times

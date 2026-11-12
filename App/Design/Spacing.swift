@@ -5,7 +5,7 @@ import SwiftUI
 enum Spacing {
     static let screenMargin: CGFloat = 16
     static let firstBlockTop: CGFloat = 16
-    static let titleToDatePull: CGFloat = 4.7
+    static let titleToDatePull: CGFloat = 8.7
     static let titleToDatePullPerTitlePoint: CGFloat = 0.25
     static let largeTitleSize: CGFloat = 34
     static let blockGap: CGFloat = 32
@@ -44,6 +44,7 @@ enum Spacing {
     static let emptyTodayBottom: CGFloat = 48
     static let rowHeight: CGFloat = 52
     static let twoLineRowHeight: CGFloat = 60
+    static let twoLineRowPadding: CGFloat = 8
     static let rowMinimumHeight: CGFloat = 44
     static let recentRowHeight: CGFloat = 32
     static let iconTile: CGFloat = 32

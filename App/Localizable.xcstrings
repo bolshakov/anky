@@ -1911,16 +1911,6 @@
         }
       }
     },
-    "Strength, for example 500 mg" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дозировка, например 500 мг"
-          }
-        }
-      }
-    },
     "Strength, optional" : {
       "localizations" : {
         "ru" : {
@@ -1937,6 +1927,232 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "По необходимости"
+          }
+        }
+      }
+    },
+    "%@ (%lld–%lld)" : {
+      "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        }
+      }
+    },
+    "%lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is under an hour, such as '45 min'. %lld is whole minutes. min is the abbreviation of minutes.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        }
+      }
+    },
+    "%lld h to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is a whole number of hours, such as '2 h'. %lld is the hours. h is the abbreviation of hours.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ч"
+          }
+        }
+      }
+    },
+    "%lld h %lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is an hour or more, such as '1 h 50 min'. %1$lld is the hours and %2$lld the minutes past the hour. h and min are abbreviations.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld h %2$lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld ч %2$lld мин"
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10." : {
+      "comment" : "The note under the report PDF's medication table when no medication in it is scheduled.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10."
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled medication often has no after-reading." : {
+      "comment" : "The note under the report PDF's medication table when a medication in it is scheduled: the note without one, then why a scheduled dose often has no after-reading.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет."
+          }
+        }
+      }
+    },
+    "Medication: doses, and pain before and after" : {
+      "comment" : "The report PDF's heading above the medication table: how many doses of each medication, and the pain logged before and after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication: doses, and pain before and after"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства: приёмы и боль до и после"
+          }
+        }
+      }
+    },
+    "Medication, continued" : {
+      "comment" : "The report PDF's heading above the medication table when the table goes on from the page before.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication, continued"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства, продолжение"
+          }
+        }
+      }
+    },
+    "Doses" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses taken in the period.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doses"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приёмы"
+          }
+        }
+      }
+    },
+    "Per week" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average number of doses a week, such as 3.8.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В неделю"
+          }
+        }
+      }
+    },
+    "With an after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses with an entry logged after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With an after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С записью после"
+          }
+        }
+      }
+    },
+    "Pain before: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged before the doses, such as '6.5 (5–8)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain before: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль до: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Pain after: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged after the doses, such as '3.5 (2–5)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain after: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль после: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Average time to after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average time from a dose to the entry logged after it, such as '1 h 50 min'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average time to after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среднее время до записи после"
           }
         }
       }
@@ -3501,11 +3717,134 @@
     "Start" : {
       "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions."
     },
-    "All questions refer to **last week**." : {
-      "comment" : "The line above the six BASDAI questions: every answer is about the last week. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    "Last week" : {
+      "comment" : "The section label above the six BASDAI questions: every answer is about the last week.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За последнюю неделю"
+          }
+        }
+      }
     },
     "Garrett S, et al. J Rheumatol 1994;21(12):2286-91." : {
       "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published."
+    },
+    "Couldn't save this result. Try again." : {
+      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
+    },
+    "%@. Score %@." : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
+    },
+    "and %lld more places" : {
+      "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more place"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more places"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld место"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld мест"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Places logged" : {
+      "comment" : "The report PDF's heading above the table of body places the patient logged, each with how many entries named it.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places logged"
+          }
+        }
+      }
+    },
+    "Place" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that names a body place, such as Lower back.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place"
+          }
+        }
+      }
+    },
+    "Entries" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that counts the entries naming each place.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entries"
+          }
+        }
+      }
+    },
+    "None logged in this period" : {
+      "comment" : "The report PDF's line under a section heading when the period holds nothing for that section. It stands in for any empty report section, such as Places logged or Medication.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None logged in this period"
+          }
+        }
+      }
+    },
+    "Delete this result? This can't be undone." : {
+      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms."
+    },
+    "Delete result" : {
+      "comment" : "The button that confirms deleting one saved BASDAI result."
+    },
+    "Couldn't delete this result. Try again." : {
+      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list."
+    },
+    "Result deleted" : {
+      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted."
     }
   },
   "version" : "1.0"
