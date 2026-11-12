@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 05C062E7-DA91-4343-A8F9-00C933ED73E5 | grep -A12 date-row | grep -E '\''AXValue|AXUniqueId'\'''
+exit: 0
+commit: 512e739a23fb2f910730ceb1e8b5ca339a9abc4a
+
+                                                                        "AXUniqueId" : "date-row",
+                                                                        "AXValue" : null,

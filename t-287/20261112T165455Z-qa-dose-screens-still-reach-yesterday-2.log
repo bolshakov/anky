@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 05C062E7-DA91-4343-A8F9-00C933ED73E5 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t287-01-3/tmp/w/val.py date-row date-picker'
+exit: 0
+commit: 512e739a23fb2f910730ceb1e8b5ca339a9abc4a
+
+date-row | Yesterday 17:54 | Date and time {'x': 16, 'width': 370, 'y': 574, 'height': 52}
