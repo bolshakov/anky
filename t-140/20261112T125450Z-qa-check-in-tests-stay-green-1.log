@@ -1,0 +1,6 @@
+$ git diff main...HEAD --stat
+exit: 0
+commit: 2f8290fc67009ad451bad1cd3d2ecb67c99f5b7a
+
+ Tests/AnkyUITests/Support/CheckInSteps.swift | 1 +
+ 1 file changed, 1 insertion(+)

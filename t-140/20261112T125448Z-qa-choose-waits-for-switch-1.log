@@ -1,0 +1,9 @@
+$ grep -n -A4 'func choose' Tests/AnkyUITests/Support/CheckInSteps.swift
+exit: 0
+commit: 2f8290fc67009ad451bad1cd3d2ecb67c99f5b7a
+
+184:func choose(_ option: String, in app: XCUIApplication) {
+185-    XCTAssertTrue(checkInSwitch(in: app).waitForExistence(timeout: 10))
+186-    if checkInSwitch(in: app).value as? String == "0" {
+187-        turnOn(in: app)
+188-    } else {
