@@ -1,0 +1,5 @@
+$ sh -c 'scripts/ci/check-ui-catalog.sh; echo "exit $?"'
+exit: 0
+commit: ebd465b50bc16494cf9dd9673bf9cc2433cbee0f
+
+exit 0

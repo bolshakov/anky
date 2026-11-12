@@ -1,0 +1,6 @@
+$ sh -c 'scripts/ci/check-ui-catalog.sh '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.FKFPJ9VwQn/copy4'\''; echo "exit $?"'
+exit: 0
+commit: ebd465b50bc16494cf9dd9673bf9cc2433cbee0f
+
+UI CATALOG VIOLATION: entry `NoSuchPiece` in App/Design/README.md names no piece under App/Design
+exit 1

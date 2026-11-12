@@ -1,0 +1,7 @@
+$ grep -n check-ui-catalog .github/workflows/ci.yml CLAUDE.md
+exit: 0
+commit: ebd465b50bc16494cf9dd9673bf9cc2433cbee0f
+
+.github/workflows/ci.yml:60:        run: scripts/ci/check-ui-catalog.sh
+.github/workflows/ci.yml:63:        run: scripts/ci/test-check-ui-catalog.sh
+CLAUDE.md:29:- `scripts/ci/check-ui-catalog.sh`, and `scripts/ci/test-check-ui-catalog.sh` when you change it

@@ -1,0 +1,5 @@
+$ grep -n App/Design/README.md CLAUDE.md
+exit: 0
+commit: ebd465b50bc16494cf9dd9673bf9cc2433cbee0f
+
+16:- Before you build or change UI under `App/`, read `App/Design/README.md`. It lists the shared pieces and the rules.
