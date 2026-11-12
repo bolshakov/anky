@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid 36B36078-DFCF-40B0-955F-2B1588AA0D98 | jq -c '\''.. | objects | select((.AXUniqueId // "") | startswith("basdai-row")) | {AXUniqueId,AXLabel,AXValue}'\'''
+exit: 0
+commit: 41aed9dd5be7c34c5cb4b3de5f46d2dd5bf2898d
+
+{"AXUniqueId":"basdai-row-0","AXLabel":"10 November 2026. Score 4,5.","AXValue":null}
+{"AXUniqueId":"basdai-row-1","AXLabel":"23 October 2026. Score 7,5.","AXValue":null}
+{"AXUniqueId":"basdai-row-2","AXLabel":"23 September 2026. Score 2,1.","AXValue":null}

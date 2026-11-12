@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 36B36078-DFCF-40B0-955F-2B1588AA0D98 | jq -c '\''.. | objects | select(.AXUniqueId=="report-basdai-toggle" or .AXUniqueId=="report-basdai-results") | {AXUniqueId,AXValue,AXLabel}'\'''
+exit: 0
+commit: 41aed9dd5be7c34c5cb4b3de5f46d2dd5bf2898d
+
+{"AXUniqueId":"report-basdai-toggle","AXValue":"0","AXLabel":"Include BASDAI scores"}
+{"AXUniqueId":"report-basdai-results","AXValue":"3","AXLabel":"BASDAI results"}

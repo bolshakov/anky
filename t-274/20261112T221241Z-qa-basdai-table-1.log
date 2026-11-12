@@ -1,0 +1,54 @@
+$ sh -c 'cp '\''/Users/bolshakov/Library/Developer/CoreSimulator/Devices/36B36078-DFCF-40B0-955F-2B1588AA0D98/data/Containers/Data/Application/19167650-BB30-4572-B40B-0F835C574749/tmp/Anky report.pdf'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t274-04-1/tmp/report.pdf && swift /Users/bolshakov/Projects/personal/anky.wt/qa-t274-04-1/tmp/pdftext.swift /Users/bolshakov/Projects/personal/anky.wt/qa-t274-04-1/tmp/report.pdf'
+exit: 0
+commit: 41aed9dd5be7c34c5cb4b3de5f46d2dd5bf2898d
+
+=== page 1 ===
+Symptom report
+August 12 to 12 November 2026 · 3 months · created 12 November 2026
+Anky
+Name
+36 entries 14 doses 3 BASDAI results First entry September 10
+Recorded by the patient in Anky.
+Counts, averages and ranges only.
+Places logged
+Place Entries
+Place Entries
+Left SI joint 4
+Upper back 4
+Lower back 4
+Neck 4
+Medication: doses, and pain before and after
+Medication Doses Per week
+With an
+after-reading
+Pain before: average
+(lowest–highest)
+Pain after: average
+(lowest–highest)
+Average time
+to after-
+reading
+Zorblex 50 mg
+As needed
+5 0,4 4 6,5 (5–8) 3,5 (2–5) 1 h 50 min
+Marvex 10 mg
+Scheduled
+4 0,3 0– – –
+Oldpill 5 mg
+As needed
+3 0,2 0– – –
+Quillen 20 mg
+As needed
+2 0,2 1 6 3 45 min
+Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled
+medication often has no after-reading.
+BASDAI scores
+Date Q1 Q2 Q3 Q4 Q5 Q6 Score
+10 November 2026 4 6 5 3 7 2 4,5
+23 October 2026 8 7 9 6 5 10 7,5
+23 September 2026 1 2 0 3 4 5 2,1
+Q1 fatigue, Q2 spinal pain, Q3 joint pain, Q4 tenderness, Q5 stiffness severity, Q6 stiffness duration. Each answer is 0 to 10;
+score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J
+Rheumatol 1994).
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page 1 of 1 Get Anky on the App Store
