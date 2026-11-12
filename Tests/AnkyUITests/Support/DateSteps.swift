@@ -111,20 +111,39 @@ func setDateTimeHoursBack(_ hours: Int, in app: XCUIApplication) {
     dateRow(in: app).tap()
 }
 
-/// Opens the wheel, moves the day back one, and closes it again. The time stays as it was.
+/// The distance of one drag that steps the day wheel by a day.
+private let dayWheelStep: CGFloat = 36
+
+/// Scrolls the form until the day wheel's centre and the end of a drag are above the pinned Save bar. A wheel that
+/// opens on the first screen of a new form reaches below the bar, and a drag that starts under the bar never reaches
+/// the wheel. The swipe starts in the left margin so it scrolls the form and not the wheel.
+@MainActor
+private func scrollDayWheelClearOfSaveBar(in app: XCUIApplication) {
+    let from = app.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.6))
+    let to = app.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.4))
+    for _ in 0 ..< 6 where dateWheel(in: app).frame.midY + dayWheelStep >= saveBarTop(in: app) {
+        from.press(forDuration: 0.1, thenDragTo: to)
+    }
+}
+
+/// Opens the wheel, moves the day back one, and closes it again. The time stays as it was. Only today and yesterday
+/// read as words on the row, so a row that shows a digit is a date further back and fails the step.
 @MainActor
 func setDateToYesterday(in app: XCUIApplication) {
     openDateWheel(in: app)
+    scrollDayWheelClearOfSaveBar(in: app)
+    let before = dateRowDay(in: app)
     let day = dateWheel(in: app).pickerWheels.element(boundBy: 0)
     XCTAssertTrue(day.waitForExistence(timeout: 10))
     let start = day.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
     start.press(
         forDuration: 0.1,
-        thenDragTo: start.withOffset(CGVector(dx: 0, dy: 36)),
+        thenDragTo: start.withOffset(CGVector(dx: 0, dy: dayWheelStep)),
         withVelocity: .slow,
         thenHoldForDuration: 1
     )
     let shown = dateRowDay(in: app) ?? ""
-    XCTAssertTrue(shown.hasPrefix("Yesterday"), "date row day is \(shown)")
+    XCTAssertNotEqual(shown, before, "the day wheel did not move")
+    XCTAssertNil(shown.rangeOfCharacter(from: .decimalDigits), "date row day is \(shown)")
     dateRow(in: app).tap()
 }

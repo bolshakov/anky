@@ -35,7 +35,7 @@ struct ArchivedView: View {
                         Button("Restore", systemImage: "arrow.counterclockwise") {
                             restore(medication)
                         }
-                        .tint(.accentColor)
+                        .tint(Color.tint)
                     }
                 }
             }

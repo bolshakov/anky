@@ -53,13 +53,13 @@ struct AnkyApp: App {
 
     private static func colourSelectedSegments() {
         let segments = UISegmentedControl.appearance()
-        segments.selectedSegmentTintColor = UIColor(named: "AccentColor")
-        segments.setTitleTextAttributes([.foregroundColor: UIColor(named: "OnAccent") as Any], for: .selected)
+        segments.selectedSegmentTintColor = UIColor(Color.tint)
+        segments.setTitleTextAttributes([.foregroundColor: UIColor(Color.onTint)], for: .selected)
     }
 
     var body: some Scene {
         WindowGroup {
-            content.tint(Color("AccentColor"))
+            content.tint(Color.tint)
         }
     }
 
