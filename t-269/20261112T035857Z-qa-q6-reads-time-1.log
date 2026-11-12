@@ -1,0 +1,6 @@
+$ sh -c 'echo value 100; axe describe-ui --udid F844C59C-9478-470A-86B3-BB18E40B5AEF | grep -B2 -A12 '\''basdai-q6-value'\'' | grep -E '\''AXLabel|AXUniqueId'\'''
+exit: 0
+commit: 094fc89f5e289bee2df3d41c5735c2d69cb19843
+
+value 100
+                                                                        "AXUniqueId" : "basdai-q6-value",

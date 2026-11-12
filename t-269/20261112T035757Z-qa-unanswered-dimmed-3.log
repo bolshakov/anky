@@ -1,0 +1,14 @@
+$ sh -c 'axe describe-ui --udid F844C59C-9478-470A-86B3-BB18E40B5AEF | grep -E '\''AXUniqueId" : "basdai-(form|q[1-6]-value|save)|AXLabel" : "Not answered'\'''
+exit: 0
+commit: 094fc89f5e289bee2df3d41c5735c2d69cb19843
+
+                                                                        "AXLabel" : "Not answered",
+                                                                        "AXUniqueId" : "basdai-q1-value",
+                                                                        "AXUniqueId" : "basdai-q2-value",
+                                                                        "AXLabel" : "Not answered",
+                                                                        "AXLabel" : "Not answered",
+                                                                        "AXUniqueId" : "basdai-q3-value",
+                                                                        "AXLabel" : "Not answered",
+                                                                        "AXUniqueId" : "basdai-q4-value",
+                                                        "AXUniqueId" : "basdai-form",
+                                                        "AXUniqueId" : "basdai-save",
