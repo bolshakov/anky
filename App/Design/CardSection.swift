@@ -10,7 +10,7 @@ private struct SectionFooter: ViewModifier {
     }
 }
 
-private struct SectionLabel: ViewModifier {
+struct SectionLabel: ViewModifier {
     func body(content: Content) -> some View {
         content
             .textCase(nil)
