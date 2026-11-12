@@ -1,0 +1,10 @@
+$ sh -c 'axe describe-ui --udid DB9BE35B-E819-4A9E-A463-2B414EDD2D97 | grep -o '\''"AXUniqueId" *: *"basdai-q[0-9]-value"\|"AXLabel" *: *"Not answered"'\'''
+exit: 0
+commit: 948e2d5d4f7ce91257b6dfbb086542f6b456e5e2
+
+"AXLabel" : "Not answered"
+"AXUniqueId" : "basdai-q1-value"
+"AXUniqueId" : "basdai-q2-value"
+"AXLabel" : "Not answered"
+"AXUniqueId" : "basdai-q3-value"
+"AXLabel" : "Not answered"

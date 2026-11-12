@@ -1,0 +1,23 @@
+$ sh -c 'axe tap --id basdai-save --udid DB9BE35B-E819-4A9E-A463-2B414EDD2D97; axe describe-ui --udid DB9BE35B-E819-4A9E-A463-2B414EDD2D97 | grep -o '\''"AXUniqueId" *: *"basdai-[a-z0-9-]*"\|"AXLabel" *: *"Not answered"'\'''
+exit: 0
+commit: 948e2d5d4f7ce91257b6dfbb086542f6b456e5e2
+
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+"AXUniqueId" : "basdai-empty"
+"AXUniqueId" : "basdai-screen"
+"AXUniqueId" : "basdai-start"
+"AXUniqueId" : "basdai-cancel"
+"AXUniqueId" : "basdai-cancel-item"
+"AXUniqueId" : "basdai-cancel-item"
+"AXUniqueId" : "basdai-form"
+"AXUniqueId" : "basdai-intro"
+"AXLabel" : "Not answered"
+"AXUniqueId" : "basdai-q1-value"
+"AXUniqueId" : "basdai-q1-slider"
+"AXLabel" : "Not answered"
+"AXUniqueId" : "basdai-q2-value"
+"AXUniqueId" : "basdai-q2-slider"
+"AXLabel" : "Not answered"
+"AXUniqueId" : "basdai-q3-value"
+"AXUniqueId" : "basdai-q3-slider"
+"AXUniqueId" : "basdai-save"
