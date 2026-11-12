@@ -50,11 +50,29 @@ jobs:
       - name: design token check proves itself
         run: scripts/ci/test-check-design-tokens.sh
 
+      - name: card gone
+        run: scripts/ci/check-card-gone.sh
+
+      - name: card gone check proves itself
+        run: scripts/ci/test-check-card-gone.sh
+
+      - name: banner colours
+        run: scripts/ci/check-banner-colours.sh
+
+      - name: banner colour check proves itself
+        run: scripts/ci/test-check-banner-colours.sh
+
       - name: license headers
         run: scripts/ci/check-license-headers.sh
 
       - name: license header check proves itself
         run: scripts/ci/test-check-license-headers.sh
+
+      - name: ui catalog
+        run: scripts/ci/check-ui-catalog.sh
+
+      - name: ui catalog check proves itself
+        run: scripts/ci/test-check-ui-catalog.sh
 
       - name: ui test runner proves itself
         run: scripts/ci/test-run-ui-tests.sh

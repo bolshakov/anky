@@ -98,4 +98,16 @@ struct BasdaiQuestionTests {
             }
         }
     }
+
+    @Test(arguments: [("en", english, "of"), ("ru", russian, "из")])
+    func aStoredAnswerReadsOutOfTenOnEveryQuestion(language: String, locale: Locale, word: String) throws {
+        try CompiledCatalog.withBundle(language) { bundle in
+            for question in BasdaiQuestion.questions(bundle: bundle, locale: locale) {
+                for value in [0, 10] {
+                    let text = question.numberText(value, locale: locale, bundle: bundle)
+                    #expect(text == "\(value) \(word) 10", "Question \(question.number), value \(value): \(text)")
+                }
+            }
+        }
+    }
 }

@@ -99,6 +99,7 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
+                    .reportMenuAnchor()
                     .nonCardBlock()
                     cornerGuard
                 }
@@ -108,6 +109,7 @@ struct TodayView: View {
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
             .todayTopMargin()
+            .reportMenuInBar(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -122,9 +124,8 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
-            .toolbar { ReportMenu(onReport: { isShowingReport = true }, onBasdai: { isShowingBasdai = true }) }
             .navigationDestination(isPresented: $isShowingReport) {
-                ReportView(model: model, medications: medications)
+                ReportView(model: model, medications: medications, basdai: basdai)
             }
             .navigationDestination(isPresented: $isShowingBasdai) {
                 BasdaiListView(model: basdai)
@@ -179,6 +180,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
+        .reportMenuOnTitleLine(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
@@ -262,7 +264,9 @@ struct TodayView: View {
             isShowingSaveFailure = true
         }
     }
+}
 
+extension TodayView {
     private func undoLogged() {
         guard let loggedID else { return }
         do {

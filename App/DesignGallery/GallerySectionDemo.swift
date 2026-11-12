@@ -22,8 +22,8 @@
     }
 
     extension View {
-        func galleryBottomBar() -> some View {
-            bottomPrimaryButton(Text(verbatim: "Primary action"), id: "gallery-primary") {}
+        func galleryBottomBar(isEnabled: Bool) -> some View {
+            bottomPrimaryButton(Text(verbatim: "Primary action"), id: "gallery-primary", isEnabled: isEnabled) {}
         }
     }
 #endif

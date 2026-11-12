@@ -5,16 +5,18 @@ public struct ExportData: Equatable, Sendable {
     public let entries: [Entry]
     public let medications: [Medication]
     public let doses: [Dose]
+    public let basdai: [BasdaiResult]
 
-    public init(entries: [Entry], medications: [Medication], doses: [Dose]) {
+    public init(entries: [Entry], medications: [Medication], doses: [Dose], basdai: [BasdaiResult]) {
         self.entries = entries
         self.medications = medications
         self.doses = doses
+        self.basdai = basdai
     }
 }
 
 public enum ExportArchive {
-    public static let schemaVersion = 1
+    public static let schemaVersion = 2
 
     private static let prefix = "anky-export-"
     private static let suffix = ".zip"
@@ -38,7 +40,8 @@ public enum ExportArchive {
     private static func tables(_ data: ExportData) -> [(name: String, table: CSVTable)] {
         [("entries.csv", EntriesCSV.table(data.entries)),
          ("medications.csv", MedicationsCSV.table(data.medications)),
-         ("doses.csv", DosesCSV.table(data.doses, entries: data.entries))]
+         ("doses.csv", DosesCSV.table(data.doses, entries: data.entries)),
+         ("basdai.csv", BasdaiCSV.table(data.basdai))]
     }
 
     /// The person's calendar gives only the time zone, so the day is always written as a Gregorian date.

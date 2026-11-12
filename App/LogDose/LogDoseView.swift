@@ -41,31 +41,33 @@ struct LogDoseView: View {
     var body: some View {
         NavigationStack {
             ScrollViewReader { proxy in
-                Form {
-                    CardSection(Text("Medication"), id: "medication") {
-                        if active.isEmpty {
-                            Text("No medications yet")
-                                .accessibilityIdentifier("dose-no-medications")
+                TimelineView(.everyMinute) { _ in
+                    Form {
+                        CardSection(Text("Medication"), id: "medication") {
+                            if active.isEmpty {
+                                Text("No medications yet")
+                                    .accessibilityIdentifier("dose-no-medications")
+                            }
+                            ForEach(active) { medication in
+                                medicationRow(medication)
+                            }
+                            Button("Add medication") {
+                                isShowingNewMedication = true
+                            }
+                            .accessibilityIdentifier("dose-add-medication")
                         }
-                        ForEach(active) { medication in
-                            medicationRow(medication)
+                        BeforeThisDoseSection(
+                            reading: { reading(at: takenAtNow) },
+                            onChoose: { isShowingReadingChoice = true },
+                            onLog: { isShowingNewEntry = true }
+                        )
+                        if checkedMedication != nil {
+                            DoseCheckInSection(checkIn: $checkIn)
                         }
-                        Button("Add medication") {
-                            isShowingNewMedication = true
-                        }
-                        .accessibilityIdentifier("dose-add-medication")
+                        dateSection(scrolling: proxy)
                     }
-                    BeforeThisDoseSection(
-                        reading: { reading(at: takenAtNow) },
-                        onChoose: { isShowingReadingChoice = true },
-                        onLog: { isShowingNewEntry = true }
-                    )
-                    if checkedMedication != nil {
-                        DoseCheckInSection(checkIn: $checkIn)
-                    }
-                    dateSection(scrolling: proxy)
+                    .screenSpacing()
                 }
-                .screenSpacing()
             }
             .navigationTitle("Log Dose")
             .navigationBarTitleDisplayMode(.inline)
@@ -81,13 +83,12 @@ struct LogDoseView: View {
                         NavigationLink("Manage") {
                             MedicationsView(medications: medications)
                         }
-                        .frame(minWidth: Spacing.tapTarget, minHeight: Spacing.tapTarget)
-                        .contentShape(Rectangle())
+                        .minimumTapTarget()
                         .accessibilityIdentifier("log-dose-manage")
                     }
                 }
             }
-            .safeAreaInset(edge: .bottom) { saveButton }
+            .bottomPrimaryButton(Text("Save"), id: "save-dose", isEnabled: checkedID != nil, action: saveDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -128,19 +129,6 @@ struct LogDoseView: View {
         }
     }
 
-    private var saveButton: some View {
-        Button(action: saveDose) {
-            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
-        }
-        .primaryButton()
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
-        .disabled(checkedID == nil)
-        .padding(.horizontal, Spacing.screenMargin)
-        .padding(.bottom, Spacing.bottomClearance)
-        .accessibilityIdentifier("save-dose")
-    }
-
     private var active: [Medication] {
         medications.active
     }
@@ -161,11 +149,9 @@ struct LogDoseView: View {
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
     private func dateSection(scrolling proxy: ScrollViewProxy) -> some View {
         CardSection(id: "date") {
-            TimelineView(.everyMinute) { _ in
-                DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
-            }
-            .fillsCardRow()
-            .id(Self.dateBlockID)
+            DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
+                .fillsCardRow()
+                .id(Self.dateBlockID)
         }
     }
 
@@ -207,7 +193,7 @@ struct LogDoseView: View {
                 Spacer()
                 if isChecked {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(.tint)
+                        .foregroundStyle(Color.tint)
                         .accessibilityHidden(true)
                 }
             }

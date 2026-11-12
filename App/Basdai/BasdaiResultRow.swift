@@ -9,11 +9,8 @@ struct BasdaiResultRow: View {
 
     var body: some View {
         LabeledContent {
-            HStack {
-                Text(verbatim: score)
-                    .foregroundStyle(Color.ink2)
-                RowChevron()
-            }
+            Text(verbatim: score)
+                .foregroundStyle(Color.ink2)
         } label: {
             Text(verbatim: date)
                 .foregroundStyle(Color.ink)
@@ -21,7 +18,6 @@ struct BasdaiResultRow: View {
         .rowHeight(Spacing.twoLineRowHeight)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text("\(date). Score \(score)."))
-        .accessibilityAddTraits(.isButton)
     }
 
     private var date: String {

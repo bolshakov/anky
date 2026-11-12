@@ -96,6 +96,59 @@ expect_screen pass "a number in a trailing comment" 'let v = 0 // the gap is 12 
 expect_screen pass "a padding in a trailing comment" 'let v = 0 // .padding(16) and .frame(width: 120)'
 expect pass "a padding with a number in the piece that names sizes" "mkdir -p App/Design && echo 'let v = Text(\"a\").padding(16)' > App/Design/Spacing.swift"
 
+# Rule: a call's arguments end at its matching close, across lines and at any depth. A case is lines in one argument.
+expect_screen fail "a padding number on the next line" 'let v = Text("a").padding(
+    16)'
+expect_screen fail "an offset number on the next line" 'let v = Text("a").offset(x:
+    4)'
+expect_screen fail "a padding number two calls deep" 'let v = Text("a").padding(.top, max(min(a, 4), b))'
+expect_screen fail "a padding number three calls deep" 'let v = Text("a").padding(.top, max(min(abs(a), 4), b))'
+expect_screen fail "an offset number three calls deep" 'let v = Text("a").offset(x: f(g(h(a, 6))))'
+expect_screen fail "a padding negative number on a continuation line" 'let v = Text("a").padding(
+    .leading,
+    -16
+)'
+expect_screen fail "a padding number on its own line before the close" 'let v = Text("a").padding(
+    .top,
+    max(inset, 4)
+)'
+expect_screen pass "a padding of names over several lines" 'let v = Text("a").padding(
+    .top,
+    max(inset, Spacing.x2, 0.5, 0)
+)'
+expect_screen pass "a padding followed by a number on the next line" 'let v = Text("a").padding(Spacing.tightGap)
+    .lineLimit(2)'
+expect_screen pass "a number in a comment on a continuation line" 'let v = Text("a").padding(
+    Spacing.x2, // 16 on the mockup
+    .top
+)'
+expect_screen pass "a padding with no arguments" 'let v = Text("a").padding()'
+expect_screen pass "an offset of zeros" 'let v = Text("a").offset(x: 0, y: 0)'
+expect_screen pass "an unclosed padding at the end of the file" 'let v = Text("a").padding(
+    Spacing.x2,'
+expect_screen fail "a padding after one that is named" 'let a = Text("a").padding(Spacing.x2)
+let b = Text("b").padding(4)'
+
+# usage: expect_reported <description> <lines expected as file:line, one per line> <screen lines>
+expect_reported() {
+  tree=$(mktemp -d)
+  mkdir -p "$tree/App/Today"
+  printf '%s\n' "$3" > "$tree/App/Today/Row.swift"
+  got=$("$here/check-design-tokens.sh" "$tree" 2> /dev/null | grep -o 'Row.swift:[0-9]*:')
+  if [ "$got" != "$2" ]; then echo "FAIL: $1 (wanted $2, got $got)"; failures=$((failures + 1)); fi
+  rm -rf "${tree:?}"
+}
+
+expect_reported "a number in the second call names the second call's line" "Row.swift:3:" 'let a = Text("a").padding(Spacing.x2)
+let x = 0
+let b = Text("b").padding(
+    4)'
+expect_reported "a call that spans lines is reported once, at the line it starts" "Row.swift:2:" 'let x = 0
+let v = Text("a").padding(
+    4,
+    8)'
+expect_reported "two numbers in one call are reported once" "Row.swift:1:" 'let v = Text("a").padding(.top, max(4, 8))'
+
 # Rule: a colour written outside ColorTokens.swift.
 expect fail "Color( in a piece" "mkdir -p App/Design && echo 'let c = Color(\"CardBackground\")' > App/Design/Row.swift"
 expect fail "UIColor in a piece" "mkdir -p App/Design && echo 'let c = UIColor.label' > App/Design/Row.swift"

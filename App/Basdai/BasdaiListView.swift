@@ -22,11 +22,15 @@ struct BasdaiListView: View {
             } else {
                 CardSection(footnote: footnote, id: "basdai-results") {
                     ForEach(Array(model.results.enumerated()), id: \.element.id) { index, result in
-                        BasdaiResultRow(result: result)
-                            .accessibilityIdentifier("basdai-row-\(index)")
-                            .deleteSwipe {
-                                pendingDelete = result.id
-                            }
+                        NavigationLink {
+                            BasdaiDetailView(result: result)
+                        } label: {
+                            BasdaiResultRow(result: result)
+                        }
+                        .accessibilityIdentifier("basdai-row-\(index)")
+                        .deleteSwipe {
+                            pendingDelete = result.id
+                        }
                     }
                 }
             }

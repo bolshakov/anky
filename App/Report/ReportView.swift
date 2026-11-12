@@ -7,6 +7,8 @@ import SwiftUI
 struct ReportView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
+    @State private var includesBasdai = true
     @State private var period = ReportPeriod.threeMonths
     @State private var isBuilding = false
     @State private var preview: PreviewFile?
@@ -35,6 +37,7 @@ struct ReportView: View {
                 .accessibilityIdentifier("report-period")
                 .nonCardBlock()
             }
+            basdaiCard
         }
         .screenSpacing()
         .accessibilityIdentifier("report-screen")
@@ -43,6 +46,29 @@ struct ReportView: View {
         .safeAreaInset(edge: .bottom) { previewButton }
         .sheet(item: $preview) { file in
             ReportPreview(url: file.url).ignoresSafeArea()
+        }
+    }
+
+    private var basdaiCard: some View {
+        let count = ReportBasdai(results: basdai.results, period: period, now: .now, calendar: .current)
+            .inPeriod.count
+        return CardSection(
+            footnote: Text(
+                "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
+            ),
+            id: "report-basdai-card"
+        ) {
+            SwitchRow(Text("Include BASDAI scores"), isOn: $includesBasdai)
+                .accessibilityIdentifier("report-basdai-toggle")
+            NavigationLink {
+                BasdaiListView(model: basdai)
+            } label: {
+                ValueRow(Text("BASDAI results"), value: Text("\(count)"))
+            }
+            .fillsCardRow()
+            .accessibilityLabel("BASDAI results")
+            .accessibilityValue("\(count)")
+            .accessibilityIdentifier("report-basdai-results")
         }
     }
 
