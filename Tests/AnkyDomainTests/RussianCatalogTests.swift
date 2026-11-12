@@ -263,7 +263,7 @@ Period => Период
 3 months => 3 месяца
 6 months => 6 месяцев
 Preview => Просмотреть
-""")
+""") + reportDraftPlainValues
 
 private let approvedFormatValues = table("""
 %@ of %lld => %1$@ из %2$lld
@@ -272,7 +272,7 @@ private let approvedFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Можно выбрать период длиннее.
 %@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
-""")
+""") + reportDraftFormatValues
 
 let donePlacesKey = "Done · %lld places"
 
@@ -306,7 +306,7 @@ private let englishFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ and %2$@, %3$@ to %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => Nothing logged from %1$@ to %2$@. Pick a longer period.
 %@ by week: %@, %@ => %1$@ by week: %2$@, %3$@
-""")
+""") + reportDraftEnglishFormatValues
 
 let russian = Locale(identifier: "ru")
 private let english = Locale(identifier: "en")
