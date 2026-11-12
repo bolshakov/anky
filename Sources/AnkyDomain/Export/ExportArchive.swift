@@ -54,7 +54,7 @@ public enum ExportArchive {
         name.hasPrefix(prefix) && name.hasSuffix(suffix)
     }
 
-    /// The atomic write goes through a temporary file and a rename, so the name holds a whole archive or nothing.
+    /// The name holds a whole archive or nothing, even when the write fails part way.
     public static func writeArchive( // swiftlint:disable:this function_parameter_count
         _ data: ExportData, appVersion: String, build: String, now: Date, calendar: Calendar, into folder: URL
     ) throws -> URL {
