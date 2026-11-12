@@ -17,7 +17,12 @@ struct BasdaiListView: View {
                 }
                 .emptyBlockGap()
             } else {
-                CardSection(footnote: footnote, id: "basdai-results") {}
+                CardSection(footnote: footnote, id: "basdai-results") {
+                    ForEach(Array(model.results.enumerated()), id: \.element.id) { index, result in
+                        BasdaiResultRow(result: result)
+                            .accessibilityIdentifier("basdai-row-\(index)")
+                    }
+                }
             }
         }
         .screenSpacing()

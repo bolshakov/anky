@@ -3289,6 +3289,9 @@
     },
     "Couldn't save this result. Try again." : {
       "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
+    },
+    "%@. Score %@." : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
     }
   },
   "version" : "1.0"
