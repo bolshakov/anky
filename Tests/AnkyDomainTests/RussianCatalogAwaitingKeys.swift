@@ -62,4 +62,8 @@ Score
 Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone.
 Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest.
 Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest.
+%lld BASDAI results
+Q%lld %@
+%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
 """.split(separator: "\n").map(String.init)

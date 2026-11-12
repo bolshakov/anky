@@ -125,7 +125,7 @@ struct TodayView: View {
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
-                ReportView(model: model, medications: medications)
+                ReportView(model: model, medications: medications, basdai: basdai)
             }
             .navigationDestination(isPresented: $isShowingBasdai) {
                 BasdaiListView(model: basdai)

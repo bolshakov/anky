@@ -25,13 +25,14 @@ struct ReportTotalsTextTests {
     private func totals(
         entries: [Date],
         doses: [Date] = [],
+        basdaiCount: Int = 0,
         in locale: Locale = Locale(identifier: "en_GB")
     ) throws -> ReportTotalsText {
         let summary = try ReportSummary(
             entries: entries.map(entry), doses: doses.map(dose), period: .threeMonths, now: now, calendar: calendar
         )
         return try CompiledCatalog.withBundle("en") {
-            ReportTotalsText(summary: summary, locale: locale, calendar: calendar, bundle: $0)
+            ReportTotalsText(summary: summary, basdaiCount: basdaiCount, locale: locale, calendar: calendar, bundle: $0)
         }
     }
 
@@ -70,5 +71,18 @@ struct ReportTotalsTextTests {
         #expect(
             try totals(entries: [day(8, 12)], in: Locale(identifier: "en_US")).firstEntry == "First entry August 12"
         )
+    }
+
+    @Test func theTotalsCountTheBasdaiResults() throws {
+        #expect(try totals(entries: [day(9, 3)], basdaiCount: 3).basdai == "3 BASDAI results")
+    }
+
+    @Test func oneBasdaiResultIsSingular() throws {
+        #expect(try totals(entries: [day(9, 3)], basdaiCount: 1).basdai == "1 BASDAI result")
+    }
+
+    @Test func noBasdaiResultsLeaveTheLineOut() throws {
+        #expect(try totals(entries: [day(9, 3)]).basdai == nil)
+        #expect(try totals(entries: [day(9, 3)], basdaiCount: 0).basdai == nil)
     }
 }
