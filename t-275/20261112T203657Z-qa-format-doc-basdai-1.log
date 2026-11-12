@@ -1,0 +1,18 @@
+$ grep -n -i 'basdai.csv\|schema_version\|five\|four\|q6\|id,created_at,updated_at,date' docs/export-format.md
+exit: 0
+commit: d5bd93284b2eac98d247244fdacaa927f5230988
+
+14:It holds five files, in this order:
+20:5. `basdai.csv`
+33:| `schema_version` | A number, the version of this format. It is `2`.                          |
+37:| `files`          | A list with one object per CSV, in zip order: `entries.csv`, `medications.csv`, `doses.csv`, `basdai.csv`. |
+122:## basdai.csv
+138:| `q6`         | N    | The answer to question 6, a whole number from 0 to 10. It is the slider value and not minutes: `5` means 1 hr, as on the form. |
+141:The score is calculated at export time from the six answers, as (`q1` + `q2` + `q3` + `q4` + (`q5` + `q6`) / 2) / 5.
+146:`schema_version` in `manifest.json` goes up when a column is removed, renamed, moved or changes meaning, or a file is
+147:added, removed or renamed. Adding `basdai.csv` raised it from `1` to `2`.
+162:  basdai.csv
+186:      "name" : "basdai.csv",
+190:  "schema_version" : 2
+218:`basdai.csv`:
+221:id,created_at,updated_at,date,q1,q2,q3,q4,q5,q6,score

@@ -1,0 +1,5 @@
+$ sh -c 'unzip -p /Users/bolshakov/Projects/personal/anky.wt/qa-t275-01-2/tmp/p/full.zip basdai.csv | head -1'
+exit: 0
+commit: d5bd93284b2eac98d247244fdacaa927f5230988
+
+id,created_at,updated_at,date,q1,q2,q3,q4,q5,q6,score

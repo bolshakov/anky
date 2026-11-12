@@ -1,0 +1,30 @@
+$ sh -c 'unzip -p /Users/bolshakov/Projects/personal/anky.wt/qa-t275-01-2/tmp/p/empty.zip basdai.csv; echo ---; unzip -p /Users/bolshakov/Projects/personal/anky.wt/qa-t275-01-2/tmp/p/empty.zip manifest.json'
+exit: 0
+commit: d5bd93284b2eac98d247244fdacaa927f5230988
+
+id,created_at,updated_at,date,q1,q2,q3,q4,q5,q6,score
+---
+{
+  "app_version" : "1.0",
+  "build" : "1",
+  "exported_at" : "2026-11-12T20:31:03Z",
+  "files" : [
+    {
+      "name" : "entries.csv",
+      "rows" : 0
+    },
+    {
+      "name" : "medications.csv",
+      "rows" : 0
+    },
+    {
+      "name" : "doses.csv",
+      "rows" : 0
+    },
+    {
+      "name" : "basdai.csv",
+      "rows" : 0
+    }
+  ],
+  "schema_version" : 2
+}
