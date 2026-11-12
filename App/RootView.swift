@@ -6,6 +6,7 @@ import SwiftUI
 struct RootView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
     let reminderTaps: ReminderTapModel
     @State private var selection = Tab.today
     @State private var reminderCheckIn: Dose?
@@ -25,6 +26,7 @@ struct RootView: View {
             TodayView(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
                 reminderLogDose: $reminderLogDose
