@@ -4,12 +4,12 @@ import SwiftUI
 struct EmptyTodayView: View {
     var body: some View {
         VStack(spacing: Spacing.emptyStateGap) {
-            Image("AnkyMark")
+            Image(decorative: "AnkyMark")
                 .resizable()
                 .scaledToFit()
                 .frame(width: Spacing.emptyMarkWidth)
                 .foregroundStyle(Color("AccentColor"))
-                .accessibilityHidden(true)
+                .accessibilityRepresentation { EmptyView() }
 
             Text("Nothing logged today")
                 .font(.title2.bold())

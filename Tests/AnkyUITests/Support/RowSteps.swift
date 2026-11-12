@@ -13,9 +13,9 @@ func rowTime(of row: XCUIElement) -> String {
     row.label.components(separatedBy: ", ")[2]
 }
 
-/// A dose row speaks its title, then its time, then the word Dose.
+/// A dose row speaks the word Dose, then its title, then its time, which ends the label when no reading follows.
 func doseRowTime(of label: String) -> String {
-    label.components(separatedBy: ". ")[1]
+    label.components(separatedBy: ". ")[2].trimmingCharacters(in: CharacterSet(charactersIn: "."))
 }
 
 func rowSeverity(of row: XCUIElement) -> Int? {
