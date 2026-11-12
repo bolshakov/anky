@@ -1919,6 +1919,96 @@
         }
       }
     },
+    "%@ (%lld–%lld)" : {
+      "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        }
+      }
+    },
+    "%lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is under an hour, such as '45 min'. %lld is whole minutes. min is the abbreviation of minutes.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        }
+      }
+    },
+    "%lld h to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is a whole number of hours, such as '2 h'. %lld is the hours. h is the abbreviation of hours.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ч"
+          }
+        }
+      }
+    },
+    "%lld h %lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is an hour or more, such as '1 h 50 min'. %1$lld is the hours and %2$lld the minutes past the hour. h and min are abbreviations.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld h %2$lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld ч %2$lld мин"
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10." : {
+      "comment" : "The note under the report PDF's medication table when no medication in it is scheduled.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10."
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled medication often has no after-reading." : {
+      "comment" : "The note under the report PDF's medication table when a medication in it is scheduled: the note without one, then why a scheduled dose often has no after-reading.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет."
+          }
+        }
+      }
+    },
     "Not set" : {
       "localizations" : {
         "ru" : {
@@ -3544,92 +3634,46 @@
         }
       }
     },
-    "%@ (%lld–%lld)" : {
-      "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
+    "Places logged" : {
+      "comment" : "The report PDF's heading above the table of body places the patient logged, each with how many entries named it.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ (%2$lld–%3$lld)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ (%2$lld–%3$lld)"
+            "value" : "Places logged"
           }
         }
       }
     },
-    "%lld min to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is under an hour, such as '45 min'. %lld is whole minutes. min is the abbreviation of minutes.",
+    "Place" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that names a body place, such as Lower back.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld min"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld мин"
+            "value" : "Place"
           }
         }
       }
     },
-    "%lld h to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is a whole number of hours, such as '2 h'. %lld is the hours. h is the abbreviation of hours.",
+    "Entries" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that counts the entries naming each place.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld h"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld ч"
+            "value" : "Entries"
           }
         }
       }
     },
-    "%lld h %lld min to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is an hour or more, such as '1 h 50 min'. %1$lld is the hours and %2$lld the minutes past the hour. h and min are abbreviations.",
+    "None logged in this period" : {
+      "comment" : "The report PDF's line under a section heading when the period holds nothing for that section. It stands in for any empty report section, such as Places logged or Medication.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$lld h %2$lld min"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld ч %2$lld мин"
-          }
-        }
-      }
-    },
-    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10." : {
-      "comment" : "The note under the report PDF's medication table when no medication in it is scheduled.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10."
-          }
-        }
-      }
-    },
-    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled medication often has no after-reading." : {
-      "comment" : "The note under the report PDF's medication table when a medication in it is scheduled: the note without one, then why a scheduled dose often has no after-reading.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет."
+            "value" : "None logged in this period"
           }
         }
       }

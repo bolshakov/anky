@@ -51,4 +51,8 @@ Legend one entry
 Legend number under a bar
 Legend none logged
 Week count none
+Places logged
+Place
+Entries
+None logged in this period
 """.split(separator: "\n").map(String.init)
