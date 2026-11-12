@@ -24,4 +24,8 @@ not answered
 %@ to %@
 created %@
 First entry %@
+Symptom report
+Name line
+Recorded by the patient in Anky.
+Counts, averages and ranges only.
 """.split(separator: "\n").map(String.init)

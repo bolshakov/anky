@@ -462,6 +462,17 @@
         }
       }
     },
+    "Counts, averages and ranges only." : {
+      "comment" : "The report PDF's note beside the totals, second line: the page shows no single entry.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Counts, averages and ranges only."
+          }
+        }
+      }
+    },
     "created %@" : {
       "comment" : "The end of the report PDF's line under its title: the day the report was made, such as 'created 11 November 2026'.",
       "localizations" : {
@@ -970,6 +981,17 @@
         }
       }
     },
+    "Name line" : {
+      "comment" : "The report PDF's label before a blank line where the patient writes their name by hand. Not a medication's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        }
+      }
+    },
     "Nothing logged from %@ to %@. Pick a longer period." : {
       "comment" : "The Report screen's line when the period holds no entry and no dose. %1$@ is the period's first day and %2$@ today, each a day and a month.",
       "localizations" : {
@@ -1095,6 +1117,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Просмотреть"
+          }
+        }
+      }
+    },
+    "Recorded by the patient in Anky." : {
+      "comment" : "The report PDF's note beside the totals, first line: who recorded the counts.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recorded by the patient in Anky."
           }
         }
       }
@@ -1248,6 +1281,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скованность была %lld из 10"
+          }
+        }
+      }
+    },
+    "Symptom report" : {
+      "comment" : "The report PDF's title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symptom report"
           }
         }
       }
