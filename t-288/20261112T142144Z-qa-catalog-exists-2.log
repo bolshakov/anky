@@ -1,0 +1,7 @@
+$ sh -c 'grep -E "^- .(CardSection|TintRow|deleteSwipe)." App/Design/README.md'
+exit: 0
+commit: 289a8cdaa4c8181a183cee6e581c9a3fbf74a708
+
+- `CardSection`: the default section of a card screen, with an optional label above and a left-aligned footnote below. Do not build a `Section` with its own card background, header style and footer inset.
+- `TintRow`: one row in a list where a single item is chosen, with the chosen one bold and ticked. Do not draw your own checkmark row or a tick in another colour.
+- `deleteSwipe`: the trailing swipe that deletes a row. Do not build your own swipe action with a delete button.

@@ -1,0 +1,9 @@
+$ sh -c 'ls App/Design/ | grep -i tip; echo grep:; grep -i tip App/Design/README.md'
+exit: 0
+commit: 289a8cdaa4c8181a183cee6e581c9a3fbf74a708
+
+grep:
+- `tipGap`: the gap inside the Shortcuts pin tip. No shared tip view exists yet, so see the note at the end.
+- `tipInset`: the inset around the Shortcuts pin tip. No shared tip view exists yet, so see the note at the end.
+The app has no shared empty-state view, no shared sheet toolbar and no shared tip card. Each screen that needs one
+builds it from the spacing tokens above, and the Shortcuts pin tip is local to that screen. This is a gap in the
