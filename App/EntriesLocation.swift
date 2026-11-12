@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyStore
 import Foundation
 
 enum EntriesLocation {
@@ -7,18 +8,8 @@ enum EntriesLocation {
         return support.appending(path: folderName)
     }
 
-    /// The folder is set to complete protection on every call, because `createDirectory` leaves an existing folder's
-    /// protection alone.
     static func storeURL() throws -> URL {
-        let folder = folder()
-        let protection: [FileAttributeKey: Any] = [.protectionKey: FileProtectionType.complete]
-        try FileManager.default.createDirectory(
-            at: folder,
-            withIntermediateDirectories: true,
-            attributes: protection
-        )
-        try FileManager.default.setAttributes(protection, ofItemAtPath: folder.path)
-        return folder.appending(path: "entries.store")
+        try StoreFolder.prepare(folder()).appending(path: StoreFolder.entriesFileName)
     }
 
     /// Only Debug builds read the variable, so a Release build cannot be pointed at another folder.
