@@ -2,12 +2,15 @@
 public enum CSVCell: Equatable, Sendable {
     case text(String)
     case number(Int)
+    /// A number already written out, such as `3.3`, which `number` cannot hold.
+    case bare(String)
     case empty
 
     var written: String {
         switch self {
         case let .text(value): "\"" + value.replacingOccurrences(of: "\"", with: "\"\"") + "\""
         case let .number(value): String(value)
+        case let .bare(value): value
         case .empty: ""
         }
     }
