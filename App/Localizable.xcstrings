@@ -3812,6 +3812,9 @@
     },
     "Result deleted" : {
       "comment" : "What VoiceOver announces after a saved BASDAI result is deleted."
+    },
+    "Score" : {
+      "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'."
     }
   },
   "version" : "1.0"
