@@ -9,6 +9,14 @@ Averages use only doses that have both a before and an after reading (the fourth
 A scheduled medication often has no after-reading. => \
 Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). \
 Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет.
+Medication: doses, and pain before and after => Лекарства: приёмы и боль до и после
+Medication, continued => Лекарства, продолжение
+Doses => Приёмы
+Per week => В неделю
+With an after-reading => С записью после
+Pain before: average (lowest–highest) => Боль до: среднее (мин.–макс.)
+Pain after: average (lowest–highest) => Боль после: среднее (мин.–макс.)
+Average time to after-reading => Среднее время до записи после
 """)
 
 let reportDraftFormatValues = table("""
