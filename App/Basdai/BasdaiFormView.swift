@@ -8,7 +8,7 @@ struct BasdaiFormView: View {
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDiscard = false
-    @AccessibilityFocusState private var isCancelFocused: Bool
+    @AccessibilityFocusState private var focus: BasdaiFormFocus?
 
     var isComplete: Bool {
         answers.isComplete
@@ -24,6 +24,7 @@ struct BasdaiFormView: View {
                 Section {
                     Text("All questions refer to **last week**.")
                         .accessibilityIdentifier("basdai-intro")
+                        .accessibilityFocused($focus, equals: .intro)
                         .nonCardBlock()
                 }
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
@@ -33,6 +34,7 @@ struct BasdaiFormView: View {
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
+            .onAppear { focus = .intro }
             .navigationTitle("BASDAI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -42,7 +44,7 @@ struct BasdaiFormView: View {
                             .frame(minHeight: Spacing.rowMinimumHeight)
                             .contentShape(Rectangle())
                             .accessibilityIdentifier("basdai-cancel")
-                            .accessibilityFocused($isCancelFocused)
+                            .accessibilityFocused($focus, equals: .cancel)
                             .confirmationDialog(
                                 "Discard answers?",
                                 isPresented: $isConfirmingDiscard,
@@ -66,7 +68,7 @@ struct BasdaiFormView: View {
             .interactiveDismissDisabled(isAnyAnswered)
             .onChange(of: isConfirmingDiscard) { _, isShowing in
                 if !isShowing {
-                    isCancelFocused = true
+                    focus = .cancel
                 }
             }
         }
@@ -102,4 +104,9 @@ struct BasdaiFormView: View {
             isShowingSaveFailure = true
         }
     }
+}
+
+private enum BasdaiFormFocus: Hashable {
+    case intro
+    case cancel
 }
