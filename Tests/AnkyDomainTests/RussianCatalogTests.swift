@@ -168,6 +168,7 @@ Repeat => Повтор
 Times => Время приёма
 Add a time => Добавить время
 Duration => Продолжительность
+Last week => За последнюю неделю
 Starts => Начало
 Ends => Окончание
 Every day => Каждый день

@@ -9,14 +9,12 @@ struct BasdaiQuestionBlock: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        CardSection(id: "basdai-q\(question.number)") {
-            VStack(alignment: .leading, spacing: Spacing.cardContentGap) {
-                heading
-                    .accessibilityHidden(true)
-                VStack(spacing: Spacing.tightGap) {
-                    slider
-                    BasdaiEndLabels(question: question)
-                }
+        VStack(alignment: .leading, spacing: Spacing.cardContentGap) {
+            heading
+                .accessibilityHidden(true)
+            VStack(spacing: Spacing.tightGap) {
+                slider
+                BasdaiEndLabels(question: question)
             }
         }
     }
