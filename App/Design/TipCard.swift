@@ -38,6 +38,7 @@ struct TipCard<Title: View, Message: View>: View {
         .padding(.leading, Spacing.cardInset)
         .padding(.trailing, Spacing.tipInset)
         .background(Color.soft, in: .card)
+        .accessibilityElement(children: .contain)
     }
 
     private var text: some View {
