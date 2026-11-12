@@ -1,0 +1,13 @@
+$ sh -c 'axe describe-ui --udid 3140F922-E919-4EEA-A29F-B683DA6B58F5 | python3 -I -c "
+import json,sys
+def w(n):
+    if isinstance(n,dict):
+        if n.get('\''AXUniqueId'\'')=='\''report-menu'\'': print(json.dumps({k:n.get(k) for k in ('\''AXUniqueId'\'','\''AXLabel'\'','\''type'\'','\''role'\'','\''frame'\'')}))
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(json.load(sys.stdin))"'
+exit: 0
+commit: ba153f983b63428e6b3c260df0acdbc1921576fc
+
+{"AXUniqueId": "report-menu", "AXLabel": "Report and BASDAI", "type": "Button", "role": "AXButton", "frame": {"x": 346, "y": 66, "height": 36, "width": 36}}
