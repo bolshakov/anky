@@ -21,7 +21,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `CardSection`: the default section of a card screen, with an optional label above and a left-aligned footnote below. Do not build a `Section` with its own card background, header style and footer inset.
 - `FootnotedSection`: a section of a grouped list that keeps the system footer inset and tint for its footnote. Do not put the footnote in an extra empty section after it.
 - `FooterBlockSection`: a card section whose footer is a centred block of any views that scrolls with the list, such as the About block. Do not hand-build a footer for it, and use `CardSection` when the footer is only left-aligned text.
-- `SectionLabel`: the header style of a section label. The sections above apply it already, so use it by hand only on a `Section` you build yourself, and never set a header's case and insets yourself.
+- `SectionLabel`: the header style of a section label. `CardSection` and `FootnotedSection` apply it already, so use it by hand only on a `Section` you build yourself, and never set a header's case and insets yourself.
 
 ## Rows
 
@@ -107,10 +107,10 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `iconSymbol`: the size of the symbol inside an `IconTile`. Do not size that symbol yourself.
 - `bottomClearance`: the room under the last block or the bottom button, applied by `bottomPrimaryButton` and `lastBlockClearance`. Use the modifiers before the token.
 - `primaryButtonHeight`: the design height of the bottom primary button. Do not size a primary button yourself.
-- `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen. design height. Only the button's label height uses it.
-- `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding. minimum height and do not add your own padding.
-- `repeatChipSystemPadding`: the padding the system adds around the repeat chip's label. Only the label height below uses it, so do not use it in a screen. uses it.
-- `repeatChipLabelHeight`: the label height that gives the repeat chip a row-sized height. Use it for a chip of that kind and do not add your own padding. kind and do not add your own padding.
+- `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen.
+- `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding.
+- `repeatChipSystemPadding`: the padding the system adds around the repeat chip's label. Only the label height below uses it, so do not use it in a screen.
+- `repeatChipLabelHeight`: the label height that gives the repeat chip a row-sized height. Use it for a chip of that kind and do not add your own padding.
 
 ## Corner tokens
 
