@@ -4,6 +4,27 @@ import Foundation
 import Testing
 
 struct StoreFolderTests {
+    /// Some volumes, such as the GitHub macOS runner, reject complete protection with EINVAL. The probe makes the two
+    /// calls `prepare` makes and reports unsupported only when they throw.
+    private static let protectionIsSupported: Bool = {
+        let root = FileManager.default.temporaryDirectory
+            .appending(path: UUID().uuidString, directoryHint: .isDirectory)
+        defer { try? FileManager.default.removeItem(at: root) }
+        let scratch = root.appending(path: "probe", directoryHint: .isDirectory)
+        let protection: [FileAttributeKey: Any] = [.protectionKey: FileProtectionType.complete]
+        do {
+            try FileManager.default.createDirectory(
+                at: scratch,
+                withIntermediateDirectories: true,
+                attributes: protection
+            )
+            try FileManager.default.setAttributes(protection, ofItemAtPath: scratch.path)
+            return true
+        } catch {
+            return false
+        }
+    }()
+
     private func withTemporaryDirectory<T>(_ body: (URL) throws -> T) throws -> T {
         let root = FileManager.default.temporaryDirectory
             .appending(path: UUID().uuidString, directoryHint: .isDirectory)
@@ -16,7 +37,7 @@ struct StoreFolderTests {
         try FileManager.default.attributesOfItem(atPath: folder.path)[.protectionKey] as? FileProtectionType
     }
 
-    @Test func aMissingFolderIsCreatedWithCompleteProtection() throws {
+    @Test(.enabled(if: protectionIsSupported)) func aMissingFolderIsCreatedWithCompleteProtection() throws {
         try withTemporaryDirectory { root in
             let folder = root.appending(path: "Anky", directoryHint: .isDirectory)
 
@@ -27,7 +48,7 @@ struct StoreFolderTests {
         }
     }
 
-    @Test func aMissingFolderIsCreatedWithItsParents() throws {
+    @Test(.enabled(if: protectionIsSupported)) func aMissingFolderIsCreatedWithItsParents() throws {
         try withTemporaryDirectory { root in
             let folder = root.appending(path: "Support/Anky", directoryHint: .isDirectory)
 
@@ -37,7 +58,7 @@ struct StoreFolderTests {
         }
     }
 
-    @Test func anExistingFolderIsProtectedAndKeepsItsFile() throws {
+    @Test(.enabled(if: protectionIsSupported)) func anExistingFolderIsProtectedAndKeepsItsFile() throws {
         try withTemporaryDirectory { root in
             let folder = root.appending(path: "Anky", directoryHint: .isDirectory)
             try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
@@ -53,7 +74,7 @@ struct StoreFolderTests {
         }
     }
 
-    @Test func preparingTwiceDoesNotThrowAndKeepsTheProtection() throws {
+    @Test(.enabled(if: protectionIsSupported)) func preparingTwiceDoesNotThrowAndKeepsTheProtection() throws {
         try withTemporaryDirectory { root in
             let folder = root.appending(path: "Anky", directoryHint: .isDirectory)
 
@@ -64,7 +85,7 @@ struct StoreFolderTests {
         }
     }
 
-    @Test func prepareReturnsTheFolderItWasGiven() throws {
+    @Test(.enabled(if: protectionIsSupported)) func prepareReturnsTheFolderItWasGiven() throws {
         try withTemporaryDirectory { root in
             let folder = root.appending(path: "Anky", directoryHint: .isDirectory)
 
@@ -74,9 +95,9 @@ struct StoreFolderTests {
         }
     }
 
-    @Test func theTwoStoresSitInOnePreparedFolder() throws {
+    @Test func theTwoStoresSitInOneFolderUnderTheirOwnNames() throws {
         try withTemporaryDirectory { root in
-            let folder = try StoreFolder.prepare(root.appending(path: "Anky", directoryHint: .isDirectory))
+            let folder = root.appending(path: "Anky", directoryHint: .isDirectory)
 
             let entries = folder.appending(path: StoreFolder.entriesFileName)
             let medications = folder.appending(path: StoreFolder.medicationsFileName)
