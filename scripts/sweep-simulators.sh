@@ -17,8 +17,24 @@ step() {
   return "$status"
 }
 
+# usage: in_use <udid>. Succeeds when a running job of ours names the device. A process that merely holds the UDID, such
+# as the device's own launchd_sim or an editor, is not a job, so only these programs count, run directly or through a shell.
+in_use() {
+  ps -axww -o pid=,command= 2> /dev/null | awk -v udid="$1" -v self="$$" '
+    $1 == self { next }
+    {
+      exe = $2
+      if (exe ~ /(^|\/)(sh|bash|zsh)$/) exe = $3
+      sub(/.*\//, "", exe)
+    }
+    exe ~ /^(xcodebuild|run-ui-tests\.sh|axe|simctl)$/ && index(tolower($0), tolower(udid)) { found = 1; exit }
+    END { exit !found }
+  '
+}
+
 # usage: keep_reason <udid>. Prints why the device stays, or nothing when it may go.
 keep_reason() {
+  if in_use "$1"; then echo "in use"; return; fi
   born=$(stat -f %B "$SWEEP_DEVICES_DIR/$1" 2> /dev/null) || born=
   case "$born" in
     '' | *[!0-9]* | 0) echo "age unreadable"; return ;;
