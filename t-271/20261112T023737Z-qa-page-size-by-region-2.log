@@ -1,0 +1,13 @@
+$ timeout 150 swift /Users/bolshakov/Projects/personal/anky.wt/qa-t271-03-4/tmp/scripts/pdfcheck.swift /Users/bolshakov/Projects/personal/anky.wt/qa-t271-03-4/tmp/pdf-de/report.pdf /Users/bolshakov/Projects/personal/anky.wt/qa-t271-03-4/tmp/out/de.png
+exit: 0
+commit: 1af84dbec030bdaf8849c4982640dfb716fdf8c4
+
+pages 1 size 595.2x841.8
+text:
+Symptom report
+12. August to 12. November 2026 · 3 months · created 12. November 2026
+Anky
+Name
+31 entries 5 doses First entry 12. August Recorded by the patient in Anky.
+Counts, averages and ranges only.
+qr []

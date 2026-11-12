@@ -1,0 +1,4 @@
+$ find /Users/bolshakov/Library/Developer/CoreSimulator/Devices/73584282-D222-439E-A3F3-7856FD9A711B/data/Containers/Data/Application/F06D5896-4467-45B6-99D5-6748715ECF9A -name '*.pdf'
+exit: 0
+commit: 1af84dbec030bdaf8849c4982640dfb716fdf8c4
+
