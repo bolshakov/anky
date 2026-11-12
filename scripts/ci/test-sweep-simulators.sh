@@ -81,6 +81,9 @@ EOF
   cat > "$bin/kill" <<EOF
 #!/bin/sh
 echo "kill \$*" >> "$calls"
+[ "\$1" = -0 ] && case " \$STUB_ALIVE " in *" \$2 "*) exit 0 ;; *) exit 1 ;; esac
+case " \$STUB_KILL_FAIL " in *" \$2 "*) exit 1 ;; esac
+exit 0
 EOF
   chmod +x "$bin/xcrun" "$bin/stat" "$bin/ps" "$bin/kill"
 }
@@ -204,5 +207,85 @@ device anky-c $u3 Booted unreadable
 run_sweep
 [ "$(wc -l < "$out" | tr -d ' ')" = 3 ]
 report "each device gets exactly one line of output" $?
+
+rt="/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot"
+fw=/Library/Developer/PrivateFrameworks/CoreSimulator.framework/Versions/A/Resources/SimRenderingServices.simdeviceio/Contents/XPCServices
+
+# usage: proc <pid> <ppid> <command>. Adds one line to the ps fixture, as `ps -o pid=,ppid=,command=` prints it.
+proc() {
+  printf '%6s %5s %s\n' "$1" "$2" "$3" >> "$tree/ps.out"
+}
+
+# usage: killed <signal> <pid>. Passes when the stub kill was called with that signal for that pid.
+killed() {
+  grep -qx "kill -$1 $2" "$calls"
+}
+
+new_tree
+proc 4101 1 "$rt/usr/libexec/backboardd"
+run_sweep SWEEP_TERM_SECONDS=0
+[ "$code" = 0 ] && killed TERM 4101 && grep -qx "ended 4101 backboardd" "$out"
+report "a parent-1 runtime process gets TERM and is named by its executable" $?
+
+new_tree
+proc 4101 1 "$rt/usr/libexec/backboardd"
+proc 4102 1 "$rt/usr/libexec/logd"
+run_sweep SWEEP_TERM_SECONDS=0 STUB_ALIVE=4101
+[ "$code" = 0 ] && killed TERM 4101 && killed KILL 4101 && killed TERM 4102 && ! killed KILL 4102
+report "only a process that survives TERM gets KILL" $?
+
+new_tree
+proc 4101 1 "$rt/usr/libexec/backboardd"
+proc 4102 1 "$rt/usr/libexec/logd"
+run_sweep SWEEP_TERM_SECONDS=0
+last_term=$(grep -n '^kill -TERM' "$calls" | tail -n 1 | cut -d: -f1)
+first_check=$(grep -n '^kill -0' "$calls" | head -n 1 | cut -d: -f1)
+[ "$(grep -c '^kill -TERM' "$calls")" = 2 ] && [ "$last_term" -lt "$first_check" ]
+report "every orphan gets TERM before any liveness check" $?
+
+new_tree
+proc 4101 1 "$rt/System/Library/PrivateFrameworks/RemoteManagement.framework/XPCServices/Subscriber.xpc/Subscriber -flag"
+run_sweep SWEEP_TERM_SECONDS=0
+grep -qx "ended 4101 Subscriber" "$out"
+report "the named executable drops the arguments and a runtime path with spaces" $?
+
+new_tree
+proc 4101 1 "launchd_sim /Users/someone/Library/Developer/CoreSimulator/Devices/$u1/data/var/run/launchd_bootstrap.plist"
+proc 4102 4101 "$rt/usr/libexec/logd"
+proc 4103 1 "$rt/usr/libexec/backboardd"
+run_sweep SWEEP_TERM_SECONDS=0
+[ "$code" = 0 ] && ! killed TERM 4101 && ! killed TERM 4102 && killed TERM 4103 \
+  && [ "$(grep -c '^ended' "$out")" = 1 ]
+report "a runtime process whose parent is a launchd_sim, and the launchd_sim itself, get no signal" $?
+
+new_tree
+proc 3001 1 /Library/Developer/PrivateFrameworks/CoreSimulator.framework/Versions/A/XPCServices/com.apple.CoreSimulator.CoreSimulatorService.xpc/Contents/MacOS/com.apple.CoreSimulator.CoreSimulatorService
+proc 3002 1 /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/Contents/MacOS/SimulatorTrampoline
+proc 3003 1 "$fw/SimMetalHost.xpc/Contents/MacOS/SimMetalHost"
+proc 3004 1 "$fw/SimRenderServer.xpc/Contents/MacOS/SimRenderServer"
+run_sweep SWEEP_TERM_SECONDS=0
+[ "$code" = 0 ] && no_call "^kill" && [ ! -s "$out" ]
+report "the shared simulator daemons with parent 1 get no signal" $?
+
+new_tree
+proc 5001 7000 "$rt/usr/libexec/logd"
+proc 5002 1 /usr/sbin/cfprefsd
+run_sweep SWEEP_TERM_SECONDS=0
+[ "$code" = 0 ] && no_call "^kill" && [ ! -s "$out" ]
+report "no orphans prints nothing and sends nothing" $?
+
+new_tree
+proc 4101 1 "$rt/usr/libexec/backboardd"
+proc 4102 1 "$rt/usr/libexec/logd"
+run_sweep SWEEP_TERM_SECONDS=0 STUB_KILL_FAIL=4101 STUB_ALIVE=4101
+[ "$code" = 0 ] && ! grep -q "ended 4101" "$out" && ! killed KILL 4101 && grep -qx "ended 4102 logd" "$out"
+report "a process that TERM cannot reach is neither named nor sent KILL" $?
+
+new_tree
+device anky-dead $u1 Booted $old
+proc 4101 1 "$rt/usr/libexec/backboardd"
+run_sweep SWEEP_TERM_SECONDS=0 SWEEP_NAME_GLOB=no-such-device
+[ "$code" = 0 ] && grep -qx "ended 4101 backboardd" "$out" && no_call "simctl delete"
+report "orphans are ended whatever the device glob matches" $?
 
 [ "$failures" = 0 ]

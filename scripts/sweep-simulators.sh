@@ -4,6 +4,8 @@ SWEEP_NAME_GLOB=${SWEEP_NAME_GLOB:-anky-*}
 SWEEP_GRACE_SECONDS=${SWEEP_GRACE_SECONDS:-10800}
 SWEEP_STEP_SECONDS=${SWEEP_STEP_SECONDS:-45}
 SWEEP_DEVICES_DIR=${SWEEP_DEVICES_DIR:-$HOME/Library/Developer/CoreSimulator/Devices}
+SWEEP_TERM_SECONDS=${SWEEP_TERM_SECONDS:-2}
+SWEEP_KILL=${SWEEP_KILL:-kill}
 
 for tool in xcrun timeout; do
   command -v "$tool" > /dev/null 2>&1 || { echo "sweep-simulators: $tool not found" >&2; exit 2; }
@@ -48,4 +50,31 @@ printf '%s\n' "$list" \
       $SWEEP_NAME_GLOB) sweep_device "$name" "$udid" "$state" ;;
     esac
   done
+
+# A runtime service whose launchd_sim is gone is adopted by launchd, pid 1. The shared daemons and launchd_sim also have
+# parent 1 but live outside a runtime's RuntimeRoot folder, so the path keeps them out.
+# usage: sweep_orphans. Sends TERM to every orphan, then KILL to those that still answer, and names each one.
+sweep_orphans() {
+  orphans=$(ps -axww -o pid=,ppid=,command= | while read -r pid ppid command; do
+    [ "$ppid" = 1 ] || continue
+    rest=${command#*/RuntimeRoot/}
+    [ "$rest" != "$command" ] || continue
+    exe=${rest%% *}
+    echo "$pid ${exe##*/}"
+  done)
+  [ -n "$orphans" ] || return 0
+  signalled=
+  while read -r pid name; do
+    "$SWEEP_KILL" -TERM "$pid" || continue
+    echo "ended $pid $name"
+    signalled="$signalled $pid"
+  done <<EOF
+$orphans
+EOF
+  sleep "$SWEEP_TERM_SECONDS"
+  for pid in $signalled; do
+    ! "$SWEEP_KILL" -0 "$pid" || "$SWEEP_KILL" -KILL "$pid"
+  done
+}
+sweep_orphans
 exit 0
