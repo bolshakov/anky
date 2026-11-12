@@ -110,17 +110,17 @@ struct ReportPage: View {
     private var footer: some View {
         VStack(spacing: 0) {
             hairline
-            HStack(alignment: .center, spacing: Metrics.columnGap) {
+            HStack(alignment: .center, spacing: Metrics.footerGap) {
                 VStack(alignment: .leading, spacing: Metrics.footerLineGap) {
                     Text("Anky is a personal log kept by the patient. It does not give medical advice.")
                     Text("Made with Anky, page \(pageNumber) of \(pageCount)")
                 }
-                Spacer(minLength: 0)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 HStack(alignment: .center, spacing: Metrics.labelToRule) {
                     Text("Get Anky on the App Store")
-                        .multilineTextAlignment(.trailing)
                     ReportQRCode(side: Metrics.qrSide)
                 }
+                .fixedSize()
             }
             .font(.system(size: Metrics.smallSize))
             .foregroundStyle(Palette.secondary)
@@ -163,5 +163,6 @@ private enum Metrics {
     static let footerHeight: CGFloat = 60
     static let footerInset: CGFloat = 8
     static let footerLineGap: CGFloat = 3
+    static let footerGap: CGFloat = 12
     static let qrSide: CGFloat = 48
 }
