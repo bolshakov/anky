@@ -15,7 +15,7 @@ struct ExportDataRow: View {
                     .foregroundStyle(Color.ink)
                 Spacer()
                 trailing
-                    .minimumTapTarget()
+                    .accessibilityHidden(true)
             }
         }
         .rowHeight()
@@ -41,7 +41,6 @@ struct ExportDataRow: View {
             Image(systemName: "square.and.arrow.up")
                 .font(.footnote.weight(.semibold))
                 .foregroundStyle(Color.ink2)
-                .accessibilityHidden(true)
         }
     }
 
