@@ -3677,6 +3677,18 @@
           }
         }
       }
+    },
+    "Delete this result? This can't be undone." : {
+      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms."
+    },
+    "Delete result" : {
+      "comment" : "The button that confirms deleting one saved BASDAI result."
+    },
+    "Couldn't delete this result. Try again." : {
+      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list."
+    },
+    "Result deleted" : {
+      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted."
     }
   },
   "version" : "1.0"
