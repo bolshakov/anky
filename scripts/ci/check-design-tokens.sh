@@ -77,15 +77,43 @@ if [ -n "$sections" ]; then
 fi
 
 # A screen writes no size as a number. A number is its own when no name or decimal point runs into it, so Spacing.x2,
-# .title2 and 0.5 pass. A call's arguments end at its closing parenthesis, with one level of nested call searched too.
-# usage: call_number <call>
+# .title2 and 0.5 pass. A padding or offset call's arguments end at its matching closing parenthesis, at any depth and
+# across lines, and the call is reported once, at the line it starts.
+# usage: call_number
 call_number() {
-  args="([^()]|\\([^()]*\\))*"
-  echo "\\.$1\\(($args[^A-Za-z0-9_.])?[1-9]|\\.$1\\($args\\(([^()]*[^A-Za-z0-9_.])?[1-9]"
+  find "$root/App" -path "$design" -prune -o -name "*.swift" -print 2> /dev/null | sort | while read -r file; do
+    sed 's://.*$::' "$file" | awk -v file="$file" '
+      {
+        line = $0
+        for (i = 1; i <= length(line); i++) {
+          if (substr(line, i, 9) == ".padding(" || substr(line, i, 8) == ".offset(") {
+            i += (substr(line, i, 2) == ".p") ? 8 : 7
+            depth++
+            open[++calls] = depth
+            start[calls] = NR
+            text[calls] = line
+            flagged[calls] = 0
+            continue
+          }
+          c = substr(line, i, 1)
+          if (c == "(") depth++
+          else if (c == ")") {
+            depth--
+            while (calls > 0 && depth < open[calls]) {
+              if (flagged[calls]) print file ":" start[calls] ":" text[calls]
+              calls--
+            }
+          } else if (calls > 0 && c ~ /[1-9]/ && substr(line, i - 1, 1) !~ /[A-Za-z0-9_.]/) {
+            for (k = 1; k <= calls; k++) flagged[k] = 1
+          }
+        }
+      }
+    '
+  done
 }
 frame_labels="(width|height|minWidth|maxWidth|minHeight|maxHeight)"
 size_labels="(^|[^A-Za-z0-9_])($frame_labels|spacing):[[:space:]]*-?[1-9]"
-sizes=$(scan_screens "$(call_number padding)|$(call_number offset)|$size_labels")
+sizes=$(scan_screens "$size_labels" && call_number)
 if [ -n "$sizes" ]; then
   echo "$sizes"
   violation "writes a padding, frame, stack spacing or offset as a number in a screen, name it in Spacing.swift"
