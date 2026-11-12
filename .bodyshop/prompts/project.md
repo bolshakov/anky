@@ -29,7 +29,9 @@ A walk drives the app with `axe`, which taps, types, swipes and reads the screen
 test runner and no click in the Simulator window. Start the app with `SIMCTL_CHILD_ANKY_ENTRIES_FOLDER=$(uuidgen)`
 so no real data is used, and keep that value to relaunch with the same data.
 In a Debug build, `SIMCTL_CHILD_ANKY_SEED=spread` fills an empty log with synthetic entries and doses spread over six
-months, and `SIMCTL_CHILD_ANKY_SEED=single` with one entry ten days back. A log that holds anything is left as it is.
+months, and `SIMCTL_CHILD_ANKY_SEED=single` with one entry ten days back. `report-short`, `report-long`, `report-sparse`
+and `report-places-7` fill it with the report walks' logs, as `App/DebugReportSeed.swift` lists. A log that holds
+anything is left as it is.
 
 ```sh
 axe describe-ui --udid $U          # JSON of the screen, ids are the AXUniqueId fields
