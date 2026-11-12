@@ -10,6 +10,7 @@ import UserNotifications
 struct AnkyApp: App {
     @State private var model: EntryLogModel
     @State private var medications: MedicationsModel
+    @State private var basdai: BasdaiModel
     @State private var reminderTaps: ReminderTapModel
     private let reminderTapDelegate: ReminderTapDelegate
 
@@ -33,6 +34,7 @@ struct AnkyApp: App {
         #endif
         _model = State(initialValue: model)
         _medications = State(initialValue: medications)
+        _basdai = State(initialValue: BasdaiModel(log: BasdaiLog(store: Self.basdaiStore())))
         let taps = ReminderTapModel()
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
@@ -70,7 +72,7 @@ struct AnkyApp: App {
     }
 
     private var root: some View {
-        RootView(model: model, medications: medications, reminderTaps: reminderTaps)
+        RootView(model: model, medications: medications, basdai: basdai, reminderTaps: reminderTaps)
     }
 
     private static func entryStore() -> EntryStore {
@@ -101,6 +103,12 @@ struct AnkyApp: App {
         #else
             return {}
         #endif
+    }
+
+    private static func basdaiStore() -> BasdaiStore {
+        DeferredBasdaiStore {
+            try SwiftDataBasdaiStore(url: BasdaiLocation.fileURL())
+        }
     }
 
     private static func tipOptions(folder: URL) -> [Tips.ConfigurationOption] {
