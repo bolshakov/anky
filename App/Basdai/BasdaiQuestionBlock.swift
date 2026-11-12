@@ -59,7 +59,7 @@ struct BasdaiQuestionBlock: View {
     }
 
     private var wording: AttributedString {
-        question.wording.reduce(into: AttributedString()) { text, segment in
+        question.wording.reduce(into: AttributedString("\(question.number). ")) { text, segment in
             var part = AttributedString(segment.text)
             if segment.isBold {
                 part.inlinePresentationIntent = .stronglyEmphasized
