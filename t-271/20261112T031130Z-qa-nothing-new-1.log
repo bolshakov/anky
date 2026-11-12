@@ -1,0 +1,5 @@
+$ sh -c 'git diff origin/main...HEAD -- project.yml Package.swift; find . -name '\''*.entitlements'\'' -not -path '\''./.build/*'\'' -not -path '\''./.derived/*'\'' | xargs git diff origin/main...HEAD --; grep -rn '\''URLSession\|URLRequest'\'' App Sources; echo done'
+exit: 0
+commit: 99a4b6f151d035521d80ff40340909bdb43db724
+
+done
