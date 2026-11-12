@@ -1,0 +1,5 @@
+$ sh -c 'git diff origin/main...HEAD | grep -nE '\''^\+.*(URLSession|NSURLRequest|https?://)'\''; echo "exit $?"'
+exit: 0
+commit: 07a02c476dc87b50b13ed66e5bf3efe51e331fc5
+
+exit 1

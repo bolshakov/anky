@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid BDDCFB83-B711-49B1-B920-6F5007299815 | tee /dev/stdout | grep -c basdai-row-0'
+exit: 1
+commit: 07a02c476dc87b50b13ed66e5bf3efe51e331fc5
+
+0

@@ -1,0 +1,4 @@
+$ git diff origin/main...HEAD --stat -- project.yml Package.swift '*.entitlements' '*.plist'
+exit: 0
+commit: 07a02c476dc87b50b13ed66e5bf3efe51e331fc5
+
