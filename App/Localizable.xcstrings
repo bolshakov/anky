@@ -3108,6 +3108,24 @@
     },
     "not answered" : {
       "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech."
+    },
+    "BASDAI" : {
+      "comment" : "The Today menu item that opens the BASDAI screen, where the six BASDAI questions are answered and saved results are listed. BASDAI is the name of the index and stays as is."
+    },
+    "No BASDAI results yet" : {
+      "comment" : "The title of the BASDAI screen when no result has been saved yet."
+    },
+    "BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date." : {
+      "comment" : "The text under the title of the empty BASDAI screen. It says what BASDAI asks and where saved results appear."
+    },
+    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+      "comment" : "The citation line of the empty BASDAI screen. The index name and the reference to the 1994 paper stay as published."
+    },
+    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Swipe left to delete." : {
+      "comment" : "The footnote under the list of saved BASDAI results: the citation of the 1994 paper, then how to delete a result."
+    },
+    "Start" : {
+      "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions."
     }
   },
   "version" : "1.0"

@@ -26,6 +26,7 @@ struct RootView: View {
             TodayView(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
                 reminderLogDose: $reminderLogDose
