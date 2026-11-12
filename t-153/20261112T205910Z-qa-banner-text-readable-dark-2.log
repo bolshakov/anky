@@ -1,0 +1,5 @@
+$ sh scripts/ci/check-banner-colours.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t153-01-1/tmp/qa.U0pv/t4
+exit: 1
+commit: 96697a3666742ee03c7fd67ed488f391d998d7d7
+
+BANNER COLOUR VIOLATION: OnSoftAccent on SoftAccent has a dark contrast of 1.00, below 4.5
