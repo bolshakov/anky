@@ -25,7 +25,6 @@ struct BasdaiFormView: View {
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
                     questionSection(question)
                 }
-                CardSection(footnote: citation, id: "basdai-end", footnoteID: "basdai-citation") {}
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
@@ -71,10 +70,13 @@ struct BasdaiFormView: View {
 
     private func questionSection(_ question: BasdaiQuestion) -> some View {
         let isFirst = question.number == 1
+        let isLast = question.number == BasdaiQuestion.all.count
         return CardSection(
             isFirst ? Text("Last week") : nil,
+            footnote: isLast ? citation : nil,
             id: "basdai-q\(question.number)",
             labelID: "basdai-intro",
+            footnoteID: "basdai-citation",
             labelFocus: $isLabelFocused
         ) {
             BasdaiQuestionBlock(question: question, answer: $answers[question.number - 1])
