@@ -6,6 +6,8 @@ struct BasdaiFormView: View {
     let onSave: ([Int]) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
+    @State private var isConfirmingDiscard = false
+    @AccessibilityFocusState private var isCancelFocused: Bool
 
     var isComplete: Bool {
         answers.isComplete
@@ -35,16 +37,51 @@ struct BasdaiFormView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Group {
-                        Button("Cancel") { dismiss() }
+                        Button("Cancel", action: cancel)
                             .frame(minHeight: Spacing.rowMinimumHeight)
                             .contentShape(Rectangle())
                             .accessibilityIdentifier("basdai-cancel")
+                            .accessibilityFocused($isCancelFocused)
+                            .confirmationDialog(
+                                "Discard answers?",
+                                isPresented: $isConfirmingDiscard,
+                                titleVisibility: .visible
+                            ) {
+                                discardButtons
+                            }
                     }
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("basdai-cancel-item")
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .background {
+                BasdaiDismissGuard { isConfirmingDiscard = true }
+                    .accessibilityHidden(true)
+            }
+            .interactiveDismissDisabled(isAnyAnswered)
+            .onChange(of: isConfirmingDiscard) { _, isShowing in
+                if !isShowing {
+                    isCancelFocused = true
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var discardButtons: some View {
+        Button("Discard", role: .destructive) { dismiss() }
+            .accessibilityIdentifier("basdai-discard")
+        // A cancel role drops the button from a confirmation dialog on iOS 26.5.
+        Button("Keep Editing") {}
+            .accessibilityIdentifier("basdai-keep-editing")
+    }
+
+    private func cancel() {
+        if isAnyAnswered {
+            isConfirmingDiscard = true
+        } else {
+            dismiss()
         }
     }
 

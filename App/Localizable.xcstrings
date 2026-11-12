@@ -625,6 +625,12 @@
         }
       }
     },
+    "Discard" : {
+      "comment" : "The button in the BASDAI form's question that closes the form and throws away the answers given so far. Nothing is saved."
+    },
+    "Discard answers?" : {
+      "comment" : "The question shown when a person leaves the BASDAI form, by Cancel or by swiping it down, after answering at least one question."
+    },
     "Dismiss tip" : {
       "localizations" : {
         "ru" : {
@@ -1581,6 +1587,9 @@
           }
         }
       }
+    },
+    "Keep Editing" : {
+      "comment" : "The button in the BASDAI form's question that keeps the form open with the answers given so far."
     },
     "Knee" : {
       "localizations" : {
