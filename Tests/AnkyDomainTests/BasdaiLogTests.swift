@@ -72,6 +72,16 @@ import Testing
         #expect(store.contents == [kept])
     }
 
+    @Test func removeOfOneOfTwoResultsInTheSameMinuteKeepsTheOther() throws {
+        let kept = madeUpBasdai(date: morning, createdAt: morning)
+        let removed = madeUpBasdai(date: morning, createdAt: morning.addingTimeInterval(20))
+        let store = FakeBasdaiStore([kept, removed])
+        var log = BasdaiLog(store: store)
+        try log.remove(id: removed.id)
+        #expect(log.results == [kept])
+        #expect(store.contents == [kept])
+    }
+
     @Test func aRefusedRemoveLeavesTheListAsItWas() {
         let saved = madeUpBasdai()
         let store = FakeBasdaiStore([saved])
