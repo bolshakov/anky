@@ -21,6 +21,13 @@ Very severe
 2 hrs or more
 Not answered
 not answered
+%@ to %@
+created %@
+First entry %@
+Symptom report
+Name line
+Recorded by the patient in Anky.
+Counts, averages and ranges only.
 BASDAI
 No BASDAI results yet
 BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. \

@@ -8,6 +8,8 @@ struct ReportView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
     @State private var period = ReportPeriod.threeMonths
+    @State private var isBuilding = false
+    @State private var preview: PreviewFile?
 
     private var summary: ReportSummary {
         ReportSummary(entries: model.entries, doses: medications.doses, period: period, now: .now, calendar: .current)
@@ -39,6 +41,9 @@ struct ReportView: View {
         .navigationTitle("Report")
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) { previewButton }
+        .sheet(item: $preview) { file in
+            ReportPreview(url: file.url).ignoresSafeArea()
+        }
     }
 
     private var countsLine: Text {
@@ -48,8 +53,15 @@ struct ReportView: View {
     }
 
     private var previewButton: some View {
-        Button {} label: {
-            Text("Preview").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
+        Button(action: buildPreview) {
+            Group {
+                if isBuilding {
+                    ProgressView().tint(Color.onTint)
+                } else {
+                    Text("Preview")
+                }
+            }
+            .frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
         .buttonBorderShape(.capsule)
@@ -59,6 +71,36 @@ struct ReportView: View {
         .padding(.bottom, Spacing.bottomClearance)
         .accessibilityIdentifier("report-preview")
     }
+
+    private func buildPreview() {
+        guard !isBuilding, preview == nil else { return }
+        isBuilding = true
+        Task {
+            await Task.yield()
+            defer { isBuilding = false }
+            guard let url = try? ReportPDFFile.write(page(now: .now)) else { return }
+            preview = PreviewFile(url: url)
+        }
+    }
+
+    /// One `now` for the whole page, so the header and the totals count the same days.
+    private func page(now: Date) -> ReportPage {
+        let summary = ReportSummary(
+            entries: model.entries, doses: medications.doses, period: period, now: now, calendar: .current
+        )
+        return ReportPage(
+            size: .forRegion(Locale.current.region),
+            headerLine: ReportHeaderLine.text(
+                period: period, now: now, locale: .current, calendar: .current, bundle: .main
+            ),
+            totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main)
+        )
+    }
+}
+
+private struct PreviewFile: Identifiable {
+    let url: URL
+    let id = UUID()
 }
 
 private extension ReportPeriod {
