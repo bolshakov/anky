@@ -66,4 +66,7 @@ Your entries, doses and medications were erased, but your BASDAI results were no
 Q%lld %@
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+Include BASDAI scores
+BASDAI results
+Shows the scores saved in this period. Everything stays on this iPhone until you share the report.
 """.split(separator: "\n").map(String.init)

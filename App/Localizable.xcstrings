@@ -464,6 +464,17 @@
         }
       }
     },
+    "BASDAI results" : {
+      "comment" : "The Report screen's row that opens the BASDAI list. Its value is how many results the chosen period holds.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI results"
+          }
+        }
+      }
+    },
     "Before this dose" : {
       "localizations" : {
         "ru" : {
@@ -1155,6 +1166,17 @@
         }
       }
     },
+    "Include BASDAI scores" : {
+      "comment" : "The Report screen's switch that puts the period's BASDAI scores in the PDF. On by default and not remembered.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Include BASDAI scores"
+          }
+        }
+      }
+    },
     "Legend lowest to highest" : {
       "comment" : "The report PDF's legend over the severity charts: what the black line through a bar shows, the lowest to the highest severity that week.",
       "localizations" : {
@@ -1431,6 +1453,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранится как запись о скованности."
+          }
+        }
+      }
+    },
+    "Shows the scores saved in this period. Everything stays on this iPhone until you share the report." : {
+      "comment" : "The footnote under the Report screen's BASDAI card: it says the row lists the period's scores and that nothing leaves the phone before the person shares the report.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
           }
         }
       }
