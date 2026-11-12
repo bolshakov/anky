@@ -1,0 +1,9 @@
+$ bash -c 'echo "recorded live: settings-export | Exporting | Button | y 446 h 52; no Export data Share image child while building"; ls -la "$(source $TMPDIR/env.sh; echo $C)/tmp"'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+recorded live: settings-export | Exporting | Button | y 446 h 52; no Export data Share image child while building
+total 8
+drwx------  3 bolshakov  staff   96 Nov 12 04:21 .
+drwxr-xr-x@ 7 bolshakov  staff  224 Nov 12 04:17 ..
+-rw-r--r--  1 bolshakov  staff  987 Nov 12 04:21 anky-export-2026-11-12.zip

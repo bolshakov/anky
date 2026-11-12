@@ -1,0 +1,31 @@
+$ sh -c 'python3 -I '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/tools/exportcheck.py'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip'\''; unzip -p '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip'\'' entries.csv medications.csv'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+archive-comment-length 0
+crc-check ok
+file manifest.json method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file entries.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file medications.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file doses.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+manifest {"app_version": "1.0", "build": "1", "exported_at": "2026-11-12T03:29:45Z", "files": [{"name": "entries.csv", "rows": 1}, {"name": "medications.csv", "rows": 2}, {"name": "doses.csv", "rows": 2}], "schema_version": 1}
+entries.csv bom False crlf False
+entries.csv header ['id', 'time', 'kind', 'severity', 'places', 'note']
+entries.csv rows 1
+entries.csv row ['BD261202-9A33-4E60-A4A3-66399190AF15', '2026-11-12T03:23:36Z', 'pain', '6', 'neck', 'Hurt, "a lot"\nTëma Бехтерев']
+medications.csv bom False crlf False
+medications.csv header ['id', 'created_at', 'updated_at', 'name', 'strength', 'how_taken', 'check_in_delay_minutes', 'archived_at', 'repeat_unit', 'repeat_every', 'weekdays', 'day_of_month', 'times', 'starts', 'ends']
+medications.csv rows 2
+medications.csv row ['C63F0840-F492-4FB2-A60A-0BBE110CA3BF', '2026-11-12T03:26:07Z', '2026-11-12T03:26:07Z', 'Walk, "A"', '50 mg', 'as_needed', '', '', '', '', '', '', '', '', '']
+medications.csv row ['D4944195-59F4-4511-961F-BD65B3D77140', '2026-11-12T03:27:47Z', '2026-11-12T03:27:47Z', 'Walk B', '', 'scheduled', '', '2026-11-12T03:29:22Z', 'weeks', '1', 'mon;thu', '', '09:00', '2026-11-12', '2026-11-12']
+doses.csv bom False crlf False
+doses.csv header ['id', 'logged_at', 'medication_id', 'time_taken', 'pain_before', 'pain_after', 'after_time']
+doses.csv rows 2
+doses.csv row ['C3952E97-66C6-4F7F-9354-DECA47E9AE48', '2026-11-12T03:26:16Z', 'C63F0840-F492-4FB2-A60A-0BBE110CA3BF', '2026-11-12T03:26:16Z', '6', '', '']
+doses.csv row ['ED0D937E-A863-4594-8AFA-E1A6E97A0A88', '2026-11-12T03:28:09Z', 'D4944195-59F4-4511-961F-BD65B3D77140', '2026-11-12T03:28:09Z', '6', '', '']
+id,time,kind,severity,places,note
+"BD261202-9A33-4E60-A4A3-66399190AF15","2026-11-12T03:23:36Z","pain",6,"neck","Hurt, ""a lot""
+Tëma Бехтерев"
+id,created_at,updated_at,name,strength,how_taken,check_in_delay_minutes,archived_at,repeat_unit,repeat_every,weekdays,day_of_month,times,starts,ends
+"C63F0840-F492-4FB2-A60A-0BBE110CA3BF","2026-11-12T03:26:07Z","2026-11-12T03:26:07Z","Walk, ""A""","50 mg","as_needed",,,,,,,,,
+"D4944195-59F4-4511-961F-BD65B3D77140","2026-11-12T03:27:47Z","2026-11-12T03:27:47Z","Walk B",,"scheduled",,"2026-11-12T03:29:22Z","weeks",1,"mon;thu",,"09:00","2026-11-12","2026-11-12"

@@ -1,0 +1,14 @@
+$ sh -c 'mkdir '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xa'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xb'\''; unzip -q '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/a'\''/*.zip -d '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xa'\''; unzip -q '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/b'\''/*.zip -d '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xb'\''; diff -r '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xa'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xb'\''; ls '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/a'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/b'\'''
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+diff -r /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xa/manifest.json /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/xb/manifest.json
+4c4
+<   "exported_at" : "2026-11-12T03:31:34Z",
+---
+>   "exported_at" : "2026-11-12T03:31:42Z",
+/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/a:
+anky-export-2026-11-12.zip
+
+/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/b:
+anky-export-2026-11-12.zip

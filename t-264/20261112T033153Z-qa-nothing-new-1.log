@@ -1,0 +1,4 @@
+$ git diff origin/main...HEAD -- project.yml Package.swift
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+

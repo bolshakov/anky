@@ -1,0 +1,11 @@
+$ ls -la /Users/bolshakov/Library/Developer/CoreSimulator/Devices/1DAA78E1-59FD-4A49-A87C-2903D4DD73A2/data/Containers/Data/Application/CC65C71D-180F-46EE-849F-5D8626F47283/tmp
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+total 8
+drwx------  6 bolshakov  staff  192 Nov 12 04:31 .
+drwxr-xr-x@ 7 bolshakov  staff  224 Nov 12 04:17 ..
+-rw-------  1 bolshakov  staff    0 Nov 12 04:25 .com.apple.Pasteboard.tkyEMI
+-rw-------  1 bolshakov  staff    0 Nov 12 04:24 .com.apple.Pasteboard.zlqPdn
+-rw-r--r--  1 bolshakov  staff    1 Nov 12 04:22 other.zip
+drwxr-xr-x  2 bolshakov  staff   64 Nov 12 04:25 TemporaryItems

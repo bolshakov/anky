@@ -1,0 +1,8 @@
+$ bash -c 'source $TMPDIR/env.sh; ls -la "$C/tmp"'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+total 8
+drwx------  3 bolshakov  staff   96 Nov 12 04:23 .
+drwxr-xr-x@ 7 bolshakov  staff  224 Nov 12 04:17 ..
+-rw-r--r--  1 bolshakov  staff    1 Nov 12 04:22 other.zip

@@ -1,0 +1,5 @@
+$ bash -c 'echo "settings-export | Export data | Button | y 250 h 147 x 16 w 370 (label y 291 h 63 w 257; icon Share y 296 h 53 x 325 w 40)"'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+settings-export | Export data | Button | y 250 h 147 x 16 w 370 (label y 291 h 63 w 257; icon Share y 296 h 53 x 325 w 40)

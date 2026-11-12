@@ -1,0 +1,156 @@
+$ sh -c 'zipinfo -v '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip'\''; python3 -I '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/tools/exportcheck.py'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip'\''; grep -c -a -i -e "$(id -un)" -e iphone -e anky-walk '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip'\'''
+exit: 1
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+Archive:  /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.3ekiEItwnX/1/anky-export-2026-11-12.zip
+There is no zipfile comment.
+
+End-of-central-directory record:
+-------------------------------
+
+  Zip archive file size:                      1676 (000000000000068Ch)
+  Actual end-cent-dir record offset:          1654 (0000000000000676h)
+  Expected end-cent-dir record offset:        1654 (0000000000000676h)
+  (based on the length of the central directory and its expected offset)
+
+  This zipfile constitutes the sole disk of a single-part archive; its
+  central directory contains 4 entries.
+  The central directory is 232 (00000000000000E8h) bytes long,
+  and its (expected) offset in bytes from the beginning of the zipfile
+  is 1422 (000000000000058Eh).
+
+
+Central directory entry #1:
+---------------------------
+
+  manifest.json
+
+  offset of local header from start of archive:   0
+                                                  (0000000000000000h) bytes
+  file system or operating system of origin:      MS-DOS, OS/2 or NT FAT
+  version of encoding software:                   2.0
+  minimum file system compatibility required:     MS-DOS, OS/2 or NT FAT
+  minimum software version required to extract:   1.0
+  compression method:                             none (stored)
+  file security status:                           not encrypted
+  extended local header:                          no
+  file last modified on (DOS date/time):          1980 Jan 1 00:00:00
+  32-bit CRC value (hex):                         ba4313db
+  compressed size:                                310 bytes
+  uncompressed size:                              310 bytes
+  length of filename:                             13 characters
+  length of extra field:                          0 bytes
+  length of file comment:                         0 characters
+  disk number on which file begins:               disk 1
+  apparent file type:                             binary
+  non-MSDOS external file attributes:             000000 hex
+  MS-DOS file attributes (00 hex):                none
+
+  There is no file comment.
+
+Central directory entry #2:
+---------------------------
+
+  entries.csv
+
+  offset of local header from start of archive:   353
+                                                  (0000000000000161h) bytes
+  file system or operating system of origin:      MS-DOS, OS/2 or NT FAT
+  version of encoding software:                   2.0
+  minimum file system compatibility required:     MS-DOS, OS/2 or NT FAT
+  minimum software version required to extract:   1.0
+  compression method:                             none (stored)
+  file security status:                           not encrypted
+  extended local header:                          no
+  file last modified on (DOS date/time):          1980 Jan 1 00:00:00
+  32-bit CRC value (hex):                         52373c38
+  compressed size:                                153 bytes
+  uncompressed size:                              153 bytes
+  length of filename:                             11 characters
+  length of extra field:                          0 bytes
+  length of file comment:                         0 characters
+  disk number on which file begins:               disk 1
+  apparent file type:                             binary
+  non-MSDOS external file attributes:             000000 hex
+  MS-DOS file attributes (00 hex):                none
+
+  There is no file comment.
+
+Central directory entry #3:
+---------------------------
+
+  medications.csv
+
+  offset of local header from start of archive:   547
+                                                  (0000000000000223h) bytes
+  file system or operating system of origin:      MS-DOS, OS/2 or NT FAT
+  version of encoding software:                   2.0
+  minimum file system compatibility required:     MS-DOS, OS/2 or NT FAT
+  minimum software version required to extract:   1.0
+  compression method:                             none (stored)
+  file security status:                           not encrypted
+  extended local header:                          no
+  file last modified on (DOS date/time):          1980 Jan 1 00:00:00
+  32-bit CRC value (hex):                         4fdc58ce
+  compressed size:                                463 bytes
+  uncompressed size:                              463 bytes
+  length of filename:                             15 characters
+  length of extra field:                          0 bytes
+  length of file comment:                         0 characters
+  disk number on which file begins:               disk 1
+  apparent file type:                             binary
+  non-MSDOS external file attributes:             000000 hex
+  MS-DOS file attributes (00 hex):                none
+
+  There is no file comment.
+
+Central directory entry #4:
+---------------------------
+
+  doses.csv
+
+  offset of local header from start of archive:   1055
+                                                  (000000000000041Fh) bytes
+  file system or operating system of origin:      MS-DOS, OS/2 or NT FAT
+  version of encoding software:                   2.0
+  minimum file system compatibility required:     MS-DOS, OS/2 or NT FAT
+  minimum software version required to extract:   1.0
+  compression method:                             none (stored)
+  file security status:                           not encrypted
+  extended local header:                          no
+  file last modified on (DOS date/time):          1980 Jan 1 00:00:00
+  32-bit CRC value (hex):                         61eaf66c
+  compressed size:                                328 bytes
+  uncompressed size:                              328 bytes
+  length of filename:                             9 characters
+  length of extra field:                          0 bytes
+  length of file comment:                         0 characters
+  disk number on which file begins:               disk 1
+  apparent file type:                             binary
+  non-MSDOS external file attributes:             000000 hex
+  MS-DOS file attributes (00 hex):                none
+
+  There is no file comment.
+
+archive-comment-length 0
+crc-check ok
+file manifest.json method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file entries.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file medications.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+file doses.csv method 0 date (1980, 1, 1, 0, 0, 0) extra 0 comment 0 system 0 attr 0 flags 0
+manifest {"app_version": "1.0", "build": "1", "exported_at": "2026-11-12T03:29:45Z", "files": [{"name": "entries.csv", "rows": 1}, {"name": "medications.csv", "rows": 2}, {"name": "doses.csv", "rows": 2}], "schema_version": 1}
+entries.csv bom False crlf False
+entries.csv header ['id', 'time', 'kind', 'severity', 'places', 'note']
+entries.csv rows 1
+entries.csv row ['BD261202-9A33-4E60-A4A3-66399190AF15', '2026-11-12T03:23:36Z', 'pain', '6', 'neck', 'Hurt, "a lot"\nTëma Бехтерев']
+medications.csv bom False crlf False
+medications.csv header ['id', 'created_at', 'updated_at', 'name', 'strength', 'how_taken', 'check_in_delay_minutes', 'archived_at', 'repeat_unit', 'repeat_every', 'weekdays', 'day_of_month', 'times', 'starts', 'ends']
+medications.csv rows 2
+medications.csv row ['C63F0840-F492-4FB2-A60A-0BBE110CA3BF', '2026-11-12T03:26:07Z', '2026-11-12T03:26:07Z', 'Walk, "A"', '50 mg', 'as_needed', '', '', '', '', '', '', '', '', '']
+medications.csv row ['D4944195-59F4-4511-961F-BD65B3D77140', '2026-11-12T03:27:47Z', '2026-11-12T03:27:47Z', 'Walk B', '', 'scheduled', '', '2026-11-12T03:29:22Z', 'weeks', '1', 'mon;thu', '', '09:00', '2026-11-12', '2026-11-12']
+doses.csv bom False crlf False
+doses.csv header ['id', 'logged_at', 'medication_id', 'time_taken', 'pain_before', 'pain_after', 'after_time']
+doses.csv rows 2
+doses.csv row ['C3952E97-66C6-4F7F-9354-DECA47E9AE48', '2026-11-12T03:26:16Z', 'C63F0840-F492-4FB2-A60A-0BBE110CA3BF', '2026-11-12T03:26:16Z', '6', '', '']
+doses.csv row ['ED0D937E-A863-4594-8AFA-E1A6E97A0A88', '2026-11-12T03:28:09Z', 'D4944195-59F4-4511-961F-BD65B3D77140', '2026-11-12T03:28:09Z', '6', '', '']
+0

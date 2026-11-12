@@ -1,0 +1,8 @@
+$ python3 -I -c 'import json,sys; c=json.load(open(sys.argv[1]))["strings"]; [print(k, json.dumps(c.get(k), ensure_ascii=False)) for k in ["Export data", "Exporting", "Couldn'\''t export", "Nothing was shared. Try again."]]' App/Localizable.xcstrings
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+Export data {"comment": "Settings row, in the Your data card: builds a file of everything logged and opens the share sheet for it.", "localizations": {"ru": {"stringUnit": {"state": "translated", "value": "Экспортировать данные"}}}}
+Exporting {"comment": "What VoiceOver reads for the Export data row while the export file is being built.", "localizations": {"ru": {"stringUnit": {"state": "translated", "value": "Идёт экспорт"}}}}
+Couldn't export {"comment": "Title of the alert shown when the export file could not be built.", "localizations": {"ru": {"stringUnit": {"state": "translated", "value": "Не удалось экспортировать"}}}}
+Nothing was shared. Try again. {"comment": "Message of the alert shown when the export file could not be built: no file left the phone.", "localizations": {"ru": {"stringUnit": {"state": "translated", "value": "Ничего не отправлено. Можно попробовать ещё раз."}}}}

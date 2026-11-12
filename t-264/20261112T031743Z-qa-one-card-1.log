@@ -1,0 +1,10 @@
+$ bash -c 'source $TMPDIR/env.sh; axe describe-ui --udid $U | python3 -I $TMPDIR/ui.py | grep -E "settings-export|settings-erase-all|your-data-footnote|square|chevron"'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+chevron.forward |  | Image | None | y 204 h 12 x 361 w 7 | 
+settings-export | Export data | Button | None | y 446 h 52 x 16 w 370 | 
+square.and.arrow.up | Share | Image | None | y 464 h 16 x 357 w 12 | 
+settings-erase-all | Erase all data | Button | None | y 498 h 52 x 16 w 370 | 
+your-data-footnote | Your data stays on this iPhone unless you share an export. | StaticText | None | y 550 h 46 x 16 w 370 | 
+chevron.forward |  | Image | None | y 732 h 12 x 361 w 7 | 

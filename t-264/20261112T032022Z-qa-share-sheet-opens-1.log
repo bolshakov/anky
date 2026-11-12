@@ -1,0 +1,9 @@
+$ bash -c 'source $TMPDIR/env.sh; ls -la "$C/tmp"; xcrun simctl spawn $U /bin/date +%F'
+exit: 0
+commit: 068c570f927c74cc27f7cb2f4bc4c1bae130fb55
+
+total 8
+drwxr-xr-x  3 bolshakov  staff   96 Nov 12 04:18 .
+drwxr-xr-x@ 7 bolshakov  staff  224 Nov 12 04:17 ..
+-rw-r--r--  1 bolshakov  staff  987 Nov 12 04:18 anky-export-2026-11-12.zip
+2026-11-12
