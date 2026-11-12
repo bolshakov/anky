@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 7C2151E8-A75A-49B0-92CF-A996B6474C91 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t269-06-2/tmp/w/row.py'
+exit: 0
+commit: 42e06152e184514b92c5b4a006618bd3cd03951d
+
+{"AXUniqueId": "basdai-row-0", "AXLabel": "12 November 2026. Score 4,7.", "AXValue": null, "role": "AXButton"}
