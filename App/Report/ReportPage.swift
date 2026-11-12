@@ -3,135 +3,153 @@ import AnkyDomain
 import SwiftUI
 
 /// The report as it prints: a white page in the light palette whatever the app's appearance, laid out in PDF points.
+/// Every page repeats the header, the Name line and the footer around its own content.
 struct ReportPage: View {
     let size: ReportPageSize
     let headerLine: String
-    let totals: ReportTotalsText
     let pageNumber: Int
     let pageCount: Int
+    let content: AnyView
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            header
-            nameLine
-            totalsBand
+            ReportPageHeader(headerLine: headerLine)
+            ReportPageNameLine()
+            content
             Spacer(minLength: 0)
-            footer
+            ReportPageFooter(pageNumber: pageNumber, pageCount: pageCount)
         }
-        .padding(.horizontal, Metrics.sideMargin)
-        .padding(.top, Metrics.topMargin)
-        .padding(.bottom, Metrics.bottomMargin)
+        .padding(.horizontal, ReportMetrics.sideMargin)
+        .padding(.top, ReportMetrics.topMargin)
+        .padding(.bottom, ReportMetrics.bottomMargin)
         .frame(width: size.width, height: size.height, alignment: .top)
-        .background(Palette.paper)
-        .foregroundStyle(Palette.text)
+        .background(ReportPalette.paper)
+        .foregroundStyle(ReportPalette.text)
         .environment(\.colorScheme, .light)
     }
+}
 
-    private var header: some View {
+struct ReportPageHeader: View {
+    let headerLine: String
+
+    var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: Metrics.titleToLine) {
+                VStack(alignment: .leading, spacing: ReportMetrics.titleToLine) {
                     Text("Symptom report")
-                        .font(.system(size: Metrics.titleSize, weight: .bold))
+                        .font(.system(size: ReportMetrics.titleSize, weight: .bold))
                     Text(verbatim: headerLine)
-                        .font(.system(size: Metrics.smallSize))
-                        .foregroundStyle(Palette.secondary)
+                        .font(.system(size: ReportMetrics.smallSize))
+                        .foregroundStyle(ReportPalette.secondary)
                 }
-                Spacer(minLength: Metrics.columnGap)
+                Spacer(minLength: ReportMetrics.columnGap)
                 brand
             }
-            .padding(.bottom, Metrics.headerToRule)
+            .padding(.bottom, ReportMetrics.headerToRule)
             Rectangle()
-                .fill(Palette.text)
-                .frame(height: Metrics.headerRule)
+                .fill(ReportPalette.text)
+                .frame(height: ReportMetrics.headerRule)
         }
     }
 
     private var brand: some View {
-        HStack(spacing: Metrics.markToWord) {
+        HStack(spacing: ReportMetrics.markToWord) {
             Image("AnkyMark")
                 .resizable()
                 .scaledToFit()
-                .frame(height: Metrics.markHeight)
+                .frame(height: ReportMetrics.markHeight)
                 .foregroundStyle(Color.tint)
             Text(verbatim: "Anky")
-                .font(.system(size: Metrics.brandSize, weight: .semibold))
+                .font(.system(size: ReportMetrics.brandSize, weight: .semibold))
         }
     }
+}
 
-    private var nameLine: some View {
-        HStack(alignment: .lastTextBaseline, spacing: Metrics.labelToRule) {
+struct ReportPageNameLine: View {
+    var body: some View {
+        HStack(alignment: .lastTextBaseline, spacing: ReportMetrics.labelToRule) {
             Text("Name line")
-                .font(.system(size: Metrics.bodySize))
-                .foregroundStyle(Palette.secondary)
+                .font(.system(size: ReportMetrics.bodySize))
+                .foregroundStyle(ReportPalette.secondary)
             Rectangle()
-                .fill(Palette.secondary)
-                .frame(height: Metrics.hairline)
+                .fill(ReportPalette.secondary)
+                .frame(height: ReportMetrics.hairline)
         }
-        .padding(.top, Metrics.nameTop)
-        .padding(.bottom, Metrics.sectionGap)
+        .padding(.top, ReportMetrics.nameTop)
+        .padding(.bottom, ReportMetrics.sectionGap)
     }
+}
 
-    private var totalsBand: some View {
+struct ReportTotalsBand: View {
+    let totals: ReportTotalsText
+
+    var body: some View {
         VStack(spacing: 0) {
-            hairline
-            totalsRow.padding(.vertical, Metrics.bandInset)
-            hairline
+            ReportHairline()
+            totalsRow.padding(.vertical, ReportMetrics.bandInset)
+            ReportHairline()
         }
     }
 
     private var totalsRow: some View {
-        HStack(alignment: .center, spacing: Metrics.columnGap) {
-            HStack(spacing: Metrics.totalsGap) {
+        HStack(alignment: .center, spacing: ReportMetrics.columnGap) {
+            HStack(spacing: ReportMetrics.totalsGap) {
                 Text(verbatim: totals.entries)
                 Text(verbatim: totals.doses)
                 if let firstEntry = totals.firstEntry {
                     Text(verbatim: firstEntry)
                 }
             }
-            .font(.system(size: Metrics.totalsSize, weight: .semibold))
+            .font(.system(size: ReportMetrics.totalsSize, weight: .semibold))
             Spacer(minLength: 0)
             VStack(alignment: .trailing, spacing: 0) {
                 Text("Recorded by the patient in Anky.")
                 Text("Counts, averages and ranges only.")
             }
-            .font(.system(size: Metrics.smallSize))
-            .foregroundStyle(Palette.secondary)
+            .font(.system(size: ReportMetrics.smallSize))
+            .foregroundStyle(ReportPalette.secondary)
             .multilineTextAlignment(.trailing)
         }
     }
+}
 
-    private var hairline: some View {
+struct ReportHairline: View {
+    var body: some View {
         Rectangle()
-            .fill(Palette.hairline)
-            .frame(height: Metrics.hairline)
+            .fill(ReportPalette.hairline)
+            .frame(height: ReportMetrics.hairline)
     }
+}
 
-    private var footer: some View {
+struct ReportPageFooter: View {
+    let pageNumber: Int
+    let pageCount: Int
+
+    var body: some View {
         VStack(spacing: 0) {
-            hairline
-            HStack(alignment: .center, spacing: Metrics.footerGap) {
-                VStack(alignment: .leading, spacing: Metrics.footerLineGap) {
+            ReportHairline()
+            HStack(alignment: .center, spacing: ReportMetrics.footerGap) {
+                VStack(alignment: .leading, spacing: ReportMetrics.footerLineGap) {
                     Text("Anky is a personal log kept by the patient. It does not give medical advice.")
                     Text("Made with Anky, page \(pageNumber) of \(pageCount)")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                HStack(alignment: .center, spacing: Metrics.labelToRule) {
+                HStack(alignment: .center, spacing: ReportMetrics.labelToRule) {
                     Text("Get Anky on the App Store")
-                    ReportQRCode(side: Metrics.qrSide)
+                    ReportQRCode(side: ReportMetrics.qrSide)
                 }
                 .fixedSize()
             }
-            .font(.system(size: Metrics.smallSize))
-            .foregroundStyle(Palette.secondary)
-            .padding(.top, Metrics.footerInset)
+            .font(.system(size: ReportMetrics.smallSize))
+            .foregroundStyle(ReportPalette.secondary)
+            .padding(.top, ReportMetrics.footerInset)
         }
-        .frame(height: Metrics.footerHeight, alignment: .bottom)
+        .frame(height: ReportMetrics.footerHeight, alignment: .bottom)
     }
 }
 
 /// The page keeps the light values, since a printed page has no dark appearance.
-private enum Palette {
+enum ReportPalette {
     static let paper = Color.white
     static let text = Color(red: 0x11 / 255, green: 0x11 / 255, blue: 0x11 / 255)
     static let secondary = Color(red: 0x44 / 255, green: 0x44 / 255, blue: 0x44 / 255)
@@ -139,7 +157,7 @@ private enum Palette {
 }
 
 /// PDF points, the boards' 96 dpi pixels times 0.75.
-private enum Metrics {
+enum ReportMetrics {
     static let sideMargin: CGFloat = 36
     static let topMargin: CGFloat = 32
     static let bottomMargin: CGFloat = 26
