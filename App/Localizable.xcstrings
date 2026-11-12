@@ -18,6 +18,23 @@
         }
       }
     },
+    "%@ by week: %@, %@" : {
+      "comment" : "What VoiceOver reads for one chart of the report PDF, such as 'Pain by week: 13 weeks, entries logged in 11 of them'. %1$@ is the symptom's name, %2$@ how many weeks the chart shows, %3$@ how many of those weeks hold an entry. Counts only, never a judgement such as low or high.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ by week: %2$@, %3$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ по неделям: %2$@, %3$@"
+          }
+        }
+      }
+    },
     "%@ of %lld" : {
       "localizations" : {
         "en" : {
@@ -231,6 +248,59 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld из %2$lld"
+          }
+        }
+      }
+    },
+    "%lld weeks" : {
+      "comment" : "How many weeks one chart of the report PDF shows, the middle of what VoiceOver reads for that chart, such as '13 weeks'.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld week"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld weeks"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld неделя"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недели"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недель"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недели"
+                }
+              }
+            }
           }
         }
       }
@@ -554,6 +624,12 @@
           }
         }
       }
+    },
+    "Discard" : {
+      "comment" : "The button in the BASDAI form's question that closes the form and throws away the answers given so far. Nothing is saved."
+    },
+    "Discard answers?" : {
+      "comment" : "The question shown when a person leaves the BASDAI form, by Cancel or by swiping it down, after answering at least one question."
     },
     "Dismiss tip" : {
       "localizations" : {
@@ -886,6 +962,59 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Запись удалена"
+          }
+        }
+      }
+    },
+    "entries logged in %lld of them" : {
+      "comment" : "How many of a report chart's weeks hold at least one entry, the end of what VoiceOver reads for that chart, such as 'entries logged in 11 of them'. 'them' is the chart's weeks.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "entries logged in %lld of them"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "entries logged in %lld of them"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              }
+            }
           }
         }
       }
@@ -1513,6 +1642,9 @@
           }
         }
       }
+    },
+    "Keep Editing" : {
+      "comment" : "The button in the BASDAI form's question that keeps the form open with the answers given so far."
     },
     "Knee" : {
       "localizations" : {
