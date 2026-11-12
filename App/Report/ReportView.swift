@@ -7,6 +7,8 @@ import SwiftUI
 struct ReportView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
+    @State private var includesBasdai = true
     @State private var period = ReportPeriod.threeMonths
     @State private var isBuilding = false
     @State private var preview: PreviewFile?

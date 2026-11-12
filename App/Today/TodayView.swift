@@ -124,7 +124,7 @@ struct TodayView: View {
             .navigationTitle("Today")
             .toolbar { ReportMenu(onReport: { isShowingReport = true }, onBasdai: { isShowingBasdai = true }) }
             .navigationDestination(isPresented: $isShowingReport) {
-                ReportView(model: model, medications: medications)
+                ReportView(model: model, medications: medications, basdai: basdai)
             }
             .navigationDestination(isPresented: $isShowingBasdai) {
                 BasdaiListView(model: basdai)
