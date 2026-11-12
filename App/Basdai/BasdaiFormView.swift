@@ -6,6 +6,7 @@ struct BasdaiFormView: View {
     let onSave: ([Int]) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
+    @State private var isShowingSaveFailure = false
 
     var isComplete: Bool {
         answers.isComplete
@@ -45,6 +46,9 @@ struct BasdaiFormView: View {
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .alert("Couldn't save this result. Try again.", isPresented: $isShowingSaveFailure) {
+                Button("OK") {}
+            }
         }
     }
 
@@ -53,7 +57,12 @@ struct BasdaiFormView: View {
     }
 
     private func save() {
-        guard let values = answers.completeValues, (try? onSave(values)) != nil else { return }
-        dismiss()
+        guard let values = answers.completeValues else { return }
+        do {
+            try onSave(values)
+            dismiss()
+        } catch {
+            isShowingSaveFailure = true
+        }
     }
 }
