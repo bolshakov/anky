@@ -67,6 +67,7 @@ struct LogDoseView: View {
                         dateSection(scrolling: proxy)
                     }
                     .screenSpacing()
+                    .accessibilityIdentifier("log-dose-screen")
                 }
             }
             .navigationTitle("Log Dose")
