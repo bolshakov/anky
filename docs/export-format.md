@@ -11,17 +11,18 @@ this page says.
 
 The file is named `anky-export-YYYY-MM-DD.zip`, after the local day of the export.
 
-It holds four files, in this order:
+It holds five files, in this order:
 
 1. `manifest.json`
 2. `entries.csv`
 3. `medications.csv`
 4. `doses.csv`
+5. `basdai.csv`
 
 The files are stored, not compressed. Every file is dated 1980-01-01 00:00, so two exports of the same data differ
 only in `exported_at`. The zip has no comments.
 
-Every entry, every medication, archived ones too, and every dose is in the export.
+Every entry, every medication, archived ones too, every dose and every BASDAI result is in the export.
 
 ## manifest.json
 
@@ -29,11 +30,11 @@ A JSON object with its keys sorted, pretty-printed.
 
 | Field            | Holds                                                                     |
 |------------------|---------------------------------------------------------------------------|
-| `schema_version` | A number, the version of this format. It is `1`.                          |
+| `schema_version` | A number, the version of this format. It is `2`.                          |
 | `app_version`    | Text, the version of Anky that made the export, such as `1.4`.            |
 | `build`          | Text, the build number of that version, such as `57`.                     |
 | `exported_at`    | Text, the moment of the export in UTC, such as `2026-11-11T08:15:00Z`.    |
-| `files`          | A list with one object per CSV, in zip order: `entries.csv`, `medications.csv`, `doses.csv`. |
+| `files`          | A list with one object per CSV, in zip order: `entries.csv`, `medications.csv`, `doses.csv`, `basdai.csv`. |
 
 Each object in `files` has:
 
@@ -118,17 +119,39 @@ One row per dose taken. Rows are ordered by `time_taken`, then by `id`.
 | `pain_after`    | N or E | The severity of the entry the dose names as its reading after. Empty when there is none, or that entry was deleted. |
 | `after_time`    | T or E | The `time` of that after entry, in UTC. Empty when `pain_after` is empty.              |
 
+## basdai.csv
+
+One row per saved BASDAI questionnaire. Rows are ordered by `date`, then by `id`. With no result saved, the file holds
+its header row only.
+
+| Column       | Form | Holds                                                                                        |
+|--------------|------|----------------------------------------------------------------------------------------------|
+| `id`         | T    | The result's id.                                                                             |
+| `created_at` | T    | The moment the result was saved, in UTC.                                                     |
+| `updated_at` | T    | The moment it was last changed, in UTC.                                                      |
+| `date`       | T    | The moment the questionnaire is for, in UTC.                                                 |
+| `q1`         | N    | The answer to question 1, a whole number from 0 to 10.                                       |
+| `q2`         | N    | The answer to question 2, a whole number from 0 to 10.                                       |
+| `q3`         | N    | The answer to question 3, a whole number from 0 to 10.                                       |
+| `q4`         | N    | The answer to question 4, a whole number from 0 to 10.                                       |
+| `q5`         | N    | The answer to question 5, a whole number from 0 to 10.                                       |
+| `q6`         | N    | The answer to question 6, a whole number from 0 to 10. It is the slider value and not minutes: `5` means 1 hr, as on the form. |
+| `score`      | N    | The BASDAI score, written bare with exactly one decimal and a dot, such as `3.3`, `10.0` or `0.0`. |
+
+The score is calculated at export time from the six answers, as (`q1` + `q2` + `q3` + `q4` + (`q5` + `q6`) / 2) / 5.
+It is not stored, and the phone's language never changes how it is written.
+
 ## Schema version
 
 `schema_version` in `manifest.json` goes up when a column is removed, renamed, moved or changes meaning, or a file is
-removed or renamed.
+added, removed or renamed. Adding `basdai.csv` raised it from `1` to `2`.
 
-A new column at the end of a file, or a new file, keeps the version, so a reader ignores what it does not know.
+A new column at the end of a file keeps the version, so a reader ignores what it does not know.
 
 ## Example
 
 An export made on 2026-11-11, with made-up values: two entries, an as-needed medication, a weekly one that is
-archived, and two doses. The first entry's note holds a comma and quotes.
+archived, two doses, and two BASDAI results. The first entry's note holds a comma and quotes.
 
 ```text
 anky-export-2026-11-11.zip
@@ -136,6 +159,7 @@ anky-export-2026-11-11.zip
   entries.csv
   medications.csv
   doses.csv
+  basdai.csv
 ```
 
 `manifest.json`:
@@ -157,9 +181,13 @@ anky-export-2026-11-11.zip
     {
       "name" : "doses.csv",
       "rows" : 2
+    },
+    {
+      "name" : "basdai.csv",
+      "rows" : 2
     }
   ],
-  "schema_version" : 1
+  "schema_version" : 2
 }
 ```
 
@@ -185,6 +213,14 @@ id,created_at,updated_at,name,strength,how_taken,check_in_delay_minutes,archived
 id,logged_at,medication_id,time_taken,pain_before,pain_after,after_time
 "E4D909C2-90D0-4B3C-8F1E-2A3B4C5D6E7F",,"9B2D6C1A-5E7F-4A8B-B3C4-D5E6F7A8B9C0","2026-10-25T08:05:00Z",,,
 "C56A4180-65AA-42EC-A945-5FD21DEC0538","2026-11-10T07:46:00Z","3F2504E0-4F89-41D3-9A0C-0305E82C3301","2026-11-10T07:45:00Z",6,3,"2026-11-10T09:50:00Z"
+```
+
+`basdai.csv`:
+
+```csv
+id,created_at,updated_at,date,q1,q2,q3,q4,q5,q6,score
+"5D2A8F10-3B6C-4E71-8A9D-1C2B3A4D5E6F","2026-11-03T07:10:00Z","2026-11-03T07:10:00Z","2026-11-03T07:10:00Z",4,6,3,5,7,4,4.7
+"A1B2C3D4-E5F6-4A7B-8C9D-0E1F2A3B4C5D","2026-11-10T07:20:00Z","2026-11-10T07:25:00Z","2026-11-10T07:20:00Z",0,0,0,0,0,0,0.0
 ```
 
 The real bytes are checked against this page when a release is made, as `docs/release-checklist.md` says.
