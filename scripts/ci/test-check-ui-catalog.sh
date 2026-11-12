@@ -74,8 +74,6 @@ expect fail "a Shape token with no entry" \
   'swift_file Corner.swift "extension Shape where Self == RoundedRectangle {" "    static var card: RoundedRectangle { .rect }" "}" && catalog' "card"
 expect fail "a second struct in the same file with no entry" \
   'swift_file Row.swift "struct Row {}" "struct Other {}" && catalog Row' "Other"
-expect fail "a piece whose only line sits under Rules" \
-  'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n- \`Row\`: x\n\n## Pieces\n" > App/Design/README.md' "Row"
 expect fail "a piece whose entry names it with a dot" \
   'swift_file Spacing.swift "enum Spacing {" "    static let blockGap: CGFloat = 32" "}" && catalog Spacing Spacing.blockGap' "blockGap"
 expect fail "a piece declared after a private one" \
@@ -146,6 +144,8 @@ expect pass "a declaration in a trailing comment is no piece" \
   'swift_file Row.swift "struct Row {} // struct Old {}" && catalog Row'
 expect pass "a declaration on a comment line is no piece" \
   'swift_file Row.swift "struct Row {}" "// struct Old {}" "    // func gone() {}" && catalog Row'
+expect pass "a backslash n in a string literal does not start a new line" \
+  'swift_file Row.swift "struct Row {}" "let text = \"a\\nstruct Old {}\"" && catalog Row'
 expect pass "a nested type inside a piece is no piece" \
   'swift_file Row.swift "struct Row {" "    struct Inner {}" "    enum Mode {}" "}" && catalog Row'
 expect pass "a type name that only starts like a keyword is no piece" \
@@ -160,14 +160,14 @@ expect pass "a rule bullet that names a backticked word outside App/Design" \
   'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n- A screen never sets \`navigationBarTitleDisplayMode\`.\n\n## Pieces\n\n- \`Row\`: x\n" > App/Design/README.md'
 expect pass "a prose bullet outside Rules that does not start with a backticked name" \
   'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Pieces\n\n- Use \`Row\` for a row, not \`List\`.\n- \`Row\`: x\n" > App/Design/README.md'
-expect pass "a rule bullet that starts with a backticked name under Rules" \
-  'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n- \`Section\` never takes a footer.\n\n## Pieces\n\n- \`Row\`: x\n" > App/Design/README.md'
+expect fail "a rule bullet that starts with a backticked name is an entry" \
+  'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n- \`Section\` never takes a footer.\n\n## Pieces\n\n- \`Row\`: x\n" > App/Design/README.md' "Section"
 expect pass "an entry written as a level-3 heading" \
   'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n## Pieces\n\n### \`Row\`\n\nWhen to use it.\n" > App/Design/README.md'
 expect pass "entries under several level-2 headings after Rules" \
   'swift_file Row.swift "struct Row {}" "struct Card {}" && mkdir -p App/Design && printf "## Rules\n\n- r\n\n## Rows\n\n- \`Row\`: x\n\n## Cards\n\n- \`Card\`: x\n" > App/Design/README.md'
-expect pass "an entry above the Rules heading" \
-  'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "# Catalog\n\n## Pieces\n\n- \`Row\`: x\n\n## Rules\n\n- r\n" > App/Design/README.md'
+expect pass "an entry below the Rules section, at the end of the file" \
+  'swift_file Row.swift "struct Row {}" "struct Pad {}" && mkdir -p App/Design && printf "## Pieces\n\n- \`Row\`: x\n\n## Rules\n\n- r\n- \`Pad\`: x\n" > App/Design/README.md'
 expect pass "an entry line with text after the name" \
   'swift_file Row.swift "struct Row {}" && mkdir -p App/Design && printf "## Rules\n\n## Pieces\n\n- \`Row\`: use it, not a hand-built \`HStack\`.\n" > App/Design/README.md'
 

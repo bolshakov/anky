@@ -29,19 +29,18 @@ members() {
 pieces_of() {
   code=$(sed 's://.*$::' "$1")
   types="(@?[A-Za-z]+[[:space:]]+)*(struct|enum|class)[[:space:]]+"
-  echo "$code" | grep -E "^$types[A-Za-z_]" | non_private \
+  printf '%s\n' "$code" | grep -E "^$types[A-Za-z_]" | non_private \
     | sed -E "s/^$types//" | sed -E "s/^([A-Za-z_][A-Za-z0-9_]*).*/\\1/"
-  echo "$code" | block "extension View" | members "func"
+  printf '%s\n' "$code" | block "extension View" | members "func"
   for holder in "enum Spacing" "enum Corner" "extension Color" "extension Shape"; do
-    echo "$code" | block "$holder" | members "static (let|var)"
+    printf '%s\n' "$code" | block "$holder" | members "static (let|var)"
   done
 }
 
 pieces=$(for file in "$design"/*.swift; do [ -f "$file" ] && pieces_of "$file"; done | sort -u)
 
-# Rules sit under their own level-2 heading, so a rule that starts with a backticked word is no entry.
-entries=$(sed '/^## Rules[[:space:]]*$/,/^## /d' "$catalog" \
-  | sed -En 's/^(### |- )`([A-Za-z_][A-Za-z0-9_]*)`.*/\2/p' | sort -u)
+# Only a line that starts with a backticked name is an entry, so a rule or other prose names things freely.
+entries=$(sed -En 's/^(### |- )`([A-Za-z_][A-Za-z0-9_]*)`.*/\2/p' "$catalog" | sort -u)
 
 for name in $pieces; do
   echo "$entries" | grep -qxF "$name" \
