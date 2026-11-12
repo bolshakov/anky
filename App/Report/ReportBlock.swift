@@ -6,4 +6,5 @@ import SwiftUI
 enum ReportBlock {
     case whole(AnyView)
     case table(rows: [ReportMedicationRowText], hasScheduled: Bool)
+    case basdai(rows: [ReportBasdaiRowText])
 }

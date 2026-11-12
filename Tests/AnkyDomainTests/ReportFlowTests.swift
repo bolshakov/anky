@@ -97,4 +97,20 @@ struct ReportFlowTests {
         #expect(slices.map(\.isContinued) == [false] + Array(repeating: true, count: slices.count - 1))
         #expect(slices.map(\.showsNote) == Array(repeating: false, count: slices.count - 1) + [true])
     }
+
+    @Test func aLongBasdaiTableKeepsEveryRowWholeAndPutsItsKeyAfterTheLastRow() throws {
+        let basdai = ReportFlowBlock.table(
+            heading: 17,
+            columnHeader: 16,
+            rows: Array(repeating: 21, count: 40),
+            note: 30
+        )
+        let result = ReportFlow.pages(blocks: [.whole(height: 200), basdai], gap: 18, firstPage: 400, laterPages: 640)
+        let slices = result.flatMap(\.self).filter { $0.block == 1 }
+
+        try #require(result.count == 3)
+        #expect(slices.flatMap { Array($0.rows ?? 0 ..< 0) } == Array(0 ..< 40))
+        #expect(slices.map(\.isContinued) == [false, true, true])
+        #expect(slices.map(\.showsNote) == [false, false, true])
+    }
 }

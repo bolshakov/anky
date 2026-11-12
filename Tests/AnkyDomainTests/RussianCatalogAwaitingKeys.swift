@@ -69,4 +69,8 @@ Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 
 Include BASDAI scores
 BASDAI results
 Shows the scores saved in this period. Everything stays on this iPhone until you share the report.
+BASDAI scores
+BASDAI scores, continued
+Date
+Q%lld
 """.split(separator: "\n").map(String.init)
