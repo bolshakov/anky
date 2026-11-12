@@ -91,25 +91,44 @@ struct ReportTotalsBand: View {
         }
     }
 
+    /// The notes sit beside the counts when one row holds them at their full width, and under them when it does not,
+    /// so no count wraps.
     private var totalsRow: some View {
-        HStack(alignment: .center, spacing: ReportMetrics.columnGap) {
-            HStack(spacing: ReportMetrics.totalsGap) {
-                Text(verbatim: totals.entries)
-                Text(verbatim: totals.doses)
-                if let firstEntry = totals.firstEntry {
-                    Text(verbatim: firstEntry)
-                }
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .center, spacing: ReportMetrics.columnGap) {
+                counts
+                Spacer(minLength: 0)
+                notes
             }
-            .font(.system(size: ReportMetrics.totalsSize, weight: .semibold))
-            Spacer(minLength: 0)
-            VStack(alignment: .trailing, spacing: 0) {
-                Text("Recorded by the patient in Anky.")
-                Text("Counts, averages and ranges only.")
+            VStack(alignment: .leading, spacing: ReportMetrics.totalsStackGap) {
+                counts
+                notes.frame(maxWidth: .infinity, alignment: .trailing)
             }
-            .font(.system(size: ReportMetrics.smallSize))
-            .foregroundStyle(ReportPalette.secondary)
-            .multilineTextAlignment(.trailing)
         }
+    }
+
+    private var counts: some View {
+        HStack(spacing: ReportMetrics.totalsGap) {
+            Text(verbatim: totals.entries)
+            Text(verbatim: totals.doses)
+            if let firstEntry = totals.firstEntry {
+                Text(verbatim: firstEntry)
+            }
+            if let basdai = totals.basdai {
+                Text(verbatim: basdai)
+            }
+        }
+        .font(.system(size: ReportMetrics.totalsSize, weight: .semibold))
+    }
+
+    private var notes: some View {
+        VStack(alignment: .trailing, spacing: 0) {
+            Text("Recorded by the patient in Anky.")
+            Text("Counts, averages and ranges only.")
+        }
+        .font(.system(size: ReportMetrics.smallSize))
+        .foregroundStyle(ReportPalette.secondary)
+        .multilineTextAlignment(.trailing)
     }
 }
 
@@ -174,6 +193,7 @@ enum ReportMetrics {
     static let markToWord: CGFloat = 6
     static let columnGap: CGFloat = 18
     static let totalsGap: CGFloat = 18
+    static let totalsStackGap: CGFloat = 4
     static let labelToRule: CGFloat = 6
     static let nameTop: CGFloat = 22
     static let sectionGap: CGFloat = 18
