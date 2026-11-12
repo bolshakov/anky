@@ -271,6 +271,7 @@ private let approvedFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 %@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Можно выбрать период длиннее.
+%@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
 """)
 
 let donePlacesKey = "Done · %lld places"
@@ -295,6 +296,7 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["%lld entries", "%lld doses"]
+    + ["%lld weeks", "entries logged in %lld of them"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
@@ -303,6 +305,7 @@ private let englishFormatValues = table("""
 %@, %@ and %lld more => %1$@, %2$@ and %3$lld more
 %@ and %@, %@ to %@. => %1$@ and %2$@, %3$@ to %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => Nothing logged from %1$@ to %2$@. Pick a longer period.
+%@ by week: %@, %@ => %1$@ by week: %2$@, %3$@
 """)
 
 let russian = Locale(identifier: "ru")
