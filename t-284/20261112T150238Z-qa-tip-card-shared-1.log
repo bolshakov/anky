@@ -1,0 +1,25 @@
+$ sh -c 'grep -rnE "TipView|tipViewStyle" App/; echo ---; grep -rnE "(font|padding|frame|foregroundStyle|foregroundColor|background)\(" App/ | grep -iE "tip"; echo ---; ls App/Design | grep -i tip'
+exit: 0
+commit: 2cd84c5c67807c40f4d276f5c20494c932bc323a
+
+App/Design/TipCardStyle.swift:6:struct TipCardStyle: TipViewStyle {
+App/NewEntry/PlacesListView.swift:22:                TipView(PinShortcutTip())
+App/NewEntry/PlacesListView.swift:23:                    .tipViewStyle(TipCardStyle(icon: "pin.fill"))
+---
+App/Design/TipCard.swift:28:                    .frame(width: iconSize, height: iconSize)
+App/Design/TipCard.swift:35:        .foregroundStyle(Color.onSoft)
+App/Design/TipCard.swift:36:        .padding(.top, Spacing.cardContentGap)
+App/Design/TipCard.swift:37:        .padding(.bottom, Spacing.cardContentGap)
+App/Design/TipCard.swift:38:        .padding(.leading, Spacing.cardInset)
+App/Design/TipCard.swift:39:        .padding(.trailing, Spacing.tipInset)
+App/Design/TipCard.swift:40:        .background(Color.soft, in: .card)
+App/Design/TipCard.swift:47:                .font(.headline)
+App/Design/TipCard.swift:49:                .font(.subheadline)
+App/Design/TipCard.swift:52:        .frame(maxWidth: .infinity, alignment: .leading)
+App/Design/TipCard.swift:62:                .frame(width: dismissGlyphSize, height: dismissGlyphSize)
+App/Design/TipCard.swift:64:                .frame(width: Spacing.tapTarget, height: Spacing.tapTarget)
+App/Design/TipCard.swift:79:    .padding(.horizontal, Spacing.screenMargin)
+App/Design/TipCard.swift:88:    .padding(.horizontal, Spacing.screenMargin)
+---
+TipCard.swift
+TipCardStyle.swift

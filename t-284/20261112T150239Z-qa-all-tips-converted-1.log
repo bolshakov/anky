@@ -1,0 +1,8 @@
+$ sh -c 'grep -rnE "PinTipStyle|TipView|: Tip\b" App/ Sources/; echo grep-exit=$?'
+exit: 0
+commit: 2cd84c5c67807c40f4d276f5c20494c932bc323a
+
+App/Design/TipCardStyle.swift:6:struct TipCardStyle: TipViewStyle {
+App/NewEntry/PlacesListView.swift:22:                TipView(PinShortcutTip())
+App/Shortcuts/PinShortcutTip.swift:4:struct PinShortcutTip: Tip {
+grep-exit=0

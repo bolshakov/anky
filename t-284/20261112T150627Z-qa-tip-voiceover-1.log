@@ -1,0 +1,150 @@
+$ python3 -I /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.DIqsMBGo7e/pin.py /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.DIqsMBGo7e/ui-dark.json
+exit: 0
+commit: 2cd84c5c67807c40f4d276f5c20494c932bc323a
+
+{
+ "subrole": null,
+ "custom_actions": [],
+ "type": "Group",
+ "AXValue": null,
+ "AXLabel": null,
+ "title": null,
+ "help": null,
+ "content_required": false,
+ "pid": 25124,
+ "children": [
+  {
+   "AXValue": null,
+   "enabled": true,
+   "role": "AXImage",
+   "role_description": "image",
+   "custom_actions": [],
+   "subrole": null,
+   "children": [],
+   "content_required": false,
+   "type": "Image",
+   "AXLabel": "Pin",
+   "frame": {
+    "height": 22,
+    "width": 14.666666666666664,
+    "x": 35.666666666666664,
+    "y": 161
+   },
+   "help": null,
+   "title": null,
+   "traits": [],
+   "AXFrame": "{{35.666666666666664, 161}, {14.666666666666664, 22}}",
+   "pid": 25124,
+   "AXUniqueId": "pin.fill"
+  },
+  {
+   "AXUniqueId": null,
+   "help": null,
+   "AXValue": null,
+   "title": null,
+   "traits": [],
+   "AXLabel": "Pin a shortcut, Swipe a place right to pin it as a shortcut on New Entry.",
+   "enabled": true,
+   "frame": {
+    "x": 66,
+    "height": 60.33332824707031,
+    "width": 221.33331298828125,
+    "y": 160
+   },
+   "custom_actions": [],
+   "pid": 25124,
+   "children": [
+    {
+     "help": null,
+     "AXLabel": "Pin a shortcut",
+     "subrole": null,
+     "title": null,
+     "type": "StaticText",
+     "custom_actions": [],
+     "AXValue": null,
+     "role": "AXStaticText",
+     "AXUniqueId": null,
+     "traits": [],
+     "frame": {
+      "x": 66,
+      "width": 110.33333333333331,
+      "height": 20.333333333333314,
+      "y": 160
+     },
+     "content_required": false,
+     "AXFrame": "{{66, 160}, {110.33333333333331, 20.333333333333314}}",
+     "enabled": true,
+     "pid": 25124,
+     "role_description": "text",
+     "children": []
+    },
+    {
+     "role_description": "text",
+     "children": [],
+     "type": "StaticText",
+     "role": "AXStaticText",
+     "subrole": null,
+     "title": null,
+     "traits": [],
+     "AXValue": null,
+     "help": null,
+     "content_required": false,
+     "frame": {
+      "width": 221.33333333333331,
+      "height": 38,
+      "x": 66,
+      "y": 182.33333333333331
+     },
+     "AXUniqueId": null,
+     "custom_actions": [],
+     "pid": 25124,
+     "AXFrame": "{{66, 182.33333333333331}, {221.33333333333331, 38}}",
+     "AXLabel": "Swipe a place right to pin it as a shortcut on New Entry.",
+     "enabled": true
+    }
+   ],
+   "role_description": "text",
+   "role": "AXStaticText",
+   "content_required": false,
+   "subrole": null,
+   "AXFrame": "{{66, 160}, {221.33331298828125, 60.333328247070312}}",
+   "type": "StaticText"
+  },
+  {
+   "enabled": true,
+   "pid": 25124,
+   "traits": [],
+   "role": "AXButton",
+   "children": [],
+   "AXLabel": "Dismiss tip",
+   "AXFrame": "{{338, 160}, {44, 44}}",
+   "content_required": false,
+   "role_description": "button",
+   "title": null,
+   "help": null,
+   "frame": {
+    "height": 44,
+    "width": 44,
+    "x": 338,
+    "y": 160
+   },
+   "AXValue": null,
+   "AXUniqueId": "xmark",
+   "subrole": null,
+   "type": "Button",
+   "custom_actions": []
+  }
+ ],
+ "traits": [],
+ "AXFrame": "{{16, 148}, {370, 84.333328247070312}}",
+ "AXUniqueId": "pin-tip",
+ "role_description": "group",
+ "enabled": true,
+ "frame": {
+  "x": 16,
+  "width": 370,
+  "height": 84.33332824707031,
+  "y": 148
+ },
+ "role": "AXGroup"
+}
