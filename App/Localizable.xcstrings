@@ -1132,6 +1132,61 @@
         }
       }
     },
+    "Legend lowest to highest" : {
+      "comment" : "The report PDF's legend over the severity charts: what the black line through a bar shows, the lowest to the highest severity that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lowest to highest"
+          }
+        }
+      }
+    },
+    "Legend none logged" : {
+      "comment" : "The report PDF's legend over the severity charts, after a dash: a dash under a week means no entry of the kind that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "none logged"
+          }
+        }
+      }
+    },
+    "Legend number under a bar" : {
+      "comment" : "The report PDF's legend over the severity charts: the number under each bar or dot counts that week's entries of the kind.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "number under a bar: entries that week"
+          }
+        }
+      }
+    },
+    "Legend one entry" : {
+      "comment" : "The report PDF's legend over the severity charts: what a dot shows, a week with a single entry of that kind.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "one entry"
+          }
+        }
+      }
+    },
+    "Legend weekly average" : {
+      "comment" : "The report PDF's legend over the severity charts: what a bar shows, the average severity of a kind's entries that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "weekly average"
+          }
+        }
+      }
+    },
     "Made with Anky, page %lld of %lld" : {
       "comment" : "The report PDF's footer, second line on the left: where to get Anky, then this page's number and the page count.",
       "localizations" : {
@@ -2863,6 +2918,17 @@
         }
       }
     },
+    "Week count none" : {
+      "comment" : "The report PDF's severity charts: stands under a week with no entry of the kind, where the entry count would be. An en dash, not a zero.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "–"
+          }
+        }
+      }
+    },
     "What are you logging?" : {
       "localizations" : {
         "ru" : {
@@ -3418,6 +3484,12 @@
     },
     "Garrett S, et al. J Rheumatol 1994;21(12):2286-91." : {
       "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published."
+    },
+    "Couldn't save this result. Try again." : {
+      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
+    },
+    "%@. Score %@." : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
     },
     "%@ (%lld–%lld)" : {
       "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
