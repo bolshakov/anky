@@ -51,4 +51,8 @@ Legend one entry
 Legend number under a bar
 Legend none logged
 Week count none
+Delete this result? This can't be undone.
+Delete result
+Couldn't delete this result. Try again.
+Result deleted
 """.split(separator: "\n").map(String.init)

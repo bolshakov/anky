@@ -27,6 +27,15 @@ struct DeleteWords {
         )
     }
 
+    static var basdai: DeleteWords {
+        DeleteWords(
+            message: "Delete this result? This can't be undone.",
+            button: "Delete result",
+            failure: "Couldn't delete this result. Try again.",
+            announcement: "Result deleted"
+        )
+    }
+
     static var allData: DeleteWords {
         DeleteWords(
             message: "Erase every entry, dose and medication on this iPhone? This can't be undone.",
