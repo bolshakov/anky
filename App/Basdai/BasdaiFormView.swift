@@ -6,6 +6,7 @@ struct BasdaiFormView: View {
     let onSave: ([Int]) throws -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var answers = [BasdaiAnswer](repeating: .unanswered, count: BasdaiQuestion.all.count)
+    @AccessibilityFocusState private var focus: BasdaiFormFocus?
 
     var isComplete: Bool {
         answers.isComplete
@@ -21,6 +22,7 @@ struct BasdaiFormView: View {
                 Section {
                     Text("All questions refer to **last week**.")
                         .accessibilityIdentifier("basdai-intro")
+                        .accessibilityFocused($focus, equals: .intro)
                         .nonCardBlock()
                 }
                 ForEach(BasdaiQuestion.all, id: \.number) { question in
@@ -30,6 +32,7 @@ struct BasdaiFormView: View {
             }
             .screenSpacing()
             .accessibilityIdentifier("basdai-form")
+            .onAppear { focus = .intro }
             .navigationTitle("BASDAI")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -56,4 +59,8 @@ struct BasdaiFormView: View {
         guard let values = answers.completeValues, (try? onSave(values)) != nil else { return }
         dismiss()
     }
+}
+
+private enum BasdaiFormFocus: Hashable {
+    case intro
 }
