@@ -36,12 +36,13 @@ struct AnkyApp: App {
         exportData = {
             try ExportData.read(entries: entryStore, medications: medicationStore, basdai: basdaiStore)
         }
+        let basdai = BasdaiModel(log: BasdaiLog(store: basdaiStore))
         #if DEBUG
-            DebugSeed.plant(entries: model, medications: medications)
+            DebugSeed.plant(entries: model, medications: medications, basdai: basdai)
         #endif
         _model = State(initialValue: model)
         _medications = State(initialValue: medications)
-        _basdai = State(initialValue: BasdaiModel(log: BasdaiLog(store: basdaiStore)))
+        _basdai = State(initialValue: basdai)
         let taps = ReminderTapModel()
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
@@ -56,13 +57,13 @@ struct AnkyApp: App {
 
     private static func colourSelectedSegments() {
         let segments = UISegmentedControl.appearance()
-        segments.selectedSegmentTintColor = UIColor(named: "AccentColor")
-        segments.setTitleTextAttributes([.foregroundColor: UIColor(named: "OnAccent") as Any], for: .selected)
+        segments.selectedSegmentTintColor = UIColor(Color.tint)
+        segments.setTitleTextAttributes([.foregroundColor: UIColor(Color.onTint)], for: .selected)
     }
 
     var body: some Scene {
         WindowGroup {
-            content.tint(Color("AccentColor"))
+            content.tint(Color.tint)
         }
     }
 

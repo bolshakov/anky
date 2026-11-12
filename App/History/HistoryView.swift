@@ -140,7 +140,7 @@ struct HistoryView: View {
                 try medications.removeDose(id: doseTarget.id)
                 deleteTicks += 1
             }
-            .background(Color("PageBackground"))
+            .background(Color.surface)
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")

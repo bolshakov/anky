@@ -8,7 +8,7 @@ struct EmptyTodayView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: Spacing.emptyMarkWidth)
-                .foregroundStyle(Color("AccentColor"))
+                .foregroundStyle(Color.tint)
                 .accessibilityRepresentation { EmptyView() }
 
             Text("Nothing logged today")
