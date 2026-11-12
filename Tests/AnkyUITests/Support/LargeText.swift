@@ -25,7 +25,7 @@ func tapLogMedication(in app: XCUIApplication) {
     button.tap()
 }
 
-/// At the largest size the severity slider sits below the first screen. The pinned "Save entry"
+/// At the largest size the severity slider sits below the first screen. The pinned Save button
 /// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
 /// A form leaves rows that are off screen out of the accessibility tree, so the slider may not exist yet.
 @MainActor

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// Save check-in is the last row of the form, so at the end of the form the note sits above it.
+/// Save is the last row of the form, so at the end of the form the note sits above it.
 @MainActor
 final class CheckInSaveClearOfControlsTests: XCTestCase {
     func testNoteAndSliderEndAboveSaveAtTheDefaultSize() throws {
