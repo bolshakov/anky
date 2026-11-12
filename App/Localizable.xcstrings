@@ -350,6 +350,17 @@
         }
       }
     },
+    "Anky is a personal log kept by the patient. It does not give medical advice." : {
+      "comment" : "The report PDF's footer, first line on the left: what the report is and that it is not medical advice.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky is a personal log kept by the patient. It does not give medical advice."
+          }
+        }
+      }
+    },
     "Arms" : {
       "localizations" : {
         "ru" : {
@@ -977,6 +988,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "First entry %@"
+          }
+        }
+      }
+    },
+    "Get Anky on the App Store" : {
+      "comment" : "The report PDF's footer, beside the QR code that opens the Anky site.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Get Anky on the App Store"
+          }
+        }
+      }
+    },
+    "Made with Anky, page %lld of %lld" : {
+      "comment" : "The report PDF's footer, second line on the left: where to get Anky, then this page's number and the page count.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page %1$lld of %2$lld"
           }
         }
       }

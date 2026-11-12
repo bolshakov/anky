@@ -16,7 +16,10 @@ if grep -rEn --include="*.swift" "($calls)" $code
 then violation "uses a network or iCloud API"; fi
 
 # t-235: the system opens the repo link in the browser, so that one exact literal is approved.
-if grep -rEn --include="*.swift" "https?://" $code | sed 's|"https://github.com/bolshakov/anky"||g' | grep -E "https?://"
+# t-271: the report's QR code encodes the Anky site, a fixed string that is never fetched, so that one exact literal
+# is approved.
+if grep -rEn --include="*.swift" "https?://" $code | sed 's|"https://github.com/bolshakov/anky"||g' \
+  | sed 's|"https://anky\.bolshakov\.dev"||g' | grep -E "https?://"
 then violation "contains a URL literal"; fi
 
 if grep -En '\.package\([^)]*(url|id):' "$root/Package.swift"

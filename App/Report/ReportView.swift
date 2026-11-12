@@ -93,7 +93,9 @@ struct ReportView: View {
             headerLine: ReportHeaderLine.text(
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
-            totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main)
+            totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
+            pageNumber: 1,
+            pageCount: 1
         )
     }
 }

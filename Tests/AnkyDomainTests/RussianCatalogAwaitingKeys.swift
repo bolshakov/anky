@@ -28,6 +28,9 @@ Symptom report
 Name line
 Recorded by the patient in Anky.
 Counts, averages and ranges only.
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, page %lld of %lld
+Get Anky on the App Store
 BASDAI
 No BASDAI results yet
 BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. \
