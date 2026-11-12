@@ -7,22 +7,19 @@ struct ScheduleDurationSection: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        FootnotedSection(Text("Duration"), footnote: footnote, footnoteID: "schedule-footnote") {
-            Group {
-                DatePicker(selection: starts, displayedComponents: .date) {
-                    Text("Starts")
-                }
-                .datePickerStyle(.compact)
-                .foregroundStyle(Color.ink)
-                .rowHeight()
-                .accessibilityIdentifier("schedule-starts")
-                if let end = schedule.end {
-                    setEndRow(end)
-                } else {
-                    noEndRow
-                }
+        CardSection(Text("Duration"), footnote: footnote, id: "schedule-duration", footnoteID: "schedule-footnote") {
+            DatePicker(selection: starts, displayedComponents: .date) {
+                Text("Starts")
             }
-            .listRowBackground(Color.card)
+            .datePickerStyle(.compact)
+            .foregroundStyle(Color.ink)
+            .rowHeight()
+            .accessibilityIdentifier("schedule-starts")
+            if let end = schedule.end {
+                setEndRow(end)
+            } else {
+                noEndRow
+            }
         }
     }
 
