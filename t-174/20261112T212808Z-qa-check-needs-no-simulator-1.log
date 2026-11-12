@@ -1,0 +1,9 @@
+$ sh -c 'time scripts/ci/check-card-gone.sh; grep -nE "xcodebuild|simctl|xcrun" scripts/ci/check-card-gone.sh; echo "grep=$?"'
+exit: 0
+commit: 49afe88cd8e32b85cfde7f311f998f1d9c69361c
+
+
+real	0m0.019s
+user	0m0.006s
+sys	0m0.011s
+grep=1

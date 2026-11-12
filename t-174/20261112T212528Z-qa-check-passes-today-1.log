@@ -1,0 +1,5 @@
+$ sh -c 'scripts/ci/check-card-gone.sh; echo "exit=$?"'
+exit: 0
+commit: 49afe88cd8e32b85cfde7f311f998f1d9c69361c
+
+exit=0

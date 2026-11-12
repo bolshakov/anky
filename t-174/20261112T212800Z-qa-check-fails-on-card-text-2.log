@@ -1,0 +1,7 @@
+$ sh -c 'echo '\''let t = "Log pain"'\'' > /Users/bolshakov/Projects/personal/anky.wt/qa-t174-01-2/tmp/t.Rp0PJo/App/Stray.swift; scripts/ci/check-card-gone.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t174-01-2/tmp/t.Rp0PJo; echo "exit=$?"'
+exit: 0
+commit: 49afe88cd8e32b85cfde7f311f998f1d9c69361c
+
+/Users/bolshakov/Projects/personal/anky.wt/qa-t174-01-2/tmp/t.Rp0PJo/App/Stray.swift:1:let t = "Log pain"
+CARD GONE VIOLATION: the old Check In card's text is back, Today has no card that asks how the pain is now
+exit=1

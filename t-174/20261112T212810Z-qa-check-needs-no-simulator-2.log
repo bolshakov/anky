@@ -1,0 +1,9 @@
+$ grep -n -A1 card-gone .github/workflows/ci.yml
+exit: 0
+commit: 49afe88cd8e32b85cfde7f311f998f1d9c69361c
+
+54:        run: scripts/ci/check-card-gone.sh
+55-
+--
+57:        run: scripts/ci/test-check-card-gone.sh
+58-
