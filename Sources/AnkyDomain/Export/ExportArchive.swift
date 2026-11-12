@@ -41,8 +41,11 @@ public enum ExportArchive {
          ("doses.csv", DosesCSV.table(data.doses, entries: data.entries))]
     }
 
+    /// The person's calendar gives only the time zone, so the day is always written as a Gregorian date.
     public static func fileName(on date: Date, calendar: Calendar) -> String {
-        let day = calendar.dateComponents([.year, .month, .day], from: date)
+        var gregorian = Calendar(identifier: .gregorian)
+        gregorian.timeZone = calendar.timeZone
+        let day = gregorian.dateComponents([.year, .month, .day], from: date)
         let stamp = String(format: "%04d-%02d-%02d", day.year ?? 0, day.month ?? 0, day.day ?? 0)
         return prefix + stamp + suffix
     }

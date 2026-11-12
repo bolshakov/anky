@@ -110,6 +110,14 @@ struct ExportArchiveTests {
         #expect(try ExportArchive.fileName(on: moment(utc), calendar: calendar(zone)) == expected)
     }
 
+    @Test(arguments: [Calendar.Identifier.buddhist, .japanese, .islamicUmmAlQura])
+    func namesTheFileByTheGregorianDayWhateverThePersonsCalendar(identifier: Calendar.Identifier) throws {
+        var calendar = Calendar(identifier: identifier)
+        calendar.timeZone = try #require(TimeZone(identifier: "Asia/Tokyo"))
+        let name = try ExportArchive.fileName(on: moment("2026-11-11T15:01:00Z"), calendar: calendar)
+        #expect(name == "anky-export-2026-11-12.zip")
+    }
+
     @Test func exportJustAfterLocalMidnightTakesTheNewDayWhileTheManifestStaysInUTC() throws {
         let folder = try TemporaryFolder()
         let now = try moment("2026-11-11T15:01:00Z")
