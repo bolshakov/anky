@@ -3126,6 +3126,12 @@
     },
     "Start" : {
       "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions."
+    },
+    "All questions refer to **last week**." : {
+      "comment" : "The line above the six BASDAI questions: every answer is about the last week. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+    },
+    "Garrett S, et al. J Rheumatol 1994;21(12):2286-91." : {
+      "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published."
     }
   },
   "version" : "1.0"
