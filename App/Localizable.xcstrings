@@ -2937,6 +2937,50 @@
         }
       }
     },
+    "Export data" : {
+      "comment" : "Settings row, in the Your data card: builds a file of everything logged and opens the share sheet for it.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспортировать данные"
+          }
+        }
+      }
+    },
+    "Exporting" : {
+      "comment" : "What VoiceOver reads for the Export data row while the export file is being built.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идёт экспорт"
+          }
+        }
+      }
+    },
+    "Couldn't export" : {
+      "comment" : "Title of the alert shown when the export file could not be built.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось экспортировать"
+          }
+        }
+      }
+    },
+    "Nothing was shared. Try again." : {
+      "comment" : "Message of the alert shown when the export file could not be built: no file left the phone.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ничего не отправлено. Можно попробовать ещё раз."
+          }
+        }
+      }
+    },
     "Erase all data" : {
       "localizations" : {
         "ru" : {

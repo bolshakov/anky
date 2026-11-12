@@ -12,6 +12,7 @@ struct AnkyApp: App {
     @State private var medications: MedicationsModel
     @State private var reminderTaps: ReminderTapModel
     private let reminderTapDelegate: ReminderTapDelegate
+    private let exportData: @MainActor () throws -> ExportData
 
     init() {
         let folder = ShortcutsLocation.fileURL().deletingLastPathComponent()
@@ -22,12 +23,15 @@ struct AnkyApp: App {
             fileURL: folder.appending(path: "tip-progress.json"),
             protection: .complete
         )
+        let entryStore = Self.entryStore()
+        let medicationStore = Self.medicationStore()
         let model = EntryLogModel(
-            log: EntryLog(store: Self.entryStore()),
+            log: EntryLog(store: entryStore),
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
         )
-        let medications = MedicationsModel(store: Self.medicationStore())
+        let medications = MedicationsModel(store: medicationStore)
+        exportData = { try ExportData.read(entries: entryStore, medications: medicationStore) }
         #if DEBUG
             DebugSeed.plant(entries: model, medications: medications)
         #endif
@@ -70,7 +74,7 @@ struct AnkyApp: App {
     }
 
     private var root: some View {
-        RootView(model: model, medications: medications, reminderTaps: reminderTaps)
+        RootView(model: model, medications: medications, reminderTaps: reminderTaps, exportData: exportData)
     }
 
     private static func entryStore() -> EntryStore {
