@@ -1,0 +1,35 @@
+$ sh -c 'axe describe-ui --udid 0E8DD8CD-6D39-45E8-85DD-E886F3AA22CF | python3 -c '\''import json,sys
+def w(n):
+    if isinstance(n,dict):
+        if n.get("AXUniqueId")=="gallery-primary": print(json.dumps(n,indent=1))
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(json.load(sys.stdin))'\'''
+exit: 0
+commit: 271004ea88246fbda5d186eb271dc89ecb189273
+
+{
+ "custom_actions": [],
+ "AXValue": null,
+ "pid": 28499,
+ "children": [],
+ "AXLabel": "Primary action",
+ "frame": {
+  "y": 768,
+  "width": 370,
+  "height": 56,
+  "x": 16
+ },
+ "AXUniqueId": "gallery-primary",
+ "AXFrame": "{{16, 768}, {370, 56}}",
+ "role_description": "button",
+ "help": null,
+ "content_required": false,
+ "traits": [],
+ "role": "AXButton",
+ "enabled": false,
+ "title": null,
+ "subrole": null,
+ "type": "Button"
+}
