@@ -1,0 +1,7 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t271-02-3/tmp/three.sh
+exit: 0
+commit: 149aadd6235842e20f922feda9385ab7c840e763
+
+{"AXUniqueId": "report-counts", "AXLabel": "31 entries and 5 doses, August 12 to November 12.", "AXValue": null, "type": "StaticText", "enabled": true}
+{"AXUniqueId": "report-counts", "AXLabel": "10 entries and 2 doses, October 12 to November 12.", "AXValue": null, "type": "StaticText", "enabled": true}
+{"AXUniqueId": "report-counts", "AXLabel": "60 entries and 8 doses, May 12 to November 12.", "AXValue": null, "type": "StaticText", "enabled": true}

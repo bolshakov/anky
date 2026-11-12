@@ -1,0 +1,8 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t271-02-3/tmp/ids.sh 'report-counts|report-preview|1 month|3 months'
+exit: 0
+commit: 149aadd6235842e20f922feda9385ab7c840e763
+
+{"AXUniqueId": null, "AXLabel": "1 month", "AXValue": 1, "type": "RadioButton", "enabled": true}
+{"AXUniqueId": null, "AXLabel": "3 months", "AXValue": 0, "type": "RadioButton", "enabled": true}
+{"AXUniqueId": "report-counts", "AXLabel": "Nothing logged from October 12 to November 12. Pick a longer period.", "AXValue": null, "type": "StaticText", "enabled": true}
+{"AXUniqueId": "report-preview", "AXLabel": "Preview", "AXValue": null, "type": "Button", "enabled": false}

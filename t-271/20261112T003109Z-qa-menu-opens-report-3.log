@@ -1,0 +1,13 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t271-02-3/tmp/ids.sh 'report-screen|Report|Today|report-'
+exit: 0
+commit: 149aadd6235842e20f922feda9385ab7c840e763
+
+{"AXUniqueId": "Report", "AXLabel": null, "AXValue": null, "type": "Group", "enabled": true}
+{"AXUniqueId": "BackButton", "AXLabel": "Today", "AXValue": null, "type": "Button", "enabled": true}
+{"AXUniqueId": null, "AXLabel": "Report", "AXValue": null, "type": "Heading", "enabled": true}
+{"AXUniqueId": "report-screen", "AXLabel": null, "AXValue": null, "type": "Group", "enabled": true}
+{"AXUniqueId": "report-period-section-label", "AXLabel": "Period", "AXValue": null, "type": "Heading", "enabled": true}
+{"AXUniqueId": "report-period", "AXLabel": "Period", "AXValue": null, "type": "TabGroup", "enabled": true}
+{"AXUniqueId": "report-counts", "AXLabel": "Nothing logged from August 12 to November 12. Pick a longer period.", "AXValue": null, "type": "StaticText", "enabled": true}
+{"AXUniqueId": "report-preview", "AXLabel": "Preview", "AXValue": null, "type": "Button", "enabled": false}
+{"AXUniqueId": null, "AXLabel": "Today", "AXValue": 1, "type": "RadioButton", "enabled": true}

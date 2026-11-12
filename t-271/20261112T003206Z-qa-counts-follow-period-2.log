@@ -1,0 +1,5 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t271-02-3/tmp/ids.sh report-counts
+exit: 0
+commit: 149aadd6235842e20f922feda9385ab7c840e763
+
+{"AXUniqueId": "report-counts", "AXLabel": "1 entry and 0 doses, October 12 to November 12.", "AXValue": null, "type": "StaticText", "enabled": true}

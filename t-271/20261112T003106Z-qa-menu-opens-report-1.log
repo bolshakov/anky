@@ -1,0 +1,5 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t271-02-3/tmp/ids.sh report-menu
+exit: 0
+commit: 149aadd6235842e20f922feda9385ab7c840e763
+
+{"AXUniqueId": "report-menu", "AXLabel": "Report and BASDAI", "AXValue": null, "type": "Button", "enabled": true}
