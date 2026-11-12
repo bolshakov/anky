@@ -8,6 +8,7 @@ struct RootView: View {
     let medications: MedicationsModel
     let basdai: BasdaiModel
     let reminderTaps: ReminderTapModel
+    let exportData: @MainActor () throws -> ExportData
     @State private var selection = Tab.today
     @State private var reminderCheckIn: Dose?
     @State private var reminderNewEntry = false
@@ -54,7 +55,8 @@ struct RootView: View {
                 model: model,
                 medications: medications,
                 dailyReminder: dailyReminder,
-                reminderScheduler: dailyReminderScheduler
+                reminderScheduler: dailyReminderScheduler,
+                exportData: exportData
             )
             .tabItem {
                 Label("Settings", systemImage: "slider.horizontal.3")

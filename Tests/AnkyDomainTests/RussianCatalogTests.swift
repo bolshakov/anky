@@ -206,6 +206,10 @@ Your data => Ваши данные
 Your data stays on this iPhone unless you share an export. => \
 Ваши данные остаются на этом iPhone, пока вы не поделитесь экспортом.
 Erase all data => Стереть все данные
+Export data => Экспортировать данные
+Exporting => Идёт экспорт
+Couldn't export => Не удалось экспортировать
+Nothing was shared. Try again. => Ничего не отправлено. Можно попробовать ещё раз.
 Erase => Стереть
 Erase every entry, dose and medication on this iPhone? This can't be undone. => \
 Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить.

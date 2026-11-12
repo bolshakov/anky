@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
+import AnkyDomain
 import AnkyMedicationModel
 import SwiftUI
 
@@ -7,6 +8,7 @@ struct SettingsView: View {
     let medications: MedicationsModel
     let dailyReminder: DailyReminderSettings
     let reminderScheduler: DailyReminderScheduler
+    let exportData: @MainActor () throws -> ExportData
     @State private var isConfirmingErase = false
     @State private var eraseTicks = 0
 
@@ -31,6 +33,7 @@ struct SettingsView: View {
                     footnote: Text("Your data stays on this iPhone unless you share an export."),
                     id: "your-data"
                 ) {
+                    ExportDataRow(read: exportData)
                     Button("Erase all data", role: .destructive) {
                         isConfirmingErase = true
                     }
@@ -62,6 +65,7 @@ struct SettingsView: View {
                 }
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {
+                try ExportArchive.removeLeftovers(in: ExportBuild.folder)
                 try model.removeAll()
                 do {
                     try medications.removeAll()
