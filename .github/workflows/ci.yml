@@ -80,6 +80,9 @@ jobs:
       - name: install script proves itself
         run: scripts/ci/test-install-linux-tools.sh
 
+      - name: simulator sweep proves itself
+        run: scripts/ci/test-sweep-simulators.sh
+
   ios:
     needs: checks
     runs-on: macos-26

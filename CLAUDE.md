@@ -33,6 +33,7 @@ Run these from the worktree root. CI runs the same ones.
 - `scripts/ci/run-ui-tests.sh light .derived` and the smoke names from `.github/workflows/ci.yml`, after the
   `xcodebuild build`
 - `scripts/ci/test-run-ui-tests.sh` when you change `scripts/ci/run-ui-tests.sh`
+- `scripts/ci/test-sweep-simulators.sh` when you change `scripts/sweep-simulators.sh`
 - `proquo --explain origin/main...HEAD` prices the diff. Split it when it prices red.
 
 ## Parallel workers
