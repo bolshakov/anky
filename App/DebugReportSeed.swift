@@ -6,7 +6,7 @@
 
     /// Debug builds only, for the report walks: synthetic logs with known place counts and medication figures. Every
     /// record is dated within the last 80 days of `now`, so three and six months show the same data. A reading is a
-    /// pain entry with no place, linked to its dose by id.
+    /// pain entry with no place, linked to its dose by id. `plantBasdai` adds three BASDAI results to the short log.
     @MainActor enum DebugReportSeed {
         static func plantShort(entries: EntryLogModel, medications: MedicationsModel, now: Date) {
             let seeder = Seeder(entries: entries, medications: medications, now: now)
@@ -18,6 +18,18 @@
             let seeder = Seeder(entries: entries, medications: medications, now: now)
             seeder.addEntries(longRows)
             seeder.addMedications([zorblex, marvex, oldpill, quillen] + fillers)
+        }
+
+        static func plantBasdai(
+            entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date
+        ) {
+            plantShort(entries: entries, medications: medications, now: now)
+            let results = [(2, [4, 6, 5, 3, 7, 2]), (20, [8, 7, 9, 6, 5, 10]), (50, [1, 2, 0, 3, 4, 5])]
+            for (daysBefore, answers) in results {
+                let date = Calendar.current.date(byAdding: .day, value: -daysBefore, to: now) ?? now
+                guard let result = BasdaiResult(id: UUID(), date: date, answers: answers) else { continue }
+                try? basdai.add(result)
+            }
         }
 
         static func plantPlacesSeven(entries: EntryLogModel, medications: MedicationsModel, now: Date) {

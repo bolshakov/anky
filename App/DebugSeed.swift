@@ -7,12 +7,13 @@
     /// Debug builds only, for the walks: while the launch environment holds `ANKY_SEED`, an empty log is filled with
     /// synthetic records. `spread` writes 60 entries over the six months before now and 8 doses of one made-up
     /// medication, `single` writes one entry ten days back. `report-short`, `report-long`, `report-sparse` and
-    /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes. A log that holds anything is
-    /// left
-    /// alone.
+    /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes, and `report-basdai` adds three
+    /// BASDAI results to the `report-short` log. A log that holds anything is left alone.
     @MainActor enum DebugSeed {
-        static func plant(entries: EntryLogModel, medications: MedicationsModel, now: Date = .now) {
-            guard entries.entries.isEmpty, medications.doses.isEmpty else { return }
+        static func plant(
+            entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
+        ) {
+            guard entries.entries.isEmpty, medications.doses.isEmpty, basdai.results.isEmpty else { return }
             switch ProcessInfo.processInfo.environment["ANKY_SEED"] {
             case "spread":
                 plantSpread(entries: entries, medications: medications, now: now)
@@ -26,6 +27,8 @@
                 DebugReportSeed.plantSparse(entries: entries, medications: medications, now: now)
             case "report-places-7":
                 DebugReportSeed.plantPlacesSeven(entries: entries, medications: medications, now: now)
+            case "report-basdai":
+                DebugReportSeed.plantBasdai(entries: entries, medications: medications, basdai: basdai, now: now)
             default:
                 break
             }
