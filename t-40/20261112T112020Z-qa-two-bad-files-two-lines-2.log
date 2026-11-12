@@ -1,0 +1,7 @@
+$ sh -c ''\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.zEM7xPVlaN/ci/test-check-license-headers.sh'\''; echo "status $?"; grep -n '\''two bad files'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.zEM7xPVlaN/ci/test-check-license-headers.sh'\'''
+exit: 0
+commit: 484965e8ec02dc6f59ed32ef05c904fe3c8e07e1
+
+check-license-headers tests: all passed
+status 0
+63:expect fail "two bad files" "printf 'import Foundation\n' > App/One.swift && printf 'import Foundation\n' > Sources/AnkyDomain/Two.swift" \

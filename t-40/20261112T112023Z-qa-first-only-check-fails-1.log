@@ -1,0 +1,8 @@
+$ sh -c ''\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.NvgP4KVJwQ/first-only.sh'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.NvgP4KVJwQ/ci/check-license-headers.sh'\''; diff '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t40-01-2/checkout/scripts/ci/check-license-headers.sh'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.NvgP4KVJwQ/ci/check-license-headers.sh'\'''
+exit: 1
+commit: 484965e8ec02dc6f59ed32ef05c904fe3c8e07e1
+
+25c25
+<   printf '%s\n' "$violations"
+---
+>   printf "%s\n" "$violations" | head -n 1

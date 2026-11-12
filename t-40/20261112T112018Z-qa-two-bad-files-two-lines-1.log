@@ -1,0 +1,7 @@
+$ sh -c ''\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.zEM7xPVlaN/ci/check-license-headers.sh'\'' '\''/var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.1zTDebrfw5'\''; echo "status $?"'
+exit: 0
+commit: 484965e8ec02dc6f59ed32ef05c904fe3c8e07e1
+
+LICENSE HEADER VIOLATION: /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.1zTDebrfw5/App/One.swift
+LICENSE HEADER VIOLATION: /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.1zTDebrfw5/Sources/AnkyDomain/Two.swift
+status 1

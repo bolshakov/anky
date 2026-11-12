@@ -1,0 +1,46 @@
+$ git diff origin/main -- scripts/ci/test-check-license-headers.sh
+exit: 0
+commit: 484965e8ec02dc6f59ed32ef05c904fe3c8e07e1
+
+diff --git a/scripts/ci/test-check-license-headers.sh b/scripts/ci/test-check-license-headers.sh
+index f224d7e..7db6657 100755
+--- a/scripts/ci/test-check-license-headers.sh
++++ b/scripts/ci/test-check-license-headers.sh
+@@ -6,9 +6,9 @@ header='// SPDX-License-Identifier: GPL-3.0-or-later'
+ 
+ failed() { echo "FAIL: $1 ($2)" && failures=$((failures + 1)); }
+ 
+-# usage: expect <pass|fail> <description> <setup commands run inside a fresh tree> <violation line, for fail> [root, default .]
++# usage: expect <pass|fail> <description> <setup commands run inside a fresh tree> <violation lines, one per line, for fail> [root, default .]
+ expect() {
+-  want=$1 desc=$2 setup=$3 line=$4 root=${5:-.}
++  want=$1 desc=$2 setup=$3 lines=$4 root=${5:-.}
+   tree=$(mktemp -d)
+   mkdir -p "$tree/App" "$tree/Sources/AnkyDomain" "$tree/Tests/AnkyDomainTests"
+   printf '%s\nimport Foundation\n' "$header" > "$tree/App/AnkyApp.swift"
+@@ -20,8 +20,13 @@ expect() {
+   status=$?
+   if [ "$want" = pass ]; then
+     if [ "$status" != 0 ] || [ -n "$out" ]; then failed "$desc" "wanted a silent pass, got status $status: $out"; fi
+-  elif [ "$status" != 1 ] || ! printf '%s\n' "$out" | grep -Fxq "$line"; then
+-    failed "$desc" "wanted status 1 and '$line', got status $status: $out"
++  else
++    missing=$(printf '%s\n' "$lines" | while IFS= read -r wanted; do
++      printf '%s\n' "$out" | grep -Fxq -- "$wanted" || printf '%s\n' "$wanted"
++    done)
++    if [ "$status" != 1 ] || [ -n "$missing" ]; then
++      failed "$desc" "wanted status 1 and every listed line, got status $status, missing '$missing': $out"
++    fi
+   fi
+   rm -rf "${tree:?}"
+ }
+@@ -55,6 +60,9 @@ expect fail "a file under Tests without a header" "printf 'import Testing\n' > T
+   "LICENSE HEADER VIOLATION: ./Tests/AnkyDomainTests/Missing.swift"
+ expect fail "Package.swift without a header" "printf '// swift-tools-version: 6.0\n' > Package.swift" \
+   "LICENSE HEADER VIOLATION: ./Package.swift"
++expect fail "two bad files" "printf 'import Foundation\n' > App/One.swift && printf 'import Foundation\n' > Sources/AnkyDomain/Two.swift" \
++  "LICENSE HEADER VIOLATION: ./App/One.swift
++LICENSE HEADER VIOLATION: ./Sources/AnkyDomain/Two.swift"
+ expect fail "a root with no Swift file" "rm -rf App Sources Tests Package.swift" \
+   "LICENSE HEADER VIOLATION: no Swift file under ."
+ expect fail "a root path that does not exist" ":" \
