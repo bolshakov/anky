@@ -211,10 +211,6 @@ Exporting => Идёт экспорт
 Couldn't export => Не удалось экспортировать
 Nothing was shared. Try again. => Ничего не отправлено. Можно попробовать ещё раз.
 Erase => Стереть
-Erase every entry, dose and medication on this iPhone? This can't be undone. => \
-Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить.
-Your entries were erased, but your medications and doses were not. Try again to erase the rest. => \
-Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное.
 Couldn't erase your data. Try again. => Не удалось стереть данные. Можно попробовать ещё раз.
 All data erased => Все данные стёрты
 About => О приложении

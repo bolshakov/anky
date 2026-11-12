@@ -58,4 +58,7 @@ Delete this result? This can't be undone.
 Delete result
 Couldn't delete this result. Try again.
 Result deleted
+Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone.
+Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest.
+Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest.
 """.split(separator: "\n").map(String.init)

@@ -3526,25 +3526,14 @@
         }
       }
     },
-    "Erase every entry, dose and medication on this iPhone? This can't be undone." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стереть все записи, приёмы и лекарства на этом iPhone? Это нельзя отменить."
-          }
-        }
-      }
+    "Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone." : {
+      "comment" : "The question of the alert after Erase all data in Settings. Names everything the erase removes."
     },
-    "Your entries were erased, but your medications and doses were not. Try again to erase the rest." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Записи стёрты, а лекарства и приёмы — нет. Можно попробовать ещё раз, чтобы стереть остальное."
-          }
-        }
-      }
+    "Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest." : {
+      "comment" : "The alert when Erase all data removed the entries and then could not remove the medications. It stops there, so doses and BASDAI results are kept too."
+    },
+    "Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest." : {
+      "comment" : "The alert when Erase all data removed the entries, doses and medications, and then could not remove the BASDAI results."
     },
     "Couldn't erase your data. Try again." : {
       "localizations" : {
