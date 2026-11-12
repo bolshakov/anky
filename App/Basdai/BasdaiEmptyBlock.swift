@@ -6,7 +6,7 @@ struct BasdaiEmptyBlock: View {
         VStack(spacing: Spacing.emptyStateIconGap) {
             Image(systemName: "chart.bar")
                 .font(.largeTitle)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.ink2)
                 .accessibilityHidden(true)
             VStack(spacing: Spacing.emptyStateTextGap) {
                 Text("No BASDAI results yet")
@@ -16,10 +16,10 @@ struct BasdaiEmptyBlock: View {
                 Saved results are listed here with their date.
                 """)
                 .font(.callout)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.ink2)
                 Text("Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).")
                     .font(.footnote)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.ink2)
             }
             .multilineTextAlignment(.center)
         }
