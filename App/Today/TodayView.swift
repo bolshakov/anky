@@ -99,6 +99,7 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
+                    .reportMenuAnchor()
                     .nonCardBlock()
                     cornerGuard
                 }
@@ -122,7 +123,6 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
-            .toolbar { ReportMenu(onReport: { isShowingReport = true }, onBasdai: { isShowingBasdai = true }) }
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications)
             }
@@ -179,6 +179,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
+        .reportMenuOnTitleLine(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
