@@ -94,8 +94,15 @@ struct ReportView: View {
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
             totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
-            blocks: []
+            blocks: [.whole(AnyView(ReportPlacesBlock(places: places(now: now))))]
         ).pages
+    }
+
+    private func places(now: Date) -> ReportPlaces {
+        ReportPlaces(
+            entries: model.entries, period: period, now: now, calendar: .current, locale: .current,
+            name: { String(localized: $0.displayName) }
+        )
     }
 }
 
