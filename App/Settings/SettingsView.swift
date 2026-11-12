@@ -65,6 +65,7 @@ struct SettingsView: View {
                 }
             }
             .entryDeleteConfirmation(isPresented: $isConfirmingErase, words: .allData) {
+                try ExportArchive.removeLeftovers(in: ExportBuild.folder)
                 try model.removeAll()
                 do {
                     try medications.removeAll()
