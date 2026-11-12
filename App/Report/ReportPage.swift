@@ -7,6 +7,8 @@ struct ReportPage: View {
     let size: ReportPageSize
     let headerLine: String
     let totals: ReportTotalsText
+    let pageNumber: Int
+    let pageCount: Int
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -105,9 +107,26 @@ struct ReportPage: View {
             .frame(height: Metrics.hairline)
     }
 
-    /// Kept free for the footer, so the sections above can grow without reaching it.
     private var footer: some View {
-        Color.clear.frame(height: Metrics.footerHeight)
+        VStack(spacing: 0) {
+            hairline
+            HStack(alignment: .center, spacing: Metrics.columnGap) {
+                VStack(alignment: .leading, spacing: Metrics.footerLineGap) {
+                    Text("Anky is a personal log kept by the patient. It does not give medical advice.")
+                    Text("Made with Anky, page \(pageNumber) of \(pageCount)")
+                }
+                Spacer(minLength: 0)
+                HStack(alignment: .center, spacing: Metrics.labelToRule) {
+                    Text("Get Anky on the App Store")
+                        .multilineTextAlignment(.trailing)
+                    ReportQRCode(side: Metrics.qrSide)
+                }
+            }
+            .font(.system(size: Metrics.smallSize))
+            .foregroundStyle(Palette.secondary)
+            .padding(.top, Metrics.footerInset)
+        }
+        .frame(height: Metrics.footerHeight, alignment: .bottom)
     }
 }
 
@@ -142,4 +161,7 @@ private enum Metrics {
     static let sectionGap: CGFloat = 18
     static let bandInset: CGFloat = 9
     static let footerHeight: CGFloat = 60
+    static let footerInset: CGFloat = 8
+    static let footerLineGap: CGFloat = 3
+    static let qrSide: CGFloat = 48
 }
