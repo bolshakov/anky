@@ -2,7 +2,7 @@
 import Foundation
 
 /// Saves one check-in: the entry first, then the dose that points at it. Once a save has worked, later calls save
-/// nothing, so a second tap on Save check-in cannot make a second entry.
+/// nothing, so a second tap on Save cannot make a second entry.
 @MainActor public struct CheckInSave {
     public private(set) var isSaved = false
     private let entryID = UUID()

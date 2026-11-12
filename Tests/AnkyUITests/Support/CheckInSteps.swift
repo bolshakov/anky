@@ -107,7 +107,7 @@ func scrollToBottom(of app: XCUIApplication) {
     }
 }
 
-/// Save check-in is the last row of the form, so the form is swiped until it is hittable.
+/// Save is the last row of the form, so the form is swiped until it is hittable.
 @MainActor
 func scrollToSaveCheckIn(in app: XCUIApplication) {
     let save = app.buttons["save-check-in"]
