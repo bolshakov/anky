@@ -7,6 +7,7 @@ import UIKit
 struct TodayView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
     @Binding var reminderCheckIn: Dose?
     @Binding var reminderNewEntry: Bool
     @Binding var reminderLogDose: UUID?
@@ -25,6 +26,7 @@ struct TodayView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @State private var isShowingReport = false
+    @State private var isShowingBasdai = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var pairLayout: AnyLayout {
@@ -120,9 +122,12 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .navigationTitle("Today")
-            .toolbar { ReportMenu { isShowingReport = true } }
+            .toolbar { ReportMenu(onReport: { isShowingReport = true }, onBasdai: { isShowingBasdai = true }) }
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications)
+            }
+            .navigationDestination(isPresented: $isShowingBasdai) {
+                BasdaiListView(model: basdai)
             }
             .safeAreaInset(edge: .bottom) {
                 pairLayout {

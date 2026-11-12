@@ -28,4 +28,11 @@ Symptom report
 Name line
 Recorded by the patient in Anky.
 Counts, averages and ranges only.
+BASDAI
+No BASDAI results yet
+BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. \
+Saved results are listed here with their date.
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Swipe left to delete.
+Start
 """.split(separator: "\n").map(String.init)
