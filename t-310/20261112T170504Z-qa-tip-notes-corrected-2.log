@@ -1,0 +1,6 @@
+$ grep -nE '^- `(tipGap|tipInset)`' App/Design/README.md
+exit: 0
+commit: 0c2d004936afe854a71e464987e0edab0be01ef4
+
+96:- `tipGap`: only for `TipCard`, as the gap between its icon, text and dismiss button. Do not use it in a screen.
+97:- `tipInset`: only for `TipCard`, as the trailing inset beside its dismiss button. Do not use it in a screen.

@@ -1,0 +1,6 @@
+$ sh -c 'scripts/ci/test-check-ui-catalog.sh; echo exit=$?'
+exit: 0
+commit: 0c2d004936afe854a71e464987e0edab0be01ef4
+
+check-ui-catalog tests: all passed
+exit=0

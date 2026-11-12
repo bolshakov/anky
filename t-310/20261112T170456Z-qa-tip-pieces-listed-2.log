@@ -1,0 +1,4 @@
+$ scripts/ci/check-ui-catalog.sh
+exit: 0
+commit: 0c2d004936afe854a71e464987e0edab0be01ef4
+

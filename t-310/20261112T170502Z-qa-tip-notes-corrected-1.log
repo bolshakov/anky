@@ -1,0 +1,4 @@
+$ grep -niE 'no shared tip|local to that screen' App/Design/README.md
+exit: 1
+commit: 0c2d004936afe854a71e464987e0edab0be01ef4
+

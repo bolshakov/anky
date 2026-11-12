@@ -1,0 +1,9 @@
+$ grep -nE '^- `(TipCard|TipCardStyle|tipIcon|tipIconNudge|tipDismissGlyph)`' App/Design/README.md
+exit: 0
+commit: 0c2d004936afe854a71e464987e0edab0be01ef4
+
+59:- `TipCard`: the one look of every tip, with an icon, title, message and dismiss action. Do not build a tip from `Spacing` tokens, and do not set its colour, font or padding on a screen.
+60:- `TipCardStyle`: the `TipViewStyle` that draws a TipKit tip with `TipCard` and invalidates the tip on dismiss. Pass it to `.tipViewStyle` and do not write a second style.
+98:- `tipIcon`: only for `TipCard`, as the size of its icon. Do not use it to size another symbol.
+99:- `tipIconNudge`: only for `TipCard`, as the small drop that lines its icon up with the title. Do not use it to nudge another symbol.
+100:- `tipDismissGlyph`: only for `TipCard`, as the size of its dismiss glyph. Do not use it to size another button's symbol.
