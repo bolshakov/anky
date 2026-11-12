@@ -6,7 +6,8 @@
 
     /// Debug builds only, for the walks: while the launch environment holds `ANKY_SEED`, an empty log is filled with
     /// synthetic records. `spread` writes 60 entries over the six months before now and 8 doses of one made-up
-    /// medication, `single` writes one entry ten days back. `report-short`, `report-long`, `report-sparse` and
+    /// medication, `single` writes one entry ten days back, and `reading-aging` writes one 118 minutes back, which
+    /// leaves the two-hour reading window within about two minutes. `report-short`, `report-long`, `report-sparse` and
     /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes, and `report-basdai` adds three
     /// BASDAI results to the `report-short` log. A log that holds anything is left alone.
     @MainActor enum DebugSeed {
@@ -19,6 +20,8 @@
                 plantSpread(entries: entries, medications: medications, now: now)
             case "single":
                 try? entries.add(entry(daysBefore: 10, index: 0, now: now))
+            case "reading-aging":
+                try? entries.add(entry(minutesBefore: 118, now: now))
             case "report-short":
                 DebugReportSeed.plantShort(entries: entries, medications: medications, now: now)
             case "report-long":
@@ -49,12 +52,20 @@
         }
 
         private static func entry(daysBefore days: Int, index: Int, now: Date) -> Entry {
+            entry(index: index, at: day(before: now, by: days))
+        }
+
+        private static func entry(minutesBefore minutes: Int, now: Date) -> Entry {
+            entry(index: 0, at: now.addingTimeInterval(-TimeInterval(minutes) * 60))
+        }
+
+        private static func entry(index: Int, at date: Date) -> Entry {
             let kind = EntryKind.allCases[index % EntryKind.allCases.count]
             return Entry(
                 id: UUID(),
                 kind: kind,
                 severity: Severity(index % 11) ?? Severity(nearestToFraction: 0),
-                date: day(before: now, by: days),
+                date: date,
                 note: nil,
                 places: []
             )

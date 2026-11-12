@@ -9,14 +9,13 @@ struct BeforeThisDoseSection: View {
     let onLog: () -> Void
 
     var body: some View {
+        let entry = reading()
         CardSection(
             Text("Before this dose"),
-            footnote: reading().map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
+            footnote: entry.map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
             id: "before-reading"
         ) {
-            TimelineView(.everyMinute) { _ in
-                row(reading())
-            }
+            row(entry)
         }
     }
 
