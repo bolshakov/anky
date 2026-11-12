@@ -35,6 +35,9 @@ enum Spacing {
     static let weekdayChosenCircle: CGFloat = 40
     static let tipGap: CGFloat = 12
     static let tipInset: CGFloat = 4
+    static let tipIcon: CGFloat = 22
+    static let tipIconNudge: CGFloat = 1
+    static let tipDismissGlyph: CGFloat = 14
     static let emptyStateGap: CGFloat = 12
     static let emptyStateIconGap: CGFloat = 16
     static let emptyStateTextGap: CGFloat = 8

@@ -43,7 +43,7 @@ struct RepeatLoggedCard: View {
         layout {
             HStack(spacing: Spacing.rowContentGap) {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(Color("AccentColor"))
+                    .foregroundStyle(Color.tint)
                     .accessibilityHidden(true)
                 Text(String(localized: "Logged") + " · " + recent.chipText(namesKind: true))
                     .font(.subheadline.weight(.semibold))
@@ -57,11 +57,11 @@ struct RepeatLoggedCard: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.borderless)
-            .foregroundStyle(Color("AccentColor"))
+            .foregroundStyle(Color.tint)
             .accessibilityIdentifier("repeat-undo")
         }
         .padding(.horizontal, Spacing.cardInset)
         .frame(minHeight: Spacing.rowMinimumHeight)
-        .background(Color("CardBackground"), in: .card)
+        .background(Color.card, in: .card)
     }
 }

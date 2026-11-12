@@ -29,7 +29,7 @@ struct FootnotedSection<Content: View>: View {
             }
         } footer: {
             if let footnote {
-                identified(footnote.font(.footnote).foregroundStyle(.secondary))
+                identified(footnote.font(.footnote))
             }
         }
     }
