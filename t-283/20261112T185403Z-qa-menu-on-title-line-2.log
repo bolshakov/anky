@@ -1,0 +1,6 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t283-01-4/tmp/walk283/fr.py /Users/bolshakov/Projects/personal/anky.wt/qa-t283-01-4/tmp/walk283/b-today-dark.json
+exit: 0
+commit: d9137cbed94e68e403fa436d05d549148e7ea793
+
+Heading None Today {'x': 16, 'height': 40.66666666666667, 'y': 119.66666666666667, 'width': 95.33333333333333} cy= 140.0
+PopUpButton report-menu Report and BASDAI {'y': 118, 'width': 54, 'x': 332, 'height': 44} cy= 140.0

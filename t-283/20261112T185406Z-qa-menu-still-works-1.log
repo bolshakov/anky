@@ -1,0 +1,5 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t283-01-4/tmp/walk283/ids.py /Users/bolshakov/Projects/personal/anky.wt/qa-t283-01-4/tmp/walk283/b-menu-open.json
+exit: 0
+commit: d9137cbed94e68e403fa436d05d549148e7ea793
+
+['report-menu', 'report-for-doctor', 'basdai-menu-item']

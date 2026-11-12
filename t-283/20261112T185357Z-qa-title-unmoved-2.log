@@ -1,0 +1,5 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t283-01-4/tmp/walk283/cmp.py
+exit: 0
+commit: d9137cbed94e68e403fa436d05d549148e7ea793
+
+B Heading Today {{16, 119.66666666666667}, {95.333333333333329, 40.666666666666671}} | 5280076 Heading Today {{16, 119.66666666666667}, {95.333333333333329, 40.666666666666671}}
