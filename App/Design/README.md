@@ -54,6 +54,11 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
 - `bottomPrimaryButton`: the screen's one main action pinned above the bottom edge, where `isEnabled` dims only the button. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
 
+## Tips
+
+- `TipCard`: the one look of every tip, with an icon, title, message and dismiss action. Do not build a tip from `Spacing` tokens, and do not set its colour, font or padding on a screen.
+- `TipCardStyle`: the `TipViewStyle` that draws a TipKit tip with `TipCard` and invalidates the tip on dismiss. Pass it to `.tipViewStyle` and do not write a second style.
+
 ## Spacing tokens
 
 Every spacing and size under `App/` is a `Spacing` token, so a screen writes no number for one. Add a token to
@@ -88,8 +93,11 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `weekdayLetterSize`: only for the weekday letters of the schedule. Text elsewhere takes a text style, not a size.
 - `weekdayDot`: only for the dot under a weekday in the schedule. Nothing else needs to build a dot this size.
 - `weekdayChosenCircle`: only for the circle behind a chosen weekday in the schedule. Do not use it for another marker.
-- `tipGap`: the gap inside the Shortcuts pin tip. No shared tip view exists yet, so see the note at the end.
-- `tipInset`: the inset around the Shortcuts pin tip. No shared tip view exists yet, so see the note at the end.
+- `tipGap`: only for `TipCard`, as the gap between its icon, text and dismiss button. Do not use it in a screen.
+- `tipInset`: only for `TipCard`, as the trailing inset beside its dismiss button. Do not use it in a screen.
+- `tipIcon`: only for `TipCard`, as the size of its icon. Do not use it to size another symbol.
+- `tipIconNudge`: only for `TipCard`, as the small drop that lines its icon up with the title. Do not use it to nudge another symbol.
+- `tipDismissGlyph`: only for `TipCard`, as the size of its dismiss glyph. Do not use it to size another button's symbol.
 - `emptyStateGap`: the gap between the parts of an empty state on Today and History. Do not write one, and see the note at the end.
 - `emptyStateIconGap`: the gap under an empty state's mark or icon. Do not write one, and see the note at the end.
 - `emptyStateTextGap`: the gap between an empty state's title and its text. Do not write one, and see the note at the end.
@@ -137,7 +145,6 @@ something else.
 
 ## What does not exist yet
 
-The app has no shared empty-state view, no shared sheet toolbar and no shared tip card. Each screen that needs one
-builds it from the spacing tokens above, and the Shortcuts pin tip is local to that screen. This is a gap in the
-catalog, not a ban: when you build one that a second screen needs, extract it into `App/Design` and add its entry in
+The app has no shared empty-state view and no shared sheet toolbar. Each screen that needs one builds it from the
+spacing tokens above. This is a gap in the catalog, not a ban: when you build one that a second screen needs, extract it into `App/Design` and add its entry in
 the same pull request.
