@@ -15,17 +15,22 @@ public struct ReportMedicationRowText: Equatable, Sendable {
         case .scheduled: String(localized: "Scheduled", bundle: bundle, locale: locale)
         }
         doses = row.doseCount.formatted(.number.locale(locale))
-        perWeek = row.perWeek.formatted(.number.precision(.fractionLength(1)).locale(locale))
+        perWeek = row.perWeek.formatted(Self.oneDecimal(locale))
         withAfter = row.afterReadingCount.formatted(.number.locale(locale))
         before = Self.pain(row.before, locale: locale, bundle: bundle)
         after = Self.pain(row.after, locale: locale, bundle: bundle)
         time = Self.time(row.averageTimeToAfter, locale: locale, bundle: bundle)
     }
 
+    /// Halves round away from zero, as a reader checking by hand expects: 6.25 reads "6.3".
+    private static func oneDecimal(_ locale: Locale) -> FloatingPointFormatStyle<Double> {
+        .number.precision(.fractionLength(1)).rounded(rule: .toNearestOrAwayFromZero).locale(locale)
+    }
+
     private static func pain(_ range: ReportPainRange?, locale: Locale, bundle: Bundle) -> String {
         guard let range else { return none }
         guard range.count > 1 else { return range.lowest.formatted(.number.locale(locale)) }
-        let average = range.average.formatted(.number.precision(.fractionLength(1)).locale(locale))
+        let average = range.average.formatted(oneDecimal(locale))
         return String(localized: "\(average) (\(range.lowest)–\(range.highest))", bundle: bundle, locale: locale)
     }
 

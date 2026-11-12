@@ -75,6 +75,13 @@ struct ReportMedicationTextTests {
         #expect(text.time == "1 h 50 min")
     }
 
+    @Test func aHalfAtTheSecondDecimalRoundsAwayFromZero() throws {
+        let quarter = try text(row(doses: [5, 6, 7, 7].map { Taken(before: $0, after: 3) }))
+        #expect(quarter.before == "6.3 (5–7)")
+        let manyDoses = try text(row(doses: Array(repeating: Taken(), count: 24)))
+        #expect(manyDoses.perWeek == "5.3")
+    }
+
     @Test func oneQualifyingDoseShowsItsValueAlone() throws {
         let text = try text(row(doses: [Taken(before: 6, after: 3, minutesLater: 45), Taken(before: 4)]))
         #expect(text.doses == "2")
