@@ -1999,6 +1999,142 @@
         }
       }
     },
+    "Medication: doses, and pain before and after" : {
+      "comment" : "The report PDF's heading above the medication table: how many doses of each medication, and the pain logged before and after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication: doses, and pain before and after"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства: приёмы и боль до и после"
+          }
+        }
+      }
+    },
+    "Medication, continued" : {
+      "comment" : "The report PDF's heading above the medication table when the table goes on from the page before.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication, continued"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства, продолжение"
+          }
+        }
+      }
+    },
+    "Doses" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses taken in the period.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doses"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приёмы"
+          }
+        }
+      }
+    },
+    "Per week" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average number of doses a week, such as 3.8.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В неделю"
+          }
+        }
+      }
+    },
+    "With an after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses with an entry logged after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With an after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С записью после"
+          }
+        }
+      }
+    },
+    "Pain before: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged before the doses, such as '6.5 (5–8)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain before: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль до: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Pain after: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged after the doses, such as '3.5 (2–5)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain after: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль после: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Average time to after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average time from a dose to the entry logged after it, such as '1 h 50 min'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average time to after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среднее время до записи после"
+          }
+        }
+      }
+    },
     "Not set" : {
       "localizations" : {
         "ru" : {
