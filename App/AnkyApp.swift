@@ -26,19 +26,22 @@ struct AnkyApp: App {
         )
         let entryStore = Self.entryStore()
         let medicationStore = Self.medicationStore()
+        let basdaiStore = Self.basdaiStore()
         let model = EntryLogModel(
             log: EntryLog(store: entryStore),
             shortcuts: shortcuts,
             tipProgress: TipProgressModel(store: tipStore)
         )
         let medications = MedicationsModel(store: medicationStore)
-        exportData = { try ExportData.read(entries: entryStore, medications: medicationStore) }
+        exportData = {
+            try ExportData.read(entries: entryStore, medications: medicationStore, basdai: basdaiStore)
+        }
         #if DEBUG
             DebugSeed.plant(entries: model, medications: medications)
         #endif
         _model = State(initialValue: model)
         _medications = State(initialValue: medications)
-        _basdai = State(initialValue: BasdaiModel(log: BasdaiLog(store: Self.basdaiStore())))
+        _basdai = State(initialValue: BasdaiModel(log: BasdaiLog(store: basdaiStore)))
         let taps = ReminderTapModel()
         _reminderTaps = State(initialValue: taps)
         reminderTapDelegate = ReminderTapDelegate(taps: taps)
