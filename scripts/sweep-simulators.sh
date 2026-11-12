@@ -65,7 +65,7 @@ sweep_orphans() {
   [ -n "$orphans" ] || return 0
   signalled=
   while read -r pid name; do
-    "$SWEEP_KILL" -TERM "$pid" || continue
+    "$SWEEP_KILL" -TERM "$pid" 2> /dev/null || continue
     echo "ended $pid $name"
     signalled="$signalled $pid"
   done <<EOF
@@ -73,7 +73,7 @@ $orphans
 EOF
   sleep "$SWEEP_TERM_SECONDS"
   for pid in $signalled; do
-    ! "$SWEEP_KILL" -0 "$pid" || "$SWEEP_KILL" -KILL "$pid"
+    ! "$SWEEP_KILL" -0 "$pid" 2> /dev/null || "$SWEEP_KILL" -KILL "$pid" 2> /dev/null
   done
 }
 sweep_orphans
