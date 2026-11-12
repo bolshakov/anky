@@ -55,6 +55,10 @@ struct BasdaiFormView: View {
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .background {
+                BasdaiDismissGuard { isConfirmingDiscard = true }
+                    .accessibilityHidden(true)
+            }
             .interactiveDismissDisabled(isAnyAnswered)
             .onChange(of: isConfirmingDiscard) { _, isShowing in
                 if !isShowing {
