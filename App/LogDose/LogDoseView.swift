@@ -81,13 +81,12 @@ struct LogDoseView: View {
                         NavigationLink("Manage") {
                             MedicationsView(medications: medications)
                         }
-                        .frame(minWidth: Spacing.tapTarget, minHeight: Spacing.tapTarget)
-                        .contentShape(Rectangle())
+                        .minimumTapTarget()
                         .accessibilityIdentifier("log-dose-manage")
                     }
                 }
             }
-            .safeAreaInset(edge: .bottom) { saveButton }
+            .bottomPrimaryButton(Text("Save"), id: "save-dose", isEnabled: checkedID != nil, action: saveDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -126,19 +125,6 @@ struct LogDoseView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .onAppear { medications.reload() }
         }
-    }
-
-    private var saveButton: some View {
-        Button(action: saveDose) {
-            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
-        }
-        .primaryButton()
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
-        .disabled(checkedID == nil)
-        .padding(.horizontal, Spacing.screenMargin)
-        .padding(.bottom, Spacing.bottomClearance)
-        .accessibilityIdentifier("save-dose")
     }
 
     private var active: [Medication] {
@@ -207,7 +193,7 @@ struct LogDoseView: View {
                 Spacer()
                 if isChecked {
                     Image(systemName: "checkmark")
-                        .foregroundStyle(.tint)
+                        .foregroundStyle(Color.tint)
                         .accessibilityHidden(true)
                 }
             }
