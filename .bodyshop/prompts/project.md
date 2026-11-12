@@ -65,3 +65,8 @@ records".
 ## Project files
 
 Never edit `Anky.xcodeproj`. It is generated. A new Swift file under `Sources/` or `App/` needs no other change.
+
+## UI catalog
+
+For a task that touches UI, the plan step names the shared pieces from `App/Design/README.md` that the task must use.
+The review checklist asks whether the diff builds something the catalog already has.
