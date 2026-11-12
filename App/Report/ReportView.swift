@@ -78,25 +78,24 @@ struct ReportView: View {
         Task {
             await Task.yield()
             defer { isBuilding = false }
-            guard let url = try? ReportPDFFile.write(page(now: .now)) else { return }
+            guard let url = try? ReportPDFFile.write(pages(now: .now)) else { return }
             preview = PreviewFile(url: url)
         }
     }
 
-    /// One `now` for the whole page, so the header and the totals count the same days.
-    private func page(now: Date) -> ReportPage {
+    /// One `now` for the whole report, so the header and the totals count the same days.
+    private func pages(now: Date) -> [ReportPage] {
         let summary = ReportSummary(
             entries: model.entries, doses: medications.doses, period: period, now: now, calendar: .current
         )
-        return ReportPage(
+        return ReportDocument(
             size: .forRegion(Locale.current.region),
             headerLine: ReportHeaderLine.text(
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
             totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
-            pageNumber: 1,
-            pageCount: 1
-        )
+            blocks: []
+        ).pages
     }
 }
 
