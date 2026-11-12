@@ -3544,6 +3544,50 @@
         }
       }
     },
+    "Places logged" : {
+      "comment" : "The report PDF's heading above the table of body places the patient logged, each with how many entries named it.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places logged"
+          }
+        }
+      }
+    },
+    "Place" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that names a body place, such as Lower back.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place"
+          }
+        }
+      }
+    },
+    "Entries" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that counts the entries naming each place.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entries"
+          }
+        }
+      }
+    },
+    "None logged in this period" : {
+      "comment" : "The report PDF's line under a section heading when the period holds nothing for that section. It stands in for any empty report section, such as Places logged or Medication.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None logged in this period"
+          }
+        }
+      }
+    },
     "Delete this result? This can't be undone." : {
       "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms."
     },

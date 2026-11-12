@@ -51,6 +51,10 @@ Legend one entry
 Legend number under a bar
 Legend none logged
 Week count none
+Places logged
+Place
+Entries
+None logged in this period
 Delete this result? This can't be undone.
 Delete result
 Couldn't delete this result. Try again.
