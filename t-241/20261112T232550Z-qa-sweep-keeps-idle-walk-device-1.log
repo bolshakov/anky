@@ -1,0 +1,5 @@
+$ sh -c '. /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.eFN5vOU2sI/env2; ps -axww -o command | grep "$U" | grep -E '\''xcodebuild|run-ui-tests|axe|simctl'\'' | grep -v grep | wc -l'
+exit: 0
+commit: 4b60496b32d84a4e47964b5636c311647852e429
+
+       0

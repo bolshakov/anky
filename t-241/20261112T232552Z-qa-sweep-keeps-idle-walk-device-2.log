@@ -1,0 +1,6 @@
+$ sh -c '. /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.eFN5vOU2sI/env2; SWEEP_GRACE_SECONDS=3600 sh scripts/sweep-simulators.sh; xcrun simctl list devices | grep "$U"'
+exit: 0
+commit: 4b60496b32d84a4e47964b5636c311647852e429
+
+kept anky-sweepwalk-C475BC74-8FF8-434E-9838-B87124F7049E: younger than grace
+    anky-sweepwalk-C475BC74-8FF8-434E-9838-B87124F7049E (F6FEAF9D-69AD-480C-A0BA-AA38AAD0814E) (Booted) 

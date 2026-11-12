@@ -1,0 +1,6 @@
+$ sh -c '. /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.eFN5vOU2sI/env1; sleep 65; SWEEP_GRACE_SECONDS=60 sh scripts/sweep-simulators.sh; echo U=$U'
+exit: 0
+commit: 4b60496b32d84a4e47964b5636c311647852e429
+
+removed anky-sweepwalk-8B5ABBE4-54BD-4B49-9047-F7B38973D407
+U=7741580C-138E-4F80-AA25-307F0E972EB8
