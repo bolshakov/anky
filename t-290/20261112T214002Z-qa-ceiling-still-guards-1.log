@@ -1,0 +1,13 @@
+$ grep -nA8 'func aSlowLaunchReportsDurationsAndCountsOnly' Tests/AnkyDomainTests/TenYearsOfEntriesTests.swift
+exit: 0
+commit: fe3d72098d2074478e22c15d7f5349e311158153
+
+62:    @Test func aSlowLaunchReportsDurationsAndCountsOnly() {
+63-        withKnownIssue {
+64-            checkLaunch([Launch(elapsed: .seconds(3), count: MadeUpLog.size)])
+65-        } matching: { issue in
+66-            let entryWords = ["pain", "stiffness", "fatigue", "lower", "neck", "hip_l", "si_r"]
+67-            return issue.description.contains("3.0 seconds")
+68-                && !entryWords.contains { issue.description.contains($0) }
+69-        }
+70-    }

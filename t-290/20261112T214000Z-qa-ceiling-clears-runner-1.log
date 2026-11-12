@@ -1,0 +1,9 @@
+$ grep -nE 'private let (ceiling|launchOpens)|fastest|#expect\(fastest' Tests/AnkyDomainTests/TenYearsOfEntriesTests.swift
+exit: 0
+commit: fe3d72098d2074478e22c15d7f5349e311158153
+
+19:    private let ceiling = Duration.seconds(2)
+25:    /// The launch ceiling is on the fastest of this many opens, since a busy runner only adds time to some of them
+27:    private let launchOpens = 5
+107:        let fastest = launches.map(\.elapsed).min() ?? .zero
+108:        #expect(fastest < ceiling)
