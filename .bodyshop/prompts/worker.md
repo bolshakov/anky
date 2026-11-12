@@ -23,6 +23,12 @@ no test notices. So before you report, compare your screen with the design pictu
 
 The reviewers read this table. A missing table or a no with no reason is sent back.
 
+# Shared UI pieces
+
+Before you edit any file under `App/`, read `App/Design/README.md`. In the `## Pull request` section, list the shared
+pieces your change used, or say why none fit. A change under `App/` with no UI, such as a debug seed, writes "no shared
+piece fits" and builds nothing to fill the line.
+
 # Waiting on the wall clock
 
 A worker never waits for the wall clock. Do not start a `sleep`, an `until` or `while` loop, or a monitor that waits
