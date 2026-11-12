@@ -1,0 +1,6 @@
+$ bash -c 'axe describe-ui --udid E75B56BB-6AC6-4FA6-A3EB-32ED56040DBF | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t270-02-2/tmp/walk/lines.py BackButton Heading'
+exit: 0
+commit: 8e0aece8141b3fa752f2d5b5c119fa531f79e79a
+
+('Button', 'BackButton', 'BASDAI', None) {'height': 44, 'width': 44, 'y': 62, 'x': 16}
+('Heading', None, '12 November 2026', None) {'height': 21, 'y': 74, 'width': 151, 'x': 125}

@@ -1,0 +1,12 @@
+$ bash -c 'axe describe-ui --udid E75B56BB-6AC6-4FA6-A3EB-32ED56040DBF | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t270-02-2/tmp/walk/lines.py basdai-detail'
+exit: 0
+commit: 8e0aece8141b3fa752f2d5b5c119fa531f79e79a
+
+('Group', 'basdai-detail-screen', None, None) {'height': 874, 'x': 0, 'y': 0, 'width': 402}
+('StaticText', 'basdai-detail-score-row', 'Score, 4,7', None) {'height': 52, 'width': 370, 'y': 132, 'x': 16}
+('StaticText', 'basdai-detail-q1', 'Fatigue, 4 of 10', None) {'height': 52, 'width': 370, 'y': 216, 'x': 16}
+('StaticText', 'basdai-detail-q2', 'Spinal pain, 6 of 10', None) {'width': 370, 'y': 268, 'x': 16, 'height': 52}
+('StaticText', 'basdai-detail-q3', 'Joint pain, 3 of 10', None) {'width': 370, 'y': 320, 'x': 16, 'height': 52}
+('StaticText', 'basdai-detail-q4', 'Tenderness, 5 of 10', None) {'width': 370, 'y': 372, 'height': 52, 'x': 16}
+('StaticText', 'basdai-detail-q5', 'Stiffness severity, 7 of 10', None) {'x': 16, 'height': 52, 'y': 424, 'width': 370}
+('StaticText', 'basdai-detail-q6', 'Stiffness duration, 4 of 10', None) {'width': 370, 'height': 52, 'y': 476, 'x': 16}

@@ -1,0 +1,5 @@
+$ bash -c 'axe describe-ui --udid E75B56BB-6AC6-4FA6-A3EB-32ED56040DBF | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t270-02-2/tmp/walk/lines.py basdai-row-0'
+exit: 0
+commit: 8e0aece8141b3fa752f2d5b5c119fa531f79e79a
+
+('Button', 'basdai-row-0', '12 November 2026. Score 4,7.', None) {'y': 132, 'x': 16, 'width': 370, 'height': 90}
