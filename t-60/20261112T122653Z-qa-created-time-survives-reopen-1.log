@@ -1,0 +1,50 @@
+$ grep -n -A45 'func updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime' Tests/AnkyStoreTests/SwiftDataMedicationEditTests.swift
+exit: 0
+commit: 53b6a6cd928c2f5c30b3fe851d349a6a6253bfef
+
+30:    @Test func updateWritesEveryEditableFieldAndKeepsTheIdAndCreatedTime() throws {
+31-        try withFolder { folder in
+32-            let url = folder.appending(path: "medications.store")
+33-            let original = fullMedication(name: "Zorblex")
+34-            var edited = Medication(
+35-                id: original.id, name: "Quibbanol", takenAs: .asNeeded, createdAt: date.addingTimeInterval(1000)
+36-            )
+37-            edited.strength = nil
+38-            edited.checkInAfter = .fourHours
+39-            edited.updatedAt = date.addingTimeInterval(500)
+40-            edited.archivedAt = nil
+41-            var expected = Medication(
+42-                id: original.id, name: "Quibbanol", takenAs: .asNeeded, createdAt: original.createdAt
+43-            )
+44-            expected.strength = nil
+45-            expected.checkInAfter = .fourHours
+46-            expected.updatedAt = date.addingTimeInterval(500)
+47-            expected.archivedAt = nil
+48-            #expect(edited.createdAt != original.createdAt)
+49-
+50-            let store = try SwiftDataMedicationStore(url: url)
+51-            try store.add(original)
+52-            try store.update(edited)
+53-            #expect(try store.all() == [expected])
+54-            #expect(try SwiftDataMedicationStore(url: url).all() == [expected])
+55-        }
+56-    }
+57-
+58-    @Test func updateOfAnUnknownIdThrowsAndChangesNothing() throws {
+59-        try withFolder { folder in
+60-            let store = try SwiftDataMedicationStore(url: folder.appending(path: "medications.store"))
+61-            let zorblex = fullMedication(name: "Zorblex")
+62-            try store.add(zorblex)
+63-            #expect(throws: MedicationStoreError.notSaved) {
+64-                try store.update(fullMedication(name: "Quibbanol"))
+65-            }
+66-            #expect(try store.all() == [zorblex])
+67-        }
+68-    }
+69-
+70-    @Test func failedUpdateLeavesTheMedicationAsItWasAndRetrySavesOneChange() throws {
+71-        try withFolder { folder in
+72-            let url = folder.appending(path: "medications.store")
+73-            var writesRefused = false
+74-            let store = try SwiftDataMedicationStore(url: url, beforeSave: {
+75-                if writesRefused {
