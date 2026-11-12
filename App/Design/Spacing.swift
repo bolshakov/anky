@@ -8,6 +8,8 @@ enum Spacing {
     static let titleToDatePull: CGFloat = 4.7
     static let titleToDatePullPerTitlePoint: CGFloat = 0.25
     static let largeTitleSize: CGFloat = 34
+    static let titleToContentStartPerTitlePoint: CGFloat = 0.6863
+    static let navigationBarRow: CGFloat = 44
     static let blockGap: CGFloat = 32
     static let emptyBlockGap: CGFloat = 96
     static let labelGap: CGFloat = 12
@@ -33,6 +35,9 @@ enum Spacing {
     static let weekdayChosenCircle: CGFloat = 40
     static let tipGap: CGFloat = 12
     static let tipInset: CGFloat = 4
+    static let tipIcon: CGFloat = 22
+    static let tipIconNudge: CGFloat = 1
+    static let tipDismissGlyph: CGFloat = 14
     static let emptyStateGap: CGFloat = 12
     static let emptyStateIconGap: CGFloat = 16
     static let emptyStateTextGap: CGFloat = 8
@@ -53,6 +58,8 @@ enum Spacing {
     static let primaryButtonHeight: CGFloat = 56
     static let primaryButtonSystemPadding: CGFloat = 15
     static let primaryButtonLabelHeight: CGFloat = primaryButtonHeight - 2 * primaryButtonSystemPadding
+    static let glassCircleSystemPadding: CGFloat = 7
+    static let glassCircleLabelSide: CGFloat = tapTarget - 2 * glassCircleSystemPadding
     static let repeatChipSystemPadding: CGFloat = 7
     static let repeatChipLabelHeight: CGFloat = rowMinimumHeight - 2 * repeatChipSystemPadding
 }
