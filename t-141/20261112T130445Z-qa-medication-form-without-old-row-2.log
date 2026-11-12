@@ -1,0 +1,9 @@
+$ sh -c 'axe describe-ui --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525 > /dev/null; axe describe-ui --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525 | grep -c '\''"check-in-later"'\''; echo after-id:; axe describe-ui --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525 | grep -c '\''"check-in-after"'\''; echo label:; axe describe-ui --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525 | grep -ci '\''Check in after a dose'\'''
+exit: 1
+commit: cfeae4486d67a2a1dc433ee41c4e8b85a8f7b5e5
+
+1
+after-id:
+0
+label:
+0

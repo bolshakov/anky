@@ -1,0 +1,5 @@
+$ axe tap --id dose-add-medication --wait-timeout 5 --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525
+exit: 0
+commit: cfeae4486d67a2a1dc433ee41c4e8b85a8f7b5e5
+
+✓ Tap at resolved tap point at (201.0, 255.83333333333334) completed successfully

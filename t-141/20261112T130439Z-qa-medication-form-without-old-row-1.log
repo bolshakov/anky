@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid C4953DFA-BCBA-4C48-90A4-11C02D7F1525 | grep -c medication-name'
+exit: 0
+commit: cfeae4486d67a2a1dc433ee41c4e8b85a8f7b5e5
+
+1
