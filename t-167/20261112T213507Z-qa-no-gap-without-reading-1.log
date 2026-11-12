@@ -1,0 +1,6 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/frames.py 0240BE6E-B630-4636-B708-407F18658BBD
+exit: 0
+commit: 03a5dd4d7b74dd30d1761ac05808c6b017bc6912
+
+log-how-you-feel-row y= 342.33333333333337 h= 50.333333333333314 bottom= 392.6666666666667
+date-row y= 424.6666666666667 h= 52 bottom= 476.6666666666667

@@ -1,0 +1,34 @@
+$ sh -c 'axe tap --id log-medication --wait-timeout 5 --udid 0240BE6E-B630-4636-B708-407F18658BBD; axe describe-ui --udid 0240BE6E-B630-4636-B708-407F18658BBD | grep -oE '\''"AXUniqueId" *: *"[^"]+"'\'' ; axe screenshot --udid 0240BE6E-B630-4636-B708-407F18658BBD --output /Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s1.png; date'
+exit: 0
+commit: 03a5dd4d7b74dd30d1761ac05808c6b017bc6912
+
+✓ Tap at resolved tap point at (103.33333333333333, 727.8333333333333) completed successfully
+"AXUniqueId" : "Today"
+"AXUniqueId" : "today-screen"
+"AXUniqueId" : "today-date"
+"AXUniqueId" : "repeat-chip"
+"AXUniqueId" : "entry-row-pain"
+"AXUniqueId" : "log-medication"
+"AXUniqueId" : "log-entry"
+"AXUniqueId" : "doc.text"
+"AXUniqueId" : "report-menu"
+"AXUniqueId" : "calendar"
+"AXUniqueId" : "clock.fill"
+"AXUniqueId" : "slider.horizontal.3"
+"AXUniqueId" : "Log Dose"
+"AXUniqueId" : "log-dose-cancel"
+"AXUniqueId" : "log-dose-cancel"
+"AXUniqueId" : "medication-label"
+"AXUniqueId" : "dose-no-medications"
+"AXUniqueId" : "dose-add-medication"
+"AXUniqueId" : "before-reading-label"
+"AXUniqueId" : "before-reading-row"
+"AXUniqueId" : "bolt.fill"
+"AXUniqueId" : "chevron.right"
+"AXUniqueId" : "before-reading-footnote"
+"AXUniqueId" : "chevron.forward"
+"AXUniqueId" : "date-row"
+"AXUniqueId" : "save-dose"
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s1.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s1.png
+Thu Nov 12 22:31:32 CET 2026

@@ -1,0 +1,45 @@
+$ sh -c '
+axe describe-ui --udid 0240BE6E-B630-4636-B708-407F18658BBD | grep -A3 '\''before-reading-footnote'\'' | head -8
+end=$(($(date +%s)+180))
+while [ $(date +%s) -lt $end ]; do
+  out=$(axe describe-ui --udid 0240BE6E-B630-4636-B708-407F18658BBD)
+  if ! echo "$out" | grep -q '\''before-reading-row'\''; then
+    date; echo "$out" | grep -oE '\''"AXUniqueId" *: *"[^"]+"'\''; axe screenshot --udid 0240BE6E-B630-4636-B708-407F18658BBD --output /Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s2.png; exit 0
+  fi
+  sleep 3
+done
+echo TIMEOUT; date; echo "$out" | grep -oE '\''"AXUniqueId" *: *"[^"]+"'\'''
+exit: 0
+commit: 03a5dd4d7b74dd30d1761ac05808c6b017bc6912
+
+                                                                        "AXUniqueId" : "before-reading-footnote",
+                                                                        "AXFrame" : "{{16, 410.33333333333331}, {361, 45.666666666666686}}",
+                                                                        "enabled" : true,
+                                                                        "AXValue" : null,
+Thu Nov 12 22:34:02 CET 2026
+"AXUniqueId" : "Today"
+"AXUniqueId" : "today-screen"
+"AXUniqueId" : "today-date"
+"AXUniqueId" : "repeat-chip"
+"AXUniqueId" : "entry-row-pain"
+"AXUniqueId" : "log-medication"
+"AXUniqueId" : "log-entry"
+"AXUniqueId" : "doc.text"
+"AXUniqueId" : "report-menu"
+"AXUniqueId" : "calendar"
+"AXUniqueId" : "clock.fill"
+"AXUniqueId" : "slider.horizontal.3"
+"AXUniqueId" : "log-dose-cancel"
+"AXUniqueId" : "log-dose-cancel"
+"AXUniqueId" : "Log Dose"
+"AXUniqueId" : "medication-label"
+"AXUniqueId" : "dose-no-medications"
+"AXUniqueId" : "dose-add-medication"
+"AXUniqueId" : "before-reading-label"
+"AXUniqueId" : "chevron.right"
+"AXUniqueId" : "log-how-you-feel-row"
+"AXUniqueId" : "date-row"
+"AXUniqueId" : "chevron.forward"
+"AXUniqueId" : "save-dose"
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s2.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t167-01-1/tmp/s2.png
