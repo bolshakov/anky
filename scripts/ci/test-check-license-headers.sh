@@ -6,12 +6,6 @@ header='// SPDX-License-Identifier: GPL-3.0-or-later'
 
 failed() { echo "FAIL: $1 ($2)" && failures=$((failures + 1)); }
 
-missing_lines() {
-  printf '%s\n' "$1" | while IFS= read -r wanted; do
-    printf '%s\n' "$2" | grep -Fxq -- "$wanted" || printf '%s\n' "$wanted"
-  done
-}
-
 # usage: expect <pass|fail> <description> <setup commands run inside a fresh tree> <violation lines, one per line, for fail> [root, default .]
 expect() {
   want=$1 desc=$2 setup=$3 lines=$4 root=${5:-.}
@@ -27,7 +21,9 @@ expect() {
   if [ "$want" = pass ]; then
     if [ "$status" != 0 ] || [ -n "$out" ]; then failed "$desc" "wanted a silent pass, got status $status: $out"; fi
   else
-    missing=$(missing_lines "$lines" "$out")
+    missing=$(printf '%s\n' "$lines" | while IFS= read -r wanted; do
+      printf '%s\n' "$out" | grep -Fxq -- "$wanted" || printf '%s\n' "$wanted"
+    done)
     if [ "$status" != 1 ] || [ -n "$missing" ]; then
       failed "$desc" "wanted status 1 and every listed line, got status $status, missing '$missing': $out"
     fi
