@@ -34,6 +34,17 @@
         }
       }
     },
+    "%@ to %@" : {
+      "comment" : "The report PDF's period under its title, such as '11 August to 11 November 2026'. %1$@ is the period's first day and %2$@ today, with its year.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ to %2$@"
+          }
+        }
+      }
+    },
     "%@, %@ and %lld more" : {
       "localizations" : {
         "en" : {
@@ -447,6 +458,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбор записи"
+          }
+        }
+      }
+    },
+    "created %@" : {
+      "comment" : "The end of the report PDF's line under its title: the day the report was made, such as 'created 11 November 2026'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "created %@"
           }
         }
       }
@@ -933,6 +955,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Усталость была %lld из 10"
+          }
+        }
+      }
+    },
+    "First entry %@" : {
+      "comment" : "The report PDF's totals: the day of the first entry logged in the period, such as 'First entry 12 August'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First entry %@"
           }
         }
       }

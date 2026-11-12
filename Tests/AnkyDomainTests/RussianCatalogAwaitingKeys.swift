@@ -21,4 +21,7 @@ Very severe
 2 hrs or more
 Not answered
 not answered
+%@ to %@
+created %@
+First entry %@
 """.split(separator: "\n").map(String.init)
