@@ -1,0 +1,11 @@
+$ sh -c 'axe describe-ui --udid BFBC58CD-A6D1-465E-BA35-6727641A36E5 | grep -B3 -A3 '\''basdai-row-0'\'''
+exit: 0
+commit: a7747fd2931dfc53491ce3bbe5211035a25451e0
+
+                                                                                        "custom_actions" : [
+                                                                                          "Delete"
+                                                                                        ],
+                                                                                        "AXUniqueId" : "basdai-row-0",
+                                                                                        "type" : "Button",
+                                                                                        "role" : "AXButton",
+                                                                                        "AXValue" : null,
