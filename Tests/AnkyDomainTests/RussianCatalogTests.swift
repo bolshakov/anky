@@ -297,6 +297,7 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["%lld entries", "%lld doses"]
     + ["%lld weeks", "entries logged in %lld of them"]
+    + ["and %lld more places"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
 
 private let englishFormatValues = table("""
