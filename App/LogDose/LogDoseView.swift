@@ -128,7 +128,6 @@ struct LogDoseView: View {
         }
     }
 
-    /// Built here and not with `bottomPrimaryButton`, which cannot be disabled without disabling the form it sits on.
     private var saveButton: some View {
         Button(action: saveDose) {
             Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)

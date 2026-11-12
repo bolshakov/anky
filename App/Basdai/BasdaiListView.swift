@@ -3,6 +3,7 @@ import SwiftUI
 
 struct BasdaiListView: View {
     let model: BasdaiModel
+    @State private var isShowingForm = false
 
     var body: some View {
         List {
@@ -20,7 +21,10 @@ struct BasdaiListView: View {
         .accessibilityIdentifier("basdai-screen")
         .navigationTitle("BASDAI")
         .navigationBarTitleDisplayMode(.inline)
-        .bottomPrimaryButton(Text("Start"), id: "basdai-start") {}
+        .bottomPrimaryButton(Text("Start"), id: "basdai-start") { isShowingForm = true }
+        .sheet(isPresented: $isShowingForm) {
+            BasdaiFormView(onSave: { _ in })
+        }
     }
 
     private var footnote: Text {

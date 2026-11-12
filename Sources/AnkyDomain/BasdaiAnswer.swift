@@ -18,4 +18,28 @@ public enum BasdaiAnswer: Equatable, Sendable {
     public func decremented() -> BasdaiAnswer {
         .answered(max((value ?? 0) - 1, 0))
     }
+
+    /// A touch on the slider answers at the value it shows, so touching the thumb at 0 records a real 0.
+    public func touched() -> BasdaiAnswer {
+        .answered(value ?? 0)
+    }
+
+    public func slid(to value: Int) -> BasdaiAnswer {
+        .answered(value)
+    }
+}
+
+public extension [BasdaiAnswer] {
+    var isComplete: Bool {
+        allSatisfy { $0.value != nil }
+    }
+
+    var isAnyAnswered: Bool {
+        contains { $0.value != nil }
+    }
+
+    var completeValues: [Int]? {
+        let values = compactMap(\.value)
+        return values.count == count ? values : nil
+    }
 }

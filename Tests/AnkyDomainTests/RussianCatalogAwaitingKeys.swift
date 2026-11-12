@@ -38,4 +38,6 @@ Saved results are listed here with their date.
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Swipe left to delete.
 Start
+All questions refer to **last week**.
+Garrett S, et al. J Rheumatol 1994;21(12):2286-91.
 """.split(separator: "\n").map(String.init)
