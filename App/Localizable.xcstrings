@@ -236,6 +236,29 @@
         }
       }
     },
+    "%lld BASDAI results" : {
+      "comment" : "The report PDF's totals: how many BASDAI results the report carries, such as '3 BASDAI results'.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld BASDAI result"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld BASDAI results"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld of %lld" : {
       "localizations" : {
         "en" : {
@@ -3638,6 +3661,28 @@
     },
     "Stiffness duration" : {
       "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'."
+    },
+    "Q%lld %@" : {
+      "comment" : "One item of the key under the report's BASDAI table: the question's label and its short name in lowercase, such as 'Q2 spinal pain'. %1$lld is the question number from 1 to 6.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q%1$lld %2$@"
+          }
+        }
+      }
+    },
+    "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+      "comment" : "The key under the report's BASDAI table. %@ is the list of the six questions with their labels, such as 'Q1 fatigue, Q2 spinal pain'. The sentence gives the answer range and the score formula, and ends with the index's name and the 1994 paper, which stay as published.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+          }
+        }
+      }
     },
     "Very severe" : {
       "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None."
