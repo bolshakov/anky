@@ -32,6 +32,7 @@ struct BasdaiQuestionBlock: View {
         .minimumTapTarget()
         .accessibilityLabel(Text(verbatim: question.text))
         .accessibilityValue(Text(verbatim: question.spokenText(answer, locale: locale)))
+        .accessibilityAdjustableAction(adjust)
         .accessibilityIdentifier("basdai-q\(question.number)-slider")
         .sensoryFeedback(.selection, trigger: answer)
     }
@@ -62,13 +63,17 @@ struct BasdaiQuestionBlock: View {
         }
     }
 
-    /// A native decrement at exactly 0 changes nothing and never calls the setter, so an unanswered slider sits just
-    /// above 0, where a decrement answers 0.
-    private static let unansweredLevel = 0.001
+    private func adjust(_ direction: AccessibilityAdjustmentDirection) {
+        switch direction {
+        case .increment: answer = answer.incremented()
+        case .decrement: answer = answer.decremented()
+        @unknown default: break
+        }
+    }
 
     private var level: Binding<Double> {
         Binding(
-            get: { answer.value.map(Double.init) ?? Self.unansweredLevel },
+            get: { answer.value.map(Double.init) ?? 0 },
             set: { answer = answer.slid(to: Int($0)) }
         )
     }
