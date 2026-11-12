@@ -111,11 +111,11 @@ struct ReportTotalsBand: View {
         HStack(spacing: ReportMetrics.totalsGap) {
             Text(verbatim: totals.entries)
             Text(verbatim: totals.doses)
-            if let firstEntry = totals.firstEntry {
-                Text(verbatim: firstEntry)
-            }
             if let basdai = totals.basdai {
                 Text(verbatim: basdai)
+            }
+            if let firstEntry = totals.firstEntry {
+                Text(verbatim: firstEntry)
             }
         }
         .font(.system(size: ReportMetrics.totalsSize, weight: .semibold))

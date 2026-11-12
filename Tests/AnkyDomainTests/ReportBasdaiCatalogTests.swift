@@ -11,8 +11,9 @@ struct ReportBasdaiCatalogTests {
     """.split(separator: "\n").map(String.init)
 
     @Test(arguments: keys)
-    func theBasdaiBlockStringIsInTheCatalogWithAComment(key: String) throws {
+    func theBasdaiBlockStringReadsAsItsKeyInEnglishWithAComment(key: String) throws {
         let entry = try #require(try CompiledCatalog.entries()[key])
+        #expect(entry.localizations?["en"]?.stringUnit?.value == key)
         #expect(entry.comment?.isEmpty == false)
     }
 }
