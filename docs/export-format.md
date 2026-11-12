@@ -91,7 +91,8 @@ One row per medication, archived ones included. Rows are ordered by `created_at`
 | `check_in_delay_minutes` | N or E | Minutes after a dose that Anky asks how the person feels. Empty when it does not ask. |
 | `archived_at`            | T or E | The moment the medication was archived, in UTC. Empty when it is not archived. |
 
-The schedule columns follow. They are filled for a `scheduled` medication only, and empty for an `as_needed` one.
+The schedule columns follow. They are filled for a `scheduled` medication only, and empty for an `as_needed` one. They
+are empty too for a `scheduled` medication that has no schedule saved.
 
 | Column         | Form   | Holds                                                                                     |
 |----------------|--------|-------------------------------------------------------------------------------------------|
