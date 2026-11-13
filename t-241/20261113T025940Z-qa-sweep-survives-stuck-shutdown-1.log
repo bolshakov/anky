@@ -1,0 +1,9 @@
+$ bash /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.VkDgmV9T5M/s1.sh
+exit: 0
+commit: f16b0350e71e4696218f18750ce1fdc772cf02d0
+
+gave up on anky-sweepwalk-2F9EC338-DFA3-4D1A-B342-5605C5FB0C1F: shutdown timed out
+
+real	0m3.665s
+user	0m0.225s
+sys	0m0.306s
