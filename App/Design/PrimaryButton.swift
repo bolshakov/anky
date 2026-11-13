@@ -12,7 +12,6 @@ extension View {
 private struct EnabledLabelColor: ViewModifier {
     @Environment(\.isEnabled) private var isEnabled
 
-    @ViewBuilder
     func body(content: Content) -> some View {
         if isEnabled {
             content.foregroundStyle(Color.onTint)
