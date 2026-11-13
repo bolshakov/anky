@@ -99,10 +99,10 @@ Unpin => Открепить
 Pin as shortcut => Закрепить как быстрый выбор
 Unpin shortcut => Открепить быстрый выбор
 You can pin up to 5. Unpin one to add another. => \
-Можно закрепить не больше 5 мест. Чтобы добавить другое, нужно открепить одно.
-Pin a shortcut => Закрепить быстрый выбор
+Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое.
+Pin a shortcut => Закрепи быстрый выбор
 Swipe a place right to pin it as a shortcut on New Entry. => \
-Смахивание места вправо закрепляет его для быстрого выбора на экране новой записи.
+Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи.
 Dismiss tip => Закрыть подсказку
 Pinned => Закреплено
 Note => Заметка
@@ -139,7 +139,7 @@ Saved as a fatigue entry. => Сохранится как запись об ус�
 Saved as a pain entry. => Сохранится как запись о боли.
 Saved as a stiffness entry. => Сохранится как запись о скованности.
 Starts from your earlier entry. Change the level or places if they differ. => \
-Значения взяты из прошлой записи. Уровень и места можно изменить.
+Взято из твоей прошлой записи. Измени уровень или места, если они другие.
 stiffness %lld after => скованность после: %lld
 Stiffness %lld after => Скованность после: %lld
 stiffness %lld before, %lld after => скованность до: %1$lld, после: %2$lld
@@ -180,38 +180,38 @@ How you take it => Способ приёма
 Check in after => Отметить через
 After => Через
 Check in later => Отметить позже
-Turn it on to choose a time. => Время можно выбрать после включения.
-Anky will ask how you feel after this long. => Anky спросит о самочувствии через заданное время.
-Log how you feel now => Отметить самочувствие сейчас
+Turn it on to choose a time. => Включи, чтобы выбрать время.
+Anky will ask how you feel after this long. => Anky спросит, как ты себя чувствуешь, когда пройдёт это время.
+Log how you feel now => Отметь самочувствие сейчас
 Log how you feel, or a dose you took. Everything stays on this iPhone. => \
-Записать самочувствие или приём лекарства. Всё остаётся на этом iPhone.
+Запиши самочувствие или приём лекарства. Всё остаётся на этом iPhone.
 More actions => Другие действия
-The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажатие открывает её.
-Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Можно попробовать ещё раз.
-Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Можно попробовать ещё раз.
-Couldn't delete this entry. Try again. => Не удалось удалить эту запись. Можно попробовать ещё раз.
-Couldn't save this entry. Try again. => Не удалось сохранить эту запись. Можно попробовать ещё раз.
-Couldn't archive this medication. Try again. => Не удалось архивировать это лекарство. Можно попробовать ещё раз.
-Couldn't restore this medication. Try again. => Не удалось восстановить это лекарство. Можно попробовать ещё раз.
-Couldn't save this dose. Try again. => Не удалось сохранить этот приём. Можно попробовать ещё раз.
-Couldn't save this medication. Try again. => Не удалось сохранить это лекарство. Можно попробовать ещё раз.
-What are you logging? => Что записать?
+The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажми, чтобы открыть.
+Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Попробуй ещё раз.
+Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Попробуй ещё раз.
+Couldn't delete this entry. Try again. => Не удалось удалить эту запись. Попробуй ещё раз.
+Couldn't save this entry. Try again. => Не удалось сохранить эту запись. Попробуй ещё раз.
+Couldn't archive this medication. Try again. => Не удалось архивировать это лекарство. Попробуй ещё раз.
+Couldn't restore this medication. Try again. => Не удалось восстановить это лекарство. Попробуй ещё раз.
+Couldn't save this dose. Try again. => Не удалось сохранить этот приём. Попробуй ещё раз.
+Couldn't save this medication. Try again. => Не удалось сохранить это лекарство. Попробуй ещё раз.
+What are you logging? => Что ты записываешь?
 Your latest entry before this dose. Tap to choose another. => \
-Последняя запись перед этим приёмом. Нажатие позволяет выбрать другую.
+Твоя последняя запись перед этим приёмом. Нажми, чтобы выбрать другую.
 Manage => Лекарства
 Medications => Лекарства
 Settings => Настройки
 Manage medications => Лекарства
-Your data => Ваши данные
+Your data => Твои данные
 Your data stays on this iPhone unless you share an export. => \
-Ваши данные остаются на этом iPhone, пока вы не поделитесь экспортом.
+Твои данные остаются на этом iPhone, пока ты не поделишься экспортом.
 Erase all data => Стереть все данные
 Export data => Экспортировать данные
 Exporting => Идёт экспорт
 Couldn't export => Не удалось экспортировать
-Nothing was shared. Try again. => Ничего не отправлено. Можно попробовать ещё раз.
+Nothing was shared. Try again. => Ничего не отправлено. Попробуй ещё раз.
 Erase => Стереть
-Couldn't erase your data. Try again. => Не удалось стереть данные. Можно попробовать ещё раз.
+Couldn't erase your data. Try again. => Не удалось стереть данные. Попробуй ещё раз.
 All data erased => Все данные стёрты
 About => О приложении
 Source code and license => Исходный код и лицензия
@@ -227,19 +227,19 @@ Edit Medication => Изменить лекарство
 Restore => Восстановить
 Restore medication => Восстановить лекарство
 Swipe left to restore. Doses you logged stay in History. => \
-Смахивание влево восстанавливает лекарство. Записанные приёмы остаются в «Истории».
+Смахни влево, чтобы восстановить. Записанные приёмы останутся в «Истории».
 Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History. => \
-Смахивание влево архивирует лекарство. Архивные лекарства не показываются при записи приёма, а \
-записанные приёмы остаются в «Истории».
+Смахни влево, чтобы архивировать. Архивные лекарства не показываются при записи приёма, а записанные приёмы останутся \
+в «Истории».
 Add what you take, then log a dose in two taps. Everything stays on this iPhone. => \
-Добавить свои лекарства, чтобы записывать приём в два касания. Всё остаётся на этом iPhone.
+Добавь то, что ты принимаешь, и записывай приём в два касания. Всё остаётся на этом iPhone.
 Time to check in => Пора отметить самочувствие
 Reminders => Напоминания
 Daily reminder => Ежедневное напоминание
 Off in iOS Settings => Выключено в настройках iOS
 Time => Время
 Skipped on days you have already logged something. => \
-Пропускается в дни, когда вы уже что-то записали.
+Пропускается в дни, когда уже есть записи.
 Log how you feel today. => Пора записать самочувствие.
 Time for your dose. => Пора принять лекарство.
 Anky => Anky
@@ -266,7 +266,7 @@ private let approvedFormatValues = table("""
 %lld of %lld => %1$lld из %2$lld
 %@, %@ and %lld more => %1$@, %2$@ и ещё %3$lld
 %@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
-Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Можно выбрать период длиннее.
+Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Выбери период длиннее.
 %@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
 """) + reportDraftFormatValues
 
