@@ -1,0 +1,6 @@
+$ sh -c 'git grep -n FootnotedSection -- App Tests; echo "grep exit $?"; ls App/Design/FootnotedSection.swift'
+exit: 1
+commit: 843592e1a801166ef66bf25deefb2f3e4dce4196
+
+grep exit 1
+ls: App/Design/FootnotedSection.swift: No such file or directory

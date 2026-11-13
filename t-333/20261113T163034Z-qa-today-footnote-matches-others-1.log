@@ -1,0 +1,16 @@
+$ sh -c 'cd /Users/bolshakov/Projects/personal/anky.wt/qa-t333-01-1/tmp/t3 && for f in today-light today-dark med-light med-dark; do echo $f; python3 -I ../fr.py $f.json entry-row- today-entries-footnote medication-row medications-footnote; done'
+exit: 0
+commit: 843592e1a801166ef66bf25deefb2f3e4dce4196
+
+today-light
+entry-row-pain {'height': 68, 'y': 273.33333333333337, 'x': 16, 'width': 370}
+today-entries-footnote {'height': 29.666666666666686, 'y': 341.33333333333337, 'x': 16, 'width': 370}
+today-dark
+entry-row-pain {'width': 370, 'height': 68, 'x': 16, 'y': 273.33333333333337}
+today-entries-footnote {'width': 370, 'height': 29.666666666666686, 'x': 16, 'y': 341.33333333333337}
+med-light
+medication-row {'x': 16, 'height': 60, 'y': 132, 'width': 370}
+medications-footnote {'x': 16, 'height': 45.66666666666666, 'y': 192, 'width': 370}
+med-dark
+medication-row {'width': 370, 'y': 132, 'height': 60, 'x': 16}
+medications-footnote {'width': 370, 'y': 192, 'height': 45.66666666666666, 'x': 16}

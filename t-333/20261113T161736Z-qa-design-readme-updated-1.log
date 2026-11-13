@@ -1,0 +1,10 @@
+$ sh -c 'grep -n "FootnotedSection" App/Design/README.md; echo "exit $?"; grep -n "CardSection" App/Design/README.md'
+exit: 0
+commit: 843592e1a801166ef66bf25deefb2f3e4dce4196
+
+exit 1
+14:- A footnote goes in the footer of `CardSection` and never in an empty trailing section. A trailing section built
+21:- `CardSection`: the default section of a card screen, with an optional label above and a left-aligned footnote below. Do not build a `Section` with its own card background, header style and footer inset.
+22:- `FooterBlockSection`: a card section whose footer is a centred block of any views that scrolls with the list, such as the About block. Do not hand-build a footer for it, and use `CardSection` when the footer is only left-aligned text.
+23:- `SectionLabel`: the header style of a section label. `CardSection` applies it already, so use it by hand only on a `Section` you build yourself, and never set a header's case and insets yourself.
+79:- `footnoteGap`: the gap between a card and its footnote, applied by `CardSection`. Do not pad a footnote yourself.

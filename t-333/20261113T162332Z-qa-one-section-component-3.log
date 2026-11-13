@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 890539B4-02ED-41DD-9C91-7271FAEC1CE7 | grep -n -B3 -A8 -E '\''entry-row-|today-entries-footnote'\'' | grep -E '\''entry-row-|today-entries-footnote|AXLabel|"y"|AXFrame'\'''
+exit: 0
+commit: 843592e1a801166ef66bf25deefb2f3e4dce4196
+
+686:                                                                                        "AXUniqueId" : "entry-row-pain",
+803:                                                                                        "AXUniqueId" : "today-entries-footnote",
