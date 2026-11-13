@@ -3821,9 +3821,6 @@
     "Couldn't save this result. Try again." : {
       "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
     },
-    "%@. Score %@." : {
-      "comment" : "What VoiceOver reads for one saved BASDAI result in the list: its date written out, such as 10 November 2026, then its score with one decimal, such as 4.8."
-    },
     "and %lld more places" : {
       "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
       "localizations" : {
@@ -3979,6 +3976,9 @@
     },
     "Score" : {
       "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'."
+    },
+    "Score %@ out of 10" : {
+      "comment" : "What VoiceOver reads after the date of one saved BASDAI result in the list: its score with one decimal and the scale, such as Score 4.8 out of 10. %@ is the score, with the decimal separator of the person's region."
     }
   },
   "version" : "1.0"
