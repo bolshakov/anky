@@ -22,6 +22,17 @@
                 try? entries.add(entry(daysBefore: 10, index: 0, now: now))
             case "reading-aging":
                 try? entries.add(entry(minutesBefore: 118, now: now))
+            case "schedule-months":
+                plantScheduleMonths(medications: medications, now: now)
+            default:
+                plantReport(entries: entries, medications: medications, basdai: basdai, now: now)
+            }
+        }
+
+        private static func plantReport(
+            entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date
+        ) {
+            switch ProcessInfo.processInfo.environment["ANKY_SEED"] {
             case "report-short":
                 DebugReportSeed.plantShort(entries: entries, medications: medications, now: now)
             case "report-long":
@@ -48,6 +59,23 @@
             for index in 0 ..< 8 {
                 let dose = Dose(id: UUID(), medicationID: medication.id, takenAt: day(before: now, by: 1 + 20 * index))
                 try? medications.logDose(dose)
+            }
+        }
+
+        private static func plantScheduleMonths(medications: MedicationsModel, now: Date) {
+            guard medications.medications.isEmpty else { return }
+            let monthly = [("Monthly five", ScheduleRepeat.months(5, onDay: 31)), ("Monthly two", .months(2, onDay: 3))]
+            for (name, repetition) in monthly {
+                guard let time = DoseTime(hour: 9, minute: 0),
+                      let schedule = try? MedicationSchedule(
+                          repeat: repetition,
+                          times: [time],
+                          start: ScheduleDay(now, in: Calendar.current.timeZone),
+                          end: nil
+                      ) else { continue }
+                var medication = Medication(id: UUID(), name: name, takenAs: .scheduled, createdAt: now)
+                medication.schedule = schedule
+                try? medications.add(medication)
             }
         }
 
