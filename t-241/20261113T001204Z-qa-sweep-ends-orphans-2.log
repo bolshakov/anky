@@ -1,0 +1,21 @@
+$ sh -c '
+echo CSS before: $(pgrep -f CoreSimulatorService | tr "\n" " ")
+SWEEP_GRACE_SECONDS=3600 sh scripts/sweep-simulators.sh | awk "{c[\$1]++; if (NR<=5) print} END {for (k in c) print \"count\", k, c[k]}"
+ps -axww -o pid=,ppid=,command= | awk "\$2==1 && /RuntimeRoot/ {print \$1}" | sort > $W/after2.txt
+echo comm output:; comm -13 $W/before.txt $W/after2.txt
+echo end comm
+echo CSS after: $(pgrep -f CoreSimulatorService | tr "\n" " ")'
+exit: 0
+commit: 1b410585fcfa6fe595ee228d1fa9ec0e7f97bfb0
+
+CSS before: 50526
+kept anky-sweepwalk-84D7171C-360E-4209-B5D2-6490D03DBCAC: younger than grace
+ended 65906 UserEventAgent
+ended 65908 logd
+ended 65909 assistantd
+ended 65910 runningboardd
+count ended 177
+count kept 1
+comm output:
+end comm
+CSS after: 50526
