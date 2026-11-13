@@ -8,16 +8,9 @@ struct BasdaiResultRow: View {
     @Environment(\.calendar) private var calendar
 
     var body: some View {
-        LabeledContent {
-            Text(verbatim: score)
-                .foregroundStyle(Color.ink2)
-        } label: {
-            Text(verbatim: date)
-                .foregroundStyle(Color.ink)
-        }
-        .rowHeight(Spacing.twoLineRowHeight)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("\(date). Score \(score)."))
+        ValueRow(Text(verbatim: date), value: Text(verbatim: score))
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text("\(date). Score \(score)."))
     }
 
     private var date: String {
