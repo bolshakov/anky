@@ -1,0 +1,5 @@
+$ sh -c 'xcrun simctl list devices | grep "$U"'
+exit: 0
+commit: 34babdeed61162fcfbe044413b4ad4e3991c2dee
+
+    anky-sweepwalk-9DBB50E6-0CAB-4662-BBC0-1D611D765B63 (DBCCFDB6-5E33-4BD9-BC15-A4C8E5367484) (Booted) 

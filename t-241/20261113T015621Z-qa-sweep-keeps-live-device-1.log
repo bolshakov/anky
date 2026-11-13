@@ -1,0 +1,10 @@
+$ sh /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.0oWUYYuH6x/step1.sh
+exit: 0
+commit: 34babdeed61162fcfbe044413b4ad4e3991c2dee
+
+--- ps
+launchd_sim /Users/bolshakov/Library/Developer/CoreSimulator/Devices/DBCCFDB6-5E33-4BD9-BC15-A4C8E5367484/data/var/run/launchd_bootstrap.plist
+/Library/Developer/PrivateFrameworks/CoreSimulator.framework/Versions/A/Resources/bin/simctl spawn DBCCFDB6-5E33-4BD9-BC15-A4C8E5367484 /bin/sleep 120
+--- sweep
+kept anky-sweepwalk-9DBB50E6-0CAB-4662-BBC0-1D611D765B63: in use
+sweep exit 0
