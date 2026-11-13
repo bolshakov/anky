@@ -1,0 +1,7 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t350-01-2/tmp/c5.sh
+exit: 1
+commit: fbf52132467346487bb8dbcd8340f7981933e074
+
+has discard-changes exit: 1
+has new-entry-screen exit: 0
+                                                                        "AXLabel" : "7 of 10",
