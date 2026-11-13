@@ -46,7 +46,8 @@ func setSeverity(_ level: Int, in app: XCUIApplication) {
 /// does not see the bar covering an element, so a step compares frames with this.
 @MainActor
 func saveBarTop(in app: XCUIApplication) -> CGFloat {
-    let bars = ["save-entry", "save-dose", "save-check-in"].map { app.buttons[$0] }.filter(\.exists)
+    let bars = ["save-entry", "save-dose", "save-check-in", "save-dose-changes"].map { app.buttons[$0] }
+        .filter(\.exists)
     return bars.map(\.frame.minY).min() ?? app.frame.maxY
 }
 
