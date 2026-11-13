@@ -931,48 +931,68 @@
       "comment" : "How a schedule that repeats every few months reads, such as 'Every 3 months on day 15 at 09:00'. %1$lld is the number of months, at least 2. %2$lld is the day of the month, 1 to 31. %3$@ holds the clock times, already formatted for the language. Needs every plural form of the language.",
       "localizations" : {
         "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Every %1$lld month on day %2$lld at %3$@"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Every %1$lld months on day %2$lld at %3$@"
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Every %#@months@ on day %2$lld at %3$@"
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg month"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg months"
+                    }
+                  }
                 }
               }
             }
           }
         },
         "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld месяц %2$lld-го числа в %3$@"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld месяца %2$lld-го числа в %3$@"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld месяцев %2$lld-го числа в %3$@"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld месяца %2$lld-го числа в %3$@"
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждые %#@months@ %2$lld-го числа в %3$@"
+          },
+          "substitutions" : {
+            "months" : {
+              "argNum" : 1,
+              "formatSpecifier" : "lld",
+              "variations" : {
+                "plural" : {
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg месяц"
+                    }
+                  },
+                  "few" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg месяца"
+                    }
+                  },
+                  "many" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg месяцев"
+                    }
+                  },
+                  "other" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg месяца"
+                    }
+                  }
                 }
               }
             }
