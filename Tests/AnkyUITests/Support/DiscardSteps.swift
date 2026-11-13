@@ -3,7 +3,7 @@ import XCTest
 
 @MainActor
 func discardChanges(in app: XCUIApplication) {
-    let discard = app.buttons["discard-changes"]
+    let discard = app.buttons["discard-changes"].firstMatch
     XCTAssertTrue(discard.waitForExistence(timeout: 10))
     discard.tap()
 }

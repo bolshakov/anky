@@ -28,7 +28,7 @@ final class CancelTests: XCTestCase {
         setSeverity(1, in: app)
         app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(app.buttons["discard-changes"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["discard-changes"].firstMatch.waitForExistence(timeout: 10))
         XCTAssertFalse(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 2))
         attachScreenshot(named: "cancel-after-change")
 
