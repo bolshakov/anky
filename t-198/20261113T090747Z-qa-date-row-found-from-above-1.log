@@ -1,0 +1,35 @@
+$ grep -n -A30 'func scrollToDateRow' Tests/AnkyUITests/Support/DateSteps.swift
+exit: 0
+commit: 389d9278e5af47ed5d01e5fe8e46923e2ded47c6
+
+72:func scrollToDateRow(in app: XCUIApplication) {
+73-    let row = dateRow(in: app)
+74-    let top = app.frame.minY + app.frame.height / 8
+75-    func isClear() -> Bool {
+76-        let bottom = saveBarTop(in: app)
+77-        return row.exists && row.isHittable && (top ..< bottom).contains(row.frame.midY)
+78-    }
+79-    for attempt in 0 ..< swipesToSearchBelow + swipesToSearchAbove where !isClear() {
+80-        let rowIsBelow = row.exists ? row.frame.midY > app.frame.midY : attempt < swipesToSearchBelow
+81-        if rowIsBelow {
+82-            app.swipeUp()
+83-        } else {
+84-            app.swipeDown()
+85-        }
+86-    }
+87-}
+88-
+89-/// Taps the date row and waits for the wheel to appear.
+90-@MainActor
+91-func openDateWheel(in app: XCUIApplication) {
+92-    let row = dateRow(in: app)
+93-    XCTAssertTrue(row.waitForExistence(timeout: 10))
+94-    row.tap()
+95-    XCTAssertTrue(dateWheel(in: app).waitForExistence(timeout: 10))
+96-}
+97-
+98-/// The hour wheel reads "00 o'clock" but takes only the bare two digits, as its possible values show.
+99-/// Each step moves one hour, since a jump of two hours did not stick on the wheel. The wheel must be open.
+100-@MainActor
+101-func moveDateHour(by delta: Int, in app: XCUIApplication) {
+102-    let hours = dateWheel(in: app).pickerWheels.element(boundBy: 1)
