@@ -1,0 +1,35 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t272-04-2/tmp/tools/alt.sh
+exit: 0
+commit: 9416f4fe54993161bfd417c738ee4c07688e5fe9
+
+describe-ui lines:     4162
+$ grep -i "by week" ui.json
+grep exit 1
+labels seen:
+"AXLabel" : "",
+"AXLabel" : "0",
+"AXLabel" : "1 month",
+"AXLabel" : "3 months",
+"AXLabel" : "31 entries and 5 doses, August 13 to November 13.",
+"AXLabel" : "6 months",
+"AXLabel" : "Anky report, Actions Menu",
+"AXLabel" : "Anky",
+"AXLabel" : "BASDAI results",
+"AXLabel" : "calendar",
+"AXLabel" : "clock",
+"AXLabel" : "close",
+"AXLabel" : "edit",
+"AXLabel" : "Form Filling",
+"AXLabel" : "History",
+"AXLabel" : "Include BASDAI scores",
+"AXLabel" : "Markup",
+"AXLabel" : "Period",
+"AXLabel" : "Preview"
+"AXLabel" : "Report",
+"AXLabel" : "Search",
+"AXLabel" : "Settings",
+"AXLabel" : "Share",
+"AXLabel" : "Shows the scores saved in this period. Everything stays on this iPhone until you share the report.",
+"AXLabel" : "Tab Bar",
+"AXLabel" : "Today",
+"AXLabel" : "Vertical scroll bar, 1 page",

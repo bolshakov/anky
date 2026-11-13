@@ -1,0 +1,49 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t272-04-2/tmp/tc.txt
+exit: 0
+commit: 9416f4fe54993161bfd417c738ee4c07688e5fe9
+
+pages 1 size 612.0x792.0
+text:
+Symptom report
+August 13 to November 13, 2026 · 3 months · created November 13, 2026
+Anky
+Name
+31 entries 5 doses First entry August 13 Recorded by the patient in Anky.
+Counts, averages and ranges only.
+Pain
+Stiffness
+Severity by week, 0 to 10
+weekly average 10
+5
+0
+10
+5
+0
+10
+5
+0
+lowest to highest one entry number under a bar: entries that week– none logged
+1 1 – 1 1 1 – 1 1 1 1 – 1 1
+– 1 1 – 1 1 1 1 – 1 1 1 – 1
+Fatigue
+– 1 1 1 1 – 1 1 1 – 1 1 1 –
+Aug 9 Aug 16 Aug 23 Aug 30 Sep 6 Sep 13 Sep 20 Sep 27 Oct 4 Oct 11 Oct 18 Oct 25 Nov 1 Nov 8
+Places logged
+None logged in this period
+Medication: doses, and pain before and after
+Medication Doses Per week
+With an
+after-reading
+Pain before: average
+(lowest–highest)
+Pain after: average
+(lowest–highest)
+Average time
+to after-
+reading
+Zorblex
+As needed
+5 0.4 0– – –
+Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10.
+Anky is a personal log kept by the patient. It does not give medical advice.
+Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page 1 of 1 Get Anky on the App Store
