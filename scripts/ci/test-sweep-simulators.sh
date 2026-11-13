@@ -448,8 +448,9 @@ run_sweep STUB_LIST=fail
 [ "$code" = 2 ] && [ ! -d "$tree/lock" ]
 report "the lock is removed after a run that exits 2" $?
 
-# usage: lock_after_signal <signal>. Passes when a run stopped by that signal while it waits on simctl leaves no lock.
-lock_after_signal() {
+# usage: lock_after_term. Passes when a run stopped by TERM while it waits on simctl leaves no lock and ends through its
+# own trap, which exits 1. A shell that TERM killed outright ends with 143, and macOS sh removes the lock then too.
+lock_after_term() {
   new_tree
   device anky-stuck $u1 Booted $old
   env PATH="$bin:$PATH" SWEEP_KILL="$bin/kill" SWEEP_DEVICES_DIR="$tree/devices" SWEEP_GRACE_SECONDS=3600 \
@@ -460,15 +461,13 @@ lock_after_signal() {
     tries=$((tries + 1))
     sleep 0.1
   done
-  kill -s "$1" "$sweep_pid"
+  kill -s TERM "$sweep_pid"
   wait "$sweep_pid"
-  [ ! -d "$tree/lock" ]
+  term_code=$?
+  [ "$term_code" = 1 ] && [ ! -d "$tree/lock" ]
 }
 
-lock_after_signal TERM
-report "the lock is removed when the run is stopped by TERM" $?
-
-lock_after_signal INT
-report "the lock is removed when the run is stopped by INT" $?
+lock_after_term
+report "the lock is removed and the run exits through its trap when it is stopped by TERM" $?
 
 [ "$failures" = 0 ]
