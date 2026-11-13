@@ -1,0 +1,7 @@
+$ sh -c 'echo '\''severity-value read before Save: 2 of 10 (read live, not captured)'\''; axe describe-ui --udid 9E10BC0A-EFB0-42E8-A18C-EBC0E5A8AC68 > /Users/bolshakov/Projects/personal/anky.wt/qa-t347-03-1/tmp/t347-walk/d.json; echo new-entry-screen count: $(grep -c new-entry-screen /Users/bolshakov/Projects/personal/anky.wt/qa-t347-03-1/tmp/t347-walk/d.json); grep -o '\''entry-row-[a-z]*'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t347-03-1/tmp/t347-walk/d.json | sort -u'
+exit: 0
+commit: b3e4a88267d63e2c77d0f8e8688e3614da9e5cb6
+
+severity-value read before Save: 2 of 10 (read live, not captured)
+new-entry-screen count: 0
+entry-row-pain
