@@ -1,0 +1,5 @@
+$ grep -c 'Cannot reliably infer argument number for plural variation' build.log
+exit: 1
+commit: 3004c09fce44d33cc85463f9005de3f6dcaaaa7c
+
+0

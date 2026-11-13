@@ -1,0 +1,10 @@
+$ bash -c 'xcodebuild build -project Anky.xcodeproj -scheme Anky -destination '\''generic/platform=iOS Simulator'\'' -derivedDataPath .derived -clonedSourcePackagesDirPath .spm > build.log 2>&1; echo xcodebuild-exit=$?; tail -5 build.log'
+exit: 0
+commit: 3004c09fce44d33cc85463f9005de3f6dcaaaa7c
+
+xcodebuild-exit=0
+    cd /Users/bolshakov/Projects/personal/anky.wt/qa-t252-01-1/checkout
+    /usr/bin/touch -c /Users/bolshakov/Projects/personal/anky.wt/qa-t252-01-1/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app
+
+** BUILD SUCCEEDED **
+
