@@ -27,6 +27,7 @@ struct BasdaiListView: View {
                         } label: {
                             BasdaiResultRow(result: result)
                         }
+                        .fillsCardRow()
                         .accessibilityIdentifier("basdai-row-\(index)")
                         .deleteSwipe {
                             pendingDelete = result.id
