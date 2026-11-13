@@ -17,17 +17,25 @@ private struct DiscardConfirmation: ViewModifier {
         content
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: cancel) { Text("Cancel").minimumTapTarget() }
-                        .accessibilityIdentifier(cancelID)
-                        .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
-                            Button("Discard Changes", role: .destructive, action: close)
-                                .accessibilityIdentifier("discard-changes")
-                        } message: {
-                            Text("Are you sure you want to discard your changes?")
-                        }
+                    cancelButton
+                        .accessibilityElement(children: .contain)
+                        .accessibilityIdentifier("\(cancelID)-item")
                 }
             }
             .interactiveDismissDisabled(hasChanges)
+    }
+
+    private var cancelButton: some View {
+        Button("Cancel", action: cancel)
+            .frame(minHeight: Spacing.tapTarget)
+            .contentShape(Rectangle())
+            .accessibilityIdentifier(cancelID)
+            .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
+                Button("Discard Changes", role: .destructive, action: close)
+                    .accessibilityIdentifier("discard-changes")
+            } message: {
+                Text("Are you sure you want to discard your changes?")
+            }
     }
 
     private func cancel() {
