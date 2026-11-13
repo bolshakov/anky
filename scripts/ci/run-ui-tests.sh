@@ -1,8 +1,9 @@
 #!/bin/sh
-# Runs the named UI tests, or every UI test, on a new simulator. Exits 0 only when xcodebuild test exits 0, every named
-# test ran, and no test skipped. A try that runs past its limit is run once more on a rebooted simulator.
+# Runs the named UI tests, or every UI test, on a new simulator. A name is Class/testMethod, or a bare Class for all its
+# tests. Exits 0 only when xcodebuild test exits 0, every named test ran, at least one test of every named class ran,
+# and no test skipped. A try that runs past its limit is run once more on a rebooted simulator.
 if [ $# -lt 2 ] || { [ "$1" != light ] && [ "$1" != dark ]; }; then
-  echo "usage: run-ui-tests.sh <light|dark> <derived data dir> [Class/testMethod ...]" >&2
+  echo "usage: run-ui-tests.sh <light|dark> <derived data dir> [Class | Class/testMethod ...]" >&2
   exit 2
 fi
 
@@ -111,6 +112,14 @@ printed() {
   grep -qF "Test Case '-[AnkyUITests.$1]' $2" "$log"
 }
 
+# Whether xcodebuild printed a passed or failed line for the test "Class/method", or for any test of the class "Class".
+ran() {
+  case "$1" in
+    */*) printed "${1%/*} ${1#*/}" passed || printed "${1%/*} ${1#*/}" failed ;;
+    *) grep -F "Test Case '-[AnkyUITests.$1 " "$log" | grep -qE "\]' (passed|failed)" ;;
+  esac
+}
+
 # Judges the last try by the lines xcodebuild printed. Returns 1 when a named test did not run or a test skipped.
 judge() {
   result=0
@@ -119,7 +128,7 @@ judge() {
     result=1
   fi
   for name do
-    if ! printed "${name%/*} ${name#*/}" passed && ! printed "${name%/*} ${name#*/}" failed; then
+    if ! ran "$name"; then
       echo "not run: $name"
       result=1
     fi
