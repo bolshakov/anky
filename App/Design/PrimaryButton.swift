@@ -5,7 +5,19 @@ extension View {
     /// The prominent style sets its label to white on the accent, so the label colour is set here with it.
     func primaryButton() -> some View {
         buttonStyle(.glassProminent)
-            .foregroundStyle(Color.onTint)
+            .modifier(EnabledLabelColor())
+    }
+}
+
+private struct EnabledLabelColor: ViewModifier {
+    @Environment(\.isEnabled) private var isEnabled
+
+    func body(content: Content) -> some View {
+        if isEnabled {
+            content.foregroundStyle(Color.onTint)
+        } else {
+            content
+        }
     }
 }
 
