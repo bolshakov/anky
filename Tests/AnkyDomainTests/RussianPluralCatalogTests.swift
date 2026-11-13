@@ -7,11 +7,11 @@ struct RussianPluralCatalogTests {
         let entries = try CompiledCatalog.entries()
         let counted = entries.filter {
             !awaitingRussian.contains($0.key) && $0.value.localizations?.values
-                .contains { $0.variations != nil } == true
+                .contains { !$0.pluralTables.isEmpty } == true
         }
         for key in counted.keys.sorted() {
-            let plural = counted[key]?.localizations?["ru"]?.variations?.plural ?? [:]
-            let forms = plural.filter { $0.value.stringUnit != nil }.keys
+            let plural = counted[key]?.localizations?["ru"]?.pluralTables.flatMap(\.self) ?? []
+            let forms = plural.filter { $0.value.stringUnit != nil }.map(\.key)
             #expect(Set(forms) == ["one", "few", "many", "other"], "\(key) lacks a Russian plural form")
         }
     }

@@ -49,11 +49,13 @@ other => Каждые %1$lld недели: %2$@, в %3$@
 
 private let everyMonthsKey = "Every %lld months on day %lld at %@"
 
+private let approvedEveryMonthsSentence = "Каждые %#@months@ %2$lld-го числа в %3$@"
+
 private let approvedEveryMonthsValues = table("""
-one => Каждые %1$lld месяц %2$lld-го числа в %3$@
-few => Каждые %1$lld месяца %2$lld-го числа в %3$@
-many => Каждые %1$lld месяцев %2$lld-го числа в %3$@
-other => Каждые %1$lld месяца %2$lld-го числа в %3$@
+one => %arg месяц
+few => %arg месяца
+many => %arg месяцев
+other => %arg месяца
 """)
 
 struct RussianCountedTextTests {
@@ -61,7 +63,7 @@ struct RussianCountedTextTests {
         let entries = try CompiledCatalog.entries()
         let counted = [(minutesKey, approvedMinutesValues), (hoursKey, approvedHoursValues),
                        (charactersLeftKey, approvedCharactersLeftValues), (everyDaysKey, approvedEveryDaysValues),
-                       (everyWeeksKey, approvedEveryWeeksValues), (everyMonthsKey, approvedEveryMonthsValues)]
+                       (everyWeeksKey, approvedEveryWeeksValues)]
         for (key, approved) in counted {
             let plural = try #require(entries[key]?.localizations?["ru"]?.variations?.plural)
             #expect(Set(plural.keys) == ["one", "few", "many", "other"], "\(key) lacks a plural form")
@@ -69,6 +71,34 @@ struct RussianCountedTextTests {
                 #expect(plural[form]?.stringUnit?.value == value)
             }
         }
+    }
+
+    @Test func theMonthCountDrivesTheRussianPluralOfTheMonthsText() throws {
+        let entries = try CompiledCatalog.entries()
+        let russian = try #require(entries[everyMonthsKey]?.localizations?["ru"])
+        #expect(russian.stringUnit?.value == approvedEveryMonthsSentence)
+        #expect(russian.variations == nil)
+        let months = try #require(russian.substitutions?["months"])
+        #expect(months.argNum == 1)
+        #expect(months.formatSpecifier == "lld")
+        let plural = try #require(months.variations?.plural)
+        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
+        for (form, value) in approvedEveryMonthsValues {
+            #expect(plural[form]?.stringUnit?.value == value)
+        }
+    }
+
+    @Test func theMonthCountDrivesTheEnglishPluralOfTheMonthsText() throws {
+        let entries = try CompiledCatalog.entries()
+        let english = try #require(entries[everyMonthsKey]?.localizations?["en"])
+        #expect(english.stringUnit?.value == "Every %#@months@ on day %2$lld at %3$@")
+        #expect(english.variations == nil)
+        let months = try #require(english.substitutions?["months"])
+        #expect(months.argNum == 1)
+        #expect(months.formatSpecifier == "lld")
+        let plural = try #require(months.variations?.plural)
+        #expect(plural["one"]?.stringUnit?.value == "%arg month")
+        #expect(plural["other"]?.stringUnit?.value == "%arg months")
     }
 
     @Test func minutesAndHoursTakeTheFormOfTheirCount() throws {

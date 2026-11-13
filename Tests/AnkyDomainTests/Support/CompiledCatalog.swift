@@ -51,10 +51,22 @@ extension CompiledCatalog {
     struct Localization: Decodable {
         let stringUnit: StringUnit?
         let variations: Variations?
+        let substitutions: [String: Substitution]?
+
+        /// The plural tables this localization holds: its own, and those inside its substitutions.
+        var pluralTables: [[String: Localization]] {
+            ([variations] + (substitutions ?? [:]).values.map(\.variations)).compactMap { $0?.plural }
+        }
 
         var stringUnits: [StringUnit] {
-            stringUnit.map { [$0] } ?? variations?.plural.values.compactMap(\.stringUnit) ?? []
+            [stringUnit].compactMap(\.self) + pluralTables.flatMap { $0.values.compactMap(\.stringUnit) }
         }
+    }
+
+    struct Substitution: Decodable {
+        let argNum: Int
+        let formatSpecifier: String
+        let variations: Variations?
     }
 
     struct StringUnit: Decodable {
