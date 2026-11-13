@@ -1,0 +1,6 @@
+$ sh -c 'python3 -I "$TMPDIR/t349-catalog.py" values App/Localizable.xcstrings | wc -l; python3 -I "$TMPDIR/t349-catalog.py" values App/Localizable.xcstrings | LC_ALL=en_US.UTF-8 grep -iE "вы |ваш"; echo "grep exit $?"'
+exit: 0
+commit: 7a970f44c40cd2aea5c48ce561dca6ec73bbe3d1
+
+     315
+grep exit 1

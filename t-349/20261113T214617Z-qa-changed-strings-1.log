@@ -1,0 +1,6 @@
+$ sh -c 'python3 -I "$TMPDIR/t349-catalog.py" changed App/Localizable.xcstrings; echo "exit $?"'
+exit: 0
+commit: 7a970f44c40cd2aea5c48ce561dca6ec73bbe3d1
+
+28 of 28 read as the Now column
+exit 0

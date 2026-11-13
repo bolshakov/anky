@@ -1,0 +1,7 @@
+$ sh -c 'grep -E "settings-screen|Твои данные" "$TMPDIR/ui.json"'
+exit: 0
+commit: 7a970f44c40cd2aea5c48ce561dca6ec73bbe3d1
+
+                                                                        "AXUniqueId" : "settings-screen",
+                                                                                        "AXLabel" : "Твои данные",
+                                                                                        "AXLabel" : "Твои данные остаются на этом iPhone, пока ты не поделишься экспортом.",
