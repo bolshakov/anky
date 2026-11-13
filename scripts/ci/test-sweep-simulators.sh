@@ -55,8 +55,12 @@ case "\$1 \$2" in
     while IFS='|' read -r name udid state age; do
       printf '    %s (%s) (%s) \n' "\$name" "\$udid" "\$state"
     done < "$fixture" ;;
-  "simctl shutdown") [ "\$STUB_FAIL" = "shutdown \$3" ] && exit 1 ;;
-  "simctl delete") [ "\$STUB_FAIL" = "delete \$3" ] && exit 1 ;;
+  "simctl shutdown")
+    [ "\$STUB_HANG" = "shutdown \$3" ] && exec sleep 30
+    [ "\$STUB_FAIL" = "shutdown \$3" ] && exit 1 ;;
+  "simctl delete")
+    [ "\$STUB_HANG" = "delete \$3" ] && exec sleep 30
+    [ "\$STUB_FAIL" = "delete \$3" ] && exit 1 ;;
   *) echo "stub xcrun: unexpected call \$*" >&2; exit 99 ;;
 esac
 exit 0
@@ -91,7 +95,7 @@ EOF
 # usage: run_sweep [VAR=value ...]. Sets code to the script's exit status. Runs it under sh, as launchd does.
 run_sweep() {
   env PATH="$bin:$PATH" SWEEP_KILL="$bin/kill" SWEEP_DEVICES_DIR="$tree/devices" SWEEP_GRACE_SECONDS=3600 \
-    SWEEP_STEP_SECONDS=5 "$@" sh "$sweep" > "$out" 2> "$err"
+    SWEEP_STEP_SECONDS=5 SWEEP_LOCK_DIR="$tree/lock" "$@" sh "$sweep" > "$out" 2> "$err"
   code=$?
 }
 
@@ -374,5 +378,97 @@ proc 4101 1 "$rt/usr/libexec/backboardd"
 run_sweep SWEEP_TERM_SECONDS=0 SWEEP_NAME_GLOB=no-such-device
 [ "$code" = 0 ] && grep -qx "ended 4101 backboardd" "$out" && no_call "simctl delete"
 report "orphans are ended whatever the device glob matches" $?
+
+# usage: seconds_taken <command...>. Sets taken to the whole seconds the command ran.
+seconds_taken() {
+  began=$(date +%s)
+  "$@"
+  taken=$(($(date +%s) - began))
+}
+
+new_tree
+device anky-stuck $u1 Booted $old
+device anky-next $u2 Booted $old
+seconds_taken run_sweep STUB_HANG="shutdown $u1" SWEEP_STEP_SECONDS=1
+[ "$code" = 0 ] && [ "$taken" -lt 10 ] && grep -qx "gave up on anky-stuck: shutdown timed out" "$out" \
+  && no_call "simctl delete $u1" && grep -qx "removed anky-next" "$out" && ! grep -q "failed" "$out"
+report "a shutdown that hangs is given up on, the device is left, and the next device is processed" $?
+
+new_tree
+device anky-stuck $u1 Shutdown $old
+device anky-next $u2 Shutdown $old
+seconds_taken run_sweep STUB_HANG="delete $u1" SWEEP_STEP_SECONDS=1
+[ "$code" = 0 ] && [ "$taken" -lt 10 ] && grep -qx "gave up on anky-stuck: delete timed out" "$out" \
+  && grep -qx "removed anky-next" "$out" && ! grep -q "removed anky-stuck" "$out" && ! grep -q "failed" "$out"
+report "a delete that hangs is given up on and the next device is processed" $?
+
+new_tree
+device anky-stopping $u1 "Shutting Down" $old
+seconds_taken run_sweep STUB_HANG="shutdown $u1" SWEEP_STEP_SECONDS=1
+[ "$code" = 0 ] && grep -qx "xcrun simctl shutdown $u1" "$calls" \
+  && grep -qx "gave up on anky-stopping: shutdown timed out" "$out" && no_call "simctl delete"
+report "a device stuck shutting down is given a shutdown call and given up on when it hangs" $?
+
+new_tree
+mkdir "$tree/lock"
+echo $$ > "$tree/lock/pid"
+device anky-dead $u1 Booted $old
+run_sweep
+[ "$code" = 0 ] && [ "$(cat "$out")" = "sweep already running" ] && [ ! -s "$calls" ] && [ -d "$tree/lock" ] \
+  && [ "$(cat "$tree/lock/pid")" = "$$" ]
+report "a run while the lock holds a live pid prints that a sweep is running, calls nothing and keeps the lock" $?
+
+new_tree
+sh -c 'exit 0' &
+dead=$!
+wait "$dead"
+mkdir "$tree/lock"
+echo "$dead" > "$tree/lock/pid"
+device anky-dead $u1 Booted $old
+run_sweep
+[ "$code" = 0 ] && grep -qx "removed anky-dead" "$out" && ! grep -q "already running" "$out" && [ ! -d "$tree/lock" ]
+report "a lock whose pid is dead is taken over and removed when the run ends" $?
+
+new_tree
+mkdir "$tree/lock"
+device anky-dead $u1 Booted $old
+run_sweep
+[ "$code" = 0 ] && grep -qx "removed anky-dead" "$out" && [ ! -d "$tree/lock" ]
+report "a lock with no pid in it is taken over" $?
+
+new_tree
+device anky-dead $u1 Booted $old
+run_sweep
+[ "$code" = 0 ] && [ ! -d "$tree/lock" ]
+report "the lock is removed after a normal run" $?
+
+new_tree
+device anky-dead $u1 Booted $old
+run_sweep STUB_LIST=fail
+[ "$code" = 2 ] && [ ! -d "$tree/lock" ]
+report "the lock is removed after a run that exits 2" $?
+
+# usage: lock_after_signal <signal>. Passes when a run stopped by that signal while it waits on simctl leaves no lock.
+lock_after_signal() {
+  new_tree
+  device anky-stuck $u1 Booted $old
+  env PATH="$bin:$PATH" SWEEP_KILL="$bin/kill" SWEEP_DEVICES_DIR="$tree/devices" SWEEP_GRACE_SECONDS=3600 \
+    SWEEP_STEP_SECONDS=1 SWEEP_LOCK_DIR="$tree/lock" STUB_HANG="shutdown $u1" sh "$sweep" > "$out" 2> "$err" &
+  sweep_pid=$!
+  tries=0
+  while [ ! -s "$tree/lock/pid" ] && [ "$tries" -lt 50 ]; do
+    tries=$((tries + 1))
+    sleep 0.1
+  done
+  kill -s "$1" "$sweep_pid"
+  wait "$sweep_pid"
+  [ ! -d "$tree/lock" ]
+}
+
+lock_after_signal TERM
+report "the lock is removed when the run is stopped by TERM" $?
+
+lock_after_signal INT
+report "the lock is removed when the run is stopped by INT" $?
 
 [ "$failures" = 0 ]
