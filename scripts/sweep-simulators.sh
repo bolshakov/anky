@@ -6,16 +6,44 @@ SWEEP_STEP_SECONDS=${SWEEP_STEP_SECONDS:-45}
 SWEEP_DEVICES_DIR=${SWEEP_DEVICES_DIR:-$HOME/Library/Developer/CoreSimulator/Devices}
 SWEEP_TERM_SECONDS=${SWEEP_TERM_SECONDS:-2}
 SWEEP_KILL=${SWEEP_KILL:-kill}
+SWEEP_LOCK_DIR=${SWEEP_LOCK_DIR:-${TMPDIR:-/tmp}/anky-sweep.lock}
 
 for tool in xcrun timeout; do
   command -v "$tool" > /dev/null 2>&1 || { echo "sweep-simulators: $tool not found" >&2; exit 2; }
 done
 
+# usage: lock_holder_alive. Succeeds when the pid in the lock names a running process. Pid 0 would name our own group.
+lock_holder_alive() {
+  holder=$(cat "$SWEEP_LOCK_DIR/pid" 2> /dev/null)
+  case "$holder" in
+    '' | *[!0-9]* | 0) return 1 ;;
+  esac
+  kill -0 "$holder" 2> /dev/null
+}
+
+# mkdir is atomic, so of two overlapping runs only one takes the lock. A dead pid in the lock means a crashed run.
+if ! mkdir "$SWEEP_LOCK_DIR" 2> /dev/null; then
+  if lock_holder_alive; then
+    echo "sweep already running"
+    exit 0
+  fi
+  rm -rf "$SWEEP_LOCK_DIR"
+  mkdir "$SWEEP_LOCK_DIR" 2> /dev/null || { echo "sweep already running"; exit 0; }
+fi
+echo $$ > "$SWEEP_LOCK_DIR/pid"
+trap 'rm -rf "$SWEEP_LOCK_DIR"' EXIT
+trap 'exit 1' TERM INT
+
 # usage: step <name> <shutdown|delete> <udid>. Runs one simctl call under the step limit and says when it failed.
+# Status 124 is timeout's own, so a stuck call is given up on and left for the next run.
 step() {
   timeout "$SWEEP_STEP_SECONDS" xcrun simctl "$2" "$3" < /dev/null > /dev/null 2>&1 && return 0
   status=$?
-  echo "$1: $2 failed"
+  if [ "$status" = 124 ]; then
+    echo "gave up on $1: $2 timed out"
+  else
+    echo "$1: $2 failed"
+  fi
   return "$status"
 }
 
