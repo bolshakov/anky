@@ -144,6 +144,11 @@ judge() {
 udid=$(xcrun simctl create "anky-ui-$$" com.apple.CoreSimulator.SimDeviceType.iPhone-17) || exit 1
 echo "simulator $udid"
 xcrun simctl boot "$udid" || exit 1
+# On a fresh simulator "appearance light" writes no mode, and until a mode is set the XCUITest setter cannot switch
+# to dark.
+if [ "$appearance" = light ]; then
+  xcrun simctl ui "$udid" appearance dark || exit 1
+fi
 xcrun simctl ui "$udid" appearance "$appearance" || exit 1
 
 try=1
