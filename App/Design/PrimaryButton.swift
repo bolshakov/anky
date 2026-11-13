@@ -12,12 +12,9 @@ extension View {
 private struct EnabledLabelColor: ViewModifier {
     @Environment(\.isEnabled) private var isEnabled
 
+    /// The system's own disabled label measured under 2:1 against the dimmed capsule, so a disabled label is `ink`.
     func body(content: Content) -> some View {
-        if isEnabled {
-            content.foregroundStyle(Color.onTint)
-        } else {
-            content
-        }
+        content.foregroundStyle(isEnabled ? Color.onTint : Color.ink)
     }
 }
 
