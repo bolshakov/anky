@@ -59,6 +59,12 @@
             "state" : "translated",
             "value" : "%1$@ to %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С %1$@ по %2$@"
+          }
         }
       }
     },
@@ -252,6 +258,36 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld BASDAI results"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результат BASDAI"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результата BASDAI"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результатов BASDAI"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результата BASDAI"
                 }
               }
             }
@@ -451,6 +487,12 @@
             "state" : "translated",
             "value" : "Anky is a personal log kept by the patient. It does not give medical advice."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky — личный журнал, который ведёт сам пациент. Не заменяет консультацию врача."
+          }
         }
       }
     },
@@ -471,6 +513,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BASDAI results"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты BASDAI"
           }
         }
       }
@@ -585,6 +633,12 @@
             "state" : "translated",
             "value" : "Counts, averages and ranges only."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только количество, средние значения и диапазоны."
+          }
         }
       }
     },
@@ -595,6 +649,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "created %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "создан %@"
           }
         }
       }
@@ -1172,6 +1232,12 @@
             "state" : "translated",
             "value" : "First entry %@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первая запись: %@"
+          }
         }
       }
     },
@@ -1182,6 +1248,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Get Anky on the App Store"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky в App Store"
           }
         }
       }
@@ -1194,6 +1266,12 @@
             "state" : "translated",
             "value" : "Include BASDAI scores"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить результаты BASDAI"
+          }
         }
       }
     },
@@ -1204,6 +1282,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "None logged in this period"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За этот период записей нет"
           }
         }
       }
@@ -1216,6 +1300,12 @@
             "state" : "translated",
             "value" : "lowest to highest"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "от наименьшего до наибольшего"
+          }
         }
       }
     },
@@ -1226,6 +1316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "none logged"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "записей нет"
           }
         }
       }
@@ -1238,6 +1334,12 @@
             "state" : "translated",
             "value" : "number under a bar: entries that week"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "число под столбцом: записей за неделю"
+          }
         }
       }
     },
@@ -1248,6 +1350,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "one entry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "одна запись"
           }
         }
       }
@@ -1260,6 +1368,12 @@
             "state" : "translated",
             "value" : "weekly average"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "среднее за неделю"
+          }
         }
       }
     },
@@ -1271,6 +1385,12 @@
             "state" : "translated",
             "value" : "Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page %1$lld of %2$lld"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создано в Anky, бесплатном журнале симптомов для iPhone · anky.bolshakov.dev · Страница %1$lld из %2$lld"
+          }
         }
       }
     },
@@ -1281,6 +1401,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
           }
         }
       }
@@ -1422,6 +1548,12 @@
             "state" : "translated",
             "value" : "Recorded by the patient in Anky."
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записано пациентом в Anky."
+          }
         }
       }
     },
@@ -1496,6 +1628,12 @@
             "state" : "translated",
             "value" : "Severity by week, 0 to 10"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сила симптома по неделям, от 0 до 10"
+          }
         }
       }
     },
@@ -1506,6 +1644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывает результаты, сохранённые за этот период. Всё остаётся на этом iPhone, пока ты не поделишься отчётом."
           }
         }
       }
@@ -1607,6 +1751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Symptom report"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт о симптомах"
           }
         }
       }
@@ -3240,6 +3390,12 @@
             "state" : "translated",
             "value" : "–"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "–"
+          }
         }
       }
     },
@@ -3625,13 +3781,37 @@
       }
     },
     "Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone." : {
-      "comment" : "The question of the alert after Erase all data in Settings. Names everything the erase removes."
+      "comment" : "The question of the alert after Erase all data in Settings. Names everything the erase removes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все данные на этом iPhone: записи, приёмы, лекарства и результаты BASDAI? Это нельзя отменить."
+          }
+        }
+      }
     },
     "Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest." : {
-      "comment" : "The alert when Erase all data removed the entries and then could not remove the medications. It stops there, so doses and BASDAI results are kept too."
+      "comment" : "The alert when Erase all data removed the entries and then could not remove the medications. It stops there, so doses and BASDAI results are kept too.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи стёрты, но лекарства, приёмы и результаты BASDAI остались. Попробуй стереть остальное ещё раз."
+          }
+        }
+      }
     },
     "Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest." : {
-      "comment" : "The alert when Erase all data removed the entries, doses and medications, and then could not remove the BASDAI results."
+      "comment" : "The alert when Erase all data removed the entries, doses and medications, and then could not remove the BASDAI results.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи, приёмы и лекарства стёрты, но результаты BASDAI остались. Попробуй стереть остальное ещё раз."
+          }
+        }
+      }
     },
     "Couldn't erase your data. Try again." : {
       "localizations" : {
@@ -3745,6 +3925,12 @@
             "state" : "translated",
             "value" : "Q%1$lld %2$@"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В%1$lld %2$@"
+          }
         }
       }
     },
@@ -3755,6 +3941,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
           }
         }
       }
@@ -3882,6 +4074,12 @@
             "state" : "translated",
             "value" : "Places logged"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записанные места"
+          }
         }
       }
     },
@@ -3892,6 +4090,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Place"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Место"
           }
         }
       }
@@ -3904,6 +4108,12 @@
             "state" : "translated",
             "value" : "Entries"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи"
+          }
         }
       }
     },
@@ -3914,6 +4124,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "None logged in this period"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За этот период записей нет"
           }
         }
       }
@@ -3938,6 +4154,12 @@
             "state" : "translated",
             "value" : "BASDAI scores"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты BASDAI"
+          }
         }
       }
     },
@@ -3948,6 +4170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BASDAI scores, continued"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты BASDAI, продолжение"
           }
         }
       }
@@ -3960,6 +4188,12 @@
             "state" : "translated",
             "value" : "Date"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
+          }
         }
       }
     },
@@ -3970,6 +4204,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Q%lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В%lld"
           }
         }
       }
