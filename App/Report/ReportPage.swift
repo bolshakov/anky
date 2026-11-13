@@ -132,6 +132,39 @@ struct ReportTotalsBand: View {
     }
 }
 
+/// Each kind's severity by week, the charts sharing one week axis under the last of them.
+struct ReportSeverityByWeek: View {
+    let block: ReportSeverityBlock
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: ReportMetrics.blockLineGap) {
+            Text("Severity by week heading")
+                .font(.system(size: ReportMetrics.totalsSize, weight: .semibold))
+            if !block.charts.isEmpty {
+                SeverityChartLegend()
+                VStack(spacing: ReportMetrics.chartGap) {
+                    ForEach(block.charts, id: \.kind) { chart in
+                        SeverityWeekChart(
+                            title: Text(chart.kind.displayName), weeks: chart.weeks, sentence: chart.sentence
+                        )
+                    }
+                }
+                WeekAxisRow(labels: block.axisLabels)
+            }
+            ForEach(block.noneLogged, id: \.self) { kind in
+                HStack(spacing: 0) {
+                    Text(kind.displayName)
+                        .font(.system(size: SeverityChartMetrics.kindNameSize, weight: .semibold))
+                        .frame(width: SeverityChartMetrics.plotLeading, alignment: .leading)
+                    Text("Kind none logged")
+                        .font(.system(size: ReportMetrics.bodySize))
+                        .foregroundStyle(ReportPalette.secondary)
+                }
+            }
+        }
+    }
+}
+
 struct ReportHairline: View {
     var body: some View {
         Rectangle()
@@ -197,6 +230,8 @@ enum ReportMetrics {
     static let labelToRule: CGFloat = 6
     static let nameTop: CGFloat = 22
     static let sectionGap: CGFloat = 18
+    static let blockLineGap: CGFloat = 8
+    static let chartGap: CGFloat = 14
     static let bandInset: CGFloat = 9
     static let footerHeight: CGFloat = 60
     static let footerInset: CGFloat = 8

@@ -50,6 +50,8 @@ Legend one entry
 Legend number under a bar
 Legend none logged
 Week count none
+Severity by week heading
+Kind none logged
 Places logged
 Place
 Entries

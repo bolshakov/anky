@@ -114,6 +114,7 @@ struct ReportView: View {
         let summary = ReportSummary(
             entries: model.entries, doses: medications.doses, period: period, now: now, calendar: .current
         )
+        let severity = ReportBlock.whole(AnyView(ReportSeverityByWeek(block: severityBlock(now: now))))
         let places = ReportBlock.whole(AnyView(ReportPlacesBlock(places: places(now: now))))
         let basdaiResults = ReportBasdai(results: basdai.results, period: period, now: now, calendar: .current)
             .included(includesBasdai)
@@ -125,13 +126,22 @@ struct ReportView: View {
             totals: ReportTotalsText(
                 summary: summary, basdaiCount: basdaiResults.count, locale: .current, calendar: .current, bundle: .main
             ),
-            blocks: [places, medicationTable(now: now)] + basdaiBlocks(basdaiResults)
+            blocks: basdaiBlocks(basdaiResults) + [severity, places, medicationTable(now: now)]
         ).pages
     }
 
     private func basdaiBlocks(_ results: [BasdaiResult]) -> [ReportBlock] {
         guard !results.isEmpty else { return [] }
         return [.basdai(rows: results.map { ReportBasdaiRowText($0, locale: .current, calendar: .current) })]
+    }
+
+    private func severityBlock(now: Date) -> ReportSeverityBlock {
+        ReportSeverityBlock(
+            figures: ReportWeeklyFigures(entries: model.entries, period: period, now: now, calendar: .current),
+            locale: .current,
+            calendar: .current,
+            bundle: .main
+        )
     }
 
     private func medicationTable(now: Date) -> ReportBlock {

@@ -1177,6 +1177,17 @@
         }
       }
     },
+    "Kind none logged" : {
+      "comment" : "The report PDF's severity charts: stands after a symptom's name, such as Fatigue, in place of its chart when the period holds no entry of that symptom.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None logged in this period"
+          }
+        }
+      }
+    },
     "Legend lowest to highest" : {
       "comment" : "The report PDF's legend over the severity charts: what the black line through a bar shows, the lowest to the highest severity that week.",
       "localizations" : {
@@ -1453,6 +1464,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранится как запись о скованности."
+          }
+        }
+      }
+    },
+    "Severity by week heading" : {
+      "comment" : "The report PDF's heading over the severity charts, which show each symptom's weekly severity on a scale from 0 to 10.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Severity by week, 0 to 10"
           }
         }
       }
