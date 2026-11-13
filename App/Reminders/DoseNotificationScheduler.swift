@@ -32,7 +32,9 @@ private struct SystemNotificationCenter: NotificationCenterPort {
     let center: UNUserNotificationCenter
 
     func pending() async -> [PendingNotification] {
-        await center.pendingNotificationRequests().map { PendingNotification(identifier: $0.identifier) }
+        await center.pendingNotificationRequests().map {
+            PendingNotification(identifier: $0.identifier, title: $0.content.title)
+        }
     }
 
     func permission() async -> NotificationPermission {

@@ -40,6 +40,15 @@ struct DoseNotificationReconcilerTests {
         ).map(\.identifier)
     }
 
+    private func pendingAsPlanned(_ medications: [Medication], otherPending: Int = 0) -> [PendingNotification] {
+        DoseNotificationPlan.window(
+            medications: medications,
+            now: morning,
+            budget: DoseNotificationPlan.budget(otherPending: otherPending),
+            calendar: berlin
+        ).map { PendingNotification(identifier: $0.identifier, title: DoseNotificationContent($0, body: "").title) }
+    }
+
     private func reconcile(
         _ medications: [Medication],
         on center: FakeNotificationCenter,
@@ -136,7 +145,7 @@ struct DoseNotificationReconcilerTests {
 
     @Test func `erase clears every dose notification and leaves other requests`() async throws {
         let naproxen = try medication("Naproxen")
-        let center = FakeNotificationCenter(pending: ["daily-reminder"])
+        let center = FakeNotificationCenter(pending: [.other("daily-reminder")])
         await reconcile([naproxen], on: center)
 
         await reconcile([], on: center)
@@ -147,7 +156,7 @@ struct DoseNotificationReconcilerTests {
     @Test func `launch over pending requests that match changes nothing`() async throws {
         let naproxen = try medication("Naproxen", at: [(9, 0), (21, 0)])
         let center = FakeNotificationCenter(
-            pending: expected([naproxen], otherPending: 1) + ["daily-reminder"],
+            pending: pendingAsPlanned([naproxen], otherPending: 1) + [.other("daily-reminder")],
             permission: .denied
         )
 
@@ -173,7 +182,7 @@ struct DoseNotificationReconcilerTests {
     @Test func `other pending requests count against the budget and are never removed`() async throws {
         let others = otherRequests(count: 5)
         let medications = try busyPerson()
-        let center = FakeNotificationCenter(pending: others)
+        let center = FakeNotificationCenter(pending: others.map(PendingNotification.other))
 
         await reconcile(medications, on: center)
 
@@ -185,7 +194,7 @@ struct DoseNotificationReconcilerTests {
 
     @Test func `the kept doses are the nearest in time across medications`() async throws {
         let medications = try busyPerson()
-        let center = FakeNotificationCenter(pending: otherRequests(count: 3))
+        let center = FakeNotificationCenter(pending: otherRequests(count: 3).map(PendingNotification.other))
         let everyDose = DoseNotificationPlan.window(
             medications: medications,
             now: morning,
@@ -215,7 +224,9 @@ struct DoseNotificationReconcilerTests {
     @Test func `no budget left adds nothing and still removes the old doses`() async throws {
         let naproxen = try medication("Naproxen")
         let stale = "\(DoseNotificationPlan.identifierPrefix)\(UUID().uuidString).1"
-        let center = FakeNotificationCenter(pending: otherRequests(count: DoseNotificationPlan.limit) + [stale])
+        let center = FakeNotificationCenter(
+            pending: (otherRequests(count: DoseNotificationPlan.limit) + [stale]).map(PendingNotification.other)
+        )
 
         await reconcile([naproxen], on: center)
 
@@ -283,7 +294,7 @@ struct DoseNotificationReconcilerTests {
 
     @Test func `permission is not asked when everything is already pending`() async throws {
         let naproxen = try medication("Naproxen")
-        let center = FakeNotificationCenter(pending: expected([naproxen]), permission: .notDetermined)
+        let center = FakeNotificationCenter(pending: pendingAsPlanned([naproxen]), permission: .notDetermined)
 
         await reconcile([naproxen], on: center)
 
@@ -292,7 +303,7 @@ struct DoseNotificationReconcilerTests {
 
     @Test func `old doses are removed even when permission is denied`() async throws {
         let naproxen = try medication("Naproxen")
-        let center = FakeNotificationCenter(pending: expected([naproxen]), permission: .denied)
+        let center = FakeNotificationCenter(pending: pendingAsPlanned([naproxen]), permission: .denied)
 
         await reconcile([], on: center)
 

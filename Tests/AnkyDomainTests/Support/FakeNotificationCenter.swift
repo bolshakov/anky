@@ -2,7 +2,7 @@
 import AnkyDomain
 import Foundation
 
-/// A notification center held in memory. It keeps what is pending by identifier and records every call.
+/// A notification center held in memory. It keeps what is pending, with each request's title, and records every call.
 /// Like the system, it holds at most `DoseNotificationPlan.limit` requests and silently drops the earliest-added one
 /// past that.
 actor FakeNotificationCenter: NotificationCenterPort {
@@ -11,7 +11,7 @@ actor FakeNotificationCenter: NotificationCenterPort {
         case remove([String])
     }
 
-    private(set) var pendingIdentifiers: [String]
+    private var held: [PendingNotification]
     private(set) var permissionRequests = 0
     private(set) var calls: [Call] = []
     private(set) var offered: [DoseNotification] = []
@@ -22,15 +22,23 @@ actor FakeNotificationCenter: NotificationCenterPort {
     private let answer: Bool
     private var refusing: Set<String>
 
+    var pendingIdentifiers: [String] {
+        held.map(\.identifier)
+    }
+
+    var pendingTitles: [String] {
+        held.map(\.title)
+    }
+
     /// `answer` is what a request for permission returns. Answering true makes the permission `.allowed`, and
     /// answering false makes it `.denied`. An identifier in `refusing` is refused by `add` and never becomes pending.
     init(
-        pending: [String] = [],
+        pending: [PendingNotification] = [],
         permission: NotificationPermission = .allowed,
         answer: Bool = true,
         refusing: Set<String> = []
     ) {
-        pendingIdentifiers = pending
+        held = pending
         peakPending = pending.count
         current = permission
         self.answer = answer
@@ -52,7 +60,7 @@ actor FakeNotificationCenter: NotificationCenterPort {
     }
 
     func pending() -> [PendingNotification] {
-        pendingIdentifiers.map { PendingNotification(identifier: $0) }
+        held
     }
 
     func permission() -> NotificationPermission {
@@ -77,25 +85,35 @@ actor FakeNotificationCenter: NotificationCenterPort {
         calls.append(.add(notification.identifier))
         offered.append(notification)
         guard !refusing.contains(notification.identifier) else { return false }
-        hold(notification.identifier)
+        hold(PendingNotification(
+            identifier: notification.identifier,
+            title: DoseNotificationContent(notification, body: "").title
+        ))
         return true
     }
 
     /// A request from another scheduler, such as a check-in or the daily reminder.
     func addOther(_ identifier: String) {
-        hold(identifier)
+        hold(.other(identifier))
     }
 
     func remove(identifiers: [String]) {
         calls.append(.remove(identifiers))
-        pendingIdentifiers.removeAll { identifiers.contains($0) }
+        held.removeAll { identifiers.contains($0.identifier) }
     }
 
-    private func hold(_ identifier: String) {
-        pendingIdentifiers.append(identifier)
-        peakPending = max(peakPending, pendingIdentifiers.count)
-        while pendingIdentifiers.count > DoseNotificationPlan.limit {
-            droppedIdentifiers.append(pendingIdentifiers.removeFirst())
+    private func hold(_ request: PendingNotification) {
+        held.append(request)
+        peakPending = max(peakPending, held.count)
+        while held.count > DoseNotificationPlan.limit {
+            droppedIdentifiers.append(held.removeFirst().identifier)
         }
+    }
+}
+
+extension PendingNotification {
+    /// A request from another scheduler, whose title no test reads.
+    static func other(_ identifier: String) -> PendingNotification {
+        PendingNotification(identifier: identifier, title: "Other")
     }
 }

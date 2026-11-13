@@ -110,7 +110,7 @@ struct NextDosePendingTests {
         let others = (0 ..< 5).map { _ in UUID().uuidString } + ["daily-reminder"]
         let naproxen = try medication("Naproxen", at: [(8, 30), (12, 0), (20, 0)])
         let ibuprofen = try medication("Ibuprofen", at: [(9, 15), (21, 45)])
-        let center = FakeNotificationCenter(pending: others)
+        let center = FakeNotificationCenter(pending: others.map(PendingNotification.other))
 
         try await reconcile([naproxen, ibuprofen], on: center, now: june1(8))
 
