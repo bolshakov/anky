@@ -208,6 +208,93 @@ run_sweep
 [ "$(wc -l < "$out" | tr -d ' ')" = 3 ]
 report "each device gets exactly one line of output" $?
 
+
+# usage: ps_line <pid> <command...>. Adds one process to the fixture, as ps -o pid=,command= prints it.
+ps_line() {
+  printf '%6s %s\n' "$1" "$2" >> "$tree/ps.out"
+}
+
+# usage: kept_in_use <process command line>. Passes when that process keeps an old device and nothing is removed.
+kept_in_use() {
+  new_tree
+  device anky-busy $u1 Booted $old
+  ps_line 4242 "$1"
+  run_sweep
+  [ "$code" = 0 ] && grep -qx "kept anky-busy: in use" "$out" && no_call "simctl shutdown" && no_call "simctl delete"
+}
+
+# usage: removed_despite <process command line>. Passes when that process does not keep an old device.
+removed_despite() {
+  new_tree
+  device anky-idle $u1 Booted $old
+  ps_line 4242 "$1"
+  run_sweep
+  [ "$code" = 0 ] && grep -qx "removed anky-idle" "$out" && ! grep -q "in use" "$out"
+}
+
+kept_in_use "/Applications/Xcode.app/Contents/Developer/usr/bin/simctl spawn $u1 sleep 120"
+report "a simctl process naming the device keeps it" $?
+
+kept_in_use "/usr/bin/xcodebuild test -scheme Anky -destination id=$u1"
+report "an xcodebuild process naming the device keeps it" $?
+
+kept_in_use "/opt/homebrew/bin/axe tap --id log-entry --udid $u1"
+report "an axe process naming the device keeps it" $?
+
+kept_in_use "/bin/sh /work/anky/scripts/ci/run-ui-tests.sh light .derived $u1"
+report "a run-ui-tests.sh process run through sh keeps the device" $?
+
+kept_in_use "bash scripts/ci/run-ui-tests.sh $u1"
+report "a run-ui-tests.sh process run through bash keeps the device" $?
+
+kept_in_use "scripts/ci/run-ui-tests.sh $u1"
+report "a run-ui-tests.sh process run by its own path keeps the device" $?
+
+kept_in_use "/usr/bin/xcodebuild test -destination id=$(echo "$u1" | tr 'A-F' 'a-f')"
+report "a lowercase UDID on the command line still keeps the device" $?
+
+removed_despite "/usr/bin/simctl spawn $u2 sleep 120"
+report "a simctl process naming another device keeps nothing" $?
+
+removed_despite "/Library/Developer/CoreSimulator/Volumes/RuntimeRoot/sbin/launchd_sim /Devices/$u1/data/var/run/launchd_bootstrap.plist"
+report "a device whose only process is its own launchd_sim is removed" $?
+
+removed_despite "vim /notes/$u1.txt"
+report "an editor holding the UDID does not keep the device" $?
+
+removed_despite "/bin/sh /work/notes.sh $u1"
+report "a shell running another script with the UDID does not keep the device" $?
+
+removed_despite "/usr/bin/xcodebuild-helper --device $u1"
+report "a process whose name only starts with xcodebuild does not keep the device" $?
+
+removed_despite "/usr/bin/xcodebuild test -scheme Anky"
+report "an xcodebuild process that does not name the device keeps nothing" $?
+
+new_tree
+device anky-young $u1 Booted $young
+ps_line 4242 "/usr/bin/simctl spawn $u1 sleep 120"
+run_sweep
+[ "$code" = 0 ] && grep -qx "kept anky-young: in use" "$out" && ! grep -q "younger than grace" "$out"
+report "a young device with an in-use process prints the in-use line" $?
+
+new_tree
+device anky-old $u1 Booted $old
+device anky-busy $u2 Booted $old
+ps_line 4242 "/usr/bin/simctl spawn $u2 sleep 120"
+run_sweep
+[ "$code" = 0 ] && grep -qx "removed anky-old" "$out" && grep -qx "kept anky-busy: in use" "$out" && no_call "$u2 "
+report "an in-use device is kept while an idle one beside it is removed" $?
+
+new_tree
+device anky-old $u1 Booted $old
+env PATH="$bin:$PATH" SWEEP_KILL="$bin/kill" SWEEP_DEVICES_DIR="$tree/devices" SWEEP_GRACE_SECONDS=3600 \
+  SWEEP_STEP_SECONDS=5 sh -c 'echo "$$ /usr/bin/simctl list $3" > "$1"; exec sh "$2"' sweep "$tree/ps.out" "$sweep" "$u1" \
+  > "$out" 2> "$err"
+code=$?
+[ "$code" = 0 ] && grep -qx "removed anky-old" "$out"
+report "the sweep's own process never keeps a device" $?
+
 rt="/Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot"
 fw=/Library/Developer/PrivateFrameworks/CoreSimulator.framework/Versions/A/Resources/SimRenderingServices.simdeviceio/Contents/XPCServices
 
