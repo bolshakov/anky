@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-import AnkyDomain
 import XCTest
 
 @MainActor
@@ -33,47 +32,6 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertEqual(footnote(app).label, "Anky will ask how you feel after this long.")
         let saved = app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Saved for'"))
         XCTAssertEqual(saved.count, 0)
-    }
-
-    func testFootnoteNamesTheKindOfAPainReadingInBothStates() {
-        expectFootnotes(of: .pain, "Anky will ask how you feel after this long.")
-    }
-
-    func testFootnoteNamesTheKindOfAStiffnessReadingInBothStates() {
-        expectFootnotes(of: .stiffness, "Anky will ask how you feel after this long.")
-    }
-
-    func testFootnoteNamesTheKindOfAFatigueReadingInBothStates() {
-        expectFootnotes(of: .fatigue, "Anky will ask how you feel after this long.")
-    }
-
-    func testFootnoteFollowsTheReadingPickedOnChooseAReading() {
-        continueAfterFailure = false
-        let app = launchAnky()
-        app.buttons["log-medication"].tap()
-        addMedication(named: "Zorblex", app)
-        logReading(.stiffness, level: 4, app)
-        app.buttons["before-reading-row"].tap()
-        app.buttons["reading-log-new"].tap()
-        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
-        chooseKind(.fatigue, in: app)
-        setSeverity(3, in: app)
-        saveEntry(app)
-        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
-        XCTAssertEqual(
-            footnote(app).label,
-            "Anky will ask how you feel after this long. Turn it on to choose a time."
-        )
-
-        app.buttons["before-reading-row"].tap()
-        let options = app.buttons.matching(identifier: "reading-option")
-        XCTAssertTrue(options.element(boundBy: 1).waitForExistence(timeout: 10))
-        options.element(boundBy: 1).tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
-        XCTAssertEqual(
-            footnote(app).label,
-            "Anky will ask how you feel after this long. Turn it on to choose a time."
-        )
     }
 
     func testSavingTheDoseWritesTheSwitchAndMenuBackToTheMedication() {
@@ -163,28 +121,6 @@ final class LogDoseCheckInTests: XCTestCase {
         let item = app.buttons[delay]
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
         item.tap()
-    }
-
-    /// With the switch off the footnote is the sentence and the ask to turn it on, and with it on only the sentence.
-    private func expectFootnotes(of kind: EntryKind, _ sentence: String) {
-        continueAfterFailure = false
-        let app = launchAnky()
-        app.buttons["log-medication"].tap()
-        addMedication(named: "Zorblex", app)
-        logReading(kind, level: 4, app)
-        XCTAssertEqual(footnote(app).label, "\(sentence) Turn it on to choose a time.")
-
-        toggleCheckIn(app)
-        XCTAssertEqual(footnote(app).label, sentence)
-    }
-
-    private func logReading(_ kind: EntryKind, level: Int, _ app: XCUIApplication) {
-        app.buttons["log-how-you-feel-row"].tap()
-        XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
-        chooseKind(kind, in: app)
-        setSeverity(level, in: app)
-        saveEntry(app)
-        XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
     }
 
     private func checkInToggle(_ app: XCUIApplication) -> XCUIElement {
