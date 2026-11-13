@@ -86,21 +86,14 @@ struct NewEntryView: View {
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
             }
+            .discardConfirmation(
+                hasChanges: draft.hasChanges(since: startDraft),
+                cancelID: "cancel-entry",
+                close: { dismiss() }
+            )
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Group {
-                        Button("Cancel") {
-                            dismiss()
-                        }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("cancel-entry")
-                    }
-                    .accessibilityElement(children: .contain)
-                    .accessibilityIdentifier("cancel-item")
-                }
                 if case .edit = mode {
                     ToolbarItem(placement: .primaryAction) {
                         EntryMoreMenu { isConfirmingDelete = true }
@@ -121,7 +114,6 @@ struct NewEntryView: View {
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, onDelete: removeEntry)
             .shortcutFeedback(model.shortcuts)
             .onAppear(perform: recordChipsOnFirstAppear)
-            .interactiveDismissDisabled(draft != startDraft)
         }
         .pinLimitAlert(model.shortcuts)
         .environment(model.shortcuts)

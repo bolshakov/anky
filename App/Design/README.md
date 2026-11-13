@@ -52,6 +52,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
 - `bottomPrimaryButton`: the screen's one main action pinned above the bottom edge, where `isEnabled` dims only the button. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
+- `discardConfirmation`: the Cancel button of a form, the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, dialog or `interactiveDismissDisabled`.
 
 ## Tips
 

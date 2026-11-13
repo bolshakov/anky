@@ -496,6 +496,17 @@
         }
       }
     },
+    "Are you sure you want to discard your changes?" : {
+      "comment" : "The message of the confirmation that opens when a person taps Cancel on a form that holds changes. It has no title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to discard your changes?"
+          }
+        }
+      }
+    },
     "Arms" : {
       "localizations" : {
         "ru" : {
@@ -737,6 +748,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть без сохранения?"
+          }
+        }
+      }
+    },
+    "Discard Changes" : {
+      "comment" : "The destructive button of the discard confirmation. It closes the form and saves nothing.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard Changes"
           }
         }
       }
