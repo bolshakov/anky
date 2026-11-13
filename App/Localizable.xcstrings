@@ -660,10 +660,26 @@
       }
     },
     "Discard" : {
-      "comment" : "The button in the BASDAI form's question that closes the form and throws away the answers given so far. Nothing is saved."
+      "comment" : "The button in the BASDAI form's question that closes the form and throws away the answers given so far. Nothing is saved.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
     },
     "Discard answers?" : {
-      "comment" : "The question shown when a person leaves the BASDAI form, by Cancel or by swiping it down, after answering at least one question."
+      "comment" : "The question shown when a person leaves the BASDAI form, by Cancel or by swiping it down, after answering at least one question.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть без сохранения?"
+          }
+        }
+      }
     },
     "Dismiss tip" : {
       "localizations" : {
@@ -1742,7 +1758,15 @@
       }
     },
     "Keep Editing" : {
-      "comment" : "The button in the BASDAI form's question that keeps the form open with the answers given so far."
+      "comment" : "The button in the BASDAI form's question that keeps the form open with the answers given so far.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
+          }
+        }
+      }
     },
     "Knee" : {
       "localizations" : {
@@ -3705,37 +3729,125 @@
       }
     },
     "How would you describe the overall level of fatigue/tiredness you have experienced?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень слабости (утомляемости)?"
+          }
+        }
+      }
     },
     "How would you describe the overall level of AS **neck, back or hip** pain you have had?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation. AS is ankylosing spondylitis."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation. AS is ankylosing spondylitis.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень боли в **шее, спине или тазобедренных суставах**?"
+          }
+        }
+      }
     },
     "How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips you have had?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень боли/припухлости в суставах, **кроме** шеи, спины и тазобедренных суставов?"
+          }
+        }
+      }
     },
     "How would you describe the overall level of discomfort you have had from any areas tender to touch or pressure?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень неприятных ощущений при прикосновении к болезненным областям или надавливании на них?"
+          }
+        }
+      }
     },
     "How would you describe the overall level of morning stiffness you have had from the time you wake up?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень утренней скованности с момента пробуждения?"
+          }
+        }
+      }
     },
     "How long does your morning stiffness last from the time you wake up?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation."
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сколько длится утренняя скованность с момента пробуждения?"
+          }
+        }
+      }
     },
     "Spinal pain" : {
-      "comment" : "Short name of BASDAI question 2, on neck, back or hip pain. Used where the whole question does not fit, such as a report column."
+      "comment" : "Short name of BASDAI question 2, on neck, back or hip pain. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль в шее, спине, тазобедренных суставах"
+          }
+        }
+      }
     },
     "Joint pain" : {
-      "comment" : "Short name of BASDAI question 3, on pain or swelling in joints other than the neck, back or hips. Used where the whole question does not fit, such as a report column."
+      "comment" : "Short name of BASDAI question 3, on pain or swelling in joints other than the neck, back or hips. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль в других суставах"
+          }
+        }
+      }
     },
     "Tenderness" : {
-      "comment" : "Short name of BASDAI question 4, on discomfort from areas tender to touch or pressure. Used where the whole question does not fit, such as a report column."
+      "comment" : "Short name of BASDAI question 4, on discomfort from areas tender to touch or pressure. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Болезненность"
+          }
+        }
+      }
     },
     "Stiffness severity" : {
-      "comment" : "Short name of BASDAI question 5, on how bad morning stiffness is. Used where the whole question does not fit, such as a report column."
+      "comment" : "Short name of BASDAI question 5, on how bad morning stiffness is. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выраженность скованности"
+          }
+        }
+      }
     },
     "Stiffness duration" : {
-      "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'."
+      "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длительность скованности"
+          }
+        }
+      }
     },
     "Q%lld %@" : {
       "comment" : "One item of the key under the report's BASDAI table: the question's label and its short name in lowercase, such as 'Q2 spinal pain'. %1$lld is the question number from 1 to 6.",
@@ -3760,49 +3872,169 @@
       }
     },
     "Very severe" : {
-      "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None."
+      "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наихудшее"
+          }
+        }
+      }
     },
     "0 hrs" : {
-      "comment" : "The label under the left end of the slider of BASDAI question 6, how long morning stiffness lasts: zero hours. hrs is the abbreviation of hours."
+      "comment" : "The label under the left end of the slider of BASDAI question 6, how long morning stiffness lasts: zero hours. hrs is the abbreviation of hours.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 ч"
+          }
+        }
+      }
     },
     "2 or more hrs" : {
-      "comment" : "The label under the right end of the slider of BASDAI question 6, how long morning stiffness lasts: two hours or longer. hrs is the abbreviation of hours."
+      "comment" : "The label under the right end of the slider of BASDAI question 6, how long morning stiffness lasts: two hours or longer. hrs is the abbreviation of hours.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 ч и больше"
+          }
+        }
+      }
     },
     "1 hr" : {
-      "comment" : "One hour, abbreviated. Shown under the middle of the slider of BASDAI question 6, how long morning stiffness lasts, and as its value at the middle step."
+      "comment" : "One hour, abbreviated. Shown under the middle of the slider of BASDAI question 6, how long morning stiffness lasts, and as its value at the middle step.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ч"
+          }
+        }
+      }
     },
     "%lld min" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 under one hour, such as '48 min'. %lld is a number of minutes from 0 to 48. min is the abbreviation of minutes."
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 under one hour, such as '48 min'. %lld is a number of minutes from 0 to 48. min is the abbreviation of minutes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        }
+      }
     },
     "1 hr %lld min" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 between one and two hours, such as '1 hr 12 min'. %lld is the minutes past the hour, from 12 to 48."
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 between one and two hours, such as '1 hr 12 min'. %lld is the minutes past the hour, from 12 to 48.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ч %lld мин"
+          }
+        }
+      }
     },
     "2 hrs or more" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 at its last step: two hours or longer, abbreviated."
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 at its last step: two hours or longer, abbreviated.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 ч и больше"
+          }
+        }
+      }
     },
     "Not answered" : {
-      "comment" : "The value shown beside a BASDAI question the person has not answered yet. It is a state, not a zero."
+      "comment" : "The value shown beside a BASDAI question the person has not answered yet. It is a state, not a zero.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет ответа"
+          }
+        }
+      }
     },
     "not answered" : {
-      "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech."
+      "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ответа нет"
+          }
+        }
+      }
     },
     "BASDAI" : {
-      "comment" : "The Today menu item that opens the BASDAI screen, where the six BASDAI questions are answered and saved results are listed. BASDAI is the name of the index and stays as is."
+      "comment" : "The Today menu item that opens the BASDAI screen, where the six BASDAI questions are answered and saved results are listed. BASDAI is the name of the index and stays as is.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI"
+          }
+        }
+      }
     },
     "No BASDAI results yet" : {
-      "comment" : "The title of the BASDAI screen when no result has been saved yet."
+      "comment" : "The title of the BASDAI screen when no result has been saved yet.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результатов BASDAI пока нет"
+          }
+        }
+      }
     },
     "BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date." : {
-      "comment" : "The text under the title of the empty BASDAI screen. It says what BASDAI asks and where saved results appear."
+      "comment" : "The text under the title of the empty BASDAI screen. It says what BASDAI asks and where saved results appear.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI — шесть вопросов о прошедшей неделе, каждый оценивается от 0 до 10. Это занимает около минуты. Сохранённые результаты появляются здесь с датой."
+          }
+        }
+      }
     },
     "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The citation line of the empty BASDAI screen. The index name and the reference to the 1994 paper stay as published."
+      "comment" : "The citation line of the empty BASDAI screen. The index name and the reference to the 1994 paper stay as published.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+          }
+        }
+      }
     },
     "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Swipe left to delete." : {
-      "comment" : "The footnote under the list of saved BASDAI results: the citation of the 1994 paper, then how to delete a result."
+      "comment" : "The footnote under the list of saved BASDAI results: the citation of the 1994 paper, then how to delete a result.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Смахни влево, чтобы удалить результат."
+          }
+        }
+      }
     },
     "Start" : {
-      "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions."
+      "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать"
+          }
+        }
+      }
     },
     "Last week" : {
       "comment" : "The section label above the six BASDAI questions: every answer is about the last week.",
@@ -3816,10 +4048,26 @@
       }
     },
     "Garrett S, et al. J Rheumatol 1994;21(12):2286-91." : {
-      "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published."
+      "comment" : "The citation under the BASDAI questions: the 1994 paper the questions come from. Keep the authors, journal and page numbers as published.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Garrett S, et al. J Rheumatol 1994;21(12):2286-91."
+          }
+        }
+      }
     },
     "Couldn't save this result. Try again." : {
-      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again."
+      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить результат. Попробуй ещё раз."
+          }
+        }
+      }
     },
     "and %lld more places" : {
       "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
@@ -3919,16 +4167,48 @@
       }
     },
     "Delete this result? This can't be undone." : {
-      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms."
+      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить этот результат? Это нельзя отменить."
+          }
+        }
+      }
     },
     "Delete result" : {
-      "comment" : "The button that confirms deleting one saved BASDAI result."
+      "comment" : "The button that confirms deleting one saved BASDAI result.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить результат"
+          }
+        }
+      }
     },
     "Couldn't delete this result. Try again." : {
-      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list."
+      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить этот результат. Попробуй ещё раз."
+          }
+        }
+      }
     },
     "Result deleted" : {
-      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted."
+      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат удалён"
+          }
+        }
+      }
     },
     "BASDAI scores" : {
       "comment" : "The report PDF's heading above the BASDAI table: the scores of the questionnaire saved in the period, each with its six answers.",
@@ -3975,10 +4255,26 @@
       }
     },
     "Score" : {
-      "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'."
+      "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат"
+          }
+        }
+      }
     },
     "Score %@ out of 10" : {
-      "comment" : "What VoiceOver reads after the date of one saved BASDAI result in the list: its score with one decimal and the scale, such as Score 4.8 out of 10. %@ is the score, with the decimal separator of the person's region."
+      "comment" : "What VoiceOver reads after the date of one saved BASDAI result in the list: its score with one decimal and the scale, such as Score 4.8 out of 10. %@ is the score, with the decimal separator of the person's region.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат %@ из 10"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
