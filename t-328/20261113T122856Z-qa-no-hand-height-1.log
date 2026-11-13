@@ -1,0 +1,4 @@
+$ sh -c 'grep -nE "rowHeight|frame\(|minHeight|Spacing\.|listRowInsets" App/Basdai/BasdaiResultRow.swift'
+exit: 1
+commit: 921d97d0b36ee29fb332a76b92632ddceeef2a1a
+

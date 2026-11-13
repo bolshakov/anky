@@ -1,0 +1,5 @@
+$ grep -n 'ValueRow(' App/Basdai/BasdaiResultRow.swift
+exit: 0
+commit: 921d97d0b36ee29fb332a76b92632ddceeef2a1a
+
+11:        ValueRow(Text(verbatim: date), value: Text(verbatim: score))

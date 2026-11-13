@@ -1,0 +1,7 @@
+$ sh -c 'sh /Users/bolshakov/Projects/personal/anky.wt/qa-t328-01-1/tmp/walk/walk-frame.sh 2EADA7C9-09C5-486D-9CE1-DDDEB314F3F5 basdai-empty; sh /Users/bolshakov/Projects/personal/anky.wt/qa-t328-01-1/tmp/walk/walk-frame.sh 2EADA7C9-09C5-486D-9CE1-DDDEB314F3F5 basdai-row-0; echo row0-exit=$?'
+exit: 0
+commit: 921d97d0b36ee29fb332a76b92632ddceeef2a1a
+
+x=16 y=132 width=370 height=210.33333333333337 label=No BASDAI results yet, BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date., Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+no single element with id basdai-row-0
+row0-exit=1
