@@ -9,6 +9,7 @@ on:
     paths:
       - .github/workflows/ui-nightly.yml
       - scripts/ci/run-ui-tests.sh
+      - scripts/ci/ui-shards.sh
 
 concurrency:
   group: ui-nightly-${{ github.ref }}
@@ -18,15 +19,58 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  UI_SHARDS: 10
+
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: every class is in a shard
+        run: scripts/ci/ui-shards.sh check "$UI_SHARDS"
+
+      - name: matrix of shards in both appearances
+        id: matrix
+        run: |
+          shards=$(scripts/ci/ui-shards.sh matrix "$UI_SHARDS")
+          matrix=$(printf '%s' "$shards" | jq -c '{include: [.include[] | . as $s | ("light","dark") | $s + {appearance: .}]}')
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
   suite:
-    name: ui suite (${{ matrix.appearance }})
+    name: ui suite (${{ matrix.appearance }}, shard ${{ matrix.shard }})
+    needs: plan
     strategy:
       fail-fast: false
-      matrix:
-        appearance: [light, dark]
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
     runs-on: macos-26
-    timeout-minutes: 75
+    timeout-minutes: 130
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+      UI_TRY_SECONDS: 3000
+      CLASSES: ${{ matrix.classes }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: generate project
+        run: brew install xcodegen && xcodegen generate
+
+      - name: build the app
+        run: >
+          xcodebuild build -project Anky.xcodeproj -scheme Anky
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
+
+      - name: ui tests
+        run: scripts/ci/run-ui-tests.sh ${{ matrix.appearance }} .derived $CLASSES
+
+  smoke:
+    name: ui smoke
+    runs-on: macos-26
+    timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
       UI_TRY_SECONDS: 1800
@@ -42,24 +86,17 @@ jobs:
           -destination 'generic/platform=iOS Simulator'
           -derivedDataPath .derived -clonedSourcePackagesDirPath .spm
 
-      - name: ui tests
-        run: scripts/ci/run-ui-tests.sh ${{ matrix.appearance }} .derived
-
       - name: ui smoke tests in double-length text
-        if: matrix.appearance == 'light'
         env:
           ANKY_PRESENTATION: doubleLength
-          UI_TRY_SECONDS: 1800
         run: >
           scripts/ci/run-ui-tests.sh light .derived
           EmptyStateTests/testFirstLaunchShowsEmptyState
           LargeTextTests/testSaveStaysPinnedAtLargestSize
 
       - name: ui smoke tests in right-to-left
-        if: matrix.appearance == 'light'
         env:
           ANKY_PRESENTATION: rightToLeft
-          UI_TRY_SECONDS: 1800
         run: >
           scripts/ci/run-ui-tests.sh light .derived
           EmptyStateTests/testFirstLaunchShowsEmptyState
