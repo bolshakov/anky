@@ -17,8 +17,7 @@ private struct DiscardConfirmation: ViewModifier {
         content
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", action: cancel)
-                        .minimumTapTarget()
+                    Button(action: cancel) { Text("Cancel").minimumTapTarget() }
                         .accessibilityIdentifier(cancelID)
                         .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
                             Button("Discard Changes", role: .destructive, action: close)
