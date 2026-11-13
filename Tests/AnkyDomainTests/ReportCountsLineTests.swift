@@ -100,7 +100,7 @@ struct ReportCountsLineTests {
     @Test func russianEmptyPeriodAsksForALongerOne() throws {
         #expect(
             try line(entries: 0, doses: 0, period: .oneMonth, in: Locale(identifier: "ru"))
-                == "С 11 октября по 11 ноября записей нет. Можно выбрать период длиннее."
+                == "С 11 октября по 11 ноября записей нет. Выбери период длиннее."
         )
     }
 }
