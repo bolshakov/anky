@@ -296,6 +296,7 @@ private let approvedKeys = approvedPlainValues.map(\.key)
     + ["and %lld more places"]
     + ["Every %lld days at %@", "Every %lld weeks on %@ at %@", "Every %lld months on day %lld at %@"]
     + reportRussianValues.map(\.key) + ["%lld BASDAI results"]
+    + basdaiRussianValues.map(\.key)
 
 private let englishFormatValues = table("""
 %@ of %lld => %1$@ of %2$lld
