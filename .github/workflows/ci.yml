@@ -77,6 +77,12 @@ jobs:
       - name: ui test runner proves itself
         run: scripts/ci/test-run-ui-tests.sh
 
+      - name: ui shards cover every class
+        run: scripts/ci/ui-shards.sh check 10
+
+      - name: ui shard check proves itself
+        run: scripts/ci/test-ui-shards.sh
+
       - name: install script proves itself
         run: scripts/ci/test-install-linux-tools.sh
 
