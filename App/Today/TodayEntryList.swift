@@ -13,7 +13,7 @@ struct TodayEntryList: View {
     let onDeleteDose: (Dose) -> Void
 
     var body: some View {
-        FootnotedSection(footnote: Text("Levels are 0 to 10. Everything stays on this iPhone.")) {
+        CardSection(footnote: Text("Levels are 0 to 10. Everything stays on this iPhone."), id: "today-entries") {
             ForEach(items) { item in
                 row(for: item)
             }
