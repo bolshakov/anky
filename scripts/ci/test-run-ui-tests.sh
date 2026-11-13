@@ -19,6 +19,7 @@ new_tree() {
   out=$tree/out.log
   omit=
   seconds=
+  class_tests=
   mkdir -p "$bin"
   cat > "$bin/xcrun" <<EOF
 #!/bin/sh
@@ -44,15 +45,25 @@ for arg do
   case "\$arg" in
     -only-testing:AnkyUITests/*)
       name=\${arg#-only-testing:AnkyUITests/}
-      case_line="Test Case '-[AnkyUITests.\${name%/*} \${name#*/}]'"
-      case "\$STUB_XCODEBUILD" in
-        fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
-        skip) echo "\$case_line skipped (0.0 seconds)." ;;
-        flaky)
-          echo "\$case_line failed (0.1 seconds)."
-          echo "\$case_line passed (0.1 seconds)." ;;
-        *) [ "\$name" = "\$STUB_OMIT" ] || echo "\$case_line passed (0.1 seconds)." ;;
-      esac ;;
+      case "\$name" in
+        */*) ran=\$name ;;
+        *) ran=\${STUB_CLASS_TESTS:-\$name/testOne} ;;
+      esac
+      for entry in \$ran; do
+        test_name=\${entry%%=*}
+        case_line="Test Case '-[AnkyUITests.\${test_name%/*} \${test_name#*/}]'"
+        case "\$entry" in
+          *=skipped) echo "\$case_line skipped (0.0 seconds)."; continue ;;
+        esac
+        case "\$STUB_XCODEBUILD" in
+          fail) echo "\$case_line failed (0.1 seconds)."; status=65 ;;
+          skip) echo "\$case_line skipped (0.0 seconds)." ;;
+          flaky)
+            echo "\$case_line failed (0.1 seconds)."
+            echo "\$case_line passed (0.1 seconds)." ;;
+          *) [ "\$name" = "\$STUB_OMIT" ] || echo "\$case_line passed (0.1 seconds)." ;;
+        esac
+      done ;;
   esac
 done
 exit \$status
@@ -66,7 +77,7 @@ run_runner() {
   mode=$1
   shift
   start=$(date +%s)
-  STUB_XCODEBUILD=$mode STUB_OMIT=$omit UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" bash "$runner" "$@" > "$out" 2>&1
+  STUB_XCODEBUILD=$mode STUB_OMIT=$omit STUB_CLASS_TESTS=$class_tests UI_TRY_SECONDS=$seconds PATH="$bin:$PATH" bash "$runner" "$@" > "$out" 2>&1
   code=$?
   elapsed=$(($(date +%s) - start))
 }
@@ -213,6 +224,63 @@ run_runner flaky light "$tree/.derived" EmptyStateTests/testFirstLaunchShowsEmpt
   && grep -qx "::warning::flaky: EmptyStateTests/testFirstLaunchShowsEmptyState failed once, then passed" "$out" \
   && grep -qx "xcrun simctl delete $udid" "$calls"
 report "$name" $?
+
+name="a class that ran exits zero and reaches xcodebuild whole"
+new_tree
+class_tests="NoteTests/testA NoteTests/testB"
+run_runner pass light "$tree/.derived" NoteTests
+line=" $(grep '^xcodebuild ' "$calls") "
+[ "$code" -eq 0 ] && ! grep -q '^not run:' "$out" && case "$line" in *" -only-testing:AnkyUITests/NoteTests "*) true ;; *) false ;; esac
+report "$name" $?
+
+name="a class that did not run exits non-zero and is named"
+new_tree
+omit=NoteTests
+run_runner pass light "$tree/.derived" NoteTests
+[ "$code" -ne 0 ] && grep -qx "not run: NoteTests" "$out" && grep -qx "xcrun simctl delete $udid" "$calls"
+report "$name" $?
+
+name="a class whose test failed then passed counts as run and warns"
+new_tree
+class_tests="NoteTests/testA"
+run_runner flaky light "$tree/.derived" NoteTests
+[ "$code" -eq 0 ] && ! grep -q '^not run:' "$out" \
+  && grep -qx "::warning::flaky: NoteTests/testA failed once, then passed" "$out"
+report "$name" $?
+
+name="a class with a skipped test among passing ones exits non-zero"
+new_tree
+class_tests="NoteTests/testA NoteTests/testB=skipped"
+run_runner pass light "$tree/.derived" NoteTests
+[ "$code" -ne 0 ] && grep -qx "a test was skipped, so the run fails" "$out"
+report "$name" $?
+
+name="a class named by prefix is not counted for the longer class"
+new_tree
+class_tests="ScaleNoteTests/testA"
+run_runner pass light "$tree/.derived" NoteTests
+[ "$code" -ne 0 ] && grep -qx "not run: NoteTests" "$out"
+report "$name" $?
+
+name="a class is not counted for a shorter name that starts it"
+new_tree
+class_tests="NoteTests/testA"
+run_runner pass light "$tree/.derived" Note
+[ "$code" -ne 0 ] && grep -qx "not run: Note" "$out"
+report "$name" $?
+
+name="a class and a Class/method together are both judged"
+new_tree
+class_tests="NoteTests/testA"
+run_runner pass light "$tree/.derived" NoteTests SaveEntryTests/testSaveEntryOnToday
+[ "$code" -eq 0 ] && ! grep -q '^not run:' "$out"
+report "$name" $?
+new_tree
+class_tests="NoteTests/testA"
+omit=SaveEntryTests/testSaveEntryOnToday
+run_runner pass light "$tree/.derived" NoteTests SaveEntryTests/testSaveEntryOnToday
+[ "$code" -ne 0 ] && grep -qx "not run: SaveEntryTests/testSaveEntryOnToday" "$out" && ! grep -q '^not run: NoteTests' "$out"
+report "$name, a missing test is named while the class passes" $?
 
 unset ANKY_PRESENTATION TEST_RUNNER_ANKY_PRESENTATION
 
