@@ -7,6 +7,8 @@ import SwiftUI
 struct ReportView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
+    @State private var includesBasdai = true
     @State private var period = ReportPeriod.threeMonths
     @State private var isBuilding = false
     @State private var preview: PreviewFile?
@@ -35,6 +37,7 @@ struct ReportView: View {
                 .accessibilityIdentifier("report-period")
                 .nonCardBlock()
             }
+            basdaiCard
         }
         .screenSpacing()
         .accessibilityIdentifier("report-screen")
@@ -43,6 +46,29 @@ struct ReportView: View {
         .safeAreaInset(edge: .bottom) { previewButton }
         .sheet(item: $preview) { file in
             ReportPreview(url: file.url).ignoresSafeArea()
+        }
+    }
+
+    private var basdaiCard: some View {
+        let count = ReportBasdai(results: basdai.results, period: period, now: .now, calendar: .current)
+            .inPeriod.count
+        return CardSection(
+            footnote: Text(
+                "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
+            ),
+            id: "report-basdai-card"
+        ) {
+            SwitchRow(Text("Include BASDAI scores"), isOn: $includesBasdai)
+                .accessibilityIdentifier("report-basdai-toggle")
+            NavigationLink {
+                BasdaiListView(model: basdai)
+            } label: {
+                ValueRow(Text("BASDAI results"), value: Text("\(count)"))
+            }
+            .fillsCardRow()
+            .accessibilityLabel("BASDAI results")
+            .accessibilityValue("\(count)")
+            .accessibilityIdentifier("report-basdai-results")
         }
     }
 
@@ -90,15 +116,23 @@ struct ReportView: View {
         )
         let severity = ReportBlock.whole(AnyView(ReportSeverityByWeek(block: severityBlock(now: now))))
         let places = ReportBlock.whole(AnyView(ReportPlacesBlock(places: places(now: now))))
-        let medication = ReportBlock.whole(AnyView(medicationBlock(now: now)))
+        let basdaiResults = ReportBasdai(results: basdai.results, period: period, now: now, calendar: .current)
+            .included(includesBasdai)
         return ReportDocument(
             size: .forRegion(Locale.current.region),
             headerLine: ReportHeaderLine.text(
                 period: period, now: now, locale: .current, calendar: .current, bundle: .main
             ),
-            totals: ReportTotalsText(summary: summary, locale: .current, calendar: .current, bundle: .main),
-            blocks: [severity, places, medication]
+            totals: ReportTotalsText(
+                summary: summary, basdaiCount: basdaiResults.count, locale: .current, calendar: .current, bundle: .main
+            ),
+            blocks: basdaiBlocks(basdaiResults) + [severity, places, medicationTable(now: now)]
         ).pages
+    }
+
+    private func basdaiBlocks(_ results: [BasdaiResult]) -> [ReportBlock] {
+        guard !results.isEmpty else { return [] }
+        return [.basdai(rows: results.map { ReportBasdaiRowText($0, locale: .current, calendar: .current) })]
     }
 
     private func severityBlock(now: Date) -> ReportSeverityBlock {
@@ -110,14 +144,14 @@ struct ReportView: View {
         )
     }
 
-    private func medicationBlock(now: Date) -> ReportMedicationBlock {
+    private func medicationTable(now: Date) -> ReportBlock {
         let figures = ReportMedications(
             medications: medications.medications, doses: medications.doses, entries: model.entries,
             period: period, now: now, calendar: .current
         )
-        return ReportMedicationBlock(
+        return .table(
             rows: figures.rows.map { ReportMedicationRowText($0, locale: .current, bundle: .main) },
-            hasScheduled: figures.hasScheduled, isContinued: false, showsNote: true
+            hasScheduled: figures.hasScheduled
         )
     }
 

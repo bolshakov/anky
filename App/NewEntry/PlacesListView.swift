@@ -20,7 +20,7 @@ struct PlacesListView: View {
         List {
             Section {
                 TipView(PinShortcutTip())
-                    .tipViewStyle(PinTipStyle())
+                    .tipViewStyle(TipCardStyle(icon: "pin.fill"))
                     .accessibilityIdentifier("pin-tip")
                     .nonCardBlock()
             }

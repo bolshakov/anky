@@ -16,7 +16,7 @@ struct TenYearsOfEntriesTests {
     private struct ScratchFailure: Error {}
 
     private let newest = Date(timeIntervalSince1970: 1_800_000_000)
-    private let ceiling = Duration.seconds(1)
+    private let ceiling = Duration.seconds(2)
     private let recentCeiling = Duration.milliseconds(50)
 
     /// The median of this many opens is what `distinct` checks against its ceiling.
@@ -55,12 +55,16 @@ struct TenYearsOfEntriesTests {
         }
     }
 
+    @Test func aLaunchAtTheRunnersSlowestFastestOpenPasses() {
+        checkLaunch([Launch(elapsed: .milliseconds(1240), count: MadeUpLog.size)])
+    }
+
     @Test func aSlowLaunchReportsDurationsAndCountsOnly() {
         withKnownIssue {
-            checkLaunch([Launch(elapsed: .seconds(2), count: MadeUpLog.size)])
+            checkLaunch([Launch(elapsed: .seconds(3), count: MadeUpLog.size)])
         } matching: { issue in
             let entryWords = ["pain", "stiffness", "fatigue", "lower", "neck", "hip_l", "si_r"]
-            return issue.description.contains("2.0 seconds")
+            return issue.description.contains("3.0 seconds")
                 && !entryWords.contains { issue.description.contains($0) }
         }
     }

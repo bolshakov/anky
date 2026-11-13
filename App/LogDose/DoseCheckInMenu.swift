@@ -19,13 +19,13 @@ struct DoseCheckInMenu: View {
                 if dynamicTypeSize.isAccessibilitySize {
                     VStack(alignment: .leading, spacing: Spacing.tightGap) {
                         Text("After")
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(Color.ink)
                         value
                     }
                 } else {
                     HStack {
                         Text("After")
-                            .foregroundStyle(.primary)
+                            .foregroundStyle(Color.ink)
                         Spacer()
                         value
                     }

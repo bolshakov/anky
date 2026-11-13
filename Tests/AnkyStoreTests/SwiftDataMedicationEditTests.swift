@@ -31,19 +31,27 @@ struct SwiftDataMedicationEditTests {
         try withFolder { folder in
             let url = folder.appending(path: "medications.store")
             let original = fullMedication(name: "Zorblex")
-            var edited = original
-            edited.name = "Quibbanol"
+            var edited = Medication(
+                id: original.id, name: "Quibbanol", takenAs: .asNeeded, createdAt: date.addingTimeInterval(1000)
+            )
             edited.strength = nil
-            edited.takenAs = .asNeeded
             edited.checkInAfter = .fourHours
             edited.updatedAt = date.addingTimeInterval(500)
             edited.archivedAt = nil
+            var expected = Medication(
+                id: original.id, name: "Quibbanol", takenAs: .asNeeded, createdAt: original.createdAt
+            )
+            expected.strength = nil
+            expected.checkInAfter = .fourHours
+            expected.updatedAt = date.addingTimeInterval(500)
+            expected.archivedAt = nil
+            #expect(edited.createdAt != original.createdAt)
 
             let store = try SwiftDataMedicationStore(url: url)
             try store.add(original)
             try store.update(edited)
-            #expect(try store.all() == [edited])
-            #expect(try SwiftDataMedicationStore(url: url).all() == [edited])
+            #expect(try store.all() == [expected])
+            #expect(try SwiftDataMedicationStore(url: url).all() == [expected])
         }
     }
 

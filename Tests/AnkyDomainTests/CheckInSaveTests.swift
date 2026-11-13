@@ -103,6 +103,38 @@ import Testing
         #expect(save.isSaved)
     }
 
+    @Test func aRetryAfterARefusedDoseWriteKeepsTheFirstSeverityKindAndDate() throws {
+        let first = draft(date: takenAt)
+        var retry = try EntryDraft(severity: #require(Severity(7)), date: takenAt.addingTimeInterval(3600))
+        retry.kind = .stiffness
+
+        let retried = try saveRetried(first, then: retry)
+
+        #expect(retried.added.count == 1)
+        let entry = try #require(retried.added.first)
+        #expect(entry.severity == first.severity)
+        #expect(entry.kind == .fatigue)
+        #expect(entry.date == first.date)
+        #expect(retried.replaced.first?.afterReadingID == entry.id)
+        #expect(retried.isSaved)
+    }
+
+    @Test func aRetryAfterARefusedDoseWriteKeepsTheFirstPlaces() throws {
+        let neck = PlaceID(rawValue: "neck")
+        var first = try EntryDraft(severity: #require(Severity(3)), date: takenAt)
+        first.kind = .stiffness
+        first.places = [neck]
+        var retry = first
+        retry.places = [PlaceID(rawValue: "jaw"), PlaceID(rawValue: "lower")]
+
+        let retried = try saveRetried(first, then: retry)
+
+        #expect(retried.added.count == 1)
+        let entry = try #require(retried.added.first)
+        #expect(entry.places == [neck])
+        #expect(retried.replaced.first?.afterReadingID == entry.id)
+    }
+
     @Test func aRefusedSaveReportsNothingAndTheFirstSuccessReportsOnce() throws {
         var save = CheckInSave()
         let pending = draft(date: takenAt)
@@ -148,6 +180,26 @@ import Testing
         _ = try save.save(pending, for: dose(), addEntry: { added.append($0) }, replaceDose: { _ in })
         return try #require(added.first)
     }
+
+    /// Saves `first` with a refused dose write, then retries on the same save with `retry` and a dose write that works.
+    private func saveRetried(_ first: EntryDraft, then retry: EntryDraft) throws -> Retried {
+        var added: [Entry] = []
+        var replaced: [Dose] = []
+        var save = CheckInSave()
+        let original = dose()
+
+        #expect(throws: Refused.no) {
+            try save.save(first, for: original, addEntry: { added.append($0) }, replaceDose: { _ in throw Refused.no })
+        }
+        _ = try save.save(retry, for: original, addEntry: { added.append($0) }, replaceDose: { replaced.append($0) })
+        return Retried(added: added, replaced: replaced, isSaved: save.isSaved)
+    }
+}
+
+private struct Retried {
+    let added: [Entry]
+    let replaced: [Dose]
+    let isSaved: Bool
 }
 
 private enum Refused: Error {

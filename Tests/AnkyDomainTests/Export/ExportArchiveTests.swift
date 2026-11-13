@@ -23,7 +23,17 @@ struct ExportArchiveTests {
         let doses = try ["00000000-0000-0000-0000-0000000000D1", "00000000-0000-0000-0000-0000000000D2"].map {
             try Dose(id: #require(UUID(uuidString: $0)), medicationID: medication.id, takenAt: morning)
         }
-        return ExportData(entries: [pain, stiffness], medications: [medication], doses: doses)
+        return try ExportData(entries: [pain, stiffness], medications: [medication], doses: doses, basdai: basdai())
+    }
+
+    private func basdai() throws -> [BasdaiResult] {
+        try [("00000000-0000-0000-0000-0000000000B2", [10, 10, 10, 10, 10, 10]),
+             ("00000000-0000-0000-0000-0000000000B1", [4, 6, 3, 5, 7, 4])].enumerated().map { offset, made in
+            let id = try #require(UUID(uuidString: made.0))
+            return try #require(BasdaiResult(
+                id: id, date: morning.addingTimeInterval(Double(offset) * 60), answers: made.1
+            ))
+        }
     }
 
     private func files(_ data: ExportData, at date: Date? = nil) throws -> [ZipFile] {
@@ -52,33 +62,54 @@ struct ExportArchiveTests {
         try Date(text, strategy: .iso8601)
     }
 
-    @Test func holdsTheManifestThenTheThreeTablesInOrder() throws {
+    @Test func holdsTheManifestThenTheFourTablesInOrder() throws {
         let names = try files(sample()).map(\.name)
-        #expect(names == ["manifest.json", "entries.csv", "medications.csv", "doses.csv"])
+        #expect(names == ["manifest.json", "entries.csv", "medications.csv", "doses.csv", "basdai.csv"])
     }
 
     @Test func writesEachTableAsItsCSVText() throws {
         let data = try sample()
         let texts = try files(data).dropFirst().map { try #require(String(bytes: $0.data, encoding: .utf8)) }
         let tables = [EntriesCSV.table(data.entries), MedicationsCSV.table(data.medications),
-                      DosesCSV.table(data.doses, entries: data.entries)]
+                      DosesCSV.table(data.doses, entries: data.entries), BasdaiCSV.table(data.basdai)]
         #expect(texts == tables.map(\.text))
     }
 
     @Test func manifestNamesTheVersionsTheMomentAndEachFilesDataRows() throws {
         let manifest = try manifest(files(sample()))
-        #expect(manifest.schemaVersion == 1)
-        #expect(ExportArchive.schemaVersion == 1)
+        #expect(manifest.schemaVersion == 2)
+        #expect(ExportArchive.schemaVersion == 2)
         #expect(manifest.appVersion == "1.2")
         #expect(manifest.build == "34")
         #expect(manifest.exportedAt == "2025-11-11T08:15:00Z")
-        #expect(manifest.files.map(\.name) == ["entries.csv", "medications.csv", "doses.csv"])
-        #expect(manifest.files.map(\.rows) == [2, 1, 2])
+        #expect(manifest.files.map(\.name) == ["entries.csv", "medications.csv", "doses.csv", "basdai.csv"])
+        #expect(manifest.files.map(\.rows) == [2, 1, 2, 2])
     }
 
     @Test func manifestCountsZeroRowsForAnEmptyExport() throws {
-        let empty = ExportData(entries: [], medications: [], doses: [])
-        #expect(try manifest(files(empty)).files.map(\.rows) == [0, 0, 0])
+        let empty = ExportData(entries: [], medications: [], doses: [], basdai: [])
+        #expect(try manifest(files(empty)).files.map(\.rows) == [0, 0, 0, 0])
+    }
+
+    @Test func writesTwoResultsAsTwoRowsWhoseScoresAreTheSharedFunctionsValue() throws {
+        let data = try sample()
+        let file = try #require(files(data).last)
+        #expect(file.name == "basdai.csv")
+        let lines = try #require(String(bytes: file.data, encoding: .utf8)).split(separator: "\n")
+        let posix = Locale(identifier: "en_US_POSIX")
+        let scores = data.basdai.map { BasdaiScore.text(of: $0, locale: posix) }
+        #expect(lines.count == 3)
+        #expect(lines.dropFirst().map { $0.split(separator: ",").last.map(String.init) } == ["10.0", "4.7"])
+        #expect(scores.sorted() == ["10.0", "4.7"])
+    }
+
+    @Test func anExportWithNoResultsStillHoldsABasdaiFileWithItsHeaderOnly() throws {
+        let data = try sample()
+        let none = ExportData(entries: data.entries, medications: data.medications, doses: data.doses, basdai: [])
+        let file = try #require(files(none).last)
+        #expect(file.name == "basdai.csv")
+        #expect(String(bytes: file.data, encoding: .utf8) == "id,created_at,updated_at,date,q1,q2,q3,q4,q5,q6,score\n")
+        #expect(try manifest(files(none)).files.last?.rows == 0)
     }
 
     @Test func manifestUsesSnakeCaseKeysInSortedOrder() throws {

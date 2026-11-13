@@ -51,7 +51,6 @@ struct CardSection<Content: View>: View {
     var body: some View {
         Section {
             content
-                .listRowBackground(Color.card)
         } header: {
             if let label {
                 labelView(label)

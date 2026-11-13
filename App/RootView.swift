@@ -54,6 +54,7 @@ struct RootView: View {
             SettingsView(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 dailyReminder: dailyReminder,
                 reminderScheduler: dailyReminderScheduler,
                 exportData: exportData

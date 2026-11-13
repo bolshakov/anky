@@ -80,7 +80,7 @@ func saveDoseAnHourBack(in app: XCUIApplication) {
     setDateTimeHoursBack(1, in: app)
     let before = app.buttons["before-reading-row"]
     for _ in 0 ..< 5 where !before.exists || !before.isHittable {
-        app.swipeDown()
+        identified("log-dose-screen", in: app).swipeDown()
     }
     XCTAssertTrue(before.waitForExistence(timeout: 10))
     XCTAssertTrue(before.label.contains("4 of 10"), before.label)
@@ -107,7 +107,7 @@ func scrollToBottom(of app: XCUIApplication) {
     }
 }
 
-/// Save check-in is the last row of the form, so the form is swiped until it is hittable.
+/// Save is the last row of the form, so the form is swiped until it is hittable.
 @MainActor
 func scrollToSaveCheckIn(in app: XCUIApplication) {
     let save = app.buttons["save-check-in"]
@@ -182,6 +182,7 @@ func nameNewMedication(_ name: String, in app: XCUIApplication) {
 /// Makes the switch on when it is off, then picks the option from the menu.
 @MainActor
 func choose(_ option: String, in app: XCUIApplication) {
+    XCTAssertTrue(checkInSwitch(in: app).waitForExistence(timeout: 10))
     if checkInSwitch(in: app).value as? String == "0" {
         turnOn(in: app)
     } else {

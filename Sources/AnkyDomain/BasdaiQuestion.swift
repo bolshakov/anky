@@ -38,6 +38,10 @@ public struct BasdaiQuestion: Sendable {
         return text(of: value, locale: locale, bundle: bundle)
     }
 
+    public func numberText(_ value: Int, locale: Locale, bundle: Bundle = .main) -> String {
+        Self.outOfTenText(value, locale: locale, bundle: bundle)
+    }
+
     public func spokenText(_ answer: BasdaiAnswer, locale: Locale, bundle: Bundle = .main) -> String {
         guard let value = answer.value else {
             return String(localized: "not answered", bundle: bundle, locale: locale)
@@ -47,9 +51,13 @@ public struct BasdaiQuestion: Sendable {
 
     private func text(of value: Int, locale: Locale, bundle: Bundle) -> String {
         switch reading {
-        case .outOfTen: String(localized: "\(value) of \(10)", bundle: bundle, locale: locale)
+        case .outOfTen: Self.outOfTenText(value, locale: locale, bundle: bundle)
         case .duration: Self.durationText(minutes: value * 12, locale: locale, bundle: bundle)
         }
+    }
+
+    private static func outOfTenText(_ value: Int, locale: Locale, bundle: Bundle) -> String {
+        String(localized: "\(value) of \(10)", bundle: bundle, locale: locale)
     }
 
     private static func durationText(minutes: Int, locale: Locale, bundle: Bundle) -> String {

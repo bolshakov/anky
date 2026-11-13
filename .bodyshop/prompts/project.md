@@ -30,8 +30,9 @@ test runner and no click in the Simulator window. Start the app with `SIMCTL_CHI
 so no real data is used, and keep that value to relaunch with the same data.
 In a Debug build, `SIMCTL_CHILD_ANKY_SEED=spread` fills an empty log with synthetic entries and doses spread over six
 months, and `SIMCTL_CHILD_ANKY_SEED=single` with one entry ten days back. `report-short`, `report-long`, `report-sparse`
-and `report-places-7` fill it with the report walks' logs, as `App/DebugReportSeed.swift` lists. A log that holds
-anything is left as it is.
+and `report-places-7` fill it with the report walks' logs, as `App/DebugReportSeed.swift` lists. `report-basdai` fills
+it with the `report-short` log and three synthetic BASDAI results. A log that holds anything, BASDAI results included,
+is left as it is.
 
 ```sh
 axe describe-ui --udid $U          # JSON of the screen, ids are the AXUniqueId fields
@@ -65,3 +66,8 @@ records".
 ## Project files
 
 Never edit `Anky.xcodeproj`. It is generated. A new Swift file under `Sources/` or `App/` needs no other change.
+
+## UI catalog
+
+For a task that touches UI, the plan step names the shared pieces from `App/Design/README.md` that the task must use.
+The review checklist asks whether the diff builds something the catalog already has.

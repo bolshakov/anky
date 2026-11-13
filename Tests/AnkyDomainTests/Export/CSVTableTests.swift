@@ -39,6 +39,11 @@ struct CSVTableTests {
         #expect(table.text == "a,b,c\n-3,,10\n")
     }
 
+    @Test func writesABareCellAsItIs() {
+        let table = CSVTable(header: ["a", "b", "c"], rows: [[.bare("3.3"), .bare("10.0"), .bare("0.0")]])
+        #expect(table.text == "a,b,c\n3.3,10.0,0.0\n")
+    }
+
     @Test func keepsLettersBeyondASCIIAndWritesNoByteOrderMark() {
         let table = CSVTable(header: ["note"], rows: [[.text("Tëma Бехтерев")]])
         #expect(table.text == "note\n\"Tëma Бехтерев\"\n")
