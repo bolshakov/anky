@@ -11,7 +11,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 
 - A screen never sets the title display mode. Today's header moved by `.inlineLarge` and the change was rolled back, so
   a screen keeps the system's default for its navigation bar.
-- A footnote goes in the footer of `FootnotedSection` and never in an empty trailing section. A trailing section built
+- A footnote goes in the footer of `CardSection` and never in an empty trailing section. A trailing section built
   only to hold the footnote sat about 42 pt from its card, away from the group it explains.
 - A screen takes no raw asset colour, no `Color("...")` and no UIKit colour. It uses the colour tokens below, which are
   the only place an asset is named.
@@ -19,9 +19,8 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 ## Sections
 
 - `CardSection`: the default section of a card screen, with an optional label above and a left-aligned footnote below. Do not build a `Section` with its own card background, header style and footer inset.
-- `FootnotedSection`: a section of a grouped list that keeps the system footer inset and tint for its footnote. Do not put the footnote in an extra empty section after it.
 - `FooterBlockSection`: a card section whose footer is a centred block of any views that scrolls with the list, such as the About block. Do not hand-build a footer for it, and use `CardSection` when the footer is only left-aligned text.
-- `SectionLabel`: the header style of a section label. `CardSection` and `FootnotedSection` apply it already, so use it by hand only on a `Section` you build yourself, and never set a header's case and insets yourself.
+- `SectionLabel`: the header style of a section label. `CardSection` applies it already, so use it by hand only on a `Section` you build yourself, and never set a header's case and insets yourself.
 
 ## Rows
 
