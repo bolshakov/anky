@@ -1,0 +1,8 @@
+$ sh -c 'cd /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.yqixXF4G5Q/copy && git status --short && scripts/ci/ui-shards.sh matrix 10; scripts/ci/ui-shards.sh check 10; echo check-exit=$?; scripts/ci/ui-shards.sh matrix 10 | grep -o NewProbeTests | wc -l'
+exit: 0
+commit: d762b37ea80503b6a3e589e2c40005359c88210e
+
+?? Tests/AnkyUITests/NewProbeTests.swift
+{"include":[{"shard":1,"classes":"NoteTests CheckInWhereChipsTests PlacesRowTests SeverityRangeTests SliderStartLevelTests"},{"shard":2,"classes":"PrimaryButtonColourTests MedicationTapTargetTests SaveEntryTests VoiceOverTests SmokeScenarioTests"},{"shard":3,"classes":"EditDoseTests CheckInFootnoteTests AccessibilityAuditTests SectionCaptionTests KindAtLargestSizeTests"},{"shard":4,"classes":"CheckInDelayChoiceTests DateRowTests CheckInAccessibilityTests CheckInSaveClearOfControlsTests ArchivedCardHeightTests LargeTextTests"},{"shard":5,"classes":"HistorySwipeTests KindChoiceTests EntryRowElementTests CheckInSavesChosenKindTests EarlierTimeTests LooksRightTests"},{"shard":6,"classes":"LogDoseReadingTests LogDoseTimeTests MedicationMoreMenuTests LogDoseDiscardTests EmptyStateMarkTests NewProbeTests"},{"shard":7,"classes":"TodayDeleteSwipeTests CheckInBannerTests NewEntryOrderTests MedicationRowHeightTests EmptyStateTests NoFutureTimeTests"},{"shard":8,"classes":"LogDoseCheckInTests TodayPairTests PlaceChipSpacingTests RegionTests EntryRowLargestTextTests PlaceChipSelectionTests"},{"shard":9,"classes":"CancelTests TakenAsChoiceTests SaveMedicationTests ScaleNoteTests HistoryCheckInTests SeverityEditTests"},{"shard":10,"classes":"CheckInSavingTests MedicationSaveClearOfRowsTests TodayListTests SeverityDragTests HistoryEditTests SeverityMirrorTests"}]}
+check-exit=0
+       1

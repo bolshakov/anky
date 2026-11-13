@@ -1,0 +1,5 @@
+$ sh -c 'cd /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.yqixXF4G5Q/copy && scripts/ci/ui-shards.sh matrix 10 | grep -c NewProbeTests'
+exit: 1
+commit: d762b37ea80503b6a3e589e2c40005359c88210e
+
+0
