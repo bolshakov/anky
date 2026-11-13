@@ -15,31 +15,52 @@ func openNewEntry(_ app: XCUIApplication) {
     XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForExistence(timeout: 10))
 }
 
-/// XCUIElement has no increment or decrement, so each call drives the slider by position. A short drag from a
-/// nearby value can settle one step off, so a close target first goes to the far end of the track. The position counts
-/// from the screen's left, so in right-to-left level 0 is on the right.
+/// XCUIElement has no increment or decrement, so each call moves the slider by position. In right-to-left
+/// `adjust(toNormalizedSliderPosition:)` presses where it expects a left-to-right knob and cannot move a slider that
+/// sits at level 0, so there the knob is dragged from its current level.
 @MainActor
 func setSeverity(_ level: Int, in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
     XCTAssertTrue(slider.waitForExistence(timeout: 10))
     liftAboveSaveBar(slider, in: app)
-    // Reads the direction from the level at the screen's left edge, which needs no end label.
-    slider.adjust(toNormalizedSliderPosition: 0)
-    let startOnRight = severityLevel(of: slider) == 10
-    func screenPosition(_ value: Int) -> CGFloat {
-        let fromStart = CGFloat(value) / 10
-        return startOnRight ? 1 - fromStart : fromStart
+    if isRightToLeft(app) {
+        dragSeverityKnob(slider, to: level)
+    } else {
+        adjustSeverity(slider, to: level)
     }
+}
+
+/// A short move from a nearby value can settle one step off, so a close target first goes to the far end of the track.
+@MainActor
+private func adjustSeverity(_ slider: XCUIElement, to level: Int) {
     for _ in 0 ..< 20 {
         let current = severityLevel(of: slider) ?? -1
         guard current != level else { return }
         if abs(current - level) <= 2 {
-            slider.adjust(toNormalizedSliderPosition: screenPosition(level >= 5 ? 0 : 10))
+            slider.adjust(toNormalizedSliderPosition: level >= 5 ? 0 : 1)
             guard severityLevel(of: slider) != level else { return }
         }
-        slider.adjust(toNormalizedSliderPosition: screenPosition(level))
+        slider.adjust(toNormalizedSliderPosition: CGFloat(level) / 10)
     }
     XCTFail("the severity slider did not reach \(level)")
+}
+
+/// A plain press and drag overshoots a short move by a step, and the next drag back overshoots the other way, so the
+/// drag is slow and holds at its end to let the slider settle.
+@MainActor
+private func dragSeverityKnob(_ slider: XCUIElement, to level: Int) {
+    for _ in 0 ..< 20 {
+        guard let current = severityLevel(of: slider) else { break }
+        guard current != level else { return }
+        let from = knobCoordinate(of: slider, level: current, rightToLeft: true)
+        let to = knobCoordinate(of: slider, level: level, rightToLeft: true)
+        from.press(forDuration: 0.5, thenDragTo: to, withVelocity: .slow, thenHoldForDuration: 0.5)
+    }
+    XCTFail("the severity slider did not reach \(level)")
+}
+
+private func isRightToLeft(_ app: XCUIApplication) -> Bool {
+    Presentation.rightToLeft.launchArguments.allSatisfy(app.launchArguments.contains)
 }
 
 /// The top edge of the pinned Save bar of whichever form is open, or the screen's bottom when none shows. `isHittable`
