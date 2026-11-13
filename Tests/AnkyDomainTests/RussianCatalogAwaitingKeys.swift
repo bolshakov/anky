@@ -37,4 +37,6 @@ BASDAI scores
 BASDAI scores, continued
 Date
 Q%lld
+Are you sure you want to discard your changes?
+Discard Changes
 """.split(separator: "\n").map(String.init)
