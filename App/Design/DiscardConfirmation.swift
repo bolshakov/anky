@@ -23,12 +23,6 @@ private struct DiscardConfirmation: ViewModifier {
                 }
             }
             .interactiveDismissDisabled(hasChanges)
-            .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
-                Button("Discard Changes", role: .destructive, action: close)
-                    .accessibilityIdentifier("discard-changes")
-            } message: {
-                Text("Are you sure you want to discard your changes?")
-            }
     }
 
     private var cancelButton: some View {
@@ -36,6 +30,12 @@ private struct DiscardConfirmation: ViewModifier {
             .frame(minHeight: Spacing.tapTarget)
             .contentShape(Rectangle())
             .accessibilityIdentifier(cancelID)
+            .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
+                Button("Discard Changes", role: .destructive, action: close)
+                    .accessibilityIdentifier("discard-changes")
+            } message: {
+                Text("Are you sure you want to discard your changes?")
+            }
     }
 
     private func cancel() {
