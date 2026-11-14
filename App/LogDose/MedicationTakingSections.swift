@@ -13,7 +13,6 @@ struct MedicationTakingSections: View {
             } else {
                 Picker("How you take it", selection: $draft.takenAs) { TakenAsOptions() }
                     .pickerStyle(.segmented)
-                    .controlSize(.large)
                     .labelsHidden()
                     .accessibilityIdentifier("taken-as")
                     .nonCardBlock()

@@ -12,7 +12,6 @@ struct KindSection: View {
             }
         }
         .pickerStyle(.segmented)
-        .controlSize(.large)
         .labelsHidden()
         .accessibilityLabel("What are you logging?")
         .accessibilityIdentifier("kind-picker")

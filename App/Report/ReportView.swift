@@ -31,7 +31,6 @@ struct ReportView: View {
                     }
                 }
                 .pickerStyle(.segmented)
-                .controlSize(.large)
                 .labelsHidden()
                 .accessibilityLabel("Period")
                 .accessibilityIdentifier("report-period")
