@@ -1627,7 +1627,7 @@
       }
     },
     "Shows the scores saved in this period. Everything stays on this iPhone until you share the report." : {
-      "comment" : "The footnote under the Report screen's BASDAI card: it says the row lists the period's scores and that nothing leaves the phone before the person shares the report.",
+      "comment" : "The footnote under the Report screen's BASDAI switch: it says the switch puts the period's scores in the PDF and that nothing leaves the phone before the person shares the report.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4125,7 +4125,7 @@
       }
     },
     "BASDAI" : {
-      "comment" : "The Today menu item that opens the BASDAI screen, where the six BASDAI questions are answered and saved results are listed. BASDAI is the name of the index and stays as is.",
+      "comment" : "The item in Today's (+) menu that opens the form with the six BASDAI questions. BASDAI is the name of the index and stays as is.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -4136,7 +4136,7 @@
       }
     },
     "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The citation line of the empty BASDAI screen. The index name and the reference to the 1994 paper stay as published.",
+      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
