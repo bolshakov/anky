@@ -42,6 +42,8 @@ Delete result => Удалить результат
 Couldn't delete this result. Try again. => Не удалось удалить этот результат. Попробуй ещё раз.
 Result deleted => Результат удалён
 Score => Результат
+Covers last week => За последние 7 дней
+BASDAI, score %@, at %@, covers last week => BASDAI, результат %@, в %@, за последние 7 дней
 """)
 
 struct RussianBasdaiTests {
@@ -49,9 +51,9 @@ struct RussianBasdaiTests {
         try #require(basdaiRussianValues.first { $0.key == key }).value
     }
 
-    @Test func twentyNineKeysAreApproved() {
-        #expect(basdaiRussianValues.count == 29)
-        #expect(Set(basdaiRussianValues.map(\.key)).count == 29)
+    @Test func thirtyOneKeysAreApproved() {
+        #expect(basdaiRussianValues.count == 31)
+        #expect(Set(basdaiRussianValues.map(\.key)).count == 31)
     }
 
     @Test func everyBasdaiTextReadsAsDesignWroteIt() throws {
