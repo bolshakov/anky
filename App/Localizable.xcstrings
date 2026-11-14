@@ -528,23 +528,6 @@
         }
       }
     },
-    "BASDAI results" : {
-      "comment" : "The Report screen's row that opens the BASDAI list. Its value is how many results the chosen period holds.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI results"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результаты BASDAI"
-          }
-        }
-      }
-    },
     "Before this dose" : {
       "localizations" : {
         "ru" : {
@@ -1644,7 +1627,7 @@
       }
     },
     "Shows the scores saved in this period. Everything stays on this iPhone until you share the report." : {
-      "comment" : "The footnote under the Report screen's BASDAI card: it says the row lists the period's scores and that nothing leaves the phone before the person shares the report.",
+      "comment" : "The footnote under the Report screen's BASDAI switch: it says the switch puts the period's scores in the PDF and that nothing leaves the phone before the person shares the report.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4142,7 +4125,7 @@
       }
     },
     "BASDAI" : {
-      "comment" : "The Today menu item that opens the BASDAI screen, where the six BASDAI questions are answered and saved results are listed. BASDAI is the name of the index and stays as is.",
+      "comment" : "The item in Today's (+) menu that opens the form with the six BASDAI questions. BASDAI is the name of the index and stays as is.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -4152,57 +4135,13 @@
         }
       }
     },
-    "No BASDAI results yet" : {
-      "comment" : "The title of the BASDAI screen when no result has been saved yet.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результатов BASDAI пока нет"
-          }
-        }
-      }
-    },
-    "BASDAI is six questions about the last week, each answered from 0 to 10. It takes about a minute. Saved results are listed here with their date." : {
-      "comment" : "The text under the title of the empty BASDAI screen. It says what BASDAI asks and where saved results appear.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI — шесть вопросов о прошедшей неделе, каждый оценивается от 0 до 10. Это занимает около минуты. Сохранённые результаты появляются здесь с датой."
-          }
-        }
-      }
-    },
     "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The citation line of the empty BASDAI screen. The index name and the reference to the 1994 paper stay as published.",
+      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
-          }
-        }
-      }
-    },
-    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Swipe left to delete." : {
-      "comment" : "The footnote under the list of saved BASDAI results: the citation of the 1994 paper, then how to delete a result.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). Смахни влево, чтобы удалить результат."
-          }
-        }
-      }
-    },
-    "Start" : {
-      "comment" : "The button at the bottom of the BASDAI screen that opens the six BASDAI questions.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начать"
           }
         }
       }
@@ -4480,17 +4419,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Результат"
-          }
-        }
-      }
-    },
-    "Score %@ out of 10" : {
-      "comment" : "What VoiceOver reads after the date of one saved BASDAI result in the list: its score with one decimal and the scale, such as Score 4.8 out of 10. %@ is the score, with the decimal separator of the person's region.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результат %@ из 10"
           }
         }
       }
