@@ -1,0 +1,8 @@
+$ sh -c 'axe describe-ui --udid C0251D50-32EA-4F70-A191-25E42F2415C4 | grep -E '\''"AXLabel" : "[0-9]\. '\'''
+exit: 0
+commit: 72deaaf5a538b517649e5c9a008aaa52d0a722a1
+
+                                                                        "AXLabel" : "3. How would you describe the overall level of pain\/swelling in joints other than neck, back or hips you have had?",
+                                                                        "AXLabel" : "4. How would you describe the overall level of discomfort you have had from any areas tender to touch or pressure?",
+                                                                        "AXLabel" : "5. How would you describe the overall level of morning stiffness you have had from the time you wake up?",
+                                                                        "AXLabel" : "6. How long does your morning stiffness last from the time you wake up?",

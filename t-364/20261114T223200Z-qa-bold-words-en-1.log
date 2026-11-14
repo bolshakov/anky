@@ -1,0 +1,10 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t364-01-1/tmp/h/walk-open-form.sh en
+exit: 0
+commit: 72deaaf5a538b517649e5c9a008aaa52d0a722a1
+
+✓ Tap at resolved tap point at (353.0, 747.0) completed successfully
+✓ Tap at resolved tap point at (256.0, 744.0) completed successfully
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t364-01-1/checkout/.results/t364/en-top.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t364-01-1/checkout/.results/t364/en-top.png
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t364-01-1/checkout/.results/t364/en-bottom.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t364-01-1/checkout/.results/t364/en-bottom.png
