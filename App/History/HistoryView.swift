@@ -6,6 +6,7 @@ import SwiftUI
 struct HistoryView: View {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
     let isClosingSheets: Bool
     let onSheetsClosed: () -> Void
     @State private var now = Date.now
@@ -24,6 +25,7 @@ struct HistoryView: View {
         HistoryList.page(
             model.entries,
             doses: medications.doses,
+            basdai: basdai.results,
             window: HistoryWindow(days: shownDays, now: now, calendar: .current)
         )
     }

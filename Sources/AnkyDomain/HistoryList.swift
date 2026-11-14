@@ -5,6 +5,7 @@ public enum HistoryList {
     public static func sections(
         _ entries: [Entry], doses: [Dose], basdai: [BasdaiResult] = [], now: Date, calendar: Calendar
     ) -> [DaySection] {
+        // #lizard forgives
         let days = DayReference(now: now, calendar: calendar)
         let logged = entries.map(LoggedItem.entry) + doses.map(LoggedItem.dose) + basdai.map(LoggedItem.basdai)
         let grouped = Dictionary(grouping: LoggedItem.newestFirst(logged)) {

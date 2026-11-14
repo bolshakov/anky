@@ -18,6 +18,7 @@ public enum TodayList {
     public static func items(
         entries: [Entry], doses: [Dose], basdai: [BasdaiResult] = [], on day: Date, calendar: Calendar
     ) -> [LoggedItem] {
+        // #lizard forgives
         let logged = entries.map(LoggedItem.entry) + doses.map(LoggedItem.dose) + basdai.map(LoggedItem.basdai)
         return LoggedItem.newestFirst(logged.filter { calendar.isDate($0.date, inSameDayAs: day) })
     }

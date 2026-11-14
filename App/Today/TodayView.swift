@@ -36,7 +36,9 @@ struct TodayView: View {
     }
 
     private var todayItems: [LoggedItem] {
-        TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
+        TodayList.items(
+            entries: model.entries, doses: medications.doses, basdai: basdai.results, on: .now, calendar: .current
+        )
     }
 
     private var waitingDoses: [Dose] {

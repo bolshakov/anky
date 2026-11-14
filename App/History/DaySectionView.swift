@@ -54,6 +54,8 @@ struct DaySectionView: View {
             .deleteSwipe {
                 onDeleteDose(dose)
             }
+        case let .basdai(result):
+            BasdaiRow(result: result)
         }
     }
 
