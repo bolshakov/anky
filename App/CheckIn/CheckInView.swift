@@ -10,6 +10,7 @@ struct CheckInView: View {
     let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: EntryDraft
+    @State private var startDraft: EntryDraft
     @State private var entriesAtOpen: [Entry]
     @State private var lastChipsAtOpen: [PlaceID]
     @State private var checkIn = CheckInSave()
@@ -21,7 +22,9 @@ struct CheckInView: View {
         self.medications = medications
         self.model = model
         self.onSaved = onSaved
-        _draft = State(initialValue: DoseReadings(dose, in: model.entries).checkInDraft(now: .now))
+        let opening = DoseReadings(dose, in: model.entries).checkInDraft(now: .now)
+        _draft = State(initialValue: opening)
+        _startDraft = State(initialValue: opening)
         _entriesAtOpen = State(initialValue: model.entries)
         _lastChipsAtOpen = State(initialValue: model.shortcuts.lastChips)
     }
@@ -55,16 +58,13 @@ struct CheckInView: View {
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
             }
+            .discardConfirmation(
+                hasChanges: draft.hasChanges(since: startDraft),
+                cancelID: "check-in-cancel",
+                close: { dismiss() }
+            )
             .navigationTitle("Check In")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("check-in-cancel")
-                }
-            }
             .alert("Couldn't save this check-in. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
