@@ -5,15 +5,15 @@ import Testing
 
 private let english = Locale(identifier: "en_GB")
 
-private let wordings = ["How would you describe the overall level of fatigue/tiredness you have experienced?",
+private let wordings = ["How would you describe the overall level of **fatigue/tiredness** you have experienced?",
                         "How would you describe the overall level of AS **neck, back or hip** pain you have had?",
                         "How would you describe the overall level of pain/swelling in joints **other than** neck, "
                             + "back or hips you have had?",
-                        "How would you describe the overall level of discomfort you have had from any areas tender "
+                        "How would you describe the overall level of **discomfort** you have had from any areas tender "
                             + "to touch or pressure?",
-                        "How would you describe the overall level of morning stiffness you have had from the time "
-                            + "you wake up?",
-                        "How long does your morning stiffness last from the time you wake up?"]
+                        "How would you describe the overall **level** of **morning stiffness** you have had from "
+                            + "the time you wake up?",
+                        "**How long** does your **morning stiffness** last from the time you wake up?"]
 
 private let shortNames = ["Fatigue", "Spinal pain", "Joint pain", "Tenderness", "Stiffness severity",
                           "Stiffness duration"]

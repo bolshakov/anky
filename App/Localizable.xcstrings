@@ -3894,13 +3894,13 @@
         }
       }
     },
-    "How would you describe the overall level of fatigue/tiredness you have experienced?" : {
+    "How would you describe the overall level of **fatigue/tiredness** you have experienced?" : {
       "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Каким был общий уровень слабости (утомляемости)?"
+            "value" : "Каким был общий уровень **слабости (утомляемости)**?"
           }
         }
       }
@@ -3927,35 +3927,35 @@
         }
       }
     },
-    "How would you describe the overall level of discomfort you have had from any areas tender to touch or pressure?" : {
+    "How would you describe the overall level of **discomfort** you have had from any areas tender to touch or pressure?" : {
       "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Каким был общий уровень неприятных ощущений при прикосновении к болезненным областям или надавливании на них?"
+            "value" : "Каким был общий уровень **неприятных ощущений** при прикосновении к болезненным областям или надавливании на них?"
           }
         }
       }
     },
-    "How would you describe the overall level of morning stiffness you have had from the time you wake up?" : {
+    "How would you describe the overall **level** of **morning stiffness** you have had from the time you wake up?" : {
       "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Каким был общий уровень утренней скованности с момента пробуждения?"
+            "value" : "Каким был общий **уровень** **утренней скованности** с момента пробуждения?"
           }
         }
       }
     },
-    "How long does your morning stiffness last from the time you wake up?" : {
+    "**How long** does your **morning stiffness** last from the time you wake up?" : {
       "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сколько длится утренняя скованность с момента пробуждения?"
+            "value" : "**Сколько длится** **утренняя скованность** с момента пробуждения?"
           }
         }
       }
