@@ -2086,7 +2086,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записать приём"
+            "value" : "Записать приём лекарства"
           }
         }
       }
@@ -2754,7 +2754,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Новая запись"
+            "value" : "Записать самочувствие"
           }
         }
       }
