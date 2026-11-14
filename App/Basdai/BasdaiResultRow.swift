@@ -10,7 +10,8 @@ struct BasdaiResultRow: View {
     var body: some View {
         ValueRow(Text(verbatim: date), value: Text(verbatim: score))
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(Text("\(date). Score \(score)."))
+            .accessibilityLabel(Text(verbatim: date))
+            .accessibilityValue(Text("Score \(score) out of 10"))
     }
 
     private var date: String {

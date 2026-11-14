@@ -7,7 +7,7 @@ import Testing
 private let approvedPlaceholders = table("""
 %@ of %lld => a reading's level
 %@. => the schedule in words
-%@. Score %@. => a BASDAI result's date and its score
+Score %@ out of 10 => a BASDAI score with one decimal
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). \

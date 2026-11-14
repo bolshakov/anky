@@ -3,6 +3,8 @@ import AnkyDomain
 import SwiftUI
 
 struct NewEntryView: View {
+    private static let dateBlockID = "date-block"
+
     let model: EntryLogModel
     let mode: EntryMode
     let onSaved: () -> Void
@@ -58,44 +60,40 @@ struct NewEntryView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                recentChips
-                Section {
-                    KindSection(draft: $draft)
-                        .nonCardBlock()
+            ScrollViewReader { proxy in
+                Form {
+                    recentChips
+                    Section {
+                        KindSection(draft: $draft)
+                            .nonCardBlock()
+                    }
+                    SystemSeveritySection(
+                        caption: "Severity",
+                        spokenLabel: "Severity",
+                        idPrefix: "severity",
+                        severity: $draft.severity
+                    )
+                    whereSection
+                    CardSection(id: "date") {
+                        DateSection(date: $draft.date, onOpen: { scrollToDate(proxy) })
+                            .id(Self.dateBlockID)
+                    }
+                    NoteSection(draft: $draft)
                 }
-                SystemSeveritySection(
-                    caption: "Severity",
-                    spokenLabel: "Severity",
-                    idPrefix: "severity",
-                    severity: $draft.severity
-                )
-                whereSection
-                CardSection(id: "date") {
-                    DateSection(date: $draft.date)
-                }
-                NoteSection(draft: $draft)
+                .screenSpacing()
+                .accessibilityIdentifier(screenID)
             }
-            .screenSpacing()
-            .accessibilityIdentifier(screenID)
             .navigationDestination(isPresented: $isShowingPlaces) {
                 PlacesListView(draft: $draft)
             }
+            .discardConfirmation(
+                hasChanges: draft.hasChanges(since: startDraft),
+                cancelID: "cancel-entry",
+                close: { dismiss() }
+            )
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Group {
-                        Button("Cancel") {
-                            dismiss()
-                        }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("cancel-entry")
-                    }
-                    .accessibilityElement(children: .contain)
-                    .accessibilityIdentifier("cancel-item")
-                }
                 if case .edit = mode {
                     ToolbarItem(placement: .primaryAction) {
                         EntryMoreMenu { isConfirmingDelete = true }
@@ -116,11 +114,17 @@ struct NewEntryView: View {
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, onDelete: removeEntry)
             .shortcutFeedback(model.shortcuts)
             .onAppear(perform: recordChipsOnFirstAppear)
-            .interactiveDismissDisabled(draft != startDraft)
         }
         .pinLimitAlert(model.shortcuts)
         .environment(model.shortcuts)
         .environment(model.tipProgress)
+    }
+
+    private func scrollToDate(_ proxy: ScrollViewProxy) {
+        Task { @MainActor in
+            await Task.yield()
+            withAnimation { proxy.scrollTo(Self.dateBlockID, anchor: .bottom) }
+        }
     }
 
     private var saveButton: some View {

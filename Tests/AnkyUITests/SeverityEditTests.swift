@@ -13,7 +13,7 @@ final class SeverityEditTests: XCTestCase {
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
 
         openNewEntry(app)
-        app.buttons["kind-stiffness"].tap()
+        chooseKind(.stiffness, in: app)
         setSeverity(7, in: app)
         saveEntry(app)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))

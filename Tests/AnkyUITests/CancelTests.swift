@@ -21,18 +21,20 @@ final class CancelTests: XCTestCase {
         attachScreenshot(named: "cancel-saves-nothing")
     }
 
-    func testCancelAfterChangeClosesAtOnce() {
+    func testCancelAfterChangeAsksAndDiscardSavesNothing() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewEntry(app)
         setSeverity(1, in: app)
         app.buttons["cancel-entry"].tap()
 
-        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
-        XCTAssertEqual(app.alerts.count, 0)
-        XCTAssertEqual(app.sheets.count, 0)
-        XCTAssertEqual(entryRows(in: app).count, 0)
+        XCTAssertTrue(app.buttons["discard-changes"].firstMatch.waitForExistence(timeout: 10))
+        XCTAssertFalse(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 2))
         attachScreenshot(named: "cancel-after-change")
+
+        discardChanges(in: app)
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
+        XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
     func testSwipeDownClosesWhenUnchanged() {
@@ -60,6 +62,7 @@ final class CancelTests: XCTestCase {
         attachScreenshot(named: "swipe-blocked")
 
         app.buttons["cancel-entry"].tap()
+        discardChanges(in: app)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
         XCTAssertEqual(entryRows(in: app).count, 0)
     }
