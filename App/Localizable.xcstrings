@@ -457,6 +457,12 @@
             "state" : "translated",
             "value" : "Add"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить"
+          }
         }
       }
     },
@@ -514,6 +520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Are you sure you want to discard your changes?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть без сохранения изменений?"
           }
         }
       }
@@ -731,6 +743,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Discard Changes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть без сохранения"
           }
         }
       }
@@ -2751,12 +2769,18 @@
         }
       }
     },
-    "Tap + to log how you feel or a medication you took. Everything stays on this iPhone." : {
+    "Tap + to log how you feel or a dose. Everything stays on this iPhone." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap + to log how you feel or a medication you took. Everything stays on this iPhone."
+            "value" : "Tap + to log how you feel or a dose. Everything stays on this iPhone."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone."
           }
         }
       }
@@ -4423,13 +4447,19 @@
         }
       }
     },
-    "Entries, doses and BASDAI results you add appear here, newest first." : {
+    "Your records appear here, newest first." : {
       "comment" : "The text under the title of the empty History screen. It says which records appear in History and in which order.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entries, doses and BASDAI results you add appear here, newest first."
+            "value" : "Your records appear here, newest first."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здесь появятся твои записи, сначала новые."
           }
         }
       }
@@ -4442,6 +4472,12 @@
             "state" : "translated",
             "value" : "Covers last week"
           }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За последние 7 дней"
+          }
         }
       }
     },
@@ -4452,6 +4488,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BASDAI, score %@, at %@, covers last week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI, результат %@, в %@, за последние 7 дней"
           }
         }
       }

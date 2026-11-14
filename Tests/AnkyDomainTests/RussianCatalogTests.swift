@@ -7,6 +7,12 @@ import Testing
 private let approvedPlainValues = table("""
 Today => Сегодня
 Nothing logged today => Сегодня записей нет
+Are you sure you want to discard your changes? => Закрыть без сохранения изменений?
+Discard Changes => Закрыть без сохранения
+Add => Добавить
+Tap + to log how you feel or a dose. Everything stays on this iPhone. => \
+Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone.
+Your records appear here, newest first. => Здесь появятся твои записи, сначала новые.
 Log how you feel => Новая запись
 New Entry => Новая запись
 Cancel => Отмена
