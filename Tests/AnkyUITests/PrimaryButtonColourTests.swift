@@ -153,7 +153,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
-    func testSaveMedicationLabelIsDimmerWhenDisabled() throws {
+    func testSaveMedicationLabelIsLegibleWhenDisabled() throws {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -168,10 +168,11 @@ final class PrimaryButtonColourTests: XCTestCase {
         XCTAssertTrue(waitUntilEnabled(button))
         let enabled = try settledLabelColour(of: button, dark: runIsDark)
         attachScreenshot(named: "save-medication-enabled")
-        XCTAssertLessThan(
-            disabled.contrast, enabled.contrast / 2,
-            "disabled label \(disabled.label) on \(disabled.background) is not dimmer than "
-                + "enabled \(enabled.label) on \(enabled.background)"
+        XCTAssertGreaterThanOrEqual(
+            disabled.contrast, 4.5,
+            "disabled label \(disabled.label) on \(disabled.background) reads "
+                + "\(String(format: "%.2f", disabled.contrast)):1, under 4.5:1 "
+                + "(enabled \(enabled.label) on \(enabled.background))"
         )
     }
 
@@ -194,7 +195,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         try expectPrimaryLabel(settledLabelColour(of: button, dark: false), dark: false)
     }
 
-    func testSaveDoseLabelIsDimmerWhenDisabled() throws {
+    func testSaveDoseLabelIsLegibleWhenDisabled() throws {
         continueAfterFailure = false
         let app = launchAnky()
         tapLogMedication(in: app)
@@ -208,10 +209,11 @@ final class PrimaryButtonColourTests: XCTestCase {
         XCTAssertTrue(waitUntilEnabled(button))
         let enabled = try settledLabelColour(of: button, dark: runIsDark)
         attachScreenshot(named: "save-dose-enabled")
-        XCTAssertLessThan(
-            disabled.contrast, enabled.contrast / 2,
-            "disabled label \(disabled.label) on \(disabled.background) is not dimmer than "
-                + "enabled \(enabled.label) on \(enabled.background)"
+        XCTAssertGreaterThanOrEqual(
+            disabled.contrast, 4.5,
+            "disabled label \(disabled.label) on \(disabled.background) reads "
+                + "\(String(format: "%.2f", disabled.contrast)):1, under 4.5:1 "
+                + "(enabled \(enabled.label) on \(enabled.background))"
         )
     }
 
