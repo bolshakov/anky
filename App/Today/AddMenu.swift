@@ -26,6 +26,7 @@ struct AddMenu: View {
                 .dynamicTypeSize(.large)
                 .frame(width: Spacing.addButtonLabelSide, height: Spacing.addButtonLabelSide)
         }
+        .menuOrder(.fixed)
         .primaryButton()
         .buttonBorderShape(.circle)
         .accessibilityIdentifier("add-menu")
