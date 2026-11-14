@@ -7,7 +7,6 @@ import Testing
 private let approvedPlaceholders = table("""
 %@ of %lld => a reading's level
 %@. => the schedule in words
-Score %@ out of 10 => a BASDAI score with one decimal
 BASDAI, score %@, at %@, covers last week => a BASDAI score with one decimal, then the time it was saved
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
