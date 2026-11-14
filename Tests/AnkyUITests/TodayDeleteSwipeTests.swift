@@ -171,7 +171,7 @@ final class TodayDeleteSwipeTests: XCTestCase {
     }
 
     private func addZorblexWithAThirtyMinuteCheckIn(_ app: XCUIApplication) {
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
         let name = app.textFields["medication-name"]
         XCTAssertTrue(name.waitForExistence(timeout: 10))

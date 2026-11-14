@@ -13,6 +13,7 @@ struct TodayView: View {
     @Binding var reminderLogDose: UUID?
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
+    @State private var isShowingBasdai = false
     @State private var editing: Entry?
     @State private var editingDose: Dose?
     @State private var loggedID: UUID?
@@ -25,18 +26,14 @@ struct TodayView: View {
     @State private var checkInNow = Date.now
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
+    @State private var pendingBasdaiDelete: BasdaiResult?
+    @State private var openedResult: BasdaiResult?
     @State private var isShowingReport = false
-    @State private var isShowingBasdai = false
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    private var pairLayout: AnyLayout {
-        dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(spacing: Spacing.pairGap))
-            : AnyLayout(HStackLayout(spacing: Spacing.pairGap))
-    }
 
     private var todayItems: [LoggedItem] {
-        TodayList.items(entries: model.entries, doses: medications.doses, on: .now, calendar: .current)
+        TodayList.items(
+            entries: model.entries, doses: medications.doses, basdai: basdai.results, on: .now, calendar: .current
+        )
     }
 
     private var waitingDoses: [Dose] {
@@ -55,6 +52,10 @@ struct TodayView: View {
             entries: model.entries,
             after: checkInNow
         )
+    }
+
+    private var isOpeningForm: Bool {
+        isShowingNewEntry || isShowingLogDose || isShowingBasdai
     }
 
     private var recent: RecentEntry? {
@@ -99,7 +100,7 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
-                    .reportMenuAnchor()
+                    .reportButtonAnchor()
                     .nonCardBlock()
                     cornerGuard
                 }
@@ -109,7 +110,8 @@ struct TodayView: View {
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
             .todayTopMargin()
-            .reportMenuInBar(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
+            .addButtonClearance()
+            .reportButtonInBar(isShowingReport: $isShowingReport)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -120,43 +122,34 @@ struct TodayView: View {
                 try medications.removeDose(id: doseTarget.id)
                 deleteTicks += 1
             }
+            .basdaiDeleteConfirmation(
+                of: pendingBasdaiDelete,
+                onDismiss: { pendingBasdaiDelete = nil },
+                model: basdai,
+                onDeleted: { deleteTicks += 1 }
+            )
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
+            .overlay(alignment: .bottomTrailing) {
+                AddMenu(
+                    onLogEntry: { isShowingNewEntry = true },
+                    onLogDose: { isShowingLogDose = true },
+                    onBasdai: { isShowingBasdai = true }
+                )
+                .allowsHitTesting(!isOpeningForm)
+                .padding(.trailing, Spacing.screenMargin)
+                .padding(.bottom, Spacing.bottomClearance)
+            }
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
             }
-            .navigationDestination(isPresented: $isShowingBasdai) {
-                BasdaiListView(model: basdai)
-            }
-            .safeAreaInset(edge: .bottom) {
-                pairLayout {
-                    Button {
-                        isShowingLogDose = true
-                    } label: {
-                        Text("Log dose")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                    .buttonStyle(.glass)
-                    .buttonBorderShape(.capsule)
-                    .accessibilityIdentifier("log-medication")
-                    Button {
-                        isShowingNewEntry = true
-                    } label: {
-                        Text("Log how you feel")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                    .primaryButton()
-                    .accessibilityIdentifier("log-entry")
-                }
-                .controlSize(.large)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding()
-            }
+            .navigationDestination(item: $openedResult) { BasdaiDetailView(result: $0) }
             .modifier(TodaySheets(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 onSaved: { saveTicks += 1 },
                 onCreated: {
                     loggedID = nil
@@ -168,6 +161,7 @@ struct TodayView: View {
                 reminderLogDose: $reminderLogDose,
                 isShowingNewEntry: $isShowingNewEntry,
                 isShowingLogDose: $isShowingLogDose,
+                isShowingBasdai: $isShowingBasdai,
                 editing: $editing,
                 editingDose: $editingDose,
                 checkingIn: $checkingIn
@@ -180,7 +174,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
-        .reportMenuOnTitleLine(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
+        .reportButtonOnTitleLine(isShowingReport: $isShowingReport, isShowingDetail: openedResult != nil)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
@@ -223,7 +217,9 @@ struct TodayView: View {
                 onSelect: open,
                 onSelectDose: openDose,
                 onDelete: { pendingDelete = $0 },
-                onDeleteDose: { pendingDoseDelete = $0 }
+                onDeleteDose: { pendingDoseDelete = $0 },
+                onSelectBasdai: { openedResult = $0 },
+                onDeleteBasdai: { pendingBasdaiDelete = $0 }
             )
         }
     }

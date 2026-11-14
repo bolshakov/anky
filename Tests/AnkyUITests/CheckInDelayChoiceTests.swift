@@ -154,6 +154,7 @@ final class CheckInDelayChoiceTests: XCTestCase {
 
         choose("3 hours", in: app)
         app.buttons["medication-cancel"].tap()
+        discardChanges(in: app)
         XCTAssertTrue(app.textFields["medication-name"].waitForNonExistence(timeout: 10))
 
         openMedicationFromList(app)

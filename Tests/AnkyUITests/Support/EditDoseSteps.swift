@@ -4,7 +4,7 @@ import XCTest
 /// Leaves Log Dose open with its medication chosen.
 @MainActor
 func addZorblex(_ app: XCUIApplication) {
-    app.buttons["log-medication"].tap()
+    tapLogMedication(in: app)
     addMedication("Zorblex", in: app)
     XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
 }

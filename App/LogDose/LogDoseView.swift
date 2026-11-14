@@ -8,6 +8,7 @@ struct LogDoseView: View {
     let medications: MedicationsModel
     let model: EntryLogModel
     let onSaved: () -> Void
+    private let preselected: UUID?
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var selectionTicks = 0
@@ -25,6 +26,8 @@ struct LogDoseView: View {
     @State private var isShowingSaveFailure = false
     @State private var checkIn = DoseCheckIn(savedDelay: nil)
     @State private var checkInBuiltFor: UUID?
+    /// The clock as of the last minute tick, so the change rule sees the time move while the person has set one.
+    @State private var minuteClock = Date.now
 
     init(
         medications: MedicationsModel,
@@ -35,13 +38,14 @@ struct LogDoseView: View {
         self.medications = medications
         self.model = model
         self.onSaved = onSaved
+        self.preselected = preselected
         _selectedID = State(initialValue: preselected)
     }
 
     var body: some View {
         NavigationStack {
             ScrollViewReader { proxy in
-                TimelineView(.everyMinute) { _ in
+                TimelineView(.everyMinute) { context in
                     Form {
                         CardSection(Text("Medication"), id: "medication") {
                             if active.isEmpty {
@@ -68,17 +72,13 @@ struct LogDoseView: View {
                     }
                     .screenSpacing()
                     .accessibilityIdentifier("log-dose-screen")
+                    .onChange(of: context.date) { minuteClock = context.date }
                 }
             }
             .navigationTitle("Log Dose")
             .navigationBarTitleDisplayMode(.inline)
+            .discardConfirmation(hasChanges: hasChanges, cancelID: "log-dose-cancel", close: { dismiss() })
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("log-dose-cancel")
-                }
                 if !medications.medications.isEmpty {
                     ToolbarItem(placement: .topBarTrailing) {
                         NavigationLink("Manage") {
@@ -132,6 +132,13 @@ struct LogDoseView: View {
 
     private var active: [Medication] {
         medications.active
+    }
+
+    private var hasChanges: Bool {
+        LogDoseDraft(selectedID: selectedID, takenAt: chosenTakenAt, manualReadingID: manualReadingID, checkIn: checkIn)
+            .hasChanges(in: LogDoseContext(
+                preselected: preselected, active: active, entries: model.entries, now: minuteClock
+            ))
     }
 
     private var checkedID: UUID? {

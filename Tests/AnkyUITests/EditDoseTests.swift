@@ -87,7 +87,7 @@ final class EditDoseTests: XCTestCase {
         attachScreenshot(named: "edit-dose")
     }
 
-    func testCancelAndSwipeDownLeaveTheDoseAsItWas() throws {
+    func testACancelledChangeAsksAndASwipeCannotCloseIt() throws {
         continueAfterFailure = false
         let app = launchAnky()
         try logZorblexDoseAnHourBack(app)
@@ -97,6 +97,7 @@ final class EditDoseTests: XCTestCase {
         chooseMedication("Quibbanol", in: app)
         setDateToYesterday(in: app)
         app.buttons["edit-dose-cancel"].tap()
+        discardChanges(in: app)
 
         XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
         assertDoseUnchanged(label, in: app)
@@ -105,6 +106,10 @@ final class EditDoseTests: XCTestCase {
         chooseMedication("Quibbanol", in: app)
         setDateToYesterday(in: app)
         swipeSheetDown(app)
+
+        XCTAssertTrue(editDoseScreen(in: app).exists)
+        app.buttons["edit-dose-cancel"].tap()
+        discardChanges(in: app)
 
         XCTAssertTrue(editDoseScreen(in: app).waitForNonExistence(timeout: 10))
         assertDoseUnchanged(label, in: app)
@@ -176,6 +181,7 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(failing.buttons["save-dose-changes"].isEnabled)
 
         failing.buttons["edit-dose-cancel"].tap()
+        discardChanges(in: failing)
         XCTAssertTrue(editDoseScreen(in: failing).waitForNonExistence(timeout: 10))
         assertDoseUnchanged(original, in: failing)
 

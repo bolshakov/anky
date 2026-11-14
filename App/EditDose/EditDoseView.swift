@@ -52,15 +52,10 @@ struct EditDoseView: View {
                 .screenSpacing()
                 .accessibilityIdentifier("edit-dose-screen")
             }
+            .discardConfirmation(hasChanges: hasChanges, cancelID: "edit-dose-cancel", close: { dismiss() })
             .navigationTitle("Edit Dose")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("edit-dose-cancel")
-                }
                 ToolbarItem(placement: .primaryAction) {
                     DoseMoreMenu { isConfirmingDelete = true }
                 }
@@ -73,6 +68,11 @@ struct EditDoseView: View {
         }
         .sensoryFeedback(.success, trigger: readingSaveTicks)
         .sensoryFeedback(.warning, trigger: readingDeleteTicks)
+    }
+
+    private var hasChanges: Bool {
+        guard let selectedID else { return false }
+        return dose.isMoved(to: selectedID, at: takenAt)
     }
 
     private func scrollToDate(_ proxy: ScrollViewProxy) {

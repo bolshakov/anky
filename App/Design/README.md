@@ -70,8 +70,8 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `titleToDatePull`: only for `todayTopMargin`, which sets how far Today's list is pulled up. Do not use it to align another header.
 - `titleToDatePullPerTitlePoint`: only for `todayTopMargin`, which shrinks the pull as the title grows. Do not use it to align another header.
 - `largeTitleSize`: only for `todayTopMargin`, as the title size the pull is measured from. Do not use it to size text.
-- `titleToContentStartPerTitlePoint`: only for Today's report menu, as how far the large title's centre sits above the first block, per point of title size. Do not use it to align another control.
-- `navigationBarRow`: only for Today's report menu, as the height of the collapsed bar row it fades out above. Do not use it to size a bar.
+- `titleToContentStartPerTitlePoint`: only for Today's report button, as how far the large title's centre sits above the first block, per point of title size. Do not use it to align another control.
+- `navigationBarRow`: only for Today's report button, as the height of the collapsed bar row it fades out above. Do not use it to size a bar.
 - `blockGap`: the gap between the blocks of a screen, applied by `screenSpacing`. Do not set a different section gap.
 - `emptyBlockGap`: covered by the `emptyBlockGap` line under Modifiers for screens and buttons.
 - `labelGap`: the gap under a section label, applied by `SectionLabel`. Do not pad a label yourself.
@@ -84,7 +84,6 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `rowContentGap`: the gap between a row's tile or symbol and its text. Do not use it between rows.
 - `cardContentGap`: the gap between items stacked inside one card block, such as a question and its answer control. Do not write one.
 - `cardInset`: the side inset for content you draw inside a card by hand, so it lines up with the rows. Do not write a padding number.
-- `pairGap`: the gap between two blocks that sit side by side and stack at accessibility sizes, as on Today. Do not write one.
 - `moreRowGap`: the gap between the parts of the more-places row. Do not reuse it for another row.
 - `chipInnerGap`: the gap between the symbol and the text inside a chip. Do not write one.
 - `chevronSlotWidth`: the width of a chevron slot in the more-places row. Other rows take `RowChevron` instead.
@@ -116,13 +115,17 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `iconTile`: the size of an `IconTile`. Do not size a symbol tile yourself.
 - `iconSymbol`: the size of the symbol inside an `IconTile`. Do not size that symbol yourself.
 - `bottomClearance`: the room under the last block or the bottom button, applied by `bottomPrimaryButton` and `lastBlockClearance`. Use the modifiers before the token.
+- `addButtonSide`: the width and height of Today's round (+) menu button, which keeps this size at every text size. Do not use it to size another button.
+- `addButtonSystemPadding`: the padding the system adds around the (+) button's label. Only the label side below uses it, so do not use it in a screen.
+- `addButtonLabelSide`: the label side that gives the (+) button its `addButtonSide` circle. Give the (+) label this size and do not add your own padding.
+- `addButtonClearance`: the bottom content margin of a list that a round button floats over, so its last row ends above the button. One line covers the `View` modifier and the `Spacing` token. Do not use it for a list with no floating button, which takes `lastBlockClearance`.
 - `primaryButtonHeight`: the design height of the bottom primary button. Do not size a primary button yourself.
 - `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen.
 - `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding.
 - `repeatChipSystemPadding`: the padding the system adds around the repeat chip's label. Only the label height below uses it, so do not use it in a screen.
 - `repeatChipLabelHeight`: the label height that gives the repeat chip a row-sized height. Use it for a chip of that kind and do not add your own padding.
 - `glassCircleSystemPadding`: the padding the system adds around a glass circle button's label. Only the label side below uses it, so do not use it in a screen.
-- `glassCircleLabelSide`: the label side that gives a glass circle button a tap-target-sized circle. Use it for Today's report menu and do not add your own padding.
+- `glassCircleLabelSide`: the label side that gives a glass circle button a tap-target-sized circle. Use it for Today's report button and do not add your own padding.
 
 ## Corner tokens
 

@@ -9,6 +9,7 @@ import SwiftUI
 struct TodaySheets: ViewModifier {
     let model: EntryLogModel
     let medications: MedicationsModel
+    let basdai: BasdaiModel
     let onSaved: () -> Void
     let onCreated: () -> Void
     let onDeleted: () -> Void
@@ -17,6 +18,7 @@ struct TodaySheets: ViewModifier {
     @Binding var reminderLogDose: UUID?
     @Binding var isShowingNewEntry: Bool
     @Binding var isShowingLogDose: Bool
+    @Binding var isShowingBasdai: Bool
     @Binding var editing: Entry?
     @Binding var editingDose: Dose?
     @Binding var checkingIn: Dose?
@@ -52,6 +54,7 @@ struct TodaySheets: ViewModifier {
             .sheet(isPresented: $isShowingLogDose, onDismiss: logDoseDismissed) {
                 LogDoseView(medications: medications, model: model, preselected: logDoseMedication, onSaved: onSaved)
             }
+            .basdaiSheet(isPresented: $isShowingBasdai, model: basdai, onDismiss: presentPending)
             .sheet(item: $editing, onDismiss: presentPending) { entry in
                 NewEntryView(model: model, mode: .edit(entry), onSaved: onSaved)
                     .onDeleted(onDeleted)
@@ -65,35 +68,66 @@ struct TodaySheets: ViewModifier {
             }
     }
 
-    private func showCheckIn(_ dose: Dose) {
-        guard isShowingNewEntry || isShowingLogDose || editing != nil || editingDose != nil else {
-            checkingIn = dose
-            return
+    private var openSheets: OpenSheets {
+        var open: OpenSheets = []
+        if isShowingNewEntry {
+            open.insert(.newEntry)
         }
-        pending = .checkIn(dose)
-        closeSheets()
+        if isShowingLogDose {
+            open.insert(.logDose)
+        }
+        if isShowingBasdai {
+            open.insert(.basdai)
+        }
+        if editing != nil {
+            open.insert(.editingEntry)
+        }
+        if editingDose != nil {
+            open.insert(.editingDose)
+        }
+        if checkingIn != nil {
+            open.insert(.checkingIn)
+        }
+        return open
+    }
+
+    private func showCheckIn(_ dose: Dose) {
+        switch ReminderSheetPlan.step(for: .checkIn, open: openSheets) {
+        case .openNow:
+            checkingIn = dose
+        case .closeSheetsFirst:
+            pending = .checkIn(dose)
+            closeSheets()
+        case .ignore:
+            break
+        }
     }
 
     private func showNewEntry() {
-        guard !isShowingNewEntry else { return }
-        guard isShowingLogDose || editing != nil || editingDose != nil || checkingIn != nil else {
+        switch ReminderSheetPlan.step(for: .newEntry, open: openSheets) {
+        case .openNow:
             isShowingNewEntry = true
-            return
+        case .closeSheetsFirst:
+            pending = .newEntry
+            closeSheets()
+            checkingIn = nil
+        case .ignore:
+            break
         }
-        pending = .newEntry
-        closeSheets()
-        checkingIn = nil
     }
 
     private func showLogDose(_ medicationID: UUID) {
-        guard isShowingNewEntry || isShowingLogDose || editing != nil || editingDose != nil || checkingIn != nil else {
+        switch ReminderSheetPlan.step(for: .logDose, open: openSheets) {
+        case .openNow:
             logDoseMedication = medicationID
             isShowingLogDose = true
-            return
+        case .closeSheetsFirst:
+            pending = .logDose(medicationID)
+            closeSheets()
+            checkingIn = nil
+        case .ignore:
+            break
         }
-        pending = .logDose(medicationID)
-        closeSheets()
-        checkingIn = nil
     }
 
     private func logDoseDismissed() {
@@ -104,6 +138,7 @@ struct TodaySheets: ViewModifier {
     private func closeSheets() {
         isShowingNewEntry = false
         isShowingLogDose = false
+        isShowingBasdai = false
         editing = nil
         editingDose = nil
     }

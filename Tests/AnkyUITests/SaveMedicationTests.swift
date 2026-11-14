@@ -6,7 +6,7 @@ final class SaveMedicationTests: XCTestCase {
     func testTwoQuickTapsOnSaveMakeOneMedication() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
 
         let name = app.textFields["medication-name"]
@@ -73,7 +73,7 @@ final class SaveMedicationTests: XCTestCase {
     }
 
     private func openNewMedication(_ app: XCUIApplication) {
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
         XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
     }
