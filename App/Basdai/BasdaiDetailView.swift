@@ -12,7 +12,13 @@ struct BasdaiDetailView: View {
             CardSection(id: "basdai-detail-score") {
                 row(Text("Score"), value: BasdaiScore.text(of: result, locale: locale), id: "basdai-detail-score-row")
             }
-            CardSection(id: "basdai-detail-answers") {
+            CardSection(
+                footnote: Text(
+                    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+                ),
+                id: "basdai-detail-answers",
+                footnoteID: "basdai-detail-footnote"
+            ) {
                 ForEach(Array(zip(BasdaiQuestion.all, result.answers)), id: \.0.number) { question, answer in
                     row(
                         Text(verbatim: question.shortName),

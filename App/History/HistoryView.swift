@@ -15,6 +15,8 @@ struct HistoryView: View {
     @State private var checkingIn: Dose?
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
+    @State private var pendingBasdaiDelete: BasdaiResult?
+    @State private var openedResult: BasdaiResult?
     @State private var saveTicks = 0
     @State private var deleteTicks = 0
     @State private var derived: HistoryDerived?
@@ -116,6 +118,8 @@ struct HistoryView: View {
                                 onSelectDose: open,
                                 onDelete: { pendingDelete = $0 },
                                 onDeleteDose: { pendingDoseDelete = $0 },
+                                onSelectBasdai: { openedResult = $0 },
+                                onDeleteBasdai: { pendingBasdaiDelete = $0 },
                                 isLastDay: section.id == page.sections.last?.id,
                                 hasOlderDays: page.hasOlderDays,
                                 onLastDayAppear: { shownDays += HistoryList.pageDays }
@@ -142,10 +146,17 @@ struct HistoryView: View {
                 try medications.removeDose(id: doseTarget.id)
                 deleteTicks += 1
             }
+            .basdaiDeleteConfirmation(
+                of: pendingBasdaiDelete,
+                onDismiss: { pendingBasdaiDelete = nil },
+                model: basdai,
+                onDeleted: { deleteTicks += 1 }
+            )
             .background(Color.surface)
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")
+            .navigationDestination(item: $openedResult) { BasdaiDetailView(result: $0) }
             .onChange(of: inputs, initial: true) { _, inputs in
                 derived = HistoryDerived(inputs)
             }

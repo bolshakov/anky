@@ -45,6 +45,7 @@ private struct ReportButtonInBar: ViewModifier {
 /// it moves with the content.
 private struct ReportButtonOnTitleLine: ViewModifier {
     @Binding var isShowingReport: Bool
+    let isShowingDetail: Bool
     @ScaledMetric(relativeTo: .largeTitle) private var titleSize = Spacing.largeTitleSize
     @State private var contentStart: CGFloat?
     @State private var safeAreaTop: CGFloat = 0
@@ -57,12 +58,16 @@ private struct ReportButtonOnTitleLine: ViewModifier {
     private func visibility(top: CGFloat) -> CGFloat {
         let belowBar = top - (safeAreaTop + Spacing.navigationBarRow)
         let fadeDistance = Spacing.tapTarget / 2
-        return isShowingReport ? 0 : min(1, max(0, 1 + belowBar / fadeDistance))
+        return isCovered ? 0 : min(1, max(0, 1 + belowBar / fadeDistance))
+    }
+
+    private var isCovered: Bool {
+        isShowingReport || isShowingDetail
     }
 
     private var isInBar: Bool {
         guard let top else { return false }
-        return !isShowingReport && visibility(top: top) == 0
+        return !isCovered && visibility(top: top) == 0
     }
 
     private var button: ReportButton {
@@ -89,7 +94,7 @@ private struct ReportButtonOnTitleLine: ViewModifier {
                         .ignoresSafeArea()
                 }
             }
-            .animation(.default, value: isShowingReport)
+            .animation(.default, value: isCovered)
     }
 }
 
@@ -104,7 +109,7 @@ extension View {
         modifier(ReportButtonInBar(isShowingReport: isShowingReport))
     }
 
-    func reportButtonOnTitleLine(isShowingReport: Binding<Bool>) -> some View {
-        modifier(ReportButtonOnTitleLine(isShowingReport: isShowingReport))
+    func reportButtonOnTitleLine(isShowingReport: Binding<Bool>, isShowingDetail: Bool) -> some View {
+        modifier(ReportButtonOnTitleLine(isShowingReport: isShowingReport, isShowingDetail: isShowingDetail))
     }
 }
