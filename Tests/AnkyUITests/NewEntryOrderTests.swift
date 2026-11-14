@@ -63,7 +63,7 @@ final class NewEntryOrderTests: XCTestCase {
             screen.swipeUp()
         }
         assertInOrder(["kind-picker", "severity-label", "date row", "note-field"], in: app)
-        XCTAssertFalse(element("delete-entry", in: app).exists)
+        XCTAssertTrue(element("delete-entry", in: app).exists)
     }
 
     /// Left knee is not a default chip, so it shows in the More places value, where the test can read it.

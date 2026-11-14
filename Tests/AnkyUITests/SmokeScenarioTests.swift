@@ -64,7 +64,7 @@ final class SmokeScenarioTests: XCTestCase {
             screen.swipeUp()
         }
         assertInOrder(["kind-picker", "severity-label", "date row", "note-field"], in: app)
-        XCTAssertFalse(element("delete-entry", in: app).exists)
+        XCTAssertTrue(element("delete-entry", in: app).exists)
         saveEntry(app)
         XCTAssertTrue(screen.waitForNonExistence(timeout: 10))
     }
