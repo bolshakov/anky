@@ -1,0 +1,5 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-03-1/tmp/t354-sim.sh; U=1AD5E715-757A-4B41-8899-A489A0A74584; t354_ui label report-button'
+exit: 0
+commit: 7cdde93e277fb03ca85cdec827ea14077d283bb2
+
+Report for your doctor
