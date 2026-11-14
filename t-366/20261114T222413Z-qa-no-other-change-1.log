@@ -1,0 +1,29 @@
+$ sh -c 'git diff main -- App/Localizable.xcstrings; git diff main --stat'
+exit: 0
+commit: 47b984bc98bb2cbfebb640621fb7b5eea016cfa6
+
+diff --git a/App/Localizable.xcstrings b/App/Localizable.xcstrings
+index 6e45609..5932b74 100644
+--- a/App/Localizable.xcstrings
++++ b/App/Localizable.xcstrings
+@@ -2086,7 +2086,7 @@
+         "ru" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Записать приём"
++            "value" : "Записать приём лекарства"
+           }
+         }
+       }
+@@ -2754,7 +2754,7 @@
+         "ru" : {
+           "stringUnit" : {
+             "state" : "translated",
+-            "value" : "Новая запись"
++            "value" : "Записать самочувствие"
+           }
+         }
+       }
+ App/Localizable.xcstrings                       | 4 ++--
+ Tests/AnkyDomainTests/RussianCatalogTests.swift | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)

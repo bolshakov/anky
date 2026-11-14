@@ -1,0 +1,11 @@
+$ sh -c 'axe tap --id add-menu --wait-timeout 5 --udid 45132FB1-8D00-4837-A070-105768711908 && sleep 1 && axe describe-ui --udid 45132FB1-8D00-4837-A070-105768711908 | grep -E '\''"AXLabel" : "(Записать|BASDAI)|log-entry|log-medication|add-basdai'\'''
+exit: 0
+commit: 47b984bc98bb2cbfebb640621fb7b5eea016cfa6
+
+✓ Tap at resolved tap point at (353.0, 747.0) completed successfully
+                                        "AXLabel" : "Записать самочувствие",
+                                        "AXUniqueId" : "log-entry",
+                                        "AXLabel" : "Записать приём лекарства",
+                                        "AXUniqueId" : "log-medication",
+                                        "AXLabel" : "BASDAI",
+                                        "AXUniqueId" : "add-basdai",

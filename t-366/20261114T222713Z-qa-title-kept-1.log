@@ -1,0 +1,8 @@
+$ sh -c 'axe tap --id log-medication --wait-timeout 5 --udid 45132FB1-8D00-4837-A070-105768711908 && sleep 1 && axe describe-ui --udid 45132FB1-8D00-4837-A070-105768711908 | grep -E '\''log-dose-screen|Новый приём'\'''
+exit: 0
+commit: 47b984bc98bb2cbfebb640621fb7b5eea016cfa6
+
+✓ Tap at resolved tap point at (256.0, 692.0) completed successfully
+                                        "AXUniqueId" : "Новый приём",
+                                            "AXLabel" : "Новый приём",
+                                                        "AXUniqueId" : "log-dose-screen"
