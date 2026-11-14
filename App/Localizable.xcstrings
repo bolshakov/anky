@@ -1606,19 +1606,8 @@
         }
       }
     },
-    "Report and BASDAI" : {
-      "comment" : "The VoiceOver name of the Today toolbar button that opens the report and BASDAI menu.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отчёт и BASDAI"
-          }
-        }
-      }
-    },
     "Report for your doctor" : {
-      "comment" : "The Today menu item that opens the Report screen, where a period is picked for a PDF to show a doctor.",
+      "comment" : "The VoiceOver name of the Today button that opens the Report screen, where a period is picked for a PDF to show a doctor.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

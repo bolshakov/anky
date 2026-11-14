@@ -26,7 +26,6 @@ struct TodayView: View {
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
     @State private var isShowingReport = false
-    @State private var isShowingBasdai = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var pairLayout: AnyLayout {
@@ -99,7 +98,7 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
-                    .reportMenuAnchor()
+                    .reportButtonAnchor()
                     .nonCardBlock()
                     cornerGuard
                 }
@@ -109,7 +108,7 @@ struct TodayView: View {
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
             .todayTopMargin()
-            .reportMenuInBar(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
+            .reportButtonInBar(isShowingReport: $isShowingReport)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -126,9 +125,6 @@ struct TodayView: View {
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
-            }
-            .navigationDestination(isPresented: $isShowingBasdai) {
-                BasdaiListView(model: basdai)
             }
             .safeAreaInset(edge: .bottom) {
                 pairLayout {
@@ -180,7 +176,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
-        .reportMenuOnTitleLine(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
+        .reportButtonOnTitleLine(isShowingReport: $isShowingReport)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and

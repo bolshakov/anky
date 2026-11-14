@@ -251,7 +251,6 @@ Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
 Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
 %@. Next: %@. => %1$@. Следующий приём: %2$@.
 %@. => %@.
-Report and BASDAI => Отчёт и BASDAI
 Report for your doctor => Отчёт для врача
 Report => Отчёт
 Period => Период
