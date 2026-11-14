@@ -6,7 +6,7 @@ final class LogDoseCheckInTests: XCTestCase {
     func testSwitchFollowsTheSelectedMedicationsSavedDelay() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         addMedication(named: "Zorblex", app)
         addMedication(named: "Quibbanol", delay: "1 hour", app)
         expectCheckIn(on: true, delay: "1 hour", app)
@@ -21,7 +21,7 @@ final class LogDoseCheckInTests: XCTestCase {
     func testFootnoteAsksToTurnItOnWhileOffAndReadsOneSentenceWhenOn() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         addMedication(named: "Zorblex", app)
         XCTAssertEqual(
             footnote(app).label,
@@ -37,12 +37,12 @@ final class LogDoseCheckInTests: XCTestCase {
     func testSavingTheDoseWritesTheSwitchAndMenuBackToTheMedication() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         addMedication(named: "Quibbanol", delay: "1 hour", app)
 
         toggleCheckIn(app)
         saveDose(app)
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         expectCheckIn(on: false, delay: nil, app)
 
         toggleCheckIn(app)
@@ -51,14 +51,14 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item 4 hours")
         item.tap()
         saveDose(app)
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         expectCheckIn(on: true, delay: "4 hours", app)
     }
 
     func testManageEditFollowsOnLogDoseUntilThePersonChangesTheCheckIn() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         addMedication(named: "Zorblex", delay: "2 hours", app)
 
         editDelayInManage("4 hours", app)
@@ -73,7 +73,7 @@ final class LogDoseCheckInTests: XCTestCase {
     func testFormDelayMenuOpensFromTheTopAndBottomOfItsRow() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
         let form = app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
         let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
@@ -140,7 +140,7 @@ final class LogDoseCheckInTests: XCTestCase {
 
     private func saveDose(_ app: XCUIApplication) {
         app.buttons["save-dose"].tap()
-        XCTAssertTrue(app.buttons["log-medication"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["add-menu"].waitForExistence(timeout: 10))
     }
 
     /// Adds from the Add medication row of the open Log Dose sheet, which stays open after each save.
