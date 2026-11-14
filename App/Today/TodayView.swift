@@ -103,11 +103,6 @@ struct TodayView: View {
             .blockGapBetweenSections()
             .todayTopMargin()
             .addButtonClearance()
-            .overlay(alignment: .bottomTrailing) {
-                AddMenu(onLogEntry: { isShowingNewEntry = true }, onLogDose: { isShowingLogDose = true })
-                    .padding(.trailing, Spacing.screenMargin)
-                    .padding(.bottom, Spacing.bottomClearance)
-            }
             .reportMenuInBar(isShowingReport: $isShowingReport, isShowingBasdai: $isShowingBasdai)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
@@ -122,6 +117,11 @@ struct TodayView: View {
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
+            .overlay(alignment: .bottomTrailing) {
+                AddMenu(onLogEntry: { isShowingNewEntry = true }, onLogDose: { isShowingLogDose = true })
+                    .padding(.trailing, Spacing.screenMargin)
+                    .padding(.bottom, Spacing.bottomClearance)
+            }
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
