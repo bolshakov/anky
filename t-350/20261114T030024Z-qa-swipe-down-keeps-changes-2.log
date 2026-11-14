@@ -1,0 +1,5 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t350-06-1/tmp/ids.sh EE0A2052-3BA3-4F06-B574-92710A82288B | grep severity-slider'
+exit: 0
+commit: bb7fbad3ae67892f33a6b9d1f0b0365c6431f6b8
+
+severity-slider | Severity | 0.699999988079071 | 32 403 338 44
