@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import SwiftUI
 
-/// Today's `doc.text` button, which opens the Report screen. The toolbar copy leaves the button's look to the bar, which
-/// already draws a glass circle round it.
+/// Today's `doc.text` button, which opens the Report screen. The toolbar copy leaves the button's look to the bar,
+/// which already draws a glass circle round it.
 struct ReportButton: View {
     let onReport: () -> Void
     var isInToolbar = false
