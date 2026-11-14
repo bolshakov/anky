@@ -7,7 +7,7 @@ final class PrimaryButtonColourTests: XCTestCase {
     func testTodayLogButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        let button = app.buttons["log-entry"]
+        let button = app.buttons["add-menu"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
         let dark = runIsDark
@@ -183,7 +183,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         }
         XCUIDevice.shared.appearance = .light
         let app = launchAnky()
-        let button = app.buttons["log-entry"]
+        let button = app.buttons["add-menu"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
         try expectPrimaryLabel(settledLabelColour(of: button, dark: false), dark: false)
 
@@ -197,7 +197,7 @@ final class PrimaryButtonColourTests: XCTestCase {
     func testSaveDoseLabelIsDimmerWhenDisabled() throws {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         let button = app.buttons["save-dose"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
         XCTAssertFalse(button.isEnabled)

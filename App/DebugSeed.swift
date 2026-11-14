@@ -10,8 +10,8 @@
     /// leaves the two-hour reading window within about two minutes. `report-short`, `report-long`, `report-sparse` and
     /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes, and `report-basdai` adds three
     /// BASDAI results to the `report-short` log. `basdai-rows` writes one entry a minute back, two BASDAI results two
-    /// and three minutes back scored 3.0 and 6.5, and one result three days back. A log that holds anything is left
-    /// alone.
+    /// and three minutes back scored 3.0 and 6.5, and one result three days back. `today-full` writes 14 entries dated
+    /// today, each at or before now, so Today's list scrolls. A log that holds anything is left alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -22,6 +22,8 @@
                 plantSpread(entries: entries, medications: medications, now: now)
             case "single":
                 try? entries.add(entry(daysBefore: 10, index: 0, now: now))
+            case "today-full":
+                plantTodayFull(entries: entries, now: now)
             case "reading-aging":
                 try? entries.add(entry(minutesBefore: 118, now: now))
             case "basdai-rows":
@@ -63,6 +65,14 @@
             for index in 0 ..< 8 {
                 let dose = Dose(id: UUID(), medicationID: medication.id, takenAt: day(before: now, by: 1 + 20 * index))
                 try? medications.logDose(dose)
+            }
+        }
+
+        private static func plantTodayFull(entries: EntryLogModel, now: Date) {
+            let sinceMidnight = now.timeIntervalSince(Calendar.current.startOfDay(for: now))
+            for index in 0 ..< 14 {
+                let date = now.addingTimeInterval(-sinceMidnight * Double(index) / 14)
+                try? entries.add(entry(index: index, at: date))
             }
         }
 

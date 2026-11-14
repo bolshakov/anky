@@ -18,7 +18,7 @@ final class ArchivedCardHeightTests: XCTestCase {
     }
 
     private func addMedication(_ app: XCUIApplication, name: String) {
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
 
         let field = app.textFields["medication-name"]

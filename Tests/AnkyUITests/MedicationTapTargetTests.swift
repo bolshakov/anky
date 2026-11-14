@@ -6,7 +6,7 @@ final class MedicationTapTargetTests: XCTestCase {
     func testLogDoseCancelIsAtLeast44Square() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
 
         assertAtLeast44Square(app.buttons["log-dose-cancel"])
     }
@@ -14,7 +14,7 @@ final class MedicationTapTargetTests: XCTestCase {
     func testNewEntryCancelIsAtLeast44Square() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-entry"].tap()
+        openNewEntry(app)
 
         assertAtLeast44Square(app.buttons["cancel-entry"])
     }
@@ -50,7 +50,7 @@ final class MedicationTapTargetTests: XCTestCase {
     }
 
     private func openNewMedication(_ app: XCUIApplication) {
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         app.buttons["dose-add-medication"].tap()
         XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
     }

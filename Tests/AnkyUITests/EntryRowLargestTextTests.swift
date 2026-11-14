@@ -25,12 +25,9 @@ final class EntryRowLargestTextTests: XCTestCase {
         let relaunched = launchAnky(folder: folder, presentation: english, arguments: largestTextArguments)
         let row = relaunched.descendants(matching: .any).matching(identifier: "entry-row-stiffness").firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
-        let floatingTop = min(
-            relaunched.buttons["log-medication"].frame.minY,
-            relaunched.buttons["log-entry"].frame.minY
-        )
-        // The floating buttons cover the middle of the screen at this size, so each drag starts above them and moves
-        // the row by the distance it still lacks, which stops it just clear of the buttons and not under the title.
+        let floatingTop = relaunched.buttons["add-menu"].frame.minY
+        // The (+) floats over the bottom of the list, so each drag starts above it and moves the row by the distance
+        // it still lacks, which stops it just clear of the button and not under the title.
         let origin = relaunched.coordinate(withNormalizedOffset: .zero)
         let start = origin.withOffset(CGVector(dx: relaunched.frame.midX, dy: 300))
         for _ in 0 ..< 6 where row.frame.maxY > floatingTop {

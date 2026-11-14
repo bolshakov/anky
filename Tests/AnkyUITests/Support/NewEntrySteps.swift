@@ -9,9 +9,7 @@ func entryScreen(_ app: XCUIApplication, id: String = "new-entry-screen") -> XCU
 
 @MainActor
 func openNewEntry(_ app: XCUIApplication) {
-    let logButton = app.buttons["log-entry"]
-    XCTAssertTrue(logButton.waitForExistence(timeout: 10))
-    logButton.tap()
+    addMenuItem("log-entry", in: app).tap()
     XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForExistence(timeout: 10))
 }
 

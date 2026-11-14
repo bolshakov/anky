@@ -3,6 +3,8 @@
 let awaitingRussian = """
 Are you sure you want to discard your changes?
 Discard Changes
+Add
+Tap + to log how you feel or a medication you took. Everything stays on this iPhone.
 Covers last week
 BASDAI, score %@, at %@, covers last week
 Entries, doses and BASDAI results you add appear here, newest first.

@@ -45,7 +45,7 @@ final class DateRowTests: XCTestCase {
     func testLogDoseRowOpensThePickerFromItsEdges() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
 
         tapDateRowEdge(in: app, dx: 0.03, dy: 0.5)
         XCTAssertTrue(dateWheel(in: app).waitForExistence(timeout: 10))
@@ -54,7 +54,7 @@ final class DateRowTests: XCTestCase {
     func testLogDoseWheelOpensSixteenPointsBelowTheDateText() {
         continueAfterFailure = false
         let app = launchAnky()
-        app.buttons["log-medication"].tap()
+        tapLogMedication(in: app)
         openDateWheel(in: app)
 
         let text = app.staticTexts["Date and time"].firstMatch

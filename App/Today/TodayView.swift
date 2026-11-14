@@ -28,13 +28,6 @@ struct TodayView: View {
     @State private var pendingBasdaiDelete: BasdaiResult?
     @State private var openedResult: BasdaiResult?
     @State private var isShowingReport = false
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
-    private var pairLayout: AnyLayout {
-        dynamicTypeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(spacing: Spacing.pairGap))
-            : AnyLayout(HStackLayout(spacing: Spacing.pairGap))
-    }
 
     private var todayItems: [LoggedItem] {
         TodayList.items(
@@ -112,6 +105,7 @@ struct TodayView: View {
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
             .todayTopMargin()
+            .addButtonClearance()
             .reportButtonInBar(isShowingReport: $isShowingReport)
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
@@ -132,35 +126,16 @@ struct TodayView: View {
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
+            .overlay(alignment: .bottomTrailing) {
+                AddMenu(onLogEntry: { isShowingNewEntry = true }, onLogDose: { isShowingLogDose = true })
+                    .padding(.trailing, Spacing.screenMargin)
+                    .padding(.bottom, Spacing.bottomClearance)
+            }
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
             }
             .navigationDestination(item: $openedResult) { BasdaiDetailView(result: $0) }
-            .safeAreaInset(edge: .bottom) {
-                pairLayout {
-                    Button {
-                        isShowingLogDose = true
-                    } label: {
-                        Text("Log dose")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                    .buttonStyle(.glass)
-                    .buttonBorderShape(.capsule)
-                    .accessibilityIdentifier("log-medication")
-                    Button {
-                        isShowingNewEntry = true
-                    } label: {
-                        Text("Log how you feel")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    }
-                    .primaryButton()
-                    .accessibilityIdentifier("log-entry")
-                }
-                .controlSize(.large)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding()
-            }
             .modifier(TodaySheets(
                 model: model,
                 medications: medications,
