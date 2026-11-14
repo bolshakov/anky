@@ -10,6 +10,7 @@ struct MedicationFormView: View {
     let onArchivedOrRestored: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var draft: MedicationDraft
+    @State private var openingDraft: MedicationDraft
     // Made once per opening, so a retry after a failed save writes the same medication.
     @State private var saver = MedicationSave(id: UUID())
     @State private var isSaved = false
@@ -30,7 +31,9 @@ struct MedicationFormView: View {
         self.editing = editing
         self.onSaved = onSaved
         self.onArchivedOrRestored = onArchivedOrRestored
-        _draft = State(initialValue: editing.map(MedicationDraft.init) ?? MedicationDraft())
+        let opening = editing.map(MedicationDraft.init) ?? MedicationDraft()
+        _draft = State(initialValue: opening)
+        _openingDraft = State(initialValue: opening)
     }
 
     var body: some View {
@@ -62,15 +65,14 @@ struct MedicationFormView: View {
             }
             .screenSpacing()
             .accessibilityIdentifier("medication-form")
+            .discardConfirmation(
+                hasChanges: draft.hasChanges(since: openingDraft),
+                cancelID: "medication-cancel",
+                close: { dismiss() }
+            )
             .navigationTitle(editing == nil ? "New Medication" : "Edit Medication")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
-                        .frame(minHeight: Spacing.rowMinimumHeight)
-                        .contentShape(Rectangle())
-                        .accessibilityIdentifier("medication-cancel")
-                }
                 if let editing {
                     ToolbarItem(placement: .primaryAction) {
                         MedicationMoreMenu(
