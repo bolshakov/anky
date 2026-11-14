@@ -1,0 +1,4 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/checkout grep -n -F -e 'Tap + to log how you feel or a medication you took. Everything stays on this iPhone.' -e 'Entries, doses and BASDAI results you add appear here, newest first.'
+exit: 1
+commit: 0f4a74a407d6a4bee09602d8c76c394797fb775e
+

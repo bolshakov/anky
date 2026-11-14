@@ -1,0 +1,9 @@
+$ bash -c 'source /Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp/lib.sh; export TMPDIR=/Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp; ui has '\''Закрыть без сохранения'\''; echo rc1=$?; ui has '\''Не сохранять'\''; echo rc2=$?'
+exit: 0
+commit: 0f4a74a407d6a4bee09602d8c76c394797fb775e
+
+None | Закрыть без сохранения изменений?
+discard-changes | Закрыть без сохранения
+discard-changes | Закрыть без сохранения
+rc1=0
+rc2=1

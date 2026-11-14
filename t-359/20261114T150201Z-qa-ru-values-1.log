@@ -1,0 +1,5 @@
+$ bash -c 'source /Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp/lib.sh; export TMPDIR=/Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp; ui label add-menu'
+exit: 0
+commit: 0f4a74a407d6a4bee09602d8c76c394797fb775e
+
+Добавить

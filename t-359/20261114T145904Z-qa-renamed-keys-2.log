@@ -1,0 +1,12 @@
+$ git -C /Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/checkout grep -n -F -e 'Tap + to log how you feel or a dose. Everything stays on this iPhone.' -e 'Your records appear here, newest first.'
+exit: 0
+commit: 0f4a74a407d6a4bee09602d8c76c394797fb775e
+
+App/History/EmptyHistoryView.swift:19:                Text("Your records appear here, newest first.")
+App/Localizable.xcstrings:2772:    "Tap + to log how you feel or a dose. Everything stays on this iPhone." : {
+App/Localizable.xcstrings:2777:            "value" : "Tap + to log how you feel or a dose. Everything stays on this iPhone."
+App/Localizable.xcstrings:4450:    "Your records appear here, newest first." : {
+App/Localizable.xcstrings:4456:            "value" : "Your records appear here, newest first."
+App/Today/EmptyTodayView.swift:19:            Text("Tap + to log how you feel or a dose. Everything stays on this iPhone.")
+Tests/AnkyDomainTests/RussianCatalogTests.swift:13:Tap + to log how you feel or a dose. Everything stays on this iPhone. => \
+Tests/AnkyDomainTests/RussianCatalogTests.swift:15:Your records appear here, newest first. => Здесь появятся твои записи, сначала новые.

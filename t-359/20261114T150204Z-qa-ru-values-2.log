@@ -1,0 +1,6 @@
+$ bash -c 'source /Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp/lib.sh; export TMPDIR=/Users/bolshakov/Projects/personal/anky.wt/qa-t359-01-1/tmp; ui label basdai-result-row'
+exit: 0
+commit: 0f4a74a407d6a4bee09602d8c76c394797fb775e
+
+BASDAI, результат 3,0, в 15:59, за последние 7 дней
+BASDAI, результат 6,5, в 15:58, за последние 7 дней
