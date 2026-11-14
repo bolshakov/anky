@@ -94,13 +94,10 @@ func severityLevel(of slider: XCUIElement) -> Int? {
     firstNumber(in: slider.value as? String)
 }
 
-/// Opens the More menu on Edit Entry and taps its Delete entry item, which opens the confirmation alert.
+/// Taps the Delete entry button on Edit Entry, which opens the confirmation alert.
 @MainActor
 func chooseDeleteEntry(in app: XCUIApplication) {
-    let more = app.buttons["entry-more"]
-    XCTAssertTrue(more.waitForExistence(timeout: 10))
-    more.tap()
-    let delete = app.buttons["Delete entry"]
+    let delete = app.buttons["delete-entry"]
     XCTAssertTrue(delete.waitForExistence(timeout: 10))
     delete.tap()
 }

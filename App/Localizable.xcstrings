@@ -2805,17 +2805,6 @@
         }
       }
     },
-    "More actions" : {
-      "comment" : "Accessibility label of the button drawn as three dots that opens a menu of further actions.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Другие действия"
-          }
-        }
-      }
-    },
     "More places" : {
       "localizations" : {
         "ru" : {

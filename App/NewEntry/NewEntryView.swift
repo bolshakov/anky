@@ -96,7 +96,10 @@ struct NewEntryView: View {
             .toolbar {
                 if case .edit = mode {
                     ToolbarItem(placement: .primaryAction) {
-                        EntryMoreMenu { isConfirmingDelete = true }
+                        Button("Delete entry", systemImage: "trash", role: .destructive) {
+                            isConfirmingDelete = true
+                        }
+                        .accessibilityIdentifier("delete-entry")
                     }
                 }
                 ToolbarItem(placement: .principal) {

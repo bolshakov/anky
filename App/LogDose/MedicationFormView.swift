@@ -75,11 +75,17 @@ struct MedicationFormView: View {
             .toolbar {
                 if let editing {
                     ToolbarItem(placement: .primaryAction) {
-                        MedicationMoreMenu(
-                            isArchived: editing.archivedAt != nil,
-                            onArchive: { archive(editing) },
-                            onRestore: { restore(editing) }
-                        )
+                        if editing.archivedAt != nil {
+                            Button("Restore medication", systemImage: "arrow.counterclockwise") {
+                                restore(editing)
+                            }
+                            .accessibilityIdentifier("medication-restore")
+                        } else {
+                            Button("Archive medication", systemImage: "archivebox") {
+                                archive(editing)
+                            }
+                            .accessibilityIdentifier("medication-archive")
+                        }
                     }
                 }
             }

@@ -16,7 +16,6 @@ Right
 Manage
 Erase
 Archive
-More actions
 Save
 About
 Privacy policy

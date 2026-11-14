@@ -57,7 +57,10 @@ struct EditDoseView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    DoseMoreMenu { isConfirmingDelete = true }
+                    Button("Delete dose", systemImage: "trash", role: .destructive) {
+                        isConfirmingDelete = true
+                    }
+                    .accessibilityIdentifier("delete-dose")
                 }
             }
             .bottomPrimaryButton(Text("Save"), id: "save-dose-changes", action: saveChanges)
