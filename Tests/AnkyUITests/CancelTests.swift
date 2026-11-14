@@ -37,6 +37,51 @@ final class CancelTests: XCTestCase {
         XCTAssertEqual(entryRows(in: app).count, 0)
     }
 
+    func testCancelKeepsWorkingAfterTheDialogIsDismissedByATapOutside() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewEntry(app)
+        setSeverity(1, in: app)
+
+        askAndDismissByTapOutside(cancel: app.buttons["cancel-entry"], in: app)
+
+        assertStillOpen(app)
+        XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 1)
+        app.buttons["cancel-entry"].tap()
+        discardChanges(in: app)
+        XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))
+    }
+
+    func testCancelKeepsWorkingOnAFormOverAnotherAfterATapOutside() {
+        continueAfterFailure = false
+        let app = launchAnky()
+        openNewMedication(app)
+        let name = app.textFields["medication-name"]
+        name.tap()
+        name.typeText("Zorblex")
+
+        askAndDismissByTapOutside(cancel: app.buttons["medication-cancel"], in: app)
+
+        XCTAssertEqual(name.value as? String, "Zorblex")
+        app.buttons["medication-cancel"].tap()
+        discardChanges(in: app)
+        XCTAssertTrue(name.waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["dose-add-medication"].exists)
+    }
+
+    /// Two rounds of Cancel, the dialog, and a tap on the form outside the dialog, in a gap between two cards.
+    private func askAndDismissByTapOutside(cancel: XCUIElement, in app: XCUIApplication) {
+        let discard = app.buttons["discard-changes"].firstMatch
+        let outside = app.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.42))
+        for round in 1 ... 2 {
+            XCTAssertTrue(cancel.waitForExistence(timeout: 10), "round \(round)")
+            cancel.tap()
+            XCTAssertTrue(discard.waitForExistence(timeout: 10), "round \(round): Cancel did not ask")
+            outside.tap()
+            XCTAssertTrue(discard.waitForNonExistence(timeout: 10), "round \(round): the dialog stayed")
+        }
+    }
+
     func testSwipeDownClosesWhenUnchanged() {
         continueAfterFailure = false
         let app = launchAnky()
