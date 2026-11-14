@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// Archive and Restore live in the ••• menu of Edit Medication, and neither asks for a confirmation.
+/// Archive and Restore are buttons in the top bar of Edit Medication, and neither asks for a confirmation.
 @MainActor
-final class MedicationMoreMenuTests: XCTestCase {
-    func testArchivingFromTheMenuDropsAnUnsavedEditAndAsksNothing() {
+final class MedicationArchiveButtonTests: XCTestCase {
+    func testArchivingFromTheButtonDropsAnUnsavedEditAndAsksNothing() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -29,7 +29,7 @@ final class MedicationMoreMenuTests: XCTestCase {
         XCTAssertFalse(archived.label.contains("edited"))
     }
 
-    func testRestoringTheLastArchivedMedicationFromTheMenuClosesBothScreens() {
+    func testRestoringTheLastArchivedMedicationFromTheButtonClosesBothScreens() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -51,20 +51,18 @@ final class MedicationMoreMenuTests: XCTestCase {
         XCTAssertFalse(app.buttons["archived-card"].exists)
     }
 
-    func testNewMedicationHasNoMenu() {
+    func testNewMedicationHasNoArchiveButton() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
 
-        XCTAssertFalse(app.buttons["medication-more"].exists)
+        XCTAssertFalse(app.buttons["medication-archive"].exists)
+        XCTAssertFalse(app.buttons["medication-restore"].exists)
     }
 
     private func choose(_ item: String, from app: XCUIApplication) {
-        let more = app.buttons["medication-more"]
-        XCTAssertTrue(more.waitForExistence(timeout: 10))
-        more.tap()
-        let entry = app.buttons[item]
-        XCTAssertTrue(entry.waitForExistence(timeout: 10), "no menu item \(item)")
-        entry.tap()
+        let button = app.buttons[item]
+        XCTAssertTrue(button.waitForExistence(timeout: 10), "no button \(item)")
+        button.tap()
     }
 }

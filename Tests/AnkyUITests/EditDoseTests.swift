@@ -246,10 +246,7 @@ final class EditDoseTests: XCTestCase {
     }
 
     private func chooseDeleteDose(in app: XCUIApplication) {
-        let more = app.buttons["dose-more"]
-        XCTAssertTrue(more.waitForExistence(timeout: 10))
-        more.tap()
-        let delete = app.buttons["Delete dose"]
+        let delete = app.buttons["delete-dose"]
         XCTAssertTrue(delete.waitForExistence(timeout: 10))
         delete.tap()
     }

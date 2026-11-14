@@ -188,7 +188,6 @@ Check in later => Отметить позже
 Turn it on to choose a time. => Включи, чтобы выбрать время.
 Anky will ask how you feel after this long. => Anky спросит, как ты себя чувствуешь, когда пройдёт это время.
 Log how you feel now => Отметь самочувствие сейчас
-More actions => Другие действия
 The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажми, чтобы открыть.
 Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Попробуй ещё раз.
 Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Попробуй ещё раз.
