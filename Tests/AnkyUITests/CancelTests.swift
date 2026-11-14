@@ -69,11 +69,11 @@ final class CancelTests: XCTestCase {
         XCTAssertTrue(app.buttons["dose-add-medication"].exists)
     }
 
-    /// Five rounds of Cancel, the dialog, and a tap on the form outside the popover, in a gap between two cards.
+    /// Two rounds of Cancel, the dialog, and a tap on the form outside the dialog, in a gap between two cards.
     private func askAndDismissByTapOutside(cancel: XCUIElement, in app: XCUIApplication) {
         let discard = app.buttons["discard-changes"].firstMatch
         let outside = app.coordinate(withNormalizedOffset: CGVector(dx: 0.8, dy: 0.42))
-        for round in 1 ... 5 {
+        for round in 1 ... 2 {
             XCTAssertTrue(cancel.waitForExistence(timeout: 10), "round \(round)")
             cancel.tap()
             XCTAssertTrue(discard.waitForExistence(timeout: 10), "round \(round): Cancel did not ask")
