@@ -1,0 +1,5 @@
+$ bash -c 'axe describe-ui --udid $U | python3 -I $TMPDIR/t354-ui.py count-prefix basdai-result-row'
+exit: 0
+commit: d8a4893fadb7b319b3c4318ec891c51c4b3cd424
+
+3

@@ -1,0 +1,19 @@
+$ bash -c 'axe describe-ui --udid $U | python3 -I $TMPDIR/t354-ui.py count-prefix basdai-result-row; axe describe-ui --udid $U | python3 -I $TMPDIR/t354-ui.py labels | head -14'
+exit: 0
+commit: d8a4893fadb7b319b3c4318ec891c51c4b3cd424
+
+2
+Anky
+Today
+Saturday, November 14
+Same as last time, Pain, No place, 0 of 10
+Pain, 0 of 10, 03:18, No place
+BASDAI, score 3,0, at 03:17, covers last week
+Chart Column
+BASDAI
+03:17 · Covers last week
+3,0
+BASDAI, score 6,5, at 03:16, covers last week
+Chart Column
+BASDAI
+03:16 · Covers last week
