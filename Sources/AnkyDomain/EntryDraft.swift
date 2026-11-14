@@ -48,3 +48,12 @@ public struct EntryDraft: Equatable, Sendable {
         }
     }
 }
+
+public extension EntryDraft {
+    /// The two times compare at the minute, since the date wheel drops the seconds that `.now` and a saved entry carry.
+    func hasChanges(since start: EntryDraft, calendar: Calendar = .current) -> Bool {
+        var sameTime = start
+        sameTime.date = date
+        return self != sameTime || !calendar.isDate(date, equalTo: start.date, toGranularity: .minute)
+    }
+}

@@ -11,6 +11,8 @@ struct TodayEntryList: View {
     let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
     let onDeleteDose: (Dose) -> Void
+    let onSelectBasdai: (BasdaiResult) -> Void
+    let onDeleteBasdai: (BasdaiResult) -> Void
 
     var body: some View {
         CardSection(footnote: Text("Levels are 0 to 10. Everything stays on this iPhone."), id: "today-entries") {
@@ -41,6 +43,13 @@ struct TodayEntryList: View {
             }
             .deleteSwipe {
                 onDeleteDose(dose)
+            }
+        case let .basdai(result):
+            BasdaiRow(result: result) {
+                onSelectBasdai(result)
+            }
+            .deleteSwipe {
+                onDeleteBasdai(result)
             }
         }
     }

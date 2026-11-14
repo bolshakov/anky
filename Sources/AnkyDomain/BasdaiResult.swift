@@ -3,7 +3,7 @@ import Foundation
 
 /// One saved BASDAI questionnaire. It holds the six answers, Q1 to Q6, and no score, since the score is computed from
 /// the answers each time.
-public struct BasdaiResult: Identifiable, Equatable, Sendable {
+public struct BasdaiResult: Identifiable, Hashable, Sendable {
     public let id: UUID
     public var date: Date
     public var createdAt: Date

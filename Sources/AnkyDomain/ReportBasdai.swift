@@ -2,7 +2,8 @@
 import Foundation
 
 /// The BASDAI results a report may carry: those dated from the period's start to `now`, both ends included, newest
-/// first in the order of the BASDAI list. `included(_:)` is the one place the Report screen's switch is applied.
+/// first, as the BASDAI rows in History and Today are. `included(_:)` is the one place the Report screen's switch is
+/// applied.
 public struct ReportBasdai: Equatable, Sendable {
     public let inPeriod: [BasdaiResult]
 

@@ -3,21 +3,25 @@ import XCTest
 
 @MainActor
 final class LogDoseDiscardTests: XCTestCase {
-    func testLogDoseCancelAndSwipeDownSaveNothing() {
+    func testLogDoseAfterAChangeAsksOnCancelAndKeepsItselfOnSwipeDown() {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
         setDateToYesterday(in: app)
         app.buttons["log-dose-cancel"].tap()
 
+        XCTAssertFalse(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 2))
+        discardChanges(in: app)
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))
-        XCTAssertEqual(app.alerts.count, 0)
         assertHistoryIsEmpty(in: app)
 
         tapLogMedication(in: app)
         setDateToYesterday(in: app)
         swipeSheetDown(app)
 
+        XCTAssertTrue(app.navigationBars["Log Dose"].exists)
+        app.buttons["log-dose-cancel"].tap()
+        discardChanges(in: app)
         XCTAssertTrue(app.navigationBars["Log Dose"].waitForNonExistence(timeout: 10))
         XCTAssertEqual(app.alerts.count, 0)
         assertHistoryIsEmpty(in: app)

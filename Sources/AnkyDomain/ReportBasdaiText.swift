@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Foundation
 
-/// One row of the report's BASDAI table. The score is the one the BASDAI list shows.
+/// One row of the report's BASDAI table. The score is the one a BASDAI row shows.
 public struct ReportBasdaiRowText: Equatable, Sendable {
     public let date: String
     public let answers: [String]

@@ -50,9 +50,7 @@ struct ReportView: View {
     }
 
     private var basdaiCard: some View {
-        let count = ReportBasdai(results: basdai.results, period: period, now: .now, calendar: .current)
-            .inPeriod.count
-        return CardSection(
+        CardSection(
             footnote: Text(
                 "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
             ),
@@ -60,15 +58,6 @@ struct ReportView: View {
         ) {
             SwitchRow(Text("Include BASDAI scores"), isOn: $includesBasdai)
                 .accessibilityIdentifier("report-basdai-toggle")
-            NavigationLink {
-                BasdaiListView(model: basdai)
-            } label: {
-                ValueRow(Text("BASDAI results"), value: Text("\(count)"))
-            }
-            .fillsCardRow()
-            .accessibilityLabel("BASDAI results")
-            .accessibilityValue("\(count)")
-            .accessibilityIdentifier("report-basdai-results")
         }
     }
 

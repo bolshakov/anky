@@ -11,6 +11,8 @@ struct DaySectionView: View {
     let onSelectDose: (Dose) -> Void
     let onDelete: (Entry) -> Void
     let onDeleteDose: (Dose) -> Void
+    let onSelectBasdai: (BasdaiResult) -> Void
+    let onDeleteBasdai: (BasdaiResult) -> Void
     let isLastDay: Bool
     let hasOlderDays: Bool
     let onLastDayAppear: () -> Void
@@ -53,6 +55,13 @@ struct DaySectionView: View {
             }
             .deleteSwipe {
                 onDeleteDose(dose)
+            }
+        case let .basdai(result):
+            BasdaiRow(result: result) {
+                onSelectBasdai(result)
+            }
+            .deleteSwipe {
+                onDeleteBasdai(result)
             }
         }
     }

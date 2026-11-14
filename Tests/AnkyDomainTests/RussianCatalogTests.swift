@@ -7,6 +7,12 @@ import Testing
 private let approvedPlainValues = table("""
 Today => Сегодня
 Nothing logged today => Сегодня записей нет
+Are you sure you want to discard your changes? => Закрыть без сохранения изменений?
+Discard Changes => Закрыть без сохранения
+Add => Добавить
+Tap + to log how you feel or a dose. Everything stays on this iPhone. => \
+Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone.
+Your records appear here, newest first. => Здесь появятся твои записи, сначала новые.
 Log how you feel => Новая запись
 New Entry => Новая запись
 Cancel => Отмена
@@ -118,7 +124,6 @@ Choose an Entry => Выбор записи
 Delete dose => Удалить приём
 Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
 Dose => Приём
-Everything you log appears here, newest first. => Все записи появляются здесь, сначала новые.
 Entry deleted => Запись удалена
 fatigue %lld after => усталость после: %lld
 Fatigue %lld after => Усталость после: %lld
@@ -183,8 +188,6 @@ Check in later => Отметить позже
 Turn it on to choose a time. => Включи, чтобы выбрать время.
 Anky will ask how you feel after this long. => Anky спросит, как ты себя чувствуешь, когда пройдёт это время.
 Log how you feel now => Отметь самочувствие сейчас
-Log how you feel, or a dose you took. Everything stays on this iPhone. => \
-Запиши самочувствие или приём лекарства. Всё остаётся на этом iPhone.
 More actions => Другие действия
 The entry used for this dose. Tap to open it. => Запись, использованная для этого приёма. Нажми, чтобы открыть.
 Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Попробуй ещё раз.
@@ -251,7 +254,6 @@ Every week on %@ at %@ => Каждую неделю: %1$@, в %2$@
 Every month on day %lld at %@ => Каждый месяц %1$lld-го числа в %2$@
 %@. Next: %@. => %1$@. Следующий приём: %2$@.
 %@. => %@.
-Report and BASDAI => Отчёт и BASDAI
 Report for your doctor => Отчёт для врача
 Report => Отчёт
 Period => Период

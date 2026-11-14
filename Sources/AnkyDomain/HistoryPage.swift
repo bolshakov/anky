@@ -22,12 +22,15 @@ public struct HistoryPage: Equatable, Sendable {
 public extension HistoryList {
     static let pageDays = 30
 
-    /// The newest days that hold an entry or a dose, by logged time, each whole. They equal the same days of
-    /// `sections` over the whole log.
-    static func page(_ entries: [Entry], doses: [Dose], window: HistoryWindow) -> HistoryPage {
+    /// The newest days that hold an entry, a dose or a BASDAI result, by logged time, each whole. They equal the same
+    /// days of `sections` over the whole log.
+    static func page(
+        _ entries: [Entry], doses: [Dose], basdai: [BasdaiResult] = [], window: HistoryWindow
+    ) -> HistoryPage {
         let calendar = window.calendar
         let days = Set(entries.map { calendar.startOfDay(for: $0.date) })
             .union(doses.map { calendar.startOfDay(for: $0.takenAt) })
+            .union(basdai.map { calendar.startOfDay(for: $0.date) })
             .sorted(by: >)
         let shown = max(window.days, 0)
         guard shown > 0 else {
@@ -35,7 +38,7 @@ public extension HistoryList {
         }
         guard days.count > shown else {
             return HistoryPage(
-                sections: sections(entries, doses: doses, now: window.now, calendar: calendar),
+                sections: sections(entries, doses: doses, basdai: basdai, now: window.now, calendar: calendar),
                 hasOlderDays: false
             )
         }
@@ -44,6 +47,7 @@ public extension HistoryList {
             sections: sections(
                 entries.filter { $0.date >= oldestShown },
                 doses: doses.filter { $0.takenAt >= oldestShown },
+                basdai: basdai.filter { $0.date >= oldestShown },
                 now: window.now,
                 calendar: calendar
             ),

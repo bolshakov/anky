@@ -11,4 +11,5 @@ enum RowSymbol {
     }
 
     static let dose = "pills"
+    static let basdai = "chart.bar"
 }

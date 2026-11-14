@@ -8,7 +8,6 @@ let reportRussianValues = table("""
 %@ to %@ => С %1$@ по %2$@
 Anky is a personal log kept by the patient. It does not give medical advice. => \
 Anky — личный журнал, который ведёт сам пациент. Не заменяет консультацию врача.
-BASDAI results => Результаты BASDAI
 Counts, averages and ranges only. => Только количество, средние значения и диапазоны.
 created %@ => создан %@
 First entry %@ => Первая запись: %@
@@ -60,9 +59,9 @@ other => %lld результата BASDAI
 """)
 
 struct RussianReportValuesTests {
-    @Test func theTableHoldsThirtyFourKeys() {
-        #expect(reportRussianValues.count == 34)
-        #expect(Set(reportRussianValues.map(\.key)).count == 34)
+    @Test func theTableHoldsThirtyThreeKeys() {
+        #expect(reportRussianValues.count == 33)
+        #expect(Set(reportRussianValues.map(\.key)).count == 33)
     }
 
     @Test func everyReportPdfAndEraseTextReadsAsTheStakeholderWroteIt() throws {
