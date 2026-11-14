@@ -26,7 +26,6 @@ enum Spacing {
     static let rowContentGap: CGFloat = 12
     static let cardContentGap: CGFloat = 12
     static let cardInset: CGFloat = 16
-    static let pairGap: CGFloat = 12
     static let moreRowGap: CGFloat = 6
     static let chipInnerGap: CGFloat = 6
     static let chevronSlotWidth: CGFloat = 8
@@ -59,6 +58,8 @@ enum Spacing {
     static let iconTile: CGFloat = 32
     static let iconSymbol: CGFloat = 20
     static let bottomClearance: CGFloat = 16
+    static let addButtonSide: CGFloat = 56
+    static let addButtonClearance: CGFloat = addButtonSide + bottomClearance + screenMargin
     static let primaryButtonHeight: CGFloat = 56
     static let primaryButtonSystemPadding: CGFloat = 15
     static let primaryButtonLabelHeight: CGFloat = primaryButtonHeight - 2 * primaryButtonSystemPadding

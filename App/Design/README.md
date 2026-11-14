@@ -84,7 +84,6 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `rowContentGap`: the gap between a row's tile or symbol and its text. Do not use it between rows.
 - `cardContentGap`: the gap between items stacked inside one card block, such as a question and its answer control. Do not write one.
 - `cardInset`: the side inset for content you draw inside a card by hand, so it lines up with the rows. Do not write a padding number.
-- `pairGap`: the gap between two blocks that sit side by side and stack at accessibility sizes, as on Today. Do not write one.
 - `moreRowGap`: the gap between the parts of the more-places row. Do not reuse it for another row.
 - `chipInnerGap`: the gap between the symbol and the text inside a chip. Do not write one.
 - `chevronSlotWidth`: the width of a chevron slot in the more-places row. Other rows take `RowChevron` instead.
@@ -116,6 +115,8 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `iconTile`: the size of an `IconTile`. Do not size a symbol tile yourself.
 - `iconSymbol`: the size of the symbol inside an `IconTile`. Do not size that symbol yourself.
 - `bottomClearance`: the room under the last block or the bottom button, applied by `bottomPrimaryButton` and `lastBlockClearance`. Use the modifiers before the token.
+- `addButtonSide`: the width and height of Today's round (+) menu button, which keeps this size at every text size. Do not use it to size another button.
+- `addButtonClearance`: the bottom content margin of a list that a round button floats over, so its last row ends above the button. One line covers the `View` modifier and the `Spacing` token. Do not use it for a list with no floating button, which takes `lastBlockClearance`.
 - `primaryButtonHeight`: the design height of the bottom primary button. Do not size a primary button yourself.
 - `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen.
 - `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding.
