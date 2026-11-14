@@ -13,7 +13,7 @@ Add => Добавить
 Tap + to log how you feel or a dose. Everything stays on this iPhone. => \
 Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone.
 Your records appear here, newest first. => Здесь появятся твои записи, сначала новые.
-Log how you feel => Новая запись
+Log how you feel => Записать самочувствие
 New Entry => Новая запись
 Cancel => Отмена
 Save => Сохранить
@@ -157,7 +157,7 @@ Levels are 0 to 10. => Уровни от 0 до 10.
 Levels are 0 to 10. Everything stays on this iPhone. => Уровни от 0 до 10. Всё остаётся на этом iPhone.
 Character limit reached => Достигнут лимит символов
 Log Dose => Новый приём
-Log dose => Записать приём
+Log dose => Записать приём лекарства
 Medication => Лекарство
 No medications yet => Лекарств пока нет
 Add medication => Добавить лекарство
