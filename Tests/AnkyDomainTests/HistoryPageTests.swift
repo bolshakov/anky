@@ -40,8 +40,20 @@ struct HistoryPageTests {
         try days.map { try entry(daysBack: $0) }
     }
 
-    private func page(_ entries: [Entry], doses: [Dose] = [], days: Int = HistoryList.pageDays) -> HistoryPage {
-        HistoryList.page(entries, doses: doses, window: HistoryWindow(days: days, now: now, calendar: calendar))
+    private func result(daysBack: Int, hour: Int = 9) throws -> BasdaiResult {
+        try #require(BasdaiResult(
+            id: UUID(),
+            date: moment(daysBack: daysBack, hour: hour),
+            answers: [3, 3, 3, 3, 3, 3]
+        ))
+    }
+
+    private func page(
+        _ entries: [Entry], doses: [Dose] = [], basdai: [BasdaiResult] = [], days: Int = HistoryList.pageDays
+    ) -> HistoryPage {
+        HistoryList.page(
+            entries, doses: doses, basdai: basdai, window: HistoryWindow(days: days, now: now, calendar: calendar)
+        )
     }
 
     private func whole(_ entries: [Entry], doses: [Dose] = []) -> [DaySection] {
@@ -98,6 +110,25 @@ struct HistoryPageTests {
         let result = page(entries, doses: doses)
         #expect(result.sections.last?.items.map(\.id) == [doses[0].id])
         #expect(result.hasOlderDays)
+    }
+
+    @Test func aDayWithOnlyAResultCountsAsADay() throws {
+        let results = try [result(daysBack: 0), result(daysBack: 2), result(daysBack: 4)]
+        let oneDay = page([], basdai: results, days: 1)
+        #expect(oneDay.sections.map(\.items.count) == [1])
+        #expect(oneDay.hasOlderDays)
+        let twoDays = try page([entry(daysBack: 0)], basdai: results, days: 2)
+        #expect(twoDays.sections.map(\.items.count) == [2, 1])
+        #expect(twoDays.hasOlderDays)
+        #expect(!page([], basdai: results, days: 3).hasOlderDays)
+    }
+
+    @Test func aLogOfOnlyResultsFillsTheWindowWithTheNewestDaysAndKeepsThemWhole() throws {
+        let results = try (0 ..< 32).map { try result(daysBack: $0) }
+        let shown = page([], basdai: results)
+        #expect(shown.sections.count == HistoryList.pageDays)
+        #expect(shown.hasOlderDays)
+        #expect(!shown.sections.flatMap(\.items).map(\.id).contains(results[31].id))
     }
 
     @Test func aBusyDayOnTheEdgeShowsOnceAndWholeAndNoItemRepeatsAcrossPages() throws {

@@ -41,6 +41,7 @@ struct RootView: View {
             HistoryView(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 isClosingSheets: checkInAwaitingHistory != nil || newEntryAwaitingHistory || logDoseAwaitingHistory !=
                     nil,
                 onSheetsClosed: historyClosedSheets

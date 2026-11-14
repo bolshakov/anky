@@ -125,6 +125,7 @@ final class CheckInSavingTests: XCTestCase {
         nameNewMedication("Zorblex", in: app)
         turnOn(in: app)
         app.buttons["medication-cancel"].tap()
+        discardChanges(in: app)
         XCTAssertTrue(app.textFields["medication-name"].waitForNonExistence(timeout: 10))
 
         app.terminate()

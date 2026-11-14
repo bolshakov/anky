@@ -6,9 +6,6 @@ import Testing
 /// The BASDAI form, list, result screen and their alerts, in the words design wrote for them. Each line is a key and
 /// its Russian value, split on " => ".
 let basdaiRussianValues = table("""
-Discard => Закрыть
-Discard answers? => Закрыть без сохранения?
-Keep Editing => Продолжить
 How would you describe the overall level of fatigue/tiredness you have experienced? => \
 Каким был общий уровень слабости (утомляемости)?
 How would you describe the overall level of AS **neck, back or hip** pain you have had? => \
@@ -62,9 +59,9 @@ struct RussianBasdaiTests {
         try #require(basdaiRussianValues.first { $0.key == key }).value
     }
 
-    @Test func thirtySevenKeysAreApproved() {
-        #expect(basdaiRussianValues.count == 37)
-        #expect(Set(basdaiRussianValues.map(\.key)).count == 37)
+    @Test func thirtyFourKeysAreApproved() {
+        #expect(basdaiRussianValues.count == 34)
+        #expect(Set(basdaiRussianValues.map(\.key)).count == 34)
     }
 
     @Test func everyBasdaiTextReadsAsDesignWroteIt() throws {

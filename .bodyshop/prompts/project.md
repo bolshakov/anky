@@ -31,8 +31,10 @@ so no real data is used, and keep that value to relaunch with the same data.
 In a Debug build, `SIMCTL_CHILD_ANKY_SEED=spread` fills an empty log with synthetic entries and doses spread over six
 months, and `SIMCTL_CHILD_ANKY_SEED=single` with one entry ten days back. `report-short`, `report-long`, `report-sparse`
 and `report-places-7` fill it with the report walks' logs, as `App/DebugReportSeed.swift` lists. `report-basdai` fills
-it with the `report-short` log and three synthetic BASDAI results. `today-full` fills it with 14 entries dated today,
-each at or before now, so Today's list scrolls. A log that holds anything, BASDAI results included, is left as it is.
+it with the `report-short` log and three synthetic BASDAI results. `basdai-rows` fills it with one entry a minute back,
+two BASDAI results two and three minutes back scored 3.0 and 6.5, and one result three days back. `today-full` fills it
+with 14 entries dated today, each at or before now, so Today's list scrolls. A log that holds anything, BASDAI results
+included, is left as it is.
 
 ```sh
 axe describe-ui --udid $U          # JSON of the screen, ids are the AXUniqueId fields

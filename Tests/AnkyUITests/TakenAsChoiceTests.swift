@@ -38,6 +38,7 @@ final class TakenAsChoiceTests: XCTestCase {
         openMedicationFromList(app)
         choose("As needed", in: app)
         app.buttons["medication-cancel"].tap()
+        discardChanges(in: app)
         XCTAssertTrue(app.textFields["medication-name"].waitForNonExistence(timeout: 10))
 
         openMedicationFromList(app)
