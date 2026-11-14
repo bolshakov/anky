@@ -49,3 +49,13 @@ public struct MedicationDraft: Equatable, Sendable {
         text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
+
+public extension MedicationDraft {
+    /// Compares the medication Save would write from each draft, so text that trims away, a schedule on an as-needed
+    /// medication and a delay while the check-in is off are not changes.
+    func hasChanges(since opening: MedicationDraft) -> Bool {
+        let id = UUID()
+        let date = Date(timeIntervalSince1970: 0)
+        return medication(id: id, at: date) != opening.medication(id: id, at: date)
+    }
+}
