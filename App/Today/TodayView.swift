@@ -13,6 +13,7 @@ struct TodayView: View {
     @Binding var reminderLogDose: UUID?
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
+    @State private var isShowingBasdai = false
     @State private var editing: Entry?
     @State private var editingDose: Dose?
     @State private var loggedID: UUID?
@@ -51,6 +52,10 @@ struct TodayView: View {
             entries: model.entries,
             after: checkInNow
         )
+    }
+
+    private var isOpeningForm: Bool {
+        isShowingNewEntry || isShowingLogDose || isShowingBasdai
     }
 
     private var recent: RecentEntry? {
@@ -127,9 +132,14 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .overlay(alignment: .bottomTrailing) {
-                AddMenu(onLogEntry: { isShowingNewEntry = true }, onLogDose: { isShowingLogDose = true })
-                    .padding(.trailing, Spacing.screenMargin)
-                    .padding(.bottom, Spacing.bottomClearance)
+                AddMenu(
+                    onLogEntry: { isShowingNewEntry = true },
+                    onLogDose: { isShowingLogDose = true },
+                    onBasdai: { isShowingBasdai = true }
+                )
+                .allowsHitTesting(!isOpeningForm)
+                .padding(.trailing, Spacing.screenMargin)
+                .padding(.bottom, Spacing.bottomClearance)
             }
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
@@ -139,6 +149,7 @@ struct TodayView: View {
             .modifier(TodaySheets(
                 model: model,
                 medications: medications,
+                basdai: basdai,
                 onSaved: { saveTicks += 1 },
                 onCreated: {
                     loggedID = nil
@@ -150,6 +161,7 @@ struct TodayView: View {
                 reminderLogDose: $reminderLogDose,
                 isShowingNewEntry: $isShowingNewEntry,
                 isShowingLogDose: $isShowingLogDose,
+                isShowingBasdai: $isShowingBasdai,
                 editing: $editing,
                 editingDose: $editingDose,
                 checkingIn: $checkingIn

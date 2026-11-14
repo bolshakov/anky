@@ -4,6 +4,7 @@ import SwiftUI
 struct AddMenu: View {
     let onLogEntry: () -> Void
     let onLogDose: () -> Void
+    let onBasdai: () -> Void
 
     var body: some View {
         Menu {
@@ -15,6 +16,10 @@ struct AddMenu: View {
                 Label("Log dose", systemImage: RowSymbol.dose)
             }
             .accessibilityIdentifier("log-medication")
+            Button(action: onBasdai) {
+                Label("BASDAI", systemImage: RowSymbol.basdai)
+            }
+            .accessibilityIdentifier("add-basdai")
         } label: {
             Label("Add", systemImage: "plus")
                 .labelStyle(.iconOnly)
