@@ -1,0 +1,7 @@
+$ bash -c '. $TMPDIR/env.sh; t354_ui has report-basdai-toggle; echo $?; t354_ui has report-basdai-results; echo $?; t354_ui labels | grep -c "^BASDAI results"'
+exit: 1
+commit: 69ae4e99c51e169c03783deedecf430173d1a2b6
+
+0
+1
+0
