@@ -1,0 +1,7 @@
+$ bash -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-02-1/tmp/t354-sim.sh; U=C28A4590-2F41-4EFA-92CE-0FF4594CEECF; t354_ui bottom-prefix entry-row-; t354_ui label-frame '\''Levels are 0 to 10. Everything stays on this iPhone.'\''; t354_ui frame add-menu'
+exit: 0
+commit: 77dd2e11714d18c60cf7165e7850a38a64438d25
+
+536.3
+536.3 703.0
+719.0 775.0
