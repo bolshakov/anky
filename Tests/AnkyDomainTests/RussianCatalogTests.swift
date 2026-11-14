@@ -355,16 +355,8 @@ struct RussianCatalogTests {
 
     @Test func everyKeyOfTheCatalogHasARussianValue() throws {
         let entries = try CompiledCatalog.entries()
-        for key in Set(entries.keys).subtracting(awaitingRussian).sorted() {
+        for key in entries.keys.sorted() {
             #expect(entries[key]?.localizations?["ru"] != nil, "\(key) has no Russian value")
-        }
-    }
-
-    @Test func everyKeyAwaitingRussianIsInTheCatalogWithNoRussianValueYet() throws {
-        let entries = try CompiledCatalog.entries()
-        for key in awaitingRussian {
-            let russianValue = try #require(entries[key], "\(key) is not in the catalog").localizations?["ru"]
-            #expect(russianValue == nil, "\(key) has a Russian value, so it leaves awaitingRussian")
         }
     }
 

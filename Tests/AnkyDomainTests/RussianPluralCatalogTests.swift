@@ -6,8 +6,7 @@ struct RussianPluralCatalogTests {
     @Test func everyCountedKeyHoldsAllFourRussianPluralForms() throws {
         let entries = try CompiledCatalog.entries()
         let counted = entries.filter {
-            !awaitingRussian.contains($0.key) && $0.value.localizations?.values
-                .contains { !$0.pluralTables.isEmpty } == true
+            $0.value.localizations?.values.contains { !$0.pluralTables.isEmpty } == true
         }
         for key in counted.keys.sorted() {
             let plural = counted[key]?.localizations?["ru"]?.pluralTables.flatMap(\.self) ?? []
