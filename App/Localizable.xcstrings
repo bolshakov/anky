@@ -1098,16 +1098,6 @@
         }
       }
     },
-    "Everything you log appears here, newest first." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Все записи появляются здесь, сначала новые."
-          }
-        }
-      }
-    },
     "Entry deleted" : {
       "localizations" : {
         "ru" : {
@@ -4523,6 +4513,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Результат %@ из 10"
+          }
+        }
+      }
+    },
+    "Entries, doses and BASDAI results you add appear here, newest first." : {
+      "comment" : "The text under the title of the empty History screen. It says which records appear in History and in which order.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entries, doses and BASDAI results you add appear here, newest first."
+          }
+        }
+      }
+    },
+    "Covers last week" : {
+      "comment" : "The second line of a BASDAI row after the time. It says the questionnaire asks about the last seven days.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Covers last week"
+          }
+        }
+      }
+    },
+    "BASDAI, score %@, at %@, covers last week" : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in History and Today. The first %@ is the score with one decimal, with the decimal separator of the person's region, such as 3.0. The second %@ is the time it was saved, such as 20:01. BASDAI is the name of the index and stays as is.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI, score %@, at %@, covers last week"
           }
         }
       }

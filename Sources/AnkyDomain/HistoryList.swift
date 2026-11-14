@@ -2,11 +2,13 @@
 import Foundation
 
 public enum HistoryList {
-    public static func sections(_ entries: [Entry], doses: [Dose], now: Date, calendar: Calendar) -> [DaySection] {
+    public static func sections(
+        _ entries: [Entry], doses: [Dose], basdai: [BasdaiResult] = [], now: Date, calendar: Calendar
+    ) -> [DaySection] {
+        // #lizard forgives
         let days = DayReference(now: now, calendar: calendar)
-        let grouped = Dictionary(
-            grouping: LoggedItem.newestFirst(entries.map(LoggedItem.entry) + doses.map(LoggedItem.dose))
-        ) {
+        let logged = entries.map(LoggedItem.entry) + doses.map(LoggedItem.dose) + basdai.map(LoggedItem.basdai)
+        let grouped = Dictionary(grouping: LoggedItem.newestFirst(logged)) {
             calendar.startOfDay(for: $0.date)
         }
         return grouped.sorted { $0.key > $1.key }.map { day, items in

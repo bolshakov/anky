@@ -118,7 +118,6 @@ Choose an Entry => Выбор записи
 Delete dose => Удалить приём
 Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
 Dose => Приём
-Everything you log appears here, newest first. => Все записи появляются здесь, сначала новые.
 Entry deleted => Запись удалена
 fatigue %lld after => усталость после: %lld
 Fatigue %lld after => Усталость после: %lld

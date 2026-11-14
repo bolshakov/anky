@@ -9,7 +9,9 @@
     /// medication, `single` writes one entry ten days back, and `reading-aging` writes one 118 minutes back, which
     /// leaves the two-hour reading window within about two minutes. `report-short`, `report-long`, `report-sparse` and
     /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes, and `report-basdai` adds three
-    /// BASDAI results to the `report-short` log. A log that holds anything is left alone.
+    /// BASDAI results to the `report-short` log. `basdai-rows` writes one entry a minute back, two BASDAI results two
+    /// and three minutes back scored 3.0 and 6.5, and one result three days back. A log that holds anything is left
+    /// alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -22,6 +24,8 @@
                 try? entries.add(entry(daysBefore: 10, index: 0, now: now))
             case "reading-aging":
                 try? entries.add(entry(minutesBefore: 118, now: now))
+            case "basdai-rows":
+                plantBasdaiRows(entries: entries, basdai: basdai, now: now)
             case "schedule-months":
                 plantScheduleMonths(medications: medications, now: now)
             default:
@@ -60,6 +64,18 @@
                 let dose = Dose(id: UUID(), medicationID: medication.id, takenAt: day(before: now, by: 1 + 20 * index))
                 try? medications.logDose(dose)
             }
+        }
+
+        private static func plantBasdaiRows(entries: EntryLogModel, basdai: BasdaiModel, now: Date) {
+            try? entries.add(entry(minutesBefore: 1, now: now))
+            addResult([3, 3, 3, 3, 3, 3], at: now.addingTimeInterval(-2 * 60), to: basdai)
+            addResult([7, 7, 6, 6, 7, 6], at: now.addingTimeInterval(-3 * 60), to: basdai)
+            addResult([5, 5, 5, 5, 5, 5], at: day(before: now, by: 3), to: basdai)
+        }
+
+        private static func addResult(_ answers: [Int], at date: Date, to basdai: BasdaiModel) {
+            guard let result = BasdaiResult(id: UUID(), date: date, answers: answers) else { return }
+            try? basdai.add(result)
         }
 
         private static func plantScheduleMonths(medications: MedicationsModel, now: Date) {
