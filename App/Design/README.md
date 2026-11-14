@@ -116,6 +116,8 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `iconSymbol`: the size of the symbol inside an `IconTile`. Do not size that symbol yourself.
 - `bottomClearance`: the room under the last block or the bottom button, applied by `bottomPrimaryButton` and `lastBlockClearance`. Use the modifiers before the token.
 - `addButtonSide`: the width and height of Today's round (+) menu button, which keeps this size at every text size. Do not use it to size another button.
+- `addButtonSystemPadding`: the padding the system adds around the (+) button's label. Only the label side below uses it, so do not use it in a screen.
+- `addButtonLabelSide`: the label side that gives the (+) button its `addButtonSide` circle. Give the (+) label this size and do not add your own padding.
 - `addButtonClearance`: the bottom content margin of a list that a round button floats over, so its last row ends above the button. One line covers the `View` modifier and the `Spacing` token. Do not use it for a list with no floating button, which takes `lastBlockClearance`.
 - `primaryButtonHeight`: the design height of the bottom primary button. Do not size a primary button yourself.
 - `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen.

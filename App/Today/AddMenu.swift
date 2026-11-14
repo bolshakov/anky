@@ -19,7 +19,7 @@ struct AddMenu: View {
             Label("Add", systemImage: "plus")
                 .labelStyle(.iconOnly)
                 .dynamicTypeSize(.large)
-                .frame(width: Spacing.addButtonSide, height: Spacing.addButtonSide)
+                .frame(width: Spacing.addButtonLabelSide, height: Spacing.addButtonLabelSide)
         }
         .primaryButton()
         .buttonBorderShape(.circle)

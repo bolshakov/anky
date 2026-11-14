@@ -59,6 +59,8 @@ enum Spacing {
     static let iconSymbol: CGFloat = 20
     static let bottomClearance: CGFloat = 16
     static let addButtonSide: CGFloat = 56
+    static let addButtonSystemPadding: CGFloat = 7
+    static let addButtonLabelSide: CGFloat = addButtonSide - 2 * addButtonSystemPadding
     static let addButtonClearance: CGFloat = addButtonSide + bottomClearance + screenMargin
     static let primaryButtonHeight: CGFloat = 56
     static let primaryButtonSystemPadding: CGFloat = 15
