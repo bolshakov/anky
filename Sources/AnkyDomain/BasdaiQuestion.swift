@@ -87,18 +87,18 @@ extension BasdaiQuestion {
     }
 
     private static var severityWords: [Words] {
-        [("How would you describe the overall level of fatigue/tiredness you have experienced?", "Fatigue"),
+        [("How would you describe the overall level of **fatigue/tiredness** you have experienced?", "Fatigue"),
          ("How would you describe the overall level of AS **neck, back or hip** pain you have had?", "Spinal pain"),
          ("""
          How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips \
          you have had?
          """, "Joint pain"),
          ("""
-         How would you describe the overall level of discomfort you have had from any areas tender to touch or \
+         How would you describe the overall level of **discomfort** you have had from any areas tender to touch or \
          pressure?
          """, "Tenderness"),
          ("""
-         How would you describe the overall level of morning stiffness you have had from the time you wake up?
+         How would you describe the overall **level** of **morning stiffness** you have had from the time you wake up?
          """, "Stiffness severity")]
     }
 
@@ -106,7 +106,7 @@ extension BasdaiQuestion {
         BasdaiQuestion(
             number: 6,
             wording: segments(String(
-                localized: "How long does your morning stiffness last from the time you wake up?",
+                localized: "**How long** does your **morning stiffness** last from the time you wake up?",
                 bundle: bundle, locale: locale
             )),
             shortName: String(localized: "Stiffness duration", bundle: bundle, locale: locale),

@@ -6,18 +6,18 @@ import Testing
 /// The BASDAI form, list, result screen and their alerts, in the words design wrote for them. Each line is a key and
 /// its Russian value, split on " => ".
 let basdaiRussianValues = table("""
-How would you describe the overall level of fatigue/tiredness you have experienced? => \
-Каким был общий уровень слабости (утомляемости)?
+How would you describe the overall level of **fatigue/tiredness** you have experienced? => \
+Каким был общий уровень **слабости (утомляемости)**?
 How would you describe the overall level of AS **neck, back or hip** pain you have had? => \
 Каким был общий уровень боли в **шее, спине или тазобедренных суставах**?
 How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips you have had? => \
 Каким был общий уровень боли/припухлости в суставах, **кроме** шеи, спины и тазобедренных суставов?
-How would you describe the overall level of discomfort you have had from any areas tender to touch or pressure? => \
-Каким был общий уровень неприятных ощущений при прикосновении к болезненным областям или надавливании на них?
-How would you describe the overall level of morning stiffness you have had from the time you wake up? => \
-Каким был общий уровень утренней скованности с момента пробуждения?
-How long does your morning stiffness last from the time you wake up? => \
-Сколько длится утренняя скованность с момента пробуждения?
+How would you describe the overall level of **discomfort** you have had from any areas tender to touch or pressure? => \
+Каким был общий уровень **неприятных ощущений** при прикосновении к болезненным областям или надавливании на них?
+How would you describe the overall **level** of **morning stiffness** you have had from the time you wake up? => \
+Каким был общий **уровень** **утренней скованности** с момента пробуждения?
+**How long** does your **morning stiffness** last from the time you wake up? => \
+**Сколько длится** **утренняя скованность** с момента пробуждения?
 Spinal pain => Боль в шее, спине, тазобедренных суставах
 Joint pain => Боль в других суставах
 Tenderness => Болезненность
