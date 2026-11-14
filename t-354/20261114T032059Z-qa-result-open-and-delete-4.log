@@ -1,0 +1,8 @@
+$ cat /Users/bolshakov/Projects/personal/anky.wt/qa-t354-04-1/tmp/ev/step4.txt
+exit: 0
+commit: 31d4fafd09ea0cf03d4d30fba49ea58ce0d7716c
+
+✓ Tap at resolved tap point at (201.0, 822.0) completed successfully
+frame 284.3 352.3
+✓ Tap at (200.0, 318.0) completed successfully
+0
