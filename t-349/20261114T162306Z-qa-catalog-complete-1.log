@@ -1,0 +1,8 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t349-04-3/tmp/t349-catalog.py complete App/Localizable.xcstrings
+exit: 0
+commit: df86d9d831c4e75b8c6382bcbf60114d82339639
+
+keys: 342
+no Russian value: 0
+Russian not translated or empty: 0
+plural without one, few, many and other: 0
