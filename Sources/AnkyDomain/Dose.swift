@@ -41,4 +41,9 @@ public struct Dose: Identifiable, Equatable, Sendable {
         dose.takenAt = takenAt
         return dose
     }
+
+    /// The time compares at the minute, since the date wheel drops the seconds a saved dose carries.
+    public func isMoved(to medicationID: UUID, at takenAt: Date, calendar: Calendar = .current) -> Bool {
+        medicationID != self.medicationID || !calendar.isDate(takenAt, equalTo: self.takenAt, toGranularity: .minute)
+    }
 }
