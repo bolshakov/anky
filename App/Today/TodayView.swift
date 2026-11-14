@@ -25,6 +25,8 @@ struct TodayView: View {
     @State private var checkInNow = Date.now
     @State private var pendingDelete: Entry?
     @State private var pendingDoseDelete: Dose?
+    @State private var pendingBasdaiDelete: BasdaiResult?
+    @State private var openedResult: BasdaiResult?
     @State private var isShowingReport = false
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -121,6 +123,12 @@ struct TodayView: View {
                 try medications.removeDose(id: doseTarget.id)
                 deleteTicks += 1
             }
+            .basdaiDeleteConfirmation(
+                of: pendingBasdaiDelete,
+                onDismiss: { pendingBasdaiDelete = nil },
+                model: basdai,
+                onDeleted: { deleteTicks += 1 }
+            )
             .checkInClock(now: $checkInNow, nextChange: nextCheckInChange)
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
@@ -128,6 +136,7 @@ struct TodayView: View {
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
             }
+            .navigationDestination(item: $openedResult) { BasdaiDetailView(result: $0) }
             .safeAreaInset(edge: .bottom) {
                 pairLayout {
                     Button {
@@ -178,7 +187,7 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
-        .reportButtonOnTitleLine(isShowingReport: $isShowingReport)
+        .reportButtonOnTitleLine(isShowingReport: $isShowingReport, isShowingDetail: openedResult != nil)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
@@ -221,7 +230,9 @@ struct TodayView: View {
                 onSelect: open,
                 onSelectDose: openDose,
                 onDelete: { pendingDelete = $0 },
-                onDeleteDose: { pendingDoseDelete = $0 }
+                onDeleteDose: { pendingDoseDelete = $0 },
+                onSelectBasdai: { openedResult = $0 },
+                onDeleteBasdai: { pendingBasdaiDelete = $0 }
             )
         }
     }
