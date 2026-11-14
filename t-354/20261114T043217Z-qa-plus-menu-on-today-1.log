@@ -1,0 +1,17 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/env.sh; t354_ui ids; echo ---; t354_ui label add-menu'
+exit: 0
+commit: 2d3ef7bbaf34d55ab612c966649b487a35efeff7
+
+Today
+today-screen
+today-date
+repeat-chip
+empty-today
+add-menu
+plus
+report-button
+calendar
+clock.fill
+slider.horizontal.3
+---
+Add

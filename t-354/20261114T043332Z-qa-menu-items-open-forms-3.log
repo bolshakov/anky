@@ -1,0 +1,6 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/env.sh; t354_ui has basdai-form; echo $?; t354_ui ids | grep -c '\''basdai-screen\|basdai-start'\'''
+exit: 1
+commit: 2d3ef7bbaf34d55ab612c966649b487a35efeff7
+
+0
+0

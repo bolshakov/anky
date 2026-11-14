@@ -1,0 +1,30 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/env.sh; t354_ui ids'
+exit: 0
+commit: 2d3ef7bbaf34d55ab612c966649b487a35efeff7
+
+Today
+today-screen
+today-date
+empty-today
+add-menu
+plus
+report-button
+calendar
+calendar
+clock
+clock.fill
+slider.horizontal.3
+slider.horizontal.3
+BASDAI
+basdai-cancel-item
+basdai-cancel-item
+basdai-cancel
+basdai-form
+basdai-intro
+basdai-q1-value
+basdai-q1-slider
+basdai-q2-value
+basdai-q2-slider
+basdai-q3-value
+basdai-q3-slider
+basdai-save

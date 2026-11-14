@@ -1,0 +1,19 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/env.sh; . /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/s5.sh'
+exit: 0
+commit: 2d3ef7bbaf34d55ab612c966649b487a35efeff7
+
+q1 frame: 293.7 337.7
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+q2 frame: 495.7 539.7
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+q3 frame: 321.0 365.0
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+q4 frame: 523.0 567.0
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+q5 frame: 449.7 493.7
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+q6 frame: 651.7 695.7
+✓ Slider set to 30 successfully (AXValue: 0.30000001192092896)
+✓ Tap at resolved tap point at (201.0, 796.0) completed successfully
+count: 1
+form open: 1

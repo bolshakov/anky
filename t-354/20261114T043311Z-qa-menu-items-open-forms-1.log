@@ -1,0 +1,5 @@
+$ zsh -c '. /Users/bolshakov/Projects/personal/anky.wt/qa-t354-05-1/tmp/env.sh; t354_ui has new-entry-screen; echo $?'
+exit: 0
+commit: 2d3ef7bbaf34d55ab612c966649b487a35efeff7
+
+0
