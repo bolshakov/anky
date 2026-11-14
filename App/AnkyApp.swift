@@ -8,6 +8,7 @@ import UserNotifications
 
 @main
 struct AnkyApp: App {
+    @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     @State private var model: EntryLogModel
     @State private var medications: MedicationsModel
     @State private var basdai: BasdaiModel
@@ -87,6 +88,7 @@ struct AnkyApp: App {
             reminderTaps: reminderTaps,
             exportData: exportData
         )
+        .forwardingQuickActions(to: reminderTaps)
     }
 
     private static func entryStore() -> EntryStore {
