@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t370-06-2/tmp/t370-element.sh 2C562AE9-E3E1-44AA-AB84-6C842469657A kind-picker
+exit: 0
+commit: a993c7e76db921e7e4b5ef29e769a4595bf667d5
+
+id=kind-picker label='What are you logging?' value=None x=137 y=160.33333333333331 w=600 h=31

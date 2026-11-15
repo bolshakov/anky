@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t370-06-2/tmp/t370-element.sh 2C562AE9-E3E1-44AA-AB84-6C842469657A note-field
+exit: 0
+commit: a993c7e76db921e7e4b5ef29e769a4595bf667d5
+
+id=note-field label='Note' value='Stiff after the drive' x=153 y=692 w=568 h=44
