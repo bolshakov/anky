@@ -83,7 +83,7 @@ expect_screen pass "a padding with a digit inside a name" 'let v = Text("a").pad
 expect_screen pass "a padding with a digit inside a name in a call" 'let v = Text("a").padding(.top, max(inset, Spacing.x2))'
 expect_screen pass "a padding followed by a call with a number" 'let v = Text("a").padding(Spacing.tightGap).lineLimit(2)'
 expect_screen pass "a frame that fills the width" 'let v = Text("a").frame(maxWidth: .infinity)'
-expect_screen pass "a frame height with a named value" 'let v = Text("a").frame(height: Spacing.rowHeight)'
+expect_screen pass "a frame minHeight with a named value" 'let v = Text("a").frame(minHeight: Spacing.rowHeight)'
 expect_screen pass "a frame height of zero" 'let v = Text("a").frame(height: 0)'
 expect_screen pass "a line width in a stroke" 'let v = Circle().stroke(lineWidth: 2)'
 expect_screen pass "a stack spacing of zero" 'let v = VStack(spacing: 0) { }'
@@ -95,6 +95,26 @@ expect_screen pass "a text style with a digit inside" 'let v = Text("a").font(.t
 expect_screen pass "a number in a trailing comment" 'let v = 0 // the gap is 12 pt'
 expect_screen pass "a padding in a trailing comment" 'let v = 0 // .padding(16) and .frame(width: 120)'
 expect pass "a padding with a number in the piece that names sizes" "mkdir -p App/Design && echo 'let v = Text(\"a\").padding(16)' > App/Design/Spacing.swift"
+
+# Rule: a screen sets no fixed frame height. A mark that holds no text, and the report's printed page, are the allow list.
+expect_screen fail "a frame height with a named value" 'let v = Text("a").frame(height: Spacing.rowHeight)'
+expect_screen fail "a frame height with a named value and an alignment" 'let v = Text("a").frame(height: Spacing.rowHeight, alignment: .bottom)'
+expect_screen fail "a frame height with space before the value" 'let v = Text("a").frame(height:   Spacing.rowHeight)'
+expect_screen fail "a frame height of zero beside a named one" 'let v = Text("a").frame(height: 0).frame(height: Spacing.rowHeight)'
+expect fail "a fixed height in a screen directly under App" "echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/TodayView.swift"
+expect fail "a fixed height in a report file that is not a page file" "mkdir -p App/Report && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/Report/ReportView.swift"
+expect fail "a fixed height beside the pieces" "mkdir -p App/Today App/Design && echo 'let v = 0' > App/Design/Row.swift && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/Today/Row.swift"
+expect pass "a frame minHeight in a screen" "mkdir -p App/Today && echo 'let v = Text(\"a\").frame(minHeight: Spacing.rowHeight)' > App/Today/Row.swift"
+expect pass "a frame with a width and a height" "mkdir -p App/Today && echo 'let v = Circle().frame(width: Spacing.weekdayDot, height: Spacing.weekdayDot)' > App/Today/Row.swift"
+expect pass "a frame height of zero in a screen" "mkdir -p App/Today && echo 'let v = Color.clear.frame(height: 0)' > App/Today/Row.swift"
+expect pass "a frame height in each report page file" "mkdir -p App/Report && for f in ReportPage SeverityWeekChart WeekAxisRow; do echo 'let v = Text(\"a\").frame(height: ReportMetrics.hairline)' > App/Report/\$f.swift; done"
+expect pass "a frame height in a piece" "mkdir -p App/Design && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/Design/Row.swift"
+expect pass "a frame height outside App" "mkdir -p Sources/AnkyDomain && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > Sources/AnkyDomain/Shape.swift"
+expect pass "a frame height in a comment" "mkdir -p App/Today && echo 'let v = 0 // .frame(height: Spacing.rowHeight)' > App/Today/Row.swift"
+expect pass "New Entry's fade band" "mkdir -p App/NewEntry && echo 'let v = LinearGradient().frame(height: Spacing.bottomClearance)' > App/NewEntry/NewEntryView.swift"
+expect fail "another fixed height in New Entry" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NewEntryView.swift"
+expect fail "the fade band's height in another New Entry file" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.bottomClearance)' > App/NewEntry/NoteSection.swift"
+expect fail "the fade band's height beside another fixed height in New Entry" "mkdir -p App/NewEntry && printf '%s\\n' 'let a = 0.frame(height: Spacing.bottomClearance)' 'let b = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NewEntryView.swift"
 
 # Rule: a call's arguments end at its matching close, across lines and at any depth. A case is lines in one argument.
 expect_screen fail "a padding number on the next line" 'let v = Text("a").padding(
