@@ -1,0 +1,7 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t370-02-6/tmp/t370-size.sh FE25A3FB-0F38-47EC-8258-392560E8D695; /Users/bolshakov/Projects/personal/anky.wt/qa-t370-02-6/tmp/t370-element.sh FE25A3FB-0F38-47EC-8258-392560E8D695 add-menu; /Users/bolshakov/Projects/personal/anky.wt/qa-t370-02-6/tmp/t370-all.sh FE25A3FB-0F38-47EC-8258-392560E8D695 | grep entry-row | tail -1'
+exit: 0
+commit: 169ece00a21f4a03b3d9bc9fa9f828ab5986edea
+
+874 402
+id=add-menu label='Add' value=None x=730 y=266 w=66 h=56
+entry-row-stiffness x=137 y=152.33333333333337 w=600 h=68

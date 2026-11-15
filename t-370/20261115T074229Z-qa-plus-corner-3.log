@@ -1,0 +1,6 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t370-02-6/tmp/t370-size.sh FE25A3FB-0F38-47EC-8258-392560E8D695; /Users/bolshakov/Projects/personal/anky.wt/qa-t370-02-6/tmp/t370-element.sh FE25A3FB-0F38-47EC-8258-392560E8D695 report-button'
+exit: 0
+commit: 169ece00a21f4a03b3d9bc9fa9f828ab5986edea
+
+874 402
+id=report-button label='Report for your doctor' value=None x=792 y=28 w=44 h=44
