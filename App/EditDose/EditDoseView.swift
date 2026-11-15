@@ -50,6 +50,7 @@ struct EditDoseView: View {
                     }
                 }
                 .screenSpacing()
+                .lastBlockClearance()
                 .accessibilityIdentifier("edit-dose-screen")
             }
             .discardConfirmation(hasChanges: hasChanges, cancelID: "edit-dose-cancel", close: { dismiss() })
@@ -62,8 +63,9 @@ struct EditDoseView: View {
                     }
                     .accessibilityIdentifier("delete-dose")
                 }
+                ToolbarSpacer(.fixed, placement: .primaryAction)
             }
-            .bottomPrimaryButton(Text("Save"), id: "save-dose-changes", action: saveChanges)
+            .saveToolbarItem(id: "save-dose-changes", action: saveChanges)
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, words: .dose, onDelete: removeDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}

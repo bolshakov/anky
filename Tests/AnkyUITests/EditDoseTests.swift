@@ -295,3 +295,26 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any)["edit-entry-screen"].waitForNonExistence(timeout: 10))
     }
 }
+
+extension EditDoseTests {
+    /// The reading opens inside Edit Dose's own stack, so the bar shows the pushed screen's ✕ and ✓ and only one ✓.
+    func testTheReadingPushedOverEditDoseHasItsOwnCancelAndSave() throws {
+        continueAfterFailure = false
+        let app = launchAnky()
+        try logZorblexDoseAnHourBack(app)
+        doseRow(in: app).tap()
+        XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+
+        app.buttons["before-reading-row"].tap()
+        XCTAssertTrue(app.buttons["save-entry"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["cancel-entry"].exists)
+        XCTAssertEqual(app.buttons.matching(identifier: "save-dose-changes").count, 0)
+        XCTAssertEqual(app.buttons.matching(NSPredicate(format: "label == 'Save'")).count, 1)
+
+        app.buttons["save-entry"].tap()
+        XCTAssertTrue(app.buttons["save-entry"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["save-dose-changes"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["edit-dose-cancel"].exists)
+        XCTAssertEqual(app.buttons.matching(NSPredicate(format: "label == 'Save'")).count, 1)
+    }
+}

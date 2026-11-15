@@ -61,6 +61,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
+    /// Edit Dose saves from the system's confirm button, so it draws a light glyph on the accent in both looks.
     func testEditDoseSaveButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
@@ -72,10 +73,10 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["save-dose-changes"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "edit-dose-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
     func testMedicationsAddButtonLabelMatchesAppearance() throws {
@@ -106,6 +107,7 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
+    /// Check In saves from the system's confirm button, so it draws a light glyph on the accent in both looks.
     func testCheckInSaveButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
@@ -114,14 +116,13 @@ final class PrimaryButtonColourTests: XCTestCase {
         addZorblexCheckingInAfterThirtyMinutes(app)
         saveDoseAnHourBack(in: app)
         identified("dose-row", in: app).tap()
-        scrollToSaveCheckIn(in: app)
         let button = app.buttons["save-check-in"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "check-in-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
     func testMedicationFormSaveButtonLabelMatchesAppearance() throws {

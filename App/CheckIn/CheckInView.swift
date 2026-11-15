@@ -50,9 +50,9 @@ struct CheckInView: View {
                     DateSection(date: $draft.date)
                 }
                 NoteSection(draft: $draft)
-                saveSection
             }
             .screenSpacing()
+            .lastBlockClearance()
             .accessibilityIdentifier("check-in-screen")
             .shortcutFeedback(model.shortcuts)
             .navigationDestination(isPresented: $isShowingPlaces) {
@@ -63,6 +63,7 @@ struct CheckInView: View {
                 cancelID: "check-in-cancel",
                 close: { dismiss() }
             )
+            .saveToolbarItem(id: "save-check-in", action: saveCheckIn)
             .navigationTitle("Check In")
             .navigationBarTitleDisplayMode(.inline)
             .alert("Couldn't save this check-in. Try again.", isPresented: $isShowingSaveFailure) {
@@ -89,20 +90,6 @@ struct CheckInView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("\(infoTitle). \(infoDetail)")
             .accessibilityIdentifier("check-in-info")
-            .nonCardBlock()
-        }
-    }
-
-    private var saveSection: some View {
-        Section {
-            Button(action: saveCheckIn) {
-                Text("Save")
-                    .frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
-            }
-            .primaryButton()
-            .buttonBorderShape(.capsule)
-            .controlSize(.large)
-            .accessibilityIdentifier("save-check-in")
             .nonCardBlock()
         }
     }
