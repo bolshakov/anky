@@ -18,15 +18,15 @@ func tapLogMedication(in app: XCUIApplication) {
     addMenuItem("log-medication", in: app).tap()
 }
 
-/// At the largest size the severity slider sits below the first screen. A pinned Save button
-/// covers the bottom of the screen, so the slider must scroll above it, not merely be on screen.
+/// At the largest size the severity slider sits below the first screen, so it must scroll above the form's bottom
+/// edge, not merely be on screen.
 /// A form leaves rows that are off screen out of the accessibility tree, so the slider may not exist yet.
 @MainActor
 func scrollToSeveritySlider(in app: XCUIApplication) {
     let slider = app.sliders["severity-slider"]
-    for _ in 0 ..< 5 where !slider.exists || slider.frame.maxY > saveBarTop(in: app) {
+    for _ in 0 ..< 5 where !slider.exists || slider.frame.maxY > formBottomEdge(in: app) {
         app.swipeUp()
     }
     XCTAssertTrue(slider.exists)
-    XCTAssertLessThanOrEqual(slider.frame.maxY, saveBarTop(in: app))
+    XCTAssertLessThanOrEqual(slider.frame.maxY, formBottomEdge(in: app))
 }

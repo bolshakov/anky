@@ -100,7 +100,7 @@ final class LogDoseCheckInTests: XCTestCase {
         let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
         XCTAssertTrue(menu.waitForExistence(timeout: 10))
         let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where menu.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 5 where menu.frame.maxY > formBottomEdge(in: app) {
             app.swipeUp()
         }
         menu.tap()
@@ -161,14 +161,14 @@ final class LogDoseCheckInTests: XCTestCase {
         let form = app.descendants(matching: .any).matching(identifier: "medication-form").firstMatch
         let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
         XCTAssertTrue(toggle.waitForExistence(timeout: 10))
-        for _ in 0 ..< 5 where toggle.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 5 where toggle.frame.maxY > formBottomEdge(in: app) {
             app.swipeUp()
         }
         toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
         let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
         XCTAssertTrue(menu.waitForExistence(timeout: 10))
         let name = form.descendants(matching: .any).matching(identifier: "medication-name").firstMatch
-        for _ in 0 ..< 5 where menu.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 5 where menu.frame.maxY > formBottomEdge(in: app) {
             toggle.press(forDuration: 0.1, thenDragTo: name)
         }
         menu.tap()

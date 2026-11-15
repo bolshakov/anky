@@ -49,13 +49,13 @@ func addZorblexCheckingInAfterThirtyMinutes(
     let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
     XCTAssertTrue(toggle.waitForExistence(timeout: 10))
     let save = app.buttons["medication-save"]
-    for _ in 0 ..< 5 where toggle.frame.maxY > saveBarTop(in: app) {
+    for _ in 0 ..< 5 where toggle.frame.maxY > formBottomEdge(in: app) {
         app.swipeUp()
     }
     toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
     let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
     XCTAssertTrue(menu.waitForExistence(timeout: 10))
-    for _ in 0 ..< 5 where menu.frame.maxY > saveBarTop(in: app) {
+    for _ in 0 ..< 5 where menu.frame.maxY > formBottomEdge(in: app) {
         app.swipeUp()
     }
     menu.tap()
@@ -107,7 +107,7 @@ func scrollToBottom(of app: XCUIApplication) {
     }
 }
 
-/// Save is the last row of the form, so the form is swiped until it is hittable.
+/// Save is in the top bar, so it is hittable as soon as the form shows and the swipe does nothing.
 @MainActor
 func scrollToSaveCheckIn(in app: XCUIApplication) {
     let save = app.buttons["save-check-in"]
@@ -217,14 +217,14 @@ func checkInMenu(in app: XCUIApplication) -> XCUIElement {
     medicationForm(in: app).descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
 }
 
-/// The pinned Save button covers the bottom of the form, so the card must scroll above it, not merely be on screen.
+/// The card must scroll above the form's bottom edge, not merely be on screen.
 /// The last row of the card is the menu when it shows, and the switch when it does not.
 @MainActor
 func scrollToCheckIn(in app: XCUIApplication) {
     let anchor = checkInMenu(in: app).exists ? checkInMenu(in: app) : checkInSwitch(in: app)
     XCTAssertTrue(anchor.waitForExistence(timeout: 10))
-    for _ in 0 ..< 5 where anchor.frame.maxY > saveBarTop(in: app) {
+    for _ in 0 ..< 5 where anchor.frame.maxY > formBottomEdge(in: app) {
         app.swipeUp()
     }
-    XCTAssertLessThanOrEqual(anchor.frame.maxY, saveBarTop(in: app))
+    XCTAssertLessThanOrEqual(anchor.frame.maxY, formBottomEdge(in: app))
 }
