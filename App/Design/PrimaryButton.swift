@@ -34,7 +34,7 @@ extension View {
             .buttonBorderShape(.capsule)
             .controlSize(.large)
             .disabled(!isEnabled)
-            .padding(.horizontal, Spacing.screenMargin)
+            .insetBarColumn()
             .padding(.bottom, Spacing.bottomClearance)
             .accessibilityIdentifier(id)
         }

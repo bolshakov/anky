@@ -44,6 +44,8 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 
 ## Modifiers for screens and buttons
 
+- `contentColumn`: the column a List, Form or ScrollView keeps its content in, which `screenSpacing` and `readingScreenSpacing` apply already. Each side is the larger of the margin, that side's safe-area inset and the width past `contentMaxWidth` shared out, never their sum. Do not set a horizontal content margin or cap the width with a frame, which would cut the background and the scroll indicator.
+- `insetBarColumn`: the same column for the content of a bottom `safeAreaInset` or `safeAreaBar`, which has no content margin. `bottomPrimaryButton` applies it already. Do not pad a bar's content with `screenMargin`.
 - `screenSpacing`: the margins, first-block offset, section gap and page background of a card list screen. Do not set content margins, section spacing or the scroll background on a screen yourself.
 - `readingScreenSpacing`: the margins of a screen of running text that is not a card list, with room at the bottom. Do not reuse `screenSpacing` for it, since that one also hides the scroll background.
 - `lastBlockClearance`: room under the last block of a list that has no bottom button. Do not add a bottom padding.
@@ -65,7 +67,8 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 `Spacing.swift` when none fits.
 
 - `Spacing`: the home of every spacing and size. Do not write a point value in a screen or in a piece.
-- `screenMargin`: the side margin of a screen. `screenSpacing` applies it to lists, so use it for content you place outside a list, such as an inset bar. Do not write a horizontal padding number.
+- `screenMargin`: the smallest side distance of a screen's content, applied by the shared pieces. Content outside a list uses `insetBarColumn` and not the bare token. Do not write a horizontal padding number.
+- `contentMaxWidth`: the widest the content column grows, which `contentColumn` and `insetBarColumn` apply. Do not write the number or cap a screen's width yourself.
 - `firstBlockTop`: the gap between the navigation bar and the first block, which `screenSpacing` applies. Use it for the same gap in a stack that is not a list.
 - `titleToDatePull`: only for `todayTopMargin`, which sets how far Today's list is pulled up. Do not use it to align another header.
 - `titleToDatePullPerTitlePoint`: only for `todayTopMargin`, which shrinks the pull as the title grows. Do not use it to align another header.
