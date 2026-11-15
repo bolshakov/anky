@@ -81,6 +81,7 @@ struct NewEntryView: View {
                     NoteSection(draft: $draft)
                 }
                 .screenSpacing()
+                .lastBlockClearance()
                 .accessibilityIdentifier(screenID)
             }
             .navigationDestination(isPresented: $isShowingPlaces) {
@@ -101,6 +102,7 @@ struct NewEntryView: View {
                         }
                         .accessibilityIdentifier("delete-entry")
                     }
+                    ToolbarSpacer(.fixed, placement: .primaryAction)
                 }
                 ToolbarItem(placement: .principal) {
                     Text(title)
@@ -110,7 +112,7 @@ struct NewEntryView: View {
                         .accessibilityAddTraits(.isHeader)
                 }
             }
-            .safeAreaInset(edge: .bottom) { saveButton }
+            .saveToolbarItem(id: "save-entry", action: save)
             .alert("Couldn't save this entry. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
@@ -128,30 +130,6 @@ struct NewEntryView: View {
             await Task.yield()
             withAnimation { proxy.scrollTo(Self.dateBlockID, anchor: .bottom) }
         }
-    }
-
-    private var saveButton: some View {
-        Button(action: save) {
-            Text("Save").frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
-        }
-        .primaryButton()
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
-        .padding(.horizontal, Spacing.screenMargin)
-        .padding(.bottom, Spacing.bottomClearance)
-        .accessibilityIdentifier("save-entry")
-        .background { saveBacking }
-    }
-
-    /// Hides the form where it passes under the button, and reaches no higher than the button's top edge.
-    private var saveBacking: some View {
-        VStack(spacing: 0) {
-            LinearGradient(colors: [.clear, .surface], startPoint: .top, endPoint: .bottom)
-                .frame(height: Spacing.bottomClearance)
-            Color.surface
-        }
-        .ignoresSafeArea(edges: .bottom)
-        .allowsHitTesting(false)
     }
 
     private var chips: [PlaceID] {
