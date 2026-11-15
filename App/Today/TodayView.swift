@@ -110,6 +110,7 @@ struct TodayView: View {
             .listStyle(.insetGrouped)
             .environment(\.defaultMinListRowHeight, 0)
             .blockGapBetweenSections()
+            .contentColumn()
             .todayTopMargin()
             .addButtonClearance()
             .reportButtonInBar(isShowingReport: $isShowingReport)
