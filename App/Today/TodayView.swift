@@ -101,7 +101,6 @@ struct TodayView: View {
                         dateLine
                         repeatBlock
                     }
-                    .reportButtonAnchor()
                     .nonCardBlock()
                     cornerGuard
                 }
@@ -113,7 +112,11 @@ struct TodayView: View {
             .contentColumn()
             .todayTopMargin()
             .addButtonClearance()
-            .reportButtonInBar(isShowingReport: $isShowingReport)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    ReportButton { isShowingReport = true }
+                }
+            }
             .entryDeleteConfirmation(isPresented: isConfirmingDelete) {
                 guard let target else { return }
                 try model.remove(id: target.id)
@@ -173,7 +176,6 @@ struct TodayView: View {
             .sensoryFeedback(.success, trigger: saveTicks)
             .sensoryFeedback(.warning, trigger: deleteTicks)
         }
-        .reportButtonOnTitleLine(isShowingReport: $isShowingReport, isShowingDetail: openedResult != nil)
     }
 
     /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
