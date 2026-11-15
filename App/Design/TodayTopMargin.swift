@@ -11,22 +11,19 @@ private struct TodayTopMargin: ViewModifier {
         Spacing.titleToDatePullPerTitlePoint * (titleSize - Spacing.largeTitleSize)
     }
 
-    /// Compact height has no large title to pull toward: the bar is inline and the list starts a block gap below it,
-    /// as every other card screen does.
-    func body(content: Content) -> some View {
-        if verticalSizeClass == .compact {
-            content.contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
-        } else {
-            largeTitleBody(content)
-        }
+    private var isCompact: Bool {
+        verticalSizeClass == .compact
     }
 
+    /// Compact height has no large title to pull toward: the bar is inline and the list starts a block gap below it,
+    /// as every other card screen does. Only the values change with the size class, so a turn keeps the list's state.
+    ///
     /// A negative content margin leaves the first row undrawn while the list is pulled past the top, so every pull up
     /// is the list's own padding and the content margin never goes below zero.
-    private func largeTitleBody(_ content: Content) -> some View {
+    func body(content: Content) -> some View {
         content
-            .contentMargins(.top, max(0, growth), for: .scrollContent)
-            .padding(.top, min(0, growth) - Spacing.titleToDatePull)
+            .contentMargins(.top, isCompact ? Spacing.firstBlockTop : max(0, growth), for: .scrollContent)
+            .padding(.top, isCompact ? 0 : min(0, growth) - Spacing.titleToDatePull)
     }
 }
 
