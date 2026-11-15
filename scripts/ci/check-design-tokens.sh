@@ -120,20 +120,18 @@ if [ -n "$sizes" ]; then
 fi
 
 # A row that is a fixed number of points tall clips its text once the text grows, so a screen sets a minimum height from
-# a name in Spacing.swift and grows past it. Three things hold no text or lay out a printed page, and are the only
-# exceptions: a zero-height guard, the report's PDF page files, and New Entry's fade band. The call is cut from a line
-# before the match, so an exception covers that call and not the rest of its line.
+# a name in Spacing.swift and grows past it. Two things hold no text or lay out a printed page, and are the only
+# exceptions: a zero-height guard and the report's PDF page files. The call is cut from a line before the match, so an
+# exception covers that call and not the rest of its line.
 # usage: scan_fixed_heights
 scan_fixed_heights() {
   find "$root/App" -path "$design" -prune -o -name "*.swift" -print 2> /dev/null | sort | while read -r file; do
-    extra='s/^$//'
     case $file in
       "$root/App/Report/ReportPage.swift" | "$root/App/Report/SeverityWeekChart.swift" | "$root/App/Report/WeekAxisRow.swift")
         continue
         ;;
-      "$root/App/NewEntry/NewEntryView.swift") extra='s/\.frame(height:[[:space:]]*Spacing\.bottomClearance)//g' ;;
     esac
-    sed -e 's://.*$::' -e 's/\.frame(height:[[:space:]]*0[,)]//g' -e "$extra" "$file" |
+    sed -e 's://.*$::' -e 's/\.frame(height:[[:space:]]*0[,)]//g' "$file" |
       grep -En -e "\.frame\(height:" | sed "s|^|$file:|"
   done
 }

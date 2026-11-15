@@ -111,10 +111,8 @@ expect pass "a frame height in each report page file" "mkdir -p App/Report && fo
 expect pass "a frame height in a piece" "mkdir -p App/Design && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/Design/Row.swift"
 expect pass "a frame height outside App" "mkdir -p Sources/AnkyDomain && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > Sources/AnkyDomain/Shape.swift"
 expect pass "a frame height in a comment" "mkdir -p App/Today && echo 'let v = 0 // .frame(height: Spacing.rowHeight)' > App/Today/Row.swift"
-expect pass "New Entry's fade band" "mkdir -p App/NewEntry && echo 'let v = LinearGradient().frame(height: Spacing.bottomClearance)' > App/NewEntry/NewEntryView.swift"
-expect fail "another fixed height in New Entry" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NewEntryView.swift"
-expect fail "the fade band's height in another New Entry file" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.bottomClearance)' > App/NewEntry/NoteSection.swift"
-expect fail "the fade band's height beside another fixed height in New Entry" "mkdir -p App/NewEntry && printf '%s\\n' 'let a = 0.frame(height: Spacing.bottomClearance)' 'let b = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NewEntryView.swift"
+expect fail "a fixed height in New Entry" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NewEntryView.swift"
+expect fail "a fixed height in another New Entry file" "mkdir -p App/NewEntry && echo 'let v = Text(\"a\").frame(height: Spacing.rowHeight)' > App/NewEntry/NoteSection.swift"
 
 # Rule: a call's arguments end at its matching close, across lines and at any depth. A case is lines in one argument.
 expect_screen fail "a padding number on the next line" 'let v = Text("a").padding(
