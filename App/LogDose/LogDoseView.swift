@@ -71,6 +71,7 @@ struct LogDoseView: View {
                         dateSection(scrolling: proxy)
                     }
                     .screenSpacing()
+                    .lastBlockClearance()
                     .accessibilityIdentifier("log-dose-screen")
                     .onChange(of: context.date) { minuteClock = context.date }
                 }
@@ -80,16 +81,17 @@ struct LogDoseView: View {
             .discardConfirmation(hasChanges: hasChanges, cancelID: "log-dose-cancel", close: { dismiss() })
             .toolbar {
                 if !medications.medications.isEmpty {
-                    ToolbarItem(placement: .topBarTrailing) {
+                    ToolbarItem(placement: .primaryAction) {
                         NavigationLink("Manage") {
                             MedicationsView(medications: medications)
                         }
                         .minimumTapTarget()
                         .accessibilityIdentifier("log-dose-manage")
                     }
+                    ToolbarSpacer(.fixed, placement: .primaryAction)
                 }
             }
-            .bottomPrimaryButton(Text("Save"), id: "save-dose", isEnabled: checkedID != nil, action: saveDose)
+            .saveToolbarItem(id: "save-dose", isEnabled: checkedID != nil, action: saveDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }

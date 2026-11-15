@@ -49,13 +49,13 @@ func addZorblexCheckingInAfterThirtyMinutes(
     let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
     XCTAssertTrue(toggle.waitForExistence(timeout: 10))
     let save = app.buttons["medication-save"]
-    for _ in 0 ..< 5 where toggle.frame.maxY > save.frame.minY {
+    for _ in 0 ..< 5 where toggle.frame.maxY > saveBarTop(in: app) {
         app.swipeUp()
     }
     toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
     let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
     XCTAssertTrue(menu.waitForExistence(timeout: 10))
-    for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+    for _ in 0 ..< 5 where menu.frame.maxY > saveBarTop(in: app) {
         app.swipeUp()
     }
     menu.tap()
@@ -223,9 +223,8 @@ func checkInMenu(in app: XCUIApplication) -> XCUIElement {
 func scrollToCheckIn(in app: XCUIApplication) {
     let anchor = checkInMenu(in: app).exists ? checkInMenu(in: app) : checkInSwitch(in: app)
     XCTAssertTrue(anchor.waitForExistence(timeout: 10))
-    let save = app.buttons["medication-save"]
-    for _ in 0 ..< 5 where anchor.frame.maxY > save.frame.minY {
+    for _ in 0 ..< 5 where anchor.frame.maxY > saveBarTop(in: app) {
         app.swipeUp()
     }
-    XCTAssertLessThanOrEqual(anchor.frame.maxY, save.frame.minY)
+    XCTAssertLessThanOrEqual(anchor.frame.maxY, saveBarTop(in: app))
 }

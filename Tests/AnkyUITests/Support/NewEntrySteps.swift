@@ -61,13 +61,14 @@ private func isRightToLeft(_ app: XCUIApplication) -> Bool {
     Presentation.rightToLeft.launchArguments.allSatisfy(app.launchArguments.contains)
 }
 
-/// The top edge of the pinned Save bar of whichever form is open, or the screen's bottom when none shows. `isHittable`
-/// does not see the bar covering an element, so a step compares frames with this.
+/// The top edge of the pinned Save bar of whichever form is open, or the screen's bottom when none shows. A Save in the
+/// top bar is no bar, so only one that starts below the window's middle counts. `isHittable` does not see the bar
+/// covering an element, so a step compares frames with this.
 @MainActor
 func saveBarTop(in app: XCUIApplication) -> CGFloat {
-    let bars = ["save-entry", "save-dose", "save-check-in", "save-dose-changes"].map { app.buttons[$0] }
-        .filter(\.exists)
-    return bars.map(\.frame.minY).min() ?? app.frame.maxY
+    let saves = ["save-entry", "save-dose", "save-check-in", "save-dose-changes", "medication-save", "basdai-save"]
+    let pinned = saves.map { app.buttons[$0] }.filter { $0.exists && $0.frame.minY > app.frame.midY }
+    return pinned.map(\.frame.minY).min() ?? app.frame.maxY
 }
 
 /// The pinned Save bar covers the bottom of the form, and a drag that starts under it taps Save, which saves the entry.

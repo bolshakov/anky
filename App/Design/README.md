@@ -54,7 +54,8 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
 - `bottomPrimaryButton`: the screen's one main action pinned above the bottom edge, where `isEnabled` dims only the button. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
-- `discardConfirmation`: the Cancel button of a form, the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, dialog or `interactiveDismissDisabled`.
+- `discardConfirmation`: the Cancel of a form, drawn as the system's ✕ and spoken "Cancel", the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, text button, dialog or `interactiveDismissDisabled`.
+- `saveToolbarItem`: the form's Save as the system's ✓ in the top bar, spoken "Save", where `isEnabled` dims only the ✓. Put it on the form's root view inside its `NavigationStack`, next to `discardConfirmation`, and do not pin a wide Save button with `bottomPrimaryButton`, style the ✓, or use `.disabled` on the form for it.
 
 ## Tips
 
@@ -156,6 +157,6 @@ something else.
 
 ## What does not exist yet
 
-The app has no shared empty-state view and no shared sheet toolbar. Each screen that needs one builds it from the
-spacing tokens above. This is a gap in the catalog, not a ban: when you build one that a second screen needs, extract it into `App/Design` and add its entry in
-the same pull request.
+The app has no shared empty-state view. Each screen that needs one builds it from the spacing tokens above. This is a
+gap in the catalog, not a ban: when you build one that a second screen needs, extract it into `App/Design` and add its
+entry in the same pull request.
