@@ -23,6 +23,7 @@
             .screenSpacing()
             .accessibilityIdentifier("design-gallery")
             .galleryBottomBar(isEnabled: !primaryDisabled)
+            .saveToolbarItem(id: "gallery-save", isEnabled: !primaryDisabled) {}
             .navigationTitle(Text(verbatim: "Pieces"))
             .navigationBarTitleDisplayMode(.inline)
         }
