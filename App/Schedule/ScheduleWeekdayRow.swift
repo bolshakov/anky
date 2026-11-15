@@ -21,7 +21,7 @@ struct ScheduleWeekdayRow: View {
             }
         }
         .padding(.horizontal, Spacing.weekdayRowPadding)
-        .frame(height: Spacing.weekdayRowHeight)
+        .frame(minHeight: Spacing.weekdayRowHeight)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("schedule-weekdays")
     }

@@ -92,7 +92,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `chevronSlotWidth`: the width of a chevron slot in the more-places row. Other rows take `RowChevron` instead.
 - `chevronSlotHeight`: the height of a chevron slot in the more-places row. Other rows take `RowChevron` instead.
 - `tapTarget`: the minimum hit area of a control. `minimumTapTarget` applies it, so use the modifier before the token.
-- `weekdayRowHeight`: only for the weekday picker row of the schedule. Do not use it for another row, which takes `rowHeight`.
+- `weekdayRowHeight`: the smallest height of the weekday picker row of the schedule, which grows past it. Only for that row. Do not use it for another row, which takes `rowHeight`.
 - `weekdayRowPadding`: only for the weekday picker row of the schedule. Do not use it as a general row padding.
 - `weekdayLetterSize`: only for the weekday letters of the schedule. Text elsewhere takes a text style, not a size.
 - `weekdayDot`: only for the dot under a weekday in the schedule. Nothing else needs to build a dot this size.
