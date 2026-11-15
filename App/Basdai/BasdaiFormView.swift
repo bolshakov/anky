@@ -25,6 +25,7 @@ struct BasdaiFormView: View {
                 }
             }
             .screenSpacing()
+            .lastBlockClearance()
             .accessibilityIdentifier("basdai-form")
             .onAppear { isLabelFocused = true }
             .navigationTitle("BASDAI")
@@ -34,7 +35,7 @@ struct BasdaiFormView: View {
                 cancelID: "basdai-cancel",
                 close: { dismiss() }
             )
-            .bottomPrimaryButton(Text("Save"), id: "basdai-save", isEnabled: isComplete, action: save)
+            .saveToolbarItem(id: "basdai-save", isEnabled: isComplete, action: save)
             .alert("Couldn't save this result. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
             }
