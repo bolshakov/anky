@@ -205,14 +205,13 @@ final class TakenAsChoiceTests: XCTestCase {
         return app.buttons["taken-as"].value as? String
     }
 
-    /// The pinned Save button covers the bottom of the form, so the choice must scroll above it,
-    /// not merely be on screen.
+    /// The choice must scroll above the form's bottom edge, not merely be on screen.
     private func scrollToChoice(in app: XCUIApplication) {
         let choice = app.descendants(matching: .any).matching(identifier: "taken-as").firstMatch
         XCTAssertTrue(choice.waitForExistence(timeout: 10))
-        for _ in 0 ..< 5 where choice.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 5 where choice.frame.maxY > formBottomEdge(in: app) {
             app.swipeUp()
         }
-        XCTAssertLessThanOrEqual(choice.frame.maxY, saveBarTop(in: app))
+        XCTAssertLessThanOrEqual(choice.frame.maxY, formBottomEdge(in: app))
     }
 }

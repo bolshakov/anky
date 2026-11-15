@@ -13,6 +13,9 @@ has no entry line, or an entry line names no piece. One entry line covers every 
   a screen keeps the system's default for its navigation bar.
 - A footnote goes in the footer of `CardSection` and never in an empty trailing section. A trailing section built
   only to hold the footnote sat about 42 pt from its card, away from the group it explains.
+- A form confirms and cancels in the top bar: the system's ✓ (`saveToolbarItem`) at the right and the system's ✕
+  (`discardConfirmation`) at the left, on iOS 26 or later, in portrait and landscape. A form pins no wide Save button
+  at the bottom, since the ✓ and ✕ stay in reach whatever the scroll position and the keyboard.
 - A screen takes no raw asset colour, no `Color("...")` and no UIKit colour. It uses the colour tokens below, which are
   the only place an asset is named.
 
@@ -53,7 +56,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
-- `bottomPrimaryButton`: the screen's one main action pinned above the bottom edge, where `isEnabled` dims only the button. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
+- `bottomPrimaryButton`: the main action of a screen that is not a form, such as the Medications list and Schedule, pinned above the bottom edge, where `isEnabled` dims only the button. A form confirms with `saveToolbarItem` instead. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
 - `discardConfirmation`: the Cancel of a form, drawn as the system's ✕ and spoken "Cancel", the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, text button, dialog or `interactiveDismissDisabled`.
 - `saveToolbarItem`: the form's Save as the system's ✓ in the top bar, spoken "Save", where `isEnabled` dims only the ✓. Put it on the form's root view inside its `NavigationStack`, next to `discardConfirmation`, and do not pin a wide Save button with `bottomPrimaryButton`, style the ✓, or use `.disabled` on the form for it.
 

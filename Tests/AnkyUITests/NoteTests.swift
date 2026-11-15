@@ -67,7 +67,7 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
-        for _ in 0 ..< 3 where card.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 3 where card.frame.maxY > formBottomEdge(in: app) {
             app.swipeUp()
         }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1)).tap()
@@ -135,7 +135,7 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
-        for _ in 0 ..< 3 where card.frame.maxY > saveBarTop(in: app) {
+        for _ in 0 ..< 3 where card.frame.maxY > formBottomEdge(in: app) {
             app.swipeUp()
         }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.95)).tap()

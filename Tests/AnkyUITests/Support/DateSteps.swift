@@ -64,16 +64,16 @@ func dateRowDay(in app: XCUIApplication) -> String? {
 private let swipesToSearchBelow = 6
 private let swipesToSearchAbove = 6
 
-/// Scrolls the form until the row's centre is clear of the navigation bar and of the pinned Save bar. At the largest
+/// Scrolls the form until the row's centre is clear of the navigation bar and of the form's bottom edge. At the largest
 /// size the form leaves the row out of the accessibility tree while it is off screen, below the first screen of a new
-/// form or above it once a lower row is set. A row in the tree can also have its centre off screen or under the bar
-/// while `isHittable` still says yes. A row that is not in the tree is looked for below first, then above.
+/// form or above it once a lower row is set. A row in the tree can also have its centre off screen or under the
+/// keyboard while `isHittable` still says yes. A row that is not in the tree is looked for below first, then above.
 @MainActor
 func scrollToDateRow(in app: XCUIApplication) {
     let row = dateRow(in: app)
     let top = app.frame.minY + app.frame.height / 8
     func isClear() -> Bool {
-        let bottom = saveBarTop(in: app)
+        let bottom = formBottomEdge(in: app)
         return row.exists && row.isHittable && (top ..< bottom).contains(row.frame.midY)
     }
     for attempt in 0 ..< swipesToSearchBelow + swipesToSearchAbove where !isClear() {
@@ -119,14 +119,14 @@ func setDateTimeHoursBack(_ hours: Int, in app: XCUIApplication) {
 /// The distance of one drag that steps the day wheel by a day.
 private let dayWheelStep: CGFloat = 36
 
-/// Scrolls the form until the day wheel's centre and the end of a drag are above the pinned Save bar. A wheel that
-/// opens on the first screen of a new form reaches below the bar, and a drag that starts under the bar never reaches
-/// the wheel. The swipe starts in the left margin so it scrolls the form and not the wheel.
+/// Scrolls the form until the day wheel's centre and the end of a drag are above the form's bottom edge. A wheel that
+/// opens on the first screen of a new form reaches below it, and a drag that starts below it never reaches the wheel.
+/// The swipe starts in the left margin so it scrolls the form and not the wheel.
 @MainActor
-private func scrollDayWheelClearOfSaveBar(in app: XCUIApplication) {
+private func scrollDayWheelClearOfFormBottom(in app: XCUIApplication) {
     let from = app.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.6))
     let to = app.coordinate(withNormalizedOffset: CGVector(dx: 0.02, dy: 0.4))
-    for _ in 0 ..< 6 where dateWheel(in: app).frame.midY + dayWheelStep >= saveBarTop(in: app) {
+    for _ in 0 ..< 6 where dateWheel(in: app).frame.midY + dayWheelStep >= formBottomEdge(in: app) {
         from.press(forDuration: 0.1, thenDragTo: to)
     }
 }
@@ -136,7 +136,7 @@ private func scrollDayWheelClearOfSaveBar(in app: XCUIApplication) {
 @MainActor
 func setDateToYesterday(in app: XCUIApplication) {
     openDateWheel(in: app)
-    scrollDayWheelClearOfSaveBar(in: app)
+    scrollDayWheelClearOfFormBottom(in: app)
     let before = dateRowDay(in: app)
     let day = dateWheel(in: app).pickerWheels.element(boundBy: 0)
     XCTAssertTrue(day.waitForExistence(timeout: 10))
