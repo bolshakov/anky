@@ -22,4 +22,11 @@ import Observation
         case .other: break
         }
     }
+
+    func received(_ destination: AddDestination) {
+        switch destination {
+        case .newEntry: pendingNewEntry = true
+        case .logDose, .basdai: break
+        }
+    }
 }

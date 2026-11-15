@@ -132,14 +132,10 @@ struct TodayView: View {
             .onDisappear { loggedID = nil }
             .accessibilityIdentifier("today-screen")
             .overlay(alignment: .bottomTrailing) {
-                AddMenu(
-                    onLogEntry: { isShowingNewEntry = true },
-                    onLogDose: { isShowingLogDose = true },
-                    onBasdai: { isShowingBasdai = true }
-                )
-                .allowsHitTesting(!isOpeningForm)
-                .padding(.trailing, Spacing.screenMargin)
-                .padding(.bottom, Spacing.bottomClearance)
+                AddMenu(actions: AddAction.all, onSelect: open)
+                    .allowsHitTesting(!isOpeningForm)
+                    .padding(.trailing, Spacing.screenMargin)
+                    .padding(.bottom, Spacing.bottomClearance)
             }
             .navigationTitle("Today")
             .navigationDestination(isPresented: $isShowingReport) {
@@ -245,6 +241,14 @@ struct TodayView: View {
             checkingIn = dose
         } else {
             editingDose = dose
+        }
+    }
+
+    private func open(_ destination: AddDestination) {
+        switch destination {
+        case .newEntry: isShowingNewEntry = true
+        case .logDose: isShowingLogDose = true
+        case .basdai: isShowingBasdai = true
         }
     }
 

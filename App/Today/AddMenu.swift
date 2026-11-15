@@ -2,24 +2,17 @@
 import SwiftUI
 
 struct AddMenu: View {
-    let onLogEntry: () -> Void
-    let onLogDose: () -> Void
-    let onBasdai: () -> Void
+    let actions: [AddAction]
+    let onSelect: (AddDestination) -> Void
 
     var body: some View {
         Menu {
-            Button(action: onLogEntry) {
-                Label("Log how you feel", systemImage: "square.and.pencil")
+            ForEach(actions) { action in
+                Button { onSelect(action.destination) } label: {
+                    Label(action.title, systemImage: action.symbol)
+                }
+                .accessibilityIdentifier(action.id)
             }
-            .accessibilityIdentifier("log-entry")
-            Button(action: onLogDose) {
-                Label("Log dose", systemImage: RowSymbol.dose)
-            }
-            .accessibilityIdentifier("log-medication")
-            Button(action: onBasdai) {
-                Label("BASDAI", systemImage: RowSymbol.basdai)
-            }
-            .accessibilityIdentifier("add-basdai")
         } label: {
             Label("Add", systemImage: "plus")
                 .labelStyle(.iconOnly)
