@@ -23,6 +23,7 @@ struct NewEntryView: View {
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
     @State private var hasReportedSave = false
+    @State private var scrollDistance: CGFloat = 0
 
     init(
         model: EntryLogModel,
@@ -80,6 +81,7 @@ struct NewEntryView: View {
                     }
                     NoteSection(draft: $draft)
                 }
+                .keepsScrollAcrossTurns(savedDistance: $scrollDistance)
                 .screenSpacing()
                 .lastBlockClearance()
                 .accessibilityIdentifier(screenID)
