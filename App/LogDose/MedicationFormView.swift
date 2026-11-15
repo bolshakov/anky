@@ -64,6 +64,7 @@ struct MedicationFormView: View {
                 MedicationTakingSections(draft: $draft)
             }
             .screenSpacing()
+            .lastBlockClearance()
             .accessibilityIdentifier("medication-form")
             .discardConfirmation(
                 hasChanges: draft.hasChanges(since: openingDraft),
@@ -87,23 +88,10 @@ struct MedicationFormView: View {
                             .accessibilityIdentifier("medication-archive")
                         }
                     }
+                    ToolbarSpacer(.fixed, placement: .primaryAction)
                 }
             }
-            .safeAreaBar(edge: .bottom) {
-                Button {
-                    save()
-                } label: {
-                    Text("Save")
-                        .frame(maxWidth: .infinity)
-                }
-                .primaryButton()
-                .controlSize(.large)
-                .disabled(!draft.isSavable)
-                .accessibilityIdentifier("medication-save")
-                .padding(.horizontal, Spacing.screenMargin)
-                .padding(.vertical, Spacing.bottomClearance)
-                .background(Color.surface)
-            }
+            .saveToolbarItem(id: "medication-save", isEnabled: draft.isSavable, action: save)
             .medicationFailureAlert($failure)
         }
     }
