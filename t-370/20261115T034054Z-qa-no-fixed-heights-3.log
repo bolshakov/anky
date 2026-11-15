@@ -1,0 +1,5 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t370-04-1/tmp/t370-element.sh 9BBD2B8A-5CBA-44DF-A1EC-B6ACB50B41CF schedule-weekdays
+exit: 0
+commit: 0e8224fdff8edf2a57ccb73ad33390e2ebe4541d
+
+id=schedule-weekdays label=None value=None x=44 y=395 w=314 h=80

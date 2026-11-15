@@ -1,0 +1,4 @@
+$ scripts/ci/check-design-tokens.sh
+exit: 0
+commit: 0e8224fdff8edf2a57ccb73ad33390e2ebe4541d
+
