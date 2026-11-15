@@ -3,7 +3,7 @@ import SwiftUI
 
 extension View {
     func screenSpacing() -> some View {
-        contentMargins(.horizontal, Spacing.screenMargin, for: .scrollContent)
+        contentColumn()
             .contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
             .listSectionSpacing(.custom(Spacing.blockGap))
             .environment(\.defaultMinListRowHeight, 0)
@@ -12,7 +12,7 @@ extension View {
     }
 
     func readingScreenSpacing() -> some View {
-        contentMargins(.horizontal, Spacing.screenMargin, for: .scrollContent)
+        contentColumn(measuredFromSafeArea: true)
             .contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
             .contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
     }

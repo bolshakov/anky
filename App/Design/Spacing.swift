@@ -4,6 +4,7 @@ import SwiftUI
 /// Every spacing and size is written once, here.
 enum Spacing {
     static let screenMargin: CGFloat = 16
+    static let contentMaxWidth: CGFloat = 600
     static let firstBlockTop: CGFloat = 16
     // These three put the date line 2 to 4 pt below the large title. They were fitted by eye against where the system
     // starts a large-title list. Measured on 2026-11-12 on iOS 26.5: 3.0 pt at `large` and 2.7 pt at
