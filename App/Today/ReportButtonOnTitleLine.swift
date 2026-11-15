@@ -48,7 +48,8 @@ private struct ReportButtonOnTitleLine: ViewModifier {
     let isShowingDetail: Bool
     @ScaledMetric(relativeTo: .largeTitle) private var titleSize = Spacing.largeTitleSize
     @State private var contentStart: CGFloat?
-    @State private var safeAreaTop: CGFloat = 0
+    @State private var safeAreaInsets = EdgeInsets()
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     private var top: CGFloat? {
         contentStart.map { $0 - Spacing.titleToContentStartPerTitlePoint * titleSize - Spacing.tapTarget / 2 }
@@ -56,7 +57,7 @@ private struct ReportButtonOnTitleLine: ViewModifier {
 
     /// Fully drawn while it is below the collapsed bar, gone once its centre is level with the bar's lower edge.
     private func visibility(top: CGFloat) -> CGFloat {
-        let belowBar = top - (safeAreaTop + Spacing.navigationBarRow)
+        let belowBar = top - (safeAreaInsets.top + Spacing.navigationBarRow)
         let fadeDistance = Spacing.tapTarget / 2
         return isCovered ? 0 : min(1, max(0, 1 + belowBar / fadeDistance))
     }
@@ -68,6 +69,13 @@ private struct ReportButtonOnTitleLine: ViewModifier {
     private var isInBar: Bool {
         guard let top else { return false }
         return !isCovered && visibility(top: top) == 0
+    }
+
+    /// Level with the bar's copy of the button, whose distance from the screen's edge is the margin in portrait and a
+    /// fixed step further in on a compact-height screen. The overlay stops at the safe area, so that area is taken off.
+    private var trailingPadding: CGFloat {
+        let fromScreenEdge = verticalSizeClass == .compact ? Spacing.reportButtonLandscapeEdge : Spacing.screenMargin
+        return fromScreenEdge - safeAreaInsets.trailing
     }
 
     private var button: ReportButton {
@@ -83,12 +91,13 @@ private struct ReportButtonOnTitleLine: ViewModifier {
                     contentStart = start
                 }
             }
-            .onGeometryChange(for: CGFloat.self) { $0.safeAreaInsets.top } action: { safeAreaTop = $0 }
+            .onGeometryChange(for: EdgeInsets.self) { $0.safeAreaInsets } action: { safeAreaInsets = $0 }
             .overlay(alignment: .topTrailing) {
                 if let top, visibility(top: top) > 0 {
                     button
+                        .frame(width: Spacing.tapTarget)
                         .padding(.top, top)
-                        .padding(.trailing, Spacing.screenMargin)
+                        .padding(.trailing, trailingPadding)
                         .opacity(visibility(top: top))
                         .transition(.opacity)
                         .ignoresSafeArea()
