@@ -16,7 +16,7 @@ public struct OpenSheets: OptionSet, Sendable {
 }
 
 public enum ReminderForm: Equatable, Sendable {
-    case checkIn, newEntry, logDose
+    case checkIn, newEntry, logDose, basdai, logDoseNoMedication
 }
 
 public enum ReminderSheetStep: Equatable, Sendable {
@@ -31,14 +31,22 @@ public enum ReminderSheetPlan {
     public static func step(for form: ReminderForm, open: OpenSheets) -> ReminderSheetStep {
         switch form {
         case .checkIn:
-            return open.subtracting(.checkingIn).isEmpty ? .openNow : .closeSheetsFirst
+            open.subtracting(.checkingIn).isEmpty ? .openNow : .closeSheetsFirst
         case .newEntry:
-            if open.contains(.newEntry) {
-                return .ignore
-            }
-            return open.isEmpty ? .openNow : .closeSheetsFirst
+            stepKeepingOpen(.newEntry, open: open)
         case .logDose:
-            return open.isEmpty ? .openNow : .closeSheetsFirst
+            open.isEmpty ? .openNow : .closeSheetsFirst
+        case .basdai:
+            stepKeepingOpen(.basdai, open: open)
+        case .logDoseNoMedication:
+            stepKeepingOpen(.logDose, open: open)
         }
+    }
+
+    private static func stepKeepingOpen(_ own: OpenSheets, open: OpenSheets) -> ReminderSheetStep {
+        if open.contains(own) {
+            return .ignore
+        }
+        return open.isEmpty ? .openNow : .closeSheetsFirst
     }
 }

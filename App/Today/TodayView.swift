@@ -11,6 +11,7 @@ struct TodayView: View {
     @Binding var reminderCheckIn: Dose?
     @Binding var reminderNewEntry: Bool
     @Binding var reminderLogDose: UUID?
+    @Binding var reminderForm: AddDestination?
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var isShowingBasdai = false
@@ -155,6 +156,7 @@ struct TodayView: View {
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
                 reminderLogDose: $reminderLogDose,
+                reminderForm: $reminderForm,
                 isShowingNewEntry: $isShowingNewEntry,
                 isShowingLogDose: $isShowingLogDose,
                 isShowingBasdai: $isShowingBasdai,
