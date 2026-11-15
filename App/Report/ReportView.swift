@@ -81,7 +81,7 @@ struct ReportView: View {
         .buttonBorderShape(.capsule)
         .controlSize(.large)
         .disabled(summary.isEmpty)
-        .padding(.horizontal, Spacing.screenMargin)
+        .insetBarColumn()
         .padding(.bottom, Spacing.bottomClearance)
         .accessibilityIdentifier("report-preview")
     }
