@@ -15,11 +15,16 @@ final class SaveMedicationTests: XCTestCase {
         name.typeText("Zorblex")
 
         let save = app.buttons["medication-save"]
+        XCTAssertTrue(app.keyboards.firstMatch.exists)
+        XCTAssertLessThanOrEqual(save.frame.maxY, app.keyboards.firstMatch.frame.minY)
         save.doubleTap()
 
         XCTAssertTrue(save.waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
-        XCTAssertEqual(app.buttons.matching(identifier: "dose-medication-row").count, 1)
+        let rows = app.buttons.matching(identifier: "dose-medication-row")
+        XCTAssertEqual(rows.count, 1)
+        let saved = rows.firstMatch.label
+        XCTAssertTrue(saved.contains("Zorblex"), "the typed name was not saved: \(saved)")
     }
 
     func testNewStrengthIsSavedAsTyped() {
