@@ -23,3 +23,17 @@ struct ScrollRestoreTests {
         #expect(ScrollRestore.target(offset: 0, saved: 23.7, isIdle: false) == nil)
     }
 }
+
+struct ScrollRestoreClampTests {
+    @Test func aPositionPastTheEndOfTheNewSizeStopsAtTheEnd() {
+        #expect(ScrollRestore.clamped(120, scrollableLength: 24) == 24)
+    }
+
+    @Test func aPositionInsideTheNewSizeIsKept() {
+        #expect(ScrollRestore.clamped(10, scrollableLength: 24) == 10)
+    }
+
+    @Test func aFormThatNoLongerScrollsGoesToItsTop() {
+        #expect(ScrollRestore.clamped(10, scrollableLength: -5) == 0)
+    }
+}

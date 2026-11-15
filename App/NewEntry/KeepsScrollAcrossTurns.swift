@@ -9,8 +9,11 @@ private final class ScrollViewHandle {
 
     func scroll(toDistanceFromTop distance: CGFloat) {
         guard let scrollView else { return }
+        let inset = scrollView.adjustedContentInset
+        let scrollableLength = scrollView.contentSize.height + inset.top + inset.bottom - scrollView.bounds.height
+        let clamped = ScrollRestore.clamped(Double(distance), scrollableLength: Double(scrollableLength))
         scrollView.setContentOffset(
-            CGPoint(x: scrollView.contentOffset.x, y: distance - scrollView.adjustedContentInset.top),
+            CGPoint(x: scrollView.contentOffset.x, y: CGFloat(clamped) - inset.top),
             animated: false
         )
     }

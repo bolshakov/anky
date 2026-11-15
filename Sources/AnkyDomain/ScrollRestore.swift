@@ -6,4 +6,9 @@ public enum ScrollRestore {
         guard isIdle, offset <= 0, saved > 0 else { return nil }
         return saved
     }
+
+    /// A position saved at one size can lie past the end of another, since a shorter viewport scrolls further.
+    public static func clamped(_ distance: Double, scrollableLength: Double) -> Double {
+        min(distance, max(0, scrollableLength))
+    }
 }
