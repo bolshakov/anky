@@ -190,13 +190,13 @@ final class HistorySwipeTests: XCTestCase {
         let toggle = form.descendants(matching: .any).matching(identifier: "check-in-later").firstMatch
         XCTAssertTrue(toggle.waitForExistence(timeout: 10))
         let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where toggle.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 5 where toggle.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
         toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.88, dy: 0.5)).tap()
         let menu = form.descendants(matching: .any).matching(identifier: "dose-check-in-after").firstMatch
         XCTAssertTrue(menu.waitForExistence(timeout: 10))
-        for _ in 0 ..< 5 where menu.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 5 where menu.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
         menu.tap()

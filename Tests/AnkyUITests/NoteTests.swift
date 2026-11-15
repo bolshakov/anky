@@ -67,8 +67,7 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
-        let save = app.buttons["save-entry"]
-        for _ in 0 ..< 3 where card.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 3 where card.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.1)).tap()
@@ -119,11 +118,11 @@ final class NoteTests: XCTestCase {
         let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
-        for _ in 0 ..< 3 where counter.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 3 where counter.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
         XCTAssertTrue(counter.isHittable)
-        XCTAssertLessThanOrEqual(counter.frame.maxY, save.frame.minY)
+        XCTAssertLessThanOrEqual(counter.frame.maxY, saveBarTop(in: app))
         attachScreenshot(named: "note-limit")
     }
 
@@ -134,8 +133,7 @@ final class NoteTests: XCTestCase {
 
         let card = app.descendants(matching: .any).matching(identifier: "note-card").firstMatch
         XCTAssertTrue(card.waitForExistence(timeout: 10))
-        let save = app.buttons["save-entry"]
-        for _ in 0 ..< 3 where card.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 3 where card.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
         card.coordinate(withNormalizedOffset: CGVector(dx: 0.95, dy: 0.95)).tap()

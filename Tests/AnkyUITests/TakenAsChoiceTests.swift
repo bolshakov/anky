@@ -210,10 +210,9 @@ final class TakenAsChoiceTests: XCTestCase {
     private func scrollToChoice(in app: XCUIApplication) {
         let choice = app.descendants(matching: .any).matching(identifier: "taken-as").firstMatch
         XCTAssertTrue(choice.waitForExistence(timeout: 10))
-        let save = app.buttons["medication-save"]
-        for _ in 0 ..< 5 where choice.frame.maxY > save.frame.minY {
+        for _ in 0 ..< 5 where choice.frame.maxY > saveBarTop(in: app) {
             app.swipeUp()
         }
-        XCTAssertLessThanOrEqual(choice.frame.maxY, save.frame.minY)
+        XCTAssertLessThanOrEqual(choice.frame.maxY, saveBarTop(in: app))
     }
 }
