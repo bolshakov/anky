@@ -18,17 +18,14 @@ private struct DiscardConfirmation: ViewModifier {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     cancelButton
-                        .accessibilityElement(children: .contain)
-                        .accessibilityIdentifier("\(cancelID)-item")
                 }
             }
             .interactiveDismissDisabled(hasChanges)
     }
 
     private var cancelButton: some View {
-        Button("Cancel", action: cancel)
-            .frame(minHeight: Spacing.tapTarget)
-            .contentShape(Rectangle())
+        Button(role: .close, action: cancel)
+            .accessibilityLabel("Cancel")
             .accessibilityIdentifier(cancelID)
             .confirmationDialog(Text(verbatim: ""), isPresented: $isAsking, titleVisibility: .hidden) {
                 Button("Discard Changes", role: .destructive, action: close)
