@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// Save is the last row of the form, so at the end of the form the note sits above it.
+/// Save is the ✓ in the top bar, so at the end of the form the note sits the clearance above the bottom edge.
 @MainActor
 final class CheckInSaveClearOfControlsTests: XCTestCase {
-    func testNoteAndSliderEndAboveSaveAtTheDefaultSize() throws {
+    func testNoteAndSliderEndAboveTheBottomEdgeAtTheDefaultSize() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let app = launchAnky()
@@ -16,10 +16,10 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         XCTAssertTrue(identified("check-in-screen", in: app).exists)
 
         scrollToBottom(of: app)
-        assertAboveSave(["severity-slider", "note-field"], in: app)
+        assertAboveBottomEdge(["severity-slider", "note-field"], in: app)
     }
 
-    func testNoteEndsAboveSaveAtTheLargestSize() throws {
+    func testNoteEndsAboveTheBottomEdgeAtTheLargestSize() throws {
         continueAfterFailure = false
         try skipUnlessAnHourBackStaysToday()
         let folder = UUID().uuidString
@@ -33,34 +33,37 @@ final class CheckInSaveClearOfControlsTests: XCTestCase {
         for _ in 0 ..< 6 {
             screen.swipeUp()
         }
-        assertAboveSave(["note-field"], in: app)
+        assertAboveBottomEdge(["note-field"], in: app)
         swipeBackToSlider(in: app)
         setSeverity(6, in: app)
         XCTAssertEqual(severityLevel(of: app.sliders["severity-slider"]), 6)
         XCTAssertTrue(identified("check-in-screen", in: app).exists)
     }
 
-    /// The walk above ends at the bottom of the form, with the slider scrolled off the top, so it is swiped back.
+    /// The walk above ends at the bottom of the form, with the slider scrolled off the top, so it is swiped back until
+    /// it sits below the top bar, which would otherwise take the press that moves the knob.
     private func swipeBackToSlider(in app: XCUIApplication) {
         let slider = app.sliders["severity-slider"]
         let screen = identified("check-in-screen", in: app)
-        for _ in 0 ..< 8 where !slider.isHittable {
+        for _ in 0 ..< 8 where !slider.isHittable || slider.frame.minY < topBarBottom {
             screen.swipeDown()
         }
     }
 
-    private func assertAboveSave(
+    private let bottomClearance: CGFloat = 16
+    private let topBarBottom: CGFloat = 120
+
+    private func assertAboveBottomEdge(
         _ ids: [String],
         in app: XCUIApplication,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let save = app.buttons["save-check-in"]
-        XCTAssertTrue(save.exists, "save-check-in is not on screen at the end of the form", file: file, line: line)
+        let limit = app.windows.firstMatch.frame.maxY - bottomClearance
         for id in ids {
             let control = identified(id, in: app)
             XCTAssertTrue(control.exists, "\(id) is not on screen", file: file, line: line)
-            XCTAssertLessThanOrEqual(control.frame.maxY, save.frame.minY, file: file, line: line)
+            XCTAssertLessThanOrEqual(control.frame.maxY, limit, file: file, line: line)
         }
     }
 
