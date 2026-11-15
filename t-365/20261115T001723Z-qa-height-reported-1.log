@@ -1,0 +1,5 @@
+$ bash -c 'xcrun simctl list runtimes | grep iOS'
+exit: 0
+commit: c1e75c1951e8e32455caae838f5e8a4a4b99dcfb
+
+iOS 26.5 (26.5 - 23F77) - com.apple.CoreSimulator.SimRuntime.iOS-26-5

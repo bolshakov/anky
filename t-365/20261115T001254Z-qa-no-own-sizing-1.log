@@ -1,0 +1,35 @@
+$ grep -rn -A6 'pickerStyle(.segmented)' App
+exit: 0
+commit: c1e75c1951e8e32455caae838f5e8a4a4b99dcfb
+
+App/DesignGallery/GalleryFirstBlock.swift:34:                    .pickerStyle(.segmented)
+App/DesignGallery/GalleryFirstBlock.swift-35-                    .accessibilityIdentifier("gallery-kind")
+App/DesignGallery/GalleryFirstBlock.swift-36-                    HStack(spacing: Spacing.inlineGap) {
+App/DesignGallery/GalleryFirstBlock.swift-37-                        pill("Left pill", id: "gallery-pill-left")
+App/DesignGallery/GalleryFirstBlock.swift-38-                        pill("Right pill", id: "gallery-pill-right")
+App/DesignGallery/GalleryFirstBlock.swift-39-                        Spacer(minLength: .zero)
+App/DesignGallery/GalleryFirstBlock.swift-40-                    }
+--
+App/NewEntry/KindSection.swift:14:        .pickerStyle(.segmented)
+App/NewEntry/KindSection.swift-15-        .labelsHidden()
+App/NewEntry/KindSection.swift-16-        .accessibilityLabel("What are you logging?")
+App/NewEntry/KindSection.swift-17-        .accessibilityIdentifier("kind-picker")
+App/NewEntry/KindSection.swift-18-        .sensoryFeedback(.selection, trigger: draft.kind)
+App/NewEntry/KindSection.swift-19-    }
+App/NewEntry/KindSection.swift-20-}
+--
+App/LogDose/MedicationTakingSections.swift:15:                    .pickerStyle(.segmented)
+App/LogDose/MedicationTakingSections.swift-16-                    .labelsHidden()
+App/LogDose/MedicationTakingSections.swift-17-                    .accessibilityIdentifier("taken-as")
+App/LogDose/MedicationTakingSections.swift-18-                    .nonCardBlock()
+App/LogDose/MedicationTakingSections.swift-19-            }
+App/LogDose/MedicationTakingSections.swift-20-        }
+App/LogDose/MedicationTakingSections.swift-21-        if draft.takenAs == .scheduled {
+--
+App/Report/ReportView.swift:33:                .pickerStyle(.segmented)
+App/Report/ReportView.swift-34-                .labelsHidden()
+App/Report/ReportView.swift-35-                .accessibilityLabel("Period")
+App/Report/ReportView.swift-36-                .accessibilityIdentifier("report-period")
+App/Report/ReportView.swift-37-                .nonCardBlock()
+App/Report/ReportView.swift-38-            }
+App/Report/ReportView.swift-39-            basdaiCard

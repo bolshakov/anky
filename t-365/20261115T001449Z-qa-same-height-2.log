@@ -1,0 +1,6 @@
+$ bash -c 'source /Users/bolshakov/Projects/personal/anky.wt/qa-t365-01-1/tmp/env.sh; echo kind-picker dark; height kind-picker'
+exit: 0
+commit: c1e75c1951e8e32455caae838f5e8a4a4b99dcfb
+
+kind-picker dark
+31
