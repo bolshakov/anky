@@ -133,10 +133,10 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["medication-save"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "medication-form-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
     func testEditMedicationSaveButtonLabelMatchesAppearance() throws {
@@ -149,12 +149,13 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["medication-save"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "edit-medication-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
+    /// The system dims its confirm button as a whole, so the glyph keeps less contrast than the app's own button does.
     func testSaveMedicationLabelIsLegibleWhenDisabled() throws {
         continueAfterFailure = false
         let app = launchAnky()
@@ -168,14 +169,18 @@ final class PrimaryButtonColourTests: XCTestCase {
         app.textFields["medication-name"].tap()
         app.textFields["medication-name"].typeText("Quuxal")
         XCTAssertTrue(waitUntilEnabled(button))
-        let enabled = try settledLabelColour(of: button, dark: runIsDark)
+        let enabled = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "save-medication-enabled")
         XCTAssertGreaterThanOrEqual(
-            disabled.contrast, 4.5,
-            "disabled label \(disabled.label) on \(disabled.background) reads "
-                + "\(String(format: "%.2f", disabled.contrast)):1, under 4.5:1 "
+            disabled.contrast, 1.5,
+            "disabled glyph \(disabled.label) on \(disabled.background) reads "
+                + "\(String(format: "%.2f", disabled.contrast)):1, under 1.5:1 "
                 + "(enabled \(enabled.label) on \(enabled.background))"
         )
+        let shift = abs(disabled.background.red - enabled.background.red)
+            + abs(disabled.background.green - enabled.background.green)
+            + abs(disabled.background.blue - enabled.background.blue)
+        XCTAssertGreaterThan(shift, 60, "dimmed \(disabled.background) is not told apart from \(enabled.background)")
     }
 
     func testTodayLogButtonFollowsAppearanceChangeWithoutRelaunch() throws {

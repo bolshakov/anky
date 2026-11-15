@@ -1,14 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import XCTest
 
-/// At the end of the medication form's scroll, the last row sits a fixed gap above the pinned Save, with the keyboard
-/// open or closed and at the largest text size. A form that fits the screen does not scroll, so it rests with its
-/// last row at least that gap above Save.
+/// At the end of the medication form's scroll, the last row sits a fixed gap above whatever covers the form's bottom,
+/// the keyboard when it is open and the bottom safe edge when it is closed, also at the largest text size. A form that
+/// fits the screen does not scroll, so it rests with its last row at least that gap above it. Save is the ✓ in the top
+/// bar, so it must stay on screen above the keyboard.
 @MainActor
 final class MedicationSaveClearOfRowsTests: XCTestCase {
     private let gap: CGFloat = 16
+    /// The home indicator's height on the simulator the suite runs on, which XCUITest cannot read from the window.
+    private let homeIndicatorInset: CGFloat = 34
 
-    func testNewMedicationFootnoteClearsSaveByTheGapWithTheKeyboardDown() {
+    func testNewMedicationFootnoteClearsTheBottomEdgeByTheGapWithTheKeyboardDown() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -16,10 +19,10 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         dismissKeyboard(in: app)
 
         scrollFormToEnd(in: app)
-        assertClearOfSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testNewMedicationFootnoteSitsSixteenPointsAboveSaveWhenTheKeyboardOpensFromName() {
+    func testNewMedicationFootnoteClearsTheKeyboardByTheGapWhenItOpensFromName() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -27,10 +30,10 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertSixteenAboveSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testNewMedicationFootnoteSitsSixteenPointsAboveSaveWhenTheKeyboardOpensFromStrength() {
+    func testNewMedicationFootnoteClearsTheKeyboardByTheGapWhenItOpensFromStrength() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -40,10 +43,10 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertSixteenAboveSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testCheckInMenuClearsSaveWhenCheckInLaterIsOnAndTheKeyboardIsUp() {
+    func testCheckInMenuClearsTheKeyboardWhenCheckInLaterIsOnAndTheKeyboardIsUp() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -56,17 +59,16 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
         let menu = checkInMenu(in: app)
-        let save = app.buttons["medication-save"]
         XCTAssertTrue(menu.exists, "dose-check-in-after is not on screen")
         XCTAssertLessThanOrEqual(
             menu.frame.maxY,
-            save.frame.minY,
-            "dose-check-in-after at \(menu.frame) is covered by save at \(save.frame)"
+            coverTop(in: app),
+            "dose-check-in-after at \(menu.frame) is covered from \(coverTop(in: app))"
         )
-        assertSixteenAboveSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testFootnoteSitsSixteenPointsAboveSaveAtTheLargestTextSize() {
+    func testFootnoteSitsSixteenPointsAboveTheBottomEdgeAtTheLargestTextSize() {
         continueAfterFailure = false
         let app = launchAnky(arguments: largestTextArguments)
         openNewMedication(app)
@@ -74,20 +76,20 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         dismissKeyboard(in: app)
 
         scrollFormToEnd(in: app)
-        assertSixteenAboveSave("check-in-footnote", in: app)
+        assertSixteenAboveCover("check-in-footnote", in: app)
     }
 
-    func testEditMedicationFootnoteClearsSaveByTheGapWithTheKeyboardDown() {
+    func testEditMedicationFootnoteClearsTheBottomEdgeByTheGapWithTheKeyboardDown() {
         continueAfterFailure = false
         let app = launchAnky()
         openEditMedication(app)
         dismissKeyboardIfShown(in: app)
 
         scrollFormToEnd(in: app)
-        assertClearOfSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testEditMedicationFootnoteClearsSaveByTheGapWhenTheKeyboardOpens() {
+    func testEditMedicationFootnoteClearsTheKeyboardByTheGapWhenItOpens() {
         continueAfterFailure = false
         let app = launchAnky()
         openEditMedication(app)
@@ -96,7 +98,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertClearOfSave("check-in-footnote", in: app)
+        assertClearOfCover("check-in-footnote", in: app)
     }
 
     private func openEditMedication(_ app: XCUIApplication) {
@@ -132,65 +134,78 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         XCTAssertTrue(checkInMenu(in: app).waitForExistence(timeout: 10))
     }
 
-    /// Drags the form up from its middle, above the bottom edge where the keyboard and Save sit, until it rests.
+    /// Drags the form up along its left margin, clear of the fields, until the footnote stops moving.
     private func scrollFormToEnd(in app: XCUIApplication) {
         let window = app.windows.firstMatch
-        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4))
-        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.15))
+        let from = window.coordinate(withNormalizedOffset: CGVector(dx: 0.03, dy: 0.4))
+        let to = window.coordinate(withNormalizedOffset: CGVector(dx: 0.03, dy: 0.15))
+        let footnote = identifiedInForm("check-in-footnote", in: app)
+        var last: CGRect?
         for _ in 0 ..< 12 {
             from.press(forDuration: 0.1, thenDragTo: to)
+            if footnote.exists, footnote.frame == last {
+                return
+            }
+            last = footnote.exists ? footnote.frame : nil
         }
     }
 
-    /// Save's top edge minus the bottom edge of the row, which must read `gap` points, within a point of rounding.
+    /// The cover's top edge minus the bottom edge of the row, which must read `gap` points, within a point of rounding.
     /// Only a form that scrolls to its end can read this, so the caller names an overflowing case.
-    private func assertSixteenAboveSave(
+    private func assertSixteenAboveCover(
         _ id: String,
         in app: XCUIApplication,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let (row, save) = gapAboveSave(id, in: app, file: file, line: line)
-        let measured = save.minY - row.maxY
+        let (row, cover) = gapAboveCover(id, in: app, file: file, line: line)
+        let measured = cover - row.maxY
         XCTAssertEqual(
             measured,
             gap,
             accuracy: 1,
-            "\(id) at \(row) leaves \(measured) pt above save at \(save)",
+            "\(id) at \(row) leaves \(measured) pt above the cover at \(cover)",
             file: file,
             line: line
         )
     }
 
-    /// For a form that fits the screen: the row ends at least `gap` points above Save.
-    private func assertClearOfSave(
+    /// For a form that fits the screen: the row ends at least `gap` points above the cover.
+    private func assertClearOfCover(
         _ id: String,
         in app: XCUIApplication,
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let (row, save) = gapAboveSave(id, in: app, file: file, line: line)
-        let measured = save.minY - row.maxY
+        let (row, cover) = gapAboveCover(id, in: app, file: file, line: line)
+        let measured = cover - row.maxY
         XCTAssertGreaterThanOrEqual(
             measured,
             gap,
-            "\(id) at \(row) is only \(measured) pt above save at \(save)",
+            "\(id) at \(row) is only \(measured) pt above the cover at \(cover)",
             file: file,
             line: line
         )
     }
 
-    private func gapAboveSave(
+    private func gapAboveCover(
         _ id: String,
         in app: XCUIApplication,
         file: StaticString,
         line: UInt
-    ) -> (row: CGRect, save: CGRect) {
-        let save = app.buttons["medication-save"]
+    ) -> (row: CGRect, cover: CGFloat) {
         let row = identifiedInForm(id, in: app)
         XCTAssertTrue(row.exists, "\(id) is not on screen", file: file, line: line)
-        XCTAssertTrue(save.exists, "medication-save is not on screen", file: file, line: line)
-        return (row.frame, save.frame)
+        return (row.frame, coverTop(in: app))
+    }
+
+    /// What covers the form's bottom: the keyboard's top when it shows, and otherwise the bottom safe edge.
+    private func coverTop(in app: XCUIApplication) -> CGFloat {
+        let keyboard = app.keyboards.firstMatch
+        if keyboard.exists {
+            return keyboard.frame.minY
+        }
+        return app.windows.firstMatch.frame.maxY - homeIndicatorInset
     }
 
     private func assertSaveAboveKeyboard(
@@ -201,6 +216,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         let keyboard = app.keyboards.firstMatch
         XCTAssertTrue(keyboard.waitForExistence(timeout: 10), "the keyboard is not up", file: file, line: line)
         let save = app.buttons["medication-save"]
+        XCTAssertTrue(save.isHittable, "medication-save is not on screen", file: file, line: line)
         XCTAssertLessThanOrEqual(
             save.frame.maxY,
             keyboard.frame.minY,
