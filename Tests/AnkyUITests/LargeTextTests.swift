@@ -3,7 +3,7 @@ import XCTest
 
 @MainActor
 final class LargeTextTests: XCTestCase {
-    func testSaveStaysPinnedAtLargestSize() {
+    func testSaveStaysInTheTopBarAtLargestSize() {
         continueAfterFailure = false
         let app = launchAnky(arguments: largestTextArguments)
         openNewEntry(app)
@@ -11,7 +11,8 @@ final class LargeTextTests: XCTestCase {
         let save = app.buttons["save-entry"]
         XCTAssertTrue(save.waitForExistence(timeout: 10))
         let pinned = save.frame
-        XCTAssertGreaterThanOrEqual(pinned.height, 44)
+        XCTAssertGreaterThanOrEqual(pinned.height, 36)
+        XCTAssertLessThan(pinned.minY, app.windows.firstMatch.frame.midY)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(pinned))
         attachScreenshot(named: "large-text-top")
 

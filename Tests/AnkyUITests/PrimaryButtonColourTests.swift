@@ -16,6 +16,8 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
+    /// New Entry saves from the system's confirm button, which draws a light glyph on the accent in both looks, so the
+    /// rule for the app's own button, a dark label in the dark look, does not apply to it.
     func testNewEntrySaveButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
@@ -23,12 +25,14 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["save-entry"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "new-entry-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
+    /// Edit Entry saves from the system's confirm button, which draws a light glyph on the accent in both looks, so the
+    /// rule for the app's own button, a dark label in the dark look, does not apply to it.
     func testEditEntrySaveButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
@@ -40,10 +44,10 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["save-entry"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "edit-entry-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
     /// Log Dose saves from the system's confirm button, which draws a light glyph on the accent in both looks, so the

@@ -118,11 +118,13 @@ final class NoteTests: XCTestCase {
         let save = app.buttons["save-entry"]
         XCTAssertTrue(save.isHittable)
         XCTAssertTrue(app.windows.firstMatch.frame.contains(save.frame))
-        for _ in 0 ..< 3 where counter.frame.maxY > saveBarTop(in: app) {
+        let keyboard = app.keyboards.firstMatch
+        let coveredFrom = { keyboard.exists ? keyboard.frame.minY : app.frame.maxY }
+        for _ in 0 ..< 3 where counter.frame.maxY > coveredFrom() {
             app.swipeUp()
         }
         XCTAssertTrue(counter.isHittable)
-        XCTAssertLessThanOrEqual(counter.frame.maxY, saveBarTop(in: app))
+        XCTAssertLessThanOrEqual(counter.frame.maxY, coveredFrom())
         attachScreenshot(named: "note-limit")
     }
 
