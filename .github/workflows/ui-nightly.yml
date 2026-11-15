@@ -92,7 +92,7 @@ jobs:
         run: >
           scripts/ci/run-ui-tests.sh light .derived
           EmptyStateTests/testFirstLaunchShowsEmptyState
-          LargeTextTests/testSaveStaysPinnedAtLargestSize
+          LargeTextTests/testSaveStaysInTheTopBarAtLargestSize
 
       - name: ui smoke tests in right-to-left
         env:
@@ -105,5 +105,5 @@ jobs:
           NoteTests/testSavesWithAndWithoutNote
           CancelTests/testCancelAfterChangeClosesAtOnce
           CancelTests/testSwipeDownIsBlockedAfterChange
-          LargeTextTests/testSaveStaysPinnedAtLargestSize
+          LargeTextTests/testSaveStaysInTheTopBarAtLargestSize
           AccessibilityAuditTests/testAuditAtDefaultSize
