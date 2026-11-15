@@ -13,6 +13,7 @@ import Observation
     var pending: Tap?
     var pendingNewEntry = false
     var pendingLogDose: UUID?
+    var pendingForm: AddDestination?
 
     func received(identifier: String, at: Date) {
         switch ReminderTapKind.of(identifier: identifier) {
@@ -26,7 +27,7 @@ import Observation
     func received(_ destination: AddDestination) {
         switch destination {
         case .newEntry: pendingNewEntry = true
-        case .logDose, .basdai: break
+        case .logDose, .basdai: pendingForm = destination
         }
     }
 }

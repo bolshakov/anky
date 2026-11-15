@@ -13,9 +13,11 @@ struct RootView: View {
     @State private var reminderCheckIn: Dose?
     @State private var reminderNewEntry = false
     @State private var reminderLogDose: UUID?
+    @State private var reminderForm: AddDestination?
     @State private var checkInAwaitingHistory: Dose?
     @State private var newEntryAwaitingHistory = false
     @State private var logDoseAwaitingHistory: UUID?
+    @State private var formAwaitingHistory: AddDestination?
     @State private var reminders = CheckInReminderScheduler()
     @State private var dailyReminder = DailyReminderSettings()
     @State private var dailyReminderScheduler = DailyReminderScheduler()
@@ -30,7 +32,8 @@ struct RootView: View {
                 basdai: basdai,
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
-                reminderLogDose: $reminderLogDose
+                reminderLogDose: $reminderLogDose,
+                reminderForm: $reminderForm
             )
             .tabItem {
                 Label("Today", systemImage: "calendar")
@@ -43,7 +46,7 @@ struct RootView: View {
                 medications: medications,
                 basdai: basdai,
                 isClosingSheets: checkInAwaitingHistory != nil || newEntryAwaitingHistory || logDoseAwaitingHistory !=
-                    nil,
+                    nil || formAwaitingHistory != nil,
                 onSheetsClosed: historyClosedSheets
             )
             .tabItem {
@@ -99,6 +102,15 @@ struct RootView: View {
             reminderTaps.pendingLogDose = nil
             openLogDose(for: medicationID)
         }
+        .onChange(of: formInputs, initial: true) { _, inputs in
+            guard inputs.phase == .active, let destination = inputs.destination else { return }
+            reminderTaps.pendingForm = nil
+            if selection == .history {
+                formAwaitingHistory = destination
+            } else {
+                showFormOnToday(destination)
+            }
+        }
     }
 
     private func openLogDose(for medicationID: UUID) {
@@ -141,6 +153,10 @@ struct RootView: View {
             logDoseAwaitingHistory = nil
             showLogDoseOnToday(medicationID)
         }
+        if let destination = formAwaitingHistory {
+            formAwaitingHistory = nil
+            showFormOnToday(destination)
+        }
         guard let dose = checkInAwaitingHistory else { return }
         checkInAwaitingHistory = nil
         showCheckInOnToday(dose)
@@ -149,6 +165,11 @@ struct RootView: View {
     private func showNewEntryOnToday() {
         selection = .today
         reminderNewEntry = true
+    }
+
+    private func showFormOnToday(_ destination: AddDestination) {
+        selection = .today
+        reminderForm = destination
     }
 
     private func showLogDoseOnToday(_ medicationID: UUID) {
@@ -181,6 +202,15 @@ struct RootView: View {
 
     private var newEntryInputs: NewEntryInputs {
         NewEntryInputs(isPending: reminderTaps.pendingNewEntry, phase: scenePhase)
+    }
+
+    private var formInputs: FormInputs {
+        FormInputs(destination: reminderTaps.pendingForm, phase: scenePhase)
+    }
+
+    private struct FormInputs: Equatable {
+        let destination: AddDestination?
+        let phase: ScenePhase
     }
 
     private struct LogDoseInputs: Equatable {

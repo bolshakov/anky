@@ -16,6 +16,7 @@ struct TodaySheets: ViewModifier {
     @Binding var reminderCheckIn: Dose?
     @Binding var reminderNewEntry: Bool
     @Binding var reminderLogDose: UUID?
+    @Binding var reminderForm: AddDestination?
     @Binding var isShowingNewEntry: Bool
     @Binding var isShowingLogDose: Bool
     @Binding var isShowingBasdai: Bool
@@ -29,25 +30,12 @@ struct TodaySheets: ViewModifier {
         case checkIn(Dose)
         case newEntry
         case logDose(UUID)
+        case logDoseNoMedication
+        case basdai
     }
 
     func body(content: Content) -> some View {
-        content
-            .onChange(of: reminderCheckIn, initial: true) { _, dose in
-                guard let dose else { return }
-                reminderCheckIn = nil
-                showCheckIn(dose)
-            }
-            .onChange(of: reminderNewEntry, initial: true) { _, isRequested in
-                guard isRequested else { return }
-                reminderNewEntry = false
-                showNewEntry()
-            }
-            .onChange(of: reminderLogDose, initial: true) { _, medicationID in
-                guard let medicationID else { return }
-                reminderLogDose = nil
-                showLogDose(medicationID)
-            }
+        requests(content)
             .sheet(isPresented: $isShowingNewEntry, onDismiss: presentPending) {
                 NewEntryView(model: model, onSaved: onCreated)
             }
@@ -65,6 +53,30 @@ struct TodaySheets: ViewModifier {
             }
             .sheet(item: $checkingIn, onDismiss: presentPending) { dose in
                 CheckInView(dose: dose, medications: medications, model: model, onSaved: onSaved)
+            }
+    }
+
+    private func requests(_ content: Content) -> some View {
+        content
+            .onChange(of: reminderCheckIn, initial: true) { _, dose in
+                guard let dose else { return }
+                reminderCheckIn = nil
+                showCheckIn(dose)
+            }
+            .onChange(of: reminderNewEntry, initial: true) { _, isRequested in
+                guard isRequested else { return }
+                reminderNewEntry = false
+                showNewEntry()
+            }
+            .onChange(of: reminderLogDose, initial: true) { _, medicationID in
+                guard let medicationID else { return }
+                reminderLogDose = nil
+                showLogDose(medicationID)
+            }
+            .onChange(of: reminderForm, initial: true) { _, destination in
+                guard let destination else { return }
+                reminderForm = nil
+                showForm(destination)
             }
     }
 
@@ -130,6 +142,41 @@ struct TodaySheets: ViewModifier {
         }
     }
 
+    private func showForm(_ destination: AddDestination) {
+        switch destination {
+        case .newEntry: showNewEntry()
+        case .logDose: showLogDoseWithNoMedication()
+        case .basdai: showBasdai()
+        }
+    }
+
+    private func showLogDoseWithNoMedication() {
+        switch ReminderSheetPlan.step(for: .logDoseNoMedication, open: openSheets) {
+        case .openNow:
+            logDoseMedication = nil
+            isShowingLogDose = true
+        case .closeSheetsFirst:
+            pending = .logDoseNoMedication
+            closeSheets()
+            checkingIn = nil
+        case .ignore:
+            break
+        }
+    }
+
+    private func showBasdai() {
+        switch ReminderSheetPlan.step(for: .basdai, open: openSheets) {
+        case .openNow:
+            isShowingBasdai = true
+        case .closeSheetsFirst:
+            pending = .basdai
+            closeSheets()
+            checkingIn = nil
+        case .ignore:
+            break
+        }
+    }
+
     private func logDoseDismissed() {
         logDoseMedication = nil
         presentPending()
@@ -152,6 +199,10 @@ struct TodaySheets: ViewModifier {
         case let .logDose(medicationID):
             logDoseMedication = medicationID
             isShowingLogDose = true
+        case .logDoseNoMedication:
+            logDoseMedication = nil
+            isShowingLogDose = true
+        case .basdai: isShowingBasdai = true
         }
     }
 }

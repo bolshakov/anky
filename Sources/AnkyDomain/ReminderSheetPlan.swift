@@ -31,18 +31,15 @@ public enum ReminderSheetPlan {
     public static func step(for form: ReminderForm, open: OpenSheets) -> ReminderSheetStep {
         switch form {
         case .checkIn:
-            return open.subtracting(.checkingIn).isEmpty ? .openNow : .closeSheetsFirst
+            open.subtracting(.checkingIn).isEmpty ? .openNow : .closeSheetsFirst
         case .newEntry:
-            if open.contains(.newEntry) {
-                return .ignore
-            }
-            return open.isEmpty ? .openNow : .closeSheetsFirst
+            stepKeepingOpen(.newEntry, open: open)
         case .logDose:
-            return open.isEmpty ? .openNow : .closeSheetsFirst
+            open.isEmpty ? .openNow : .closeSheetsFirst
         case .basdai:
-            return stepKeepingOpen(.basdai, open: open)
+            stepKeepingOpen(.basdai, open: open)
         case .logDoseNoMedication:
-            return stepKeepingOpen(.logDose, open: open)
+            stepKeepingOpen(.logDose, open: open)
         }
     }
 
