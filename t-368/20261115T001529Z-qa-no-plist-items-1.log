@@ -1,0 +1,6 @@
+$ sh -c '/usr/libexec/PlistBuddy -c '\''Print UIApplicationShortcutItems'\'' '\''/Users/bolshakov/Projects/personal/anky.wt/qa-t368-01-1/checkout/.derived/Build/Products/Debug-iphonesimulator/Anky.app/Info.plist'\''; echo "plistbuddy exit $?"'
+exit: 0
+commit: e6e6b638c1e99260861766d2d8ea1751cb7355ef
+
+Print: Entry, "UIApplicationShortcutItems", Does Not Exist
+plistbuddy exit 1

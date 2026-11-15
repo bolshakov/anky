@@ -1,0 +1,10 @@
+$ grep -rn '"pills"\|"BASDAI"' App '--include=*.swift'
+exit: 0
+commit: e6e6b638c1e99260861766d2d8ea1751cb7355ef
+
+App/Medications/MedicationsEmptyBlock.swift:7:            Image(systemName: "pills")
+App/Today/AddAction.swift:21:            symbol: "pills",
+App/Today/AddAction.swift:26:            title: "BASDAI",
+App/Basdai/BasdaiRow.swift:33:            title: Text("BASDAI"),
+App/Basdai/BasdaiFormView.swift:30:            .navigationTitle("BASDAI")
+App/Display/RowSymbol.swift:13:    static let dose = "pills"

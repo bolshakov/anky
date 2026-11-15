@@ -1,0 +1,11 @@
+$ grep -rn '"Log how you feel"\|"Log dose"\|"square.and.pencil"\|"list.bullet.clipboard"\|"log-entry"\|"log-medication"\|"add-basdai"' App '--include=*.swift'
+exit: 0
+commit: e6e6b638c1e99260861766d2d8ea1751cb7355ef
+
+App/Today/AddAction.swift:14:            title: "Log how you feel",
+App/Today/AddAction.swift:15:            symbol: "square.and.pencil",
+App/Today/AddAction.swift:17:            id: "log-entry"
+App/Today/AddAction.swift:20:            title: "Log dose",
+App/Today/AddAction.swift:23:            id: "log-medication"
+App/Today/AddAction.swift:27:            symbol: "list.bullet.clipboard",
+App/Today/AddAction.swift:29:            id: "add-basdai"

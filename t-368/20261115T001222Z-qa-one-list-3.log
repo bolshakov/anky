@@ -1,0 +1,8 @@
+$ grep -rn 'UIApplicationShortcutItem\|performActionFor\|shortcutItem' App
+exit: 0
+commit: e6e6b638c1e99260861766d2d8ea1751cb7355ef
+
+App/QuickActionSceneDelegate.swift:13:        if let item = connectionOptions.shortcutItem {
+App/QuickActionSceneDelegate.swift:20:        performActionFor shortcutItem: UIApplicationShortcutItem,
+App/QuickActionSceneDelegate.swift:23:        let destination = AddAction.destination(forID: shortcutItem.type)
+App/AppDelegate.swift:9:        application.shortcutItems = AddAction.all.map { action in

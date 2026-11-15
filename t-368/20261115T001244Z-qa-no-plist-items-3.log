@@ -1,0 +1,4 @@
+$ grep -rn 'UIApplicationShortcutItems\|localizedSubtitle' project.yml App
+exit: 1
+commit: e6e6b638c1e99260861766d2d8ea1751cb7355ef
+
