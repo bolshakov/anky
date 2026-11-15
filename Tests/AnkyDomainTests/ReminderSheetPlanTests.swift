@@ -5,9 +5,11 @@ import Testing
 struct ReminderSheetPlanTests {
     private static let forms: [ReminderForm] = [.checkIn, .newEntry, .logDose]
 
+    private static let quickActionForms: [ReminderForm] = [.basdai, .logDoseNoMedication]
+
     private static let sheets: [OpenSheets] = [.newEntry, .logDose, .basdai, .editingEntry, .editingDose, .checkingIn]
 
-    @Test(arguments: forms)
+    @Test(arguments: forms + quickActionForms)
     func aFormOpensAtOnceWhenNoSheetIsOpen(form: ReminderForm) {
         #expect(ReminderSheetPlan.step(for: form, open: []) == .openNow)
     }
@@ -40,6 +42,26 @@ struct ReminderSheetPlanTests {
     @Test func aLogDoseReminderClosesEveryOpenSheetFirst() {
         for sheet in Self.sheets {
             #expect(ReminderSheetPlan.step(for: .logDose, open: sheet) == .closeSheetsFirst, "\(sheet)")
+        }
+    }
+
+    @Test func aBasdaiRequestIsIgnoredWhileBasdaiIsOpen() {
+        #expect(ReminderSheetPlan.step(for: .basdai, open: .basdai) == .ignore)
+    }
+
+    @Test func aBasdaiRequestClosesEveryOtherSheetFirst() {
+        for sheet in Self.sheets where sheet != .basdai {
+            #expect(ReminderSheetPlan.step(for: .basdai, open: sheet) == .closeSheetsFirst, "\(sheet)")
+        }
+    }
+
+    @Test func aLogDoseRequestWithNoMedicationIsIgnoredWhileLogDoseIsOpen() {
+        #expect(ReminderSheetPlan.step(for: .logDoseNoMedication, open: .logDose) == .ignore)
+    }
+
+    @Test func aLogDoseRequestWithNoMedicationClosesEveryOtherSheetFirst() {
+        for sheet in Self.sheets where sheet != .logDose {
+            #expect(ReminderSheetPlan.step(for: .logDoseNoMedication, open: sheet) == .closeSheetsFirst, "\(sheet)")
         }
     }
 }
