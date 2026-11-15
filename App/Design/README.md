@@ -68,14 +68,11 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 
 - `Spacing`: the home of every spacing and size. Do not write a point value in a screen or in a piece.
 - `screenMargin`: the smallest side distance of a screen's content, applied by the shared pieces. Content outside a list uses `insetBarColumn` and not the bare token. Do not write a horizontal padding number.
-- `reportButtonLandscapeEdge`: only for Today's title-line Report button, as the distance from the screen's edge at which the bar's copy of the button sits on a compact-height screen. Do not use it for another control.
 - `contentMaxWidth`: the widest the content column grows, which `contentColumn` and `insetBarColumn` apply. Do not write the number or cap a screen's width yourself.
 - `firstBlockTop`: the gap between the navigation bar and the first block, which `screenSpacing` applies. Use it for the same gap in a stack that is not a list.
 - `titleToDatePull`: only for `todayTopMargin`, which sets how far Today's list is pulled up. Do not use it to align another header.
 - `titleToDatePullPerTitlePoint`: only for `todayTopMargin`, which shrinks the pull as the title grows. Do not use it to align another header.
 - `largeTitleSize`: only for `todayTopMargin`, as the title size the pull is measured from. Do not use it to size text.
-- `titleToContentStartPerTitlePoint`: only for Today's report button, as how far the large title's centre sits above the first block, per point of title size. Do not use it to align another control.
-- `navigationBarRow`: only for Today's report button, as the height of the collapsed bar row it fades out above. Do not use it to size a bar.
 - `blockGap`: the gap between the blocks of a screen, applied by `screenSpacing`. Do not set a different section gap.
 - `emptyBlockGap`: covered by the `emptyBlockGap` line under Modifiers for screens and buttons.
 - `labelGap`: the gap under a section label, applied by `SectionLabel`. Do not pad a label yourself.
@@ -128,8 +125,6 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding.
 - `repeatChipSystemPadding`: the padding the system adds around the repeat chip's label. Only the label height below uses it, so do not use it in a screen.
 - `repeatChipLabelHeight`: the label height that gives the repeat chip a row-sized height. Use it for a chip of that kind and do not add your own padding.
-- `glassCircleSystemPadding`: the padding the system adds around a glass circle button's label. Only the label side below uses it, so do not use it in a screen.
-- `glassCircleLabelSide`: the label side that gives a glass circle button a tap-target-sized circle. Use it for Today's report button and do not add your own padding.
 
 ## Corner tokens
 
