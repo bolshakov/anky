@@ -31,6 +31,7 @@ struct ReadingChoiceView: View {
                     .accessibilityIdentifier("reading-log-new")
                 }
             }
+            .contentColumn()
             .navigationTitle("Choose an Entry")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

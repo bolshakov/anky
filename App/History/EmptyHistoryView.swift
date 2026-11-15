@@ -25,5 +25,6 @@ struct EmptyHistoryView: View {
             .frame(maxWidth: .infinity)
             .padding(.top, Spacing.emptyBlockGap)
         }
+        .contentColumn(measuredFromSafeArea: true)
     }
 }

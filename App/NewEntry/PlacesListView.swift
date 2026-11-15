@@ -62,7 +62,7 @@ struct PlacesListView: View {
         .primaryButton()
         .buttonBorderShape(.capsule)
         .controlSize(.large)
-        .padding(.horizontal, Spacing.screenMargin)
+        .insetBarColumn()
         .padding(.bottom, Spacing.bottomClearance)
         .accessibilityLabel(spokenDoneTitle)
         .accessibilityIdentifier("done-places")
