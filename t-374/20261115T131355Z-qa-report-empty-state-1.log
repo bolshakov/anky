@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/rb.sh report-counts
+exit: 0
+commit: 17a2512f40c9c791014e7014f608c49d8a9c23b8
+
+count 1
+{"role": "AXStaticText", "enabled": true, "AXValue": null, "AXLabel": "Nothing logged from August 15 to November 15. Pick a longer period.", "frame": {"width": 370, "x": 16, "height": 45.66666666666666, "y": 195.33333333333331}, "AXFrame": "{{16, 195.33333333333331}, {370, 45.666666666666657}}", "AXUniqueId": "report-counts", "role_description": "text", "help": null, "type": "StaticText", "title": null, "subrole": null, "content_required": false, "children": [], "traits": [], "custom_actions": [], "pid": 39061}

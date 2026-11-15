@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/rb.sh
+exit: 0
+commit: 17a2512f40c9c791014e7014f608c49d8a9c23b8
+
+count 1
+{"type": "Button", "enabled": true, "title": null, "help": null, "AXValue": null, "role": "AXButton", "role_description": "button", "subrole": null, "pid": 41165, "children": [], "frame": {"width": 36, "height": 36, "x": 346, "y": 66}, "traits": [], "custom_actions": [], "content_required": false, "AXLabel": "Report for your doctor", "AXUniqueId": "report-button", "AXFrame": "{{346, 66}, {36, 36}}"}

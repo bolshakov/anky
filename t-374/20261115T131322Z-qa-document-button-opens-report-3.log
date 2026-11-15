@@ -1,0 +1,5 @@
+$ axe tap --id report-button --wait-timeout 5 --udid F2E49BDA-777F-487C-BDCA-5B87364EC9F4
+exit: 0
+commit: 17a2512f40c9c791014e7014f608c49d8a9c23b8
+
+✓ Tap at resolved tap point at (814.0, 46.0) completed successfully

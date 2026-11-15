@@ -1,0 +1,6 @@
+$ bash /Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/rb.sh report-preview
+exit: 0
+commit: 17a2512f40c9c791014e7014f608c49d8a9c23b8
+
+count 1
+{"help": null, "AXLabel": "Preview", "children": [], "AXFrame": "{{16, 719}, {370, 56}}", "frame": {"width": 370, "y": 719, "height": 56, "x": 16}, "AXValue": null, "type": "Button", "title": null, "AXUniqueId": "report-preview", "pid": 39061, "role_description": "button", "content_required": false, "role": "AXButton", "enabled": false, "custom_actions": [], "traits": [], "subrole": null}

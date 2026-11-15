@@ -1,0 +1,6 @@
+$ axe screenshot --udid F2E49BDA-777F-487C-BDCA-5B87364EC9F4 --output /Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/e1.png
+exit: 0
+commit: 17a2512f40c9c791014e7014f608c49d8a9c23b8
+
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/e1.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t374-01-2/tmp/qa/e1.png
