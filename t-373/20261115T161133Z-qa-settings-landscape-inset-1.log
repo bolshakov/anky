@@ -1,0 +1,16 @@
+$ sed -n 1,12p /Users/bolshakov/Projects/personal/anky.wt/qa-t373-01-4/tmp/qa/l-settings.txt
+exit: 0
+commit: ffa267d7300c449cb2b025c0f25a2755f1cf7e4d
+
+ Application None Anky {'y': 0, 'height': 402, 'x': 0, 'width': 874}
+  Group None None {'y': 0, 'height': 402, 'x': 0, 'width': 874}
+              Group Settings None {'x': 0, 'y': 24, 'width': 874, 'height': 54}
+               Heading None Settings {'x': 404, 'y': 36, 'width': 67, 'height': 21}
+                  Group settings-screen None {'x': 0, 'height': 402, 'width': 874, 'y': 0}
+                     Image AdditionalDimmingOverlay None {'x': -120, 'y': 278, 'width': 1114, 'height': 248}
+                      Button settings-manage-medications Manage medications {'height': 52, 'y': 94, 'width': 600, 'x': 137}
+                       StaticText None Manage medications {'x': 153, 'y': 110, 'width': 158, 'height': 20}
+                       Image chevron.forward  {'x': 712, 'y': 114, 'width': 7, 'height': 12}
+                      Heading settings-reminders-label Reminders {'x': 137, 'y': 178, 'width': 600, 'height': 32}
+                      CheckBox reminder-toggle Daily reminder {'height': 52, 'width': 600, 'x': 137, 'y': 210}
+                       StaticText None Daily reminder {'height': 20, 'width': 110, 'x': 153, 'y': 226}

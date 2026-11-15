@@ -1,0 +1,16 @@
+$ sed -n 1,12p /Users/bolshakov/Projects/personal/anky.wt/qa-t373-01-4/tmp/qa/l-history.txt
+exit: 0
+commit: ffa267d7300c449cb2b025c0f25a2755f1cf7e4d
+
+ Application None Anky {'x': 0, 'y': 0, 'width': 874, 'height': 402}
+  Group None None {'x': 0, 'y': 0, 'height': 402, 'width': 874}
+              Group History None {'width': 874, 'height': 54, 'y': 24, 'x': 0}
+               Heading None History {'width': 58, 'height': 21, 'y': 36, 'x': 408}
+                  Group history-screen None {'y': 0, 'height': 402, 'x': 0, 'width': 874}
+                     Image AdditionalDimmingOverlay None {'width': 1114, 'height': 248, 'x': -120, 'y': 278}
+                      Heading day-label Yesterday {'width': 600, 'height': 32, 'x': 137, 'y': 94}
+                      Button dose-row Dose. Zorblex. 17:10. {'width': 600, 'height': 68, 'y': 126, 'x': 137}
+                      Heading day-label Friday, November 13 {'width': 600, 'height': 32, 'x': 137, 'y': 226}
+                      Button entry-row-pain Pain, 0 of 10, 17:10, No place {'height': 68, 'y': 259, 'x': 137, 'width': 600}
+                      Heading day-label Tuesday, November 10 {'height': 32, 'y': 359, 'x': 137, 'width': 600}
+                      Button entry-row-stiffness Stiffness, 1 of 10, 17:10, No place {'y': 391, 'height': 68, 'x': 137, 'width': 600}

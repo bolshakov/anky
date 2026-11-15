@@ -1,0 +1,8 @@
+$ grep -E 'Group Today|today-date|report-button|Heading' /Users/bolshakov/Projects/personal/anky.wt/qa-t373-01-4/tmp/qa/l-today.txt
+exit: 0
+commit: ffa267d7300c449cb2b025c0f25a2755f1cf7e4d
+
+              Group Today None {'width': 874, 'height': 54, 'y': 24, 'x': 0}
+               Heading None Today {'width': 48, 'height': 21, 'y': 36, 'x': 413}
+               Button report-button Report for your doctor {'width': 36, 'height': 36, 'y': 28, 'x': 796}
+                      StaticText today-date Sunday, November 15 {'width': 149, 'y': 94, 'height': 18, 'x': 137}
