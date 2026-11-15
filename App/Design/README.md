@@ -68,6 +68,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 
 - `Spacing`: the home of every spacing and size. Do not write a point value in a screen or in a piece.
 - `screenMargin`: the smallest side distance of a screen's content, applied by the shared pieces. Content outside a list uses `insetBarColumn` and not the bare token. Do not write a horizontal padding number.
+- `reportButtonLandscapeEdge`: only for Today's title-line Report button, as the distance from the screen's edge at which the bar's copy of the button sits on a compact-height screen. Do not use it for another control.
 - `contentMaxWidth`: the widest the content column grows, which `contentColumn` and `insetBarColumn` apply. Do not write the number or cap a screen's width yourself.
 - `firstBlockTop`: the gap between the navigation bar and the first block, which `screenSpacing` applies. Use it for the same gap in a stack that is not a list.
 - `titleToDatePull`: only for `todayTopMargin`, which sets how far Today's list is pulled up. Do not use it to align another header.

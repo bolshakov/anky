@@ -15,6 +15,7 @@ enum Spacing {
     static let largeTitleSize: CGFloat = 34
     static let titleToContentStartPerTitlePoint: CGFloat = 0.6863
     static let navigationBarRow: CGFloat = 44
+    static let reportButtonLandscapeEdge: CGFloat = 38
     static let blockGap: CGFloat = 32
     static let emptyBlockGap: CGFloat = 96
     static let labelGap: CGFloat = 12
