@@ -10,6 +10,9 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
     private let gap: CGFloat = 16
     /// The home indicator's height on the simulator the suite runs on, which XCUITest cannot read from the window.
     private let homeIndicatorInset: CGFloat = 34
+    /// The typing suggestions bar sits above the keys and covers the form too, but XCUITest's keyboard frame starts
+    /// below it.
+    private let suggestionsBarHeight: CGFloat = 44
 
     func testNewMedicationFootnoteClearsTheBottomEdgeByTheGapWithTheKeyboardDown() {
         continueAfterFailure = false
@@ -22,20 +25,20 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         assertClearOfCover("check-in-footnote", in: app)
     }
 
-    func testNewMedicationFootnoteClearsTheKeyboardByTheGapWhenItOpensFromName() {
+    func testNewMedicationFootnoteSitsSixteenPointsAboveTheKeyboardAtTheLargestTextSizeWhenItOpensFromName() {
         continueAfterFailure = false
-        let app = launchAnky()
+        let app = launchAnky(arguments: largestTextArguments)
         openNewMedication(app)
         typeIntoName("Zorblex", in: app)
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertClearOfCover("check-in-footnote", in: app)
+        assertSixteenAboveCover("check-in-footnote", in: app)
     }
 
-    func testNewMedicationFootnoteClearsTheKeyboardByTheGapWhenItOpensFromStrength() {
+    func testNewMedicationFootnoteSitsSixteenPointsAboveTheKeyboardAtTheLargestTextSizeWhenItOpensFromStrength() {
         continueAfterFailure = false
-        let app = launchAnky()
+        let app = launchAnky(arguments: largestTextArguments)
         openNewMedication(app)
         typeIntoName("Zorblex", in: app)
         app.textFields["medication-strength"].tap()
@@ -43,10 +46,10 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
 
         scrollFormToEnd(in: app)
         assertSaveAboveKeyboard(in: app)
-        assertClearOfCover("check-in-footnote", in: app)
+        assertSixteenAboveCover("check-in-footnote", in: app)
     }
 
-    func testCheckInMenuClearsTheKeyboardWhenCheckInLaterIsOnAndTheKeyboardIsUp() {
+    func testCheckInMenuClearsTheKeyboardAndFootnoteSitsSixteenPointsAboveItWhenCheckInLaterIsOn() {
         continueAfterFailure = false
         let app = launchAnky()
         openNewMedication(app)
@@ -65,7 +68,7 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
             coverTop(in: app),
             "dose-check-in-after at \(menu.frame) is covered from \(coverTop(in: app))"
         )
-        assertClearOfCover("check-in-footnote", in: app)
+        assertSixteenAboveCover("check-in-footnote", in: app)
     }
 
     func testFootnoteSitsSixteenPointsAboveTheBottomEdgeAtTheLargestTextSize() {
@@ -199,11 +202,12 @@ final class MedicationSaveClearOfRowsTests: XCTestCase {
         return (row.frame, coverTop(in: app))
     }
 
-    /// What covers the form's bottom: the keyboard's top when it shows, and otherwise the bottom safe edge.
+    /// What covers the form's bottom: the keyboard with its suggestions bar when it shows, and otherwise the bottom
+    /// safe edge.
     private func coverTop(in app: XCUIApplication) -> CGFloat {
         let keyboard = app.keyboards.firstMatch
         if keyboard.exists {
-            return keyboard.frame.minY
+            return keyboard.frame.minY - suggestionsBarHeight
         }
         return app.windows.firstMatch.frame.maxY - homeIndicatorInset
     }
