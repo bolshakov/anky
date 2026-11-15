@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid 26BABBB4-A1F5-4D02-8A5F-BA9E58182FB0 > /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t5.json; grep -E '\''"new-entry-screen"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t5.json | head -3; if [ -n '\''log-dose-screen'\'' ]; then echo absent-check log-dose-screen: $(grep -c '\''"log-dose-screen"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t5.json); fi; grep -cE '\''"(today-[a-z-]*)"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t5.json'
+exit: 0
+commit: 540e20803964e0f04e57f025804c4393e2dde82a
+
+                                                        "AXUniqueId" : "new-entry-screen",
+absent-check log-dose-screen: 0
+2

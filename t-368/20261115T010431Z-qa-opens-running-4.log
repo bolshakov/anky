@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid 26BABBB4-A1F5-4D02-8A5F-BA9E58182FB0 > /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t4.json; grep -E '\''"log-dose-screen"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t4.json | head -3; if [ -n '\''basdai-form'\'' ]; then echo absent-check basdai-form: $(grep -c '\''"basdai-form"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t4.json); fi; grep -cE '\''"(today-[a-z-]*)"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t4.json'
+exit: 0
+commit: 540e20803964e0f04e57f025804c4393e2dde82a
+
+                                                        "AXUniqueId" : "log-dose-screen",
+absent-check basdai-form: 0
+2

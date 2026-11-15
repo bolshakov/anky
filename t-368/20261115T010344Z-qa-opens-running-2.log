@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid 26BABBB4-A1F5-4D02-8A5F-BA9E58182FB0 > /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t2.json; grep -E '\''"new-entry-screen"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t2.json | head -3; if [ -n '\'''\'' ]; then echo absent-check : $(grep -c '\''""'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t2.json); fi; grep -cE '\''"(today-[a-z-]*)"'\'' /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.WaLQghuI8x/t2.json'
+exit: 0
+commit: 540e20803964e0f04e57f025804c4393e2dde82a
+
+                                                        "AXUniqueId" : "new-entry-screen",
+2

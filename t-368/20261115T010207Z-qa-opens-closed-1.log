@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 26BABBB4-A1F5-4D02-8A5F-BA9E58182FB0 | grep -E '\''"new-entry-screen"'\'' | head -3'
+exit: 0
+commit: 540e20803964e0f04e57f025804c4393e2dde82a
+
+                                                        "AXUniqueId" : "new-entry-screen",
