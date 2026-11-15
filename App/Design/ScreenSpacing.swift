@@ -12,7 +12,7 @@ extension View {
     }
 
     func readingScreenSpacing() -> some View {
-        contentColumn()
+        contentColumn(measuredFromSafeArea: true)
             .contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
             .contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
     }

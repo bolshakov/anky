@@ -44,7 +44,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 
 ## Modifiers for screens and buttons
 
-- `contentColumn`: the column a List, Form or ScrollView keeps its content in, which `screenSpacing` and `readingScreenSpacing` apply already. Each side is the larger of the margin, that side's safe-area inset and the width past `contentMaxWidth` shared out, never their sum. Do not set a horizontal content margin or cap the width with a frame, which would cut the background and the scroll indicator.
+- `contentColumn`: the column a List, Form or ScrollView keeps its content in, which `screenSpacing` and `readingScreenSpacing` apply already. A ScrollView measures a content margin from the safe area's edge, so pass `measuredFromSafeArea: true` for one; `readingScreenSpacing` does. Each side is the larger of the margin, that side's safe-area inset and the width past `contentMaxWidth` shared out, never their sum. Do not set a horizontal content margin or cap the width with a frame, which would cut the background and the scroll indicator.
 - `insetBarColumn`: the same column for the content of a bottom `safeAreaInset` or `safeAreaBar`, which has no content margin. `bottomPrimaryButton` applies it already. Do not pad a bar's content with `screenMargin`.
 - `screenSpacing`: the margins, first-block offset, section gap and page background of a card list screen. Do not set content margins, section spacing or the scroll background on a screen yourself.
 - `readingScreenSpacing`: the margins of a screen of running text that is not a card list, with room at the bottom. Do not reuse `screenSpacing` for it, since that one also hides the scroll background.

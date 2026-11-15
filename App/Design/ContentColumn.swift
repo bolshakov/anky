@@ -33,16 +33,22 @@ private extension View {
 }
 
 private struct ScrollColumn: ViewModifier {
-    @State private var edges = ContentEdges(leading: Spacing.screenMargin, trailing: Spacing.screenMargin)
+    let measuredFromSafeArea: Bool
+    @State private var padding = ContentEdges(leading: Spacing.screenMargin, trailing: Spacing.screenMargin)
 
-    /// A ScrollView measures a content margin from the safe area's edge and a List or Form from the screen's edge.
-    /// Extending the container under the horizontal safe area makes all three measure from the screen's edge.
+    /// A List or Form measures a content margin from the screen's edge. A ScrollView measures it from the safe area's
+    /// edge, so the inset is taken off what the column asks for.
     func body(content: Content) -> some View {
         content
-            .contentMargins(.leading, edges.leading, for: .scrollContent)
-            .contentMargins(.trailing, edges.trailing, for: .scrollContent)
-            .ignoresSafeArea(.container, edges: .horizontal)
-            .onColumnChange { edges = $0.edges }
+            .contentMargins(.leading, padding.leading, for: .scrollContent)
+            .contentMargins(.trailing, padding.trailing, for: .scrollContent)
+            .onColumnChange { measured in
+                let edges = measured.edges
+                padding = ContentEdges(
+                    leading: max(0, edges.leading - (measuredFromSafeArea ? measured.leadingInset : 0)),
+                    trailing: max(0, edges.trailing - (measuredFromSafeArea ? measured.trailingInset : 0))
+                )
+            }
     }
 }
 
@@ -65,8 +71,8 @@ private struct BarColumn: ViewModifier {
 }
 
 extension View {
-    func contentColumn() -> some View {
-        modifier(ScrollColumn())
+    func contentColumn(measuredFromSafeArea: Bool = false) -> some View {
+        modifier(ScrollColumn(measuredFromSafeArea: measuredFromSafeArea))
     }
 
     func insetBarColumn() -> some View {
