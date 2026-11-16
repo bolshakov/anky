@@ -231,7 +231,7 @@ enum ReportMetrics {
     static let nameTop: CGFloat = 22
     static let sectionGap: CGFloat = 18
     static let blockLineGap: CGFloat = 8
-    static let chartGap: CGFloat = 14
+    static let chartGap: CGFloat = 4
     static let bandInset: CGFloat = 9
     static let footerHeight: CGFloat = 60
     static let footerInset: CGFloat = 8
