@@ -52,6 +52,9 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `screenSpacing`: the margins, first-block offset, section gap and page background of a card list screen. Do not set content margins, section spacing or the scroll background on a screen yourself.
 - `readingScreenSpacing`: the margins of a screen of running text that is not a card list, with room at the bottom. Do not reuse `screenSpacing` for it, since that one also hides the scroll background.
 - `lastBlockClearance`: room under the last block of a list that has no bottom button. Do not add a bottom padding.
+- `emptyStateTop`: the top space of an empty-state block, which takes an `EmptyStateTop` case and swaps to a narrow space in compact height, so a turn keeps the list's state. Do not pad an empty block's top or pass it a number.
+- `EmptyStateTop`: the cases `emptyStateTop` takes, one per empty block, each holding its regular-height value. Add a case for a new empty block and do not add a parameter for a number.
+- `emptyStateMark`: the width of Today's mark in an empty state, smaller in compact height so the heading and hint move up. Do not set a width frame on the mark, and do not scale it, since scaling leaves its layout size.
 - `emptyBlockGap`: the wide gap between sections around an empty-state block in a list, and the same gap as top padding for an empty state outside a list. One line covers the `View` modifier and the `Spacing` token. Do not write a gap.
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
@@ -108,10 +111,12 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `emptyStateIconGap`: the gap under an empty state's mark or icon. Do not write one, and see the note at the end.
 - `emptyStateTextGap`: the gap between an empty state's title and its text. Do not write one, and see the note at the end.
 - `emptyStateInset`: the side inset that keeps an empty state's text narrow. Do not write one, and see the note at the end.
-- `emptyMarkWidth`: the width of the mark on Today's empty state. Do not use it to size another image.
+- `emptyMarkWidth`: the width of the mark on Today's empty state in regular height. A screen reaches it only through `emptyStateMark`. Do not use it to size another image.
+- `emptyMarkWidthCompact`: the width of that mark in compact height, 60% of `emptyMarkWidth`, so the whole empty Today fits above the tab bar in landscape. A screen reaches it only through `emptyStateMark`.
 - `aboutMarkWidth`: the width of the mark in the About block. Do not use it to size another image.
-- `emptyTodayTop`: the space above Today's empty state when no recent chip shows. Today only, so do not use it for another screen.
-- `emptyTodayTopBelowChip`: the space above Today's empty state under the recent chip. Today only, so do not use it for another screen.
+- `emptyTodayTop`: the space above Today's empty state in regular height when no recent chip shows. A screen reaches it only through `emptyStateTop`, and only Today's case does.
+- `emptyTodayTopBelowChip`: the space above Today's empty state in regular height under the recent chip. A screen reaches it only through `emptyStateTop`, and only Today's case does.
+- `emptyStateTopCompact`: the space above an empty state in compact height, the same for every case. A screen reaches it only through `emptyStateTop`.
 - `emptyTodayBottom`: the space under Today's empty state. Today only, so do not use it for another screen.
 - `twoLineRowHeight`: the height of a `TwoLineRow`, which it applies itself. Do not size a two-line row by hand.
 - `twoLineRowPadding`: the vertical padding of a `TwoLineRow`, which it applies itself. Do not pad a two-line row yourself.
@@ -155,6 +160,7 @@ something else.
 
 ## What does not exist yet
 
-The app has no shared empty-state view. Each screen that needs one builds it from the spacing tokens above. This is a
+The app has no shared empty-state view. Each screen that needs one builds it from the spacing tokens above, but the top
+space and the mark size of an empty block are shared through `emptyStateTop` and `emptyStateMark`. This is a
 gap in the catalog, not a ban: when you build one that a second screen needs, extract it into `App/Design` and add its
 entry in the same pull request.
