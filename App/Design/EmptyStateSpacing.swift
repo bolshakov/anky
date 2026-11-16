@@ -5,11 +5,13 @@ import SwiftUI
 enum EmptyStateTop {
     case today
     case todayBelowChip
+    case history
 
     fileprivate var portrait: CGFloat {
         switch self {
         case .today: Spacing.emptyTodayTop
         case .todayBelowChip: Spacing.emptyTodayTopBelowChip
+        case .history: Spacing.emptyBlockGap
         }
     }
 }
@@ -34,6 +36,15 @@ private struct EmptyStateMark: ViewModifier {
     }
 }
 
+private struct EmptyBlockSectionGap: ViewModifier {
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+
+    func body(content: Content) -> some View {
+        let gap = verticalSizeClass == .compact ? Spacing.emptyStateTopCompact : Spacing.emptyBlockGap
+        return content.listSectionSpacing(.custom(gap))
+    }
+}
+
 extension View {
     func emptyStateTop(_ top: EmptyStateTop) -> some View {
         modifier(EmptyStateTopPadding(top: top))
@@ -41,5 +52,9 @@ extension View {
 
     func emptyStateMark() -> some View {
         modifier(EmptyStateMark())
+    }
+
+    func emptyBlockGap() -> some View {
+        modifier(EmptyBlockSectionGap())
     }
 }

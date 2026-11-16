@@ -23,7 +23,7 @@ struct EmptyHistoryView: View {
             }
             .padding(.horizontal, Spacing.emptyStateInset)
             .frame(maxWidth: .infinity)
-            .padding(.top, Spacing.emptyBlockGap)
+            .emptyStateTop(.history)
         }
         .contentColumn(measuredFromSafeArea: true)
     }
