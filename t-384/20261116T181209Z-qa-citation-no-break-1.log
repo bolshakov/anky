@@ -1,0 +1,7 @@
+$ python3 -I -c 'import json,sys; d=json.load(open("App/Localizable.xcstrings")); k=[k for k in d["strings"] if "Garrett" in k and "Each answer" in k]; print(len(k)); [print(l, repr(v["stringUnit"]["value"][-40:])) for l,v in d["strings"][k[0]]["localizations"].items()]'
+exit: 0
+commit: 5d34fb2fb8607a45bc6d3fcca950ab8111749c2b
+
+1
+en 'ndex (Garrett\xa0et\xa0al., J\xa0Rheumatol\xa01994).'
+ru 'ndex (Garrett\xa0et\xa0al., J\xa0Rheumatol\xa01994).'

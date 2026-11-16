@@ -1,0 +1,6 @@
+$ axe screenshot --udid 5F5C9920-9305-4ECE-B70B-474EA0D8B8C9 --output /Users/bolshakov/Projects/personal/anky.wt/qa-t384-01-3/tmp/qa/common.png
+exit: 0
+commit: 5d34fb2fb8607a45bc6d3fcca950ab8111749c2b
+
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t384-01-3/tmp/qa/common.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t384-01-3/tmp/qa/common.png

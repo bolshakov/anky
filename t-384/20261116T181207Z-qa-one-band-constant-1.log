@@ -1,0 +1,30 @@
+$ git diff origin/main...HEAD -- App/Report
+exit: 0
+commit: 5d34fb2fb8607a45bc6d3fcca950ab8111749c2b
+
+diff --git a/App/Report/ReportPage.swift b/App/Report/ReportPage.swift
+index 403134e..85fe46e 100644
+--- a/App/Report/ReportPage.swift
++++ b/App/Report/ReportPage.swift
+@@ -231,7 +231,7 @@ enum ReportMetrics {
+     static let nameTop: CGFloat = 22
+     static let sectionGap: CGFloat = 18
+     static let blockLineGap: CGFloat = 8
+-    static let chartGap: CGFloat = 14
++    static let chartGap: CGFloat = 4
+     static let bandInset: CGFloat = 9
+     static let footerHeight: CGFloat = 60
+     static let footerInset: CGFloat = 8
+diff --git a/App/Report/SeverityChartMetrics.swift b/App/Report/SeverityChartMetrics.swift
+index 7035f7d..80fd893 100644
+--- a/App/Report/SeverityChartMetrics.swift
++++ b/App/Report/SeverityChartMetrics.swift
+@@ -12,7 +12,7 @@ enum SeverityChartMetrics {
+         kindColumnWidth + yAxisColumnWidth
+     }
+ 
+-    static let plotHeight: CGFloat = 48
++    static let plotHeight: CGFloat = 27
+     static let plotToCounts: CGFloat = 3
+     static let countRowHeight: CGFloat = 10
+     static var chartHeight: CGFloat {
