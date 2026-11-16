@@ -4021,19 +4021,19 @@
         }
       }
     },
-    "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+    "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
       "comment" : "The key under the report's BASDAI table. %@ is the list of the six questions with their labels, such as 'Q1 fatigue, Q2 spinal pain'. The sentence gives the answer range and the score formula, and ends with the index's name and the 1994 paper, which stay as published.",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+            "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+            "value" : "%@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
           }
         }
       }

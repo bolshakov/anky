@@ -36,9 +36,9 @@ Your entries, doses and medications were erased, but your BASDAI results were no
 Записи, приёмы и лекарства стёрты, но результаты BASDAI остались. Попробуй стереть остальное ещё раз.
 Q%lld %@ => В%1$lld %2$@
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
-Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). => \
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994). => \
 %@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. \
-Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994).
 Places logged => Записанные места
 Place => Место
 Entries => Записи

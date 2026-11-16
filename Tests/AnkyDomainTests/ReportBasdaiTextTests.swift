@@ -49,7 +49,7 @@ struct ReportBasdaiTextTests {
         #expect(key == """
         Q1 fatigue, Q2 spinal pain, Q3 joint pain, Q4 tenderness, Q5 stiffness severity, Q6 stiffness duration. \
         Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
-        Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+        Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994).
         """)
     }
 

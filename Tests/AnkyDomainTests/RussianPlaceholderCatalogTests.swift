@@ -10,7 +10,7 @@ private let approvedPlaceholders = table("""
 BASDAI, score %@, at %@, covers last week => a BASDAI score with one decimal, then the time it was saved
 %@. Next: %@. => the schedule in words and the day of the next dose
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
-Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). \
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994). \
 => the six question labels with their short names
 %@, %@ and %lld more => place names
 %@ and %@, %@ to %@. => the entry and dose counts, then two days
