@@ -9,9 +9,10 @@
     /// medication, `single` writes one entry ten days back, and `reading-aging` writes one 118 minutes back, which
     /// leaves the two-hour reading window within about two minutes. `report-short`, `report-long`, `report-sparse` and
     /// `report-places-7` write the report walks' logs, as `DebugReportSeed` describes, and `report-basdai` adds three
-    /// BASDAI results to the `report-short` log. `basdai-rows` writes one entry a minute back, two BASDAI results two
-    /// and three minutes back scored 3.0 and 6.5, and one result three days back. `today-full` writes 14 entries dated
-    /// today, each at or before now, so Today's list scrolls. A log that holds anything is left alone.
+    /// BASDAI results to the `report-short` log, and `report-common` writes entries naming two places, one medication
+    /// with doses and one BASDAI result two days back. `basdai-rows` writes one entry a minute back, two BASDAI
+    /// results two and three minutes back scored 3.0 and 6.5, and one result three days back. `today-full` writes 14
+    /// entries dated today, each at or before now, so Today's list scrolls. A log that holds anything is left alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -49,6 +50,8 @@
                 DebugReportSeed.plantPlacesSeven(entries: entries, medications: medications, now: now)
             case "report-basdai":
                 DebugReportSeed.plantBasdai(entries: entries, medications: medications, basdai: basdai, now: now)
+            case "report-common":
+                DebugReportSeed.plantCommon(entries: entries, medications: medications, basdai: basdai, now: now)
             default:
                 break
             }

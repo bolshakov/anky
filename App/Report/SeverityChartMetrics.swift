@@ -12,7 +12,7 @@ enum SeverityChartMetrics {
         kindColumnWidth + yAxisColumnWidth
     }
 
-    static let plotHeight: CGFloat = 48
+    static let plotHeight: CGFloat = 27
     static let plotToCounts: CGFloat = 3
     static let countRowHeight: CGFloat = 10
     static var chartHeight: CGFloat {
