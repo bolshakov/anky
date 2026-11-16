@@ -26,7 +26,8 @@ public enum ReportBasdaiKey {
         return String(
             localized: """
             \(names). Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
-            Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994).
+            Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., \
+            J\u{00A0}Rheumatol\u{00A0}1994).
             """,
             bundle: bundle, locale: locale
         )
