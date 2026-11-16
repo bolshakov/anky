@@ -1,0 +1,15 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh fresh portrait 063022F9-99B1-43A7-AF29-254D43CC302C - none empty-today empty-today'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== fresh portrait head
+today-date top=163.3 bottom=181.3 x=16.0 w=370.0
+empty-today top=332.0 bottom=358.3 x=90.5 w=221.0
+today-hint top=370.3 bottom=412.6 x=64.2 w=273.7
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+== fresh portrait before
+today-date top=163.3 bottom=181.3 x=16.0 w=370.0
+empty-today top=332.0 bottom=358.3 x=90.5 w=221.0
+today-hint top=370.3 bottom=412.6 x=64.2 w=273.7
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+empty-today before=332.0 head=332.0 lift=0.0

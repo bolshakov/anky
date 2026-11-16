@@ -1,0 +1,11 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh medsfresh landscape 063022F9-99B1-43A7-AF29-254D43CC302C - medsfresh medications-empty medications-empty'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== medsfresh landscape head
+medications-empty top=94.0 bottom=236.3 x=137.0 w=600.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+== medsfresh landscape before
+medications-empty top=94.0 bottom=236.3 x=137.0 w=600.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+medications-empty before=94.0 head=94.0 lift=0.0

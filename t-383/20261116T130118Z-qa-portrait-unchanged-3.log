@@ -1,0 +1,11 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh history portrait 063022F9-99B1-43A7-AF29-254D43CC302C - history empty-history empty-history'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== history portrait head
+empty-history top=314.7 bottom=341.0 x=129.8 w=142.3
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+== history portrait before
+empty-history top=314.7 bottom=341.0 x=129.8 w=142.3
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+empty-history before=314.7 head=314.7 lift=0.0

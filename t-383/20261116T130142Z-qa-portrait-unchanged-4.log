@@ -1,0 +1,19 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh arch portrait 728B91FC-FAE1-4C10-AD46-AB867A8F5A68 - archive archived-card medications-empty; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/gap.sh arch portrait'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+archive helper ok on 6432B38B-C58C-42D8-BDC5-D0D3E739E3BB (archived-card showing)
+== arch portrait head
+archived-card top=132.0 bottom=184.0 x=16.0 w=370.0
+archived-card top=147.8 bottom=168.2 x=32.0 w=316.0
+medications-empty top=280.0 bottom=422.3 x=16.0 w=370.0
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+archive helper ok on 36C95E12-BA34-455A-9BA4-BE103129D82F (archived-card showing)
+== arch portrait before
+archived-card top=132.0 bottom=184.0 x=16.0 w=370.0
+archived-card top=147.8 bottom=168.2 x=32.0 w=316.0
+medications-empty top=280.0 bottom=422.3 x=16.0 w=370.0
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+medications-empty before=280.0 head=280.0 lift=0.0
+head gap = medications-empty top 280.0 - archived-card bottom 168.2 = 111.8
+before gap = medications-empty top 280.0 - archived-card bottom 168.2 = 111.8

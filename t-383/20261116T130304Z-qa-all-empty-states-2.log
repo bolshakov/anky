@@ -1,0 +1,16 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh arch landscape 728B91FC-FAE1-4C10-AD46-AB867A8F5A68 - archshow archived-card; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/gap.sh arch landscape'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== arch landscape head
+archived-card top=94.0 bottom=146.0 x=137.0 w=600.0
+archived-card top=109.8 bottom=130.2 x=153.0 w=546.0
+medications-empty top=158.0 bottom=300.3 x=137.0 w=600.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+== arch landscape before
+archived-card top=94.0 bottom=146.0 x=137.0 w=600.0
+archived-card top=109.8 bottom=130.2 x=153.0 w=546.0
+medications-empty top=242.0 bottom=384.3 x=137.0 w=600.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+head gap = medications-empty top 158.0 - archived-card bottom 146.0 = 12.0
+before gap = medications-empty top 242.0 - archived-card bottom 146.0 = 96.0

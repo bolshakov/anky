@@ -1,0 +1,6 @@
+$ /Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/gap.sh arch portrait
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+head gap = medications-empty top 280.0 - archived-card bottom 184.0 = 96.0
+before gap = medications-empty top 280.0 - archived-card bottom 184.0 = 96.0

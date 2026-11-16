@@ -1,0 +1,11 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh medsfresh portrait 063022F9-99B1-43A7-AF29-254D43CC302C - medsfresh medications-empty medications-empty'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== medsfresh portrait head
+medications-empty top=132.0 bottom=274.3 x=16.0 w=370.0
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+== medsfresh portrait before
+medications-empty top=132.0 bottom=274.3 x=16.0 w=370.0
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+medications-empty before=132.0 head=132.0 lift=0.0

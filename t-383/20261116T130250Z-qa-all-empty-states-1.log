@@ -1,0 +1,11 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh history landscape 063022F9-99B1-43A7-AF29-254D43CC302C - history empty-history empty-history'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== history landscape head
+empty-history top=140.7 bottom=167.0 x=365.8 w=142.3
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+== history landscape before
+empty-history top=224.7 bottom=251.0 x=365.8 w=142.3
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+empty-history before=224.7 head=140.7 lift=84.0

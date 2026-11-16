@@ -1,0 +1,18 @@
+$ sh -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t383-02-1/tmp/walk.sh chip portrait 5257242D-6ACB-4C78-96E9-96A97F9CCE28 spread - empty-today empty-today today-hint'
+exit: 0
+commit: f0d62c3c353a7db070f573e56a0ee1dd25725387
+
+== chip portrait head
+today-date top=163.3 bottom=181.3 x=16.0 w=152.7
+repeat-chip top=197.3 bottom=241.3 x=16.0 w=207.0
+empty-today top=408.0 bottom=434.3 x=90.5 w=221.0
+today-hint top=446.3 bottom=488.6 x=64.2 w=273.7
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+== chip portrait before
+today-date top=163.3 bottom=181.3 x=16.0 w=152.7
+repeat-chip top=197.3 bottom=241.3 x=16.0 w=207.0
+empty-today top=408.0 bottom=434.3 x=90.5 w=221.0
+today-hint top=446.3 bottom=488.6 x=64.2 w=273.7
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+empty-today before=408.0 head=408.0 lift=0.0
+today-hint before=446.3 head=446.3 lift=0.0
