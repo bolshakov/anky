@@ -229,5 +229,23 @@ expect pass "a footer argument on a card section" "mkdir -p App/Today && echo 'C
 expect pass "a header argument on a view named like a section" "mkdir -p App/Today && echo 'DateSection(header: Text(\"h\"))' > App/Today/Row.swift"
 expect pass "a similar name that is no modifier" "mkdir -p App/Today && echo 'let contentMarginsTotal = 0' > App/Today/Row.swift"
 
+# Rule: a screen reaches an empty-state top or mark token only through emptyStateTop, emptyStateMark or emptyBlockGap.
+for token in emptyTodayTop emptyTodayTopBelowChip emptyBlockGap emptyStateTopCompact emptyMarkWidth emptyMarkWidthCompact; do
+  expect_screen fail "$token named in a screen" "let v = Text(\"a\").padding(.top, Spacing.$token)"
+  expect pass "$token named in a piece" "mkdir -p App/Design && echo 'let v = Spacing.$token' > App/Design/EmptyStateSpacing.swift"
+done
+expect fail "an empty-state token in a screen directly under App" "echo 'let v = Spacing.emptyBlockGap' > App/HistoryView.swift"
+expect fail "an empty-state token in the gallery" "mkdir -p App/DesignGallery && echo 'let v = Spacing.emptyMarkWidth' > App/DesignGallery/Demo.swift"
+expect fail "an empty-state token in a screen beside the pieces" "mkdir -p App/Today App/Design && echo 'let v = 0' > App/Design/Row.swift && echo 'let v = Spacing.emptyTodayTop' > App/Today/Row.swift"
+expect_screen fail "an empty-state token after a name on the line" 'let v = max(Spacing.blockGap, Spacing.emptyStateTopCompact)'
+expect_screen fail "an empty-state token at the end of the line" 'let v = Spacing.emptyTodayTop'
+expect_screen pass "an emptyBlockGap call" 'let v = Section { Text("a") }.emptyBlockGap()'
+expect_screen pass "an emptyStateTop call" 'let v = Text("a").emptyStateTop(.history)'
+expect_screen pass "an emptyStateMark call" 'let v = Image("mark").emptyStateMark()'
+expect_screen pass "a token that continues the name" 'let v = Spacing.emptyBlockGapExtra'
+expect_screen pass "a token of another type" 'let v = Other.emptyBlockGap'
+expect_screen pass "an empty-state token in a trailing comment" 'let v = 0 // Spacing.emptyBlockGap'
+expect pass "an empty-state token outside App" "mkdir -p Sources/AnkyDomain && echo 'let v = Spacing.emptyBlockGap' > Sources/AnkyDomain/Shape.swift"
+
 [ "$failures" = 0 ] && echo "check-design-tokens tests: all passed"
 exit "$failures"
