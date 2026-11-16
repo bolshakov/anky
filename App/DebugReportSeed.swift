@@ -32,6 +32,18 @@
             }
         }
 
+        static func plantCommon(
+            entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date
+        ) {
+            let seeder = Seeder(entries: entries, medications: medications, now: now)
+            seeder.addEntries(commonRows)
+            seeder.addMedications([zorblex])
+            let date = Calendar.current.date(byAdding: .day, value: -2, to: now) ?? now
+            if let result = BasdaiResult(id: UUID(), date: date, answers: [4, 6, 5, 3, 7, 2]) {
+                try? basdai.add(result)
+            }
+        }
+
         static func plantPlacesSeven(entries: EntryLogModel, medications: MedicationsModel, now: Date) {
             let dropped: Set = [place(.jaw), place(.knee, .left)]
             let seeder = Seeder(entries: entries, medications: medications, now: now)
@@ -62,6 +74,15 @@
                 guard kind.asksWhere else { return EntryRow(kind: kind, places: []) }
                 defer { placed += 1 }
                 return EntryRow(kind: kind, places: [fourPlaces[placed % fourPlaces.count]])
+            }
+        }
+
+        /// 12 entries, Pain, Stiffness and Fatigue four each, naming only Lower back and Neck.
+        private static var commonRows: [EntryRow] {
+            let places = [[place(.lowerBack)], [place(.neck)]]
+            return (0 ..< 12).map { index in
+                let kind = EntryKind.allCases[index % EntryKind.allCases.count]
+                return EntryRow(kind: kind, places: kind.asksWhere ? places[(index / 3) % places.count] : [])
             }
         }
 
