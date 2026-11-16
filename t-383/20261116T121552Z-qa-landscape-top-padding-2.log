@@ -1,0 +1,7 @@
+$ sh -c '
+T=/Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-frames.sh D1952845-41F5-4022-985F-4390B8CB8D30 > /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/fresh-landscape-head.txt; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-frames.sh D11BFC6C-E8B3-4248-890E-D8C033E4471B > /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/fresh-landscape-before.txt
+/Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-lift.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/fresh-landscape-before.txt /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/fresh-landscape-head.txt empty-today'
+exit: 0
+commit: e31e0f80089675b73de7d378d4024c5427cc41c6
+
+empty-today before=262.6 head=203.3 lift=59.3

@@ -1,0 +1,20 @@
+$ sh -c '
+T=/Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-frames.sh D1952845-41F5-4022-985F-4390B8CB8D30 > /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-head.txt; /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-frames.sh D11BFC6C-E8B3-4248-890E-D8C033E4471B > /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-before.txt
+echo HEAD; cat /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-head.txt; echo BEFORE; cat /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-before.txt
+/Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/t383-lift.sh /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-before.txt /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/chip-landscape-head.txt empty-today'
+exit: 0
+commit: e31e0f80089675b73de7d378d4024c5427cc41c6
+
+HEAD
+today-date top=94.0 bottom=112.0 x=137.0 w=152.7
+repeat-chip top=128.0 bottom=172.0 x=137.0 w=207.0
+empty-today top=263.3 bottom=289.6 x=326.5 w=221.0
+today-hint top=301.6 bottom=321.9 x=179.5 w=515.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+BEFORE
+today-date top=94.0 bottom=112.0 x=137.0 w=152.7
+repeat-chip top=128.0 bottom=172.0 x=137.0 w=207.0
+empty-today top=338.6 bottom=365.0 x=326.5 w=221.0
+today-hint top=377.0 bottom=397.3 x=179.5 w=515.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
+empty-today before=338.6 head=263.3 lift=75.3

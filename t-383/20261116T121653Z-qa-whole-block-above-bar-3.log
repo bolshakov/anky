@@ -1,0 +1,15 @@
+$ sh -c 'cat /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/mark-portrait.txt; echo; cat /Users/bolshakov/Projects/personal/anky.wt/qa-t383-01-1/tmp/mark-landscape.txt'
+exit: 0
+commit: e31e0f80089675b73de7d378d4024c5427cc41c6
+
+today-date top=163.3 bottom=181.3 x=16.0 w=152.7
+repeat-chip top=197.3 bottom=241.3 x=16.0 w=207.0
+empty-today top=408.0 bottom=434.3 x=90.5 w=221.0
+today-hint top=446.3 bottom=488.6 x=64.2 w=273.7
+tab-bar top=791.0 bottom=874.0 x=0.0 w=402.0
+
+today-date top=94.0 bottom=112.0 x=137.0 w=152.7
+repeat-chip top=128.0 bottom=172.0 x=137.0 w=207.0
+empty-today top=263.3 bottom=289.6 x=326.5 w=221.0
+today-hint top=301.6 bottom=321.9 x=179.5 w=515.0
+tab-bar top=338.0 bottom=402.0 x=0.0 w=874.0
