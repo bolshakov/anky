@@ -141,4 +141,12 @@ if [ -n "$heights" ]; then
   violation "sets a fixed height in a screen, use minHeight with a name from Spacing.swift"
 fi
 
+# A name that continues into a longer one is another token, so each name is matched whole.
+empty_tokens="emptyTodayTop|emptyTodayTopBelowChip|emptyBlockGap|emptyStateTopCompact|emptyMarkWidth|emptyMarkWidthCompact"
+empty_state=$(scan_screens "(^|[^A-Za-z0-9_])Spacing\\.($empty_tokens)([^A-Za-z0-9_]|$)")
+if [ -n "$empty_state" ]; then
+  echo "$empty_state"
+  violation "names an empty-state top or mark token outside App/Design, use emptyStateTop, emptyStateMark or emptyBlockGap"
+fi
+
 exit $fail

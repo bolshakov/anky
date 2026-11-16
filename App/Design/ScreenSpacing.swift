@@ -25,10 +25,6 @@ extension View {
         contentMargins(.bottom, Spacing.addButtonClearance, for: .scrollContent)
     }
 
-    func emptyBlockGap() -> some View {
-        listSectionSpacing(.custom(Spacing.emptyBlockGap))
-    }
-
     func blockGapBetweenSections() -> some View {
         listSectionSpacing(.custom(Spacing.blockGap))
     }
