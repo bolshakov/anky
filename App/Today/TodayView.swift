@@ -205,7 +205,7 @@ struct TodayView: View {
             Section {
                 EmptyTodayView()
                     .frame(maxWidth: .infinity)
-                    .padding(.top, recent == nil ? Spacing.emptyTodayTop : Spacing.emptyTodayTopBelowChip)
+                    .emptyStateTop(recent == nil ? .today : .todayBelowChip)
                     .padding(.bottom, Spacing.emptyTodayBottom)
                     .nonCardBlock()
             }

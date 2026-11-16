@@ -7,7 +7,7 @@ struct EmptyTodayView: View {
             Image(decorative: "AnkyMark")
                 .resizable()
                 .scaledToFit()
-                .frame(width: Spacing.emptyMarkWidth)
+                .emptyStateMark()
                 .foregroundStyle(Color.tint)
                 .accessibilityRepresentation { EmptyView() }
 

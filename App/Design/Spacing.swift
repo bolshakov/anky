@@ -45,9 +45,11 @@ enum Spacing {
     static let emptyStateTextGap: CGFloat = 8
     static let emptyStateInset: CGFloat = 32
     static let emptyMarkWidth: CGFloat = 120
+    static let emptyMarkWidthCompact: CGFloat = 72
     static let aboutMarkWidth: CGFloat = 56
     static let emptyTodayTop: CGFloat = 48
     static let emptyTodayTopBelowChip: CGFloat = 64
+    static let emptyStateTopCompact: CGFloat = 12
     static let emptyTodayBottom: CGFloat = 48
     static let rowHeight: CGFloat = 52
     static let twoLineRowHeight: CGFloat = 60
