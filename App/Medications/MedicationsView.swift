@@ -17,13 +17,14 @@ struct MedicationsView: View {
             emptySection
         }
         .screenSpacing()
+        .lastBlockClearance()
         .sensoryFeedback(.success, trigger: successTicks)
         .medicationFailureAlert($failure)
         .onAppear { medications.reload() }
         .navigationTitle("Medications")
         .navigationBarTitleDisplayMode(.inline)
-        .bottomPrimaryButton(Text("Add medication"), id: "medications-add") {
-            isShowingNewMedication = true
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) { addButton }
         }
         .sheet(isPresented: $isShowingNewMedication) {
             MedicationFormView(medications: medications, onSaved: { _ in successTicks += 1 })
@@ -36,6 +37,13 @@ struct MedicationsView: View {
                 onArchivedOrRestored: { successTicks += 1 }
             )
         }
+    }
+
+    private var addButton: some View {
+        Button("Add medication", systemImage: "plus") {
+            isShowingNewMedication = true
+        }
+        .accessibilityIdentifier("medications-add")
     }
 
     private var active: [Medication] {

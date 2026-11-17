@@ -56,7 +56,6 @@ struct RecentEntryTextTests {
         #expect(try recent(["lower", "si_l", "si_r"])
             .chipText(words: words, namesKind: false) == "Lower back, SI joints · 4")
         #expect(try recent(["lower"], kind: .stiffness).chipText(words: words, namesKind: false) == "Lower back · 4")
-        #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: false) == "4")
     }
 
     @Test(arguments: [(EntryKind.pain, "Pain"), (.stiffness, "Stiffness"), (.fatigue, "Fatigue")])
@@ -75,15 +74,17 @@ struct RecentEntryTextTests {
         #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: true) == "Fatigue · 4")
     }
 
-    @Test func aChipWithNoPlaceReadsTheLevelAloneAndTheKindWhenAsked() throws {
-        #expect(try recent([]).chipText(words: words, namesKind: false) == "4")
-        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: false) == "4")
+    @Test func aChipWithNoPlaceNamesItsKindWhetherOrNotTheCallerAsks() throws {
+        #expect(try recent([]).chipText(words: words, namesKind: false) == "Pain · 4")
+        #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: false) == "Stiffness · 4")
+        #expect(try recent([], kind: .fatigue).chipText(words: words, namesKind: false) == "Fatigue · 4")
         #expect(try recent([]).chipText(words: words, namesKind: true) == "Pain · 4")
         #expect(try recent([], kind: .stiffness).chipText(words: words, namesKind: true) == "Stiffness · 4")
     }
 
-    @Test func aChipWithNoPlaceStillSpeaksNoPlace() throws {
-        #expect(try recent([]).spokenText(words: words, namesKind: false) == "No place, 4 of 10")
+    @Test func aChipWithNoPlaceNamesItsKindAndStillSpeaksNoPlace() throws {
+        #expect(try recent([]).spokenText(words: words, namesKind: false) == "Pain, No place, 4 of 10")
+        #expect(try recent([], kind: .fatigue).spokenText(words: words, namesKind: false) == "Fatigue, 4 of 10")
         #expect(try recent([], kind: .stiffness).spokenText(words: words, namesKind: true)
             == "Stiffness, No place, 4 of 10")
     }
@@ -104,7 +105,6 @@ struct RecentEntryTextTests {
     @Test func theSpokenTextHoldsEveryNameAndLeavesTheKindOutWhenNotAsked() throws {
         let chip = try recent(["neck", "lower", "si_l", "si_r", "knee_l"])
         #expect(chip.spokenText(words: words, namesKind: false) == "Neck, Lower back, SI joints, Left knee, 4 of 10")
-        #expect(try recent([], kind: .fatigue).spokenText(words: words, namesKind: false) == "4 of 10")
     }
 
     @Test(arguments: [(EntryKind.pain, "Pain"), (.stiffness, "Stiffness"), (.fatigue, "Fatigue")])
@@ -156,8 +156,9 @@ struct RecentEntryTextTests {
         #expect(try recent(["neck"]).chipText(words: words(locale: russian), namesKind: false) == "Neck · 4")
     }
 
-    @Test func aRussianChipWithNoPlaceReadsTheLevelAlone() throws {
-        #expect(try recent([], kind: .fatigue).chipText(words: words(locale: russian), namesKind: false) == "4")
+    @Test func aRussianChipWithNoPlaceNamesItsKind() throws {
+        #expect(try recent([], kind: .fatigue).chipText(words: words(locale: russian), namesKind: false)
+            == "Fatigue · 4")
     }
 
     @Test func aRussianChipKeepsTheKindCapitalised() throws {
@@ -180,8 +181,8 @@ struct RecentEntryTextTests {
         #expect(text == "Stiffness, No place, 4 of 10")
     }
 
-    @Test func aRussianSpokenTextOfAFatigueEntryHasNoPlace() throws {
+    @Test func aRussianSpokenTextOfAFatigueEntryNamesTheKind() throws {
         let text = try recent([], kind: .fatigue).spokenText(words: words(locale: russian), namesKind: false)
-        #expect(text == "4 of 10")
+        #expect(text == "Fatigue, 4 of 10")
     }
 }

@@ -39,10 +39,13 @@ struct ReportView: View {
             basdaiCard
         }
         .screenSpacing()
+        .lastBlockClearance()
         .accessibilityIdentifier("report-screen")
         .navigationTitle("Report")
         .navigationBarTitleDisplayMode(.inline)
-        .safeAreaInset(edge: .bottom) { previewButton }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) { previewButton }
+        }
         .sheet(item: $preview) { file in
             ReportPreview(url: file.url).ignoresSafeArea()
         }
@@ -68,21 +71,15 @@ struct ReportView: View {
 
     private var previewButton: some View {
         Button(action: buildPreview) {
-            Group {
-                if isBuilding {
-                    ProgressView().tint(Color.onTint)
-                } else {
-                    Text("Preview")
-                }
+            if isBuilding {
+                ProgressView()
+            } else {
+                Text("Preview")
             }
-            .frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
         .primaryButton()
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
         .disabled(summary.isEmpty)
-        .insetBarColumn()
-        .padding(.bottom, Spacing.bottomClearance)
+        .accessibilityLabel("Preview")
         .accessibilityIdentifier("report-preview")
     }
 

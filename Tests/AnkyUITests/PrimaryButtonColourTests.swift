@@ -83,20 +83,6 @@ final class PrimaryButtonColourTests: XCTestCase {
         XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
-    func testMedicationsAddButtonLabelMatchesAppearance() throws {
-        continueAfterFailure = false
-        let app = launchAnky()
-        addZorblex(app)
-        app.buttons["log-dose-manage"].tap()
-        let button = app.buttons["medications-add"]
-        XCTAssertTrue(button.waitForExistence(timeout: 10))
-
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
-        attachScreenshot(named: "medications-add-label")
-        expectPrimaryLabel(colour, dark: dark)
-    }
-
     /// Where confirms from the system's confirm button, which draws a light glyph on the accent in both looks, so the
     /// rule for the app's own button, a dark label in the dark look, does not apply to it.
     func testDonePlacesButtonLabelMatchesAppearance() throws {
