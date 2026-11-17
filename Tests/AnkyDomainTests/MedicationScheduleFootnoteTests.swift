@@ -42,14 +42,14 @@ struct MedicationScheduleFootnoteTests {
         let everyTwoWeeks = try schedule(.weeks(2, on: [.friday]), start: day(2026, 11, 13))
         #expect(
             try footnote(everyTwoWeeks, at: moment(2026, 11, 11), in: british)
-                == "Every 2 weeks on Friday at 09:00. Next: Friday 13 November."
+                == "Every 2 weeks on Friday at 09:00. Next: Friday, 13 November."
         )
     }
 
-    @Test(arguments: [(ScheduleRepeat.days(1), "Every day at 09:00. Next: Wednesday 11 November."),
-                      (.weeks(1, on: [.friday]), "Every week on Friday at 09:00. Next: Friday 13 November."),
-                      (.weeks(4, on: [.friday]), "Every 4 weeks on Friday at 09:00. Next: Friday 13 November."),
-                      (.months(1, onDay: 15), "Every month on day 15 at 09:00. Next: Sunday 15 November.")])
+    @Test(arguments: [(ScheduleRepeat.days(1), "Every day at 09:00. Next: Wednesday, 11 November."),
+                      (.weeks(1, on: [.friday]), "Every week on Friday at 09:00. Next: Friday, 13 November."),
+                      (.weeks(4, on: [.friday]), "Every 4 weeks on Friday at 09:00. Next: Friday, 13 November."),
+                      (.months(1, onDay: 15), "Every month on day 15 at 09:00. Next: Sunday, 15 November.")])
     func eachRepeatReadsItsWordsThenItsNextDose(_ shape: ScheduleRepeat, _ sentence: String) throws {
         let schedule = try schedule(shape, start: day(2026, 11, 11))
         #expect(try footnote(schedule, at: moment(2026, 11, 11), in: british) == sentence)
@@ -79,6 +79,16 @@ struct MedicationScheduleFootnoteTests {
         #expect(text == "Every 2 weeks on Friday at 9:00\u{202F}AM. Next: Friday, November 13.")
     }
 
+    @Test(arguments: [(british, "Next: Friday, 13 November."),
+                      (Locale(identifier: "en_US"), "Next: Friday, November 13."),
+                      (russian, "Следующий приём: Пятница, 13 ноября.")])
+    func theWeekdayIsFollowedByExactlyOneComma(locale: Locale, nextDose: String) throws {
+        let schedule = try schedule(.weeks(1, on: [.friday]), start: day(2026, 11, 13))
+        let text = try footnote(schedule, at: moment(2026, 11, 11), in: locale)
+        #expect(text.hasSuffix(nextDose))
+        #expect(!text.contains(",,"))
+    }
+
     @Test(arguments: [(british, "Every day at 09:00."), (russian, "Каждый день в 09:00.")])
     func withNoNextDoseItReadsTheWordsAndAFullStopOnly(locale: Locale, sentence: String) throws {
         let ended = try schedule(.days(1), start: day(2026, 11, 1), end: day(2026, 11, 5))
@@ -89,11 +99,11 @@ struct MedicationScheduleFootnoteTests {
         let monthly = try schedule(.months(1, onDay: 31), start: day(2026, 1, 31))
         #expect(
             try footnote(monthly, at: moment(2026, 11, 11), in: british)
-                == "Every month on day 31 at 09:00. Next: Monday 30 November."
+                == "Every month on day 31 at 09:00. Next: Monday, 30 November."
         )
         #expect(
             try footnote(monthly, at: moment(2027, 2, 1), in: british)
-                == "Every month on day 31 at 09:00. Next: Sunday 28 February."
+                == "Every month on day 31 at 09:00. Next: Sunday, 28 February."
         )
     }
 
@@ -101,7 +111,7 @@ struct MedicationScheduleFootnoteTests {
         let daily = try schedule(.days(1), start: day(2026, 11, 1))
         #expect(
             try footnote(daily, at: moment(2026, 11, 11, 10), in: british)
-                == "Every day at 09:00. Next: Thursday 12 November."
+                == "Every day at 09:00. Next: Thursday, 12 November."
         )
     }
 }

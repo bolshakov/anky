@@ -2456,7 +2456,7 @@
       }
     },
     "%@. Next: %@." : {
-      "comment" : "The sentence under the Schedule screen that gives the schedule in words and then the day of the next dose, such as 'Every 2 weeks on Friday at 09:00. Next: Friday 13 November.' %1$@ is the schedule in words, already a whole sentence without its full stop. %2$@ is the day of the next dose with its weekday, already formatted for the language.",
+      "comment" : "The sentence under the Schedule screen that gives the schedule in words and then the day of the next dose, such as 'Every 2 weeks on Friday at 09:00. Next: Friday, 13 November.' %1$@ is the schedule in words, already a whole sentence without its full stop. %2$@ is the day of the next dose with its weekday, already formatted for the language.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

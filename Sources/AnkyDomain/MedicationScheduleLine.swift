@@ -32,7 +32,21 @@ public enum MedicationScheduleLine {
         guard let next = schedule.nextDoses(after: now, count: 1, calendar: calendar).first else {
             return String(localized: "\(words).", bundle: bundle, locale: locale)
         }
-        let day = DayDateText.text(for: next, includesYear: false, calendar: calendar, locale: locale)
+        let day = dayWithWeekdayComma(next, calendar: calendar, locale: locale)
         return String(localized: "\(words). Next: \(day).", bundle: bundle, locale: locale)
+    }
+
+    private static func dayWithWeekdayComma(_ day: Date, calendar: Calendar, locale: Locale) -> String {
+        let text = DayDateText.text(for: day, includesYear: false, calendar: calendar, locale: locale)
+        let weekday = day.formatted(
+            Date.FormatStyle(locale: locale, calendar: calendar, timeZone: calendar.timeZone).weekday(.wide)
+        )
+        let rest = text.dropFirst(weekday.count)
+        guard text.lowercased(with: locale).hasPrefix(weekday.lowercased(with: locale)),
+              rest.first?.isWhitespace == true
+        else {
+            return text
+        }
+        return text.prefix(weekday.count) + "," + rest
     }
 }
