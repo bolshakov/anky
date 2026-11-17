@@ -99,12 +99,28 @@ struct BasdaiQuestionTests {
         }
     }
 
+    @Test(arguments: [english, russian])
+    func aStoredAnswerShowsOnlyItsNumberOnEveryQuestion(locale: Locale) {
+        for question in BasdaiQuestion.questions(bundle: .main, locale: locale) {
+            for value in [0, 7, 10] {
+                let text = question.numberText(value, locale: locale)
+                #expect(text == "\(value)", "Question \(question.number), value \(value): \(text)")
+            }
+        }
+    }
+
+    @Test func theNumberFollowsTheRegionsDigits() {
+        let persian = Locale(identifier: "fa_IR")
+        let question = BasdaiQuestion.questions(bundle: .main, locale: persian)[0]
+        #expect(question.numberText(7, locale: persian) == "۷")
+    }
+
     @Test(arguments: [("en", english, "of"), ("ru", russian, "из")])
-    func aStoredAnswerReadsOutOfTenOnEveryQuestion(language: String, locale: Locale, word: String) throws {
+    func aStoredAnswerIsSpokenOutOfTenOnEveryQuestion(language: String, locale: Locale, word: String) throws {
         try CompiledCatalog.withBundle(language) { bundle in
             for question in BasdaiQuestion.questions(bundle: bundle, locale: locale) {
                 for value in [0, 10] {
-                    let text = question.numberText(value, locale: locale, bundle: bundle)
+                    let text = question.spokenNumberText(value, locale: locale, bundle: bundle)
                     #expect(text == "\(value) \(word) 10", "Question \(question.number), value \(value): \(text)")
                 }
             }
