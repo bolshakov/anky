@@ -30,7 +30,7 @@ struct BasdaiDetailView: View {
     }
 
     private var footnote: Text {
-        let scale = String(localized: "Scores run from 0 to 10.", locale: locale)
+        let scale = String(localized: "Levels are 0 to 10.", locale: locale)
         let citation = String(
             localized: """
             Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
