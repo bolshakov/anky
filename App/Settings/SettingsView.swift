@@ -76,21 +76,34 @@ struct SettingsView: View {
 
     private func eraseAll() throws {
         try ExportArchive.removeLeftovers(in: ExportBuild.folder)
-        try model.removeAll()
+        try eraseEntries()
         try eraseMedicationsThenBasdai()
         eraseTicks += 1
     }
 
-    private func eraseMedicationsThenBasdai() throws {
-        try erase(medications.removeAll, orReport: .medicationsAndBasdai)
-        try erase(basdai.removeAll, orReport: .basdai)
+    private func eraseEntries() throws {
+        #if DEBUG
+            try EraseFailureSwitch.check(.entries)
+        #endif
+        try model.removeAll()
     }
 
-    private func erase(_ remove: () throws -> Void, orReport kept: PartialDelete.Kept) throws {
-        do {
-            try remove()
-        } catch {
-            throw PartialDelete(kept: kept)
-        }
+    private func eraseMedicationsThenBasdai() throws {
+        try eraseMedications()
+        try eraseBasdai()
+    }
+
+    private func eraseMedications() throws {
+        #if DEBUG
+            try EraseFailureSwitch.check(.medications)
+        #endif
+        try medications.removeAll()
+    }
+
+    private func eraseBasdai() throws {
+        #if DEBUG
+            try EraseFailureSwitch.check(.basdai)
+        #endif
+        try basdai.removeAll()
     }
 }
