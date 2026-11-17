@@ -80,8 +80,6 @@ final class NewEntryOrderTests: XCTestCase {
         XCTAssertTrue(leftKnee.waitForExistence(timeout: 10))
         // The row's button is accessibility-only, so it never counts as hittable, while a finger reaches it.
         leftKnee.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
-        // The system's search replaces the whole bar while it is open, so the ✓ comes back once search closes.
-        app.buttons["close"].tap()
         let done = app.buttons["done-places"]
         XCTAssertTrue(done.waitForExistence(timeout: 10))
         XCTAssertTrue(

@@ -47,6 +47,7 @@ struct PlacesListView: View {
         .lastBlockClearance()
         .navigationSubtitle(placeCountSubtitle)
         .searchable(text: $query, prompt: "Search joints and places")
+        .searchPresentationToolbarBehavior(.avoidHidingContent)
         .onAppear {
             tipProgress.recordVisit()
         }
