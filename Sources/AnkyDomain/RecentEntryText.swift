@@ -26,13 +26,13 @@ public struct RecentWords {
 
 public extension RecentEntry {
     func chipText(words: RecentWords, namesKind: Bool) -> String {
-        let kindPart = namesKind ? [words.kind(kind)] : []
+        let kindPart = namesKind || names.isEmpty ? [words.kind(kind)] : []
         let placesPart = names.isEmpty ? [] : [chipPlaces(words)]
         return (kindPart + placesPart + [String(severity.value)]).joined(separator: " · ")
     }
 
     func spokenText(words: RecentWords, namesKind: Bool) -> String {
-        let kindPart = namesKind ? [words.kind(kind)] : []
+        let kindPart = namesKind || names.isEmpty ? [words.kind(kind)] : []
         return (kindPart + spokenNames(words) + [words.level(severity)]).joined(separator: ", ")
     }
 
