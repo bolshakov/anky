@@ -52,8 +52,9 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `screenSpacing`: the margins, first-block offset, section gap and page background of a card list screen. Do not set content margins, section spacing or the scroll background on a screen yourself.
 - `readingScreenSpacing`: the margins of a screen of running text that is not a card list, with room at the bottom. Do not reuse `screenSpacing` for it, since that one also hides the scroll background.
 - `lastBlockClearance`: room under the last block of a list that has no bottom button. Do not add a bottom padding.
-- `emptyStateTop`: the top space of an empty-state block, which takes an `EmptyStateTop` case and swaps to a narrow space in compact height, so a turn keeps the list's state. Do not pad an empty block's top or pass it a number.
-- `EmptyStateTop`: the cases `emptyStateTop` takes, one per empty block, each holding its regular-height value. Add a case for a new empty block and do not add a parameter for a number.
+- `emptyStateTop`: the top space of an empty-state block, which takes an `EmptyStateTop` case and swaps to that case's narrow space in compact height, so a turn keeps the list's state. Do not pad an empty block's top or pass it a number, and never a negative one, which clips the block.
+- `EmptyStateTop`: the cases `emptyStateTop` takes, one per empty block, each holding its regular-height and its compact-height value. Add a case for a new empty block and do not add a parameter for a number.
+- `emptyStateListOffset`: on the `List` of an empty-state screen, takes the same `EmptyStateTop` case, whether the block shows and whether it starts the list, and in compact height gives up the list's section gap and, for a block that starts the list, its top margin while the block shows, so `emptyStateTop` alone sets the visible gap. Put it before `screenSpacing` or `blockGapBetweenSections`, since the one closest to the list wins. Do not set a section gap or a content margin on an empty screen yourself.
 - `emptyStateMark`: the width of Today's mark in an empty state, smaller in compact height so the heading and hint move up. Do not set a width frame on the mark, and do not scale it, since scaling leaves its layout size.
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
@@ -115,8 +116,11 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `aboutMarkWidth`: the width of the mark in the About block. Do not use it to size another image.
 - `emptyTodayTop`: the space above Today's empty state in regular height when no recent chip shows. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyTodayTopBelowChip`: the space above Today's empty state in regular height under the recent chip. A screen reaches it only through `emptyStateTop`, and only Today's case does.
-- `emptyMedicationsTop`: the space above Medications' empty state in regular height, which with the list's own first-block offset puts the block 96 pt below the top bar. A screen reaches it only through `emptyStateTop`, and only Medications' case does.
-- `emptyStateTopCompact`: the space above an empty state in compact height, the same for every case. A screen reaches it only through `emptyStateTop`.
+- `emptyMedicationsTop`: the space above Medications' empty state in regular height, which with the list's own first-block offset puts the block 96 pt below the top bar. A screen reaches it only through `emptyStateTop`, and only Medications' cases do.
+- `emptyTodayTopCompact`: the space above Today's empty state in compact height when no recent chip shows, which with `emptyStateListOffset` puts the block 12 pt below the date line. A screen reaches it only through `emptyStateTop`.
+- `emptyTodayTopBelowChipCompact`: the same under the recent chip, 12 pt below the chip. A screen reaches it only through `emptyStateTop`.
+- `emptyHistoryTopCompact`: the space above History's empty state in compact height, which puts the block 12 pt below the top bar, where the inline title sits. A screen reaches it only through `emptyStateTop`.
+- `emptyMedicationsTopCompact`: the space above Medications' empty state in compact height, which with `emptyStateListOffset` puts the block 12 pt below the top bar, or below the archived card. A screen reaches it only through `emptyStateTop`.
 - `emptyTodayBottom`: the space under Today's empty state. Today only, so do not use it for another screen.
 - `twoLineRowHeight`: the height of a `TwoLineRow`, which it applies itself. Do not size a two-line row by hand.
 - `twoLineRowPadding`: the vertical padding of a `TwoLineRow`, which it applies itself. Do not pad a two-line row yourself.
