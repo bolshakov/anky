@@ -1,0 +1,15 @@
+$ sh -c 'axe describe-ui --udid B8D6BA7A-73CF-4D18-9C0B-2B1164227A1C | python3 -I -c '\''import json,sys
+d=json.load(sys.stdin)
+def w(n):
+    if isinstance(n,dict):
+        if n.get("AXUniqueId")=="retry-erase" or (n.get("type")=="StaticText" and "erasing" in (n.get("AXLabel") or "")): print(json.dumps(n))
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(d)'\'''
+exit: 0
+commit: afa6ca81dc465312d37309fe2b304d89bf7a0dd8
+
+{"AXLabel": "Something went wrong while erasing your data. Try again.", "pid": 68626, "title": null, "role_description": "text", "AXUniqueId": null, "subrole": null, "role": "AXStaticText", "AXFrame": "{{71, 398.66666666666669}, {260, 42.333333333333314}}", "custom_actions": [], "help": null, "frame": {"x": 71, "width": 260, "height": 42.333333333333314, "y": 398.6666666666667}, "enabled": true, "traits": [], "children": [], "content_required": false, "AXValue": null, "type": "StaticText"}
+{"AXFrame": "{{205, 461}, {140, 48}}", "role_description": "button", "AXUniqueId": "retry-erase", "title": null, "enabled": true, "pid": 68626, "AXLabel": "Retry", "subrole": null, "type": "Button", "frame": {"x": 205, "width": 140, "height": 48, "y": 461}, "role": "AXButton", "help": null, "children": [{"title": null, "AXUniqueId": "retry-erase", "traits": [], "AXFrame": "{{205, 461}, {140, 48}}", "help": null, "enabled": true, "children": [], "custom_actions": [], "type": "Button", "pid": 68626, "AXValue": null, "role": "AXButton", "role_description": "button", "frame": {"x": 205, "width": 140, "height": 48, "y": 461}, "AXLabel": "Retry", "subrole": null, "content_required": false}], "custom_actions": [], "content_required": false, "AXValue": null, "traits": []}
+{"title": null, "AXUniqueId": "retry-erase", "traits": [], "AXFrame": "{{205, 461}, {140, 48}}", "help": null, "enabled": true, "children": [], "custom_actions": [], "type": "Button", "pid": 68626, "AXValue": null, "role": "AXButton", "role_description": "button", "frame": {"x": 205, "width": 140, "height": 48, "y": 461}, "AXLabel": "Retry", "subrole": null, "content_required": false}

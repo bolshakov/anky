@@ -1,0 +1,7 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t397-03-1/tmp/w/cmp.py /Users/bolshakov/Projects/personal/anky.wt/qa-t397-03-1/tmp/w/s1-keep.json /Users/bolshakov/Projects/personal/anky.wt/qa-t397-03-1/tmp/w/s2.json
+exit: 0
+commit: afa6ca81dc465312d37309fe2b304d89bf7a0dd8
+
+step1: Something went wrong while erasing your data. Try again.
+step2: Something went wrong while erasing your data. Try again.
+equal: True

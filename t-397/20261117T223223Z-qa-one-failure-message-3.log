@@ -1,0 +1,6 @@
+$ sh -c 'grep -c "were erased" App/Localizable.xcstrings; grep -rn "PartialDelete" App Sources Tests | wc -l'
+exit: 0
+commit: afa6ca81dc465312d37309fe2b304d89bf7a0dd8
+
+0
+       0

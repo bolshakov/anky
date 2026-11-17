@@ -1,0 +1,5 @@
+$ python3 -I -c 'import json; c=json.load(open("App/Localizable.xcstrings"))["strings"]; k="Something went wrong while erasing your data. Try again."; print(k in c, c[k]["localizations"]["ru"]["stringUnit"]["value"])'
+exit: 0
+commit: afa6ca81dc465312d37309fe2b304d89bf7a0dd8
+
+True Что-то пошло не так при стирании данных. Попробуй ещё раз.

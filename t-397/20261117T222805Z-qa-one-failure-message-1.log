@@ -1,0 +1,13 @@
+$ sh -c 'axe describe-ui --udid B8D6BA7A-73CF-4D18-9C0B-2B1164227A1C | python3 -I -c '\''import json,sys
+d=json.load(sys.stdin)
+def w(n):
+    if isinstance(n,dict):
+        if n.get("type")=="Sheet": print("title:",n["AXLabel"])
+        for v in n.values(): w(v)
+    elif isinstance(n,list):
+        for v in n: w(v)
+w(d)'\'''
+exit: 0
+commit: afa6ca81dc465312d37309fe2b304d89bf7a0dd8
+
+title: Something went wrong while erasing your data. Try again.
