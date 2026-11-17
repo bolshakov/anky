@@ -51,14 +51,8 @@ struct PlacesListView: View {
         .onAppear {
             tipProgress.recordVisit()
         }
-        .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-                Button(role: .confirm) {
-                    dismiss()
-                }
-                .accessibilityLabel("Done")
-                .accessibilityIdentifier("done-places")
-            }
+        .saveToolbarItem(id: "done-places", label: "Done") {
+            dismiss()
         }
     }
 
