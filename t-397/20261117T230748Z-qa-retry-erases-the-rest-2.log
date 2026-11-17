@@ -1,0 +1,5 @@
+$ axe tap --id empty-today --wait-timeout 10 --udid B9EBE31E-3EE5-4A52-A550-9FA50D210B68
+exit: 0
+commit: f507409495c5fa7f673bae8d6235f48b5da08a63
+
+✓ Tap at resolved tap point at (201.0, 345.1436781609196) completed successfully

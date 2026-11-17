@@ -1,0 +1,5 @@
+$ sh /Users/bolshakov/Projects/personal/anky.wt/qa-t397-04-1/tmp/w/s3.sh
+exit: 0
+commit: f507409495c5fa7f673bae8d6235f48b5da08a63
+
+t0 1794956821.859278 t1 1794956826.369278 diff 4.509999990463257

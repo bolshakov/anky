@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid B9EBE31E-3EE5-4A52-A550-9FA50D210B68 > /Users/bolshakov/Projects/personal/anky.wt/qa-t397-04-1/tmp/w/s1.json; echo retry-erase-count=$(grep -c retry-erase /Users/bolshakov/Projects/personal/anky.wt/qa-t397-04-1/tmp/w/s1.json); grep -o '\''"AXUniqueId" *: *"[^"]*"'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t397-04-1/tmp/w/s1.json | sort -u | tr '\''\n'\'' '\'' '\'''
+exit: 0
+commit: f507409495c5fa7f673bae8d6235f48b5da08a63
+
+retry-erase-count=0
+"AXUniqueId" : "AdditionalDimmingOverlay" "AXUniqueId" : "arrow.up.right" "AXUniqueId" : "calendar" "AXUniqueId" : "chevron.forward" "AXUniqueId" : "clock.fill" "AXUniqueId" : "clock" "AXUniqueId" : "reminder-toggle" "AXUniqueId" : "settings-about" "AXUniqueId" : "settings-erase-all" "AXUniqueId" : "settings-export" "AXUniqueId" : "settings-manage-medications" "AXUniqueId" : "settings-privacy-policy" "AXUniqueId" : "settings-reminders-footnote" "AXUniqueId" : "settings-reminders-label" "AXUniqueId" : "settings-screen" "AXUniqueId" : "settings-source-code" "AXUniqueId" : "settings-version" "AXUniqueId" : "Settings" "AXUniqueId" : "slider.horizontal.3" "AXUniqueId" : "your-data-footnote" "AXUniqueId" : "your-data-label" 
