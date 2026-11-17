@@ -30,10 +30,6 @@ Symptom report => Отчёт о симптомах
 Week count none => –
 Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone. => \
 Стереть все данные на этом iPhone: записи, приёмы, лекарства и результаты BASDAI? Это нельзя отменить.
-Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest. => \
-Записи стёрты, но лекарства, приёмы и результаты BASDAI остались. Попробуй стереть остальное ещё раз.
-Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest. => \
-Записи, приёмы и лекарства стёрты, но результаты BASDAI остались. Попробуй стереть остальное ещё раз.
 Q%lld %@ => В%1$lld %2$@
 %@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. \
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett\u{00A0}et\u{00A0}al., J\u{00A0}Rheumatol\u{00A0}1994). => \
@@ -59,9 +55,9 @@ other => %lld результата BASDAI
 """)
 
 struct RussianReportValuesTests {
-    @Test func theTableHoldsThirtyThreeKeys() {
-        #expect(reportRussianValues.count == 33)
-        #expect(Set(reportRussianValues.map(\.key)).count == 33)
+    @Test func theTableHoldsThirtyOneKeys() {
+        #expect(reportRussianValues.count == 31)
+        #expect(Set(reportRussianValues.map(\.key)).count == 31)
     }
 
     @Test func everyReportPdfAndEraseTextReadsAsTheStakeholderWroteIt() throws {
