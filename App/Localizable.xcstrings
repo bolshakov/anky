@@ -4445,17 +4445,6 @@
           }
         }
       }
-    },
-    "Scores run from 0 to 10." : {
-      "comment" : "The first line of the footnote under a saved BASDAI result's answers. It says once what every answer and the score are measured on, so the rows show bare numbers. The citation follows on the next line.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результат — от 0 до 10."
-          }
-        }
-      }
     }
   },
   "version" : "1.0"
