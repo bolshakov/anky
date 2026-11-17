@@ -25,7 +25,7 @@ struct ScheduleView: View {
         .accessibilityIdentifier("schedule-screen")
         .navigationTitle("Schedule")
         .navigationBarTitleDisplayMode(.inline)
-        .bottomPrimaryButton(Text("Done"), id: "schedule-done") { dismiss() }
+        .saveToolbarItem(id: "schedule-done", label: "Done") { dismiss() }
         .onAppear {
             if draft.schedule == nil {
                 draft.schedule = schedule.schedule()
