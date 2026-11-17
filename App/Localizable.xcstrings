@@ -3738,34 +3738,24 @@
         }
       }
     },
-    "Your entries were erased, but your medications, doses and BASDAI results were not. Try again to erase the rest." : {
-      "comment" : "The alert when Erase all data removed the entries and then could not remove the medications. It stops there, so doses and BASDAI results are kept too.",
+    "Something went wrong while erasing your data. Try again." : {
+      "comment" : "The title of the alert when Erase all data failed. It names no kind of data, since the person only needs to try again.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записи стёрты, но лекарства, приёмы и результаты BASDAI остались. Попробуй стереть остальное ещё раз."
+            "value" : "Что-то пошло не так при стирании данных. Попробуй ещё раз."
           }
         }
       }
     },
-    "Your entries, doses and medications were erased, but your BASDAI results were not. Try again to erase the rest." : {
-      "comment" : "The alert when Erase all data removed the entries, doses and medications, and then could not remove the BASDAI results.",
+    "Retry" : {
+      "comment" : "Button on the alert after Erase all data failed. Runs the erase again, and the Cancel next to it leaves the data as it is.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записи, приёмы и лекарства стёрты, но результаты BASDAI остались. Попробуй стереть остальное ещё раз."
-          }
-        }
-      }
-    },
-    "Couldn't erase your data. Try again." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось стереть данные. Попробуй ещё раз."
+            "value" : "Повторить"
           }
         }
       }

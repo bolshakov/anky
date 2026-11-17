@@ -6,7 +6,7 @@ struct DeleteWords {
     let message: LocalizedStringKey
     let button: LocalizedStringKey
     let failure: LocalizedStringKey
-    var partialFailures: [PartialDelete.Kept: LocalizedStringKey] = [:]
+    var offersRetry = false
     let announcement: LocalizedStringResource
 
     static var entry: DeleteWords {
@@ -37,40 +37,21 @@ struct DeleteWords {
     }
 
     static var allData: DeleteWords {
-        let medicationsKept: LocalizedStringKey = """
-        Your entries were erased, but your medications, doses and BASDAI results were not. \
-        Try again to erase the rest.
-        """
-        let basdaiKept: LocalizedStringKey = """
-        Your entries, doses and medications were erased, but your BASDAI results were not. \
-        Try again to erase the rest.
-        """
-        return DeleteWords(
+        DeleteWords(
             message: "Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone.",
             button: "Erase",
-            failure: "Couldn't erase your data. Try again.",
-            partialFailures: [.medicationsAndBasdai: medicationsKept, .basdai: basdaiKept],
+            failure: "Something went wrong while erasing your data. Try again.",
+            offersRetry: true,
             announcement: "All data erased"
         )
     }
-}
-
-/// Thrown by a delete action that finished some of its work. The person sees the `DeleteWords.partialFailures` text
-/// for what was kept, with no announcement.
-struct PartialDelete: Error {
-    enum Kept {
-        case medicationsAndBasdai
-        case basdai
-    }
-
-    let kept: Kept
 }
 
 extension View {
     func entryDeleteConfirmation(
         isPresented: Binding<Bool>,
         words: DeleteWords = .entry,
-        onDelete: @escaping () throws -> Void
+        onDelete: @escaping () async throws -> Void
     ) -> some View {
         modifier(EntryDeleteConfirmation(isPresented: isPresented, words: words, onDelete: onDelete))
     }
@@ -79,10 +60,8 @@ extension View {
 private struct EntryDeleteConfirmation: ViewModifier {
     @Binding var isPresented: Bool
     let words: DeleteWords
-    let onDelete: () throws -> Void
+    let onDelete: () async throws -> Void
     @State private var isShowingDeleteFailure = false
-    @State private var isShowingPartialFailure = false
-    @State private var partialFailure: LocalizedStringKey = ""
 
     func body(content: Content) -> some View {
         content
@@ -101,22 +80,26 @@ private struct EntryDeleteConfirmation: ViewModifier {
                     .tint(.primary)
             }
             .alert(words.failure, isPresented: $isShowingDeleteFailure) {
-                Button("OK") {}
-            }
-            .alert(partialFailure, isPresented: $isShowingPartialFailure) {
-                Button("OK") {}
+                if words.offersRetry {
+                    Button("Retry") {
+                        delete()
+                    }
+                    .accessibilityIdentifier("retry-erase")
+                    Button("Cancel", role: .cancel) {}
+                } else {
+                    Button("OK") {}
+                }
             }
     }
 
     private func delete() {
-        do {
-            try onDelete()
-            UIAccessibility.post(notification: .announcement, argument: String(localized: words.announcement))
-        } catch let partial as PartialDelete {
-            partialFailure = words.partialFailures[partial.kept] ?? words.failure
-            isShowingPartialFailure = true
-        } catch {
-            isShowingDeleteFailure = true
+        Task {
+            do {
+                try await onDelete()
+                UIAccessibility.post(notification: .announcement, argument: String(localized: words.announcement))
+            } catch {
+                isShowingDeleteFailure = true
+            }
         }
     }
 }
