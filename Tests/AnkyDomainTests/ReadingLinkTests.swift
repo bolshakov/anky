@@ -20,6 +20,18 @@ struct ReadingLinkTests {
         #expect(ReadingLink.kept(linked.id, in: [linked], at: doseTime) == linked.id)
     }
 
+    @Test func aLinkedEntryJustOverTwoHoursBeforeTheDoseIsKeptThoughTheWindowLosesIt() throws {
+        let linked = try entry(at: doseTime.addingTimeInterval(-ReadingWindow.length - 60))
+        #expect(ReadingWindow.pick(linked.id, in: [linked], before: doseTime) == nil)
+        #expect(ReadingLink.kept(linked.id, in: [linked], at: doseTime) == linked.id)
+    }
+
+    @Test func aLinkedEntrySecondsAfterTheDoseButInTheNextMinuteIsNotKept() throws {
+        let doseAtEndOfMinute = doseTime.addingTimeInterval(59)
+        let nextMinute = try entry(at: doseTime.addingTimeInterval(60))
+        #expect(ReadingLink.kept(nextMinute.id, in: [nextMinute], at: doseAtEndOfMinute) == nil)
+    }
+
     @Test func aLinkedEntryInTheDosesOwnMinuteIsKeptWhateverItsSeconds() throws {
         let minuteStart = Date(timeIntervalSince1970: 1_800_000_000)
         let early = try entry(at: minuteStart)

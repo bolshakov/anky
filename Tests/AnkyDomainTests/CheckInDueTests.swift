@@ -206,8 +206,10 @@ struct CheckInDueTests {
     }
 
     @Test func aDoseMovedEarlierIsNotNewerThanALaterOneLoggedBeforeIt() {
-        let moved = dose(at: takenAt.addingTimeInterval(10 * 60), loggedAt: takenAt.addingTimeInterval(2000))
-            .moved(to: medicationID, at: takenAt.addingTimeInterval(60), beforeReadingID: nil)
+        let original = dose(at: takenAt.addingTimeInterval(10 * 60), loggedAt: takenAt.addingTimeInterval(2000))
+        let moved = original.moved(
+            to: medicationID, at: takenAt.addingTimeInterval(60), beforeReadingID: original.beforeReadingID
+        )
         let laterTaken = dose(at: takenAt.addingTimeInterval(5 * 60), loggedAt: takenAt.addingTimeInterval(1000))
         let now = takenAt.addingTimeInterval(3600)
         #expect(offered(laterTaken, alongside: [moved], now: now))
