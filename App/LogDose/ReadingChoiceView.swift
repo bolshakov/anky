@@ -34,16 +34,7 @@ struct ReadingChoiceView: View {
             .contentColumn()
             .navigationTitle("Choose an Entry")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .frame(minHeight: Spacing.rowMinimumHeight)
-                    .contentShape(Rectangle())
-                    .accessibilityIdentifier("reading-cancel")
-                }
-            }
+            .discardConfirmation(hasChanges: false, cancelID: "reading-cancel", close: { dismiss() })
             .sheet(isPresented: $isShowingNewEntry, onDismiss: finishAdding) {
                 NewEntryView(model: model, onSaved: onSaved, onAdded: { addedEntry = $0 })
             }
