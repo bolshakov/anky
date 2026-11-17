@@ -1,0 +1,1 @@
+{"AXUniqueId": "delete-dose", "AXLabel": "Delete dose", "type": "Button", "role": "AXButton"}
