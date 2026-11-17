@@ -36,7 +36,6 @@ BASDAI => BASDAI
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994). => \
 Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
 Answers => Ответы
-Garrett S, et al. J Rheumatol 1994;21(12):2286-91. => Garrett S, et al. J Rheumatol 1994;21(12):2286-91.
 Couldn't save this result. Try again. => Не удалось сохранить результат. Попробуй ещё раз.
 Delete this result? This can't be undone. => Удалить этот результат? Это нельзя отменить.
 Delete result => Удалить результат
@@ -52,9 +51,9 @@ struct RussianBasdaiTests {
         try #require(basdaiRussianValues.first { $0.key == key }).value
     }
 
-    @Test func thirtyTwoKeysAreApproved() {
-        #expect(basdaiRussianValues.count == 32)
-        #expect(Set(basdaiRussianValues.map(\.key)).count == 32)
+    @Test func thirtyOneKeysAreApproved() {
+        #expect(basdaiRussianValues.count == 31)
+        #expect(Set(basdaiRussianValues.map(\.key)).count == 31)
     }
 
     @Test func everyBasdaiTextReadsAsDesignWroteIt() throws {
