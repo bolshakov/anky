@@ -16,6 +16,7 @@ struct MedicationsView: View {
             archivedSection
             emptySection
         }
+        .emptyStateListOffset(.medications, isShowing: active.isEmpty, startsList: medications.archivedCount == 0)
         .screenSpacing()
         .lastBlockClearance()
         .sensoryFeedback(.success, trigger: successTicks)

@@ -142,7 +142,7 @@ if [ -n "$heights" ]; then
 fi
 
 # A name that continues into a longer one is another token, so each name is matched whole.
-empty_tokens="emptyTodayTop|emptyTodayTopBelowChip|emptyMedicationsTop|emptyBlockGap|emptyStateTopCompact|emptyMarkWidth|emptyMarkWidthCompact"
+empty_tokens="emptyTodayTop|emptyTodayTopBelowChip|emptyMedicationsTop|emptyBlockGap|emptyTodayTopCompact|emptyTodayTopBelowChipCompact|emptyHistoryTopCompact|emptyMedicationsTopCompact|emptyMarkWidth|emptyMarkWidthCompact"
 empty_state=$(scan_screens "(^|[^A-Za-z0-9_])Spacing\\.($empty_tokens)([^A-Za-z0-9_]|$)")
 if [ -n "$empty_state" ]; then
   echo "$empty_state"

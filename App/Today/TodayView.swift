@@ -108,6 +108,7 @@ struct TodayView: View {
             }
             .listStyle(.insetGrouped)
             .environment(\.defaultMinListRowHeight, 0)
+            .emptyStateListOffset(recent == nil ? .today : .todayBelowChip, isShowing: todayItems.isEmpty)
             .blockGapBetweenSections()
             .contentColumn()
             .todayTopMargin()

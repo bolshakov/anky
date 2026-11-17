@@ -51,7 +51,10 @@ enum Spacing {
     static let emptyTodayTop: CGFloat = 48
     static let emptyTodayTopBelowChip: CGFloat = 64
     static let emptyMedicationsTop: CGFloat = 76
-    static let emptyStateTopCompact: CGFloat = 12
+    static let emptyTodayTopCompact: CGFloat = 11
+    static let emptyTodayTopBelowChipCompact: CGFloat = 11
+    static let emptyHistoryTopCompact: CGFloat = 10
+    static let emptyMedicationsTopCompact: CGFloat = 8
     static let emptyTodayBottom: CGFloat = 48
     static let rowHeight: CGFloat = 52
     static let twoLineRowHeight: CGFloat = 60
