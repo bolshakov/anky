@@ -1,0 +1,7 @@
+$ git grep -n datePickerStyle -- App/Schedule
+exit: 0
+commit: 869411c8276c7ca0290f684137570eb7b0712c3d
+
+App/Schedule/ScheduleDurationSection.swift:14:            .datePickerStyle(.compact)
+App/Schedule/ScheduleDurationSection.swift:60:            .datePickerStyle(.compact)
+App/Schedule/ScheduleTimesSection.swift:20:                .datePickerStyle(.compact)

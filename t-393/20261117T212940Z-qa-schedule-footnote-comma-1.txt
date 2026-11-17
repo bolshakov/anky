@@ -1,0 +1,4 @@
+                                                                        "subrole" : null,
+                                                                        "AXFrame" : "{{16, 569}, {370, 45.666666666666629}}",
+                                                                        "AXLabel" : "Every 2 months on day 3 at 09:00. Next: Sunday, January 3.",
+                                                                        "AXUniqueId" : "schedule-footnote",
