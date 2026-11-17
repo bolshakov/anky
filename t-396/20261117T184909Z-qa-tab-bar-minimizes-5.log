@@ -1,0 +1,5 @@
+$ grep -rn tabBarMinimizeBehavior App
+exit: 0
+commit: 29f1cd5bf23e6769597f88f8830ca5e228922442
+
+App/RootView.swift:72:        .tabBarMinimizeBehavior(.onScrollDown)

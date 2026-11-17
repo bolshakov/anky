@@ -1,0 +1,6 @@
+$ axe screenshot --udid 8D59D53F-A195-481F-9AF9-7ED5B112ED74 --output /Users/bolshakov/Projects/personal/anky.wt/qa-t396-01-1/tmp/ev/tab-back.png
+exit: 0
+commit: 29f1cd5bf23e6769597f88f8830ca5e228922442
+
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t396-01-1/tmp/ev/tab-back.png
+/Users/bolshakov/Projects/personal/anky.wt/qa-t396-01-1/tmp/ev/tab-back.png

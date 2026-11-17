@@ -1,0 +1,6 @@
+$ grep -c 'Garrett S, et al' App/Localizable.xcstrings App/Basdai/BasdaiFormView.swift
+exit: 1
+commit: 29f1cd5bf23e6769597f88f8830ca5e228922442
+
+App/Localizable.xcstrings:0
+App/Basdai/BasdaiFormView.swift:0
