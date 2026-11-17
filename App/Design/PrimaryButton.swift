@@ -17,26 +17,3 @@ private struct EnabledLabelColor: ViewModifier {
         content.foregroundStyle(isEnabled ? Color.onTint : Color.ink)
     }
 }
-
-extension View {
-    /// `isEnabled` dims the button alone, since `.disabled` on this modifier would disable the screen it sits on.
-    func bottomPrimaryButton(
-        _ title: Text,
-        id: String,
-        isEnabled: Bool = true,
-        action: @escaping () -> Void
-    ) -> some View {
-        safeAreaInset(edge: .bottom) {
-            Button(action: action) {
-                title.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
-            }
-            .primaryButton()
-            .buttonBorderShape(.capsule)
-            .controlSize(.large)
-            .disabled(!isEnabled)
-            .insetBarColumn()
-            .padding(.bottom, Spacing.bottomClearance)
-            .accessibilityIdentifier(id)
-        }
-    }
-}

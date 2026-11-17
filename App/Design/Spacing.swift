@@ -64,9 +64,6 @@ enum Spacing {
     static let addButtonSystemPadding: CGFloat = 7
     static let addButtonLabelSide: CGFloat = addButtonSide - 2 * addButtonSystemPadding
     static let addButtonClearance: CGFloat = addButtonSide + bottomClearance + screenMargin
-    static let primaryButtonHeight: CGFloat = 56
-    static let primaryButtonSystemPadding: CGFloat = 15
-    static let primaryButtonLabelHeight: CGFloat = primaryButtonHeight - 2 * primaryButtonSystemPadding
     static let repeatChipSystemPadding: CGFloat = 7
     static let repeatChipLabelHeight: CGFloat = rowMinimumHeight - 2 * repeatChipSystemPadding
 }
