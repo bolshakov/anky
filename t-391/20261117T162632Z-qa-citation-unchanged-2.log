@@ -1,0 +1,6 @@
+$ sh -c 'git diff origin/main -- App/Basdai/BasdaiDetailView.swift App/Localizable.xcstrings | grep -i "garrett"; echo grep-rc=$?'
+exit: 0
+commit: dc792da03b6660644629e1f09f6f010ebc1eac42
+
+             Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
+grep-rc=0
