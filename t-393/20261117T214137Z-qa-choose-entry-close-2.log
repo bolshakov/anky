@@ -1,0 +1,11 @@
+$ grep -B6 reading-cancel /var/folders/dq/phzqs26s6q30y5p7lb1dh3vm0000gn/T/tmp.69UPp8DsU3/tree.json
+exit: 0
+commit: a3cbc32f01da8c451490aeb0a2c4a2a072caa9e3
+
+                                            "type" : "Button",
+                                            "AXFrame" : "{{20, 92}, {36, 36}}",
+                                            "AXLabel" : "Cancel",
+                                            "custom_actions" : [
+
+                                            ],
+                                            "AXUniqueId" : "reading-cancel"
