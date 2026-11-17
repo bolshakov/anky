@@ -33,8 +33,10 @@ Very severe => Наихудшее
 Not answered => Нет ответа
 not answered => ответа нет
 BASDAI => BASDAI
-Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994). => \
-Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994).
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994). => \
+Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
+Answers => Ответы
+Scores run from 0 to 10. => Результат — от 0 до 10.
 Garrett S, et al. J Rheumatol 1994;21(12):2286-91. => Garrett S, et al. J Rheumatol 1994;21(12):2286-91.
 Couldn't save this result. Try again. => Не удалось сохранить результат. Попробуй ещё раз.
 Delete this result? This can't be undone. => Удалить этот результат? Это нельзя отменить.
@@ -51,9 +53,9 @@ struct RussianBasdaiTests {
         try #require(basdaiRussianValues.first { $0.key == key }).value
     }
 
-    @Test func thirtyOneKeysAreApproved() {
-        #expect(basdaiRussianValues.count == 31)
-        #expect(Set(basdaiRussianValues.map(\.key)).count == 31)
+    @Test func thirtyThreeKeysAreApproved() {
+        #expect(basdaiRussianValues.count == 33)
+        #expect(Set(basdaiRussianValues.map(\.key)).count == 33)
     }
 
     @Test func everyBasdaiTextReadsAsDesignWroteIt() throws {
@@ -72,5 +74,15 @@ struct RussianBasdaiTests {
         )
         #expect(spine.contains("**шее, спине или тазобедренных суставах**"))
         #expect(joints.contains("**кроме**"))
+    }
+
+    @Test func theResultScreensCitationKeepsItsReferenceTogether() throws {
+        let entries = try CompiledCatalog.entries()
+        let ordinary = "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+        let joined = """
+        Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
+        """
+        #expect(entries[ordinary] == nil)
+        #expect(entries[joined]?.localizations?["ru"] != nil)
     }
 }

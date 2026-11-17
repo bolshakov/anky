@@ -13,18 +13,13 @@ struct BasdaiDetailView: View {
                 row(Text("Score"), value: BasdaiScore.text(of: result, locale: locale), id: "basdai-detail-score-row")
             }
             CardSection(
-                footnote: Text(
-                    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
-                ),
+                Text("Answers"),
+                footnote: footnote,
                 id: "basdai-detail-answers",
                 footnoteID: "basdai-detail-footnote"
             ) {
                 ForEach(Array(zip(BasdaiQuestion.all, result.answers)), id: \.0.number) { question, answer in
-                    row(
-                        Text(verbatim: question.shortName),
-                        value: question.numberText(answer, locale: locale),
-                        id: "basdai-detail-q\(question.number)"
-                    )
+                    answerRow(question, answer)
                 }
             }
         }
@@ -32,6 +27,27 @@ struct BasdaiDetailView: View {
         .accessibilityIdentifier("basdai-detail-screen")
         .navigationTitle(BasdaiDateText.text(for: result.date, calendar: calendar, locale: locale))
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var footnote: Text {
+        let scale = String(localized: "Scores run from 0 to 10.", locale: locale)
+        let citation = String(
+            localized: """
+            Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
+            """,
+            locale: locale
+        )
+        return Text(verbatim: "\(scale)\n\(citation)")
+    }
+
+    private func answerRow(_ question: BasdaiQuestion, _ answer: Int) -> some View {
+        row(
+            Text(verbatim: question.shortName),
+            value: question.numberText(answer, locale: locale),
+            id: "basdai-detail-q\(question.number)"
+        )
+        .accessibilityLabel(question.shortName)
+        .accessibilityValue(question.spokenNumberText(answer, locale: locale))
     }
 
     private func row(_ title: Text, value: String, id: String) -> some View {
