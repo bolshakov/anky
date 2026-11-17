@@ -7,12 +7,18 @@ public struct LogDoseDraft: Equatable, Sendable {
     /// The time the person set by hand. Nil while the dose follows the clock.
     public var takenAt: Date?
     public var manualReadingID: UUID?
+    /// The entry logged for this dose. Unlike `manualReadingID` no two-hour window bounds it, only the dose time.
+    public var linkedReadingID: UUID?
     public var checkIn: DoseCheckIn
 
-    public init(selectedID: UUID?, takenAt: Date?, manualReadingID: UUID?, checkIn: DoseCheckIn) {
+    public init(
+        selectedID: UUID?, takenAt: Date?, manualReadingID: UUID?, linkedReadingID: UUID? = nil, checkIn: DoseCheckIn
+    ) {
+        // #lizard forgives
         self.selectedID = selectedID
         self.takenAt = takenAt
         self.manualReadingID = manualReadingID
+        self.linkedReadingID = linkedReadingID
         self.checkIn = checkIn
     }
 }
@@ -66,7 +72,12 @@ private extension LogDoseDraft {
         return WrittenDose(
             medicationID: MedicationSelection.kept(selectedID, in: context.active),
             minute: time.wholeMinute,
-            readingID: ReadingWindow.pick(manualReadingID, in: context.entries, before: time)?.id,
+            readingID: ReadingLink.resolve(
+                linked: linkedReadingID,
+                manual: manualReadingID,
+                in: context.entries,
+                at: time
+            )?.id,
             checkInAfter: checkIn.checkInAfter
         )
     }

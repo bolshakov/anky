@@ -20,14 +20,17 @@ public struct Dose: Identifiable, Equatable, Sendable {
 
     // swiftlint:disable:next function_parameter_count
     public static func logged(
-        id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil, loggedAt: Date
+        id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil,
+        linkedReadingID: UUID? = nil, loggedAt: Date
     ) -> Dose {
         // #lizard forgives
         var dose = Dose(
             id: id,
             medicationID: medication.id,
             takenAt: takenAt,
-            beforeReadingID: ReadingWindow.pick(manualReadingID, in: entries, before: takenAt)?.id
+            beforeReadingID: ReadingLink.resolve(
+                linked: linkedReadingID, manual: manualReadingID, in: entries, at: takenAt
+            )?.id
         )
         dose.checkInAfter = medication.checkInAfter
         dose.loggedAt = loggedAt
@@ -35,15 +38,20 @@ public struct Dose: Identifiable, Equatable, Sendable {
     }
 
     /// The check-in delay is the dose's own, so a move to another medication does not take that medication's delay.
-    public func moved(to medicationID: UUID, at takenAt: Date) -> Dose {
+    public func moved(to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?) -> Dose {
         var dose = self
         dose.medicationID = medicationID
         dose.takenAt = takenAt
+        dose.beforeReadingID = beforeReadingID
         return dose
     }
 
     /// The time compares at the minute, since the date wheel drops the seconds a saved dose carries.
-    public func isMoved(to medicationID: UUID, at takenAt: Date, calendar: Calendar = .current) -> Bool {
-        medicationID != self.medicationID || !calendar.isDate(takenAt, equalTo: self.takenAt, toGranularity: .minute)
+    public func isMoved(
+        to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?, calendar: Calendar = .current
+    ) -> Bool {
+        medicationID != self.medicationID
+            || beforeReadingID != self.beforeReadingID
+            || !calendar.isDate(takenAt, equalTo: self.takenAt, toGranularity: .minute)
     }
 }

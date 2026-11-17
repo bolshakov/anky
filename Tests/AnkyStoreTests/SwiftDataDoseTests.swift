@@ -276,7 +276,9 @@ struct SwiftDataDoseTests {
             try store.add(fennimax)
             try store.logDose(original)
 
-            var moved = original.moved(to: fennimax.id, at: date.addingTimeInterval(600))
+            var moved = original.moved(
+                to: fennimax.id, at: date.addingTimeInterval(600), beforeReadingID: original.beforeReadingID
+            )
             moved.loggedAt = nil
             try store.replaceDose(moved)
 

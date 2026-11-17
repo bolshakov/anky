@@ -179,8 +179,9 @@ struct CheckInDueTests {
 
     @Test func movingTheNewerDoseBackReopensTheEarlierOne() {
         let earlier = dose()
-        let moved = dose(at: takenAt.addingTimeInterval(600)).moved(
-            to: medicationID, at: takenAt.addingTimeInterval(-600)
+        let newer = dose(at: takenAt.addingTimeInterval(600))
+        let moved = newer.moved(
+            to: medicationID, at: takenAt.addingTimeInterval(-600), beforeReadingID: newer.beforeReadingID
         )
         #expect(offered(earlier, alongside: [moved], now: takenAt.addingTimeInterval(3600)))
     }
@@ -188,7 +189,9 @@ struct CheckInDueTests {
     @Test func aDoseMovedPastTheNewerOneTakesItsPlaceAsTheNewer() {
         let earlier = dose()
         let newer = dose(at: takenAt.addingTimeInterval(600))
-        let moved = earlier.moved(to: medicationID, at: takenAt.addingTimeInterval(1200))
+        let moved = earlier.moved(
+            to: medicationID, at: takenAt.addingTimeInterval(1200), beforeReadingID: earlier.beforeReadingID
+        )
         let now = takenAt.addingTimeInterval(3600)
         #expect(offered(moved, alongside: [newer], now: now))
         #expect(!offered(newer, alongside: [moved], now: now))
@@ -204,7 +207,7 @@ struct CheckInDueTests {
 
     @Test func aDoseMovedEarlierIsNotNewerThanALaterOneLoggedBeforeIt() {
         let moved = dose(at: takenAt.addingTimeInterval(10 * 60), loggedAt: takenAt.addingTimeInterval(2000))
-            .moved(to: medicationID, at: takenAt.addingTimeInterval(60))
+            .moved(to: medicationID, at: takenAt.addingTimeInterval(60), beforeReadingID: nil)
         let laterTaken = dose(at: takenAt.addingTimeInterval(5 * 60), loggedAt: takenAt.addingTimeInterval(1000))
         let now = takenAt.addingTimeInterval(3600)
         #expect(offered(laterTaken, alongside: [moved], now: now))

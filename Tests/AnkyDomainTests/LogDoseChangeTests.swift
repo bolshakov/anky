@@ -152,6 +152,31 @@ struct LogDoseChangeTests {
         #expect(!hasChanges(draft, active: active, entries: [newest]))
     }
 
+    @Test func aLinkedReadingOlderThanTheWindowIsAChange() throws {
+        let linked = try reading(minutesBack: 300)
+        let active = [zorblex]
+        var draft = untouched(active: active)
+        draft.linkedReadingID = linked.id
+        #expect(hasChanges(draft, active: active, entries: [linked]))
+    }
+
+    @Test func aLinkedReadingThatIsTheNewestAnywayIsNoChange() throws {
+        let older = try reading(minutesBack: 90)
+        let newest = try reading(minutesBack: 10)
+        let active = [zorblex]
+        var draft = untouched(active: active)
+        draft.linkedReadingID = newest.id
+        #expect(!hasChanges(draft, active: active, entries: [older, newest]))
+    }
+
+    @Test func aLinkedReadingAfterTheDoseTimeIsNoChange() throws {
+        let linked = try reading(minutesBack: -30)
+        let active = [zorblex]
+        var draft = untouched(active: active)
+        draft.linkedReadingID = linked.id
+        #expect(!hasChanges(draft, active: active, entries: [linked]))
+    }
+
     @Test func aCheckInSwitchedOnIsAChange() {
         let active = [zorblex]
         var draft = untouched(active: active)

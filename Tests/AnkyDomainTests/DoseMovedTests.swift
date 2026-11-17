@@ -13,7 +13,7 @@ struct DoseMovedTests {
         let fennimax = UUID()
         let later = date.addingTimeInterval(600)
 
-        let moved = original.moved(to: fennimax, at: later)
+        let moved = original.moved(to: fennimax, at: later, beforeReadingID: original.beforeReadingID)
 
         #expect(moved.id == original.id)
         #expect(moved.medicationID == fennimax)
@@ -27,8 +27,21 @@ struct DoseMovedTests {
         var original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
         original.loggedAt = date.addingTimeInterval(5)
 
-        let moved = original.moved(to: UUID(), at: date.addingTimeInterval(600))
+        let moved = original.moved(to: UUID(), at: date.addingTimeInterval(600), beforeReadingID: nil)
 
         #expect(moved.loggedAt == original.loggedAt)
+    }
+
+    @Test func aMoveWritesTheBeforeReadingItIsGiven() {
+        let original = Dose(id: UUID(), medicationID: UUID(), takenAt: date, beforeReadingID: UUID())
+        let linked = UUID()
+
+        #expect(original.moved(to: original.medicationID, at: date, beforeReadingID: linked).beforeReadingID == linked)
+    }
+
+    @Test func aMoveWithNoBeforeReadingClearsIt() {
+        let original = Dose(id: UUID(), medicationID: UUID(), takenAt: date, beforeReadingID: UUID())
+
+        #expect(original.moved(to: original.medicationID, at: date, beforeReadingID: nil).beforeReadingID == nil)
     }
 }
