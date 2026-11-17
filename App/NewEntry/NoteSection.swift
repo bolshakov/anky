@@ -22,6 +22,8 @@ struct NoteSection: View {
                 .focused($isFocused)
                 .accessibilityLabel("Note")
                 .accessibilityIdentifier("note-field")
+                .lineLimit(1 ... 5)
+                .padding(.vertical, Spacing.noteCardVerticalPadding)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .rowHeight()
                 .background {
