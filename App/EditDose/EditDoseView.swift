@@ -61,6 +61,7 @@ struct EditDoseView: View {
                     Button("Delete dose", systemImage: "trash", role: .destructive) {
                         isConfirmingDelete = true
                     }
+                    .tint(Color.destructive)
                     .accessibilityIdentifier("delete-dose")
                 }
                 ToolbarSpacer(.fixed, placement: .primaryAction)
