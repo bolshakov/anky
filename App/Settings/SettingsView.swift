@@ -12,6 +12,7 @@ struct SettingsView: View {
     let exportData: @MainActor () throws -> ExportData
     @State private var isConfirmingErase = false
     @State private var eraseTicks = 0
+    @State private var isErasing = false
 
     private let repository = URL(string: "https://github.com/bolshakov/anky")!
 
@@ -36,6 +37,7 @@ struct SettingsView: View {
                 ) {
                     ExportDataRow(read: exportData)
                     Button("Erase all data", role: .destructive) {
+                        guard !isErasing else { return }
                         isConfirmingErase = true
                     }
                     .rowHeight()
@@ -74,11 +76,18 @@ struct SettingsView: View {
         }
     }
 
-    private func eraseAll() throws {
+    private func eraseAll() async throws {
+        guard !isErasing else { return }
+        isErasing = true
+        defer { isErasing = false }
+        try await Retry.run(.eraseAll, sleep: { try await Task.sleep(for: $0) }, action: eraseOnce)
+        eraseTicks += 1
+    }
+
+    private func eraseOnce() throws {
         try ExportArchive.removeLeftovers(in: ExportBuild.folder)
         try eraseEntries()
         try eraseMedicationsThenBasdai()
-        eraseTicks += 1
     }
 
     private func eraseEntries() throws {
