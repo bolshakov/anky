@@ -151,6 +151,7 @@ something else.
 - `ink2`: secondary text, row values and chevrons. Do not name a grey or a secondary label colour yourself.
 - `separator`: the system hairline colour for a line you draw. Do not draw a line in a grey of your own.
 - `tint`: the brand colour for chosen state, ticks and switches. Do not use `.accentColor` or a copy of the asset.
+- `destructive`: the system red for a delete control, which the app-wide `tint` would otherwise paint in the brand colour. Do not rely on `role: .destructive` alone for the colour, and do not name a red yourself.
 - `onTint`: text or symbols on top of `tint`. Do not use white.
 - `soft`: the soft brand fill behind a highlighted block. Do not use `tint` at low opacity.
 - `onSoft`: text or symbols on top of `soft`. Do not use `tint` for text on it.

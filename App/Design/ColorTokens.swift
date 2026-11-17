@@ -28,6 +28,10 @@ extension Color {
         Color("AccentColor")
     }
 
+    static var destructive: Color {
+        Color(.systemRed)
+    }
+
     static var onTint: Color {
         Color("OnAccent")
     }
