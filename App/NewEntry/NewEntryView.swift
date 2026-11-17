@@ -99,9 +99,10 @@ struct NewEntryView: View {
             .toolbar {
                 if case .edit = mode {
                     ToolbarItem(placement: .primaryAction) {
-                        Button("Delete entry", systemImage: "trash", role: .destructive) {
+                        Button("Delete", systemImage: "trash", role: .destructive) {
                             isConfirmingDelete = true
                         }
+                        .tint(Color.destructive)
                         .accessibilityIdentifier("delete-entry")
                     }
                     ToolbarSpacer(.fixed, placement: .primaryAction)
