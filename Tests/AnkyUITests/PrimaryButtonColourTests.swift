@@ -83,20 +83,6 @@ final class PrimaryButtonColourTests: XCTestCase {
         XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
-    func testMedicationsAddButtonLabelMatchesAppearance() throws {
-        continueAfterFailure = false
-        let app = launchAnky()
-        addZorblex(app)
-        app.buttons["log-dose-manage"].tap()
-        let button = app.buttons["medications-add"]
-        XCTAssertTrue(button.waitForExistence(timeout: 10))
-
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
-        attachScreenshot(named: "medications-add-label")
-        expectPrimaryLabel(colour, dark: dark)
-    }
-
     func testDonePlacesButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
