@@ -97,6 +97,8 @@ final class PrimaryButtonColourTests: XCTestCase {
         expectPrimaryLabel(colour, dark: dark)
     }
 
+    /// Where confirms from the system's confirm button, which draws a light glyph on the accent in both looks, so the
+    /// rule for the app's own button, a dark label in the dark look, does not apply to it.
     func testDonePlacesButtonLabelMatchesAppearance() throws {
         continueAfterFailure = false
         let app = launchAnky()
@@ -105,10 +107,10 @@ final class PrimaryButtonColourTests: XCTestCase {
         let button = app.buttons["done-places"]
         XCTAssertTrue(button.waitForExistence(timeout: 10))
 
-        let dark = runIsDark
-        let colour = try settledLabelColour(of: button, dark: dark)
+        let colour = try settledLabelColour(of: button, dark: false)
         attachScreenshot(named: "done-places-label")
-        expectPrimaryLabel(colour, dark: dark)
+        expectAccentFill(colour, dark: runIsDark)
+        XCTAssertFalse(colour.isDark, "glyph reads \(colour.label) on \(colour.background), dark on the accent")
     }
 
     /// Check In saves from the system's confirm button, so it draws a light glyph on the accent in both looks.

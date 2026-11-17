@@ -81,7 +81,10 @@ final class NewEntryOrderTests: XCTestCase {
         // The row's button is accessibility-only, so it never counts as hittable, while a finger reaches it.
         leftKnee.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
         let done = app.buttons["done-places"]
-        XCTAssertEqual(done.label, "Done, 1 place", "the tap did not choose the Left knee row")
+        XCTAssertTrue(
+            app.navigationBars.staticTexts["1 place"].waitForExistence(timeout: 10),
+            "the tap did not choose the Left knee row"
+        )
         done.tap()
         saveEntry(app)
         XCTAssertTrue(entryScreen(app, id: "new-entry-screen").waitForNonExistence(timeout: 10))

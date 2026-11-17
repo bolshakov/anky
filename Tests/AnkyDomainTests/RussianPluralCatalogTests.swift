@@ -18,8 +18,8 @@ struct RussianPluralCatalogTests {
     @Test func oneAndTwentyOnePlacesTakeTheSingularForm() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             for count in [1, 21] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) место")
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) ==
+                    "\(count) место")
             }
         }
     }
@@ -27,8 +27,8 @@ struct RussianPluralCatalogTests {
     @Test func twoAndTwentyTwoPlacesTakeTheFewForm() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             for count in [2, 3, 4, 22] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) места")
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) ==
+                    "\(count) места")
             }
         }
     }
@@ -36,18 +36,9 @@ struct RussianPluralCatalogTests {
     @Test func fiveAndTheTeensPlacesTakeTheManyForm() throws {
         try CompiledCatalog.withBundle("ru") { ru in
             for count in [5, 11, 12, 13, 14, 20] {
-                #expect(String(localized: "Done · \(count) places", bundle: ru, locale: russian) ==
-                    "Готово · \(count) мест")
+                #expect(String(localized: "\(count) places", bundle: ru, locale: russian) ==
+                    "\(count) мест")
             }
-        }
-    }
-
-    @Test func theDoneButtonHoldsAllFourRussianPluralForms() throws {
-        let entries = try CompiledCatalog.entries()
-        let plural = try #require(entries[donePlacesKey]?.localizations?["ru"]?.variations?.plural)
-        #expect(Set(plural.keys) == ["one", "few", "many", "other"])
-        for (form, value) in approvedDoneValues {
-            #expect(plural[form]?.stringUnit?.value == value)
         }
     }
 
