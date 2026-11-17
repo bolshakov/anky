@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid B0FAA916-C208-4C76-BBD7-4DA13DB80067 | python3 /Users/bolshakov/Projects/personal/anky.wt/qa-t389-01-1/tmp/ids.py | grep -E '\''recent-chip'\'''
+exit: 0
+commit: abeedcf242d4a5b8bb4d3f7da09806d03b82f50d
+
+recent-chips | None | None | ScrollArea
+recent-chip-0 | Same as last time, Fatigue, 6 of 10 | None | Button
+recent-chip-1 | Same as last time, Fatigue, 0 of 10 | None | Button
