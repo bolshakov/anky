@@ -25,6 +25,7 @@ enum Spacing {
     static let rowContentGap: CGFloat = 12
     static let cardContentGap: CGFloat = 12
     static let cardInset: CGFloat = 16
+    static let noteCardVerticalPadding: CGFloat = 14
     static let moreRowGap: CGFloat = 6
     static let chipInnerGap: CGFloat = 6
     static let chevronSlotWidth: CGFloat = 8

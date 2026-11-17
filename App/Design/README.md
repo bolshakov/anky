@@ -92,6 +92,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `rowContentGap`: the gap between a row's tile or symbol and its text. Do not use it between rows.
 - `cardContentGap`: the gap between items stacked inside one card block, such as a question and its answer control. Do not write one.
 - `cardInset`: the side inset for content you draw inside a card by hand, so it lines up with the rows. Do not write a padding number.
+- `noteCardVerticalPadding`: the space above and below the text of the Note card, so its first and last lines clear the card's edge. Only the Note card uses it. Do not use it as a general row padding.
 - `moreRowGap`: the gap between the parts of the more-places row. Do not reuse it for another row.
 - `chipInnerGap`: the gap between the symbol and the text inside a chip. Do not write one.
 - `chevronSlotWidth`: the width of a chevron slot in the more-places row. Other rows take `RowChevron` instead.
