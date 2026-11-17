@@ -142,11 +142,11 @@ if [ -n "$heights" ]; then
 fi
 
 # A name that continues into a longer one is another token, so each name is matched whole.
-empty_tokens="emptyTodayTop|emptyTodayTopBelowChip|emptyBlockGap|emptyStateTopCompact|emptyMarkWidth|emptyMarkWidthCompact"
+empty_tokens="emptyTodayTop|emptyTodayTopBelowChip|emptyMedicationsTop|emptyBlockGap|emptyStateTopCompact|emptyMarkWidth|emptyMarkWidthCompact"
 empty_state=$(scan_screens "(^|[^A-Za-z0-9_])Spacing\\.($empty_tokens)([^A-Za-z0-9_]|$)")
 if [ -n "$empty_state" ]; then
   echo "$empty_state"
-  violation "names an empty-state top or mark token outside App/Design, use emptyStateTop, emptyStateMark or emptyBlockGap"
+  violation "names an empty-state top or mark token outside App/Design, use emptyStateTop or emptyStateMark"
 fi
 
 exit $fail

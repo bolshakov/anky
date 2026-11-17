@@ -109,9 +109,9 @@ struct MedicationsView: View {
         if active.isEmpty {
             Section {
                 MedicationsEmptyBlock()
+                    .emptyStateTop(.medications)
                     .nonCardBlock()
             }
-            .emptyBlockGap()
         }
     }
 }

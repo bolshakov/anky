@@ -55,7 +55,6 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `emptyStateTop`: the top space of an empty-state block, which takes an `EmptyStateTop` case and swaps to a narrow space in compact height, so a turn keeps the list's state. Do not pad an empty block's top or pass it a number.
 - `EmptyStateTop`: the cases `emptyStateTop` takes, one per empty block, each holding its regular-height value. Add a case for a new empty block and do not add a parameter for a number.
 - `emptyStateMark`: the width of Today's mark in an empty state, smaller in compact height so the heading and hint move up. Do not set a width frame on the mark, and do not scale it, since scaling leaves its layout size.
-- `emptyBlockGap`: the section gap above an empty-state block in a list, smaller in compact height so a turn keeps the list's state. An empty state outside a list takes `emptyStateTop` instead. One line covers the `View` modifier and the `Spacing` token. Do not write a gap.
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
@@ -80,7 +79,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `titleToDatePullPerTitlePoint`: only for `todayTopMargin`, which shrinks the pull as the title grows. Do not use it to align another header.
 - `largeTitleSize`: only for `todayTopMargin`, as the title size the pull is measured from. Do not use it to size text.
 - `blockGap`: the gap between the blocks of a screen, applied by `screenSpacing`. Do not set a different section gap.
-- `emptyBlockGap`: covered by the `emptyBlockGap` line under Modifiers for screens and buttons.
+- `emptyBlockGap`: the space above History's empty state in regular height. A screen reaches it only through `emptyStateTop`, and only History's case does.
 - `labelGap`: the gap under a section label, applied by `SectionLabel`. Do not pad a label yourself.
 - `readingBlockGap`: the gap between blocks of running text on a reading screen. Do not use it in a card list.
 - `listItemGap`: the gap between the items of a list inside running text. Do not use it between card rows.
@@ -116,6 +115,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `aboutMarkWidth`: the width of the mark in the About block. Do not use it to size another image.
 - `emptyTodayTop`: the space above Today's empty state in regular height when no recent chip shows. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyTodayTopBelowChip`: the space above Today's empty state in regular height under the recent chip. A screen reaches it only through `emptyStateTop`, and only Today's case does.
+- `emptyMedicationsTop`: the space above Medications' empty state in regular height, which with the list's own first-block offset puts the block 96 pt below the top bar. A screen reaches it only through `emptyStateTop`, and only Medications' case does.
 - `emptyStateTopCompact`: the space above an empty state in compact height, the same for every case. A screen reaches it only through `emptyStateTop`.
 - `emptyTodayBottom`: the space under Today's empty state. Today only, so do not use it for another screen.
 - `twoLineRowHeight`: the height of a `TwoLineRow`, which it applies itself. Do not size a two-line row by hand.
