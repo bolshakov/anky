@@ -14,7 +14,7 @@ struct DoseSubtitleCatalogTests {
 
     @Test func noKeyHoldsTheSecondLinesSeparator() throws {
         let joined = try CompiledCatalog.entries().keys.filter { $0.contains(RowSecondLine.separator) }
-        #expect(joined.sorted() == ["After · checked in at %@", "Done · %lld places"])
+        #expect(joined.sorted() == ["After · checked in at %@"])
     }
 
     @Test func noKeyIsABareJoinOfTwoValues() throws {

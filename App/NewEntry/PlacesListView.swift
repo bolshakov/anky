@@ -44,37 +44,19 @@ struct PlacesListView: View {
         .screenSpacing()
         .navigationTitle("Where")
         .navigationBarTitleDisplayMode(.inline)
+        .lastBlockClearance()
+        .navigationSubtitle(placeCountSubtitle)
         .searchable(text: $query, prompt: "Search joints and places")
+        .searchPresentationToolbarBehavior(.avoidHidingContent)
         .onAppear {
             tipProgress.recordVisit()
         }
-        .safeAreaBar(edge: .bottom) {
-            doneButton
-        }
-    }
-
-    private var doneButton: some View {
-        Button {
+        .saveToolbarItem(id: "done-places", label: "Done") {
             dismiss()
-        } label: {
-            doneTitle.frame(maxWidth: .infinity, minHeight: Spacing.primaryButtonLabelHeight)
         }
-        .primaryButton()
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
-        .insetBarColumn()
-        .padding(.bottom, Spacing.bottomClearance)
-        .accessibilityLabel(spokenDoneTitle)
-        .accessibilityIdentifier("done-places")
     }
 
-    private var doneTitle: Text {
-        draft.placeCount == 0 ? Text("Done") : Text("Done · \(draft.placeCount) places")
-    }
-
-    private var spokenDoneTitle: String {
-        let done = String(localized: "Done")
-        guard draft.placeCount > 0 else { return done }
-        return [done, String(localized: "\(draft.placeCount) places")].joined(separator: ", ")
+    private var placeCountSubtitle: String {
+        draft.placeCount == 0 ? "" : String(localized: "\(draft.placeCount) places")
     }
 }

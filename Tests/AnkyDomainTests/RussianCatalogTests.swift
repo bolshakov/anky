@@ -271,15 +271,6 @@ Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ зап�
 %@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
 """) + reportDraftFormatValues
 
-let donePlacesKey = "Done · %lld places"
-
-let approvedDoneValues = table("""
-one => Готово · %lld место
-few => Готово · %lld места
-many => Готово · %lld мест
-other => Готово · %lld места
-""")
-
 let morePlacesKey = "%lld places"
 
 let approvedMorePlacesValues = table("""
@@ -291,7 +282,7 @@ other => %lld места
 
 private let approvedKeys = approvedPlainValues.map(\.key)
     + approvedFormatValues.map(\.key)
-    + [donePlacesKey, morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
+    + [morePlacesKey, "%lld minutes", "%lld hours", "%lld characters left"]
     + ["%lld entries", "%lld doses"]
     + ["%lld weeks", "entries logged in %lld of them"]
     + ["and %lld more places"]
@@ -377,9 +368,6 @@ struct RussianCatalogTests {
             }
             for (count, expected) in [(1, "1 character left"), (5, "5 characters left")] {
                 #expect(String(localized: "\(count) characters left", bundle: en, locale: english) == expected)
-            }
-            for (count, expected) in [(1, "Done · 1 place"), (5, "Done · 5 places")] {
-                #expect(String(localized: "Done · \(count) places", bundle: en, locale: english) == expected)
             }
             for (count, expected) in [(1, "1 place"), (6, "6 places")] {
                 #expect(String(localized: "\(count) places", bundle: en, locale: english) == expected)
