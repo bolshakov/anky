@@ -48,7 +48,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 ## Modifiers for screens and buttons
 
 - `contentColumn`: the column a List, Form or ScrollView keeps its content in, which `screenSpacing` and `readingScreenSpacing` apply already. A ScrollView measures a content margin from the safe area's edge, so pass `measuredFromSafeArea: true` for one; `readingScreenSpacing` does. Each side is the larger of the margin, that side's safe-area inset and the width past `contentMaxWidth` shared out, never their sum. Do not set a horizontal content margin or cap the width with a frame, which would cut the background and the scroll indicator.
-- `insetBarColumn`: the same column for the content of a bottom `safeAreaInset` or `safeAreaBar`, which has no content margin. `bottomPrimaryButton` applies it already. Do not pad a bar's content with `screenMargin`.
+- `insetBarColumn`: the same column for the content of a bottom `safeAreaInset` or `safeAreaBar`, which has no content margin. Do not pad a bar's content with `screenMargin`.
 - `screenSpacing`: the margins, first-block offset, section gap and page background of a card list screen. Do not set content margins, section spacing or the scroll background on a screen yourself.
 - `readingScreenSpacing`: the margins of a screen of running text that is not a card list, with room at the bottom. Do not reuse `screenSpacing` for it, since that one also hides the scroll background.
 - `lastBlockClearance`: room under the last block of a list that has no bottom button. Do not add a bottom padding.
@@ -59,9 +59,8 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
 - `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
-- `bottomPrimaryButton`: the main action of a screen that is not a form, pinned above the bottom edge, where `isEnabled` dims only the button. A form confirms with `saveToolbarItem` instead. Do not add your own bottom inset with a button, and do not use `.disabled` on the screen for it.
 - `discardConfirmation`: the Cancel of a form, drawn as the system's ✕ and spoken "Cancel", the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, text button, dialog or `interactiveDismissDisabled`.
-- `saveToolbarItem`: the form's Save as the system's ✓ in the top bar, spoken "Save" or the `label` it is given, such as Schedule's "Done", where `isEnabled` dims only the ✓. Put it on the form's root view inside its `NavigationStack`, next to `discardConfirmation`, and do not pin a wide Save button with `bottomPrimaryButton`, style the ✓, or use `.disabled` on the form for it.
+- `saveToolbarItem`: the form's Save as the system's ✓ in the top bar, spoken "Save" or the `label` it is given, such as Schedule's "Done", where `isEnabled` dims only the ✓. Put it on the form's root view inside its `NavigationStack`, next to `discardConfirmation`, and do not pin a wide Save button, style the ✓, or use `.disabled` on the form for it.
 
 ## Tips
 
@@ -125,14 +124,11 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `recentRowHeight`: the height of the recent chips row on New Entry. Do not use it to size another row.
 - `iconTile`: the size of an `IconTile`. Do not size a symbol tile yourself.
 - `iconSymbol`: the size of the symbol inside an `IconTile`. Do not size that symbol yourself.
-- `bottomClearance`: the room under the last block or the bottom button, applied by `bottomPrimaryButton` and `lastBlockClearance`. Use the modifiers before the token.
+- `bottomClearance`: the room under the last block, applied by `lastBlockClearance`. Use the modifiers before the token.
 - `addButtonSide`: the width and height of Today's round (+) menu button, which keeps this size at every text size. Do not use it to size another button.
 - `addButtonSystemPadding`: the padding the system adds around the (+) button's label. Only the label side below uses it, so do not use it in a screen.
 - `addButtonLabelSide`: the label side that gives the (+) button its `addButtonSide` circle. Give the (+) label this size and do not add your own padding.
 - `addButtonClearance`: the bottom content margin of a list that a round button floats over, so its last row ends above the button. One line covers the `View` modifier and the `Spacing` token. Do not use it for a list with no floating button, which takes `lastBlockClearance`.
-- `primaryButtonHeight`: the design height of the bottom primary button. Do not size a primary button yourself.
-- `primaryButtonSystemPadding`: the padding the system adds around a prominent button's label. Only the label height below uses it, so do not use it in a screen.
-- `primaryButtonLabelHeight`: the label height that gives a primary button its design height. Give a button label this minimum height and do not add your own padding.
 - `repeatChipSystemPadding`: the padding the system adds around the repeat chip's label. Only the label height below uses it, so do not use it in a screen.
 - `repeatChipLabelHeight`: the label height that gives the repeat chip a row-sized height. Use it for a chip of that kind and do not add your own padding.
 
