@@ -27,6 +27,7 @@ struct BasdaiDetailView: View {
         .accessibilityIdentifier("basdai-detail-screen")
         .navigationTitle(BasdaiDateText.text(for: result.date, calendar: calendar, locale: locale))
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
     }
 
     private var footnote: Text {

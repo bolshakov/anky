@@ -58,7 +58,9 @@ struct BasdaiFormView: View {
     }
 
     private var citation: Text {
-        Text("Garrett S, et al. J Rheumatol 1994;21(12):2286-91.")
+        Text("""
+        Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J\u{00A0}Rheumatol\u{00A0}1994).
+        """)
     }
 
     private func save() {

@@ -69,6 +69,7 @@ struct RootView: View {
             }
             .tag(Tab.settings)
         }
+        .tabBarMinimizeBehavior(.onScrollDown)
         .onChange(of: reminderInputs, initial: true) { _, inputs in
             guard inputs.phase == .active else { return }
             let checkIns = reminders.reconcile(
