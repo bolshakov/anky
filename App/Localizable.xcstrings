@@ -4148,13 +4148,13 @@
         }
       }
     },
-    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published.",
+    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published. The two spaces after J and Rheumatol are no-break spaces, so the reference never splits across lines. Keep them.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
           }
         }
       }
@@ -4483,6 +4483,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "BASDAI, результат %@, в %@, за последние 7 дней"
+          }
+        }
+      }
+    },
+    "Answers" : {
+      "comment" : "The section label above the six answers on a saved BASDAI result's screen, over the card that lists the questions with the number picked for each.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответы"
+          }
+        }
+      }
+    },
+    "Scores run from 0 to 10." : {
+      "comment" : "The first line of the footnote under a saved BASDAI result's answers. It says once what every answer and the score are measured on, so the rows show bare numbers. The citation follows on the next line.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат — от 0 до 10."
           }
         }
       }

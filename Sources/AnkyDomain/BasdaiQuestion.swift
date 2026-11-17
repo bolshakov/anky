@@ -38,7 +38,11 @@ public struct BasdaiQuestion: Sendable {
         return text(of: value, locale: locale, bundle: bundle)
     }
 
-    public func numberText(_ value: Int, locale: Locale, bundle: Bundle = .main) -> String {
+    public func numberText(_ value: Int, locale: Locale) -> String {
+        value.formatted(.number.locale(locale))
+    }
+
+    public func spokenNumberText(_ value: Int, locale: Locale, bundle: Bundle = .main) -> String {
         Self.outOfTenText(value, locale: locale, bundle: bundle)
     }
 
