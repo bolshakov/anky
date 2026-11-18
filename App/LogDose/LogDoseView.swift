@@ -87,6 +87,7 @@ struct LogDoseView: View {
                 ToolbarItem(placement: .principal) {
                     Text("Log Dose")
                         .font(.headline)
+                        .dynamicTypeSize(...DynamicTypeSize.large)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                         .accessibilityAddTraits(.isHeader)
