@@ -9,16 +9,23 @@ public struct LogDoseDraft: Equatable, Sendable {
     public var manualReadingID: UUID?
     /// The entry logged for this dose. Unlike `manualReadingID` no two-hour window bounds it, only the dose time.
     public var linkedReadingID: UUID?
+    /// The person, or the medication's start, chose no reading. A different state from no pick yet.
+    public var noReading: Bool
+    /// True once the person picked, chose None, swiped or logged an entry in this form.
+    public var readingTouched: Bool
     public var checkIn: DoseCheckIn
 
     public init(
-        selectedID: UUID?, takenAt: Date?, manualReadingID: UUID?, linkedReadingID: UUID? = nil, checkIn: DoseCheckIn
+        selectedID: UUID?, takenAt: Date?, manualReadingID: UUID?, linkedReadingID: UUID? = nil,
+        noReading: Bool = false, readingTouched: Bool = false, checkIn: DoseCheckIn
     ) {
         // #lizard forgives
         self.selectedID = selectedID
         self.takenAt = takenAt
         self.manualReadingID = manualReadingID
         self.linkedReadingID = linkedReadingID
+        self.noReading = noReading
+        self.readingTouched = readingTouched
         self.checkIn = checkIn
     }
 }
@@ -46,8 +53,36 @@ public extension LogDoseDraft {
             selectedID: preselected,
             takenAt: nil,
             manualReadingID: nil,
+            noReading: Self.startsAtNone(selectedID: preselected, in: active),
             checkIn: DoseCheckIn(savedDelay: savedDelay)
         )
+    }
+
+    /// An untouched row follows the new medication's start. A touched row keeps its choice. No memory is written.
+    func changingMedication(to id: UUID?, in context: LogDoseContext) -> LogDoseDraft {
+        var draft = self
+        draft.selectedID = id
+        guard !readingTouched else { return draft }
+        draft.manualReadingID = nil
+        draft.linkedReadingID = nil
+        draft.noReading = Self.startsAtNone(selectedID: id, in: context.active)
+        return draft
+    }
+
+    /// A pick the new time no longer holds falls back to the checked medication's start. None stays None.
+    func movingTime(to date: Date?, in context: LogDoseContext) -> LogDoseDraft {
+        var draft = self
+        draft.takenAt = date
+        guard !noReading else { return draft }
+        let time = date ?? context.now
+        let window = ReadingWindow.entries(in: context.entries, before: time)
+        draft.linkedReadingID = ReadingLink.kept(linkedReadingID, in: context.entries, at: time)
+        draft.manualReadingID = window.first { $0.id == manualReadingID }?.id
+        let hadPick = linkedReadingID != nil || manualReadingID != nil
+        if hadPick, draft.linkedReadingID == nil, draft.manualReadingID == nil {
+            draft.noReading = Self.startsAtNone(selectedID: selectedID, in: context.active)
+        }
+        return draft
     }
 
     /// True when Save would write a dose that an untouched Log Dose would not write at this moment. Comparing what
@@ -63,10 +98,16 @@ private struct WrittenDose: Equatable {
     let medicationID: UUID?
     let minute: Double
     let readingID: UUID?
+    let noReading: Bool
     let checkInAfter: CheckInDelay?
 }
 
 private extension LogDoseDraft {
+    static func startsAtNone(selectedID: UUID?, in active: [Medication]) -> Bool {
+        let checked = MedicationSelection.kept(selectedID, in: active)
+        return ReadingStart.forMedication(active.first { $0.id == checked }) == .none
+    }
+
     func written(in context: LogDoseContext) -> WrittenDose {
         let time = takenAt ?? context.now
         return WrittenDose(
@@ -75,9 +116,11 @@ private extension LogDoseDraft {
             readingID: ReadingLink.resolve(
                 linked: linkedReadingID,
                 manual: manualReadingID,
+                noReading: noReading,
                 in: context.entries,
                 at: time
             )?.id,
+            noReading: noReading,
             checkInAfter: checkIn.checkInAfter
         )
     }
