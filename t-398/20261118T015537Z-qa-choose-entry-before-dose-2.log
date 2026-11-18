@@ -1,0 +1,7 @@
+$ sh -c 'date +%H:%M; axe describe-ui --udid 29B0EC06-2450-48B8-A74E-69555CCE5442 | grep -E '\''reading-option|reading-log-new|AXValue": "Today 0'\'' '
+exit: 0
+commit: 7f0bb1e6b7c460edab22cb63609fa8c455005338
+
+02:55
+                                                                        "AXUniqueId" : "reading-option",
+                                                                        "AXUniqueId" : "reading-log-new",

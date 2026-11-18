@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid 29B0EC06-2450-48B8-A74E-69555CCE5442 | grep -E '\''reading-option|Choose'\'''
+exit: 0
+commit: 7f0bb1e6b7c460edab22cb63609fa8c455005338
+
+                                            "AXLabel" : "Choose an Entry",
+                                        "AXUniqueId" : "Choose an Entry",
+                                                                        "AXUniqueId" : "reading-option",
