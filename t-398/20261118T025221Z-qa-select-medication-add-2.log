@@ -1,0 +1,6 @@
+$ sh -c 'axe describe-ui --udid AECD3B7D-6B7A-4F83-875B-C5B921BB6701 | grep -E '\''dose-medication-field|Medication, |Select medication|medication-form'\'''
+exit: 0
+commit: cb955db350833180369155f6b1b33b94c7acd93a
+
+                                                                        "AXUniqueId" : "dose-medication-field",
+                                                                        "AXLabel" : "Medication, Walkmed",
