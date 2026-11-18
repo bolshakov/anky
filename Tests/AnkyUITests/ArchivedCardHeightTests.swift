@@ -27,7 +27,7 @@ final class ArchivedCardHeightTests: XCTestCase {
         field.typeText(name)
         app.buttons["medication-save"].tap()
 
-        XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["dose-medication-field"].waitForExistence(timeout: 10))
     }
 
     private func archiveFirstMedication(_ app: XCUIApplication) {

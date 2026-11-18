@@ -42,7 +42,7 @@ final class MedicationRowHeightTests: XCTestCase {
         name.typeText("Zorblex")
         app.buttons["medication-save"].tap()
 
-        XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["dose-medication-field"].waitForExistence(timeout: 10))
     }
 
     /// Drags about 40 % of the row's width. That reveals Archive, and a full swipe would archive at once.

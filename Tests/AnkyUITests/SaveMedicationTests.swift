@@ -20,11 +20,12 @@ final class SaveMedicationTests: XCTestCase {
         save.doubleTap()
 
         XCTAssertTrue(save.waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
-        let rows = app.buttons.matching(identifier: "dose-medication-row")
-        XCTAssertEqual(rows.count, 1)
-        let saved = rows.firstMatch.label
+        let field = app.descendants(matching: .any)["dose-medication-field"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        let saved = field.label
         XCTAssertTrue(saved.contains("Zorblex"), "the typed name was not saved: \(saved)")
+        field.tap()
+        XCTAssertEqual(medicationRows(in: app).count, 1)
     }
 
     func testNewStrengthIsSavedAsTyped() {
