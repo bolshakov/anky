@@ -5,19 +5,16 @@ import SwiftUI
 struct DateSection: View {
     @Binding var date: Date
     private let latest: Date?
-    private let showsChevron: Bool
     private let onOpen: () -> Void
     @State private var isShowingPicker = false
 
     init(
         date: Binding<Date>,
         latest: Date? = nil,
-        showsChevron: Bool = true,
         onOpen: @escaping () -> Void = {}
     ) {
         _date = date
         self.latest = latest
-        self.showsChevron = showsChevron
         self.onOpen = onOpen
     }
 
@@ -34,9 +31,6 @@ struct DateSection: View {
                     Spacer()
                     Text(verbatim: "\(day), \(clock)")
                         .foregroundStyle(Color.ink2)
-                    if showsChevron {
-                        RowChevron()
-                    }
                 }
                 .rowHeight()
                 .contentShape(Rectangle())

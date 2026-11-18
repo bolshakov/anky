@@ -52,7 +52,7 @@ struct EditDoseView: View {
                     }
                     readingSections
                     CardSection(id: "date") {
-                        DateSection(date: $takenAt, showsChevron: false, onOpen: { scrollToDate(proxy) })
+                        DateSection(date: $takenAt, onOpen: { scrollToDate(proxy) })
                             .id(Self.dateBlockID)
                     }
                 }

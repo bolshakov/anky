@@ -141,7 +141,7 @@ struct LogDoseView: View {
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
     private func dateSection(scrolling proxy: ScrollViewProxy) -> some View {
         CardSection(id: "date") {
-            DateSection(date: dateBinding, showsChevron: false, onOpen: { scrollToDate(proxy) })
+            DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
                 .fillsCardRow()
                 .id(Self.dateBlockID)
         }
