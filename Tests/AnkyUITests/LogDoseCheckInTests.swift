@@ -154,7 +154,7 @@ final class LogDoseCheckInTests: XCTestCase {
             chooseCheckInAfter(delay, in: app)
         }
         app.buttons["medication-save"].tap()
-        XCTAssertTrue(app.descendants(matching: .any)["dose-medication-field"].waitForExistence(timeout: 10))
+        XCTAssertTrue(medicationRows(in: app).firstMatch.waitForExistence(timeout: 10))
     }
 
     private func chooseCheckInAfter(_ delay: String, in app: XCUIApplication) {

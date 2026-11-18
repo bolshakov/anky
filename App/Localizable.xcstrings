@@ -2069,16 +2069,6 @@
         }
       }
     },
-    "Select medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выбор лекарства"
-          }
-        }
-      }
-    },
     "New Medication" : {
       "localizations" : {
         "ru" : {

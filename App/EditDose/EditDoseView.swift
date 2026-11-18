@@ -22,6 +22,8 @@ struct EditDoseView: View {
     @State private var isConfirmingDelete = false
     @State private var readingSaveTicks = 0
     @State private var readingDeleteTicks = 0
+    @State private var selectionTicks = 0
+    @State private var addedTicks = 0
 
     init(dose: Dose, medications: MedicationsModel, model: EntryLogModel, onSaved: @escaping () -> Void) {
         self.dose = dose
@@ -48,7 +50,13 @@ struct EditDoseView: View {
             ScrollViewReader { proxy in
                 Form {
                     CardSection(Text("Medication"), id: "medication") {
-                        medicationRow
+                        MedicationChoiceRows(
+                            medications: medications,
+                            choices: EditDoseMedications.choices(for: dose, in: medications.medications),
+                            selectedID: selectedID,
+                            onSelect: select,
+                            onAdded: medicationAdded
+                        )
                     }
                     readingSections
                     CardSection(id: "date") {
@@ -79,7 +87,9 @@ struct EditDoseView: View {
                 Button("OK") {}
             }
         }
+        .sensoryFeedback(.selection, trigger: selectionTicks)
         .sensoryFeedback(.success, trigger: readingSaveTicks)
+        .sensoryFeedback(.success, trigger: addedTicks)
         .sensoryFeedback(.warning, trigger: readingDeleteTicks)
     }
 
@@ -168,22 +178,16 @@ struct EditDoseView: View {
         return String(format: String(localized: "After · checked in at %@"), time)
     }
 
-    @ViewBuilder private var medicationRow: some View {
-        let choices = EditDoseMedications.choices(for: dose, in: medications.medications)
-        if let chosen = choices.first(where: { $0.id == selectedID }) {
-            NavigationLink {
-                SelectMedicationView(
-                    medications: medications,
-                    choices: choices,
-                    selectedID: selectedID,
-                    onSelect: { selectedID = $0.id },
-                    onAdded: nil
-                )
-            } label: {
-                ValueRow(Text("Medication"), value: Text(verbatim: chosen.listTitle))
-            }
-            .fillsCardRow()
-            .accessibilityIdentifier("dose-medication-field")
-        }
+    private func select(_ medication: Medication) {
+        guard medication.id != selectedID else { return }
+        selectedID = medication.id
+        selectionTicks += 1
+    }
+
+    /// The medication the form just wrote becomes the chosen row. Choosing it does not tick, because the success
+    /// haptic plays instead.
+    private func medicationAdded(_ id: Medication.ID) {
+        selectedID = id
+        addedTicks += 1
     }
 }

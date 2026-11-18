@@ -68,10 +68,8 @@ final class EditDoseTests: XCTestCase {
         doseRow(in: app).tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
-        app.descendants(matching: .any)["dose-medication-field"].tap()
         XCTAssertEqual(medicationRows(in: app).count, 2)
         XCTAssertEqual(medicationRows(in: app).allElementsBoundByIndex.filter(\.isSelected).count, 1)
-        app.buttons["BackButton"].tap()
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
         let day = dateRowDay(in: app) ?? ""
         XCTAssertTrue(day.hasPrefix("Today"), "date row day is \(day)")
@@ -83,7 +81,7 @@ final class EditDoseTests: XCTestCase {
         XCTAssertTrue(app.buttons["save-dose-changes"].exists)
         XCTAssertTrue(app.buttons["edit-dose-cancel"].exists)
         XCTAssertFalse(app.descendants(matching: .any)["log-dose-manage"].exists)
-        XCTAssertFalse(app.descendants(matching: .any)["dose-add-medication"].exists)
+        XCTAssertTrue(app.buttons["dose-add-medication"].exists)
         XCTAssertFalse(app.descendants(matching: .any)["check-in-later"].exists)
         XCTAssertFalse(app.descendants(matching: .any)["dose-check-in-after"].exists)
         attachScreenshot(named: "edit-dose")

@@ -60,6 +60,7 @@ enum Spacing {
     static let twoLineRowHeight: CGFloat = 60
     static let twoLineRowPadding: CGFloat = 8
     static let rowMinimumHeight: CGFloat = 44
+    static let checkmark: CGFloat = 18
     static let recentRowHeight: CGFloat = 32
     static let iconTile: CGFloat = 32
     static let iconSymbol: CGFloat = 20

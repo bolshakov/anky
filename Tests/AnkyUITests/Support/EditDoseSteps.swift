@@ -22,27 +22,17 @@ func addMedication(_ medication: String, in app: XCUIApplication) {
     XCTAssertTrue(save.waitForNonExistence(timeout: 10))
 }
 
-/// Taps Add medication where Log Dose has it: on the form while the log has no medication, and on Select medication,
-/// pushed from the Medication row, once it has one.
+/// Taps Add medication, the last row of the Medication card.
 @MainActor
 func tapAddMedication(in app: XCUIApplication) {
-    let field = app.descendants(matching: .any)["dose-medication-field"]
-    let none = app.descendants(matching: .any)["dose-no-medications"]
-    let deadline = Date.now.addingTimeInterval(10)
-    while !field.exists, !none.exists, Date.now < deadline {
-        RunLoop.current.run(until: .now.addingTimeInterval(0.1))
-    }
-    if field.exists {
-        field.tap()
-    }
-    app.buttons["dose-add-medication"].tap()
+    let add = app.buttons["dose-add-medication"]
+    XCTAssertTrue(add.waitForExistence(timeout: 10))
+    add.tap()
 }
 
 @MainActor
 func chooseMedication(_ medication: String, in app: XCUIApplication) {
-    let field = app.descendants(matching: .any)["dose-medication-field"]
-    XCTAssertTrue(field.waitForExistence(timeout: 10))
-    field.tap()
+    XCTAssertTrue(medicationRows(in: app).firstMatch.waitForExistence(timeout: 10))
     let row = medicationRows(in: app).allElementsBoundByIndex.first { $0.label.contains(medication) }
     XCTAssertNotNil(row, "no medication row for \(medication)")
     row?.tap()
@@ -53,12 +43,12 @@ func medicationRows(in app: XCUIApplication) -> XCUIElementQuery {
     app.descendants(matching: .any).matching(identifier: "dose-medication-row")
 }
 
-/// The name the Medication row of the form shows.
+/// The name on the selected row of the Medication card.
 @MainActor
 func selectedMedication(in app: XCUIApplication) -> String? {
-    let field = app.descendants(matching: .any)["dose-medication-field"]
-    XCTAssertTrue(field.waitForExistence(timeout: 10))
-    return ["Zorblex", "Quibbanol"].first { field.label.contains($0) }
+    XCTAssertTrue(medicationRows(in: app).firstMatch.waitForExistence(timeout: 10))
+    let selected = medicationRows(in: app).allElementsBoundByIndex.first(where: \.isSelected)
+    return ["Zorblex", "Quibbanol"].first { selected?.label.contains($0) == true }
 }
 
 @MainActor
