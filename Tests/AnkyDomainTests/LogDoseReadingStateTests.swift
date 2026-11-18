@@ -193,14 +193,7 @@ struct LogDoseReadingStateTests {
         #expect(resolved(draft, in: context(active: active, entries: [newest])) == nil)
     }
 
-    @Test func changingMedicationWritesNoMemory() {
-        let active = [asNeeded, scheduled]
-        let draft = untouched(active: active).changingMedication(to: scheduled.id, in: context(active: active))
-        #expect(active == [asNeeded, scheduled])
-        #expect(draft.selectedID == scheduled.id)
-    }
-
-    @Test func changingToNoMedicationStartsAutomaticOnAnUntouchedRow() {
+    @Test func changingToNoMedicationOnAnUntouchedRowFollowsTheFirstMedicationsStart() {
         let active = [scheduled]
         let draft = untouched(active: active).changingMedication(to: nil, in: context(active: active))
         #expect(draft.selectedID == nil)

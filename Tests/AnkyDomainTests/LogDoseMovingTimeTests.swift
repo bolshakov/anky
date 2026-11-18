@@ -162,4 +162,37 @@ struct LogDoseMovingTimeTests {
         #expect(moved.linkedReadingID == nil)
         #expect(!moved.noReading)
     }
+
+    @Test func noneChosenOverAHeldLinkStaysNoneWhenTheTimeMovesPastTheLink() throws {
+        let linked = try entry(minutesBack: 10)
+        let inNewWindow = try entry(minutesBack: 100)
+        let active = [asNeeded]
+        var draft = untouched(active: active)
+        draft.linkedReadingID = linked.id
+        draft.noReading = true
+        draft.readingTouched = true
+        let context = context(active: active, entries: [inNewWindow, linked])
+        let moved = draft.movingTime(to: now.addingTimeInterval(-30 * 60), in: context)
+        #expect(ReadingWindow.latest(in: context.entries, before: now.addingTimeInterval(-30 * 60))?.id == inNewWindow
+            .id)
+        #expect(moved.noReading)
+        #expect(resolved(moved, in: context) == nil)
+    }
+
+    @Test(arguments: [100.0, -130.0])
+    func noneChosenOverAHeldManualPickStaysNoneWhenTheTimeMovesAndDropsIt(minutesFromNow: Double) throws {
+        let picked = try entry(minutesBack: 100)
+        let inNewWindow = try entry(minutesBack: minutesFromNow > 0 ? 10 : 200)
+        let active = [asNeeded]
+        var draft = untouched(active: active)
+        draft.manualReadingID = picked.id
+        draft.noReading = true
+        draft.readingTouched = true
+        let context = context(active: active, entries: [picked, inNewWindow])
+        let newTime = now.addingTimeInterval(minutesFromNow * 60)
+        let moved = draft.movingTime(to: newTime, in: context)
+        #expect(ReadingWindow.latest(in: context.entries, before: newTime)?.id == inNewWindow.id)
+        #expect(moved.noReading)
+        #expect(resolved(moved, in: context) == nil)
+    }
 }
