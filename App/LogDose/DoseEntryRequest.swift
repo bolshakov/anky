@@ -27,6 +27,7 @@ extension View {
                 model: model,
                 latestDate: request.dates.latest,
                 startDate: request.dates.start,
+                kinds: ReadingWindow.kinds,
                 onSaved: onSaved,
                 onAdded: onAdded
             )

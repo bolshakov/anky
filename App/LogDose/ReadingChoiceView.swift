@@ -31,7 +31,7 @@ struct ReadingChoiceView: View {
                 }
             }
             CardSection(id: "reading-choices") {
-                ForEach(ReadingWindow.entries(in: entries, before: doseAt)) { entry in
+                ForEach(ReadingLink.choices(in: entries, chosen: chosenID, at: doseAt)) { entry in
                     choiceRow(entry)
                 }
             }
