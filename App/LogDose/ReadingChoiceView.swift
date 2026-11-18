@@ -2,43 +2,48 @@
 import AnkyDomain
 import SwiftUI
 
-/// The readings a dose can point at, newest first, with a check mark on the one in use. It has no choice of no
-/// reading: a dose without one is logged from the "Log how you feel now" row on Log Dose.
+/// The readings a dose can point at, newest first, with a check mark on the one in use. It is pushed from Log Dose and
+/// has no choice of no reading: a dose without one is logged from the "Log how you feel" row on the form.
 struct ReadingChoiceView: View {
     let entries: [Entry]
     let model: EntryLogModel
     let chosenID: UUID?
+    let doseAt: Date
     let onPick: (Entry) -> Void
     let onAdded: (Entry) -> Void
     let onSaved: () -> Void
     @Environment(\.dismiss) private var dismiss
-    @State private var isShowingNewEntry = false
-    /// New Entry reports its save before it closes, and the choice closes only after New Entry is gone.
+    @State private var newEntry: DoseEntryRequest?
+    /// New Entry reports its save before it closes, and the choice goes back only after New Entry is gone.
     @State private var addedEntry: Entry?
 
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    ForEach(entries) { entry in
-                        choiceRow(entry)
-                    }
-                }
-                Section {
-                    Button("Log how you feel now") {
-                        isShowingNewEntry = true
-                    }
-                    .accessibilityIdentifier("reading-log-new")
+        List {
+            CardSection(id: "reading-choices") {
+                ForEach(ReadingWindow.entries(in: entries, before: doseAt)) { entry in
+                    choiceRow(entry)
                 }
             }
-            .contentColumn()
-            .navigationTitle("Choose an Entry")
-            .navigationBarTitleDisplayMode(.inline)
-            .discardConfirmation(hasChanges: false, cancelID: "reading-cancel", close: { dismiss() })
-            .sheet(isPresented: $isShowingNewEntry, onDismiss: finishAdding) {
-                NewEntryView(model: model, onSaved: onSaved, onAdded: { addedEntry = $0 })
+            CardSection(id: "reading-new") {
+                Button {
+                    newEntry = DoseEntryRequest(doseAt: doseAt)
+                } label: {
+                    ReadingPromptText(prompt: .forDose(at: doseAt, now: .now))
+                }
+                .accessibilityIdentifier("reading-log-new")
             }
         }
+        .screenSpacing()
+        .lastBlockClearance()
+        .navigationTitle("Choose an Entry")
+        .navigationBarTitleDisplayMode(.inline)
+        .doseEntrySheet(
+            $newEntry,
+            model: model,
+            onDismiss: finishAdding,
+            onSaved: onSaved,
+            onAdded: { addedEntry = $0 }
+        )
     }
 
     private func choiceRow(_ entry: Entry) -> some View {

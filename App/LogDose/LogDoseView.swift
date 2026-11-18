@@ -14,10 +14,11 @@ struct LogDoseView: View {
     @State private var selectionTicks = 0
     @State private var saveTicks = 0
     @State private var isShowingNewMedication = false
-    @State private var isShowingNewEntry = false
-    @State private var isShowingReadingChoice = false
-    /// The reading the person picked, or the one a new entry became. Nil means the newest in the window.
+    @State private var newEntry: DoseEntryRequest?
+    /// The reading the person picked in Choose an Entry. Nil means the newest in the window.
     @State private var manualReadingID: UUID?
+    /// The entry logged for this dose. It stays the reading while it is not after the dose, whatever the window.
+    @State private var linkedReadingID: UUID?
     /// Made once per opening, so a second tap on Save logs the same dose again.
     @State private var doseID = UUID()
     /// The time the person set by hand. Nil while unedited, so the dose follows the clock until it is saved.
@@ -61,9 +62,10 @@ struct LogDoseView: View {
                             .accessibilityIdentifier("dose-add-medication")
                         }
                         BeforeThisDoseSection(
-                            reading: { reading(at: takenAtNow) },
-                            onChoose: { isShowingReadingChoice = true },
-                            onLog: { isShowingNewEntry = true }
+                            reading: reading(at: takenAtNow),
+                            prompt: .forDose(at: takenAtNow, now: minuteClock),
+                            onLog: { newEntry = DoseEntryRequest(doseAt: takenAtNow) },
+                            destination: readingChoice
                         )
                         if checkedMedication != nil {
                             DoseCheckInSection(checkIn: $checkIn)
@@ -109,23 +111,7 @@ struct LogDoseView: View {
             .sheet(isPresented: $isShowingNewMedication) {
                 MedicationFormView(medications: medications, onSaved: medicationSaved)
             }
-            .sheet(isPresented: $isShowingNewEntry) {
-                NewEntryView(
-                    model: model,
-                    onSaved: { saveTicks += 1 },
-                    onAdded: readingAdded
-                )
-            }
-            .sheet(isPresented: $isShowingReadingChoice) {
-                ReadingChoiceView(
-                    entries: ReadingWindow.entries(in: model.entries, before: takenAtNow),
-                    model: model,
-                    chosenID: reading(at: takenAtNow)?.id,
-                    onPick: { manualReadingID = $0.id },
-                    onAdded: readingAdded,
-                    onSaved: { saveTicks += 1 }
-                )
-            }
+            .doseEntrySheet($newEntry, model: model, onSaved: { saveTicks += 1 }, onAdded: readingAdded)
             .sensoryFeedback(.selection, trigger: selectionTicks)
             .sensoryFeedback(.success, trigger: saveTicks)
             .onAppear { medications.reload() }
@@ -137,10 +123,16 @@ struct LogDoseView: View {
     }
 
     private var hasChanges: Bool {
-        LogDoseDraft(selectedID: selectedID, takenAt: chosenTakenAt, manualReadingID: manualReadingID, checkIn: checkIn)
-            .hasChanges(in: LogDoseContext(
-                preselected: preselected, active: active, entries: model.entries, now: minuteClock
-            ))
+        LogDoseDraft(
+            selectedID: selectedID,
+            takenAt: chosenTakenAt,
+            manualReadingID: manualReadingID,
+            linkedReadingID: linkedReadingID,
+            checkIn: checkIn
+        )
+        .hasChanges(in: LogDoseContext(
+            preselected: preselected, active: active, entries: model.entries, now: minuteClock
+        ))
     }
 
     private var checkedID: UUID? {
@@ -159,7 +151,7 @@ struct LogDoseView: View {
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
     private func dateSection(scrolling proxy: ScrollViewProxy) -> some View {
         CardSection(id: "date") {
-            DateSection(date: dateBinding, onOpen: { scrollToDate(proxy) })
+            DateSection(date: dateBinding, showsChevron: false, onOpen: { scrollToDate(proxy) })
                 .fillsCardRow()
                 .id(Self.dateBlockID)
         }
@@ -180,11 +172,29 @@ struct LogDoseView: View {
     }
 
     private func reading(at time: Date) -> Entry? {
-        ReadingWindow.pick(manualReadingID, in: model.entries, before: time)
+        ReadingLink.resolve(linked: linkedReadingID, manual: manualReadingID, in: model.entries, at: time)
+    }
+
+    private func readingChoice() -> some View {
+        ReadingChoiceView(
+            entries: model.entries,
+            model: model,
+            chosenID: reading(at: takenAtNow)?.id,
+            doseAt: takenAtNow,
+            onPick: readingPicked,
+            onAdded: readingAdded,
+            onSaved: { saveTicks += 1 }
+        )
+    }
+
+    private func readingPicked(_ picked: Entry) {
+        manualReadingID = picked.id
+        linkedReadingID = nil
     }
 
     private func readingAdded(_ saved: Entry) {
-        manualReadingID = saved.id
+        linkedReadingID = saved.id
+        manualReadingID = nil
     }
 
     private func medicationRow(_ medication: Medication) -> some View {
@@ -223,6 +233,7 @@ struct LogDoseView: View {
             takenAt: takenAtNow,
             entries: model.entries,
             manualReadingID: manualReadingID,
+            linkedReadingID: linkedReadingID,
             loggedAt: .now
         )
         dose.checkInAfter = checkIn.checkInAfter
