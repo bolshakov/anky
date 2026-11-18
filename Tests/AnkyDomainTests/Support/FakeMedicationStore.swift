@@ -69,7 +69,7 @@ import Foundation
         return doseContents
     }
 
-    func logDose(_ dose: Dose) throws {
+    func logDose(_ dose: Dose, remembering memory: ReadingMemory?) throws {
         if writeFailure {
             throw MedicationStoreError.notSaved
         }
@@ -78,6 +78,9 @@ import Foundation
         }
         doseContents.append(dose)
         contents[index].checkInAfter = dose.checkInAfter
+        if let memory {
+            contents[index].readingMemory = memory
+        }
     }
 
     func replaceDose(_ dose: Dose) throws {

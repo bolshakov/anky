@@ -65,11 +65,18 @@ import Observation
     }
 
     public func logDose(_ dose: Dose) throws {
+        try logDose(dose, remembering: nil)
+    }
+
+    public func logDose(_ dose: Dose, remembering memory: ReadingMemory?) throws {
         try loadIfNeeded()
-        try store.logDose(dose)
+        try store.logDose(dose, remembering: memory)
         doses.append(dose)
         guard let index = medications.firstIndex(where: { $0.id == dose.medicationID }) else { return }
         medications[index].checkInAfter = dose.checkInAfter
+        if let memory {
+            medications[index].readingMemory = memory
+        }
     }
 
     public func replaceDose(_ dose: Dose) throws {

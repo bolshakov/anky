@@ -80,10 +80,13 @@ import SwiftData
         }
     }
 
-    public func logDose(_ dose: Dose) throws {
+    public func logDose(_ dose: Dose, remembering memory: ReadingMemory?) throws {
         let medication = try record(id: dose.medicationID)
         context.insert(DoseRecord(dose))
         medication.checkInAfterMinutes = dose.checkInAfter?.rawValue
+        if let memory {
+            medication.readingMemory = memory.rawValue
+        }
         try commit()
     }
 

@@ -69,6 +69,23 @@ import Testing
         #expect(inner.doseContents == [dose])
     }
 
+    @Test func aDoseLogForwardsItsRememberedChoiceThroughTheOpenedStore() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let store = DeferredMedicationStore { inner }
+        try store.logDose(Dose(id: UUID(), medicationID: zorblex.id, takenAt: date), remembering: ReadingMemory.none)
+        #expect(try inner.all().first?.readingMemory == ReadingMemory.none)
+    }
+
+    @Test func aDoseLogWithNoChoiceForwardsNoChoice() throws {
+        var zorblex = medication("Zorblex")
+        zorblex.readingMemory = .entry
+        let inner = FakeMedicationStore([zorblex])
+        let store = DeferredMedicationStore { inner }
+        try store.logDose(Dose(id: UUID(), medicationID: zorblex.id, takenAt: date))
+        #expect(try inner.all().first?.readingMemory == .entry)
+    }
+
     @Test func aDoseReplaceForwardsThroughTheOpenedStore() throws {
         let zorblex = medication("Zorblex")
         let original = Dose(id: UUID(), medicationID: zorblex.id, takenAt: date)
