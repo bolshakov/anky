@@ -2,54 +2,49 @@
 import AnkyDomain
 import SwiftUI
 
-/// The reading before a dose, or the row that logs one when there is none. The title is the same in both states.
-struct BeforeThisDoseSection: View {
-    let reading: () -> Entry?
-    let onChoose: () -> Void
-    let onLog: () -> Void
+/// The words of the "Log how you feel" action, which say whether the dose is being logged as it happens or after.
+struct ReadingPromptText: View {
+    let prompt: ReadingPrompt
 
     var body: some View {
-        let entry = reading()
+        switch prompt {
+        case .now: Text("Log how you feel now")
+        case .earlier: Text("Log how you felt")
+        }
+    }
+}
+
+/// The reading before a dose, which pushes Choose an Entry, or the row that logs one when there is none. The title is
+/// the same in both states.
+struct BeforeThisDoseSection<Destination: View>: View {
+    let reading: Entry?
+    let prompt: ReadingPrompt
+    let onLog: () -> Void
+    @ViewBuilder let destination: () -> Destination
+
+    var body: some View {
         CardSection(
             Text("Before this dose"),
-            footnote: entry.map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
+            footnote: reading.map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
             id: "before-reading"
         ) {
-            row(entry)
+            row
         }
     }
 
     @ViewBuilder
-    private func row(_ entry: Entry?) -> some View {
-        if let entry {
-            Button(action: onChoose) {
-                HStack(spacing: Spacing.rowContentGap) {
-                    EntryIconRow(entry: entry)
-                        .spokenAsReading()
-                    chevron
-                }
+    private var row: some View {
+        if let reading {
+            NavigationLink(destination: destination) {
+                EntryIconRow(entry: reading)
+                    .spokenAsReading()
             }
-            .buttonStyle(.plain)
             .accessibilityIdentifier("before-reading-row")
         } else {
             Button(action: onLog) {
-                HStack(spacing: Spacing.rowContentGap) {
-                    Text("Log how you feel now")
-                        .foregroundStyle(.tint)
-                    Spacer()
-                    chevron
-                }
-                .contentShape(Rectangle())
+                ReadingPromptText(prompt: prompt)
             }
-            .buttonStyle(.plain)
             .accessibilityIdentifier("log-how-you-feel-row")
         }
-    }
-
-    private var chevron: some View {
-        Image(systemName: "chevron.right")
-            .font(.footnote.weight(.semibold))
-            .foregroundStyle(.tertiary)
-            .accessibilityHidden(true)
     }
 }

@@ -2717,6 +2717,16 @@
         }
       }
     },
+    "Log how you felt" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметь самочувствие тогда"
+          }
+        }
+      }
+    },
     "Tap + to log how you feel or a dose. Everything stays on this iPhone." : {
       "localizations" : {
         "en" : {

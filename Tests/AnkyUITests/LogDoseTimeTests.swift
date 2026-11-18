@@ -46,8 +46,8 @@ final class LogDoseTimeTests: XCTestCase {
         XCTAssertNotEqual(saveDoseTimedNow(in: app), opened)
     }
 
-    /// The person sets the time an hour back, so an entry logged now is later than the dose and is not its reading.
-    func testATimeSetByHandIsKeptAndAnEntryLoggedAfterItDoesNotMoveIt() throws {
+    /// The person sets the time an hour back, and the row's entry opens dated at that time, so it is the reading.
+    func testATimeSetByHandIsKeptAndAnEntryLoggedFromTheRowIsDatedAtItAndBecomesTheReading() throws {
         continueAfterFailure = false
         let hour = Calendar.current.component(.hour, from: .now)
         try XCTSkipIf(hour < 2, "An hour back falls on the day before before 02:00. Run after 02:00.")
@@ -58,10 +58,10 @@ final class LogDoseTimeTests: XCTestCase {
         openHowYouFeel(app)
         saveFourOfTenFromNewEntry(app)
 
-        XCTAssertTrue(app.buttons["log-how-you-feel-row"].waitForExistence(timeout: 10))
-        XCTAssertFalse(app.buttons["before-reading-row"].exists)
+        XCTAssertTrue(app.buttons["before-reading-row"].waitForExistence(timeout: 10))
+        XCTAssertFalse(app.buttons["log-how-you-feel-row"].exists)
         XCTAssertEqual(saveDose(in: app), chosen)
-        XCTAssertFalse(doseRow(in: app).label.contains("of 10"), doseRow(in: app).label)
+        XCTAssertTrue(doseRow(in: app).label.contains("4 of 10"), doseRow(in: app).label)
     }
 
     /// The reading is the entry the chooser logs, saved a minute after Log Dose opened, and the dose is saved after it.
@@ -75,7 +75,7 @@ final class LogDoseTimeTests: XCTestCase {
         saveFourOfTenFromNewEntry(app)
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForExistence(timeout: 10))
         let fourOfTen = app.buttons.matching(identifier: "reading-option")
         XCTAssertEqual(fourOfTen.count, 1)
         XCTAssertTrue(readingValue(fourOfTen.element(boundBy: 0)).contains("4 of 10"))
@@ -84,17 +84,17 @@ final class LogDoseTimeTests: XCTestCase {
         XCTAssertTrue(entryScreen(app).waitForExistence(timeout: 10))
         setSeverity(3, in: app)
         saveEntry(app)
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForNonExistence(timeout: 10))
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForExistence(timeout: 10))
         let both = app.buttons.matching(identifier: "reading-option")
         XCTAssertEqual(both.count, 2)
         XCTAssertTrue(readingValue(both.element(boundBy: 0)).contains("3 of 10"))
         XCTAssertTrue(both.element(boundBy: 0).isSelected)
         XCTAssertTrue(readingValue(both.element(boundBy: 1)).contains("4 of 10"))
-        app.buttons["reading-cancel"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        goBackFromChooseAnEntry(app)
+        XCTAssertTrue(chooseAnEntryBar(app).waitForNonExistence(timeout: 10))
         let entered = clockTime(at: .now)
 
         waitForMinuteToChange(from: entered)

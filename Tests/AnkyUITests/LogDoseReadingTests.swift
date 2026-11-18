@@ -35,7 +35,7 @@ final class LogDoseReadingTests: XCTestCase {
         saveFourOfTenFromNewEntry(app)
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForExistence(timeout: 10))
         XCTAssertEqual(app.buttons.matching(identifier: "reading-option").count, 1)
         XCTAssertTrue(app.buttons["reading-log-new"].exists)
         let list = app.collectionViews.containing(.button, identifier: "reading-log-new")
@@ -51,7 +51,7 @@ final class LogDoseReadingTests: XCTestCase {
 
         logThreeOfTenFromChooser(app)
 
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForNonExistence(timeout: 10))
         XCTAssertTrue(entryScreen(app).waitForNonExistence(timeout: 10))
         let before = app.buttons["before-reading-row"]
         XCTAssertTrue(before.label.contains("3 of 10"), before.label)
@@ -66,7 +66,7 @@ final class LogDoseReadingTests: XCTestCase {
         logThreeOfTenFromChooser(app)
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForExistence(timeout: 10))
         let options = app.buttons.matching(identifier: "reading-option")
         XCTAssertEqual(options.count, 2)
         XCTAssertTrue(readingValue(options.element(boundBy: 0)).contains("3 of 10"))
@@ -75,16 +75,16 @@ final class LogDoseReadingTests: XCTestCase {
         XCTAssertFalse(options.element(boundBy: 1).isSelected)
         options.element(boundBy: 1).tap()
 
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["before-reading-row"].label.contains("4 of 10"))
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForExistence(timeout: 10))
         XCTAssertFalse(app.buttons.matching(identifier: "reading-option").element(boundBy: 0).isSelected)
         XCTAssertTrue(app.buttons.matching(identifier: "reading-option").element(boundBy: 1).isSelected)
-        app.buttons["reading-cancel"].tap()
+        goBackFromChooseAnEntry(app)
 
-        XCTAssertTrue(app.buttons["reading-cancel"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(chooseAnEntryBar(app).waitForNonExistence(timeout: 10))
         XCTAssertTrue(app.buttons["before-reading-row"].label.contains("4 of 10"))
     }
 
