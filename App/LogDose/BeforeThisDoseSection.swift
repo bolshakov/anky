@@ -58,7 +58,7 @@ struct BeforeThisDoseSection<Destination: View>: View {
                     .spokenAsReading()
             }
             .accessibilityIdentifier("before-reading-row")
-            .removeSwipe(onRemove)
+            .removeSwipe(id: "before-reading-remove", onRemove)
         } else if showsNone {
             NavigationLink(destination: destination) {
                 Text("None")
@@ -76,14 +76,15 @@ struct BeforeThisDoseSection<Destination: View>: View {
     }
 }
 
-private extension View {
+extension View {
+    /// The quiet, reversible swipe that unlinks a reading. It is not `deleteSwipe`, which is a destructive red trash.
     @ViewBuilder
-    func removeSwipe(_ onRemove: (() -> Void)?) -> some View {
+    func removeSwipe(id: String, _ onRemove: (() -> Void)?) -> some View {
         if let onRemove {
             swipeActions(edge: .trailing, allowsFullSwipe: true) {
                 Button("Remove", systemImage: "xmark", action: onRemove)
                     .tint(Color.ink2)
-                    .accessibilityIdentifier("before-reading-remove")
+                    .accessibilityIdentifier(id)
             }
         } else {
             self

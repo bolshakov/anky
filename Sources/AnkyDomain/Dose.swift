@@ -38,20 +38,31 @@ public struct Dose: Identifiable, Equatable, Sendable {
     }
 
     /// The check-in delay is the dose's own, so a move to another medication does not take that medication's delay.
-    public func moved(to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?) -> Dose {
+    /// `afterReadingID` is double-optional so that leaving it out keeps the stored after reading, `.some(nil)` clears
+    /// it, and a plain id or optional variable replaces it. A bare `nil` literal also keeps it.
+    public func moved(
+        to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?, afterReadingID: UUID?? = nil
+    ) -> Dose {
         var dose = self
         dose.medicationID = medicationID
         dose.takenAt = takenAt
         dose.beforeReadingID = beforeReadingID
+        if let afterReadingID {
+            dose.afterReadingID = afterReadingID
+        }
         return dose
     }
 
-    /// The time compares at the minute, since the date wheel drops the seconds a saved dose carries.
+    /// The time compares at the minute, since the date wheel drops the seconds a saved dose carries. Leaving out
+    /// `afterReadingID` counts the stored after reading as unchanged.
     public func isMoved(
-        to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?, calendar: Calendar = .current
+        to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?, afterReadingID: UUID?? = nil,
+        calendar: Calendar = .current
     ) -> Bool {
+        // #lizard forgives
         medicationID != self.medicationID
             || beforeReadingID != self.beforeReadingID
+            || afterReadingID.map { $0 != self.afterReadingID } ?? false
             || !calendar.isDate(takenAt, equalTo: self.takenAt, toGranularity: .minute)
     }
 }

@@ -17,6 +17,7 @@ struct EditDoseView: View {
     /// What the before row points at. A time moved before an entry shows None, and a time moved back shows the entry
     /// again.
     @State private var before: EditDoseBefore
+    @State private var isAfterRemoved = false
     @State private var newEntry: DoseEntryRequest?
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
@@ -104,7 +105,13 @@ struct EditDoseView: View {
     private var hasChanges: Bool {
         guard let selectedID else { return false }
         return dose.moved(to: dose.medicationID, at: dose.takenAt, beforeReadingID: savedReadingID)
-            .isMoved(to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID)
+            .isMoved(
+                to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID, afterReadingID: keptAfterReadingID
+            )
+    }
+
+    private var keptAfterReadingID: UUID? {
+        isAfterRemoved ? nil : dose.afterReadingID
     }
 
     private var resolvedReadingID: UUID? {
@@ -118,11 +125,12 @@ struct EditDoseView: View {
         }
     }
 
-    /// The dose keeps its own check-in delay and its after-reading. The medication, the time and the before-reading
-    /// come from the form.
+    /// The dose keeps its own check-in delay. The medication, the time and both readings come from the form.
     private func saveChanges() {
         guard let selectedID else { return }
-        let edited = dose.moved(to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID)
+        let edited = dose.moved(
+            to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID, afterReadingID: keptAfterReadingID
+        )
         do {
             let saved = try doseSave.save(edited, log: medications.replaceDose)
             if saved {
@@ -154,7 +162,7 @@ struct EditDoseView: View {
             footnote: Text("The entry used for this dose. Tap to choose another."),
             destination: readingChoice
         )
-        if let after = readings.after {
+        if let after = readings.after, !isAfterRemoved {
             CardSection(Text(afterLabel(after)), id: "after-reading") {
                 NavigationLink {
                     readingEditor(after)
@@ -163,6 +171,7 @@ struct EditDoseView: View {
                         .spokenAsReading()
                 }
                 .accessibilityIdentifier("after-reading-row")
+                .removeSwipe(id: "after-reading-remove") { isAfterRemoved = true }
             }
         }
     }

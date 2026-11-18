@@ -44,4 +44,36 @@ struct DoseMovedTests {
 
         #expect(original.moved(to: original.medicationID, at: date, beforeReadingID: nil).beforeReadingID == nil)
     }
+
+    @Test func aMoveWithAClearedAfterReadingStoresNil() {
+        var original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
+        original.afterReadingID = UUID()
+
+        let moved = original.moved(
+            to: original.medicationID,
+            at: date,
+            beforeReadingID: nil,
+            afterReadingID: .some(nil)
+        )
+
+        #expect(moved.afterReadingID == nil)
+    }
+
+    @Test func aMoveWithNoAfterReadingArgumentKeepsTheStoredOne() {
+        var original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
+        original.afterReadingID = UUID()
+
+        let moved = original.moved(to: UUID(), at: date.addingTimeInterval(600), beforeReadingID: nil)
+
+        #expect(moved.afterReadingID == original.afterReadingID)
+    }
+
+    @Test func aMoveWritesTheAfterReadingItIsGiven() {
+        let original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
+        let linked = UUID()
+
+        let moved = original.moved(to: original.medicationID, at: date, beforeReadingID: nil, afterReadingID: linked)
+
+        #expect(moved.afterReadingID == linked)
+    }
 }
