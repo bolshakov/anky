@@ -10,21 +10,14 @@ struct LogDoseView: View {
     let onSaved: () -> Void
     private let preselected: UUID?
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedID: UUID?
+    @State private var draft: LogDoseDraft
     @State private var selectionTicks = 0
     @State private var saveTicks = 0
     @State private var newEntry: DoseEntryRequest?
-    /// The reading the person picked in Choose an Entry. Nil means the newest in the window.
-    @State private var manualReadingID: UUID?
-    /// The entry logged for this dose. It stays the reading while it is not after the dose, whatever the window.
-    @State private var linkedReadingID: UUID?
     /// Made once per opening, so a second tap on Save logs the same dose again.
     @State private var doseID = UUID()
-    /// The time the person set by hand. Nil while unedited, so the dose follows the clock until it is saved.
-    @State private var chosenTakenAt: Date?
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
-    @State private var checkIn = DoseCheckIn(savedDelay: nil)
     @State private var checkInBuiltFor: UUID?
     /// The clock as of the last minute tick, so the change rule sees the time move while the person has set one.
     @State private var minuteClock = Date.now
@@ -39,7 +32,7 @@ struct LogDoseView: View {
         self.model = model
         self.onSaved = onSaved
         self.preselected = preselected
-        _selectedID = State(initialValue: preselected)
+        _draft = State(initialValue: .untouched(preselected: preselected, active: medications.active))
     }
 
     var body: some View {
@@ -58,12 +51,14 @@ struct LogDoseView: View {
                         }
                         BeforeThisDoseSection(
                             reading: reading(at: takenAtNow),
+                            isNone: draft.noReading,
                             prompt: .forDose(at: takenAtNow, now: minuteClock),
                             onLog: { newEntry = DoseEntryRequest(doseAt: takenAtNow) },
+                            onRemove: removal,
                             destination: readingChoice
                         )
                         if checkedMedication != nil {
-                            DoseCheckInSection(checkIn: $checkIn)
+                            DoseCheckInSection(checkIn: $draft.checkIn)
                         }
                         dateSection(scrolling: proxy)
                     }
@@ -103,15 +98,18 @@ struct LogDoseView: View {
                 Button("OK") {}
             }
             .onChange(of: active) {
-                selectedID = MedicationSelection.kept(selectedID, in: active)
+                draft.selectedID = MedicationSelection.kept(draft.selectedID, in: active)
+            }
+            .onChange(of: checkedID) {
+                draft = draft.changingMedication(to: draft.selectedID, in: formContext)
             }
             .onChange(of: checkedID, initial: true) {
                 guard checkedID != checkInBuiltFor else { return }
                 checkInBuiltFor = checkedID
-                checkIn = DoseCheckIn(savedDelay: checkedMedication?.checkInAfter)
+                draft.checkIn = DoseCheckIn(savedDelay: checkedMedication?.checkInAfter)
             }
             .onChange(of: checkedMedication?.checkInAfter) { old, new in
-                checkIn = checkIn.following(savedDelay: new, from: old)
+                draft.checkIn = draft.checkIn.following(savedDelay: new, from: old)
             }
             .doseEntrySheet($newEntry, model: model, onSaved: { saveTicks += 1 }, onAdded: readingAdded)
             .sensoryFeedback(.selection, trigger: selectionTicks)
@@ -120,30 +118,25 @@ struct LogDoseView: View {
         }
     }
 
+    private var removal: (() -> Void)? {
+        guard reading(at: takenAtNow) != nil else { return nil }
+        return { pickNone() }
+    }
+
     private var active: [Medication] {
         medications.active
     }
 
     private var hasChanges: Bool {
-        LogDoseDraft(
-            selectedID: selectedID,
-            takenAt: chosenTakenAt,
-            manualReadingID: manualReadingID,
-            linkedReadingID: linkedReadingID,
-            noReading: startsAtNone,
-            checkIn: checkIn
-        )
-        .hasChanges(in: LogDoseContext(
-            preselected: preselected, active: active, entries: model.entries, now: minuteClock
-        ))
+        draft.hasChanges(in: formContext)
     }
 
-    private var startsAtNone: Bool {
-        manualReadingID == nil && linkedReadingID == nil && ReadingStart.forMedication(checkedMedication) == .none
+    private var formContext: LogDoseContext {
+        LogDoseContext(preselected: preselected, active: active, entries: model.entries, now: minuteClock)
     }
 
     private var checkedID: UUID? {
-        MedicationSelection.kept(selectedID, in: active)
+        MedicationSelection.kept(draft.selectedID, in: active)
     }
 
     private var checkedMedication: Medication? {
@@ -152,7 +145,7 @@ struct LogDoseView: View {
 
     /// The dose time as the clock has it now while the person has not set one.
     private var takenAtNow: Date {
-        chosenTakenAt ?? .now
+        draft.takenAt ?? .now
     }
 
     /// The date row redraws each minute while unedited, so the time it shows is the clock's.
@@ -174,12 +167,18 @@ struct LogDoseView: View {
     private var dateBinding: Binding<Date> {
         Binding(
             get: { takenAtNow },
-            set: { chosenTakenAt = $0 }
+            set: { draft.takenAt = $0 }
         )
     }
 
     private func reading(at time: Date) -> Entry? {
-        ReadingLink.resolve(linked: linkedReadingID, manual: manualReadingID, in: model.entries, at: time)
+        ReadingLink.resolve(
+            linked: draft.linkedReadingID,
+            manual: draft.manualReadingID,
+            noReading: draft.noReading,
+            in: model.entries,
+            at: time
+        )
     }
 
     private func readingChoice() -> some View {
@@ -188,6 +187,8 @@ struct LogDoseView: View {
             model: model,
             chosenID: reading(at: takenAtNow)?.id,
             doseAt: takenAtNow,
+            isNoneChosen: draft.noReading,
+            onPickNone: pickNone,
             onPick: readingPicked,
             onAdded: readingAdded,
             onSaved: { saveTicks += 1 }
@@ -195,13 +196,22 @@ struct LogDoseView: View {
     }
 
     private func readingPicked(_ picked: Entry) {
-        manualReadingID = picked.id
-        linkedReadingID = nil
+        draft.manualReadingID = picked.id
+        draft.linkedReadingID = nil
+        draft.noReading = false
+        draft.readingTouched = true
     }
 
     private func readingAdded(_ saved: Entry) {
-        linkedReadingID = saved.id
-        manualReadingID = nil
+        draft.linkedReadingID = saved.id
+        draft.manualReadingID = nil
+        draft.noReading = false
+        draft.readingTouched = true
+    }
+
+    private func pickNone() {
+        draft.noReading = true
+        draft.readingTouched = true
     }
 
     private func saveDose() {
@@ -211,11 +221,12 @@ struct LogDoseView: View {
             medication: medication,
             takenAt: takenAtNow,
             entries: model.entries,
-            manualReadingID: manualReadingID,
-            linkedReadingID: linkedReadingID,
+            manualReadingID: draft.manualReadingID,
+            linkedReadingID: draft.linkedReadingID,
+            noReading: draft.noReading,
             loggedAt: .now
         )
-        dose.checkInAfter = checkIn.checkInAfter
+        dose.checkInAfter = draft.checkIn.checkInAfter
         do {
             let logged = try doseSave.save(dose, log: medications.logDose)
             if logged {
@@ -229,14 +240,14 @@ struct LogDoseView: View {
 
     private func select(_ medication: Medication) {
         guard medication.id != checkedID else { return }
-        selectedID = medication.id
+        draft.selectedID = medication.id
         selectionTicks += 1
     }
 
     /// The medication the form just wrote becomes the chosen row, wherever it sorts in the active list. Choosing it
     /// does not tick, because the success haptic plays instead.
     private func medicationSaved(_ id: Medication.ID) {
-        selectedID = id
+        draft.selectedID = id
         saveTicks += 1
     }
 }
