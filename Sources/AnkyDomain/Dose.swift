@@ -21,7 +21,7 @@ public struct Dose: Identifiable, Equatable, Sendable {
     // swiftlint:disable:next function_parameter_count
     public static func logged(
         id: UUID, medication: Medication, takenAt: Date, entries: [Entry], manualReadingID: UUID? = nil,
-        linkedReadingID: UUID? = nil, loggedAt: Date
+        linkedReadingID: UUID? = nil, noReading: Bool = false, loggedAt: Date
     ) -> Dose {
         // #lizard forgives
         var dose = Dose(
@@ -29,7 +29,7 @@ public struct Dose: Identifiable, Equatable, Sendable {
             medicationID: medication.id,
             takenAt: takenAt,
             beforeReadingID: ReadingLink.resolve(
-                linked: linkedReadingID, manual: manualReadingID, in: entries, at: takenAt
+                linked: linkedReadingID, manual: manualReadingID, noReading: noReading, in: entries, at: takenAt
             )?.id
         )
         dose.checkInAfter = medication.checkInAfter
