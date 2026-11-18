@@ -12,7 +12,10 @@
     /// BASDAI results to the `report-short` log, and `report-common` writes entries naming two places, one medication
     /// with doses and one BASDAI result two days back. `basdai-rows` writes one entry a minute back, two BASDAI
     /// results two and three minutes back scored 3.0 and 6.5, and one result three days back. `today-full` writes 14
-    /// entries dated today, each at or before now, so Today's list scrolls. A log that holds anything is left alone.
+    /// entries dated today, each at or before now, so Today's list scrolls. `readings` writes three medications, a Pain
+    /// entry 20 minutes back and a Stiffness entry 40 minutes back, and four doses on Today for the walks of the
+    /// reading
+    /// before a dose. A log that holds anything is left alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -27,6 +30,8 @@
                 plantTodayFull(entries: entries, now: now)
             case "reading-aging":
                 try? entries.add(entry(minutesBefore: 118, now: now))
+            case "readings":
+                plantReadings(entries: entries, medications: medications, now: now)
             case "basdai-rows":
                 plantBasdaiRows(entries: entries, basdai: basdai, now: now)
             case "schedule-months":
@@ -79,6 +84,42 @@
             }
         }
 
+        private static func plantReadings(entries: EntryLogModel, medications: MedicationsModel, now: Date) {
+            let asNeeded = Medication(id: UUID(), name: "Asneeded", takenAs: .asNeeded, createdAt: now)
+            let second = Medication(id: UUID(), name: "Second", takenAs: .asNeeded, createdAt: now)
+            var scheduled = Medication(id: UUID(), name: "Scheduled", takenAs: .scheduled, createdAt: now)
+            scheduled.schedule = try? MedicationSchedule(
+                repeat: .days(1),
+                times: DoseTime(hour: 9, minute: 0).map { [$0] } ?? [],
+                start: ScheduleDay(now, in: Calendar.current.timeZone),
+                end: nil
+            )
+            for medication in [asNeeded, second, scheduled] {
+                try? medications.add(medication)
+            }
+            let pain = entry(kind: .pain, minutesBefore: 20, now: now)
+            let stiffness = entry(kind: .stiffness, minutesBefore: 40, now: now)
+            try? entries.add(pain)
+            try? entries.add(stiffness)
+            try? medications.logDose(dose(of: asNeeded, takenAt: date(minutes: 15, before: now), before: stiffness))
+            try? medications.logDose(dose(of: asNeeded, takenAt: date(minutes: 180, before: now)))
+            try? medications.logDose(dose(of: second, takenAt: date(minutes: 10, before: now)))
+            try? medications.logDose(dose(of: scheduled, takenAt: date(minutes: 50, before: now), after: stiffness))
+        }
+
+        private static func date(minutes: Int, before now: Date) -> Date {
+            now.addingTimeInterval(-TimeInterval(minutes) * 60)
+        }
+
+        private static func dose(
+            of medication: Medication, takenAt: Date, before: Entry? = nil, after: Entry? = nil
+        ) -> Dose {
+            var dose = Dose(id: UUID(), medicationID: medication.id, takenAt: takenAt, beforeReadingID: before?.id)
+            dose.afterReadingID = after?.id
+            dose.loggedAt = takenAt
+            return dose
+        }
+
         private static func plantBasdaiRows(entries: EntryLogModel, basdai: BasdaiModel, now: Date) {
             try? entries.add(entry(minutesBefore: 1, now: now))
             addResult([3, 3, 3, 3, 3, 3], at: now.addingTimeInterval(-2 * 60), to: basdai)
@@ -114,6 +155,17 @@
 
         private static func entry(minutesBefore minutes: Int, now: Date) -> Entry {
             entry(index: 0, at: now.addingTimeInterval(-TimeInterval(minutes) * 60))
+        }
+
+        private static func entry(kind: EntryKind, minutesBefore minutes: Int, now: Date) -> Entry {
+            Entry(
+                id: UUID(),
+                kind: kind,
+                severity: Severity(4) ?? Severity(nearestToFraction: 0),
+                date: date(minutes: minutes, before: now),
+                note: nil,
+                places: []
+            )
         }
 
         private static func entry(index: Int, at date: Date) -> Entry {

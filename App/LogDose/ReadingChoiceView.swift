@@ -3,13 +3,14 @@ import AnkyDomain
 import SwiftUI
 
 /// The readings a dose can point at, newest first, with a check mark on the one in use. It is pushed from the form's
-/// Before this dose row and has no choice of no reading: a dose without one is logged from the "Log how you feel" row
-/// on Log Dose, or left with none on Edit Dose.
+/// Before this dose row. A caller that passes `onPickNone` gets a first card with None, ticked while `isNoneChosen`.
 struct ReadingChoiceView: View {
     let entries: [Entry]
     let model: EntryLogModel
     let chosenID: UUID?
     let doseAt: Date
+    var isNoneChosen = false
+    var onPickNone: (() -> Void)?
     let onPick: (Entry) -> Void
     let onAdded: (Entry) -> Void
     let onSaved: () -> Void
@@ -20,6 +21,15 @@ struct ReadingChoiceView: View {
 
     var body: some View {
         List {
+            if let onPickNone {
+                CardSection(id: "reading-choices-none") {
+                    TintRow(Text("None"), isSelected: isNoneChosen) {
+                        onPickNone()
+                        dismiss()
+                    }
+                    .accessibilityIdentifier("reading-none")
+                }
+            }
             CardSection(id: "reading-choices") {
                 ForEach(ReadingWindow.entries(in: entries, before: doseAt)) { entry in
                     choiceRow(entry)
