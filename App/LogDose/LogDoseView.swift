@@ -79,13 +79,23 @@ struct LogDoseView: View {
             .toolbar {
                 if !medications.medications.isEmpty {
                     ToolbarItem(placement: .primaryAction) {
-                        NavigationLink("Manage") {
+                        NavigationLink {
                             MedicationsView(medications: medications)
+                        } label: {
+                            Label("Manage", systemImage: "pills")
                         }
                         .minimumTapTarget()
                         .accessibilityIdentifier("log-dose-manage")
                     }
                     ToolbarSpacer(.fixed, placement: .primaryAction)
+                }
+                ToolbarItem(placement: .principal) {
+                    Text("Log Dose")
+                        .font(.headline)
+                        .dynamicTypeSize(...DynamicTypeSize.large)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                        .accessibilityAddTraits(.isHeader)
                 }
             }
             .saveToolbarItem(id: "save-dose", isEnabled: checkedID != nil, action: saveDose)
