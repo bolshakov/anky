@@ -15,17 +15,18 @@ struct ReadingPromptText: View {
 }
 
 /// The reading before a dose, which pushes Choose an Entry, or the row that logs one when there is none. The title is
-/// the same in both states.
+/// the same in both states. A screen with no prompt has no row that logs one, so its empty row reads None and pushes.
 struct BeforeThisDoseSection<Destination: View>: View {
     let reading: Entry?
-    let prompt: ReadingPrompt
-    let onLog: () -> Void
+    let prompt: ReadingPrompt?
+    var onLog: () -> Void = {}
+    var footnote = Text("Your latest entry before this dose. Tap to choose another.")
     @ViewBuilder let destination: () -> Destination
 
     var body: some View {
         CardSection(
             Text("Before this dose"),
-            footnote: reading.map { _ in Text("Your latest entry before this dose. Tap to choose another.") },
+            footnote: reading.map { _ in footnote },
             id: "before-reading"
         ) {
             row
@@ -40,11 +41,16 @@ struct BeforeThisDoseSection<Destination: View>: View {
                     .spokenAsReading()
             }
             .accessibilityIdentifier("before-reading-row")
-        } else {
+        } else if let prompt {
             Button(action: onLog) {
                 ReadingPromptText(prompt: prompt)
             }
             .accessibilityIdentifier("log-how-you-feel-row")
+        } else {
+            NavigationLink(destination: destination) {
+                Text("None")
+            }
+            .accessibilityIdentifier("before-reading-row")
         }
     }
 }
