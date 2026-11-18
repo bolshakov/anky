@@ -112,6 +112,52 @@ import Testing
         #expect(try inner.all().first?.checkInAfter == delay)
     }
 
+    @Test func logDoseRemembersTheChoiceInTheStoreAndTheModel() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        try model.logDose(dose(for: zorblex), remembering: ReadingMemory.none)
+        #expect(model.medications.first?.readingMemory == ReadingMemory.none)
+        #expect(try inner.all().first?.readingMemory == ReadingMemory.none)
+    }
+
+    @Test(arguments: [ReadingMemory?.none, .some(.entry)])
+    func logDoseWithNoChoiceKeepsTheRememberedOne(stored: ReadingMemory?) throws {
+        var zorblex = medication("Zorblex")
+        zorblex.readingMemory = stored
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        try model.logDose(dose(for: zorblex), remembering: nil)
+        try model.logDose(dose(for: zorblex))
+        #expect(model.medications.first?.readingMemory == stored)
+        #expect(try inner.all().first?.readingMemory == stored)
+    }
+
+    @Test func aFailedLogRemembersNothingInTheModel() throws {
+        let zorblex = medication("Zorblex")
+        let inner = FakeMedicationStore([zorblex])
+        let model = MedicationsModel(store: inner)
+        inner.writeFailure = true
+        #expect(throws: MedicationStoreError.notSaved) {
+            try model.logDose(dose(for: zorblex), remembering: .entry)
+        }
+        #expect(model.medications == [zorblex])
+        #expect(try inner.all() == [zorblex])
+    }
+
+    @Test func replaceDoseLeavesTheRememberedChoiceAlone() throws {
+        var zorblex = medication("Zorblex")
+        zorblex.readingMemory = .entry
+        let taken = dose(for: zorblex)
+        let inner = FakeMedicationStore([zorblex], doses: [taken])
+        let model = MedicationsModel(store: inner)
+        var edited = taken
+        edited.takenAt = taken.takenAt.addingTimeInterval(60)
+        try model.replaceDose(edited)
+        #expect(model.medications.first?.readingMemory == .entry)
+        #expect(try inner.all().first?.readingMemory == .entry)
+    }
+
     @Test func aFailedLogLeavesTheModelAsItWas() throws {
         let zorblex = medication("Zorblex")
         let inner = FakeMedicationStore([zorblex])

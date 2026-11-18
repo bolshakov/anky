@@ -13,6 +13,7 @@ import SwiftData
     var updatedAt: Date
     var archivedAt: Date?
     var schedule: Data?
+    var readingMemory: String?
 
     init(_ medication: Medication) throws {
         schedule = try medication.schedule.map(StoredSchedule.encoded)
@@ -24,6 +25,7 @@ import SwiftData
         createdAt = medication.createdAt
         updatedAt = medication.updatedAt
         archivedAt = medication.archivedAt
+        readingMemory = medication.readingMemory?.rawValue
     }
 
     /// Writes every field except the id and the created time.
@@ -35,6 +37,7 @@ import SwiftData
         checkInAfterMinutes = medication.checkInAfter?.rawValue
         updatedAt = medication.updatedAt
         archivedAt = medication.archivedAt
+        readingMemory = medication.readingMemory?.rawValue
     }
 
     func medication() throws -> Medication {
@@ -44,12 +47,19 @@ import SwiftData
             guard let delay = CheckInDelay(rawValue: minutes) else { throw MedicationStoreError.unreadable }
             checkIn = delay
         }
+        let memory = try readingMemory.map(Self.readMemory)
         var medication = Medication(id: id, name: name, takenAs: takenWay, createdAt: createdAt)
         medication.strength = strength
         medication.checkInAfter = checkIn
         medication.updatedAt = updatedAt
         medication.archivedAt = archivedAt
+        medication.readingMemory = memory
         medication.schedule = try schedule.map(StoredSchedule.read)
         return medication
+    }
+
+    private static func readMemory(_ raw: String) throws -> ReadingMemory {
+        guard let memory = ReadingMemory(rawValue: raw) else { throw MedicationStoreError.unreadable }
+        return memory
     }
 }

@@ -8,9 +8,10 @@ import Foundation
     func update(_ medication: Medication) throws
     func restore(id: UUID) throws
     func doses() throws -> [Dose]
-    /// Stores the dose and sets its medication's saved delay to the dose's, in one save. Throws `notSaved` for a
-    /// medication id the store does not hold.
-    func logDose(_ dose: Dose) throws
+    /// Stores the dose and sets its medication's saved delay to the dose's, in one save. A non-nil `memory` also
+    /// becomes the medication's remembered reading choice in that save, and nil leaves the stored one as it was.
+    /// Throws `notSaved` for a medication id the store does not hold.
+    func logDose(_ dose: Dose, remembering memory: ReadingMemory?) throws
     /// Replaces the stored dose with the same id, every field included. Changes no medication's saved delay. Throws
     /// `notSaved` for a dose id the store does not hold, or a medication id it does not hold.
     func replaceDose(_ dose: Dose) throws
@@ -19,6 +20,12 @@ import Foundation
     /// Deletes every medication and every dose in one commit. On failure, deletes none. On an empty store, does
     /// nothing.
     func removeAll() throws
+}
+
+public extension MedicationStore {
+    func logDose(_ dose: Dose) throws {
+        try logDose(dose, remembering: nil)
+    }
 }
 
 /// Carries no name, strength or other field, so an error text or log line cannot show a medication.

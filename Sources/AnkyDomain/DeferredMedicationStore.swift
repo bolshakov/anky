@@ -35,8 +35,8 @@ import Foundation
         try current().doses()
     }
 
-    public func logDose(_ dose: Dose) throws {
-        try current().logDose(dose)
+    public func logDose(_ dose: Dose, remembering memory: ReadingMemory?) throws {
+        try current().logDose(dose, remembering: memory)
     }
 
     public func replaceDose(_ dose: Dose) throws {
