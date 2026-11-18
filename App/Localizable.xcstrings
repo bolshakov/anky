@@ -2842,7 +2842,7 @@
           }
         }
       },
-      "comment" : "Nothing at all. Used in four places: the Schedule screen when a schedule has no end date, Edit Dose when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
+      "comment" : "Nothing at all. Used in five places: the Schedule screen when a schedule has no end date, the Before this dose row and the first row of Choose an Entry when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
     },
     "not selected" : {
       "localizations" : {
@@ -4444,6 +4444,28 @@
           }
         }
       }
+    },
+    "Not linked to an entry." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не связан с записью."
+          }
+        }
+      },
+      "comment" : "Footnote under the Before this dose row on Log Dose and Edit Dose when the dose has no reading before it, which the row shows as None. It says that the dose points at no entry."
+    },
+    "Remove" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать"
+          }
+        }
+      },
+      "comment" : "Button revealed by swiping the Before this dose row left, which removes the entry the dose points at and leaves the row at None. It does not delete the entry. It is a quiet action, so the word is Remove and not Delete."
     }
   },
   "version" : "1.0"

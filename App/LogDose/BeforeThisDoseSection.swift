@@ -15,21 +15,38 @@ struct ReadingPromptText: View {
 }
 
 /// The reading before a dose, which pushes Choose an Entry, or the row that logs one when there is none. The title is
-/// the same in both states. A screen with no prompt has no row that logs one, so its empty row reads None and pushes.
+/// the same in every state. A screen with no prompt has no row that logs one, so its empty row reads None and pushes.
+/// With an `onRemove`, a linked row can be swiped to None.
 struct BeforeThisDoseSection<Destination: View>: View {
     let reading: Entry?
+    var isNone = false
     let prompt: ReadingPrompt?
     var onLog: () -> Void = {}
+    var onRemove: (() -> Void)?
     var footnote = Text("Your latest entry before this dose. Tap to choose another.")
     @ViewBuilder let destination: () -> Destination
 
     var body: some View {
         CardSection(
             Text("Before this dose"),
-            footnote: reading.map { _ in footnote },
+            footnote: footnoteText,
             id: "before-reading"
         ) {
             row
+        }
+    }
+
+    private var showsNone: Bool {
+        isNone || prompt == nil
+    }
+
+    private var footnoteText: Text? {
+        if reading != nil {
+            footnote
+        } else if showsNone {
+            Text("Not linked to an entry.")
+        } else {
+            nil
         }
     }
 
@@ -41,16 +58,35 @@ struct BeforeThisDoseSection<Destination: View>: View {
                     .spokenAsReading()
             }
             .accessibilityIdentifier("before-reading-row")
+            .removeSwipe(onRemove)
+        } else if showsNone {
+            NavigationLink(destination: destination) {
+                Text("None")
+                    .foregroundStyle(Color.ink2)
+                    .rowHeight()
+            }
+            .fillsCardRow()
+            .accessibilityIdentifier("before-reading-row")
         } else if let prompt {
             Button(action: onLog) {
                 ReadingPromptText(prompt: prompt)
             }
             .accessibilityIdentifier("log-how-you-feel-row")
-        } else {
-            NavigationLink(destination: destination) {
-                Text("None")
+        }
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func removeSwipe(_ onRemove: (() -> Void)?) -> some View {
+        if let onRemove {
+            swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button("Remove", systemImage: "xmark", action: onRemove)
+                    .tint(Color.ink2)
+                    .accessibilityIdentifier("before-reading-remove")
             }
-            .accessibilityIdentifier("before-reading-row")
+        } else {
+            self
         }
     }
 }

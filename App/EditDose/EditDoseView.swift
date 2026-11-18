@@ -14,9 +14,10 @@ struct EditDoseView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var takenAt: Date
-    /// The entry the form points at, kept or hidden by the dose time in the form. A time moved before the entry
-    /// shows None, and a time moved back shows the entry again.
-    @State private var readingID: UUID?
+    /// What the before row points at. A time moved before an entry shows None, and a time moved back shows the entry
+    /// again.
+    @State private var before: EditDoseBefore
+    @State private var newEntry: DoseEntryRequest?
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
@@ -30,11 +31,12 @@ struct EditDoseView: View {
         self.onSaved = onSaved
         _selectedID = State(initialValue: dose.medicationID)
         _takenAt = State(initialValue: dose.takenAt)
-        let before = ReadingLink.kept(
+        savedReadingID = ReadingLink.kept(
             DoseReadings(dose, in: model.entries).before?.id, in: model.entries, at: dose.takenAt
         )
-        savedReadingID = before
-        _readingID = State(initialValue: before)
+        _before = State(initialValue: .opening(
+            savedLink: dose.beforeReadingID, in: model.entries, at: dose.takenAt
+        ))
     }
 
     func onDeleted(_ action: @escaping () -> Void) -> Self {
@@ -74,6 +76,12 @@ struct EditDoseView: View {
                 ToolbarSpacer(.fixed, placement: .primaryAction)
             }
             .saveToolbarItem(id: "save-dose-changes", action: saveChanges)
+            .doseEntrySheet(
+                $newEntry,
+                model: model,
+                onSaved: { readingSaveTicks += 1 },
+                onAdded: { before = .entry($0.id) }
+            )
             .entryDeleteConfirmation(isPresented: $isConfirmingDelete, words: .dose, onDelete: removeDose)
             .alert("Couldn't save this dose. Try again.", isPresented: $isShowingSaveFailure) {
                 Button("OK") {}
@@ -90,7 +98,7 @@ struct EditDoseView: View {
     }
 
     private var resolvedReadingID: UUID? {
-        ReadingLink.kept(readingID, in: model.entries, at: takenAt)
+        before.linkedID(in: model.entries, at: takenAt)
     }
 
     private func scrollToDate(_ proxy: ScrollViewProxy) {
@@ -124,12 +132,15 @@ struct EditDoseView: View {
     }
 
     /// A reading that was deleted leaves the dose with no before-reading, which shows as None and still opens the
-    /// choice of an entry.
+    /// choice of an entry. A dose saved with no link and no entry in its window shows the row that logs one.
     @ViewBuilder private var readingSections: some View {
         let readings = DoseReadings(dose, in: model.entries)
         BeforeThisDoseSection(
             reading: model.entries.first { $0.id == resolvedReadingID },
-            prompt: nil,
+            isNone: before.isNone(in: model.entries, at: takenAt),
+            prompt: before == .prompt ? .forDose(at: takenAt, now: .now) : nil,
+            onLog: { newEntry = DoseEntryRequest(doseAt: takenAt) },
+            onRemove: { before = .none },
             footnote: Text("The entry used for this dose. Tap to choose another."),
             destination: readingChoice
         )
@@ -152,8 +163,10 @@ struct EditDoseView: View {
             model: model,
             chosenID: resolvedReadingID,
             doseAt: takenAt,
-            onPick: { readingID = $0.id },
-            onAdded: { readingID = $0.id },
+            isNoneChosen: before.isNone(in: model.entries, at: takenAt),
+            onPickNone: { before = .none },
+            onPick: { before = .entry($0.id) },
+            onAdded: { before = .entry($0.id) },
             onSaved: { readingSaveTicks += 1 }
         )
     }
