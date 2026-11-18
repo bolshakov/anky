@@ -49,17 +49,7 @@ struct LogDoseView: View {
                 TimelineView(.everyMinute) { context in
                     Form {
                         CardSection(Text("Medication"), id: "medication") {
-                            if active.isEmpty {
-                                Text("No medications yet")
-                                    .accessibilityIdentifier("dose-no-medications")
-                            }
-                            ForEach(active) { medication in
-                                medicationRow(medication)
-                            }
-                            Button("Add medication") {
-                                isShowingNewMedication = true
-                            }
-                            .accessibilityIdentifier("dose-add-medication")
+                            medicationRow
                         }
                         BeforeThisDoseSection(
                             reading: reading(at: takenAtNow),
@@ -197,32 +187,29 @@ struct LogDoseView: View {
         manualReadingID = nil
     }
 
-    private func medicationRow(_ medication: Medication) -> some View {
-        let isChecked = medication.id == checkedID
-        return Button {
-            select(medication)
-        } label: {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(medication.listTitle)
-                        .fontWeight(isChecked ? .semibold : .regular)
-                    Text(medication.takenAs.title)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if isChecked {
-                    Image(systemName: "checkmark")
-                        .foregroundStyle(Color.tint)
-                        .accessibilityHidden(true)
-                }
+    @ViewBuilder private var medicationRow: some View {
+        if let checkedMedication {
+            NavigationLink {
+                SelectMedicationView(
+                    medications: medications,
+                    choices: active,
+                    selectedID: checkedID,
+                    onSelect: select,
+                    onAdded: medicationSaved
+                )
+            } label: {
+                ValueRow(Text("Medication"), value: Text(verbatim: checkedMedication.listTitle))
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .contentShape(Rectangle())
+            .fillsCardRow()
+            .accessibilityIdentifier("dose-medication-field")
+        } else {
+            Text("No medications yet")
+                .accessibilityIdentifier("dose-no-medications")
+            Button("Add medication") {
+                isShowingNewMedication = true
+            }
+            .accessibilityIdentifier("dose-add-medication")
         }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("dose-medication-row")
-        .accessibilityAddTraits(isChecked ? .isSelected : [])
     }
 
     private func saveDose() {

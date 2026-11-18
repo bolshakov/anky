@@ -39,9 +39,7 @@ struct EditDoseView: View {
             ScrollViewReader { proxy in
                 Form {
                     CardSection(Text("Medication"), id: "medication") {
-                        ForEach(EditDoseMedications.choices(for: dose, in: medications.medications)) { medication in
-                            medicationRow(medication)
-                        }
+                        medicationRow
                     }
                     readingSections
                     CardSection(id: "date") {
@@ -155,31 +153,22 @@ struct EditDoseView: View {
         return String(format: String(localized: "After · checked in at %@"), time)
     }
 
-    private func medicationRow(_ medication: Medication) -> some View {
-        let isChecked = medication.id == selectedID
-        return Button {
-            selectedID = medication.id
-        } label: {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(medication.listTitle)
-                        .fontWeight(isChecked ? .semibold : .regular)
-                    Text(medication.takenAs.title)
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-                Spacer()
-                if isChecked {
-                    Image(systemName: "checkmark")
-                        .foregroundStyle(.tint)
-                        .accessibilityHidden(true)
-                }
+    @ViewBuilder private var medicationRow: some View {
+        let choices = EditDoseMedications.choices(for: dose, in: medications.medications)
+        if let chosen = choices.first(where: { $0.id == selectedID }) {
+            NavigationLink {
+                SelectMedicationView(
+                    medications: medications,
+                    choices: choices,
+                    selectedID: selectedID,
+                    onSelect: { selectedID = $0.id },
+                    onAdded: nil
+                )
+            } label: {
+                ValueRow(Text("Medication"), value: Text(verbatim: chosen.listTitle))
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .contentShape(Rectangle())
+            .fillsCardRow()
+            .accessibilityIdentifier("dose-medication-field")
         }
-        .buttonStyle(.plain)
-        .accessibilityIdentifier("dose-medication-row")
-        .accessibilityAddTraits(isChecked ? .isSelected : [])
     }
 }

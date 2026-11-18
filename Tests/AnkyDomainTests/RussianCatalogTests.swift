@@ -121,6 +121,7 @@ Check In => Самочувствие
 Check in => Отметить
 Check in pending => Ждёт отметки самочувствия
 Choose an Entry => Выбор записи
+Select medication => Выбор лекарства
 Delete dose => Удалить приём
 Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
 Dose => Приём
