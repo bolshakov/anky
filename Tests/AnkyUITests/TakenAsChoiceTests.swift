@@ -103,7 +103,7 @@ final class TakenAsChoiceTests: XCTestCase {
 
     private func openLogDose(_ app: XCUIApplication) {
         tapLogMedication(in: app)
-        XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+        XCTAssertTrue(identified("log-dose-screen", in: app).waitForExistence(timeout: 10))
     }
 
     private func openNewMedication(_ app: XCUIApplication) {

@@ -12,7 +12,7 @@ func addZorblex(_ app: XCUIApplication) {
 /// Adds a medication from Log Dose, which is left open with it chosen.
 @MainActor
 func addMedication(_ medication: String, in app: XCUIApplication) {
-    app.buttons["dose-add-medication"].tap()
+    tapAddMedication(in: app)
     let name = app.textFields["medication-name"]
     XCTAssertTrue(name.waitForExistence(timeout: 10))
     name.tap()
@@ -22,8 +22,27 @@ func addMedication(_ medication: String, in app: XCUIApplication) {
     XCTAssertTrue(save.waitForNonExistence(timeout: 10))
 }
 
+/// Taps Add medication where Log Dose has it: on the form while the log has no medication, and on Select medication,
+/// pushed from the Medication row, once it has one.
+@MainActor
+func tapAddMedication(in app: XCUIApplication) {
+    let field = app.descendants(matching: .any)["dose-medication-field"]
+    let none = app.descendants(matching: .any)["dose-no-medications"]
+    let deadline = Date.now.addingTimeInterval(10)
+    while !field.exists, !none.exists, Date.now < deadline {
+        RunLoop.current.run(until: .now.addingTimeInterval(0.1))
+    }
+    if field.exists {
+        field.tap()
+    }
+    app.buttons["dose-add-medication"].tap()
+}
+
 @MainActor
 func chooseMedication(_ medication: String, in app: XCUIApplication) {
+    let field = app.descendants(matching: .any)["dose-medication-field"]
+    XCTAssertTrue(field.waitForExistence(timeout: 10))
+    field.tap()
     let row = medicationRows(in: app).allElementsBoundByIndex.first { $0.label.contains(medication) }
     XCTAssertNotNil(row, "no medication row for \(medication)")
     row?.tap()
@@ -34,12 +53,12 @@ func medicationRows(in app: XCUIApplication) -> XCUIElementQuery {
     app.descendants(matching: .any).matching(identifier: "dose-medication-row")
 }
 
-/// The name in the one medication row that is checked, read from the row's selected state.
+/// The name the Medication row of the form shows.
 @MainActor
 func selectedMedication(in app: XCUIApplication) -> String? {
-    let checked = medicationRows(in: app).allElementsBoundByIndex.filter(\.isSelected)
-    XCTAssertEqual(checked.count, 1)
-    return checked.first.flatMap { row in ["Zorblex", "Quibbanol"].first { row.label.contains($0) } }
+    let field = app.descendants(matching: .any)["dose-medication-field"]
+    XCTAssertTrue(field.waitForExistence(timeout: 10))
+    return ["Zorblex", "Quibbanol"].first { field.label.contains($0) }
 }
 
 @MainActor

@@ -69,7 +69,9 @@ final class EditDoseTests: XCTestCase {
         doseRow(in: app).tap()
 
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
+        app.descendants(matching: .any)["dose-medication-field"].tap()
         XCTAssertEqual(medicationRows(in: app).count, 2)
+        app.buttons["BackButton"].tap()
         XCTAssertEqual(selectedMedication(in: app), "Zorblex")
         let day = dateRowDay(in: app) ?? ""
         XCTAssertTrue(day.hasPrefix("Today"), "date row day is \(day)")

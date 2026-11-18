@@ -37,7 +37,7 @@ func addZorblexCheckingInAfterThirtyMinutes(
     readingRow: String = "before-reading-row"
 ) {
     tapLogMedication(in: app)
-    app.buttons["dose-add-medication"].tap()
+    tapAddMedication(in: app)
     let name = app.textFields["medication-name"]
     XCTAssertTrue(name.waitForExistence(timeout: 10))
     name.tap()
@@ -126,14 +126,14 @@ func identified(_ id: String, in app: XCUIApplication) -> XCUIElement {
 @MainActor
 func openLogDose(_ app: XCUIApplication) {
     tapLogMedication(in: app)
-    XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+    XCTAssertTrue(identified("log-dose-screen", in: app).waitForExistence(timeout: 10))
 }
 
 /// Opens New Medication from Log Dose, the way a person adds a medication while logging a dose.
 @MainActor
 func openNewMedication(_ app: XCUIApplication) {
     openLogDose(app)
-    app.buttons["dose-add-medication"].tap()
+    tapAddMedication(in: app)
     XCTAssertTrue(app.textFields["medication-name"].waitForExistence(timeout: 10))
 }
 

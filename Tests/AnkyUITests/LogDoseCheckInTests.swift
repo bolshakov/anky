@@ -11,10 +11,10 @@ final class LogDoseCheckInTests: XCTestCase {
         addMedication(named: "Quibbanol", delay: "1 hour", app)
         expectCheckIn(on: true, delay: "1 hour", app)
 
-        medicationRow(startingWith: "Zorblex", in: app).tap()
+        chooseMedication("Zorblex", in: app)
         expectCheckIn(on: false, delay: nil, app)
 
-        medicationRow(startingWith: "Quibbanol", in: app).tap()
+        chooseMedication("Quibbanol", in: app)
         expectCheckIn(on: true, delay: "1 hour", app)
     }
 
@@ -143,9 +143,9 @@ final class LogDoseCheckInTests: XCTestCase {
         XCTAssertTrue(app.buttons["add-menu"].waitForExistence(timeout: 10))
     }
 
-    /// Adds from the Add medication row of the open Log Dose sheet, which stays open after each save.
+    /// Adds from Add medication on the open Log Dose sheet, which stays open after each save.
     private func addMedication(named name: String, delay: String? = nil, _ app: XCUIApplication) {
-        app.buttons["dose-add-medication"].tap()
+        tapAddMedication(in: app)
         let field = app.textFields["medication-name"]
         XCTAssertTrue(field.waitForExistence(timeout: 10))
         field.tap()
@@ -154,7 +154,7 @@ final class LogDoseCheckInTests: XCTestCase {
             chooseCheckInAfter(delay, in: app)
         }
         app.buttons["medication-save"].tap()
-        XCTAssertTrue(app.buttons["dose-add-medication"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.descendants(matching: .any)["dose-medication-field"].waitForExistence(timeout: 10))
     }
 
     private func chooseCheckInAfter(_ delay: String, in app: XCUIApplication) {
@@ -175,14 +175,6 @@ final class LogDoseCheckInTests: XCTestCase {
         let item = app.buttons[delay]
         XCTAssertTrue(item.waitForExistence(timeout: 10), "no menu item \(delay)")
         item.tap()
-    }
-
-    private func medicationRow(startingWith name: String, in app: XCUIApplication) -> XCUIElement {
-        let row = app.buttons.matching(
-            NSPredicate(format: "identifier == %@ AND label BEGINSWITH %@", "dose-medication-row", name)
-        ).firstMatch
-        XCTAssertTrue(row.waitForExistence(timeout: 10), "no medication row for \(name)")
-        return row
     }
 
     /// The switch reads '1' or '0', and the menu is shown only while the switch is on, with its delay as its value.
