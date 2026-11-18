@@ -49,7 +49,12 @@ struct DoseMovedTests {
         var original = Dose(id: UUID(), medicationID: UUID(), takenAt: date)
         original.afterReadingID = UUID()
 
-        let moved = original.moved(to: original.medicationID, at: date, beforeReadingID: nil, afterReadingID: .some(nil))
+        let moved = original.moved(
+            to: original.medicationID,
+            at: date,
+            beforeReadingID: nil,
+            afterReadingID: .some(nil)
+        )
 
         #expect(moved.afterReadingID == nil)
     }

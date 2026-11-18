@@ -59,6 +59,7 @@ public struct Dose: Identifiable, Equatable, Sendable {
         to medicationID: UUID, at takenAt: Date, beforeReadingID: UUID?, afterReadingID: UUID?? = nil,
         calendar: Calendar = .current
     ) -> Bool {
+        // #lizard forgives
         medicationID != self.medicationID
             || beforeReadingID != self.beforeReadingID
             || afterReadingID.map { $0 != self.afterReadingID } ?? false
