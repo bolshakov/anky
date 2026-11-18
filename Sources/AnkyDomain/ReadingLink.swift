@@ -12,8 +12,15 @@ public enum ReadingLink {
         return id
     }
 
-    /// `linked` when kept; otherwise the existing `ReadingWindow.pick(manual, in:, before:)`.
-    public static func resolve(linked: UUID?, manual: UUID?, in entries: [Entry], at doseTime: Date) -> Entry? {
+    /// Nil when `noReading`, whatever else is set. Otherwise `linked` when kept, else the existing
+    /// `ReadingWindow.pick(manual, in:, before:)`.
+    public static func resolve(
+        linked: UUID?, manual: UUID?, noReading: Bool = false, in entries: [Entry], at doseTime: Date
+    ) -> Entry? {
+        // #lizard forgives
+        if noReading {
+            return nil
+        }
         if let kept = kept(linked, in: entries, at: doseTime) {
             return entries.first { $0.id == kept }
         }

@@ -130,11 +130,16 @@ struct LogDoseView: View {
             takenAt: chosenTakenAt,
             manualReadingID: manualReadingID,
             linkedReadingID: linkedReadingID,
+            noReading: startsAtNone,
             checkIn: checkIn
         )
         .hasChanges(in: LogDoseContext(
             preselected: preselected, active: active, entries: model.entries, now: minuteClock
         ))
+    }
+
+    private var startsAtNone: Bool {
+        manualReadingID == nil && linkedReadingID == nil && ReadingStart.forMedication(checkedMedication) == .none
     }
 
     private var checkedID: UUID? {

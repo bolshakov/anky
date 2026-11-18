@@ -50,6 +50,11 @@ struct ReadingLinkTests {
         #expect(ReadingLink.kept(UUID(), in: [other], at: doseTime) == nil)
     }
 
+    @Test func aLinkedEntryDeletedFromTheLogIsNotKeptSoEditDoseHasNoLink() throws {
+        let deleted = try entry(at: doseTime.addingTimeInterval(-60))
+        #expect(ReadingLink.kept(deleted.id, in: [], at: doseTime) == nil)
+    }
+
     @Test func noLinkIsKeptAsNil() throws {
         let other = try entry(at: doseTime.addingTimeInterval(-60))
         #expect(ReadingLink.kept(nil, in: [other], at: doseTime) == nil)
