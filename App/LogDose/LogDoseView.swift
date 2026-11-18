@@ -167,7 +167,7 @@ struct LogDoseView: View {
     private var dateBinding: Binding<Date> {
         Binding(
             get: { takenAtNow },
-            set: { draft.takenAt = $0 }
+            set: { draft = draft.movingTime(to: $0, in: formContext) }
         )
     }
 
@@ -227,8 +227,9 @@ struct LogDoseView: View {
             loggedAt: .now
         )
         dose.checkInAfter = draft.checkIn.checkInAfter
+        let memory = ReadingMemory.toRemember(noReading: draft.noReading, resolved: reading(at: takenAtNow))
         do {
-            let logged = try doseSave.save(dose, log: medications.logDose)
+            let logged = try doseSave.save(dose) { try medications.logDose($0, remembering: memory) }
             if logged {
                 onSaved()
             }
