@@ -31,7 +31,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `IconTile`: the small symbol tile that starts an `IconRow`, decoration that VoiceOver skips. Do not draw a tinted square behind a symbol yourself.
 - `ValueRow`: a title with a value on the trailing side, with a chevron when it has an action. Do not build a `LabeledContent` row, and give it no action when it is the label of a `NavigationLink`, which draws its own chevron.
 - `TwoLineRow`: a title over a subtitle with an optional value, with a chevron when it has an action. Use `ValueRow` when one line is enough, and do not stack two texts in a row yourself.
-- `TintRow`: one row in a list where a single item is chosen, with the chosen one bold and ticked. Do not draw your own checkmark row or a tick in another colour.
+- `TintRow`: one row in a list where a single item is chosen, with the chosen one semibold and ticked, in a slot every row reserves so the tick stays in one place. It takes an optional second line, which makes it the same two-line row as `TwoLineRow`. Do not draw your own checkmark row or a tick in another colour.
 - `SwitchRow`: a row with a toggle. Do not put a bare `Toggle` in a card, since it would differ in height and tint.
 - `MenuRow`: a row whose value is picked from a menu. Do not put a bare `Picker` in a card.
 - `RowChevron`: the chevron at the end of a tappable row you lay out yourself. `ValueRow` and `TwoLineRow` draw it already, and a `NavigationLink` has its own, so do not draw a chevron from a symbol name.
@@ -124,6 +124,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `emptyTodayBottom`: the space under Today's empty state. Today only, so do not use it for another screen.
 - `twoLineRowHeight`: the height of a `TwoLineRow`, which it applies itself. Do not size a two-line row by hand.
 - `twoLineRowPadding`: the vertical padding of a `TwoLineRow`, which it applies itself. Do not pad a two-line row yourself.
+- `checkmark`: the size of the tick in a `TintRow`, which it applies itself. Do not size a tick yourself.
 - `rowMinimumHeight`: the floor under every row height, and the height of a control the size of a row. Do not set a lower minimum.
 - `recentRowHeight`: the height of the recent chips row on New Entry. Do not use it to size another row.
 - `iconTile`: the size of an `IconTile`. Do not size a symbol tile yourself.

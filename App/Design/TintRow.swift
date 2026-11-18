@@ -1,15 +1,25 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 import SwiftUI
 
-/// A row in a list where one item is chosen. The chosen row has a bold title and a tick in the tint colour.
+/// A row in a list where one item is chosen. The chosen row has a semibold title and a tick in the tint colour. Every
+/// row reserves the tick's slot, so the tick sits in the same place whichever row is chosen.
 struct TintRow: View {
     let title: Text
+    let subtitle: Text?
     let value: Text?
     let isSelected: Bool
     let action: () -> Void
+    @ScaledMetric(relativeTo: .body) private var tickSide = Spacing.checkmark
 
-    init(_ title: Text, value: Text? = nil, isSelected: Bool, action: @escaping () -> Void) {
+    init(
+        _ title: Text,
+        subtitle: Text? = nil,
+        value: Text? = nil,
+        isSelected: Bool,
+        action: @escaping () -> Void
+    ) {
         self.title = title
+        self.subtitle = subtitle
         self.value = value
         self.isSelected = isSelected
         self.action = action
@@ -20,21 +30,30 @@ struct TintRow: View {
             LabeledContent {
                 HStack {
                     value?.foregroundStyle(Color.ink2)
-                    if isSelected {
-                        Image(systemName: "checkmark")
-                            .foregroundStyle(Color.tint)
-                            .accessibilityHidden(true)
-                    }
+                    tick
                 }
             } label: {
-                title.bold(isSelected).foregroundStyle(Color.ink)
+                VStack(alignment: .leading) {
+                    title.fontWeight(isSelected ? .semibold : nil).foregroundStyle(Color.ink)
+                    subtitle?.font(.footnote).foregroundStyle(Color.ink2)
+                }
             }
         }
-        .rowHeight()
+        .padding(.vertical, subtitle == nil ? 0 : Spacing.twoLineRowPadding)
+        .rowHeight(subtitle == nil ? Spacing.rowHeight : Spacing.twoLineRowHeight)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
-        .accessibilityValue(value ?? Text(verbatim: ""))
+        .accessibilityValue(subtitle ?? value ?? Text(verbatim: ""))
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
+    }
+
+    private var tick: some View {
+        Image(systemName: "checkmark")
+            .resizable()
+            .scaledToFit()
+            .frame(width: tickSide, height: tickSide)
+            .foregroundStyle(isSelected ? Color.tint : Color.clear)
+            .accessibilityHidden(true)
     }
 }
