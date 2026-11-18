@@ -55,7 +55,7 @@ struct DoseLoggedTests {
         #expect(dose.beforeReadingID == picked.id)
     }
 
-    @Test func aFatigueEntryInTheWindowCanBeTheReading() throws {
+    @Test func aFatigueEntryInTheWindowIsNotTheAutomaticReading() throws {
         let fatigue = try Entry(
             id: UUID(), kind: .fatigue, severity: #require(Severity(6)),
             date: takenAt.addingTimeInterval(-60), note: nil, places: []
@@ -63,6 +63,18 @@ struct DoseLoggedTests {
         let dose = Dose.logged(
             id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [fatigue],
             loggedAt: takenAt
+        )
+        #expect(dose.beforeReadingID == nil)
+    }
+
+    @Test func aFatigueEntryLinkedBeforeIsStillTheReading() throws {
+        let fatigue = try Entry(
+            id: UUID(), kind: .fatigue, severity: #require(Severity(6)),
+            date: takenAt.addingTimeInterval(-60), note: nil, places: []
+        )
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt, entries: [fatigue],
+            linkedReadingID: fatigue.id, loggedAt: takenAt
         )
         #expect(dose.beforeReadingID == fatigue.id)
     }
