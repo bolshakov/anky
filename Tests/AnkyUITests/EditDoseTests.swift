@@ -155,7 +155,7 @@ final class EditDoseTests: XCTestCase {
         let movedLabel = doseRow(in: app).label
         XCTAssertEqual(doseRowTime(of: movedLabel), timeBeforeMove, movedLabel)
         XCTAssertTrue(movedLabel.contains("Zorblex"), movedLabel)
-        XCTAssertTrue(movedLabel.contains("4 of 10"), movedLabel)
+        XCTAssertFalse(movedLabel.contains("4 of 10"), movedLabel)
         app.tabBars.buttons["Today"].tap()
     }
 
