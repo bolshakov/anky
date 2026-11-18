@@ -27,16 +27,14 @@ struct TintRow: View {
 
     var body: some View {
         Button(action: action) {
-            LabeledContent {
-                HStack {
-                    value?.foregroundStyle(Color.ink2)
-                    tick
-                }
-            } label: {
+            HStack {
                 VStack(alignment: .leading) {
                     title.fontWeight(isSelected ? .semibold : nil).foregroundStyle(Color.ink)
                     subtitle?.font(.footnote).foregroundStyle(Color.ink2)
                 }
+                Spacer()
+                value?.foregroundStyle(Color.ink2)
+                tick
             }
         }
         .padding(.vertical, subtitle == nil ? 0 : Spacing.twoLineRowPadding)
