@@ -7,6 +7,7 @@ struct NewEntryView: View {
 
     let model: EntryLogModel
     let mode: EntryMode
+    let latestDate: Date?
     let onSaved: () -> Void
     private(set) var deletedAction: () -> Void = {}
     let onAdded: (Entry) -> Void
@@ -28,15 +29,22 @@ struct NewEntryView: View {
     init(
         model: EntryLogModel,
         mode: EntryMode = .new,
+        latestDate: Date? = nil,
+        startDate: Date? = nil,
         onSaved: @escaping () -> Void = {},
         onAdded: @escaping (Entry) -> Void = { _ in }
     ) {
+        // #lizard forgives
         self.model = model
         self.mode = mode
+        self.latestDate = switch mode {
+        case .new: latestDate
+        case .edit: nil
+        }
         self.onSaved = onSaved
         self.onAdded = onAdded
         let opening = switch mode {
-        case .new: openingDraft(after: model.entries, now: .now)
+        case .new: openingDraft(after: model.entries, now: .now, startDate: startDate, latestDate: latestDate)
         case let .edit(entry): EntryDraft(entry: entry)
         }
         _draft = State(initialValue: opening)
@@ -76,7 +84,7 @@ struct NewEntryView: View {
                     )
                     whereSection
                     CardSection(id: "date") {
-                        DateSection(date: $draft.date, onOpen: { scrollToDate(proxy) })
+                        DateSection(date: $draft.date, latest: latestDate, onOpen: { scrollToDate(proxy) })
                             .id(Self.dateBlockID)
                     }
                     NoteSection(draft: $draft)
