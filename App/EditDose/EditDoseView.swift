@@ -78,7 +78,7 @@ struct EditDoseView: View {
 
     private var hasChanges: Bool {
         guard let selectedID else { return false }
-        return dose.isMoved(to: selectedID, at: takenAt)
+        return dose.isMoved(to: selectedID, at: takenAt, beforeReadingID: dose.beforeReadingID)
     }
 
     private func scrollToDate(_ proxy: ScrollViewProxy) {
@@ -91,7 +91,7 @@ struct EditDoseView: View {
     /// The dose keeps its own check-in delay and its readings. Only the medication and the time come from the form.
     private func saveChanges() {
         guard let selectedID else { return }
-        let edited = dose.moved(to: selectedID, at: takenAt)
+        let edited = dose.moved(to: selectedID, at: takenAt, beforeReadingID: dose.beforeReadingID)
         do {
             let saved = try doseSave.save(edited, log: medications.replaceDose)
             if saved {

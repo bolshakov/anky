@@ -86,4 +86,24 @@ struct DoseLoggedTests {
         )
         #expect(dose.loggedAt == loggedAt)
     }
+
+    @Test func aLinkedEntryIsTheReadingEvenWhenItIsOlderThanTheWindow() throws {
+        let linked = try entry(at: takenAt.addingTimeInterval(-ReadingWindow.length - 3600))
+        let newer = try entry(at: takenAt.addingTimeInterval(-60))
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt,
+            entries: [linked, newer], linkedReadingID: linked.id, loggedAt: takenAt
+        )
+        #expect(dose.beforeReadingID == linked.id)
+    }
+
+    @Test func aLinkedEntryAfterTheDoseIsNotTheReading() throws {
+        let linked = try entry(at: takenAt.addingTimeInterval(60))
+        let newest = try entry(at: takenAt.addingTimeInterval(-60))
+        let dose = Dose.logged(
+            id: UUID(), medication: medication(checkInAfter: nil), takenAt: takenAt,
+            entries: [linked, newest], linkedReadingID: linked.id, loggedAt: takenAt
+        )
+        #expect(dose.beforeReadingID == newest.id)
+    }
 }
