@@ -63,4 +63,31 @@ struct DoseIsMovedTests {
     @Test func aBeforeReadingClearedIsMoved() {
         #expect(isMoved(dose(at: minuteStart, beforeReadingID: UUID()), beforeReadingID: nil))
     }
+
+    @Test func aClearedAfterReadingIsMoved() {
+        var saved = dose(at: minuteStart)
+        saved.afterReadingID = UUID()
+
+        #expect(saved.isMoved(
+            to: saved.medicationID, at: saved.takenAt, beforeReadingID: nil, afterReadingID: .some(nil),
+            calendar: calendar
+        ))
+    }
+
+    @Test func theSavedAfterReadingIsNotMoved() {
+        var saved = dose(at: minuteStart)
+        saved.afterReadingID = UUID()
+
+        #expect(!saved.isMoved(
+            to: saved.medicationID, at: saved.takenAt, beforeReadingID: nil, afterReadingID: saved.afterReadingID,
+            calendar: calendar
+        ))
+    }
+
+    @Test func noAfterReadingArgumentIsNotMovedWhateverIsStored() {
+        var saved = dose(at: minuteStart)
+        saved.afterReadingID = UUID()
+
+        #expect(!isMoved(saved))
+    }
 }
