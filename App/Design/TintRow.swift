@@ -6,21 +6,13 @@ import SwiftUI
 struct TintRow: View {
     let title: Text
     let subtitle: Text?
-    let value: Text?
     let isSelected: Bool
     let action: () -> Void
     @ScaledMetric(relativeTo: .body) private var tickSide = Spacing.checkmark
 
-    init(
-        _ title: Text,
-        subtitle: Text? = nil,
-        value: Text? = nil,
-        isSelected: Bool,
-        action: @escaping () -> Void
-    ) {
+    init(_ title: Text, subtitle: Text? = nil, isSelected: Bool, action: @escaping () -> Void) {
         self.title = title
         self.subtitle = subtitle
-        self.value = value
         self.isSelected = isSelected
         self.action = action
     }
@@ -33,7 +25,6 @@ struct TintRow: View {
                     subtitle?.font(.footnote).foregroundStyle(Color.ink2)
                 }
                 Spacer()
-                value?.foregroundStyle(Color.ink2)
                 tick
             }
         }
@@ -41,7 +32,7 @@ struct TintRow: View {
         .rowHeight(subtitle == nil ? Spacing.rowHeight : Spacing.twoLineRowHeight)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
-        .accessibilityValue(subtitle ?? value ?? Text(verbatim: ""))
+        .accessibilityValue(subtitle ?? Text(verbatim: ""))
         .accessibilityAddTraits(.isButton)
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
