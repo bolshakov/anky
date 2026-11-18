@@ -3198,12 +3198,12 @@
         }
       }
     },
-    "The entry used for this dose. Tap to open it." : {
+    "The entry used for this dose. Tap to choose another." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запись, использованная для этого приёма. Нажми, чтобы открыть."
+            "value" : "Запись для этого приёма. Нажми, чтобы выбрать другую."
           }
         }
       }

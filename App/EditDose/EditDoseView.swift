@@ -9,10 +9,14 @@ struct EditDoseView: View {
     let medications: MedicationsModel
     let model: EntryLogModel
     let onSaved: () -> Void
+    private let savedReadingID: UUID?
     private(set) var deletedAction: () -> Void = {}
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: UUID?
     @State private var takenAt: Date
+    /// The entry the form points at, kept or hidden by the dose time in the form. A time moved before the entry
+    /// shows None, and a time moved back shows the entry again.
+    @State private var readingID: UUID?
     @State private var doseSave = DoseSave()
     @State private var isShowingSaveFailure = false
     @State private var isConfirmingDelete = false
@@ -26,6 +30,11 @@ struct EditDoseView: View {
         self.onSaved = onSaved
         _selectedID = State(initialValue: dose.medicationID)
         _takenAt = State(initialValue: dose.takenAt)
+        let before = ReadingLink.kept(
+            DoseReadings(dose, in: model.entries).before?.id, in: model.entries, at: dose.takenAt
+        )
+        savedReadingID = before
+        _readingID = State(initialValue: before)
     }
 
     func onDeleted(_ action: @escaping () -> Void) -> Self {
@@ -43,7 +52,7 @@ struct EditDoseView: View {
                     }
                     readingSections
                     CardSection(id: "date") {
-                        DateSection(date: $takenAt, onOpen: { scrollToDate(proxy) })
+                        DateSection(date: $takenAt, showsChevron: false, onOpen: { scrollToDate(proxy) })
                             .id(Self.dateBlockID)
                     }
                 }
@@ -76,7 +85,12 @@ struct EditDoseView: View {
 
     private var hasChanges: Bool {
         guard let selectedID else { return false }
-        return dose.isMoved(to: selectedID, at: takenAt, beforeReadingID: dose.beforeReadingID)
+        return dose.moved(to: dose.medicationID, at: dose.takenAt, beforeReadingID: savedReadingID)
+            .isMoved(to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID)
+    }
+
+    private var resolvedReadingID: UUID? {
+        ReadingLink.kept(readingID, in: model.entries, at: takenAt)
     }
 
     private func scrollToDate(_ proxy: ScrollViewProxy) {
@@ -86,10 +100,11 @@ struct EditDoseView: View {
         }
     }
 
-    /// The dose keeps its own check-in delay and its readings. Only the medication and the time come from the form.
+    /// The dose keeps its own check-in delay and its after-reading. The medication, the time and the before-reading
+    /// come from the form.
     private func saveChanges() {
         guard let selectedID else { return }
-        let edited = dose.moved(to: selectedID, at: takenAt, beforeReadingID: dose.beforeReadingID)
+        let edited = dose.moved(to: selectedID, at: takenAt, beforeReadingID: resolvedReadingID)
         do {
             let saved = try doseSave.save(edited, log: medications.replaceDose)
             if saved {
@@ -108,28 +123,16 @@ struct EditDoseView: View {
         dismiss()
     }
 
-    /// A reading that was deleted leaves the dose with no before-reading, which shows as None and opens nothing.
+    /// A reading that was deleted leaves the dose with no before-reading, which shows as None and still opens the
+    /// choice of an entry.
     @ViewBuilder private var readingSections: some View {
         let readings = DoseReadings(dose, in: model.entries)
-        CardSection(
-            Text("Before this dose"),
-            footnote: readings.before.map { _ in Text("The entry used for this dose. Tap to open it.") },
-            id: "before-reading"
-        ) {
-            if let before = readings.before {
-                NavigationLink {
-                    readingEditor(before)
-                } label: {
-                    EntryIconRow(entry: before)
-                        .spokenAsReading()
-                }
-                .accessibilityIdentifier("before-reading-row")
-            } else {
-                Text("None")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .accessibilityIdentifier("before-reading-row")
-            }
-        }
+        BeforeThisDoseSection(
+            reading: model.entries.first { $0.id == resolvedReadingID },
+            prompt: nil,
+            footnote: Text("The entry used for this dose. Tap to choose another."),
+            destination: readingChoice
+        )
         if let after = readings.after {
             CardSection(Text(afterLabel(after)), id: "after-reading") {
                 NavigationLink {
@@ -141,6 +144,18 @@ struct EditDoseView: View {
                 .accessibilityIdentifier("after-reading-row")
             }
         }
+    }
+
+    private func readingChoice() -> some View {
+        ReadingChoiceView(
+            entries: model.entries,
+            model: model,
+            chosenID: resolvedReadingID,
+            doseAt: takenAt,
+            onPick: { readingID = $0.id },
+            onAdded: { readingID = $0.id },
+            onSaved: { readingSaveTicks += 1 }
+        )
     }
 
     private func readingEditor(_ entry: Entry) -> NewEntryView {

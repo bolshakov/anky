@@ -2,8 +2,9 @@
 import AnkyDomain
 import SwiftUI
 
-/// The readings a dose can point at, newest first, with a check mark on the one in use. It is pushed from Log Dose and
-/// has no choice of no reading: a dose without one is logged from the "Log how you feel" row on the form.
+/// The readings a dose can point at, newest first, with a check mark on the one in use. It is pushed from the form's
+/// Before this dose row and has no choice of no reading: a dose without one is logged from the "Log how you feel" row
+/// on Log Dose, or left with none on Edit Dose.
 struct ReadingChoiceView: View {
     let entries: [Entry]
     let model: EntryLogModel

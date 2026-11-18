@@ -29,7 +29,7 @@ final class EditDoseTests: XCTestCase {
     }
 
     /// The dose keeps the id of its before-entry after that entry is deleted, so Edit Dose reads it as None.
-    func testADeletedBeforeEntryShowsNoneAndOpensNothing() {
+    func testADeletedBeforeEntryShowsNoneAndPushesTheChoice() {
         continueAfterFailure = false
         let app = launchAnky()
         addZorblex(app)
@@ -53,11 +53,10 @@ final class EditDoseTests: XCTestCase {
         let before = app.descendants(matching: .any)["before-reading-row"]
         XCTAssertTrue(before.waitForExistence(timeout: 10))
         XCTAssertTrue(before.label.contains("None"), before.label)
-        XCTAssertFalse(app.buttons["before-reading-row"].exists)
 
         before.tap()
+        XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
         XCTAssertFalse(app.descendants(matching: .any)["edit-entry-screen"].exists)
-        XCTAssertTrue(editDoseScreen(in: app).exists)
     }
 
     func testADoseRowOpensEditDoseWithItsMedicationTimeAndReading() throws {
@@ -156,7 +155,7 @@ final class EditDoseTests: XCTestCase {
         let movedLabel = doseRow(in: app).label
         XCTAssertEqual(doseRowTime(of: movedLabel), timeBeforeMove, movedLabel)
         XCTAssertTrue(movedLabel.contains("Zorblex"), movedLabel)
-        XCTAssertTrue(movedLabel.contains("4 of 10"), movedLabel)
+        XCTAssertFalse(movedLabel.contains("4 of 10"), movedLabel)
         app.tabBars.buttons["Today"].tap()
     }
 
@@ -300,8 +299,8 @@ final class EditDoseTests: XCTestCase {
 }
 
 extension EditDoseTests {
-    /// The reading opens inside Edit Dose's own stack, so the bar shows the pushed screen's ✕ and ✓ and only one ✓.
-    func testTheReadingPushedOverEditDoseHasItsOwnCancelAndSave() throws {
+    /// Choose an Entry pushes over Edit Dose inside its stack, so it has the back button and no ✕ or Cancel of its own.
+    func testTheReadingChoicePushedOverEditDoseHasNoCancelAndGoesBack() throws {
         continueAfterFailure = false
         let app = launchAnky()
         try logZorblexDoseAnHourBack(app)
@@ -309,15 +308,15 @@ extension EditDoseTests {
         XCTAssertTrue(editDoseScreen(in: app).waitForExistence(timeout: 10))
 
         app.buttons["before-reading-row"].tap()
-        XCTAssertTrue(app.buttons["save-entry"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["cancel-entry"].exists)
-        XCTAssertEqual(app.buttons.matching(identifier: "save-dose-changes").count, 0)
-        XCTAssertEqual(app.buttons.matching(NSPredicate(format: "label == 'Save'")).count, 1)
+        XCTAssertTrue(app.buttons["reading-log-new"].waitForExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["reading-option"].exists)
+        XCTAssertFalse(app.buttons["reading-cancel"].exists)
+        XCTAssertFalse(app.buttons["save-entry"].exists)
 
-        app.buttons["save-entry"].tap()
-        XCTAssertTrue(app.buttons["save-entry"].waitForNonExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["save-dose-changes"].waitForExistence(timeout: 10))
+        app.buttons["BackButton"].tap()
+        XCTAssertTrue(app.buttons["reading-log-new"].waitForNonExistence(timeout: 10))
+        XCTAssertTrue(app.buttons["save-dose-changes"].exists)
         XCTAssertTrue(app.buttons["edit-dose-cancel"].exists)
-        XCTAssertEqual(app.buttons.matching(NSPredicate(format: "label == 'Save'")).count, 1)
+        XCTAssertTrue(app.buttons["before-reading-row"].label.contains("4 of 10"))
     }
 }
