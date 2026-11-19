@@ -10,8 +10,9 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 ## Rules
 
 - Only the three tab roots, Today, History and Settings, set the title display mode, to `.toolbarTitleDisplayMode(.inlineLarge)`,
-  so the large title sits level with the bar's actions and no empty row stays above it. Today puts its date in
-  `.navigationSubtitle`. A pushed screen sets nothing and keeps the system's default for its navigation bar.
+  so the large title sits level with the bar's actions and no empty row stays above it. Today's date stays in the
+  list's first block and never goes in `.navigationSubtitle`, so the bar holds only the title and the icon and the
+  system levels them. A pushed screen sets nothing and keeps the system's default for its navigation bar.
 - A footnote goes in the footer of `CardSection` and never in an empty trailing section. A trailing section built
   only to hold the footnote sat about 42 pt from its card, away from the group it explains.
 - A form confirms and cancels in the top bar: the system's ✓ (`saveToolbarItem`) at the right and the system's ✕
@@ -115,7 +116,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `emptyTodayTop`: the space above Today's empty state in regular height when no recent chip shows. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyTodayTopBelowChip`: the space above Today's empty state in regular height under the recent chip. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyMedicationsTop`: the space above Medications' empty state in regular height, which with the list's own first-block offset puts the block 96 pt below the top bar. A screen reaches it only through `emptyStateTop`, and only Medications' cases do.
-- `emptyTodayTopCompact`: the space above Today's empty state in compact height when no recent chip shows, which with `emptyStateListOffset` puts the block below the top bar. A screen reaches it only through `emptyStateTop`.
+- `emptyTodayTopCompact`: the space above Today's empty state in compact height when no recent chip shows, which with `emptyStateListOffset` puts the block 12 pt below the date line. A screen reaches it only through `emptyStateTop`.
 - `emptyTodayTopBelowChipCompact`: the same under the recent chip, 12 pt below the chip. A screen reaches it only through `emptyStateTop`.
 - `emptyHistoryTopCompact`: the space above History's empty state in compact height, which puts the block 12 pt below the top bar, where the inline title sits. A screen reaches it only through `emptyStateTop`.
 - `emptyMedicationsTopCompact`: the space above Medications' empty state in compact height, which with `emptyStateListOffset` puts the block 12 pt below the top bar, or below the archived card. A screen reaches it only through `emptyStateTop`.

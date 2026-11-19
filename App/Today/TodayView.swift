@@ -97,8 +97,11 @@ struct TodayView: View {
             List {
                 Section {
                     cornerGuard
-                    repeatBlock
-                        .nonCardBlock()
+                    VStack(alignment: .leading, spacing: Spacing.firstBlockTop) {
+                        dateLine
+                        repeatBlock
+                    }
+                    .nonCardBlock()
                     cornerGuard
                 }
                 entriesOrEmptyState
@@ -141,7 +144,6 @@ struct TodayView: View {
                     .padding(.bottom, Spacing.bottomClearance)
             }
             .navigationTitle("Today")
-            .navigationSubtitle(dateLine)
             .toolbarTitleDisplayMode(.inlineLarge)
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
@@ -178,8 +180,8 @@ struct TodayView: View {
         }
     }
 
-    /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the chip.
-    /// A zero-height row takes each of those corners.
+    /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
+    /// the chip. A zero-height row takes each of those corners.
     private var cornerGuard: some View {
         Color.clear
             .frame(height: 0)
@@ -187,13 +189,16 @@ struct TodayView: View {
             .nonCardBlock()
     }
 
-    private var dateLine: Text {
+    private var dateLine: some View {
         Text(verbatim: DayDateText.text(
             for: .now,
             includesYear: false,
             calendar: .current,
             locale: .current
         ))
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+        .accessibilityIdentifier("today-date")
     }
 
     @ViewBuilder

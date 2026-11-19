@@ -8,7 +8,7 @@ final class EmptyStateTests: XCTestCase {
         let app = launchAnky()
 
         XCTAssertTrue(app.descendants(matching: .any)["today-screen"].waitForExistence(timeout: 10))
-        XCTAssertTrue(todayDate(in: app).exists)
+        XCTAssertTrue(app.staticTexts["today-date"].exists)
         XCTAssertTrue(app.staticTexts["empty-today"].exists)
         XCTAssertEqual(entryRows(in: app).count, 0)
         XCTAssertFalse(app.staticTexts["Levels are 0 to 10. Everything stays on this iPhone."].exists)
