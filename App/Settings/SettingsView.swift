@@ -73,6 +73,7 @@ struct SettingsView: View {
             .lastBlockClearance()
             .accessibilityIdentifier("settings-screen")
             .navigationTitle("Settings")
+            .toolbarTitleDisplayMode(.inlineLarge)
         }
     }
 

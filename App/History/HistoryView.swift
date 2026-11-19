@@ -156,6 +156,7 @@ struct HistoryView: View {
             .accessibilityElement(children: .contain)
             .accessibilityIdentifier("history-screen")
             .navigationTitle("History")
+            .toolbarTitleDisplayMode(.inlineLarge)
             .navigationDestination(item: $openedResult) { BasdaiDetailView(result: $0) }
             .onChange(of: inputs, initial: true) { _, inputs in
                 derived = HistoryDerived(inputs)

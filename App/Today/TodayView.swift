@@ -97,11 +97,8 @@ struct TodayView: View {
             List {
                 Section {
                     cornerGuard
-                    VStack(alignment: .leading, spacing: Spacing.firstBlockTop) {
-                        dateLine
-                        repeatBlock
-                    }
-                    .nonCardBlock()
+                    repeatBlock
+                        .nonCardBlock()
                     cornerGuard
                 }
                 entriesOrEmptyState
@@ -111,7 +108,6 @@ struct TodayView: View {
             .emptyStateListOffset(recent == nil ? .today : .todayBelowChip, isShowing: todayItems.isEmpty)
             .blockGapBetweenSections()
             .contentColumn()
-            .todayTopMargin()
             .addButtonClearance()
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -144,6 +140,8 @@ struct TodayView: View {
                     .padding(.bottom, Spacing.bottomClearance)
             }
             .navigationTitle("Today")
+            .navigationSubtitle(dateLine)
+            .toolbarTitleDisplayMode(.inlineLarge)
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
             }
@@ -188,16 +186,13 @@ struct TodayView: View {
             .nonCardBlock()
     }
 
-    private var dateLine: some View {
+    private var dateLine: Text {
         Text(verbatim: DayDateText.text(
             for: .now,
             includesYear: false,
             calendar: .current,
             locale: .current
         ))
-        .font(.subheadline)
-        .foregroundStyle(.secondary)
-        .accessibilityIdentifier("today-date")
     }
 
     @ViewBuilder

@@ -9,8 +9,9 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 
 ## Rules
 
-- A screen never sets the title display mode. Today's header moved by `.inlineLarge` and the change was rolled back, so
-  a screen keeps the system's default for its navigation bar.
+- Only the three tab roots, Today, History and Settings, set the title display mode, to `.toolbarTitleDisplayMode(.inlineLarge)`,
+  so the large title sits level with the bar's actions and no empty row stays above it. Today puts its date in
+  `.navigationSubtitle`. A pushed screen sets nothing and keeps the system's default for its navigation bar.
 - A footnote goes in the footer of `CardSection` and never in an empty trailing section. A trailing section built
   only to hold the footnote sat about 42 pt from its card, away from the group it explains.
 - A form confirms and cancels in the top bar: the system's ✓ (`saveToolbarItem`) at the right and the system's ✕
@@ -57,7 +58,6 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 - `emptyStateListOffset`: on the `List` of an empty-state screen, takes the same `EmptyStateTop` case, whether the block shows and whether it starts the list, and in compact height gives up the list's section gap and, for a block that starts the list, its top margin while the block shows, so `emptyStateTop` alone sets the visible gap. Put it before `screenSpacing` or `blockGapBetweenSections`, since the one closest to the list wins. Do not set a section gap or a content margin on an empty screen yourself.
 - `emptyStateMark`: the width of Today's mark in an empty state, smaller in compact height so the heading and hint move up. Do not set a width frame on the mark, and do not scale it, since scaling leaves its layout size.
 - `blockGapBetweenSections`: the standard gap between sections for a list that is not set up by `screenSpacing`. Do not call `listSectionSpacing` with a number.
-- `todayTopMargin`: pulls Today's list up toward its large title and follows the title as Dynamic Type grows it. In compact height, where the bar is inline and has no large title, it starts the list `firstBlockTop` below the bar instead. Only Today uses it. Do not copy it to another screen, and do not nudge a list's top by hand.
 - `primaryButton`: the prominent style for a button, with its label colour set to match. Do not apply the glass prominent style yourself.
 - `discardConfirmation`: the Cancel of a form, drawn as the system's ✕ and spoken "Cancel", the system confirmation that Cancel opens only when the form holds changes, and the swipe-down block while it does. Put it on the form's root view inside its `NavigationStack`, and do not add your own Cancel item, text button, dialog or `interactiveDismissDisabled`.
 - `saveToolbarItem`: the form's Save as the system's ✓ in the top bar, spoken "Save" or the `label` it is given, such as Schedule's "Done", where `isEnabled` dims only the ✓. Put it on the form's root view inside its `NavigationStack`, next to `discardConfirmation`, and do not pin a wide Save button, style the ✓, or use `.disabled` on the form for it.
@@ -76,9 +76,6 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `screenMargin`: the smallest side distance of a screen's content, applied by the shared pieces. Content outside a list uses `insetBarColumn` and not the bare token. Do not write a horizontal padding number.
 - `contentMaxWidth`: the widest the content column grows, which `contentColumn` and `insetBarColumn` apply. Do not write the number or cap a screen's width yourself.
 - `firstBlockTop`: the gap between the navigation bar and the first block, which `screenSpacing` applies. Use it for the same gap in a stack that is not a list.
-- `titleToDatePull`: only for `todayTopMargin`, which sets how far Today's list is pulled up. Do not use it to align another header.
-- `titleToDatePullPerTitlePoint`: only for `todayTopMargin`, which shrinks the pull as the title grows. Do not use it to align another header.
-- `largeTitleSize`: only for `todayTopMargin`, as the title size the pull is measured from. Do not use it to size text.
 - `blockGap`: the gap between the blocks of a screen, applied by `screenSpacing`. Do not set a different section gap.
 - `emptyBlockGap`: the space above History's empty state in regular height. A screen reaches it only through `emptyStateTop`, and only History's case does.
 - `labelGap`: the gap under a section label, applied by `SectionLabel`. Do not pad a label yourself.
@@ -117,7 +114,7 @@ Every spacing and size under `App/` is a `Spacing` token, so a screen writes no 
 - `emptyTodayTop`: the space above Today's empty state in regular height when no recent chip shows. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyTodayTopBelowChip`: the space above Today's empty state in regular height under the recent chip. A screen reaches it only through `emptyStateTop`, and only Today's case does.
 - `emptyMedicationsTop`: the space above Medications' empty state in regular height, which with the list's own first-block offset puts the block 96 pt below the top bar. A screen reaches it only through `emptyStateTop`, and only Medications' cases do.
-- `emptyTodayTopCompact`: the space above Today's empty state in compact height when no recent chip shows, which with `emptyStateListOffset` puts the block 12 pt below the date line. A screen reaches it only through `emptyStateTop`.
+- `emptyTodayTopCompact`: the space above Today's empty state in compact height when no recent chip shows, which with `emptyStateListOffset` puts the block below the top bar. A screen reaches it only through `emptyStateTop`.
 - `emptyTodayTopBelowChipCompact`: the same under the recent chip, 12 pt below the chip. A screen reaches it only through `emptyStateTop`.
 - `emptyHistoryTopCompact`: the space above History's empty state in compact height, which puts the block 12 pt below the top bar, where the inline title sits. A screen reaches it only through `emptyStateTop`.
 - `emptyMedicationsTopCompact`: the space above Medications' empty state in compact height, which with `emptyStateListOffset` puts the block 12 pt below the top bar, or below the archived card. A screen reaches it only through `emptyStateTop`.
