@@ -1,0 +1,7 @@
+$ sh -c 'axe describe-ui --udid 0227AF6F-E0FD-4000-8087-321D26713CE5 | grep -c -E '\''log-dose-screen|log-dose-cancel|log-dose-manage'\'' ; axe describe-ui --udid 0227AF6F-E0FD-4000-8087-321D26713CE5 | grep -o '\''"AXUniqueId" *: *"log-dose[^"]*"'\'''
+exit: 0
+commit: 1ba35fd338f7e8ff6e455e9c059515130a0f8ad2
+
+2
+"AXUniqueId" : "log-dose-cancel"
+"AXUniqueId" : "log-dose-screen"

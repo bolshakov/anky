@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 0227AF6F-E0FD-4000-8087-321D26713CE5 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t411-01-3/tmp/entry.py'
+exit: 0
+commit: 1ba35fd338f7e8ff6e455e9c059515130a0f8ad2
+
+{"AXUniqueId": "log-dose-manage", "AXLabel": "Manage medications", "role": "AXButton", "AXFrame": "{{290, 82}, {36, 36}}"}
