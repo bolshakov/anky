@@ -1,0 +1,5 @@
+$ bash -c 'axe describe-ui --udid 997C41B4-D5E9-434F-B859-17069D54FC69 | grep -B12 '\''reading-choices-footnote'\'' | grep -E '\''AXLabel|AXUniqueId'\'''
+exit: 0
+commit: 0b1afa80606298d46994c9550c6fbf46b74b97ba
+
+                                                                        "AXUniqueId" : "reading-choices-footnote"
