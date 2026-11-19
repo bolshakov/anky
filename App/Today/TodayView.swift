@@ -111,7 +111,7 @@ struct TodayView: View {
             .emptyStateListOffset(recent == nil ? .today : .todayBelowChip, isShowing: todayItems.isEmpty)
             .blockGapBetweenSections()
             .contentColumn()
-            .firstBlockClearance()
+            .titleFlushClearance()
             .addButtonClearance()
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
