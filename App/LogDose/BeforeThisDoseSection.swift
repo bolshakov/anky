@@ -23,7 +23,6 @@ struct BeforeThisDoseSection<Destination: View>: View {
     let prompt: ReadingPrompt?
     var onLog: () -> Void = {}
     var onRemove: (() -> Void)?
-    var footnote = Text("Your latest entry before this dose. Tap to choose another.")
     @ViewBuilder let destination: () -> Destination
 
     var body: some View {
@@ -42,7 +41,7 @@ struct BeforeThisDoseSection<Destination: View>: View {
 
     private var footnoteText: Text? {
         if reading != nil {
-            footnote
+            Text("The entry used for this dose. Tap to choose another, or swipe left to remove.")
         } else if showsNone {
             Text("Not linked to an entry.")
         } else {

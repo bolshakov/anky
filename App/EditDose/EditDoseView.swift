@@ -159,7 +159,6 @@ struct EditDoseView: View {
             prompt: before == .prompt ? .forDose(at: takenAt, now: .now) : nil,
             onLog: { newEntry = DoseEntryRequest(doseAt: takenAt) },
             onRemove: { before = .none },
-            footnote: Text("The entry used for this dose. Tap to choose another."),
             destination: readingChoice
         )
         if let after = readings.after, !isAfterRemoved {
