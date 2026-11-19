@@ -11,8 +11,8 @@ Are you sure you want to discard your changes? => Закрыть без сохр
 Discard Changes => Закрыть без сохранения
 Add => Добавить
 Tap + to log how you feel or a dose. Everything stays on this iPhone. => \
-Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone.
-Your records appear here, newest first. => Здесь появятся твои записи, сначала новые.
+Нажми «+», чтобы записать самочувствие или приём лекарства. Все данные остаются на этом iPhone.
+Your records appear here, newest first. => Здесь появятся твои записи, новые сначала.
 Log how you feel => Записать самочувствие
 New Entry => Новая запись
 Cancel => Отмена
@@ -155,7 +155,7 @@ stiffness was %lld => скованность была %lld
 Stiffness was %lld of 10 => Скованность была %lld из 10
 Taken %@. => Принято: %@.
 Levels are 0 to 10. => Уровни от 0 до 10.
-Levels are 0 to 10. Everything stays on this iPhone. => Уровни от 0 до 10. Всё остаётся на этом iPhone.
+Levels are 0 to 10. Everything stays on this iPhone. => Уровни от 0 до 10. Все данные остаются на этом iPhone.
 Character limit reached => Достигнут лимит символов
 Log Dose => Новый приём
 Log dose => Записать приём лекарства
@@ -238,7 +238,7 @@ Swipe left to archive. Archived medications leave Log Dose; doses you logged sta
 Смахни влево, чтобы архивировать. Архивные лекарства не показываются при записи приёма, а записанные приёмы останутся \
 в «Истории».
 Add what you take, then log a dose in two taps. Everything stays on this iPhone. => \
-Добавь то, что ты принимаешь, и записывай приём в два касания. Всё остаётся на этом iPhone.
+Добавь свои лекарства, и записывай приём в два касания. Все данные остаются на этом iPhone.
 Time to check in => Пора отметить самочувствие
 Reminders => Напоминания
 Daily reminder => Ежедневное напоминание
@@ -263,7 +263,7 @@ Period => Период
 1 month => 1 месяц
 3 months => 3 месяца
 6 months => 6 месяцев
-Preview => Просмотреть
+Preview => Просмотр
 """) + reportDraftPlainValues
 
 private let approvedFormatValues = table("""
