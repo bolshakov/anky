@@ -17,8 +17,8 @@ extension View {
             .contentMargins(.bottom, Spacing.bottomClearance, for: .scrollContent)
     }
 
-    func firstBlockClearance() -> some View {
-        contentMargins(.top, Spacing.firstBlockTop, for: .scrollContent)
+    func titleFlushClearance() -> some View {
+        contentMargins(.top, 0, for: .scrollContent)
     }
 
     func lastBlockClearance() -> some View {
