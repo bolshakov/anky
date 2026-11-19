@@ -26,6 +26,7 @@ struct PrivacyPolicyView: View {
         .accessibilityIdentifier("privacy-policy-screen")
         .navigationTitle("Privacy Policy")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar(.hidden, for: .tabBar)
     }
 
     private func topGap(at index: Int) -> CGFloat {
