@@ -25,7 +25,7 @@ Name line => Имя
 Recorded by the patient in Anky. => Записано пациентом в Anky.
 Severity by week heading => Сила симптома по неделям, от 0 до 10
 Shows the scores saved in this period. Everything stays on this iPhone until you share the report. => \
-Показывает результаты, сохранённые за этот период. Всё остаётся на этом iPhone, пока ты не поделишься отчётом.
+Показывает результаты, сохранённые за этот период. Все данные остаются на этом iPhone, пока ты не поделишься отчётом.
 Symptom report => Отчёт о симптомах
 Week count none => –
 Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone. => \
