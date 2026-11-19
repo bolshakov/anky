@@ -80,6 +80,7 @@ struct LogDoseView: View {
                             Label("Manage", systemImage: "pills")
                         }
                         .minimumTapTarget()
+                        .accessibilityLabel("Manage medications, spoken label")
                         .accessibilityIdentifier("log-dose-manage")
                     }
                     ToolbarSpacer(.fixed, placement: .primaryAction)
