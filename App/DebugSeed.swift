@@ -15,7 +15,8 @@
     /// entries dated today, each at or before now, so Today's list scrolls. `readings` writes three medications, a Pain
     /// entry 20 minutes back and a Stiffness entry 40 minutes back, and four doses on Today for the walks of the
     /// reading
-    /// before a dose. A log that holds anything is left alone.
+    /// before a dose. `medications-many` writes 14 as-needed medications and no entry. A log that holds anything is
+    /// left alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -36,6 +37,8 @@
                 plantBasdaiRows(entries: entries, basdai: basdai, now: now)
             case "schedule-months":
                 plantScheduleMonths(medications: medications, now: now)
+            case "medications-many":
+                plantMedicationsMany(medications: medications, now: now)
             default:
                 plantReport(entries: entries, medications: medications, basdai: basdai, now: now)
             }
@@ -130,6 +133,15 @@
         private static func addResult(_ answers: [Int], at date: Date, to basdai: BasdaiModel) {
             guard let result = BasdaiResult(id: UUID(), date: date, answers: answers) else { return }
             try? basdai.add(result)
+        }
+
+        private static func plantMedicationsMany(medications: MedicationsModel, now: Date) {
+            for index in 1 ... 14 {
+                let medication = Medication(
+                    id: UUID(), name: "Medication \(index)", takenAs: .asNeeded, createdAt: now
+                )
+                try? medications.add(medication)
+            }
         }
 
         private static func plantScheduleMonths(medications: MedicationsModel, now: Date) {
