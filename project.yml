@@ -21,8 +21,15 @@ targets:
         product: AnkyStore
       - package: Anky
         product: AnkyMedicationModel
+    postBuildScripts:
+      - path: scripts/set-build-number.sh
+        name: Set the build number to the commit count
+        inputFiles:
+          - $(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)
+        basedOnDependencyAnalysis: false
     settings:
       GENERATE_INFOPLIST_FILE: YES
+      ENABLE_USER_SCRIPT_SANDBOXING: NO
       SWIFT_VERSION: "6.0"
       SWIFT_EMIT_LOC_STRINGS: YES
       MARKETING_VERSION: "1.0"
