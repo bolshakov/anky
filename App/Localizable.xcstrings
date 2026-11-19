@@ -3447,6 +3447,23 @@
         }
       }
     },
+    "Manage medications, spoken label" : {
+      "comment" : "The spoken label of the icon-only button on the Log Dose toolbar that opens the list of medications.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage medications"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление лекарствами"
+          }
+        }
+      }
+    },
     "Medications" : {
       "localizations" : {
         "ru" : {
