@@ -2,7 +2,16 @@
 import AnkyDomain
 import Foundation
 
-func openingDraft(after saved: [Entry], now: Date, startDate: Date? = nil, latestDate: Date? = nil) -> EntryDraft {
+func openingDraft(
+    after saved: [Entry],
+    now: Date,
+    startDate: Date? = nil,
+    latestDate: Date? = nil,
+    kinds: [EntryKind] = EntryKind.allCases
+) -> EntryDraft {
+    // #lizard forgives
     let opening = min(startDate ?? now, latestDate ?? .distantFuture)
-    return EntryDraft(severity: Severity.startLevel(after: saved), date: opening)
+    var draft = EntryDraft(severity: Severity.startLevel(after: saved), date: opening)
+    draft.kind = kinds.first ?? draft.kind
+    return draft
 }

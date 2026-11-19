@@ -26,4 +26,12 @@ public enum ReadingLink {
         }
         return ReadingWindow.pick(manual, in: entries, before: doseTime)
     }
+
+    /// The entries Choose an Entry lists: the window's, and the `chosen` one in its place by date when the window
+    /// leaves it out, whatever its kind or age, so the row that points at it never points at a hidden entry.
+    public static func choices(in entries: [Entry], chosen: UUID?, at doseTime: Date) -> [Entry] {
+        let window = Set(ReadingWindow.entries(in: entries, before: doseTime).map(\.id))
+        let keptChosen = kept(chosen, in: entries, at: doseTime)
+        return ReadingWindow.newestFirst(entries) { window.contains($0.id) || $0.id == keptChosen }
+    }
 }

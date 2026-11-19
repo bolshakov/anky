@@ -196,10 +196,7 @@ struct LogDoseView: View {
     }
 
     private func readingPicked(_ picked: Entry) {
-        draft.manualReadingID = picked.id
-        draft.linkedReadingID = nil
-        draft.noReading = false
-        draft.readingTouched = true
+        draft = draft.picking(picked.id)
     }
 
     private func readingAdded(_ saved: Entry) {

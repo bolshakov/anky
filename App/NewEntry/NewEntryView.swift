@@ -8,6 +8,7 @@ struct NewEntryView: View {
     let model: EntryLogModel
     let mode: EntryMode
     let latestDate: Date?
+    let kinds: [EntryKind]
     let onSaved: () -> Void
     private(set) var deletedAction: () -> Void = {}
     let onAdded: (Entry) -> Void
@@ -31,6 +32,7 @@ struct NewEntryView: View {
         mode: EntryMode = .new,
         latestDate: Date? = nil,
         startDate: Date? = nil,
+        kinds: [EntryKind] = EntryKind.allCases,
         onSaved: @escaping () -> Void = {},
         onAdded: @escaping (Entry) -> Void = { _ in }
     ) {
@@ -41,10 +43,13 @@ struct NewEntryView: View {
         case .new: latestDate
         case .edit: nil
         }
+        self.kinds = kinds
         self.onSaved = onSaved
         self.onAdded = onAdded
         let opening = switch mode {
-        case .new: openingDraft(after: model.entries, now: .now, startDate: startDate, latestDate: latestDate)
+        case .new: openingDraft(
+                after: model.entries, now: .now, startDate: startDate, latestDate: latestDate, kinds: kinds
+            )
         case let .edit(entry): EntryDraft(entry: entry)
         }
         _draft = State(initialValue: opening)
@@ -53,7 +58,7 @@ struct NewEntryView: View {
         _entriesAtOpen = State(initialValue: model.entries)
         _lastChipsAtOpen = State(initialValue: model.shortcuts.lastChips)
         let recents: [EntryKind: [RecentEntry]] = switch mode {
-        case .new: Dictionary(uniqueKeysWithValues: EntryKind.allCases.map {
+        case .new: Dictionary(uniqueKeysWithValues: kinds.map {
                 ($0, RecentEntries.distinct(from: model.entries, kind: $0, limit: 3))
             })
         case .edit: [:]
@@ -73,7 +78,7 @@ struct NewEntryView: View {
                 Form {
                     recentChips
                     Section {
-                        KindSection(draft: $draft)
+                        KindSection(draft: $draft, kinds: kinds)
                             .nonCardBlock()
                     }
                     SystemSeveritySection(

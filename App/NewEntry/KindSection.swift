@@ -4,10 +4,11 @@ import SwiftUI
 
 struct KindSection: View {
     @Binding var draft: EntryDraft
+    var kinds = EntryKind.allCases
 
     var body: some View {
         Picker("What are you logging?", selection: $draft.kind) {
-            ForEach(EntryKind.allCases, id: \.self) { kind in
+            ForEach(kinds, id: \.self) { kind in
                 Text(kind.displayName).tag(kind)
             }
         }

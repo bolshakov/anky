@@ -69,6 +69,20 @@ public extension LogDoseDraft {
         return draft
     }
 
+    /// Picking the entry already linked keeps the link, since a manual pick outside the window would not hold.
+    func picking(_ id: UUID) -> LogDoseDraft {
+        var draft = self
+        if id != linkedReadingID {
+            draft.manualReadingID = id
+            draft.linkedReadingID = nil
+        } else {
+            draft.manualReadingID = nil
+        }
+        draft.noReading = false
+        draft.readingTouched = true
+        return draft
+    }
+
     /// A pick the new time no longer holds falls back to the checked medication's start. None stays None.
     func movingTime(to date: Date?, in context: LogDoseContext) -> LogDoseDraft {
         var draft = self

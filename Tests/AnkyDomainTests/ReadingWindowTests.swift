@@ -47,10 +47,33 @@ struct ReadingWindowTests {
         #expect(result.map(\.id) == [secondStored.id, firstStored.id])
     }
 
-    @Test func painStiffnessAndFatigueAllCount() throws {
-        let readings = try EntryKind.allCases.map { try entry($0, at: ago(600)) }
-        let result = ReadingWindow.entries(in: readings, before: doseTime)
-        #expect(Set(result.map(\.id)) == Set(readings.map(\.id)))
+    @Test func theKindsAReadingMayHaveArePainAndStiffness() {
+        #expect(ReadingWindow.kinds == [.pain, .stiffness])
+    }
+
+    @Test func painAndStiffnessCountAndFatigueDoesNot() throws {
+        let pain = try entry(.pain, at: ago(600))
+        let stiffness = try entry(.stiffness, at: ago(700))
+        let fatigue = try entry(.fatigue, at: ago(650))
+        let result = ReadingWindow.entries(in: [pain, fatigue, stiffness], before: doseTime)
+        #expect(result.map(\.id) == [pain.id, stiffness.id])
+    }
+
+    @Test func aFatigueEntryInTheWindowIsNotPickedAutomatically() throws {
+        let fatigue = try entry(.fatigue, at: ago(600))
+        #expect(ReadingWindow.latest(in: [fatigue], before: doseTime) == nil)
+        #expect(ReadingWindow.pick(nil, in: [fatigue], before: doseTime) == nil)
+    }
+
+    @Test func aFatigueEntryNewerThanAPainEntryDoesNotTakeItsPlace() throws {
+        let pain = try entry(.pain, at: ago(3000))
+        let fatigue = try entry(.fatigue, at: ago(600))
+        #expect(ReadingWindow.pick(fatigue.id, in: [pain, fatigue], before: doseTime)?.id == pain.id)
+    }
+
+    @Test func anEntryAtExactlyTheDoseTimeIsListed() throws {
+        let atDose = try entry(.stiffness, at: doseTime)
+        #expect(ReadingWindow.entries(in: [atDose], before: doseTime).map(\.id) == [atDose.id])
     }
 
     @Test func latestIsTheFirstInWindow() throws {
