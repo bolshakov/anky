@@ -1,0 +1,7 @@
+$ xcrun simctl io 25EE3838-0B09-4308-A3E0-93055C487DD5 screenshot /Users/bolshakov/Projects/personal/anky.wt/qa-t412-01-2/tmp/shots/meds2.png
+exit: 0
+commit: bea0ac329fcf1415fb953e83d8413280ccb02f5d
+
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: B730FE46-020F-40DE-BD03-A84E7E7BA652 (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/bolshakov/Projects/personal/anky.wt/qa-t412-01-2/tmp/shots/meds2.png
