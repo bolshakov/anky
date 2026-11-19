@@ -1,0 +1,7 @@
+$ bash -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/read-build.sh E18FE15E-51DB-415E-B777-B61EA30520C7 /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/b-head/.derived/Build/Products/Debug-iphonesimulator/Anky.app; echo -n '\''git rev-list --count HEAD: '\''; git rev-list --count HEAD; echo -n '\''git rev-list --count main (main is 657c8f4, not containing the change): '\''; git rev-list --count main'
+exit: 0
+commit: 131fba725506266ca72584db803eb6e39da701e3
+
+Version 1.0 (533)
+git rev-list --count HEAD: 533
+git rev-list --count main (main is 657c8f4, not containing the change): 519

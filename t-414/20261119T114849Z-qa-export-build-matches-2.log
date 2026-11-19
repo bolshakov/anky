@@ -1,0 +1,6 @@
+$ bash -c 'ls /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/zip; mkdir -p /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/y && unzip -o -q /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/zip/*.zip -d /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/y && grep -n '\''"build"'\'' /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/y/manifest.json'
+exit: 0
+commit: 131fba725506266ca72584db803eb6e39da701e3
+
+anky-export-2026-11-19.zip
+3:  "build" : "533",

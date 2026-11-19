@@ -1,0 +1,6 @@
+$ bash -c '/Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/read-build.sh E18FE15E-51DB-415E-B777-B61EA30520C7 /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/b-head/.derived/Build/Products/Debug-iphonesimulator/Anky.app /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/about2.png'
+exit: 0
+commit: 131fba725506266ca72584db803eb6e39da701e3
+
+Screenshot saved to /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/about2.png
+Version 1.0 (533)

@@ -1,0 +1,12 @@
+$ bash -c 'axe describe-ui --udid E18FE15E-51DB-415E-B777-B61EA30520C7 | python3 -c '\''import json,sys
+def walk(n):
+    if isinstance(n,dict):
+        if n.get("AXUniqueId")=="settings-version": print(n.get("AXLabel"))
+        for v in n.values(): walk(v)
+    elif isinstance(n,list):
+        for v in n: walk(v)
+walk(json.load(sys.stdin))'\'''
+exit: 0
+commit: 131fba725506266ca72584db803eb6e39da701e3
+
+Version 1.0 (533)

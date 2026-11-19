@@ -1,0 +1,8 @@
+$ bash -c 'echo '\''main~3 (f31f131, no build phase):'\''; /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/read-build.sh E18FE15E-51DB-415E-B777-B61EA30520C7 /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/b-old/.derived/Build/Products/Debug-iphonesimulator/Anky.app; echo '\''main (131fba7, head):'\''; /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/read-build.sh E18FE15E-51DB-415E-B777-B61EA30520C7 /Users/bolshakov/Projects/personal/anky.wt/qa-t414-01-1/tmp/qa/b-head/.derived/Build/Products/Debug-iphonesimulator/Anky.app'
+exit: 0
+commit: 131fba725506266ca72584db803eb6e39da701e3
+
+main~3 (f31f131, no build phase):
+Version 1.0 (1)
+main (131fba7, head):
+Version 1.0 (533)
