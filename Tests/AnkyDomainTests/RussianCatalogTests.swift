@@ -318,7 +318,7 @@ func table(_ text: String) -> [(key: String, value: String)] {
 struct RussianCatalogTests {
     @Test func everyApprovedTextReadsAsTheStakeholderWroteIt() throws {
         try CompiledCatalog.withBundle("ru") { ru in
-            for (key, value) in approvedPlainValues {
+            for (key, value) in approvedPlainValues + approvedFormatValues {
                 #expect(ru.localizedString(forKey: key, value: nil, table: nil) == value)
             }
         }
