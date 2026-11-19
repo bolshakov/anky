@@ -3198,12 +3198,12 @@
         }
       }
     },
-    "The entry used for this dose. Tap to choose another." : {
+    "The entry used for this dose. Tap to choose another, or swipe left to remove." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Запись для этого приёма. Нажми, чтобы выбрать другую."
+            "value" : "Запись, использованная для этой дозы. Нажмите, чтобы выбрать другую, или смахните влево, чтобы убрать."
           }
         }
       }
@@ -3432,16 +3432,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Можно закрепить не больше 5 мест. Открепи одно, чтобы добавить другое."
-          }
-        }
-      }
-    },
-    "Your latest entry before this dose. Tap to choose another." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Твоя последняя запись перед этим приёмом. Нажми, чтобы выбрать другую."
           }
         }
       }

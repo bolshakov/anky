@@ -192,7 +192,8 @@ Log how you feel now => Отметь самочувствие сейчас
 Log how you felt => Отметь самочувствие тогда
 Not linked to an entry. => Не связан с записью.
 Remove => Убрать
-The entry used for this dose. Tap to choose another. => Запись для этого приёма. Нажми, чтобы выбрать другую.
+The entry used for this dose. Tap to choose another, or swipe left to remove. => \
+Запись, использованная для этой дозы. Нажмите, чтобы выбрать другую, или смахните влево, чтобы убрать.
 Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Попробуй ещё раз.
 Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Попробуй ещё раз.
 Couldn't delete this entry. Try again. => Не удалось удалить эту запись. Попробуй ещё раз.
@@ -202,8 +203,6 @@ Couldn't restore this medication. Try again. => Не удалось восста
 Couldn't save this dose. Try again. => Не удалось сохранить этот приём. Попробуй ещё раз.
 Couldn't save this medication. Try again. => Не удалось сохранить это лекарство. Попробуй ещё раз.
 What are you logging? => Что ты записываешь?
-Your latest entry before this dose. Tap to choose another. => \
-Твоя последняя запись перед этим приёмом. Нажми, чтобы выбрать другую.
 Manage => Лекарства
 Medications => Лекарства
 Settings => Настройки
