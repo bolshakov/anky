@@ -6,13 +6,15 @@ import SwiftUI
 /// caller's wrapper gives the row its tap target, its identifier and its accessibility label.
 struct EntryIconRow: View {
     let entry: Entry
+    var isSelected = false
 
     var body: some View {
         IconRow(
             symbol: RowSymbol.name(for: entry.kind),
             title: Text(entry.kind.displayName),
             time: Self.time(of: entry),
-            detail: entry.rowPlaceSummary?.text
+            detail: entry.rowPlaceSummary?.text,
+            isTitleSemibold: isSelected
         ) {
             Text(entry.severity.value, format: .number)
                 .font(.body)
