@@ -273,6 +273,7 @@ private let approvedFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ и %2$@, с %3$@ по %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => С %1$@ по %2$@ записей нет. Выбери период длиннее.
 %@ by week: %@, %@ => %1$@ по неделям: %2$@, %3$@
+Manage medications, spoken label => Управление лекарствами
 """) + reportDraftFormatValues
 
 let morePlacesKey = "%lld places"
@@ -301,6 +302,7 @@ private let englishFormatValues = table("""
 %@ and %@, %@ to %@. => %1$@ and %2$@, %3$@ to %4$@.
 Nothing logged from %@ to %@. Pick a longer period. => Nothing logged from %1$@ to %2$@. Pick a longer period.
 %@ by week: %@, %@ => %1$@ by week: %2$@, %3$@
+Manage medications, spoken label => Manage medications
 """) + reportDraftEnglishFormatValues
 
 let russian = Locale(identifier: "ru")
