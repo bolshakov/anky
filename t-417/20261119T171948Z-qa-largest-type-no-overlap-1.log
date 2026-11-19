@@ -1,0 +1,8 @@
+$ python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t417-01-1/tmp/qa417/gap.py EE9602AC-F8B7-4254-8B03-2C75F5B6F9B5 'Сегодня'
+exit: 0
+commit: 6996184332f76f55388a013844574c0fc79fb000
+
+title {'height': 46, 'x': 16, 'width': 157, 'y': 61}
+date  {'height': 116.66666666666666, 'x': 16, 'width': 258.3333333333333, 'y': 116}
+icon  {'y': 66, 'x': 346, 'width': 36, 'height': 36}
+gap   9

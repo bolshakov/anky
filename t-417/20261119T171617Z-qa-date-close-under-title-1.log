@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid EE9602AC-F8B7-4254-8B03-2C75F5B6F9B5 | grep -o '\''"AXUniqueId" *: *"today-date"'\'''
+exit: 0
+commit: 6996184332f76f55388a013844574c0fc79fb000
+
+"AXUniqueId" : "today-date"

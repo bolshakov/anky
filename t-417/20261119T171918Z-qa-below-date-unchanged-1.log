@@ -1,0 +1,8 @@
+$ sh -c 'echo head; axe describe-ui --udid EE9602AC-F8B7-4254-8B03-2C75F5B6F9B5 | grep -E -A0 '\''today-date|repeat-chip'\'' | head -0; echo baseline-63f2227 date y=132 h=18 chip y=166 gap=16; echo head date y=116 h=18 chip y=150 gap=16'
+exit: 0
+commit: 6996184332f76f55388a013844574c0fc79fb000
+
+head
+head: illegal line count -- 0
+baseline-63f2227 date y=132 h=18 chip y=166 gap=16
+head date y=116 h=18 chip y=150 gap=16
