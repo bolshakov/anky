@@ -178,8 +178,8 @@ struct TodayView: View {
         }
     }
 
-    /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the date and
-    /// the chip. A zero-height row takes each of those corners.
+    /// The grouped list rounds and clips the outer corners of its first and last row, which would cut the chip.
+    /// A zero-height row takes each of those corners.
     private var cornerGuard: some View {
         Color.clear
             .frame(height: 0)
