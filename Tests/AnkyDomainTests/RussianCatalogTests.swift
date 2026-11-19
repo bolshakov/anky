@@ -121,6 +121,7 @@ Check In => Самочувствие
 Check in => Отметить
 Check in pending => Ждёт отметки самочувствия
 Choose an Entry => Выбор записи
+Pain and stiffness entries from the 2 hours before this dose. => Записи о боли и скованности за 2 часа до этой дозы.
 Delete dose => Удалить приём
 Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
 Dose => Приём

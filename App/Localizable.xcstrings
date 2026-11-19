@@ -642,6 +642,16 @@
         }
       }
     },
+    "Pain and stiffness entries from the 2 hours before this dose." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи о боли и скованности за 2 часа до этой дозы."
+          }
+        }
+      }
+    },
     "Counts, averages and ranges only." : {
       "comment" : "The report PDF's note beside the totals, second line: the page shows no single entry.",
       "localizations" : {

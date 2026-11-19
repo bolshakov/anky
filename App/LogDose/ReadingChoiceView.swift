@@ -30,7 +30,10 @@ struct ReadingChoiceView: View {
                     .accessibilityIdentifier("reading-none")
                 }
             }
-            CardSection(id: "reading-choices") {
+            CardSection(
+                footnote: Text("Pain and stiffness entries from the 2 hours before this dose."),
+                id: "reading-choices"
+            ) {
                 ForEach(ReadingLink.choices(in: entries, chosen: chosenID, at: doseAt)) { entry in
                     choiceRow(entry)
                 }
