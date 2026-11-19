@@ -1,0 +1,5 @@
+$ sh -c 'axe describe-ui --udid 698FF574-3BD3-4F2A-917C-318CA8D5C777 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t409-01-1/tmp/qa/ids.py | grep before-reading-footnote'
+exit: 0
+commit: 90cc271666d9f549e7e5a91ec6a902c49a97b761
+
+before-reading-footnote | The entry used for this dose. Tap to choose another, or swipe left to remove. | {{16, 421.66666666666669}, {370, 45.666666666666686}}

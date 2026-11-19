@@ -1,0 +1,8 @@
+$ sh -c 'axe describe-ui --udid 698FF574-3BD3-4F2A-917C-318CA8D5C777 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t409-01-1/tmp/qa/ids.py | grep -E '\''edit-dose-screen|before-reading'\'''
+exit: 0
+commit: 90cc271666d9f549e7e5a91ec6a902c49a97b761
+
+edit-dose-screen | None | {{0, 62}, {402, 812}}
+before-reading-label | Before this dose | {{16, 324.33333333333337}, {370, 32.333333333333314}}
+before-reading-row | None | {{16, 356.66666666666663}, {370, 52}}
+before-reading-footnote | Not linked to an entry. | {{16, 408.66666666666669}, {370, 29.666666666666686}}

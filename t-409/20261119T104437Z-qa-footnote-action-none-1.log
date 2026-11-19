@@ -1,0 +1,9 @@
+$ sh -c 'axe describe-ui --udid 698FF574-3BD3-4F2A-917C-318CA8D5C777 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t409-01-1/tmp/qa/ids.py | grep -E '\''log-dose-screen|before-reading|log-how|Nov'\'''
+exit: 0
+commit: 90cc271666d9f549e7e5a91ec6a902c49a97b761
+
+today-date | Thursday, November 19 | {{16, 163.33333333333334}, {162, 18}}
+log-dose-screen | None | {{0, 62}, {402, 812}}
+before-reading-label | Before this dose | {{16, 314.66666666666663}, {370, 32.333333333333314}}
+log-how-you-feel-row | Log how you felt | {{16, 347}, {370, 50.333333333333314}}
+None | Tue, Nov 17, 11:44 | {{234, 445.16666666666663}, {136, 20.333333333333371}}

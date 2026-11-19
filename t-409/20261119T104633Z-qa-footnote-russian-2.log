@@ -1,0 +1,8 @@
+$ sh -c 'axe describe-ui --udid 698FF574-3BD3-4F2A-917C-318CA8D5C777 | python3 -I /Users/bolshakov/Projects/personal/anky.wt/qa-t409-01-1/tmp/qa/ids.py | grep -E '\''edit-dose-screen|before-reading'\'''
+exit: 0
+commit: 90cc271666d9f549e7e5a91ec6a902c49a97b761
+
+edit-dose-screen | None | {{0, 62}, {402, 812}}
+before-reading-label | Перед этим приёмом | {{16, 324.33333333333337}, {370, 32.333333333333314}}
+before-reading-row | 11:38, Боль, Место не указано, 0 из 10 | {{16, 356.66666666666663}, {370, 68}}
+before-reading-footnote | Запись, использованная для этой дозы. Нажмите, чтобы выбрать другую, или смахните влево, чтобы убрать. | {{16, 424.66666666666669}, {370, 61.666666666666686}}
