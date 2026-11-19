@@ -1,4 +1,5 @@
 profiles:
+  default: {model: sonnet, effort: medium}
   haiku-high: {model: haiku, effort: high}
   sonnet: {model: sonnet, effort: medium}
   sonnet-high: {model: sonnet, effort: high}
