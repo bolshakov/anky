@@ -15,8 +15,8 @@
     /// entries dated today, each at or before now, so Today's list scrolls. `readings` writes three medications, a Pain
     /// entry 20 minutes back and a Stiffness entry 40 minutes back, and four doses on Today for the walks of the
     /// reading
-    /// before a dose. `medications-many` writes 14 as-needed medications and no entry. A log that holds anything is
-    /// left alone.
+    /// before a dose. `medications-many` fills an empty medication list with 14 as-needed medications. A log that holds
+    /// anything is left alone.
     @MainActor enum DebugSeed {
         static func plant(
             entries: EntryLogModel, medications: MedicationsModel, basdai: BasdaiModel, now: Date = .now
@@ -136,6 +136,7 @@
         }
 
         private static func plantMedicationsMany(medications: MedicationsModel, now: Date) {
+            guard medications.medications.isEmpty else { return }
             for index in 1 ... 14 {
                 let medication = Medication(
                     id: UUID(), name: "Medication \(index)", takenAs: .asNeeded, createdAt: now
