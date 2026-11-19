@@ -64,7 +64,7 @@ struct ReadingChoiceView: View {
             dismiss()
         } label: {
             HStack {
-                EntryIconRow(entry: entry)
+                EntryIconRow(entry: entry, isSelected: isChecked)
                     .spokenAsReading()
                 if isChecked {
                     Image(systemName: "checkmark")

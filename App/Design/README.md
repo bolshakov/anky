@@ -27,7 +27,7 @@ has no entry line, or an entry line names no piece. One entry line covers every 
 
 ## Rows
 
-- `IconRow`: the one row that shows an entry, a dose or a reading, with a tile, two lines and a trailing item. Do not build a second row with a leading symbol, and label it in the wrapper, since it sets no accessibility label.
+- `IconRow`: the one row that shows an entry, a dose or a reading, with a tile, two lines and a trailing item, and a semibold title for the chosen row of a list. Do not build a second row with a leading symbol, and label it in the wrapper, since it sets no accessibility label.
 - `IconTile`: the small symbol tile that starts an `IconRow`, decoration that VoiceOver skips. Do not draw a tinted square behind a symbol yourself.
 - `ValueRow`: a title with a value on the trailing side, with a chevron when it has an action. Do not build a `LabeledContent` row, and give it no action when it is the label of a `NavigationLink`, which draws its own chevron.
 - `TwoLineRow`: a title over a subtitle with an optional value, with a chevron when it has an action. Use `ValueRow` when one line is enough, and do not stack two texts in a row yourself.

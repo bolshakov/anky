@@ -10,6 +10,7 @@ struct IconRow<Trailing: View>: View {
     let title: Text
     let time: String
     let detail: String?
+    var isTitleSemibold = false
     @ViewBuilder let trailing: Trailing
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
@@ -34,6 +35,7 @@ struct IconRow<Trailing: View>: View {
         VStack(alignment: .leading, spacing: Spacing.textLinesGap) {
             title
                 .font(.body)
+                .fontWeight(isTitleSemibold ? .semibold : nil)
                 .foregroundStyle(.primary)
             Text(RowSecondLine.text(time: time, detail: detail))
                 .font(.footnote)
