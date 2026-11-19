@@ -1,6 +1,34 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "**How long** does your **morning stiffness** last from the time you wake up?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "**Сколько длится** **утренняя скованность** с момента пробуждения?"
+          }
+        }
+      }
+    },
+    "%@ (%lld–%lld)" : {
+      "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$lld–%3$lld)"
+          }
+        }
+      }
+    },
     "%@ and %@, %@ to %@." : {
       "comment" : "The Report screen's counts line, such as '142 entries and 38 doses, 11 August to 11 November.' %1$@ is the entries count, %2$@ the doses count, %3$@ the period's first day and %4$@ today, each a day and a month.",
       "localizations" : {
@@ -84,6 +112,98 @@
         }
       }
     },
+    "%@." : {
+      "comment" : "The sentence under the Schedule screen when no dose is left, such as when the end date has passed: the schedule in words and a full stop. %@ is the schedule in words, such as 'Every day at 09:00'.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@."
+          }
+        }
+      }
+    },
+    "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+      "comment" : "The key under the report's BASDAI table. %@ is the list of the six questions with their labels, such as 'Q1 fatigue, Q2 spinal pain'. The sentence gives the answer range and the score formula, and ends with the index's name and the 1994 paper, which stay as published.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
+          }
+        }
+      }
+    },
+    "%@. Next: %@." : {
+      "comment" : "The sentence under the Schedule screen that gives the schedule in words and then the day of the next dose, such as 'Every 2 weeks on Friday at 09:00. Next: Friday, 13 November.' %1$@ is the schedule in words, already a whole sentence without its full stop. %2$@ is the day of the next dose with its weekday, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@. Следующий приём: %2$@."
+          }
+        }
+      }
+    },
+    "%lld BASDAI results" : {
+      "comment" : "The report PDF's totals: how many BASDAI results the report carries, such as '3 BASDAI results'.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld BASDAI result"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld BASDAI results"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результата BASDAI"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результатов BASDAI"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результат BASDAI"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld результата BASDAI"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld characters left" : {
       "localizations" : {
         "en" : {
@@ -107,12 +227,6 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Остался %lld символ"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -123,6 +237,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "Осталось %lld символов"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Остался %lld символ"
                 }
               },
               "other" : {
@@ -160,12 +280,6 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld приём"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -176,6 +290,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld приёмов"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld приём"
                 }
               },
               "other" : {
@@ -213,12 +333,6 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld запись"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -229,6 +343,12 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld записей"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld запись"
                 }
               },
               "other" : {
@@ -242,8 +362,41 @@
         }
       }
     },
-    "%lld BASDAI results" : {
-      "comment" : "The report PDF's totals: how many BASDAI results the report carries, such as '3 BASDAI results'.",
+    "%lld h %lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is an hour or more, such as '1 h 50 min'. %1$lld is the hours and %2$lld the minutes past the hour. h and min are abbreviations.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld h %2$lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld ч %2$lld мин"
+          }
+        }
+      }
+    },
+    "%lld h to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is a whole number of hours, such as '2 h'. %lld is the hours. h is the abbreviation of hours.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ч"
+          }
+        }
+      }
+    },
+    "%lld hours" : {
       "localizations" : {
         "en" : {
           "variations" : {
@@ -251,13 +404,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld BASDAI result"
+                  "value" : "%lld hour"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld BASDAI results"
+                  "value" : "%lld hours"
                 }
               }
             }
@@ -266,28 +419,108 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld результат BASDAI"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld результата BASDAI"
+                  "value" : "%lld часа"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld результатов BASDAI"
+                  "value" : "%lld часов"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld час"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "%lld результата BASDAI"
+                  "value" : "%lld часа"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld min" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 under one hour, such as '48 min'. %lld is a number of minutes from 0 to 48. min is the abbreviation of minutes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        }
+      }
+    },
+    "%lld min to the after-reading" : {
+      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is under an hour, such as '45 min'. %lld is whole minutes. min is the abbreviation of minutes.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld мин"
+          }
+        }
+      }
+    },
+    "%lld minutes" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минут"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минута"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
                 }
               }
             }
@@ -307,6 +540,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld из %2$lld"
+          }
+        }
+      }
+    },
+    "%lld places" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld place"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld places"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld места"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld мест"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld место"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld места"
+                }
+              }
+            }
           }
         }
       }
@@ -335,12 +620,6 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld неделя"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -353,6 +632,12 @@
                   "value" : "%lld недель"
                 }
               },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld неделя"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -364,54 +649,35 @@
         }
       }
     },
-    "%lld places" : {
+    "0 hrs" : {
+      "comment" : "The label under the left end of the slider of BASDAI question 6, how long morning stiffness lasts: zero hours. hrs is the abbreviation of hours.",
       "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld place"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld places"
-                }
-              }
-            }
-          }
-        },
         "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld место"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld места"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld мест"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld места"
-                }
-              }
-            }
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 ч"
+          }
+        }
+      }
+    },
+    "1 hr" : {
+      "comment" : "One hour, abbreviated. Shown under the middle of the slider of BASDAI question 6, how long morning stiffness lasts, and as its value at the middle step.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ч"
+          }
+        }
+      }
+    },
+    "1 hr %lld min" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 between one and two hours, such as '1 hr 12 min'. %lld is the minutes past the hour, from 12 to 48.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 ч %lld мин"
           }
         }
       }
@@ -423,6 +689,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 месяц"
+          }
+        }
+      }
+    },
+    "2 hrs or more" : {
+      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 at its last step: two hours or longer, abbreviated.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 ч и больше"
+          }
+        }
+      }
+    },
+    "2 or more hrs" : {
+      "comment" : "The label under the right end of the slider of BASDAI question 6, how long morning stiffness lasts: two hours or longer. hrs is the abbreviation of hours.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 ч и больше"
           }
         }
       }
@@ -445,6 +733,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "6 месяцев"
+          }
+        }
+      }
+    },
+    "About" : {
+      "comment" : "Noun: heading of the Settings group that names the app, its version and its license.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О приложении"
           }
         }
       }
@@ -476,6 +775,125 @@
         }
       }
     },
+    "Add a time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить время"
+          }
+        }
+      }
+    },
+    "Add medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить лекарство"
+          }
+        }
+      }
+    },
+    "Add what you take, then log a dose in two taps. Everything stays on this iPhone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавь свои лекарства, и записывай приём в два касания. Все данные остаются на этом iPhone."
+          }
+        }
+      }
+    },
+    "After" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Через"
+          }
+        }
+      }
+    },
+    "After · checked in at %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "After · checked in at %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После · отмечено в %@"
+          }
+        }
+      }
+    },
+    "All data erased" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все данные стёрты"
+          }
+        }
+      }
+    },
+    "and %lld more places" : {
+      "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more place"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "and %lld more places"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld мест"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld место"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "и ещё %lld места"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "Ankle" : {
       "localizations" : {
         "ru" : {
@@ -496,6 +914,26 @@
         }
       }
     },
+    "Anky" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky"
+          }
+        }
+      }
+    },
+    "Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней."
+          }
+        }
+      }
+    },
     "Anky is a personal log kept by the patient. It does not give medical advice." : {
       "comment" : "The report PDF's footer, first line on the left: what the report is and that it is not medical advice.",
       "localizations" : {
@@ -509,6 +947,58 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anky — личный журнал, который ведёт сам пациент. Не заменяет консультацию врача."
+          }
+        }
+      }
+    },
+    "Anky will ask how you feel after this long." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anky спросит, как ты себя чувствуешь, когда пройдёт это время."
+          }
+        }
+      }
+    },
+    "Answers" : {
+      "comment" : "The section label above the six answers on a saved BASDAI result's screen, over the card that lists the questions with the number picked for each.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ответы"
+          }
+        }
+      }
+    },
+    "Archive" : {
+      "comment" : "Verb: hides the medication from the list but keeps the history of its doses.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архивировать"
+          }
+        }
+      }
+    },
+    "Archive medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архивировать лекарство"
+          }
+        }
+      }
+    },
+    "Archived" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В архиве"
           }
         }
       }
@@ -536,6 +1026,128 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Руки"
+          }
+        }
+      }
+    },
+    "As needed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По необходимости"
+          }
+        }
+      }
+    },
+    "Average time to after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average time from a dose to the entry logged after it, such as '1 h 50 min'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average time to after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Среднее время до записи после"
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10." : {
+      "comment" : "The note under the report PDF's medication table when no medication in it is scheduled.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10."
+          }
+        }
+      }
+    },
+    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled medication often has no after-reading." : {
+      "comment" : "The note under the report PDF's medication table when a medication in it is scheduled: the note without one, then why a scheduled dose often has no after-reading.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет."
+          }
+        }
+      }
+    },
+    "BASDAI" : {
+      "comment" : "The item in Today's (+) menu that opens the form with the six BASDAI questions. BASDAI is the name of the index and stays as is.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI"
+          }
+        }
+      }
+    },
+    "BASDAI scores" : {
+      "comment" : "The report PDF's heading above the BASDAI table: the scores of the questionnaire saved in the period, each with its six answers.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI scores"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты BASDAI"
+          }
+        }
+      }
+    },
+    "BASDAI scores, continued" : {
+      "comment" : "The report PDF's heading above the BASDAI table when the table goes on from the page before.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI scores, continued"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты BASDAI, продолжение"
+          }
+        }
+      }
+    },
+    "BASDAI, score %@, at %@, covers last week" : {
+      "comment" : "What VoiceOver reads for one saved BASDAI result in History and Today. The first %@ is the score with one decimal, with the decimal separator of the person's region, such as 3.0. The second %@ is the time it was saved, such as 20:01. BASDAI is the name of the index and stays as is.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI, score %@, at %@, covers last week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BASDAI, результат %@, в %@, за последние 7 дней"
+          }
+        }
+      }
+    },
+    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
+      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published. The two spaces after J and Rheumatol are no-break spaces, so the reference never splits across lines. Keep them.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
           }
         }
       }
@@ -590,13 +1202,12 @@
         }
       }
     },
-    "Check In" : {
-      "comment" : "Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in.",
+    "Character limit reached" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Самочувствие"
+            "value" : "Достигнут лимит символов"
           }
         }
       }
@@ -608,6 +1219,37 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отметить"
+          }
+        }
+      }
+    },
+    "Check In" : {
+      "comment" : "Title of the screen where the person says how they feel after a dose. It is not a hotel or flight check-in.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самочувствие"
+          }
+        }
+      }
+    },
+    "Check in after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить через"
+          }
+        }
+      }
+    },
+    "Check in later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить позже"
           }
         }
       }
@@ -642,12 +1284,115 @@
         }
       }
     },
-    "Pain and stiffness entries from the 2 hours before this dose." : {
+    "Couldn't archive this medication. Try again." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Записи о боли и скованности за 2 часа до этой дозы."
+            "value" : "Не удалось архивировать это лекарство. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't delete this dose. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить этот приём. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't delete this entry. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить эту запись. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't delete this result. Try again." : {
+      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось удалить этот результат. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't export" : {
+      "comment" : "Title of the alert shown when the export file could not be built.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось экспортировать"
+          }
+        }
+      }
+    },
+    "Couldn't restore this medication. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось восстановить это лекарство. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't save this check-in. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить отметку. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't save this dose. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить этот приём. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't save this entry. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить эту запись. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't save this medication. Try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить это лекарство. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Couldn't save this result. Try again." : {
+      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить результат. Попробуй ещё раз."
           }
         }
       }
@@ -669,6 +1414,23 @@
         }
       }
     },
+    "Covers last week" : {
+      "comment" : "The second line of a BASDAI row after the time. It says the questionnaire asks about the last seven days.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Covers last week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За последние 7 дней"
+          }
+        }
+      }
+    },
     "created %@" : {
       "comment" : "The end of the report PDF's line under its title: the day the report was made, such as 'created 11 November 2026'.",
       "localizations" : {
@@ -682,6 +1444,33 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "создан %@"
+          }
+        }
+      }
+    },
+    "Daily reminder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневное напоминание"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "comment" : "The report PDF's BASDAI table, the heading of the column that holds the day a result was saved.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
           }
         }
       }
@@ -726,6 +1515,17 @@
         }
       }
     },
+    "Delete result" : {
+      "comment" : "The button that confirms deleting one saved BASDAI result.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить результат"
+          }
+        }
+      }
+    },
     "Delete this dose? This can't be undone." : {
       "localizations" : {
         "ru" : {
@@ -742,6 +1542,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить эту запись? Это нельзя отменить."
+          }
+        }
+      }
+    },
+    "Delete this result? This can't be undone." : {
+      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить этот результат? Это нельзя отменить."
           }
         }
       }
@@ -794,6 +1605,43 @@
         }
       }
     },
+    "Dose deleted" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приём удалён"
+          }
+        }
+      }
+    },
+    "Doses" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses taken in the period.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doses"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приёмы"
+          }
+        }
+      }
+    },
+    "Duration" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжительность"
+          }
+        }
+      }
+    },
     "Edit Dose" : {
       "localizations" : {
         "ru" : {
@@ -810,6 +1658,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить запись"
+          }
+        }
+      }
+    },
+    "Edit Medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить лекарство"
           }
         }
       }
@@ -834,13 +1692,124 @@
         }
       }
     },
-    "Every day at %@" : {
-      "comment" : "How a schedule that repeats daily reads, such as 'Every day at 08:00'. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
+    "Ends" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Каждый день в %@"
+            "value" : "Окончание"
+          }
+        }
+      }
+    },
+    "Entries" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that counts the entries naming each place.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entries"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи"
+          }
+        }
+      }
+    },
+    "entries logged in %lld of them" : {
+      "comment" : "How many of a report chart's weeks hold at least one entry, the end of what VoiceOver reads for that chart, such as 'entries logged in 11 of them'. 'them' is the chart's weeks.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "entries logged in %lld of them"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "entries logged in %lld of them"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "записи есть в %lld из них"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Entry deleted" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Запись удалена"
+          }
+        }
+      }
+    },
+    "Erase" : {
+      "comment" : "Verb on the destructive button of the erase alert: removes the data for good.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть"
+          }
+        }
+      }
+    },
+    "Erase all data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все данные"
+          }
+        }
+      }
+    },
+    "Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone." : {
+      "comment" : "The question of the alert after Erase all data in Settings. Names everything the erase removes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стереть все данные на этом iPhone: записи, приёмы, лекарства и результаты BASDAI? Это нельзя отменить."
           }
         }
       }
@@ -869,12 +1838,6 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld день в %2$@"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -887,6 +1850,12 @@
                   "value" : "Каждые %1$lld дней в %2$@"
                 }
               },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld день в %2$@"
+                }
+              },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
@@ -894,81 +1863,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "Every week on %@ at %@" : {
-      "comment" : "How a schedule that repeats weekly reads, such as 'Every week on Friday at 09:00'. The first %@ is the weekdays and the second the clock times. %@ holds one or more weekday names, such as Friday or Monday and Friday, as the language writes a weekday on its own. In Russian that is the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждую неделю: %1$@, в %2$@"
-          }
-        }
-      }
-    },
-    "Every %lld weeks on %@ at %@" : {
-      "comment" : "How a schedule that repeats every few weeks reads, such as 'Every 2 weeks on Friday at 09:00'. %1$lld is the number of weeks, at least 2. %2$@ holds the weekdays and %3$@ the clock times, already formatted for the language. In Russian the weekdays are in the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. Needs every plural form of the language.",
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Every %1$lld week on %2$@ at %3$@"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Every %1$lld weeks on %2$@ at %3$@"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld неделю: %2$@, в %3$@"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld недель: %2$@, в %3$@"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "Every month on day %lld at %@" : {
-      "comment" : "How a schedule that repeats monthly reads, such as 'Every month on day 15 at 09:00'. %1$lld is the day of the month, 1 to 31. %2$@ holds the clock times, already formatted for the language.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждый месяц %1$lld-го числа в %2$@"
           }
         }
       }
@@ -1015,12 +1909,6 @@
               "formatSpecifier" : "lld",
               "variations" : {
                 "plural" : {
-                  "one" : {
-                    "stringUnit" : {
-                      "state" : "translated",
-                      "value" : "%arg месяц"
-                    }
-                  },
                   "few" : {
                     "stringUnit" : {
                       "state" : "translated",
@@ -1031,6 +1919,12 @@
                     "stringUnit" : {
                       "state" : "translated",
                       "value" : "%arg месяцев"
+                    }
+                  },
+                  "one" : {
+                    "stringUnit" : {
+                      "state" : "translated",
+                      "value" : "%arg месяц"
                     }
                   },
                   "other" : {
@@ -1046,18 +1940,8 @@
         }
       }
     },
-    "Entry deleted" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Запись удалена"
-          }
-        }
-      }
-    },
-    "entries logged in %lld of them" : {
-      "comment" : "How many of a report chart's weeks hold at least one entry, the end of what VoiceOver reads for that chart, such as 'entries logged in 11 of them'. 'them' is the chart's weeks.",
+    "Every %lld weeks on %@ at %@" : {
+      "comment" : "How a schedule that repeats every few weeks reads, such as 'Every 2 weeks on Friday at 09:00'. %1$lld is the number of weeks, at least 2. %2$@ holds the weekdays and %3$@ the clock times, already formatted for the language. In Russian the weekdays are in the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. Needs every plural form of the language.",
       "localizations" : {
         "en" : {
           "variations" : {
@@ -1065,13 +1949,13 @@
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "entries logged in %lld of them"
+                  "value" : "Every %1$lld week on %2$@ at %3$@"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "entries logged in %lld of them"
+                  "value" : "Every %1$lld weeks on %2$@ at %3$@"
                 }
               }
             }
@@ -1080,31 +1964,126 @@
         "ru" : {
           "variations" : {
             "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "записи есть в %lld из них"
-                }
-              },
               "few" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "записи есть в %lld из них"
+                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
                 }
               },
               "many" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "записи есть в %lld из них"
+                  "value" : "Каждые %1$lld недель: %2$@, в %3$@"
+                }
+              },
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Каждые %1$lld неделю: %2$@, в %3$@"
                 }
               },
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "записи есть в %lld из них"
+                  "value" : "Каждые %1$lld недели: %2$@, в %3$@"
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "Every 2 weeks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждые 2 недели"
+          }
+        }
+      }
+    },
+    "Every 4 weeks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждые 4 недели"
+          }
+        }
+      }
+    },
+    "Every day" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый день"
+          }
+        }
+      }
+    },
+    "Every day at %@" : {
+      "comment" : "How a schedule that repeats daily reads, such as 'Every day at 08:00'. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый день в %@"
+          }
+        }
+      }
+    },
+    "Every month on day %lld at %@" : {
+      "comment" : "How a schedule that repeats monthly reads, such as 'Every month on day 15 at 09:00'. %1$lld is the day of the month, 1 to 31. %2$@ holds the clock times, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый месяц %1$lld-го числа в %2$@"
+          }
+        }
+      }
+    },
+    "Every week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждую неделю"
+          }
+        }
+      }
+    },
+    "Every week on %@ at %@" : {
+      "comment" : "How a schedule that repeats weekly reads, such as 'Every week on Friday at 09:00'. The first %@ is the weekdays and the second the clock times. %@ holds one or more weekday names, such as Friday or Monday and Friday, as the language writes a weekday on its own. In Russian that is the nominative case, so write the sentence so a list of nominative weekdays reads correctly in it. %@ holds one or more clock times, such as 09:00 or 9:00 AM and 9:00 PM, already formatted for the language.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждую неделю: %1$@, в %2$@"
+          }
+        }
+      }
+    },
+    "Export data" : {
+      "comment" : "Settings row, in the Your data card: builds a file of everything logged and opens the share sheet for it.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Экспортировать данные"
+          }
+        }
+      }
+    },
+    "Exporting" : {
+      "comment" : "What VoiceOver reads for the Export data row while the export file is being built.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идёт экспорт"
           }
         }
       }
@@ -1120,6 +2099,7 @@
       }
     },
     "Fatigue" : {
+      "comment" : "Fatigue or tiredness. The name of the fatigue symptom on entries, and the short name of BASDAI question 1, used where the whole question does not fit, such as a report column.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -1127,8 +2107,7 @@
             "value" : "Усталость"
           }
         }
-      },
-      "comment" : "Fatigue or tiredness. The name of the fatigue symptom on entries, and the short name of BASDAI question 1, used where the whole question does not fit, such as a report column."
+      }
     },
     "fatigue %lld after" : {
       "localizations" : {
@@ -1200,6 +2179,16 @@
         }
       }
     },
+    "Feet and toes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стопы и пальцы ног"
+          }
+        }
+      }
+    },
     "First entry %@" : {
       "comment" : "The report PDF's totals: the day of the first entry logged in the period, such as 'First entry 12 August'.",
       "localizations" : {
@@ -1217,6 +2206,16 @@
         }
       }
     },
+    "Foot and toes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стопа и пальцы ног"
+          }
+        }
+      }
+    },
     "Get Anky on the App Store" : {
       "comment" : "The report PDF's footer, beside the QR code that opens the Anky site.",
       "localizations" : {
@@ -1230,528 +2229,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anky в App Store"
-          }
-        }
-      }
-    },
-    "Include BASDAI scores" : {
-      "comment" : "The Report screen's switch that puts the period's BASDAI scores in the PDF. On by default and not remembered.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Include BASDAI scores"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавить результаты BASDAI"
-          }
-        }
-      }
-    },
-    "Kind none logged" : {
-      "comment" : "The report PDF's severity charts: stands after a symptom's name, such as Fatigue, in place of its chart when the period holds no entry of that symptom.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "None logged in this period"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За этот период записей нет"
-          }
-        }
-      }
-    },
-    "Legend lowest to highest" : {
-      "comment" : "The report PDF's legend over the severity charts: what the black line through a bar shows, the lowest to the highest severity that week.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "lowest to highest"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "от наименьшего до наибольшего"
-          }
-        }
-      }
-    },
-    "Legend none logged" : {
-      "comment" : "The report PDF's legend over the severity charts, after a dash: a dash under a week means no entry of the kind that week.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "none logged"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "записей нет"
-          }
-        }
-      }
-    },
-    "Legend number under a bar" : {
-      "comment" : "The report PDF's legend over the severity charts: the number under each bar or dot counts that week's entries of the kind.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "number under a bar: entries that week"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "число под столбцом: записей за неделю"
-          }
-        }
-      }
-    },
-    "Legend one entry" : {
-      "comment" : "The report PDF's legend over the severity charts: what a dot shows, a week with a single entry of that kind.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "one entry"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "одна запись"
-          }
-        }
-      }
-    },
-    "Legend weekly average" : {
-      "comment" : "The report PDF's legend over the severity charts: what a bar shows, the average severity of a kind's entries that week.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "weekly average"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "среднее за неделю"
-          }
-        }
-      }
-    },
-    "Made with Anky, page %lld of %lld" : {
-      "comment" : "The report PDF's footer, second line on the left: where to get Anky, then this page's number and the page count.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page %1$lld of %2$lld"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Создано в Anky, бесплатном журнале симптомов для iPhone · anky.bolshakov.dev · Страница %1$lld из %2$lld"
-          }
-        }
-      }
-    },
-    "Name line" : {
-      "comment" : "The report PDF's label before a blank line where the patient writes their name by hand. Not a medication's name.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Имя"
-          }
-        }
-      }
-    },
-    "Nothing logged from %@ to %@. Pick a longer period." : {
-      "comment" : "The Report screen's line when the period holds no entry and no dose. %1$@ is the period's first day and %2$@ today, each a day and a month.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nothing logged from %1$@ to %2$@. Pick a longer period."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "С %1$@ по %2$@ записей нет. Выбери период длиннее."
-          }
-        }
-      }
-    },
-    "Off in iOS Settings" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выключено в настройках iOS"
-          }
-        }
-      }
-    },
-    "Opens Check In" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открывает отметку самочувствия"
-          }
-        }
-      }
-    },
-    "pain %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "боль после: %lld"
-          }
-        }
-      }
-    },
-    "Pain %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль после: %lld"
-          }
-        }
-      }
-    },
-    "pain %lld before, %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "боль до: %1$lld, после: %2$lld"
-          }
-        }
-      }
-    },
-    "Pain %lld before, %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль до: %1$lld, после: %2$lld"
-          }
-        }
-      }
-    },
-    "Pain now" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль сейчас"
-          }
-        }
-      }
-    },
-    "pain was %lld" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "боль была %lld"
-          }
-        }
-      }
-    },
-    "Pain was %lld of 10" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль была %lld из 10"
-          }
-        }
-      }
-    },
-    "Period" : {
-      "comment" : "The label of the Report screen's choice of how far back the report goes.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Период"
-          }
-        }
-      }
-    },
-    "Preview" : {
-      "comment" : "The button that builds the report and opens it in the system preview. A verb.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Просмотреть"
-          }
-        }
-      }
-    },
-    "Recorded by the patient in Anky." : {
-      "comment" : "The report PDF's note beside the totals, first line: who recorded the counts.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recorded by the patient in Anky."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Записано пациентом в Anky."
-          }
-        }
-      }
-    },
-    "Report" : {
-      "comment" : "The title of the screen that picks a period for a report to show a doctor.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отчёт"
-          }
-        }
-      }
-    },
-    "Report for your doctor" : {
-      "comment" : "The VoiceOver name of the Today button that opens the Report screen, where a period is picked for a PDF to show a doctor.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отчёт для врача"
-          }
-        }
-      }
-    },
-    "Saved as a fatigue entry." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранится как запись об усталости."
-          }
-        }
-      }
-    },
-    "Saved as a pain entry." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранится как запись о боли."
-          }
-        }
-      }
-    },
-    "Saved as a stiffness entry." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранится как запись о скованности."
-          }
-        }
-      }
-    },
-    "Severity by week heading" : {
-      "comment" : "The report PDF's heading over the severity charts, which show each symptom's weekly severity on a scale from 0 to 10.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Severity by week, 0 to 10"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сила симптома по неделям, от 0 до 10"
-          }
-        }
-      }
-    },
-    "Shows the scores saved in this period. Everything stays on this iPhone until you share the report." : {
-      "comment" : "The footnote under the Report screen's BASDAI switch: it says the switch puts the period's scores in the PDF and that nothing leaves the phone before the person shares the report.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Показывает результаты, сохранённые за этот период. Всё остаётся на этом iPhone, пока ты не поделишься отчётом."
-          }
-        }
-      }
-    },
-    "Skipped on days you have already logged something." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пропускается в дни, когда уже есть записи."
-          }
-        }
-      }
-    },
-    "Starts from your earlier entry. Change the level or places if they differ." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Взято из твоей прошлой записи. Измени уровень или места, если они другие."
-          }
-        }
-      }
-    },
-    "stiffness %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "скованность после: %lld"
-          }
-        }
-      }
-    },
-    "Stiffness %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скованность после: %lld"
-          }
-        }
-      }
-    },
-    "stiffness %lld before, %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "скованность до: %1$lld, после: %2$lld"
-          }
-        }
-      }
-    },
-    "Stiffness %lld before, %lld after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скованность до: %1$lld, после: %2$lld"
-          }
-        }
-      }
-    },
-    "Stiffness now" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скованность сейчас"
-          }
-        }
-      }
-    },
-    "stiffness was %lld" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "скованность была %lld"
-          }
-        }
-      }
-    },
-    "Stiffness was %lld of 10" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Скованность была %lld из 10"
-          }
-        }
-      }
-    },
-    "Symptom report" : {
-      "comment" : "The report PDF's title.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Symptom report"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отчёт о симптомах"
-          }
-        }
-      }
-    },
-    "Taken %@." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Принято: %@."
-          }
-        }
-      }
-    },
-    "Feet and toes" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стопы и пальцы ног"
-          }
-        }
-      }
-    },
-    "Foot and toes" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стопа и пальцы ног"
           }
         }
       }
@@ -1846,12 +2323,122 @@
         }
       }
     },
+    "How would you describe the overall **level** of **morning stiffness** you have had from the time you wake up?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий **уровень** **утренней скованности** с момента пробуждения?"
+          }
+        }
+      }
+    },
+    "How would you describe the overall level of **discomfort** you have had from any areas tender to touch or pressure?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень **неприятных ощущений** при прикосновении к болезненным областям или надавливании на них?"
+          }
+        }
+      }
+    },
+    "How would you describe the overall level of **fatigue/tiredness** you have experienced?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень **слабости (утомляемости)**?"
+          }
+        }
+      }
+    },
+    "How would you describe the overall level of AS **neck, back or hip** pain you have had?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation. AS is ankylosing spondylitis.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень боли в **шее, спине или тазобедренных суставах**?"
+          }
+        }
+      }
+    },
+    "How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips you have had?" : {
+      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каким был общий уровень боли/припухлости в суставах, **кроме** шеи, спины и тазобедренных суставов?"
+          }
+        }
+      }
+    },
+    "How you take it" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Способ приёма"
+          }
+        }
+      }
+    },
+    "Include BASDAI scores" : {
+      "comment" : "The Report screen's switch that puts the period's BASDAI scores in the PDF. On by default and not remembered.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Include BASDAI scores"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить результаты BASDAI"
+          }
+        }
+      }
+    },
     "Jaw" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Челюсть"
+          }
+        }
+      }
+    },
+    "Joint pain" : {
+      "comment" : "Short name of BASDAI question 3, on pain or swelling in joints other than the neck, back or hips. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль в других суставах"
+          }
+        }
+      }
+    },
+    "Kind none logged" : {
+      "comment" : "The report PDF's severity charts: stands after a symptom's name, such as Fatigue, in place of its chart when the period holds no entry of that symptom.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None logged in this period"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За этот период записей нет"
           }
         }
       }
@@ -1872,6 +2459,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Колени"
+          }
+        }
+      }
+    },
+    "Last week" : {
+      "comment" : "The section label above the six BASDAI questions: every answer is about the last week.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За последнюю неделю"
           }
         }
       }
@@ -1987,6 +2585,91 @@
         }
       }
     },
+    "Legend lowest to highest" : {
+      "comment" : "The report PDF's legend over the severity charts: what the black line through a bar shows, the lowest to the highest severity that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lowest to highest"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "от наименьшего до наибольшего"
+          }
+        }
+      }
+    },
+    "Legend none logged" : {
+      "comment" : "The report PDF's legend over the severity charts, after a dash: a dash under a week means no entry of the kind that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "none logged"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "записей нет"
+          }
+        }
+      }
+    },
+    "Legend number under a bar" : {
+      "comment" : "The report PDF's legend over the severity charts: the number under each bar or dot counts that week's entries of the kind.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "number under a bar: entries that week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "число под столбцом: записей за неделю"
+          }
+        }
+      }
+    },
+    "Legend one entry" : {
+      "comment" : "The report PDF's legend over the severity charts: what a dot shows, a week with a single entry of that kind.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "one entry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "одна запись"
+          }
+        }
+      }
+    },
+    "Legend weekly average" : {
+      "comment" : "The report PDF's legend over the severity charts: what a bar shows, the average severity of a kind's entries that week.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "weekly average"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "среднее за неделю"
+          }
+        }
+      }
+    },
     "Legs" : {
       "localizations" : {
         "ru" : {
@@ -2012,28 +2695,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Уровни от 0 до 10. Всё остаётся на этом iPhone."
-          }
-        }
-      }
-    },
-    "Character limit reached" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Достигнут лимит символов"
-          }
-        }
-      }
-    },
-    "Log Dose" : {
-      "comment" : "Title of the screen where the person records a dose they took. \"Log\" is a verb.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Новый приём"
+            "value" : "Уровни от 0 до 10. Все данные остаются на этом iPhone."
           }
         }
       }
@@ -2049,660 +2711,13 @@
         }
       }
     },
-    "Medication" : {
+    "Log Dose" : {
+      "comment" : "Title of the screen where the person records a dose they took. \"Log\" is a verb.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Лекарство"
-          }
-        }
-      }
-    },
-    "No medications yet" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарств пока нет"
-          }
-        }
-      }
-    },
-    "Add medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавить лекарство"
-          }
-        }
-      }
-    },
-    "New Medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Новое лекарство"
-          }
-        }
-      }
-    },
-    "Name" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Название"
-          }
-        }
-      }
-    },
-    "Strength, optional" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дозировка, необязательно"
-          }
-        }
-      }
-    },
-    "As needed" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По необходимости"
-          }
-        }
-      }
-    },
-    "%@ (%lld–%lld)" : {
-      "comment" : "The report PDF's medication table, a Pain before or Pain after cell over two or more doses, such as '6.5 (5–8)'. %1$@ is the average pain with one decimal, %2$lld the lowest and %3$lld the highest, joined by an en dash.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ (%2$lld–%3$lld)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ (%2$lld–%3$lld)"
-          }
-        }
-      }
-    },
-    "%lld min to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is under an hour, such as '45 min'. %lld is whole minutes. min is the abbreviation of minutes.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld min"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld мин"
-          }
-        }
-      }
-    },
-    "%lld h to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is a whole number of hours, such as '2 h'. %lld is the hours. h is the abbreviation of hours.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld h"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld ч"
-          }
-        }
-      }
-    },
-    "%lld h %lld min to the after-reading" : {
-      "comment" : "The report PDF's medication table, the average time from a dose to its after-reading when it is an hour or more, such as '1 h 50 min'. %1$lld is the hours and %2$lld the minutes past the hour. h and min are abbreviations.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld h %2$lld min"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld ч %2$lld мин"
-          }
-        }
-      }
-    },
-    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10." : {
-      "comment" : "The note under the report PDF's medication table when no medication in it is scheduled.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10."
-          }
-        }
-      }
-    },
-    "Averages use only doses that have both a before and an after reading (the fourth column). Pain is 0 to 10. A scheduled medication often has no after-reading." : {
-      "comment" : "The note under the report PDF's medication table when a medication in it is scheduled: the note without one, then why a scheduled dose often has no after-reading.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Средние значения учитывают только приёмы, у которых есть и запись до, и запись после (четвёртый столбец). Боль — от 0 до 10. У лекарства по расписанию записи после приёма часто нет."
-          }
-        }
-      }
-    },
-    "Medication: doses, and pain before and after" : {
-      "comment" : "The report PDF's heading above the medication table: how many doses of each medication, and the pain logged before and after them.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Medication: doses, and pain before and after"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарства: приёмы и боль до и после"
-          }
-        }
-      }
-    },
-    "Medication, continued" : {
-      "comment" : "The report PDF's heading above the medication table when the table goes on from the page before.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Medication, continued"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарства, продолжение"
-          }
-        }
-      }
-    },
-    "Doses" : {
-      "comment" : "The report PDF's medication table, the heading of the column that counts the doses taken in the period.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Doses"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Приёмы"
-          }
-        }
-      }
-    },
-    "Per week" : {
-      "comment" : "The report PDF's medication table, the heading of the column with the average number of doses a week, such as 3.8.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Per week"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В неделю"
-          }
-        }
-      }
-    },
-    "With an after-reading" : {
-      "comment" : "The report PDF's medication table, the heading of the column that counts the doses with an entry logged after them.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "With an after-reading"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "С записью после"
-          }
-        }
-      }
-    },
-    "Pain before: average (lowest–highest)" : {
-      "comment" : "The report PDF's medication table, the heading of the column with the pain logged before the doses, such as '6.5 (5–8)'.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pain before: average (lowest–highest)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль до: среднее (мин.–макс.)"
-          }
-        }
-      }
-    },
-    "Pain after: average (lowest–highest)" : {
-      "comment" : "The report PDF's medication table, the heading of the column with the pain logged after the doses, such as '3.5 (2–5)'.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pain after: average (lowest–highest)"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль после: среднее (мин.–макс.)"
-          }
-        }
-      }
-    },
-    "Average time to after-reading" : {
-      "comment" : "The report PDF's medication table, the heading of the column with the average time from a dose to the entry logged after it, such as '1 h 50 min'.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Average time to after-reading"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Среднее время до записи после"
-          }
-        }
-      }
-    },
-    "Not set" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не задано"
-          }
-        }
-      }
-    },
-    "Schedule" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Расписание"
-          }
-        }
-      }
-    },
-    "Repeat" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Повтор"
-          }
-        }
-      }
-    },
-    "Times" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Время приёма"
-          }
-        }
-      }
-    },
-    "Add a time" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавить время"
-          }
-        }
-      }
-    },
-    "Every day" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждый день"
-          }
-        }
-      }
-    },
-    "Every week" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждую неделю"
-          }
-        }
-      }
-    },
-    "Every 2 weeks" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждые 2 недели"
-          }
-        }
-      }
-    },
-    "Every 4 weeks" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каждые 4 недели"
-          }
-        }
-      }
-    },
-    "Duration" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Продолжительность"
-          }
-        }
-      }
-    },
-    "Starts" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Начало"
-          }
-        }
-      }
-    },
-    "Ends" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Окончание"
-          }
-        }
-      }
-    },
-    "%@. Next: %@." : {
-      "comment" : "The sentence under the Schedule screen that gives the schedule in words and then the day of the next dose, such as 'Every 2 weeks on Friday at 09:00. Next: Friday, 13 November.' %1$@ is the schedule in words, already a whole sentence without its full stop. %2$@ is the day of the next dose with its weekday, already formatted for the language.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@. Следующий приём: %2$@."
-          }
-        }
-      }
-    },
-    "%@." : {
-      "comment" : "The sentence under the Schedule screen when no dose is left, such as when the end date has passed: the schedule in words and a full stop. %@ is the schedule in words, such as 'Every day at 09:00'.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@."
-          }
-        }
-      }
-    },
-    "on" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "включено"
-          }
-        }
-      }
-    },
-    "off" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "выключено"
-          }
-        }
-      }
-    },
-    "Scheduled" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По расписанию"
-          }
-        }
-      }
-    },
-    "How you take it" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Способ приёма"
-          }
-        }
-      }
-    },
-    "Check in after" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отметить через"
-          }
-        }
-      }
-    },
-    "After" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Через"
-          }
-        }
-      }
-    },
-    "After · checked in at %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "After · checked in at %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "После · отмечено в %@"
-          }
-        }
-      }
-    },
-    "%lld minutes" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld minute"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld minutes"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld минута"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld минуты"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld минут"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld минуты"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "%lld hours" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld hour"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld hours"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld час"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld часа"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld часов"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld часа"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "Check in later" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отметить позже"
-          }
-        }
-      }
-    },
-    "Time" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Время"
-          }
-        }
-      }
-    },
-    "Turn it on to choose a time." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Включи, чтобы выбрать время."
-          }
-        }
-      }
-    },
-    "Anky will ask how you feel after this long." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anky спросит, как ты себя чувствуешь, когда пройдёт это время."
+            "value" : "Новый приём"
           }
         }
       }
@@ -2727,28 +2742,22 @@
         }
       }
     },
+    "Log how you feel today." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пора записать самочувствие."
+          }
+        }
+      }
+    },
     "Log how you felt" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Отметь самочувствие тогда"
-          }
-        }
-      }
-    },
-    "Tap + to log how you feel or a dose. Everything stays on this iPhone." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap + to log how you feel or a dose. Everything stays on this iPhone."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нажми «+», чтобы записать самочувствие или приём. Всё остаётся на этом iPhone."
           }
         }
       }
@@ -2773,12 +2782,148 @@
         }
       }
     },
+    "Made with Anky, page %lld of %lld" : {
+      "comment" : "The report PDF's footer, second line on the left: where to get Anky, then this page's number and the page count.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made with Anky, a free symptom log for iPhone · anky.bolshakov.dev · Page %1$lld of %2$lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создано в Anky, бесплатном журнале симптомов для iPhone · anky.bolshakov.dev · Страница %1$lld из %2$lld"
+          }
+        }
+      }
+    },
+    "Manage" : {
+      "comment" : "Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства"
+          }
+        }
+      }
+    },
+    "Manage medications" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства"
+          }
+        }
+      }
+    },
+    "Manage medications, spoken label" : {
+      "comment" : "The spoken label of the icon-only button on the Log Dose toolbar that opens the list of medications.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage medications"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление лекарствами"
+          }
+        }
+      }
+    },
+    "Medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарство"
+          }
+        }
+      }
+    },
+    "Medication, continued" : {
+      "comment" : "The report PDF's heading above the medication table when the table goes on from the page before.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication, continued"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства, продолжение"
+          }
+        }
+      }
+    },
+    "Medication: doses, and pain before and after" : {
+      "comment" : "The report PDF's heading above the medication table: how many doses of each medication, and the pain logged before and after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medication: doses, and pain before and after"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства: приёмы и боль до и после"
+          }
+        }
+      }
+    },
+    "Medications" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарства"
+          }
+        }
+      }
+    },
     "More places" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Другие места"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название"
+          }
+        }
+      }
+    },
+    "Name line" : {
+      "comment" : "The report PDF's label before a blank line where the patient writes their name by hand. Not a medication's name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имя"
           }
         }
       }
@@ -2803,6 +2948,16 @@
         }
       }
     },
+    "New Medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новое лекарство"
+          }
+        }
+      }
+    },
     "No entries yet" : {
       "localizations" : {
         "ru" : {
@@ -2823,6 +2978,16 @@
         }
       }
     },
+    "No medications yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарств пока нет"
+          }
+        }
+      }
+    },
     "No place" : {
       "localizations" : {
         "ru" : {
@@ -2834,6 +2999,7 @@
       }
     },
     "None" : {
+      "comment" : "Nothing at all. Used in five places: the Schedule screen when a schedule has no end date, the Before this dose row and the first row of Choose an Entry when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -2841,8 +3007,57 @@
             "value" : "Нет"
           }
         }
-      },
-      "comment" : "Nothing at all. Used in five places: the Schedule screen when a schedule has no end date, the Before this dose row and the first row of Choose an Entry when a dose has no reading before it, the More places row of an entry when no place is picked, and the label under the left end, 0, of BASDAI questions 1 to 5, where the right end reads Very severe."
+      }
+    },
+    "None logged in this period" : {
+      "comment" : "The report PDF's line under a section heading when the period holds nothing for that section. It stands in for any empty report section, such as Places logged or Medication.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None logged in this period"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "За этот период записей нет"
+          }
+        }
+      }
+    },
+    "not answered" : {
+      "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ответа нет"
+          }
+        }
+      }
+    },
+    "Not answered" : {
+      "comment" : "The value shown beside a BASDAI question the person has not answered yet. It is a state, not a zero.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет ответа"
+          }
+        }
+      }
+    },
+    "Not linked to an entry." : {
+      "comment" : "Footnote under the Before this dose row on Log Dose and Edit Dose when the dose has no reading before it, which the row shows as None. It says that the dose points at no entry.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не связан с записью."
+          }
+        }
+      }
     },
     "not selected" : {
       "localizations" : {
@@ -2850,6 +3065,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "не выбрано"
+          }
+        }
+      }
+    },
+    "Not set" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не задано"
           }
         }
       }
@@ -2864,12 +3089,60 @@
         }
       }
     },
+    "Nothing logged from %@ to %@. Pick a longer period." : {
+      "comment" : "The Report screen's line when the period holds no entry and no dose. %1$@ is the period's first day and %2$@ today, each a day and a month.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing logged from %1$@ to %2$@. Pick a longer period."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С %1$@ по %2$@ записей нет. Выбери период длиннее."
+          }
+        }
+      }
+    },
     "Nothing logged today" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сегодня записей нет"
+          }
+        }
+      }
+    },
+    "Nothing was shared. Try again." : {
+      "comment" : "Message of the alert shown when the export file could not be built: no file left the phone.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ничего не отправлено. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "off" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "выключено"
+          }
+        }
+      }
+    },
+    "Off in iOS Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выключено в настройках iOS"
           }
         }
       }
@@ -2884,6 +3157,26 @@
         }
       }
     },
+    "on" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "включено"
+          }
+        }
+      }
+    },
+    "Opens Check In" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывает отметку самочувствия"
+          }
+        }
+      }
+    },
     "Pain" : {
       "localizations" : {
         "ru" : {
@@ -2894,12 +3187,154 @@
         }
       }
     },
+    "pain %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль после: %lld"
+          }
+        }
+      }
+    },
+    "Pain %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль после: %lld"
+          }
+        }
+      }
+    },
+    "pain %lld before, %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль до: %1$lld, после: %2$lld"
+          }
+        }
+      }
+    },
+    "Pain %lld before, %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль до: %1$lld, после: %2$lld"
+          }
+        }
+      }
+    },
+    "Pain after: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged after the doses, such as '3.5 (2–5)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain after: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль после: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Pain and stiffness entries from the 2 hours before this dose." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи о боли и скованности за 2 часа до этой дозы."
+          }
+        }
+      }
+    },
+    "Pain before: average (lowest–highest)" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the pain logged before the doses, such as '6.5 (5–8)'.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pain before: average (lowest–highest)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль до: среднее (мин.–макс.)"
+          }
+        }
+      }
+    },
+    "Pain now" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль сейчас"
+          }
+        }
+      }
+    },
+    "pain was %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "боль была %lld"
+          }
+        }
+      }
+    },
+    "Pain was %lld of 10" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль была %lld из 10"
+          }
+        }
+      }
+    },
     "Pelvis and chest" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Таз и грудная клетка"
+          }
+        }
+      }
+    },
+    "Per week" : {
+      "comment" : "The report PDF's medication table, the heading of the column with the average number of doses a week, such as 3.8.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per week"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В неделю"
+          }
+        }
+      }
+    },
+    "Period" : {
+      "comment" : "The label of the Report screen's choice of how far back the report goes.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Период"
           }
         }
       }
@@ -2942,6 +3377,219 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закреплено"
+          }
+        }
+      }
+    },
+    "Place" : {
+      "comment" : "The report PDF's Places logged table, the heading of the column that names a body place, such as Lower back.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Place"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Место"
+          }
+        }
+      }
+    },
+    "Places logged" : {
+      "comment" : "The report PDF's heading above the table of body places the patient logged, each with how many entries named it.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places logged"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записанные места"
+          }
+        }
+      }
+    },
+    "Preview" : {
+      "comment" : "The button that builds the report and opens it in the system preview. A verb.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Просмотр"
+          }
+        }
+      }
+    },
+    "Privacy policy" : {
+      "comment" : "Label of the Settings row that opens the privacy policy. The screen it opens is titled Privacy Policy.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "comment" : "Navigation title of the screen that shows the privacy policy. The Settings row that opens it is labelled Privacy policy.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
+        }
+      }
+    },
+    "Q%lld" : {
+      "comment" : "The report PDF's BASDAI table, the heading of the column for one question: Q1 to Q6, where %lld is the question number from 1 to 6. The key under the table says what each one asks.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q%lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В%lld"
+          }
+        }
+      }
+    },
+    "Q%lld %@" : {
+      "comment" : "One item of the key under the report's BASDAI table: the question's label and its short name in lowercase, such as 'Q2 spinal pain'. %1$lld is the question number from 1 to 6.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Q%1$lld %2$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В%1$lld %2$@"
+          }
+        }
+      }
+    },
+    "Recorded by the patient in Anky." : {
+      "comment" : "The report PDF's note beside the totals, first line: who recorded the counts.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recorded by the patient in Anky."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записано пациентом в Anky."
+          }
+        }
+      }
+    },
+    "Reminders" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напоминания"
+          }
+        }
+      }
+    },
+    "Remove" : {
+      "comment" : "Button revealed by swiping the Before this dose row left, which removes the entry the dose points at and leaves the row at None. It does not delete the entry. It is a quiet action, so the word is Remove and not Delete.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать"
+          }
+        }
+      }
+    },
+    "Repeat" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повтор"
+          }
+        }
+      }
+    },
+    "Report" : {
+      "comment" : "The title of the screen that picks a period for a report to show a doctor.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт"
+          }
+        }
+      }
+    },
+    "Report for your doctor" : {
+      "comment" : "The VoiceOver name of the Today button that opens the Report screen, where a period is picked for a PDF to show a doctor.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт для врача"
+          }
+        }
+      }
+    },
+    "Restore" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить"
+          }
+        }
+      }
+    },
+    "Restore medication" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить лекарство"
+          }
+        }
+      }
+    },
+    "Result deleted" : {
+      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат удалён"
+          }
+        }
+      }
+    },
+    "Retry" : {
+      "comment" : "Button on the alert after Erase all data failed. Runs the erase again, and the Cancel next to it leaves the data as it is.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
           }
         }
       }
@@ -3088,6 +3736,67 @@
         }
       }
     },
+    "Saved as a fatigue entry." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись об усталости."
+          }
+        }
+      }
+    },
+    "Saved as a pain entry." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись о боли."
+          }
+        }
+      }
+    },
+    "Saved as a stiffness entry." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранится как запись о скованности."
+          }
+        }
+      }
+    },
+    "Schedule" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расписание"
+          }
+        }
+      }
+    },
+    "Scheduled" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По расписанию"
+          }
+        }
+      }
+    },
+    "Score" : {
+      "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат"
+          }
+        }
+      }
+    },
     "Search joints and places" : {
       "localizations" : {
         "ru" : {
@@ -3108,12 +3817,39 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
     "Severity" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сила симптома"
+          }
+        }
+      }
+    },
+    "Severity by week heading" : {
+      "comment" : "The report PDF's heading over the severity charts, which show each symptom's weekly severity on a scale from 0 to 10.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Severity by week, 0 to 10"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сила симптома по неделям, от 0 до 10"
           }
         }
       }
@@ -3138,6 +3874,23 @@
         }
       }
     },
+    "Shows the scores saved in this period. Everything stays on this iPhone until you share the report." : {
+      "comment" : "The footnote under the Report screen's BASDAI switch: it says the switch puts the period's scores in the PDF and that nothing leaves the phone before the person shares the report.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shows the scores saved in this period. Everything stays on this iPhone until you share the report."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывает результаты, сохранённые за этот период. Все данные остаются на этом iPhone, пока ты не поделишься отчётом."
+          }
+        }
+      }
+    },
     "SI joint" : {
       "localizations" : {
         "ru" : {
@@ -3158,12 +3911,74 @@
         }
       }
     },
+    "Skipped on days you have already logged something." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропускается в дни, когда уже есть записи."
+          }
+        }
+      }
+    },
+    "Something went wrong while erasing your data. Try again." : {
+      "comment" : "The title of the alert when Erase all data failed. It names no kind of data, since the person only needs to try again.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что-то пошло не так при стирании данных. Попробуй ещё раз."
+          }
+        }
+      }
+    },
+    "Source code and license" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исходный код и лицензия"
+          }
+        }
+      }
+    },
+    "Spinal pain" : {
+      "comment" : "Short name of BASDAI question 2, on neck, back or hip pain. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Боль в шее, спине, тазобедренных суставах"
+          }
+        }
+      }
+    },
     "Spine" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Позвоночник"
+          }
+        }
+      }
+    },
+    "Starts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало"
+          }
+        }
+      }
+    },
+    "Starts from your earlier entry. Change the level or places if they differ." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Взято из твоей прошлой записи. Измени уровень или места, если они другие."
           }
         }
       }
@@ -3178,12 +3993,151 @@
         }
       }
     },
+    "stiffness %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность после: %lld"
+          }
+        }
+      }
+    },
+    "Stiffness %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность после: %lld"
+          }
+        }
+      }
+    },
+    "stiffness %lld before, %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность до: %1$lld, после: %2$lld"
+          }
+        }
+      }
+    },
+    "Stiffness %lld before, %lld after" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность до: %1$lld, после: %2$lld"
+          }
+        }
+      }
+    },
+    "Stiffness duration" : {
+      "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длительность скованности"
+          }
+        }
+      }
+    },
+    "Stiffness now" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность сейчас"
+          }
+        }
+      }
+    },
+    "Stiffness severity" : {
+      "comment" : "Short name of BASDAI question 5, on how bad morning stiffness is. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выраженность скованности"
+          }
+        }
+      }
+    },
+    "stiffness was %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "скованность была %lld"
+          }
+        }
+      }
+    },
+    "Stiffness was %lld of 10" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скованность была %lld из 10"
+          }
+        }
+      }
+    },
+    "Strength, optional" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозировка, необязательно"
+          }
+        }
+      }
+    },
     "Swipe a place right to pin it as a shortcut on New Entry." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Смахни место вправо, чтобы закрепить его для быстрого выбора на экране новой записи."
+          }
+        }
+      }
+    },
+    "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смахни влево, чтобы архивировать. Архивные лекарства не показываются при записи приёма, а записанные приёмы останутся в «Истории»."
+          }
+        }
+      }
+    },
+    "Swipe left to restore. Doses you logged stay in History." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Смахни влево, чтобы восстановить. Записанные приёмы останутся в «Истории»."
+          }
+        }
+      }
+    },
+    "Symptom report" : {
+      "comment" : "The report PDF's title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symptom report"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отчёт о симптомах"
           }
         }
       }
@@ -3198,6 +4152,43 @@
         }
       }
     },
+    "Taken %@." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Принято: %@."
+          }
+        }
+      }
+    },
+    "Tap + to log how you feel or a dose. Everything stays on this iPhone." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap + to log how you feel or a dose. Everything stays on this iPhone."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажми «+», чтобы записать самочувствие или приём лекарства. Все данные остаются на этом iPhone."
+          }
+        }
+      }
+    },
+    "Tenderness" : {
+      "comment" : "Short name of BASDAI question 4, on discomfort from areas tender to touch or pressure. Used where the whole question does not fit, such as a report column.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Болезненность"
+          }
+        }
+      }
+    },
     "The entry used for this dose. Tap to choose another, or swipe left to remove." : {
       "localizations" : {
         "ru" : {
@@ -3208,82 +4199,44 @@
         }
       }
     },
-    "Couldn't save this check-in. Try again." : {
+    "Time" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось сохранить отметку. Попробуй ещё раз."
+            "value" : "Время"
           }
         }
       }
     },
-    "Couldn't delete this dose. Try again." : {
+    "Time for your dose." : {
+      "comment" : "Body of a notification that tells the person it is time to take a medication. The title is the medication's name.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось удалить этот приём. Попробуй ещё раз."
+            "value" : "Пора принять лекарство."
           }
         }
       }
     },
-    "Couldn't delete this entry. Try again." : {
+    "Time to check in" : {
+      "comment" : "Text of a reminder notification that prompts the person to say how they feel after a dose. It is not a hotel or flight check-in.",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось удалить эту запись. Попробуй ещё раз."
+            "value" : "Пора отметить самочувствие"
           }
         }
       }
     },
-    "Couldn't save this entry. Try again." : {
+    "Times" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось сохранить эту запись. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Couldn't archive this medication. Try again." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось архивировать это лекарство. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Couldn't restore this medication. Try again." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось восстановить это лекарство. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Couldn't save this dose. Try again." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось сохранить этот приём. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Couldn't save this medication. Try again." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось сохранить это лекарство. Попробуй ещё раз."
+            "value" : "Время приёма"
           }
         }
       }
@@ -3294,6 +4247,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сегодня"
+          }
+        }
+      }
+    },
+    "Turn it on to choose a time." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включи, чтобы выбрать время."
           }
         }
       }
@@ -3349,6 +4312,27 @@
         }
       }
     },
+    "Version %@ (%@)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %@ (%@)"
+          }
+        }
+      }
+    },
+    "Very severe" : {
+      "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None.",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наихудшее"
+          }
+        }
+      }
+    },
     "Week count none" : {
       "comment" : "The report PDF's severity charts: stands under a week with no entry of the kind, where the entry count would be. An en dash, not a zero.",
       "localizations" : {
@@ -3396,6 +4380,23 @@
         }
       }
     },
+    "With an after-reading" : {
+      "comment" : "The report PDF's medication table, the heading of the column that counts the doses with an entry logged after them.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With an after-reading"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С записью после"
+          }
+        }
+      }
+    },
     "Wrist" : {
       "localizations" : {
         "ru" : {
@@ -3436,239 +4437,6 @@
         }
       }
     },
-    "Manage" : {
-      "comment" : "Verb: button on the Log Dose screen that opens the list of medications, to add, archive or restore them.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарства"
-          }
-        }
-      }
-    },
-    "Manage medications, spoken label" : {
-      "comment" : "The spoken label of the icon-only button on the Log Dose toolbar that opens the list of medications.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Manage medications"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Управление лекарствами"
-          }
-        }
-      }
-    },
-    "Medications" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарства"
-          }
-        }
-      }
-    },
-    "Settings" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки"
-          }
-        }
-      }
-    },
-    "Manage medications" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Лекарства"
-          }
-        }
-      }
-    },
-    "About" : {
-      "comment" : "Noun: heading of the Settings group that names the app, its version and its license.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "О приложении"
-          }
-        }
-      }
-    },
-    "Source code and license" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Исходный код и лицензия"
-          }
-        }
-      }
-    },
-    "Privacy policy" : {
-      "comment" : "Label of the Settings row that opens the privacy policy. The screen it opens is titled Privacy Policy.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Политика конфиденциальности"
-          }
-        }
-      }
-    },
-    "Privacy Policy" : {
-      "comment" : "Navigation title of the screen that shows the privacy policy. The Settings row that opens it is labelled Privacy policy.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Политика конфиденциальности"
-          }
-        }
-      }
-    },
-    "Version %@ (%@)" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Версия %@ (%@)"
-          }
-        }
-      }
-    },
-    "Anky comes with no warranty. You may share and change it under the GNU GPL, version 3 or later." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anky предоставляется без гарантий. Его можно распространять и изменять на условиях GNU GPL версии 3 или более поздней."
-          }
-        }
-      }
-    },
-    "Archive" : {
-      "comment" : "Verb: hides the medication from the list but keeps the history of its doses.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Архивировать"
-          }
-        }
-      }
-    },
-    "Archived" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В архиве"
-          }
-        }
-      }
-    },
-    "Archive medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Архивировать лекарство"
-          }
-        }
-      }
-    },
-    "Edit Medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Изменить лекарство"
-          }
-        }
-      }
-    },
-    "Restore" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Восстановить"
-          }
-        }
-      }
-    },
-    "Restore medication" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Восстановить лекарство"
-          }
-        }
-      }
-    },
-    "Swipe left to restore. Doses you logged stay in History." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смахни влево, чтобы восстановить. Записанные приёмы останутся в «Истории»."
-          }
-        }
-      }
-    },
-    "Swipe left to archive. Archived medications leave Log Dose; doses you logged stay in History." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Смахни влево, чтобы архивировать. Архивные лекарства не показываются при записи приёма, а записанные приёмы останутся в «Истории»."
-          }
-        }
-      }
-    },
-    "Add what you take, then log a dose in two taps. Everything stays on this iPhone." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Добавь то, что ты принимаешь, и записывай приём в два касания. Всё остаётся на этом iPhone."
-          }
-        }
-      }
-    },
-    "Time to check in" : {
-      "comment" : "Text of a reminder notification that prompts the person to say how they feel after a dose. It is not a hotel or flight check-in.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пора отметить самочувствие"
-          }
-        }
-      }
-    },
-    "Dose deleted" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Приём удалён"
-          }
-        }
-      }
-    },
     "Your data" : {
       "localizations" : {
         "ru" : {
@@ -3689,707 +4457,6 @@
         }
       }
     },
-    "Export data" : {
-      "comment" : "Settings row, in the Your data card: builds a file of everything logged and opens the share sheet for it.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Экспортировать данные"
-          }
-        }
-      }
-    },
-    "Exporting" : {
-      "comment" : "What VoiceOver reads for the Export data row while the export file is being built.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Идёт экспорт"
-          }
-        }
-      }
-    },
-    "Couldn't export" : {
-      "comment" : "Title of the alert shown when the export file could not be built.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось экспортировать"
-          }
-        }
-      }
-    },
-    "Nothing was shared. Try again." : {
-      "comment" : "Message of the alert shown when the export file could not be built: no file left the phone.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ничего не отправлено. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Erase all data" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стереть все данные"
-          }
-        }
-      }
-    },
-    "Erase" : {
-      "comment" : "Verb on the destructive button of the erase alert: removes the data for good.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стереть"
-          }
-        }
-      }
-    },
-    "Erase every entry, dose, medication and BASDAI result on this iPhone? This can't be undone." : {
-      "comment" : "The question of the alert after Erase all data in Settings. Names everything the erase removes.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Стереть все данные на этом iPhone: записи, приёмы, лекарства и результаты BASDAI? Это нельзя отменить."
-          }
-        }
-      }
-    },
-    "Something went wrong while erasing your data. Try again." : {
-      "comment" : "The title of the alert when Erase all data failed. It names no kind of data, since the person only needs to try again.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Что-то пошло не так при стирании данных. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Retry" : {
-      "comment" : "Button on the alert after Erase all data failed. Runs the erase again, and the Cancel next to it leaves the data as it is.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Повторить"
-          }
-        }
-      }
-    },
-    "All data erased" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Все данные стёрты"
-          }
-        }
-      }
-    },
-    "Anky" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anky"
-          }
-        }
-      }
-    },
-    "Daily reminder" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ежедневное напоминание"
-          }
-        }
-      }
-    },
-    "Log how you feel today." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пора записать самочувствие."
-          }
-        }
-      }
-    },
-    "Reminders" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Напоминания"
-          }
-        }
-      }
-    },
-    "Time for your dose." : {
-      "comment" : "Body of a notification that tells the person it is time to take a medication. The title is the medication's name.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пора принять лекарство."
-          }
-        }
-      }
-    },
-    "How would you describe the overall level of **fatigue/tiredness** you have experienced?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каким был общий уровень **слабости (утомляемости)**?"
-          }
-        }
-      }
-    },
-    "How would you describe the overall level of AS **neck, back or hip** pain you have had?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation. AS is ankylosing spondylitis.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каким был общий уровень боли в **шее, спине или тазобедренных суставах**?"
-          }
-        }
-      }
-    },
-    "How would you describe the overall level of pain/swelling in joints **other than** neck, back or hips you have had?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каким был общий уровень боли/припухлости в суставах, **кроме** шеи, спины и тазобедренных суставов?"
-          }
-        }
-      }
-    },
-    "How would you describe the overall level of **discomfort** you have had from any areas tender to touch or pressure?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каким был общий уровень **неприятных ощущений** при прикосновении к болезненным областям или надавливании на них?"
-          }
-        }
-      }
-    },
-    "How would you describe the overall **level** of **morning stiffness** you have had from the time you wake up?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Каким был общий **уровень** **утренней скованности** с момента пробуждения?"
-          }
-        }
-      }
-    },
-    "**How long** does your **morning stiffness** last from the time you wake up?" : {
-      "comment" : "One BASDAI question, the published English wording of Garrett et al. 1994, shown above its slider. The words between ** and ** are shown bold; keep the ** marks around the matching words of the translation.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "**Сколько длится** **утренняя скованность** с момента пробуждения?"
-          }
-        }
-      }
-    },
-    "Spinal pain" : {
-      "comment" : "Short name of BASDAI question 2, on neck, back or hip pain. Used where the whole question does not fit, such as a report column.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль в шее, спине, тазобедренных суставах"
-          }
-        }
-      }
-    },
-    "Joint pain" : {
-      "comment" : "Short name of BASDAI question 3, on pain or swelling in joints other than the neck, back or hips. Used where the whole question does not fit, such as a report column.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Боль в других суставах"
-          }
-        }
-      }
-    },
-    "Tenderness" : {
-      "comment" : "Short name of BASDAI question 4, on discomfort from areas tender to touch or pressure. Used where the whole question does not fit, such as a report column.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Болезненность"
-          }
-        }
-      }
-    },
-    "Stiffness severity" : {
-      "comment" : "Short name of BASDAI question 5, on how bad morning stiffness is. Used where the whole question does not fit, such as a report column.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Выраженность скованности"
-          }
-        }
-      }
-    },
-    "Stiffness duration" : {
-      "comment" : "Short name of BASDAI question 6, on how long morning stiffness lasts. Used where the whole question does not fit, such as a report column. VoiceOver also reads it before the value, as in 'Stiffness duration, 48 min'.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Длительность скованности"
-          }
-        }
-      }
-    },
-    "Q%lld %@" : {
-      "comment" : "One item of the key under the report's BASDAI table: the question's label and its short name in lowercase, such as 'Q2 spinal pain'. %1$lld is the question number from 1 to 6.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Q%1$lld %2$@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В%1$lld %2$@"
-          }
-        }
-      }
-    },
-    "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The key under the report's BASDAI table. %@ is the list of the six questions with their labels, such as 'Q1 fatigue, Q2 spinal pain'. The sentence gives the answer range and the score formula, and ends with the index's name and the 1994 paper, which stay as published.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. Each answer is 0 to 10; score = (Q1 + Q2 + Q3 + Q4 + (Q5 + Q6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. Каждый ответ от 0 до 10; результат = (В1 + В2 + В3 + В4 + (В5 + В6) / 2) / 5. Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
-          }
-        }
-      }
-    },
-    "Very severe" : {
-      "comment" : "The label under the right end, 10, of a BASDAI question slider for questions 1 to 5. The left end reads None.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Наихудшее"
-          }
-        }
-      }
-    },
-    "0 hrs" : {
-      "comment" : "The label under the left end of the slider of BASDAI question 6, how long morning stiffness lasts: zero hours. hrs is the abbreviation of hours.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "0 ч"
-          }
-        }
-      }
-    },
-    "2 or more hrs" : {
-      "comment" : "The label under the right end of the slider of BASDAI question 6, how long morning stiffness lasts: two hours or longer. hrs is the abbreviation of hours.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2 ч и больше"
-          }
-        }
-      }
-    },
-    "1 hr" : {
-      "comment" : "One hour, abbreviated. Shown under the middle of the slider of BASDAI question 6, how long morning stiffness lasts, and as its value at the middle step.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 ч"
-          }
-        }
-      }
-    },
-    "%lld min" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 under one hour, such as '48 min'. %lld is a number of minutes from 0 to 48. min is the abbreviation of minutes.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld мин"
-          }
-        }
-      }
-    },
-    "1 hr %lld min" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 between one and two hours, such as '1 hr 12 min'. %lld is the minutes past the hour, from 12 to 48.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1 ч %lld мин"
-          }
-        }
-      }
-    },
-    "2 hrs or more" : {
-      "comment" : "How long morning stiffness lasts, the value of BASDAI question 6 at its last step: two hours or longer, abbreviated.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "2 ч и больше"
-          }
-        }
-      }
-    },
-    "Not answered" : {
-      "comment" : "The value shown beside a BASDAI question the person has not answered yet. It is a state, not a zero.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет ответа"
-          }
-        }
-      }
-    },
-    "not answered" : {
-      "comment" : "What VoiceOver reads as the value of a BASDAI question slider the person has not answered yet, after the question. Lowercase because it follows the question in speech.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ответа нет"
-          }
-        }
-      }
-    },
-    "BASDAI" : {
-      "comment" : "The item in Today's (+) menu that opens the form with the six BASDAI questions. BASDAI is the name of the index and stays as is.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI"
-          }
-        }
-      }
-    },
-    "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)." : {
-      "comment" : "The citation line under a saved result's answers. The index name and the reference to the 1994 paper stay as published. The two spaces after J and Rheumatol are no-break spaces, so the reference never splits across lines. Keep them.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bath Ankylosing Spondylitis Disease Activity Index (Garrett et al., J Rheumatol 1994)."
-          }
-        }
-      }
-    },
-    "Last week" : {
-      "comment" : "The section label above the six BASDAI questions: every answer is about the last week.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За последнюю неделю"
-          }
-        }
-      }
-    },
-    "Couldn't save this result. Try again." : {
-      "comment" : "The alert when a BASDAI result could not be saved. The form stays open with every answer kept, so the person can tap Save again.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось сохранить результат. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "and %lld more places" : {
-      "comment" : "The report PDF's Places logged block, under its tables, when more places were logged than the six it shows, such as 'and 3 more places'. %lld is how many more.",
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "and %lld more place"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "and %lld more places"
-                }
-              }
-            }
-          }
-        },
-        "ru" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "и ещё %lld место"
-                }
-              },
-              "few" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "и ещё %lld места"
-                }
-              },
-              "many" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "и ещё %lld мест"
-                }
-              },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "и ещё %lld места"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "Places logged" : {
-      "comment" : "The report PDF's heading above the table of body places the patient logged, each with how many entries named it.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Places logged"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Записанные места"
-          }
-        }
-      }
-    },
-    "Place" : {
-      "comment" : "The report PDF's Places logged table, the heading of the column that names a body place, such as Lower back.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Place"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Место"
-          }
-        }
-      }
-    },
-    "Entries" : {
-      "comment" : "The report PDF's Places logged table, the heading of the column that counts the entries naming each place.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entries"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Записи"
-          }
-        }
-      }
-    },
-    "None logged in this period" : {
-      "comment" : "The report PDF's line under a section heading when the period holds nothing for that section. It stands in for any empty report section, such as Places logged or Medication.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "None logged in this period"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За этот период записей нет"
-          }
-        }
-      }
-    },
-    "Delete this result? This can't be undone." : {
-      "comment" : "The question asked after a saved BASDAI result is swiped to delete. The result is gone for good once the person confirms.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Удалить этот результат? Это нельзя отменить."
-          }
-        }
-      }
-    },
-    "Delete result" : {
-      "comment" : "The button that confirms deleting one saved BASDAI result.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Удалить результат"
-          }
-        }
-      }
-    },
-    "Couldn't delete this result. Try again." : {
-      "comment" : "The alert when a saved BASDAI result could not be deleted. The result stays in the list.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось удалить этот результат. Попробуй ещё раз."
-          }
-        }
-      }
-    },
-    "Result deleted" : {
-      "comment" : "What VoiceOver announces after a saved BASDAI result is deleted.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результат удалён"
-          }
-        }
-      }
-    },
-    "BASDAI scores" : {
-      "comment" : "The report PDF's heading above the BASDAI table: the scores of the questionnaire saved in the period, each with its six answers.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI scores"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результаты BASDAI"
-          }
-        }
-      }
-    },
-    "BASDAI scores, continued" : {
-      "comment" : "The report PDF's heading above the BASDAI table when the table goes on from the page before.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI scores, continued"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результаты BASDAI, продолжение"
-          }
-        }
-      }
-    },
-    "Date" : {
-      "comment" : "The report PDF's BASDAI table, the heading of the column that holds the day a result was saved.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Date"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дата"
-          }
-        }
-      }
-    },
-    "Q%lld" : {
-      "comment" : "The report PDF's BASDAI table, the heading of the column for one question: Q1 to Q6, where %lld is the question number from 1 to 6. The key under the table says what each one asks.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Q%lld"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В%lld"
-          }
-        }
-      }
-    },
-    "Score" : {
-      "comment" : "The name of the row on a saved BASDAI result's screen that holds its score, such as 4.7 out of 10. VoiceOver reads it before the value, as in 'Score, 4.7'.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Результат"
-          }
-        }
-      }
-    },
     "Your records appear here, newest first." : {
       "comment" : "The text under the title of the empty History screen. It says which records appear in History and in which order.",
       "localizations" : {
@@ -4402,77 +4469,10 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Здесь появятся твои записи, сначала новые."
+            "value" : "Здесь появятся твои записи, новые сначала."
           }
         }
       }
-    },
-    "Covers last week" : {
-      "comment" : "The second line of a BASDAI row after the time. It says the questionnaire asks about the last seven days.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Covers last week"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "За последние 7 дней"
-          }
-        }
-      }
-    },
-    "BASDAI, score %@, at %@, covers last week" : {
-      "comment" : "What VoiceOver reads for one saved BASDAI result in History and Today. The first %@ is the score with one decimal, with the decimal separator of the person's region, such as 3.0. The second %@ is the time it was saved, such as 20:01. BASDAI is the name of the index and stays as is.",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI, score %@, at %@, covers last week"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "BASDAI, результат %@, в %@, за последние 7 дней"
-          }
-        }
-      }
-    },
-    "Answers" : {
-      "comment" : "The section label above the six answers on a saved BASDAI result's screen, over the card that lists the questions with the number picked for each.",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ответы"
-          }
-        }
-      }
-    },
-    "Not linked to an entry." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не связан с записью."
-          }
-        }
-      },
-      "comment" : "Footnote under the Before this dose row on Log Dose and Edit Dose when the dose has no reading before it, which the row shows as None. It says that the dose points at no entry."
-    },
-    "Remove" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Убрать"
-          }
-        }
-      },
-      "comment" : "Button revealed by swiping the Before this dose row left, which removes the entry the dose points at and leaves the row at None. It does not delete the entry. It is a quiet action, so the word is Remove and not Delete."
     }
   },
   "version" : "1.0"
