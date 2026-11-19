@@ -121,7 +121,7 @@ Check In => Самочувствие
 Check in => Отметить
 Check in pending => Ждёт отметки самочувствия
 Choose an Entry => Выбор записи
-Pain and stiffness entries from the 2 hours before this dose. => Записи о боли и скованности за 2 часа до этой дозы.
+Pain and stiffness entries from the 2 hours before this dose. => Записи о боли и скованности за 2 часа до этого приёма.
 Delete dose => Удалить приём
 Delete this dose? This can't be undone. => Удалить этот приём? Это нельзя отменить.
 Dose => Приём
@@ -193,7 +193,7 @@ Log how you felt => Отметь самочувствие тогда
 Not linked to an entry. => Не связан с записью.
 Remove => Убрать
 The entry used for this dose. Tap to choose another, or swipe left to remove. => \
-Запись, использованная для этой дозы. Нажмите, чтобы выбрать другую, или смахните влево, чтобы убрать.
+Запись, использованная для этого приёма. Нажми, чтобы выбрать другую, или смахни влево, чтобы убрать.
 Couldn't save this check-in. Try again. => Не удалось сохранить отметку. Попробуй ещё раз.
 Couldn't delete this dose. Try again. => Не удалось удалить этот приём. Попробуй ещё раз.
 Couldn't delete this entry. Try again. => Не удалось удалить эту запись. Попробуй ещё раз.
