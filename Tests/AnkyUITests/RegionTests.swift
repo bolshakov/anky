@@ -21,9 +21,9 @@ final class RegionTests: XCTestCase {
         let app = launchAnky(presentation: .region(language: language, region: region))
 
         let dayBefore = dayText(at: .now, in: locale)
-        let todayDate = app.staticTexts["today-date"]
-        XCTAssertTrue(todayDate.waitForExistence(timeout: 10))
-        let shownDay = todayDate.label
+        let date = todayDate(in: app)
+        XCTAssertTrue(date.waitForExistence(timeout: 10))
+        let shownDay = date.label
         XCTAssertTrue(
             [dayBefore, dayText(at: .now, in: locale)].contains(shownDay),
             "today-date is \(shownDay)"

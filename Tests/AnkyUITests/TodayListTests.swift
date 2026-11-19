@@ -79,7 +79,7 @@ final class TodayListTests: XCTestCase {
         let row = entryRows(in: app).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 10))
         let footnote = app.staticTexts["Levels are 0 to 10. Everything stays on this iPhone."]
-        let stops = [app.staticTexts["today-date"], app.buttons["repeat-chip"], row, footnote, app.buttons["add-menu"]]
+        let stops = [todayDate(in: app), app.buttons["repeat-chip"], row, footnote, app.buttons["add-menu"]]
         for stop in stops {
             XCTAssertTrue(stop.exists)
         }
