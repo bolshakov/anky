@@ -111,7 +111,7 @@ struct TodayView: View {
             .emptyStateListOffset(recent == nil ? .today : .todayBelowChip, isShowing: todayItems.isEmpty)
             .blockGapBetweenSections()
             .contentColumn()
-            .todayTopMargin()
+            .firstBlockClearance()
             .addButtonClearance()
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -144,6 +144,7 @@ struct TodayView: View {
                     .padding(.bottom, Spacing.bottomClearance)
             }
             .navigationTitle("Today")
+            .toolbarTitleDisplayMode(.inlineLarge)
             .navigationDestination(isPresented: $isShowingReport) {
                 ReportView(model: model, medications: medications, basdai: basdai)
             }
