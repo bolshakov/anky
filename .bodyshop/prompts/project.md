@@ -41,10 +41,12 @@ included, is left as it is.
 axe describe-ui --udid $U          # JSON of the screen, ids are the AXUniqueId fields
 axe tap --id log-entry --wait-timeout 5 --udid $U
 axe slider --id severity-slider --value 70 --udid $U
-axe tap --id save-entry --udid $U
+axe tap --id save-entry --wait-timeout 5 --udid $U
 axe screenshot --udid $U --output step.png
 ```
 
+- Every `axe` call carries `--udid`: `axe tap`, `describe-ui`, `swipe` and the rest refuse to run without it.
+- Every `axe tap --id` carries `--wait-timeout 5`, so a screen that is still drawing does not fail the step.
 - Find a control by `--id`. A label depends on the language, so use it only where a control has no id.
 - Use `--wait-timeout` and not a sleep. A missing control fails at once with exit code 1.
 - Assert on an id that only the screen under test has. Today's ids stay in the tree while New Entry is open.
