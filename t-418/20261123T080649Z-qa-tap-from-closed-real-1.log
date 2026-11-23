@@ -1,0 +1,4 @@
+$ xcrun simctl terminate A795F530-20A8-4DCF-8190-1A6EC70338A6 dev.bolshakov.Anky
+exit: 0
+commit: 6bb0130f5359a628a2166764627c8df05623851b
+
