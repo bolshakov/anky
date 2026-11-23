@@ -100,8 +100,10 @@ struct RootView: View {
                 showNewEntryOnToday()
             }
         }
-        .onChange(of: logDoseInputs, initial: true) { _, inputs in
-            guard inputs.phase == .active, let medicationID = inputs.medicationID else { return }
+        .task(id: logDoseInputs) {
+            guard logDoseInputs.phase == .active, let medicationID = logDoseInputs.medicationID else { return }
+            await medications.reloadUntilLoaded()
+            guard !Task.isCancelled else { return }
             actOnPendingLogDose(medicationID)
         }
         .onChange(of: formInputs, initial: true) { _, inputs in
