@@ -36,6 +36,23 @@ import Observation
         }
     }
 
+    /// Reads again until a read works, for a store that the system opens a moment after launch. The first read is
+    /// immediate, and a loaded model is left as it is.
+    public func reloadUntilLoaded(every interval: Duration = .seconds(1), attempts: Int = 30) async {
+        for attempt in 0 ..< attempts {
+            if isLoaded {
+                return
+            }
+            if attempt > 0 {
+                try? await Task.sleep(for: interval)
+                if Task.isCancelled {
+                    return
+                }
+            }
+            reload()
+        }
+    }
+
     public func add(_ medication: Medication) throws {
         try loadIfNeeded()
         try store.add(medication)
