@@ -248,6 +248,8 @@ Skipped on days you have already logged something. => \
 Пропускается в дни, когда уже есть записи.
 Log how you feel today. => Пора записать самочувствие.
 Time for your dose. => Пора принять лекарство.
+Medication not available => Лекарство недоступно
+That medication is archived or no longer there. => Это лекарство в архиве или его больше нет.
 Anky => Anky
 Dose deleted => Приём удалён
 Edit Dose => Изменить приём

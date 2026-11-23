@@ -12,6 +12,7 @@ struct TodayView: View {
     @Binding var reminderNewEntry: Bool
     @Binding var reminderLogDose: UUID?
     @Binding var reminderForm: AddDestination?
+    @Binding var showsUnavailableDoseTip: Bool
     @State private var isShowingNewEntry = false
     @State private var isShowingLogDose = false
     @State private var isShowingBasdai = false
@@ -103,6 +104,9 @@ struct TodayView: View {
                     }
                     .nonCardBlock()
                     cornerGuard
+                }
+                if showsUnavailableDoseTip {
+                    UnavailableDoseTip { showsUnavailableDoseTip = false }
                 }
                 entriesOrEmptyState
             }

@@ -14,6 +14,7 @@ struct RootView: View {
     @State private var reminderNewEntry = false
     @State private var reminderLogDose: UUID?
     @State private var reminderForm: AddDestination?
+    @State private var showsUnavailableDoseTip = false
     @State private var checkInAwaitingHistory: Dose?
     @State private var newEntryAwaitingHistory = false
     @State private var logDoseAwaitingHistory: UUID?
@@ -33,7 +34,8 @@ struct RootView: View {
                 reminderCheckIn: $reminderCheckIn,
                 reminderNewEntry: $reminderNewEntry,
                 reminderLogDose: $reminderLogDose,
-                reminderForm: $reminderForm
+                reminderForm: $reminderForm,
+                showsUnavailableDoseTip: $showsUnavailableDoseTip
             )
             .tabItem {
                 Label("Today", systemImage: "calendar")
@@ -117,16 +119,20 @@ struct RootView: View {
     /// the tap stays pending until a read has worked.
     private func actOnPendingLogDose(_ medicationID: UUID) {
         medications.reload()
-        guard medications.isLoaded else { return }
-        openLogDose(for: medicationID)
+        let loaded = medications.isLoaded ? medications.medications : nil
+        switch DoseTap.outcome(medicationID: medicationID, medications: loaded) {
+        case .wait:
+            return
+        case .unavailable:
+            selection = .today
+            showsUnavailableDoseTip = true
+        case .open:
+            openLogDose(for: medicationID)
+        }
         reminderTaps.pendingLogDose = nil
     }
 
     private func openLogDose(for medicationID: UUID) {
-        guard DoseTap.opensLogDose(medicationID: medicationID, medications: medications.medications) else {
-            selection = .today
-            return
-        }
         if selection == .history {
             logDoseAwaitingHistory = medicationID
         } else {
