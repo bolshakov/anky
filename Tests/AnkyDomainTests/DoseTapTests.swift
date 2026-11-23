@@ -23,6 +23,15 @@ struct DoseTapTests {
         #expect(!DoseTap.opensLogDose(medicationID: tapped, medications: [medication(other)]))
     }
 
+    @Test func aTapJudgedBeforeTheMedicationsAreAvailableWaits() {
+        #expect(DoseTap.outcome(medicationID: tapped, medications: nil) == .wait)
+    }
+
+    @Test func aTapOnAnActiveMedicationOpensOnceTheListIsAvailable() {
+        let medications = [medication(other), medication(tapped)]
+        #expect(DoseTap.outcome(medicationID: tapped, medications: medications) == .open)
+    }
+
     private func medication(_ id: UUID) -> Medication {
         Medication(id: id, name: "A", takenAs: .scheduled, createdAt: created)
     }
