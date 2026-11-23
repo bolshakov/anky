@@ -8,7 +8,7 @@ import Observation
     public private(set) var medications: [Medication] = []
     public private(set) var doses: [Dose] = []
     /// False until a read from the store has worked, so a store that was locked at launch is read before a write.
-    private var isLoaded = false
+    public private(set) var isLoaded = false
 
     public init(store: MedicationStore) {
         self.store = store
