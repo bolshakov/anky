@@ -100,8 +100,7 @@ struct RootView: View {
         }
         .onChange(of: logDoseInputs, initial: true) { _, inputs in
             guard inputs.phase == .active, let medicationID = inputs.medicationID else { return }
-            reminderTaps.pendingLogDose = nil
-            openLogDose(for: medicationID)
+            actOnPendingLogDose(medicationID)
         }
         .onChange(of: formInputs, initial: true) { _, inputs in
             guard inputs.phase == .active, let destination = inputs.destination else { return }
@@ -112,6 +111,15 @@ struct RootView: View {
                 showFormOnToday(destination)
             }
         }
+    }
+
+    /// A store that was locked at launch leaves the list empty, which is not the same as the medication being gone, so
+    /// the tap stays pending until a read has worked.
+    private func actOnPendingLogDose(_ medicationID: UUID) {
+        medications.reload()
+        guard medications.isLoaded else { return }
+        openLogDose(for: medicationID)
+        reminderTaps.pendingLogDose = nil
     }
 
     private func openLogDose(for medicationID: UUID) {
