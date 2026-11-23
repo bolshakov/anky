@@ -2881,6 +2881,16 @@
         }
       }
     },
+    "Medication not available" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лекарство недоступно"
+          }
+        }
+      }
+    },
     "Medications" : {
       "localizations" : {
         "ru" : {
@@ -4185,6 +4195,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Болезненность"
+          }
+        }
+      }
+    },
+    "That medication is archived or no longer there." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это лекарство в архиве или его больше нет."
           }
         }
       }
