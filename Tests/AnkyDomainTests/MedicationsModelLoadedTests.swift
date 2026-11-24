@@ -26,4 +26,34 @@ import Testing
         #expect(model.isLoaded)
         #expect(model.medications.map(\.name) == ["Zorblex"])
     }
+
+    @Test func aReloadThatKeepsRetryingLoadsOnceTheStoreOpens() async throws {
+        let inner = FakeMedicationStore([medication("Zorblex")])
+        inner.readFailure = true
+        let model = MedicationsModel(store: inner)
+        let retrying = Task { await model.reloadUntilLoaded(every: .milliseconds(5), attempts: 1000) }
+        try await Task.sleep(for: .milliseconds(30))
+        #expect(!model.isLoaded)
+        inner.readFailure = false
+        await retrying.value
+        #expect(model.isLoaded)
+        #expect(model.medications.map(\.name) == ["Zorblex"])
+    }
+
+    @Test func aReloadGivesUpAfterItsAttemptsOnAStoreThatStaysClosed() async {
+        let inner = FakeMedicationStore([medication("Zorblex")])
+        inner.readFailure = true
+        let model = MedicationsModel(store: inner)
+        await model.reloadUntilLoaded(every: .milliseconds(1), attempts: 3)
+        #expect(!model.isLoaded)
+    }
+
+    @Test func aLoadedModelIsNotReadAgain() async {
+        let inner = FakeMedicationStore([medication("Zorblex")])
+        let model = MedicationsModel(store: inner)
+        inner.readFailure = true
+        await model.reloadUntilLoaded(every: .milliseconds(1), attempts: 3)
+        #expect(model.isLoaded)
+        #expect(model.medications.map(\.name) == ["Zorblex"])
+    }
 }
